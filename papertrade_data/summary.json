@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-27T15:33:40Z",
+  "generated": "2026-09-27T16:35:28Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
-  "cash": 100000.0,
-  "open_cost": 0,
+  "cash": 98000.44,
+  "open_cost": 1999.56,
   "equity": 100000.0,
   "realized": 0,
   "roi_settled": null,
@@ -12,7 +12,9 @@
   "settled": 0,
   "exposure_cap_pct": 0.3,
   "max_stake_pct": 0.02,
-  "by_source": {},
+  "by_source": {
+    "polymarket": 1999.56
+  },
   "curve": [
     {
       "t": "2026-09-27T03:49:58Z",
@@ -20,15 +22,30 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-27T15:33:40Z",
+      "t": "2026-09-27T16:35:28Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
   ],
-  "open": [],
+  "open": [
+    {
+      "question": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match",
+      "source": "polymarket",
+      "side": "no",
+      "contracts": 3508,
+      "cost_per": 0.57,
+      "total_cost": 1999.56,
+      "p_side": 0.97,
+      "market_ask": 0.56,
+      "edge": 0.4,
+      "opened": "2026-09-27T16:32:25Z",
+      "close_time": "2026-10-04T02:30:00Z"
+    }
+  ],
   "closed": [],
   "calibration": {
-    "judged": 61,
+    "judged": 71,
     "resolved": 0,
     "sources": [
       {
@@ -50,6 +67,12 @@
         "n": 0
       },
       {
+        "name": "jev_calibrated",
+        "label": "Jev + research, calibrated",
+        "brier": null,
+        "n": 0
+      },
+      {
         "name": "market",
         "label": "Market price",
         "brier": null,
@@ -59,76 +82,108 @@
   },
   "last_scan": {
     "date": "2026-09-27",
-    "judged": 22,
-    "bets": 0,
-    "fail_info": 16,
-    "fail_rules": 1,
-    "fail_edge": 7,
+    "judged": 40,
+    "bets": 1,
+    "fail_info": 10,
+    "fail_rules": 2,
+    "fail_edge": 6,
     "sources": {
-      "polymarket": 22
+      "kalshi": 29,
+      "polymarket": 11
     }
   },
   "funnel": {
-    "ts": "2026-09-27T15:30:28Z",
+    "ts": "2026-09-27T16:32:25Z",
     "stages": [
       [
         "Fetched",
-        60
+        120
       ],
       [
         "Passed free filters",
-        22
+        53
       ],
       [
         "Judged by Jev",
-        22
+        40
       ],
       [
         "Judged with research",
-        17
+        12
       ],
       [
         "Cleared every gate (main)",
-        0
+        1
       ],
       [
         "Bets placed (main)",
-        0
+        1
       ]
     ],
-    "events": 13,
+    "events": 28,
     "researched_new": 3,
-    "research_reused": 6,
+    "research_reused": 5,
     "bets": {
-      "main": 0,
+      "main": 1,
       "jev_alone": 0,
-      "claude_direct": 0,
-      "bold": 7
+      "claude_direct": 1,
+      "bold": 5,
+      "calibrated": 0
     },
-    "claude_calls": 8,
+    "claude_calls": 7,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 75,
-    "facts_dropped": 18
+    "facts_kept": 48,
+    "facts_dropped": 22,
+    "by_source": {
+      "polymarket": 60,
+      "kalshi": 60
+    },
+    "problems": [],
+    "cleared_gates": {
+      "main": 1,
+      "jev_alone": 0,
+      "claude_direct": 1,
+      "bold": 5,
+      "calibrated": 0
+    },
+    "judged": 40,
+    "with_research": 12
   },
   "strategies": [
     {
       "name": "main",
       "label": "Jev + Claude research",
+      "short": "Headline",
       "main": true,
       "equity": 100000.0,
+      "slot": 1,
+      "blurb": "Jev reads Claude's research and bets only when it's sure of its information. The headline.",
+      "challenger": false,
+      "note": null,
+      "gate_overrides": {},
+      "marked": 99964.92,
+      "unrealized": -35.08,
       "change": 0.0,
       "realized": 0,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 1999.56,
       "settled": 0,
       "wins": 0
     },
     {
       "name": "jev_alone",
       "label": "Jev alone",
+      "short": "Jev alone",
       "main": false,
       "equity": 100000.0,
+      "slot": 2,
+      "blurb": "Jev with no research at all. The baseline: does research help?",
+      "challenger": false,
+      "note": null,
+      "gate_overrides": {},
+      "marked": 100000.0,
+      "unrealized": 0.0,
       "change": 0.0,
       "realized": 0,
       "open": 0,
@@ -139,42 +194,1874 @@
     {
       "name": "claude_direct",
       "label": "Claude direct",
+      "short": "Claude direct",
       "main": false,
       "equity": 100000.0,
+      "slot": 3,
+      "blurb": "Claude reads the same research and makes its own call. Does Jev add anything?",
+      "challenger": false,
+      "note": null,
+      "gate_overrides": {},
+      "marked": 99964.92,
+      "unrealized": -35.08,
       "change": 0.0,
       "realized": 0,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 1999.56,
       "settled": 0,
       "wins": 0
     },
     {
       "name": "bold",
       "label": "Jev + research, bold",
+      "short": "Bold",
       "main": false,
       "equity": 100000.0,
+      "slot": 4,
+      "blurb": "The headline strategy, but it bets even when Jev says it's short on information.",
+      "challenger": false,
+      "note": null,
+      "gate_overrides": {
+        "min_info_sufficient": 0.2
+      },
+      "marked": 96992.62,
+      "unrealized": -3007.38,
       "change": 0.0,
       "realized": 0,
-      "open": 7,
-      "open_cost": 13998.9,
+      "open": 12,
+      "open_cost": 23998.32,
+      "settled": 0,
+      "wins": 0
+    },
+    {
+      "name": "calibrated",
+      "label": "Jev + research, self-calibrating",
+      "short": "Self-calibrating",
+      "main": false,
+      "equity": 100000.0,
+      "slot": 5,
+      "blurb": "The headline strategy, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
+      "challenger": false,
+      "note": "Learning: 0 of 30 results in",
+      "gate_overrides": {},
+      "marked": 100000.0,
+      "unrealized": 0.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 0,
+      "open_cost": 0,
       "settled": 0,
       "wins": 0
     }
   ],
+  "race": [
+    {
+      "name": "main",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T16:35:28Z",
+          99964.92
+        ]
+      ]
+    },
+    {
+      "name": "jev_alone",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:35:28Z",
+          100000.0
+        ]
+      ]
+    },
+    {
+      "name": "claude_direct",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T16:35:28Z",
+          99964.92
+        ]
+      ]
+    },
+    {
+      "name": "bold",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          98227.05
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          96992.62
+        ],
+        [
+          "2026-09-27T16:35:28Z",
+          96992.62
+        ]
+      ]
+    },
+    {
+      "name": "calibrated",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:35:28Z",
+          100000.0
+        ]
+      ]
+    }
+  ],
+  "open_bets": [
+    {
+      "key": "polymarket:5009022",
+      "question": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026",
+      "source": "polymarket",
+      "close_time": "2026-09-28T04:00:00Z",
+      "category": null,
+      "price": 0.077,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 22222,
+          "cost_per": 0.09,
+          "total_cost": 1999.98,
+          "p_side": 0.3,
+          "edge": 0.21,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1711.09
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4690431",
+      "question": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "close_time": "2026-10-01T03:59:59.999Z",
+      "category": "world",
+      "price": 0.115,
+      "price_at": "2026-09-27T16:32:25Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 15384,
+          "cost_per": 0.13,
+          "total_cost": 1999.92,
+          "p_side": 0.85,
+          "edge": 0.72,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1769.16
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4052418",
+      "question": "Will Bitcoin reach $87,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026",
+      "source": "polymarket",
+      "close_time": "2026-10-01T04:00:00Z",
+      "category": null,
+      "price": 0.255,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 2631,
+          "cost_per": 0.76,
+          "total_cost": 1999.56,
+          "p_side": 0.89,
+          "edge": 0.13,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1960.1
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4797724",
+      "question": "Will Bitcoin dip to $82,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026",
+      "source": "polymarket",
+      "close_time": "2026-10-01T04:00:00Z",
+      "category": null,
+      "price": 0.435,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 4444,
+          "cost_per": 0.45,
+          "total_cost": 1999.8,
+          "p_side": 0.53,
+          "edge": 0.08,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1933.14
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4689727",
+      "question": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "close_time": "2026-10-01T04:00:00Z",
+      "category": null,
+      "price": 0.1075,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 16806,
+          "cost_per": 0.119,
+          "total_cost": 1999.91,
+          "p_side": 0.57,
+          "edge": 0.451,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1806.64
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4981247",
+      "question": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match",
+      "source": "polymarket",
+      "close_time": "2026-10-04T02:30:00Z",
+      "category": "sports",
+      "price": 0.44,
+      "price_at": "2026-09-27T16:32:25Z",
+      "positions": [
+        {
+          "strategy": "main",
+          "side": "no",
+          "contracts": 3508,
+          "cost_per": 0.57,
+          "total_cost": 1999.56,
+          "p_side": 0.97,
+          "edge": 0.4,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1964.48
+        },
+        {
+          "strategy": "claude_direct",
+          "side": "no",
+          "contracts": 3508,
+          "cost_per": 0.57,
+          "total_cost": 1999.56,
+          "p_side": 0.97,
+          "edge": 0.4,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1964.48
+        },
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 3508,
+          "cost_per": 0.57,
+          "total_cost": 1999.56,
+          "p_side": 0.97,
+          "edge": 0.4,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1964.48
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4981241",
+      "question": "W15 Maanshan, Qualifying: Completed Match: xu yunzhang vs Alisa Piliptsevich",
+      "url": "https://polymarket.com/market/itf-yunzha1-pilipt1-2026-09-27-completed-match",
+      "source": "polymarket",
+      "close_time": "2026-10-04T02:30:00Z",
+      "category": null,
+      "price": 0.755,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 4000,
+          "cost_per": 0.5,
+          "total_cost": 2000.0,
+          "p_side": 0.69,
+          "edge": 0.19,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 980.0
+        }
+      ]
+    },
+    {
+      "key": "polymarket:1365861",
+      "question": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election",
+      "source": "polymarket",
+      "close_time": "2026-10-05T03:59:00Z",
+      "category": null,
+      "price": 0.745,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 7407,
+          "cost_per": 0.27,
+          "total_cost": 1999.89,
+          "p_side": 0.47,
+          "edge": 0.2,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1888.79
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4885967",
+      "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
+      "source": "polymarket",
+      "close_time": "2026-10-16T03:59:00Z",
+      "category": null,
+      "price": 0.455,
+      "price_at": "2026-09-27T15:30:28Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 3571,
+          "cost_per": 0.56,
+          "total_cost": 1999.76,
+          "p_side": 0.86,
+          "edge": 0.3,
+          "opened": "2026-09-27T15:30:28Z",
+          "value": 1946.19
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
+      "question": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "close_time": "2026-10-18T01:00:00Z",
+      "category": "sports",
+      "price": 0.175,
+      "price_at": "2026-09-27T16:32:25Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 9985,
+          "cost_per": 0.2003,
+          "total_cost": 2000.0,
+          "p_side": 0.36,
+          "edge": 0.1597,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1747.38
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-TAL",
+      "question": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "close_time": "2026-10-18T01:00:00Z",
+      "category": "sports",
+      "price": 0.825,
+      "price_at": "2026-09-27T16:32:25Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 9985,
+          "cost_per": 0.2003,
+          "total_cost": 2000.0,
+          "p_side": 0.54,
+          "edge": 0.3397,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1747.38
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXRT-SENS-65",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "close_time": "2026-10-19T14:00:00Z",
+      "category": "culture",
+      "price": 0.935,
+      "price_at": "2026-09-27T16:32:25Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 23640,
+          "cost_per": 0.0846,
+          "total_cost": 1999.94,
+          "p_side": 0.26,
+          "edge": 0.1754,
+          "opened": "2026-09-27T16:32:25Z",
+          "value": 1536.6
+        }
+      ]
+    }
+  ],
+  "settled_recent": [],
+  "calls": [
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4581768",
+      "question": "Will France win on 2026-09-28?",
+      "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-fra",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-09-28T18:45:00Z",
+      "market": 0.515,
+      "forecasts": {
+        "jev_research": 0.51,
+        "jev_plain": 0.38,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.51,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.010 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.010 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 13
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:601819",
+      "question": "Will Luiz In\u00e1cio Lula da Silva win the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-04T00:00:00Z",
+      "market": 0.425,
+      "forecasts": {
+        "jev_research": 0.45,
+        "jev_plain": 0.33,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.15,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.010 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.010 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "kalshi:KXRT-SENS-70",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-19T14:00:00Z",
+      "market": 0.765,
+      "forecasts": {
+        "jev_research": 0.75,
+        "jev_plain": 0.68,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.36,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.023 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.047 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.023 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "kalshi:KXRT-SENS-65",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-19T14:00:00Z",
+      "market": 0.935,
+      "forecasts": {
+        "jev_research": 0.74,
+        "jev_plain": 0.65,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.36,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.36 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.39 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x23640 @ 0.085: p 0.26 vs cost 0.085, edge +0.175"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "kalshi:KXRT-SENS-75",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 75)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-19T14:00:00Z",
+      "market": 0.545,
+      "forecasts": {
+        "jev_research": 0.66,
+        "jev_plain": 0.59,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.28,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.073 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.003 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.073 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4052417",
+      "question": "Will Bitcoin reach $90,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-90k-in-september-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.0685,
+      "forecasts": {
+        "jev_research": 0.09,
+        "jev_plain": 0.25,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.3,
+      "rules": 0.91,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.011 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.011 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 8
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
+      "question": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:00:00Z",
+      "market": 0.175,
+      "forecasts": {
+        "jev_research": 0.36,
+        "jev_plain": 0.49,
+        "claude_direct": 0.23,
+        "jev_calibrated": null
+      },
+      "info": 0.28,
+      "rules": 0.76,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.28 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.030 < 0.08"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x9985 @ 0.200: p 0.36 vs cost 0.200, edge +0.160"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-TAL",
+      "question": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:00:00Z",
+      "market": 0.825,
+      "forecasts": {
+        "jev_research": 0.46,
+        "jev_plain": 0.38,
+        "claude_direct": 0.74,
+        "jev_calibrated": null
+      },
+      "info": 0.3,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.30 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.12 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x9985 @ 0.200: p 0.54 vs cost 0.200, edge +0.340"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4716411",
+      "question": "Will Elon Musk post 220-239 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-220-239",
+      "source": "polymarket",
+      "category": "culture",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.061,
+      "forecasts": {
+        "jev_research": 0.25,
+        "jev_plain": 0.22,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.21,
+      "rules": 0.73,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 0
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4716409",
+      "question": "Will Elon Musk post 200-219 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-200-219",
+      "source": "polymarket",
+      "category": "culture",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.2,
+      "forecasts": {
+        "jev_research": 0.22,
+        "jev_plain": 0.21,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.2,
+      "rules": 0.74,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.000 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.010 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.000 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 0
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4690431",
+      "question": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "world",
+      "close_time": "2026-10-01T03:59:59.999Z",
+      "market": 0.115,
+      "forecasts": {
+        "jev_research": 0.85,
+        "jev_plain": 0.25,
+        "claude_direct": 0.96,
+        "jev_calibrated": null
+      },
+      "info": 0.35,
+      "rules": 0.81,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.35 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.35 < 0.5)"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x15384 @ 0.130: p 0.85 vs cost 0.130, edge +0.720"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "key": "polymarket:4981247",
+      "question": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-04T02:30:00Z",
+      "market": 0.44,
+      "forecasts": {
+        "jev_research": 0.03,
+        "jev_plain": 0.77,
+        "claude_direct": 0.03,
+        "jev_calibrated": null
+      },
+      "info": 0.82,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x3508 @ 0.570: p 0.97 vs cost 0.570, edge +0.400"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.120 < 0.08"
+        },
+        "claude_direct": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x3508 @ 0.570: p 0.97 vs cost 0.570, edge +0.400"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x3508 @ 0.570: p 0.97 vs cost 0.570, edge +0.400"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 4
+    }
+  ],
+  "feed": [
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "main",
+      "side": "no",
+      "price": 0.57,
+      "amount": 1999.56,
+      "p": 0.97,
+      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "claude_direct",
+      "side": "no",
+      "price": 0.57,
+      "amount": 1999.56,
+      "p": 0.97,
+      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.2003,
+      "amount": 2000.0,
+      "p": 0.36,
+      "q": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.2003,
+      "amount": 2000.0,
+      "p": 0.54,
+      "q": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.13,
+      "amount": 1999.92,
+      "p": 0.85,
+      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.57,
+      "amount": 1999.56,
+      "p": 0.97,
+      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.0846,
+      "amount": 1999.94,
+      "p": 0.26,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.51,
+      "claude": null,
+      "market": 0.515,
+      "q": "Will France win on 2026-09-28?",
+      "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-fra"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.45,
+      "claude": null,
+      "market": 0.425,
+      "q": "Will Luiz In\u00e1cio Lula da Silva win the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.75,
+      "claude": null,
+      "market": 0.765,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.74,
+      "claude": null,
+      "market": 0.935,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.66,
+      "claude": null,
+      "market": 0.545,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 75)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.09,
+      "claude": null,
+      "market": 0.0685,
+      "q": "Will Bitcoin reach $90,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-90k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.36,
+      "claude": 0.23,
+      "market": 0.175,
+      "q": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.46,
+      "claude": 0.74,
+      "market": 0.825,
+      "q": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.25,
+      "claude": null,
+      "market": 0.061,
+      "q": "Will Elon Musk post 220-239 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-220-239"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.22,
+      "claude": null,
+      "market": 0.2,
+      "q": "Will Elon Musk post 200-219 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-200-219"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.85,
+      "claude": 0.96,
+      "market": 0.115,
+      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "call",
+      "jev": 0.03,
+      "claude": 0.03,
+      "market": 0.44,
+      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "intel",
+      "facts": 8,
+      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "intel",
+      "facts": 4,
+      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
+      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T16:32:25Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 40,
+      "researched": 12,
+      "bets": 7
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.76,
+      "amount": 1999.56,
+      "p": 0.89,
+      "q": "Will Bitcoin reach $87,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.45,
+      "amount": 1999.8,
+      "p": 0.53,
+      "q": "Will Bitcoin dip to $82,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.119,
+      "amount": 1999.91,
+      "p": 0.57,
+      "q": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.09,
+      "amount": 1999.98,
+      "p": 0.3,
+      "q": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.5,
+      "amount": 2000.0,
+      "p": 0.69,
+      "q": "W15 Maanshan, Qualifying: Completed Match: xu yunzhang vs Alisa Piliptsevich",
+      "url": "https://polymarket.com/market/itf-yunzha1-pilipt1-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.27,
+      "amount": 1999.89,
+      "p": 0.47,
+      "q": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.56,
+      "amount": 1999.76,
+      "p": 0.86,
+      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.22,
+      "claude": null,
+      "market": 0.5725,
+      "q": "Will Fl\u00e1vio Bolsonaro win the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-win-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.57,
+      "claude": null,
+      "market": 0.1075,
+      "q": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.11,
+      "claude": null,
+      "market": 0.255,
+      "q": "Will Bitcoin reach $87,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.53,
+      "claude": null,
+      "market": 0.435,
+      "q": "Will Bitcoin dip to $82,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.54,
+      "claude": 0.67,
+      "market": 0.52,
+      "q": "Will Bitcoin dip to $84,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-84k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.3,
+      "claude": 0.22,
+      "market": 0.077,
+      "q": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.2,
+      "claude": null,
+      "market": 0.2535,
+      "q": "Will Luiz In\u00e1cio Lula da Silva finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.53,
+      "claude": null,
+      "market": 0.745,
+      "q": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.15,
+      "claude": null,
+      "market": 0.175,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.1,
+      "claude": null,
+      "market": 0.155,
+      "q": "Saudi Oil Pipeline (East-West) restarts by September 30?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-september-30"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.14,
+      "claude": null,
+      "market": 0.455,
+      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.31,
+      "claude": 0.9,
+      "market": 0.755,
+      "q": "W15 Maanshan, Qualifying: Completed Match: xu yunzhang vs Alisa Piliptsevich",
+      "url": "https://polymarket.com/market/itf-yunzha1-pilipt1-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.27,
+      "claude": 0.06,
+      "market": 0.0695,
+      "q": "Will Elon Musk post 140-159 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-140-159"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "call",
+      "jev": 0.23,
+      "claude": 0.07,
+      "market": 0.335,
+      "q": "Will Elon Musk post 160-179 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-160-179"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "intel",
+      "facts": 8,
+      "q": "W15 Maanshan, Qualifying: Completed Match: xu yunzhang vs Alisa Piliptsevich",
+      "url": "https://polymarket.com/market/itf-yunzha1-pilipt1-2026-09-27-completed-match"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "intel",
+      "facts": 6,
+      "q": "Will Elon Musk post 140-159 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-140-159"
+    },
+    {
+      "ts": "2026-09-27T15:30:28Z",
+      "type": "scan",
+      "fetched": 60,
+      "judged": 22,
+      "researched": 17,
+      "bets": 7
+    },
+    {
+      "ts": "2026-09-27T15:11:30Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Will Luiz In\u00e1cio Lula da Silva finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T15:11:30Z",
+      "type": "intel",
+      "facts": 11,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-09-27T15:11:30Z",
+      "type": "intel",
+      "facts": 14,
+      "q": "Saudi Oil Pipeline (East-West) restarts by September 30?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-september-30"
+    },
+    {
+      "ts": "2026-09-27T15:11:30Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 12,
+      "researched": 5,
+      "bets": 0
+    },
+    {
+      "ts": "2026-09-27T14:41:02Z",
+      "type": "call",
+      "jev": 0.5,
+      "claude": 0.4,
+      "market": 0.265,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T14:41:02Z",
+      "type": "intel",
+      "facts": 8,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-27T14:41:02Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T14:41:02Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Will Bitcoin dip to $84,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-84k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-27T14:41:02Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 40,
+      "researched": 13,
+      "bets": 0
+    },
+    {
+      "ts": "2026-09-27T07:25:43Z",
+      "type": "call",
+      "jev": 0.22,
+      "claude": 0.27,
+      "market": 0.255,
+      "q": "Will Belgium win on 2026-09-28?",
+      "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-bel"
+    },
+    {
+      "ts": "2026-09-27T07:25:43Z",
+      "type": "intel",
+      "facts": 13,
+      "q": "Will France win on 2026-09-28?",
+      "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-fra"
+    },
+    {
+      "ts": "2026-09-27T07:25:43Z",
+      "type": "intel",
+      "facts": 12,
+      "q": "Will Luiz In\u00e1cio Lula da Silva win the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-27T07:25:43Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 29,
+      "researched": 4,
+      "bets": 0
+    },
+    {
+      "ts": "2026-09-27T06:06:53Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
+      "ts": "2026-09-27T03:50:12Z",
+      "type": "call",
+      "jev": 0.32,
+      "claude": null,
+      "market": 0.535,
+      "q": "San Antonio wins",
+      "url": "https://kalshi.com/markets/KXNBAGAME-26OCT20OKCSAS"
+    },
+    {
+      "ts": "2026-09-27T03:50:12Z",
+      "type": "call",
+      "jev": 0.43,
+      "claude": null,
+      "market": 0.275,
+      "q": "Washington vs Atlanta First Round series winner: Washington wins",
+      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
+    }
+  ],
   "plan_usage": {
-    "ts": "2026-09-27T15:30:28Z",
-    "week": 0.79,
+    "ts": "2026-09-27T16:32:25Z",
+    "week": 0.8,
     "week_resets": 1790578800,
-    "five_hour": 0.05
+    "five_hour": 0.09
   },
-  "research_runs_today": 11,
+  "research_runs_today": 14,
+  "cycles_24h": 6,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
+    "win_reviews": 0,
     "calibration": [],
     "root_causes": {},
-    "proposals": {},
-    "recent": []
+    "credits": {},
+    "recent": [],
+    "recent_wins": [],
+    "playbook": {
+      "version": 0,
+      "updated": null,
+      "rules": [],
+      "history": []
+    },
+    "calibration_map": {
+      "active": false,
+      "n": 0,
+      "need": 30
+    },
+    "gate_ledger": {},
+    "by_category": [],
+    "proposals": [],
+    "suggested_areas": {},
+    "retro": null,
+    "auto_start": false
   },
   "repo_url": "https://github.com/MojoAI-King/jev-paper-trader",
   "ledger_base": "https://raw.githubusercontent.com/MojoAI-King/jev-paper-trader/master/papertrade_data/"
