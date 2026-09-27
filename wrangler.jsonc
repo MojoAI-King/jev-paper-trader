@@ -1,8 +1,16 @@
-// The public page: a static-files-only Cloudflare Worker serving site/ (built by `python3 -m papertrade publish`).
+// The public page, plus the dependable trading trigger (worker/index.js).
+// site/ is built by `python3 -m papertrade publish`; the page reads summary.json from the GitHub repo.
 {
   "name": "jev-paper-trader",
+  "main": "worker/index.js",
   "compatibility_date": "2026-09-27",
   "assets": {
-    "directory": "./site"
-  }
+    "directory": "./site",
+    "binding": "ASSETS"
+  },
+  // Ask GitHub for a trading cycle twice an hour (UTC minutes; the workflow skips one if a cycle ran < 25 min ago)
+  "triggers": {
+    "crons": ["4,34 * * * *"]
+  },
+  "observability": { "enabled": true }
 }

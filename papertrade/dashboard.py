@@ -18,6 +18,7 @@ TEMPLATE = Path(__file__).with_name("dashboard_template.html")
 SLOTS = 7  # categorical colors on the page; a strategy keeps its slot for good (color follows the entity)
 RACE_POINTS = 240  # the race chart's resolution; settlements and the latest point are always kept
 CALLS = 12  # how many recent researched calls the page shows
+FEED = 80  # events in the live feed
 
 
 def last_scan(policy: dict, judgments: list[dict]) -> dict | None:
@@ -207,10 +208,53 @@ def calls(judgments: list[dict], n: int = CALLS) -> list[dict]:
             "decisions": {name: {"bet": d.get("bet", False), "side": d.get("side"),
                                  "why": (d.get("reasons") or [""])[0][:140]}
                           for name, d in (j.get("decisions") or {}).items()},
-            "facts": [{k: f.get(k) for k in ("kind", "date", "source", "fact")} for f in (j.get("recent_facts") or [])[:6]],
             "facts_total": len(j.get("recent_facts") or []),
         })
     return out
+
+
+def feed(books: dict, judgments: list[dict], scans: list[dict], research: list[dict], reviews: list[dict],
+         n: int = FEED) -> list[dict]:
+    """The live feed: every real event from the ledgers, newest first. Nothing here is made up; each
+    line points back to a record in portfolios/, scans.jsonl, research.jsonl, judgments.jsonl or reviews.jsonl."""
+    ev = []
+    questions = {j["key"]: (j["market"]["question"], j["market"].get("url")) for j in judgments}
+    for name, b in books.items():
+        for p in b["open"] + b["closed"]:
+            ev.append({"ts": p["opened"], "type": "bet", "strategy": name, "side": p["side"], "price": p["cost_per"],
+                       "amount": p["total_cost"], "p": p["p_side"], "q": p["question"], "url": p["url"], "o": 3})
+            if p.get("settled"):
+                ev.append({"ts": p["settled"], "type": "win" if p["pnl"] > 0 else "loss", "strategy": name,
+                           "amount": p["pnl"], "q": p["question"], "url": p["url"], "o": 4})
+    for s in scans:
+        if "funnel" in s:
+            f = s["funnel"]
+            ev.append({"ts": s["ts"], "type": "scan", "fetched": f.get("fetched", 0), "judged": f.get("judged", 0),
+                       "researched": f.get("with_research", 0), "bets": sum((f.get("bets") or {}).values()), "o": 0})
+            for msg in (s.get("problems") or [])[:2]:
+                ev.append({"ts": s["ts"], "type": "problem", "text": msg[:140], "o": 1})
+        elif s.get("kind") == "learning":
+            c, r = s.get("coach") or {}, s.get("retro") or {}
+            if c.get("ran"):
+                ev.append({"ts": s["ts"], "type": "learn", "text": f"Research playbook updated to v{c.get('version')}", "o": 5})
+            if r.get("ran"):
+                ev.append({"ts": s["ts"], "type": "learn", "text": "Weekly review written", "o": 5})
+    for r in research:
+        q, url = questions.get((r.get("keys") or [""])[0], ("", None))
+        ev.append({"ts": r["ts"], "type": "intel", "facts": len(r.get("raw_facts") or []), "q": q, "url": url, "o": 1})
+    latest = {}
+    for j in judgments:
+        if j.get("answers"):
+            latest[j["key"]] = j
+    for j in sorted(latest.values(), key=lambda j: j["ts"])[-30:]:
+        ev.append({"ts": j["ts"], "type": "call", "jev": engine._prob(j, "jev_research"), "claude": engine._prob(j, "claude_direct"),
+                   "market": j["market"].get("mid"), "q": j["market"]["question"], "url": j["market"].get("url"), "o": 2})
+    for r in reviews:
+        if r.get("post_mortem"):
+            ev.append({"ts": r["ts"], "type": "review", "kind": r["post_mortem"].get("kind", "miss"),
+                       "cause": r["post_mortem"]["root_cause"], "q": r["question"], "url": r.get("url"), "o": 5})
+    ev.sort(key=lambda e: (e["ts"], e["o"]), reverse=True)
+    return [{k: v for k, v in e.items() if k != "o"} for e in ev[:n]]
 
 
 def learning_state(policy: dict, reviews: list[dict], judgments: list[dict], resolved: dict) -> dict:
@@ -281,6 +325,7 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "open_bets": open_bets(books, prices, judgments),
         "settled_recent": recent_settled(books),
         "calls": calls(judgments),
+        "feed": feed(books, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or []),
         "plan_usage": plan_usage(scans or []),
         "research_runs_today": sum(1 for r in engine.read_jsonl(engine.RESEARCH) if str(r.get("ts", "")).startswith(generated_at[:10])),
         "cycles_24h": sum(1 for s in (scans or []) if "funnel" in s and s["ts"] >= _hours_before(generated_at, 24)),

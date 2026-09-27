@@ -15,7 +15,14 @@ on:
     # GitHub drops scheduled slots under load (on 2026-09-27 the :05 slot ran once in four hours, 45 minutes
     # late), so offer four slots an hour; the "due" step skips a slot if a cycle ran in the last 25 minutes.
     - cron: "8,23,38,53 * * * *"
-  workflow_dispatch: {}  # a manual start always runs a cycle
+  # Started by hand (runs a cycle), or by the Cloudflare cron trigger in worker/index.js (force: false,
+  # so the "due" step applies). Cloudflare's triggers fire on time; GitHub's schedule above is the backup.
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run a cycle even if one ran in the last 25 minutes"
+        type: boolean
+        default: true
 
 concurrency:
   group: trading-cycle
@@ -31,11 +38,13 @@ jobs:
     timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: master  # the newest commit, not the one current when this run was queued, so the gate sees the last cycle
 
       - name: Due for a cycle?
         id: due
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
           else python3 -m papertrade due --minutes 25 >> "$GITHUB_OUTPUT"; fi
 
       - uses: actions/setup-python@v5
