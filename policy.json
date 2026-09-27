@@ -39,9 +39,9 @@
     "_research_after_hours": "An event's research is reused for 24 hours, or redone sooner if a price moves 10+ points",
     "max_research_per_cycle": 3,
     "max_research_per_day": 20,
-    "max_week_used": 0.85,
+    "max_week_used": 1.0,
     "max_five_hour_used": 0.70,
-    "_max_week_used": "Stop calling Claude once the plan's weekly window is 85% used (or the 5-hour window 70%), leaving the rest for Joey",
+    "_max_week_used": "Joey lifted the 85% weekly pause on 2026-09-27: research runs until the plan itself says the week is full. It still pauses when the 5-hour window is 70% used, so Joey's own sessions keep room",
     "timeout_seconds": 900,
     "max_api_equivalent_usd_per_call": 5
   },
@@ -58,10 +58,13 @@
   },
 
   "strategies": {
-    "_readme": "Each strategy trades its own fake $100k on the same markets with the same gates and sizing; only the probability source differs. main is the pre-registered headline (PLAN.md).",
+    "_readme": "Each strategy trades its own fake $100k on the same markets with the same sizing. They differ in the probability source and, only where gate_overrides says so, in a gate. main is the pre-registered headline (PLAN.md); its gates are never overridden.",
     "main": {"label": "Jev + Claude research", "probability": "jev_research", "gates": "jev_research"},
     "jev_alone": {"label": "Jev alone", "probability": "jev_plain", "gates": "jev_plain"},
-    "claude_direct": {"label": "Claude direct", "probability": "claude_direct", "gates": "jev_research"}
+    "claude_direct": {"label": "Claude direct", "probability": "claude_direct", "gates": "jev_research"},
+    "bold": {"label": "Jev + research, bold", "probability": "jev_research", "gates": "jev_research",
+             "gate_overrides": {"min_info_sufficient": 0.2},
+             "_why": "Joey approved 2026-09-27: main but with the info bar at 0.2 instead of 0.5, to test whether the info gate is too cautious"}
   },
 
   "sizing": {

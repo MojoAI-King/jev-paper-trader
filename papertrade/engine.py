@@ -53,6 +53,18 @@ def strategies(policy: dict) -> dict:
     return {k: v for k, v in policy["strategies"].items() if not k.startswith("_")}
 
 
+def strategy_policy(policy: dict, strat: dict) -> dict:
+    """The policy one strategy decides with: the shared gates, with that strategy's own gate overrides.
+
+    Only gates can differ between strategies. Sizing, fees and the exposure caps are the same for all.
+    An override naming a gate that doesn't exist is refused, so a typo can't silently do nothing."""
+    over = {k: v for k, v in (strat.get("gate_overrides") or {}).items() if not k.startswith("_")}
+    unknown = sorted(set(over) - set(policy["gates"]))
+    if unknown:
+        raise ValueError(f"strategy '{strat.get('label')}' overrides unknown gates: {', '.join(unknown)}")
+    return dict(policy, gates={**policy["gates"], **over}) if over else policy
+
+
 # ---------------- storage ----------------
 
 def load_json(path: Path, default):
@@ -193,20 +205,22 @@ def passes_free_filters(m: dict, mf: dict, now: datetime) -> str | None:
 # ---------------- scan: the funnel ----------------
 
 def last_judged() -> dict:
-    """key -> (time of the latest judgment, the market's mid price then)."""
+    """key -> (time of the latest judgment, the market's mid price then, the strategies that decided on it)."""
     out = {}
     for j in read_jsonl(JUDGMENTS):
-        out[j["key"]] = (j.get("ts", ""), j.get("market", {}).get("mid"))
+        out[j["key"]] = (j.get("ts", ""), j.get("market", {}).get("mid"), frozenset(j.get("decisions") or ()))
     return out
 
 
-def due(m: dict, seen: dict, cutoff: str, move: float) -> bool:
-    """Judge again when it's never been judged, the last judgment is old, or the price has moved.
+def due(m: dict, seen: dict, cutoff: str, move: float, names=()) -> bool:
+    """Judge again when it's never been judged, the last judgment is old, the price has moved, or a
+    strategy in `names` has never decided on it (a newly added strategy gets a first look next cycle).
 
     The price only decides *when* to look again; no forecaster ever sees it.
     """
-    ts, mid = seen.get(key(m), ("", None))
-    return ts < cutoff or (mid is not None and abs(float(m["mid"]) - float(mid)) >= move)
+    ts, mid, decided = seen.get(key(m), ("", None, frozenset()))
+    return (ts < cutoff or (mid is not None and abs(float(m["mid"]) - float(mid)) >= move)
+            or not set(names) <= decided)
 
 
 def _interleave(lists: list[list]) -> list:
@@ -262,6 +276,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     now = now or datetime.now(timezone.utc)
     today, stamp = now.strftime("%Y-%m-%d"), now.strftime(TS)  # one clock for filtering and logging
     mf, rc, strats = policy["market_filters"], policy["research"], strategies(policy)
+    spolicy = {name: strategy_policy(policy, s) for name, s in strats.items()}  # fails fast on a bad override
     books = load_books(policy)
     seen = last_judged()
     cutoff = (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
@@ -281,7 +296,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             stats["errors"] += 1
             continue
         funnel["fetched"] += len(ms)
-        per_source.append([m for m in ms if due(m, seen, cutoff, mf["rejudge_on_price_move"])
+        per_source.append([m for m in ms if due(m, seen, cutoff, mf["rejudge_on_price_move"], strats)
                            and passes_free_filters(m, mf, now) is None])
     candidates = _interleave(per_source)
     candidates.sort(key=lambda m: seen.get(key(m), ("",))[0])  # never judged first, then judged longest ago
@@ -414,7 +429,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                     decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
                     continue
                 open_cost = sum(x["total_cost"] for x in pf["open"])
-                d = decide(m, answers, policy, equity_at_cost(pf), open_cost, pf["cash"])
+                d = decide(m, answers, spolicy[name], equity_at_cost(pf), open_cost, pf["cash"])
                 decisions[name] = d
                 funnel["cleared_gates"][name] += int(d["cleared_gates"])
                 if d["bet"]:

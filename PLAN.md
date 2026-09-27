@@ -36,14 +36,14 @@ Two numbers answer it, and we need both:
 each event once, screen the facts, judge every market three ways, and let each strategy decide.
 Each stage's counts and spend go to `scans.jsonl` and the dashboard.
 
-**Three strategies, each with its own fake $100,000,** on the same markets with the same gates
-and sizing:
+**Four strategies, each with its own fake $100,000,** on the same markets with the same sizing:
 
 | Strategy | Forecaster | What it tells us |
 | --- | --- | --- |
 | **Main: Jev + Claude research** | Jev reading screened research | The headline answer |
 | Jev alone | Jev with no research | The baseline, and your step 3's "without news" arm |
 | Claude direct | Claude Opus 5.5 reading the same research | Whether Jev adds anything over Claude |
+| Bold (added 2026-09-27) | Main, but bets when Jev's info score is 0.2+ instead of 0.5+ | Whether the info gate is too cautious |
 
 **Research, rationed to the Claude plan.** Claude Opus 5.5 through Claude Code, medium effort: up to
 6 searches and 3 full-page reads per event, up to 15 dated, sourced facts. Facts cover what the resolution source
@@ -97,8 +97,8 @@ that's enforced). The page (Cloudflare) and hourly runs (GitHub, public repo) ar
 
 What research costs instead is a share of the plan's usage limits, which Joey also uses himself. So
 it's rationed: at most 3 research runs per hour and 20 per day, only on events where the rules are
-clear, reused for 24 hours, and paused whenever the plan's weekly window is 85% used or its 5-hour
-window 70%. Each call logs what it would have cost on the API, as a measure of how much the plan
+clear, reused for 24 hours, and paused whenever the plan's 5-hour window is 70% used. (The pause at
+85% of the weekly window was lifted by Joey on 2026-09-27.) Each call logs what it would have cost on the API, as a measure of how much the plan
 is absorbing; that amount is not billed.
 
 ## Phases

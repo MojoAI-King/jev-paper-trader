@@ -70,9 +70,10 @@ A fake bet is placed only if **every** gate in `policy.json` passes:
 - Rules clear of at least 0.75, information sufficient of at least 0.5, YES/NO gap at most 0.15
 - Size: quarter-Kelly, at most **2%** of that strategy's bankroll per bet and **30%** in open bets
 
-**Strategies.** Each trades its own fake $100,000 on the same markets with the same gates:
-**main** (Jev + Claude research, the headline), **Jev alone**, and **Claude direct**. Comparing them
-shows whether research helps and whether Jev adds anything over Claude.
+**Strategies.** Each trades its own fake $100,000 on the same markets with the same sizing:
+**main** (Jev + Claude research, the headline), **Jev alone**, **Claude direct**, and **bold** (main,
+but with an info bar of 0.2 instead of 0.5). Comparing them shows whether research helps, whether Jev
+adds anything over Claude, and whether the info gate is too cautious.
 
 ## Learning from mistakes
 
@@ -123,8 +124,8 @@ DECISIONS.md     # why each choice was made
 
 No real money beyond the Claude plan you already pay for, plus a few cents a month for Jev. Claude
 runs on the plan's login, never an API key. Research uses part of the plan's usage limits, so it
-pauses automatically once the weekly window is 85% used or the 5-hour window 70%, leaving the rest
-for you. Every call logs what it would have cost on the API (not billed) in `scans.jsonl`.
+pauses automatically once the 5-hour window is 70% used, leaving room for you. It runs until the
+plan's weekly limit is reached (the 85% weekly pause was lifted on 2026-09-27). Every call logs what it would have cost on the API (not billed) in `scans.jsonl`.
 
 ## Known limits
 

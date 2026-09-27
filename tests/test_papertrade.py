@@ -156,6 +156,27 @@ class DecideTests(unittest.TestCase):
         self.assertLess(kal["edge"], poly["edge"])
 
 
+class StrategyGateTests(unittest.TestCase):
+    def test_main_keeps_its_pre_registered_gates(self):  # PLAN.md fixes these before results come in
+        self.assertEqual({k: v for k, v in POLICY["gates"].items() if not k.startswith("_")},
+                         {"min_edge": 0.08, "min_rules_clear": 0.75, "min_info_sufficient": 0.5, "max_framing_gap": 0.15})
+        self.assertNotIn("gate_overrides", POLICY["strategies"]["main"])
+        self.assertIs(engine.strategy_policy(POLICY, POLICY["strategies"]["main"]), POLICY)
+
+    def test_bold_differs_from_main_only_in_the_info_bar(self):
+        bold = engine.strategy_policy(POLICY, POLICY["strategies"]["bold"])
+        self.assertEqual(bold["gates"], dict(POLICY["gates"], min_info_sufficient=0.2))
+        self.assertEqual((bold["sizing"], bold["fees"]), (POLICY["sizing"], POLICY["fees"]))
+        a = ans(0.60, info=0.3)
+        self.assertFalse(engine.decide(market(), a, POLICY, 100000, 0, 100000)["bet"])
+        self.assertTrue(engine.decide(market(), a, bold, 100000, 0, 100000)["bet"])
+        self.assertFalse(engine.decide(market(), ans(0.60, info=0.1), bold, 100000, 0, 100000)["bet"])
+
+    def test_an_override_of_a_gate_that_does_not_exist_is_refused(self):
+        with self.assertRaises(ValueError):
+            engine.strategy_policy(POLICY, {"label": "typo", "gate_overrides": {"min_info_sufficent": 0.1}})
+
+
 SCAN_NOW = datetime(1999, 12, 25, tzinfo=timezone.utc)  # test markets close 2000-01-01/02: inside the window
 STREAM = (Path(__file__).parent / "fixtures" / "claude_stream.jsonl").read_text()  # a real Claude Code run, recorded
 
@@ -226,7 +247,7 @@ class EndToEndTests(DataDirTest):
         stats = engine.scan(policy, researcher=FakeResearcher([fact("A clean fact.")]),
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
-        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2})
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -236,7 +257,7 @@ class EndToEndTests(DataDirTest):
 
         s = engine.settle(policy, resolvers={"polymarket": lambda mid: "yes" if mid in "12" else None},
                           log=lambda *_: None)
-        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1})
+        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -390,7 +411,7 @@ class ResearchPipelineTests(DataDirTest):
             return 0, STREAM, ""
         rc = POLICY["research"]
         busy = {"status": "allowed_warning", "unifiedWindows": {
-            "seven_day": {"utilization": 0.95, "resetsAt": (SCAN_NOW + timedelta(hours=10)).timestamp()}}}
+            "seven_day": {"utilization": rc["max_week_used"], "resetsAt": (SCAN_NOW + timedelta(hours=10)).timestamp()}}}
         engine.append_jsonl(engine.SCANS, {"ts": "1999-12-24T23:00:00Z", "claude": {"rate": busy}})
         cc = news.ClaudeCode(rc, runner=runner)
         stats = self.run_scan([self.lula()], news.Researcher(rc, cc), news.DirectForecaster(rc, cc), claude=cc)
@@ -406,7 +427,7 @@ class ResearchPipelineTests(DataDirTest):
             return {"model": "jev-test", "answers": ans(0.70 if "recent_facts" in body["state"] else 0.60)}
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
-        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
         self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone"]["p_yes"]), (0.70, 0.60))
         # two days later the market is judged again for data, but no strategy adds to a position it holds
@@ -414,6 +435,17 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(stats2["funnel"]["judged"], 1)
         self.assertEqual(stats2["funnel"]["bets"]["main"], 0)
         self.assertEqual(len(engine.load_portfolio(POLICY)["open"]), 1)
+
+    def test_a_new_strategy_gets_a_first_look_without_new_research(self):
+        without_bold = dict(POLICY, sources=["polymarket"],
+                            strategies={k: v for k, v in POLICY["strategies"].items() if k != "bold"})
+        r = FakeResearcher([fact(CLEAN[1])])
+        self.run_scan([self.lula()], r, policy=without_bold)
+        stats = self.run_scan([self.lula()], r, now=SCAN_NOW + timedelta(hours=1))  # bold added an hour later
+        self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["research_reused"], len(r.calls)), (1, 1, 1))
+        self.assertIn("bold", engine.read_jsonl(engine.JUDGMENTS)[-1]["decisions"])
+        stats = self.run_scan([self.lula()], r, now=SCAN_NOW + timedelta(hours=2))  # everyone has decided now
+        self.assertEqual(stats["funnel"]["judged"], 0)
 
     def test_scan_logs_its_funnel(self):
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
@@ -559,7 +591,7 @@ def fresh_pf():
 
 
 def books(main):
-    return {"main": main, "jev_alone": fresh_pf(), "claude_direct": fresh_pf()}
+    return {name: main if name == "main" else fresh_pf() for name in engine.strategies(POLICY)}
 
 
 class DashboardTests(DataDirTest):
@@ -622,11 +654,13 @@ class DashboardTests(DataDirTest):
 class IntradayTests(DataDirTest):
     def test_due_after_time_or_a_price_move(self):
         m = dict(market(mid="1", m=0.40))
-        seen = {"polymarket:1": ("2000-01-01T06:00:00Z", 0.40)}
+        seen = {"polymarket:1": ("2000-01-01T06:00:00Z", 0.40, frozenset({"main"}))}
         self.assertTrue(engine.due(m, {}, "2000-01-01T00:00:00Z", 0.05))                      # never judged
         self.assertFalse(engine.due(m, seen, "2000-01-01T00:00:00Z", 0.05))                   # recent, same price
         self.assertTrue(engine.due(m, seen, "2000-01-01T07:00:00Z", 0.05))                    # older than the window
         self.assertTrue(engine.due(dict(m, mid=0.46), seen, "2000-01-01T00:00:00Z", 0.05))    # price moved 6 points
+        self.assertFalse(engine.due(m, seen, "2000-01-01T00:00:00Z", 0.05, ["main"]))         # every strategy has decided
+        self.assertTrue(engine.due(m, seen, "2000-01-01T00:00:00Z", 0.05, ["main", "bold"]))  # a new strategy gets a look
 
 
 class FakeAnalyst:
