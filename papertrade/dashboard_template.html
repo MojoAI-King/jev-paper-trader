@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jev Paper Trader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --page: #f3f4f1;
+  --surface: #fcfcfb;
+  --raised: #ffffff;
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --hairline: rgba(11, 11, 11, 0.09);
+  --wash: #eeefeb;
+  --cash: #d3d2cb;
+  --kalshi: #2a78d6;      /* categorical slot 1 */
+  --polymarket: #eb6834;  /* categorical slot 2 */
+  --aqua: #1baf7a;        /* categorical slot 3: Claude direct */
+  --gain: #2a78d6;        /* diverging pole: gain */
+  --loss: #e34948;        /* diverging pole: loss */
+  --good: #0ca30c;        /* status: good (always with icon + label) */
+  --critical: #d03b3b;    /* status: critical (always with icon + label) */
+  --good-text: #006300;
+  --focus: #2a78d6;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --raised: #20201f; --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --hairline: rgba(255, 255, 255, 0.09); --wash: #242422; --cash: #4a4a46;
+    --kalshi: #3987e5; --polymarket: #d95926; --aqua: #199e70; --gain: #3987e5; --loss: #e66767; --good-text: #0ca30c; --focus: #3987e5;
+  }
+}
+* { box-sizing: border-box; }
+html { background: var(--page); }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 14.5px; line-height: 1.5;
+       padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+a { color: inherit; text-decoration-color: var(--axis); text-underline-offset: 2px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 22px 48px; display: grid; gap: 16px; }
+
+/* top bar */
+.top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.mark { width: 30px; height: 30px; border-radius: 8px; background: var(--ink); color: var(--page); display: grid; place-items: center;
+        font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: -0.02em; }
+.brand h1 { font-size: 19px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+.pill { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+        border: 1px solid var(--hairline); color: var(--ink-2); background: var(--surface); white-space: nowrap; }
+.stamp { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.example { background: #fab219; color: #0b0b0b; font-weight: 600; border-radius: 10px; padding: 10px 14px; font-size: 13.5px; }
+
+/* cards + grid */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px; padding: 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.card h2 { font-size: 13px; font-weight: 600; margin: 0; color: var(--ink-2); letter-spacing: 0.02em; }
+.card .sub { font-size: 12.5px; color: var(--muted); margin: -8px 0 0; }
+.span-3 { grid-column: span 3; } .span-4 { grid-column: span 4; } .span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; } .span-8 { grid-column: span 8; } .span-12 { grid-column: span 12; }
+@media (max-width: 980px) { .span-3 { grid-column: span 6; } .span-4, .span-5, .span-7, .span-8 { grid-column: span 12; } }
+@media (max-width: 560px) { .span-3 { grid-column: span 12; } }
+
+/* KPIs */
+.kpi { gap: 6px; }
+.kpi .v { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+.kpi.hero { background: var(--raised); }
+.kpi.hero .v { font-size: 38px; }
+.kpi .d { font-size: 13px; color: var(--ink-2); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+.delta { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink); }
+.delta svg { flex: none; }
+.meter { height: 6px; border-radius: 999px; background: var(--wash); overflow: hidden; display: flex; gap: 2px; }
+.meter i { display: block; height: 100%; }
+
+/* charts */
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tick { font-size: 11.5px; fill: var(--muted); font-variant-numeric: tabular-nums; font-family: var(--sans); }
+.lbl { font-size: 12px; fill: var(--ink-2); font-family: var(--sans); }
+.empty { border: 1px dashed var(--axis); border-radius: 10px; padding: 16px; color: var(--ink-2); font-size: 13.5px; display: grid; gap: 4px; }
+.empty b { color: var(--ink); font-weight: 600; }
+.tip { position: absolute; pointer-events: none; background: var(--raised); border: 1px solid var(--hairline); border-radius: 8px;
+       box-shadow: 0 8px 24px rgba(0,0,0,0.14); padding: 9px 11px; font-size: 12.5px; width: max-content; max-width: min(280px, 80vw);
+       display: grid; gap: 3px; z-index: 5; }
+.tip[hidden] { display: none; }
+.tip .v { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tip .q { color: var(--ink-2); }
+
+/* allocation */
+.alloc-bar { position: relative; padding-top: 22px; }
+.alloc-track { display: flex; gap: 2px; height: 34px; border-radius: 8px; overflow: hidden; background: var(--surface); }
+.alloc-track i { display: block; height: 100%; min-width: 2px; }
+.cap { position: absolute; top: 0; bottom: -6px; border-left: 1.5px solid var(--ink); }
+.cap span { position: absolute; top: 0; left: 6px; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; font-family: var(--mono); }
+.alloc-legend { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.alloc-legend li { display: grid; grid-template-columns: 12px 1fr auto auto; gap: 10px; align-items: center; font-variant-numeric: tabular-nums; }
+.alloc-legend .sw { width: 12px; height: 12px; border-radius: 3px; }
+.alloc-legend .pct { color: var(--ink-2); min-width: 52px; text-align: right; }
+.rules { font-size: 12.5px; color: var(--muted); display: grid; gap: 2px; }
+
+/* tables */
+.tabs { display: flex; gap: 4px; background: var(--wash); padding: 3px; border-radius: 9px; width: max-content; }
+.tabs button { font: inherit; font-size: 13px; border: 0; background: transparent; color: var(--ink-2); padding: 5px 12px; border-radius: 7px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--raised); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.08); font-weight: 500; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 13px; }
+th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--hairline); vertical-align: middle; }
+th { font-size: 11.5px; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.q { max-width: 380px; }
+.side { font-family: var(--mono); font-size: 11.5px; font-weight: 500; padding: 2px 7px; border-radius: 5px; border: 1px solid var(--hairline); }
+.src { font-size: 12px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.src i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.muted { color: var(--muted); }
+
+/* forecast + scan */
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 118px 1fr 58px; gap: 10px; align-items: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+.bar-row .t { height: 10px; background: var(--wash); border-radius: 999px; overflow: hidden; }
+.bar-row .t i { display: block; height: 100%; border-radius: 999px; }
+.bar-row .n { text-align: right; }
+.progress { font-size: 12.5px; color: var(--ink-2); display: grid; gap: 6px; }
+.trust { display: grid; gap: 10px; font-size: 13.5px; color: var(--ink-2); }
+.trust p { margin: 0; max-width: 62ch; }
+.trust b { color: var(--ink); font-weight: 600; }
+.trust .links { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: 12px; }
+.pm { display: grid; gap: 4px; padding: 12px 0; border-top: 1px solid var(--hairline); font-size: 13px; }
+.pm:first-child { border-top: 0; padding-top: 0; }
+.pm .t { font-weight: 600; color: var(--ink); }
+.pm .m { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.pm .x { color: var(--ink-2); }
+.cal { width: 100%; min-width: 0; font-size: 12.5px; }
+footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+@media (prefers-reduced-motion: no-preference) { .alloc-track i, .meter i { transition: width 300ms ease; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">J</div>
+      <h1>Jev Paper Trader</h1>
+      <span class="pill">Fake money</span>
+      <span class="pill" id="bankroll-pill"></span>
+    </div>
+    <div class="stamp" id="stamp"></div>
+  </div>
+  <div class="example" id="example" hidden>Example data. These trades are made up to show the layout; your real dashboard is papertrade_data/dashboard.html.</div>
+
+  <div class="grid" id="kpis"></div>
+
+  <div class="grid">
+    <section class="card span-8" aria-labelledby="eq-h">
+      <h2 id="eq-h">Main portfolio equity over time</h2>
+      <p class="sub">Fake bankroll with open bets valued at cost. It moves when a bet settles.</p>
+      <div class="chart" id="equity"><div class="tip" id="eq-tip" hidden></div></div>
+    </section>
+    <section class="card span-4" aria-labelledby="al-h">
+      <h2 id="al-h">Where the money is</h2>
+      <p class="sub">Share of equity in cash vs. open bets</p>
+      <div class="alloc-bar" id="alloc-bar"></div>
+      <ul class="alloc-legend" id="alloc-legend"></ul>
+      <div class="rules" id="alloc-rules"></div>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="st-h">
+    <h2 id="st-h">Strategies</h2>
+    <p class="sub">Each trades its own fake $100,000 on the same markets with the same gates. Only the forecaster differs.</p>
+    <div id="strategies"></div>
+  </section>
+
+  <section class="card" aria-labelledby="tr-h">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <h2 id="tr-h">Trades · main portfolio</h2>
+      <div class="tabs" role="tablist" aria-label="Trades">
+        <button role="tab" id="tab-open" aria-selected="true" aria-controls="panel-open"></button>
+        <button role="tab" id="tab-closed" aria-selected="false" aria-controls="panel-closed"></button>
+      </div>
+    </div>
+    <div id="panel-open" role="tabpanel" aria-labelledby="tab-open"></div>
+    <div id="panel-closed" role="tabpanel" aria-labelledby="tab-closed" hidden></div>
+  </section>
+
+  <div class="grid">
+    <section class="card span-5" aria-labelledby="pl-h">
+      <h2 id="pl-h">Profit or loss per settled bet</h2>
+      <p class="sub" id="pl-sub"></p>
+      <div class="chart" id="pnl"><div class="tip" id="pl-tip" hidden></div></div>
+    </section>
+    <section class="card span-4" aria-labelledby="fq-h">
+      <h2 id="fq-h">Forecast quality</h2>
+      <p class="sub">Brier score on resolved markets. Lower is better.</p>
+      <div id="forecast"></div>
+    </section>
+    <section class="card span-3" aria-labelledby="ls-h">
+      <h2 id="ls-h">Last scan</h2>
+      <p class="sub" id="ls-sub"></p>
+      <div id="scan"></div>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="card span-7" aria-labelledby="lr-h">
+      <h2 id="lr-h">What we got wrong, and what we're learning</h2>
+      <p class="sub">Every market is scored when it resolves. Misses get a written post-mortem.</p>
+      <div id="learning"></div>
+    </section>
+    <section class="card span-5" aria-labelledby="tr-real-h">
+      <h2 id="tr-real-h">How to check this is real</h2>
+      <div class="trust" id="trust"></div>
+    </section>
+  </div>
+
+  <footer id="footer"></footer>
+</div>
+
+<script type="application/json" id="data">__DASHBOARD_DATA__</script>
+<script>
+(function () {
+  "use strict";
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const NS = "http://www.w3.org/2000/svg";
+  const $ = id => document.getElementById(id);
+  const usd0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  const usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const signed = v => (v > 0 ? "+" : v < 0 ? "−" : "") + usd2.format(Math.abs(v));
+  const pct = (v, d = 1) => `${(v * 100).toFixed(d)}%`;
+  const TZ = "America/New_York";  // shown as ET; the browser switches between EST and EDT
+  const day = iso => iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: TZ }) : "—";
+  const when = iso => iso ? new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: TZ }) + " ET" : "—";
+  const h = (tag, props = {}, ...kids) => {
+    const e = document.createElement(tag);
+    for (const k in props) {
+      if (k === "class") e.className = props[k];
+      else if (k === "text") e.textContent = props[k];
+      else if (k === "style") e.style.cssText = props[k];
+      else e.setAttribute(k, props[k]);
+    }
+    kids.forEach(c => c != null && e.append(c));
+    return e;
+  };
+  const s = (tag, attrs = {}, parent) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const safeUrl = u => (typeof u === "string" && u.startsWith("https://")) ? u : null;
+  const arrow = up => {
+    const svg = s("svg", { width: 10, height: 10, viewBox: "0 0 10 10", "aria-hidden": "true" });
+    s("path", { d: up ? "M5 1 L9 8 L1 8 Z" : "M5 9 L9 2 L1 2 Z", fill: up ? "var(--good)" : "var(--critical)" }, svg);
+    return svg;
+  };
+  const delta = (v, text) => {
+    if (!v) return h("span", { class: "delta", text: text });
+    const el = h("span", { class: "delta" }, arrow(v > 0));
+    el.append(document.createTextNode(text));
+    el.setAttribute("aria-label", `${v > 0 ? "up" : "down"} ${text}`);
+    return el;
+  };
+  // Round axis steps (1, 2, 2.5, 5 x 10^k) so every tick label is a value a person would write.
+  const niceStep = raw => {
+    const p = Math.pow(10, Math.floor(Math.log10(raw))), f = raw / p;
+    return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  };
+  const srcColor = src => src === "polymarket" ? "var(--polymarket)" : "var(--kalshi)";
+  const srcName = src => src === "polymarket" ? "Polymarket" : "Kalshi";
+
+  // ---------- header ----------
+  $("bankroll-pill").textContent = `${usd0.format(D.start)} bankroll`;
+  $("stamp").textContent = `Updated ${when(D.generated)}`;
+  if (D.example) $("example").hidden = false;
+
+  // ---------- KPIs ----------
+  const kpis = $("kpis");
+  const change = D.equity - D.start;
+  const cashPct = D.equity ? D.cash / D.equity : 1;
+  const riskPct = D.equity ? D.open_cost / D.equity : 0;
+  const kpi = (cls, label, value, detail) => {
+    const c = h("section", { class: `card kpi span-3 ${cls}` }, h("h2", { text: label }), h("div", { class: "v", text: value }));
+    if (detail) c.append(detail);
+    kpis.append(c);
+    return c;
+  };
+  kpi("hero", "Main portfolio equity", usd2.format(D.equity),
+      h("div", { class: "d" }, delta(change, `${signed(change)} (${pct(change / D.start, 2)})`), h("span", { class: "muted", text: "since start" })));
+  const cashCard = kpi("", "Cash", pct(cashPct), h("div", { class: "d", text: `${usd2.format(D.cash)} not at risk` }));
+  const m = h("div", { class: "meter", role: "img", "aria-label": `${pct(cashPct)} cash, ${pct(riskPct)} in open bets` });
+  m.append(h("i", { style: `width:${(riskPct * 100).toFixed(2)}%;background:var(--kalshi)` }), h("i", { style: `flex:1;background:var(--cash)` }));
+  cashCard.append(m);
+  kpi("", "At risk in open bets", usd2.format(D.open_cost),
+      h("div", { class: "d", text: `${D.open.length} open · ${pct(riskPct)} of equity (cap ${pct(D.exposure_cap_pct, 0)})` }));
+  const record = D.settled ? `${D.wins} won · ${D.settled - D.wins} lost` : "No bets settled yet";
+  const roi = D.roi_settled == null ? "" : ` · ROI ${D.roi_settled >= 0 ? "+" : "−"}${pct(Math.abs(D.roi_settled))}`;
+  kpi("", "Realized profit or loss", signed(D.realized), h("div", { class: "d", text: record + roi }));
+
+  // ---------- equity curve ----------
+  (function equity() {
+    const box = $("equity"), tip = $("eq-tip");
+    const pts = D.curve.map(p => ({ ...p, x: Date.parse(p.t) })).filter(p => !Number.isNaN(p.x));
+    const W = 760, H = 260, L = 72, R = 16, T = 12, B = 30;
+    const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Equity over time, now ${usd2.format(D.equity)}` });
+    box.insertBefore(svg, tip);
+    const x0 = Math.min(...pts.map(p => p.x)), x1 = Math.max(...pts.map(p => p.x), x0 + 86400000);
+    let lo = Math.min(D.start, ...pts.map(p => p.equity)), hi = Math.max(D.start, ...pts.map(p => p.equity));
+    const pad = Math.max((hi - lo) * 0.15, D.start * 0.01);
+    const step = niceStep((hi - lo + 2 * pad) / 4);
+    lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
+    const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+    for (let v = lo; v <= hi + step / 2; v += step) {
+      s("line", { x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: "var(--grid)", "stroke-width": 1 }, svg);
+      s("text", { x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "tick" }, svg).textContent = usd0.format(v);
+    }
+    const days = Math.max(1, Math.round((x1 - x0) / 86400000));
+    const nTicks = Math.min(6, days);
+    for (let i = 0; i <= nTicks; i++) {
+      const v = x0 + (x1 - x0) * i / nTicks;
+      s("text", { x: X(v), y: H - 8, "text-anchor": i === 0 ? "start" : i === nTicks ? "end" : "middle", class: "tick" }, svg).textContent = day(new Date(v).toISOString());
+    }
+    // starting-bankroll reference
+    s("line", { x1: L, x2: W - R, y1: Y(D.start), y2: Y(D.start), stroke: "var(--axis)", "stroke-width": 1 }, svg);
+    s("text", { x: W - R, y: Y(D.start) - 6, "text-anchor": "end", class: "lbl" }, svg).textContent = `Start ${usd0.format(D.start)}`;
+    // step line: equity holds until the next settlement
+    let d = "";
+    pts.forEach((p, i) => { d += i ? ` H${X(p.x)} V${Y(p.equity)}` : `M${X(p.x)} ${Y(p.equity)}`; });
+    const area = d + ` V${Y(lo)} H${X(pts[0].x)} Z`;
+    s("path", { d: area, fill: "var(--kalshi)", opacity: 0.1 }, svg);
+    s("path", { d, fill: "none", stroke: "var(--kalshi)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+    const last = pts[pts.length - 1];
+    s("circle", { cx: X(last.x), cy: Y(last.equity), r: 6, fill: "var(--surface)" }, svg);
+    s("circle", { cx: X(last.x), cy: Y(last.equity), r: 4, fill: "var(--kalshi)" }, svg);
+    if (pts.length <= 2 && !D.settled) {
+      s("text", { x: L + 12, y: Y(D.start) + 20, class: "lbl" }, svg).textContent = "Flat until the first bet settles";
+    }
+    // crosshair + tooltip
+    const cross = s("line", { y1: T, y2: H - B, stroke: "var(--ink-2)", "stroke-width": 1, visibility: "hidden" }, svg);
+    const dot = s("circle", { r: 4, fill: "var(--kalshi)", stroke: "var(--surface)", "stroke-width": 2, visibility: "hidden" }, svg);
+    const hit = s("rect", { x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent", tabindex: 0,
+      "aria-label": "Equity chart: use arrow keys to step through settlements" }, svg);
+    let idx = pts.length - 1;
+    const show = i => {
+      idx = Math.max(0, Math.min(pts.length - 1, i));
+      const p = pts[idx], cx = X(p.x), cy = Y(p.equity);
+      cross.setAttribute("x1", cx); cross.setAttribute("x2", cx); cross.setAttribute("visibility", "visible");
+      dot.setAttribute("cx", cx); dot.setAttribute("cy", cy); dot.setAttribute("visibility", "visible");
+      tip.replaceChildren(h("div", { class: "v", text: usd2.format(p.equity) }), h("div", { class: "q", text: p.label }), h("div", { class: "muted", text: day(p.t) }));
+      tip.hidden = false;
+      const k = svg.getBoundingClientRect().width / W, bw = box.getBoundingClientRect().width;
+      let left = cx * k + 12; if (left + tip.offsetWidth > bw) left = cx * k - tip.offsetWidth - 12;
+      tip.style.left = `${Math.max(0, left)}px`; tip.style.top = `${Math.max(0, cy * k - tip.offsetHeight - 10)}px`;
+    };
+    const hide = () => { tip.hidden = true; cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); };
+    hit.addEventListener("pointermove", e => {
+      const r = svg.getBoundingClientRect(), vx = (e.clientX - r.left) * W / r.width;
+      let best = 0; pts.forEach((p, i) => { if (Math.abs(X(p.x) - vx) < Math.abs(X(pts[best].x) - vx)) best = i; });
+      show(best);
+    });
+    hit.addEventListener("pointerleave", hide);
+    hit.addEventListener("focus", () => show(idx));
+    hit.addEventListener("blur", hide);
+    hit.addEventListener("keydown", e => {
+      if (e.key === "ArrowLeft") { show(idx - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight") { show(idx + 1); e.preventDefault(); }
+    });
+  })();
+
+  // ---------- allocation ----------
+  (function allocation() {
+    const eq = D.equity || 1;
+    const parts = [
+      ...Object.entries(D.by_source).filter(([, v]) => v > 0).map(([k, v]) => ({ name: `Open bets · ${srcName(k)}`, v, color: srcColor(k) })),
+      { name: "Cash", v: D.cash, color: "var(--cash)" },
+    ];
+    const bar = $("alloc-bar");
+    const track = h("div", { class: "alloc-track", role: "img",
+      "aria-label": parts.map(p => `${p.name} ${pct(p.v / eq)}`).join(", ") });
+    parts.forEach(p => track.append(h("i", { style: `width:${(p.v / eq * 100).toFixed(3)}%;background:${p.color}`, title: `${p.name}: ${usd2.format(p.v)}` })));
+    const cap = h("div", { class: "cap", style: `left:${(D.exposure_cap_pct * 100).toFixed(2)}%` }, h("span", { text: `${pct(D.exposure_cap_pct, 0)} cap` }));
+    bar.append(track, cap);
+    const legend = $("alloc-legend");
+    parts.forEach(p => legend.append(h("li", {}, h("span", { class: "sw", style: `background:${p.color}` }), h("span", { text: p.name }),
+      h("span", { text: usd2.format(p.v) }), h("span", { class: "pct", text: pct(p.v / eq) }))));
+    $("alloc-rules").append(
+      h("div", { text: `Open bets can't exceed ${pct(D.exposure_cap_pct, 0)} of equity (${usd0.format(D.exposure_cap_pct * eq)} now).` }),
+      h("div", { text: `One bet can't exceed ${pct(D.max_stake_pct, 0)} (${usd0.format(D.max_stake_pct * eq)}).` }));
+  })();
+
+  // ---------- trades ----------
+  (function trades() {
+    const now = Date.parse(D.generated);
+    const market = t => {
+      const u = safeUrl(t.url);
+      return u ? h("a", { href: u, target: "_blank", rel: "noopener noreferrer", text: t.question }) : document.createTextNode(t.question);
+    };
+    const src = t => h("span", { class: "src" }, h("i", { style: `background:${srcColor(t.source)}` }), document.createTextNode(srcName(t.source)));
+    const sideTag = t => h("span", { class: "side", text: String(t.side).toUpperCase() });
+    const table = (cols, rows, row) => {
+      const tb = h("table");
+      const tr = h("tr"); cols.forEach(([t, n]) => tr.append(h("th", { class: n ? "n" : "", text: t })));
+      tb.append(h("thead", {}, tr));
+      const body = h("tbody"); rows.forEach(r => body.append(row(r))); tb.append(body);
+      return h("div", { class: "tablewrap" }, tb);
+    };
+    const cell = (content, n) => { const td = h("td", { class: n ? "n" : "" }); td.append(content); return td; };
+    const txt = t => document.createTextNode(t);
+
+    // Jev vs price mini-scale: a 0-100 track, a ring at the price paid, a dot at Jev's probability
+    const vsScale = t => {
+      const svg = s("svg", { width: 120, height: 16, viewBox: "0 0 120 16", role: "img",
+        "aria-label": `Jev ${pct(t.p_side, 0)} vs price ${Math.round(t.market_ask * 100)}¢` });
+      s("line", { x1: 4, x2: 116, y1: 8, y2: 8, stroke: "var(--grid)", "stroke-width": 2, "stroke-linecap": "round" }, svg);
+      const a = 4 + t.market_ask * 112, j = 4 + t.p_side * 112;
+      s("line", { x1: a, x2: j, y1: 8, y2: 8, stroke: "var(--kalshi)", "stroke-width": 2, opacity: 0.45 }, svg);
+      s("circle", { cx: a, cy: 8, r: 4, fill: "var(--surface)", stroke: "var(--ink-2)", "stroke-width": 1.5 }, svg);
+      s("circle", { cx: j, cy: 8, r: 4.5, fill: "var(--kalshi)", stroke: "var(--surface)", "stroke-width": 1.5 }, svg);
+      const wrap = h("span", { style: "display:inline-flex;align-items:center;gap:8px" });
+      wrap.append(svg, txt(`${pct(t.p_side, 0)} vs ${Math.round(t.market_ask * 100)}¢`));
+      return wrap;
+    };
+
+    const po = $("panel-open"), pc = $("panel-closed");
+    $("tab-open").textContent = `Open (${D.open.length})`;
+    $("tab-closed").textContent = `Settled (${D.closed.length})`;
+    if (!D.open.length) {
+      const ls = D.last_scan;
+      po.append(h("div", { class: "empty" }, h("b", { text: "No open bets." }),
+        h("span", { text: ls ? `The last scan (${day(ls.date + "T12:00:00Z")}) judged ${ls.judged} markets and placed ${ls.bets} bets; see Last scan for which gates stopped them.` : "Run the daily task to scan markets." })));
+    } else {
+      po.append(table([["Side"], ["Market"], ["Source"], ["Placed", 1], ["Stake", 1], ["Contracts", 1], ["Forecast vs price"], ["Edge", 1], ["Closes", 1]], D.open, t => {
+        const left = Math.ceil((Date.parse(t.close_time) - now) / 86400000);
+        return h("tr", {}, cell(sideTag(t)), h("td", { class: "q" }, market(t)), cell(src(t)), cell(txt(when(t.opened)), 1), cell(txt(usd2.format(t.total_cost)), 1),
+          cell(txt(`${t.contracts} @ ${Math.round(t.cost_per * 100)}¢`), 1), cell(vsScale(t)), cell(txt(`${t.edge >= 0 ? "+" : ""}${Math.round(t.edge * 100)} pts`), 1),
+          cell(txt(Number.isNaN(left) ? "—" : `${day(t.close_time)} · ${left > 0 ? left + "d" : "today"}`), 1));
+      }));
+    }
+    if (!D.closed.length) {
+      pc.append(h("div", { class: "empty" }, h("b", { text: "No settled bets yet." }), h("span", { text: "Bets settle after their market closes and the result is published." })));
+    } else {
+      pc.append(table([["Result"], ["Market"], ["Side"], ["Placed", 1], ["Stake", 1], ["Payout", 1], ["Profit or loss", 1], ["Settled", 1]], D.closed, t => {
+        const won = t.pnl > 0;
+        const st = h("span", { class: "status" }, arrow(won)); st.append(txt(won ? "Won" : "Lost"));
+        return h("tr", {}, cell(st), h("td", { class: "q" }, market(t)), cell(sideTag(t)), cell(txt(when(t.opened)), 1), cell(txt(usd2.format(t.total_cost)), 1),
+          cell(txt(usd2.format(t.payout)), 1), cell(delta(t.pnl, signed(t.pnl)), 1), cell(txt(when(t.settled)), 1));
+      }));
+    }
+    const tabs = [["tab-open", po], ["tab-closed", pc]];
+    tabs.forEach(([id]) => $(id).addEventListener("click", () => tabs.forEach(([tid, panel]) => {
+      const on = tid === id; $(tid).setAttribute("aria-selected", String(on)); panel.hidden = !on;
+    })));
+  })();
+
+  // ---------- P&L per settled bet ----------
+  (function pnl() {
+    const box = $("pnl"), tip = $("pl-tip");
+    const rows = [...D.closed].reverse(); // oldest first
+    $("pl-sub").textContent = rows.length ? `${rows.length} settled, oldest on the left` : "Appears after the first bet settles";
+    if (!rows.length) {
+      box.append(h("div", { class: "empty" }, h("b", { text: "Nothing settled yet." }), h("span", { text: "Each settled bet becomes a bar: up for a win, down for a loss." })));
+      return;
+    }
+    const W = 460, H = 220, L = 60, R = 8, T = 10, B = 22;
+    const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Profit or loss for ${rows.length} settled bets` });
+    box.insertBefore(svg, tip);
+    const st = niceStep(Math.max(1, ...rows.map(r => Math.abs(r.pnl))) / 2), mx = 2 * st;
+    const Y = v => T + (mx - v) / (2 * mx) * (H - T - B);
+    [mx, st, 0, -st, -mx].forEach(v => {
+      s("line", { x1: L, x2: W - R, y1: Y(v), y2: Y(v), stroke: v === 0 ? "var(--axis)" : "var(--grid)", "stroke-width": 1 }, svg);
+      s("text", { x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "tick" }, svg).textContent =
+        v === 0 ? "$0" : (v > 0 ? "+" : "−") + usd0.format(Math.abs(v));
+    });
+    const step = (W - L - R) / rows.length, bw = Math.max(3, Math.min(28, step - 2));
+    rows.forEach((r, i) => {
+      const x = L + i * step + (step - bw) / 2, y0 = Y(0), y1 = Y(r.pnl);
+      const g = s("g", { tabindex: 0, role: "img", "aria-label": `${r.question}: ${signed(r.pnl)}` }, svg);
+      s("rect", { x: L + i * step, y: T, width: step, height: H - T - B, fill: "transparent" }, g);
+      const top = Math.min(y0, y1), ht = Math.max(1, Math.abs(y1 - y0)), rad = Math.min(4, bw / 2, ht);
+      // rounded at the data end only, flat on the zero line
+      const up = r.pnl >= 0, xr = x + bw;
+      const d = up
+        ? `M${x} ${y0} V${top + rad} Q${x} ${top} ${x + rad} ${top} H${xr - rad} Q${xr} ${top} ${xr} ${top + rad} V${y0} Z`
+        : `M${x} ${y0} V${y1 - rad} Q${x} ${y1} ${x + rad} ${y1} H${xr - rad} Q${xr} ${y1} ${xr} ${y1 - rad} V${y0} Z`;
+      const bar = s("path", { d, fill: up ? "var(--gain)" : "var(--loss)" }, g);
+      const show = () => {
+        bar.setAttribute("opacity", "0.8");
+        tip.replaceChildren(h("div", { class: "v", text: signed(r.pnl) }), h("div", { class: "q", text: r.question }), h("div", { class: "muted", text: `${String(r.side).toUpperCase()} · settled ${day(r.settled)}` }));
+        tip.hidden = false;
+        const k = svg.getBoundingClientRect().width / W, bwid = box.getBoundingClientRect().width;
+        let left = (x + bw) * k + 8; if (left + tip.offsetWidth > bwid) left = x * k - tip.offsetWidth - 8;
+        tip.style.left = `${Math.max(0, left)}px`; tip.style.top = `${Math.max(0, top * k - 8)}px`;
+      };
+      const hide = () => { bar.removeAttribute("opacity"); tip.hidden = true; };
+      g.addEventListener("pointerenter", show); g.addEventListener("pointerleave", hide);
+      g.addEventListener("focus", show); g.addEventListener("blur", hide);
+    });
+  })();
+
+  // ---------- forecast quality ----------
+  (function forecast() {
+    const c = D.calibration, box = $("forecast");
+    const scored = c ? c.sources.filter(s => s.brier != null) : [];
+    if (!scored.length) {
+      box.append(h("div", { class: "empty" }, h("b", { text: "No judged markets have resolved yet." }),
+        h("span", { text: `${c ? c.judged : 0} markets judged so far. Scores appear as they resolve.` })));
+    } else {
+      const color = { jev_research: "var(--kalshi)", jev_plain: "var(--polymarket)", claude_direct: "var(--aqua)", market: "var(--cash)" };
+      const mx = Math.max(0.25, ...scored.map(s => s.brier));
+      const bars = h("div", { class: "bars" });
+      scored.forEach(s => bars.append(h("div", { class: "bar-row" }, h("span", { text: s.label }),
+        h("div", { class: "t" }, h("i", { style: `width:${(s.brier / mx * 100).toFixed(1)}%;background:${color[s.name] || "var(--cash)"}` })),
+        h("span", { class: "n", text: s.brier.toFixed(3) }))));
+      box.append(bars);
+      const by = Object.fromEntries(scored.map(s => [s.name, s.brier]));
+      if (by.jev_research != null && by.market != null) {
+        const beat = by.jev_research < by.market;
+        const verdict = h("div", { class: "d", style: "font-size:13px;color:var(--ink-2)" });
+        verdict.append(delta(beat ? 1 : -1, beat ? "Jev with research is ahead of the market" : "The market is ahead of Jev with research"));
+        box.append(verdict);
+      }
+    }
+    const n = c ? c.resolved : 0, need = 50;
+    const prog = h("div", { class: "progress" }, h("span", { text: `${n} of ~${need} resolved markets needed before trusting this` }));
+    const m = h("div", { class: "meter", role: "img", "aria-label": `${n} of ${need}` });
+    m.append(h("i", { style: `width:${Math.min(100, n / need * 100).toFixed(1)}%;background:var(--kalshi)` }));
+    prog.append(m); box.append(prog);
+  })();
+
+  // ---------- strategies ----------
+  (function strategies() {
+    const box = $("strategies"), rows = D.strategies || [];
+    const color = { main: "var(--kalshi)", jev_alone: "var(--polymarket)", claude_direct: "var(--aqua)" };
+    const tb = h("table", { style: "min-width:620px" });
+    const hr = h("tr");
+    [["Strategy"], ["Equity", 1], ["Since start", 1], ["Realized", 1], ["Open bets", 1], ["Settled", 1]]
+      .forEach(([t, n]) => hr.append(h("th", { class: n ? "n" : "", text: t })));
+    tb.append(h("thead", {}, hr));
+    const body = h("tbody");
+    rows.forEach(r => {
+      const name = h("span", { class: "src" }, h("i", { style: `background:${color[r.name] || "var(--cash)"}` }), document.createTextNode(r.label));
+      if (r.main) name.append(h("span", { class: "pill", style: "margin-left:6px", text: "main" }));
+      const pctChange = r.change / (r.equity - r.change);
+      const td = (content, n) => { const c = h("td", { class: n ? "n" : "" }); c.append(content); return c; };
+      body.append(h("tr", {}, td(name), td(document.createTextNode(usd2.format(r.equity)), 1),
+        td(delta(r.change, `${signed(r.change)} (${pct(pctChange, 2)})`), 1), td(document.createTextNode(signed(r.realized)), 1),
+        td(document.createTextNode(`${r.open} · ${usd0.format(r.open_cost)}`), 1),
+        td(document.createTextNode(r.settled ? `${r.wins}W / ${r.settled - r.wins}L` : "—"), 1)));
+    });
+    tb.append(body);
+    box.append(h("div", { class: "tablewrap" }, tb));
+  })();
+
+  // ---------- last scan: the funnel ----------
+  (function scan() {
+    const fn = D.funnel, ls = D.last_scan, box = $("scan");
+    if (fn) {
+      $("ls-sub").textContent = `${when(fn.ts)} · ${fn.events} events researched`;
+      const top = Math.max(1, fn.stages[0][1]);
+      const bars = h("div", { class: "bars" });
+      fn.stages.forEach(([name, v]) => bars.append(h("div", { class: "bar-row", style: "grid-template-columns:132px 1fr 34px" },
+        h("span", { text: name }), h("div", { class: "t" }, h("i", { style: `width:${(v / top * 100).toFixed(1)}%;background:var(--kalshi)` })),
+        h("span", { class: "n", text: String(v) }))));
+      box.append(bars);
+      box.append(h("div", { class: "rules", style: "margin-top:10px",
+        text: `Bets by strategy: ${Object.entries(fn.bets).map(([k, v]) => `${k} ${v}`).join(", ")}` }));
+      box.append(h("div", { class: "rules", text: `Facts kept ${fn.facts_kept}, dropped by the price screen ${fn.facts_dropped}` }));
+      box.append(h("div", { class: "rules", text: `This scan: research ${usd2.format(fn.research_usd)} + Claude direct ${usd2.format(fn.forecast_usd)}` }));
+      if (D.research_spend != null) box.append(h("div", { class: "rules", text: `All scans to date: ${usd2.format(D.research_spend)}` }));
+      return;
+    }
+    if (!ls) { $("ls-sub").textContent = "No scans yet"; return; }
+    const srcs = Object.entries(ls.sources).map(([k, v]) => `${v} ${srcName(k)}`).join(", ");
+    $("ls-sub").textContent = `${day(ls.date + "T12:00:00Z")} · ${ls.judged} judged (${srcs})`;
+    const rows = [["Failed info gate", ls.fail_info], ["Failed rules gate", ls.fail_rules], ["Edge under 8 pts", ls.fail_edge], ["Bets placed", ls.bets]];
+    const bars = h("div", { class: "bars" });
+    rows.forEach(([name, v]) => bars.append(h("div", { class: "bar-row", style: "grid-template-columns:112px 1fr 30px" }, h("span", { text: name }),
+      h("div", { class: "t" }, h("i", { style: `width:${ls.judged ? (v / ls.judged * 100).toFixed(1) : 0}%;background:var(--kalshi)` })), h("span", { class: "n", text: String(v) }))));
+    box.append(bars);
+    box.append(h("div", { class: "rules", style: "margin-top:10px", text: "A market can fail more than one gate." }));
+  })();
+
+
+  // ---------- the feedback loop ----------
+  (function learning() {
+    const L = D.learning || {}, box = $("learning");
+    if (!L.reviewed) {
+      box.append(h("div", { class: "empty" }, h("b", { text: "Nothing has resolved yet." }),
+        h("span", { text: "When a judged market resolves, every forecaster is scored against the real outcome. When the main forecast was confidently wrong or a bet lost money, Claude looks up what actually happened and writes what we missed and what to change." })));
+      return;
+    }
+    const RC = { missing_info: "Research missed it", stale_info: "Out-of-date facts", misread_rules: "Misread the rules",
+      overconfident: "Overconfident", research_error: "A fact was wrong", resolution_quirk: "Resolution quirk", unlucky: "Reasonable call, unlucky" };
+    box.append(h("div", { class: "rules", text: `${L.reviewed} markets reviewed · ${L.post_mortems} post-mortems written` }));
+    const causes = Object.entries(L.root_causes || {}).sort((a, b) => b[1] - a[1]);
+    if (causes.length) {
+      const top = Math.max(...causes.map(c => c[1]));
+      const bars = h("div", { class: "bars" });
+      causes.forEach(([k, v]) => bars.append(h("div", { class: "bar-row", style: "grid-template-columns:170px 1fr 30px" }, h("span", { text: RC[k] || k }),
+        h("div", { class: "t" }, h("i", { style: `width:${(v / top * 100).toFixed(1)}%;background:var(--loss)` })), h("span", { class: "n", text: String(v) }))));
+      box.append(bars);
+    }
+    if ((L.calibration || []).length) {
+      const tb = h("table", { class: "cal" });
+      const hr = h("tr"); [["Jev + research said"], ["Markets", 1], ["Average forecast", 1], ["Actually YES", 1]].forEach(([x, n]) => hr.append(h("th", { class: n ? "n" : "", text: x })));
+      tb.append(h("thead", {}, hr));
+      const body = h("tbody");
+      L.calibration.forEach(b => { const tr = h("tr"); [[b.range], [String(b.n), 1], [pct(b.predicted, 0), 1], [pct(b.actual, 0), 1]].forEach(([x, n]) => tr.append(h("td", { class: n ? "n" : "", text: x }))); body.append(tr); });
+      tb.append(body);
+      box.append(h("div", { class: "tablewrap" }, tb));
+    }
+    (L.recent || []).forEach(r => {
+      const u = safeUrl(r.url);
+      const title = u ? h("a", { class: "t", href: u, target: "_blank", rel: "noopener noreferrer", text: r.question }) : h("span", { class: "t", text: r.question });
+      box.append(h("div", { class: "pm" }, title,
+        h("span", { class: "m", text: `Resolved ${String(r.outcome).toUpperCase()} · Jev + research said ${pct(r.p, 0)} · ${RC[r.root_cause] || r.root_cause}` }),
+        h("span", { class: "x", text: r.what_happened }),
+        r.what_we_missed ? h("span", { class: "x", text: `What we missed: ${r.what_we_missed}` }) : null,
+        h("span", { class: "x", text: `Lesson: ${r.lesson}` })));
+    });
+    const props = Object.entries(L.proposals || {});
+    if (props.length) box.append(h("div", { class: "rules", style: "margin-top:8px",
+      text: `Suggested changes so far: ${props.map(([k, v]) => `${k} ${v}`).join(", ")}. Changes are applied only after review, as a new strategy version next to the current one.` }));
+  })();
+
+  // ---------- trust ----------
+  (function trust() {
+    const box = $("trust");
+    const p = (strong, rest) => { const e = h("p"); e.append(h("b", { text: strong }), document.createTextNode(" " + rest)); return e; };
+    box.append(
+      p("The money is fake on purpose.", "Every bet is simulated. Nothing is bought or sold, and no account is connected."),
+      p("The markets, prices and outcomes are real.", "They come from Polymarket's and Kalshi's public data. Each trade links to its real market page, so you can check the question, the price history and the result yourself."),
+      p("Forecasts come before outcomes.", "Each bet shows when it was placed. The ledgers below only grow; nothing is edited after the fact."),
+      p("The forecasters never see the price.", "Research is screened to remove odds, market prices and forecaster percentages before Jev or Claude reads it."),
+      p("What's simulated:", "fills at the listed ask plus 1¢ (real fills on thin markets can be worse), and open bets valued at what they cost."));
+    const links = h("div", { class: "links" });
+    Object.keys(Object.fromEntries((D.strategies || []).map(s => [s.name, 1]))).forEach(n =>
+      links.append(h("a", { href: `portfolios/${n}.json`, text: `portfolios/${n}.json` })));
+    ["scans.jsonl", "reviews.jsonl", "resolutions.json"].forEach(f => links.append(h("a", { href: f, text: f })));
+    const u = safeUrl(D.repo_url);
+    if (u) links.append(h("a", { href: u, target: "_blank", rel: "noopener noreferrer", text: "Full history on GitHub" }));
+    box.append(h("div", {}, h("div", { class: "rules", style: "margin-bottom:6px", text: "Raw ledgers this page is built from:" }), links));
+  })();
+
+  $("footer").textContent = `Fake money only: no accounts, no real orders. Data: papertrade_data/portfolios/, judgments.jsonl, scans.jsonl, resolutions.json · question set ${D.question_set} · times in Eastern (ET) · refreshed every trading cycle.`;
+})();
+</script>
+</body>
+</html>

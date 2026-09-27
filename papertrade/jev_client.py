@@ -27,18 +27,25 @@ class JevError(RuntimeError):
         self.status = status
 
 
-def load_api_key() -> str:
-    """Read the key from the environment or the project's .env file."""
-    for name in ("TYPESAFE_AI_API_KEY", "TYPESAFE_API_KEY"):
+def read_env_key(names: tuple[str, ...]) -> str | None:
+    """First non-empty value for any of `names`, from the environment, then the project's .env."""
+    for name in names:
         if os.environ.get(name):
             return os.environ[name].strip()
     env_file = PROJECT_ROOT / ".env"
     if env_file.exists():
         for line in env_file.read_text().splitlines():
             key, _, value = line.partition("=")
-            if key.strip() in ("TYPESAFE_AI_API_KEY", "TYPESAFE_API_KEY") and value.strip():
+            if key.strip() in names and value.strip():
                 return value.strip().strip('"').strip("'")
-    raise JevError("No API key found. Put TYPESAFE_AI_API_KEY=... in .env at the project root.")
+    return None
+
+
+def load_api_key() -> str:
+    key = read_env_key(("TYPESAFE_AI_API_KEY", "TYPESAFE_API_KEY"))
+    if not key:
+        raise JevError("No API key found. Put TYPESAFE_AI_API_KEY=... in .env at the project root.")
+    return key
 
 
 def _http_post(url: str, body: dict, api_key: str, timeout: float) -> dict:

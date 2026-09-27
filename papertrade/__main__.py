@@ -1,10 +1,11 @@
-"""python3 -m papertrade {daily|scan|settle|report|ping|markets|reset}"""
+"""python3 -m papertrade {cycle|scan|settle|review|report|dashboard|publish|ping|markets|reset}"""
 from __future__ import annotations
 
 import argparse
+import subprocess
 import sys
 
-from . import engine
+from . import dashboard, engine, review
 from . import markets as mk
 from .jev_client import JevClient, JevError
 
@@ -39,35 +40,77 @@ def cmd_markets(policy) -> int:
     return 0 if ok else 1
 
 
+def deploy() -> int:
+    """Push site/ to Cloudflare Workers with the project's wrangler.jsonc. Prints the live URL."""
+    r = subprocess.run(["npx", "--yes", "wrangler", "deploy"], cwd=engine.PROJECT_ROOT,
+                       capture_output=True, text=True)
+    lines = (r.stdout + r.stderr).splitlines()
+    for line in lines:
+        if "workers.dev" in line or "Deployed" in line or "Current Version" in line or "ERROR" in line:
+            print("  " + line.strip())
+    if r.returncode:
+        print("Deploy FAILED. Run `npx wrangler deploy` in the project folder to see the full error.")
+    return r.returncode
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(prog="papertrade",
                                 description="Jev paper trading on real prediction markets (fake money only)")
     sub = p.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("daily", help="The once-a-day routine: settle, then scan, then report")
-    sub.add_parser("scan", help="Pull live markets, ask Jev, place fake bets that pass every gate")
+    for name, text in (("cycle", "One trading cycle, meant to run hourly: settle, scan, review, rebuild the page"),
+                       ("daily", "Same as cycle (kept for the old name)")):
+        c = sub.add_parser(name, help=text)
+        c.add_argument("--limit", type=int, help="Research at most this many events (for a small test run)")
+        c.add_argument("--deploy", action="store_true", help="Also push the public page to Cloudflare")
+    sc = sub.add_parser("scan", help="Pull live markets, research them, ask Jev, place fake bets that pass every gate")
+    sc.add_argument("--limit", type=int, help="Research at most this many events (for a small test run)")
     sub.add_parser("settle", help="Pay out fake bets on markets that have resolved")
-    sub.add_parser("report", help="Bankroll, P&L, and Jev-vs-market calibration")
+    sub.add_parser("review", help="Score newly resolved markets; write post-mortems for the misses")
+    sub.add_parser("report", help="Bankroll, P&L, and each forecaster vs the market")
     sub.add_parser("ping", help="Check the Jev API key and connection")
     sub.add_parser("markets", help="Preview live markets from each source (no Jev calls, no bets)")
+    sub.add_parser("dashboard", help="Write papertrade_data/dashboard.html: trades, cash, P&L on one page")
+    pb = sub.add_parser("publish", help="Build site/ (public page + raw ledgers)")
+    pb.add_argument("--deploy", action="store_true", help="Also push it to Cloudflare Workers")
     r = sub.add_parser("reset", help="Start over with a fresh fake bankroll (keeps a backup)")
     r.add_argument("--yes", action="store_true")
     a = p.parse_args(argv)
     policy = engine.load_policy()
+    cycle = a.cmd in ("cycle", "daily")
 
     if a.cmd == "ping":
         return cmd_ping(policy)
     if a.cmd == "markets":
         return cmd_markets(policy)
-    if a.cmd in ("settle", "daily"):
+    if a.cmd == "settle" or cycle:
         s = engine.settle(policy)
         print(f"Settle: checked {s['checked']} closed markets, {s['resolved']} resolved, "
               f"{s['settled_bets']} bets paid out.\n")
-    if a.cmd in ("scan", "daily"):
-        s = engine.scan(policy)
-        print(f"\nScan: fetched {s['fetched']} markets, Jev judged {s['judged']}, "
-              f"placed {s['bets']} fake bets ({s['errors']} errors).\n")
-    if a.cmd in ("report", "daily"):
+    if a.cmd == "scan" or cycle:
+        s = engine.scan(policy, limit=getattr(a, "limit", None))
+        f = s["funnel"]
+        print(f"\nScan funnel: fetched {f['fetched']} -> passed free filters {f['passed_filters']} -> "
+              f"{f['events']} events researched ({f['researched']} markets) -> judged {f['judged']}")
+        print("  Bets: " + ", ".join(f"{k} {v}" for k, v in f["bets"].items())
+              + f"   ({s['deferred']} markets wait for the next run, {s['errors']} errors)")
+        print(f"  Facts kept {s['facts_kept']}, dropped by the screen {s['facts_dropped']}   "
+              f"Spend: research ${s['research_usd']:.2f} + Claude direct ${s['forecast_usd']:.2f}\n")
+    if a.cmd == "review" or cycle:
+        rv = review.review(policy)
+        if rv["reviewed"]:
+            engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "review", **rv})
+        print(f"Review: {rv['reviewed']} newly resolved markets scored, {rv['post_mortems']} post-mortems "
+              f"(${rv['review_usd']:.2f}), {rv['errors']} errors.\n")
+    if a.cmd == "report" or cycle:
         print(engine.report(policy))
+    if a.cmd == "dashboard" or cycle:
+        path = dashboard.write_dashboard(policy)
+        print(f"\nDashboard: {path}  (open it in a browser)")
+    if a.cmd == "publish" or cycle:
+        out = dashboard.build_site(policy)
+        print(f"Public page built: {out}/index.html")
+        if getattr(a, "deploy", False):
+            return deploy()
     if a.cmd == "reset":
         if not a.yes:
             print("This wipes the fake portfolio and history. Re-run with --yes to confirm.")

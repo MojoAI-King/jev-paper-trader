@@ -1,8 +1,9 @@
 """Read-only public market data from Polymarket (Gamma API) and Kalshi.
 
 Every market is normalized to:
-  {source, market_id, question, rules, close_time (ISO), yes_ask, no_ask, mid,
+  {source, market_id, event, question, rules, close_time (ISO), yes_ask, no_ask, mid,
    volume, url}
+`event` groups markets that share one real-world event (researched once, together).
 Resolution check returns "yes", "no", or None (unresolved).
 """
 from __future__ import annotations
@@ -29,7 +30,8 @@ def _get(url: str, params: dict | None = None, timeout: float = 20) -> object:
             return json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
         # Keep the API's own explanation: a bare "422 Unprocessable Entity" hid a bad sort field.
-        detail = e.read().decode(errors="replace")[:300]
+        with e:
+            detail = e.read().decode(errors="replace")[:300]
         raise RuntimeError(f"HTTP {e.code} from {url.split('?')[0]}: {detail}") from None
 
 
@@ -57,9 +59,11 @@ def normalize_polymarket(m: dict) -> dict | None:
     best_bid, best_ask = _f(m.get("bestBid")), _f(m.get("bestAsk"))
     yes_ask = best_ask if best_ask else prices[0]
     no_ask = (1 - best_bid) if best_bid else prices[1]
+    events = m.get("events") if isinstance(m.get("events"), list) else []
     return {
         "source": "polymarket",
         "market_id": str(m.get("id")),
+        "event": f"polymarket:{events[0].get('id')}" if events and events[0].get("id") else f"polymarket:m{m.get('id')}",
         "question": m.get("question", ""),
         "rules": (m.get("description") or "")[:4000],
         "close_time": m.get("endDate"),
@@ -131,6 +135,7 @@ def normalize_kalshi(m: dict) -> dict | None:
     return {
         "source": "kalshi",
         "market_id": m.get("ticker"),
+        "event": f"kalshi:{m.get('event_ticker') or m.get('ticker')}",
         "question": f"{title} ({sub})" if sub and sub not in title else title,
         "rules": ((m.get("rules_primary") or "") + "\n" + (m.get("rules_secondary") or ""))[:4000],
         "close_time": m.get("close_time"),

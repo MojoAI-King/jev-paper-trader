@@ -10,7 +10,9 @@
     "markets_per_source": 60,
     "min_price": 0.05,
     "max_price": 0.95,
-    "rejudge_after_hours": 24
+    "rejudge_after_hours": 6,
+    "rejudge_on_price_move": 0.05,
+    "_rejudge": "Trading runs hourly. A market is researched and judged again after 6 hours, or sooner if its price moves 5+ points. The price only triggers a new look; forecasters never see it."
   },
 
   "gates": {
@@ -18,7 +20,41 @@
     "_min_edge": "Jev's probability must beat the cost of the contract (including fees) by at least this much",
     "min_rules_clear": 0.75,
     "min_info_sufficient": 0.5,
-    "_min_info_sufficient": "Skip markets that depend on recent news Jev hasn't been given"
+    "_min_info_sufficient": "Skip markets that depend on recent news Jev hasn't been given",
+    "max_framing_gap": 0.15,
+    "_max_framing_gap": "Skip when Jev's YES and NO answers disagree: p_yes + p_no should be close to 1"
+  },
+
+  "research": {
+    "_readme": "Claude researches each event (web search + reading pages) before Jev judges. No cost cap by Joey's choice (2026-09-27): the ceilings below only stop a bug from burning money in a loop.",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "max_searches_per_event": 10,
+    "max_fetches_per_event": 5,
+    "max_facts_per_event": 20,
+    "concurrency": 4,
+    "max_events_per_scan": 120,
+    "max_usd_per_scan": 150,
+    "max_usd_per_day": 500
+  },
+
+  "review": {
+    "_readme": "The feedback loop. Every resolved market is scored; misses get a Claude post-mortem. Reviews never change trading on their own: changes are approved by Joey and run as a new strategy version (PLAN.md).",
+    "miss_threshold": 0.5,
+    "max_postmortems_per_run": 20,
+    "max_searches_per_postmortem": 5
+  },
+
+  "site": {
+    "_readme": "The public page (Cloudflare Worker jev-paper-trader, see wrangler.jsonc). Set repo_url only if the GitHub repo is public, so the page's link to the full history works for friends.",
+    "repo_url": ""
+  },
+
+  "strategies": {
+    "_readme": "Each strategy trades its own fake $100k on the same markets with the same gates and sizing; only the probability source differs. main is the pre-registered headline (PLAN.md).",
+    "main": {"label": "Jev + Claude research", "probability": "jev_research", "gates": "jev_research"},
+    "jev_alone": {"label": "Jev alone", "probability": "jev_plain", "gates": "jev_plain"},
+    "claude_direct": {"label": "Claude direct", "probability": "claude_direct", "gates": "jev_research"}
   },
 
   "sizing": {
