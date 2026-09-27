@@ -1,0 +1,169 @@
+{
+  "generated": "2026-09-27T07:28:12Z",
+  "example": false,
+  "question_set": "papertrade-v2",
+  "start": 100000.0,
+  "cash": 100000.0,
+  "open_cost": 0,
+  "equity": 100000.0,
+  "realized": 0,
+  "roi_settled": null,
+  "wins": 0,
+  "settled": 0,
+  "exposure_cap_pct": 0.3,
+  "max_stake_pct": 0.02,
+  "by_source": {},
+  "curve": [
+    {
+      "t": "2026-09-27T03:49:58Z",
+      "equity": 100000.0,
+      "label": "Starting bankroll"
+    },
+    {
+      "t": "2026-09-27T07:28:12Z",
+      "equity": 100000.0,
+      "label": "Now (open bets valued at cost)"
+    }
+  ],
+  "open": [],
+  "closed": [],
+  "calibration": {
+    "judged": 29,
+    "resolved": 0,
+    "sources": [
+      {
+        "name": "jev_research",
+        "label": "Jev + research",
+        "brier": null,
+        "n": 0
+      },
+      {
+        "name": "jev_plain",
+        "label": "Jev alone",
+        "brier": null,
+        "n": 0
+      },
+      {
+        "name": "claude_direct",
+        "label": "Claude direct",
+        "brier": null,
+        "n": 0
+      },
+      {
+        "name": "market",
+        "label": "Market price",
+        "brier": null,
+        "n": 0
+      }
+    ]
+  },
+  "last_scan": {
+    "date": "2026-09-27",
+    "judged": 61,
+    "bets": 0,
+    "fail_info": 34,
+    "fail_rules": 24,
+    "fail_edge": 10,
+    "sources": {
+      "kalshi": 35,
+      "polymarket": 26
+    }
+  },
+  "funnel": {
+    "ts": "2026-09-27T07:25:43Z",
+    "stages": [
+      [
+        "Fetched",
+        120
+      ],
+      [
+        "Passed free filters",
+        29
+      ],
+      [
+        "Judged by Jev",
+        29
+      ],
+      [
+        "Judged with research",
+        4
+      ],
+      [
+        "Cleared every gate (main)",
+        0
+      ],
+      [
+        "Bets placed (main)",
+        0
+      ]
+    ],
+    "events": 18,
+    "researched_new": 2,
+    "research_reused": 0,
+    "bets": {
+      "main": 0,
+      "jev_alone": 0,
+      "claude_direct": 0
+    },
+    "claude_calls": 6,
+    "claude_limited": false,
+    "claude_note": null,
+    "facts_kept": 13,
+    "facts_dropped": 12
+  },
+  "strategies": [
+    {
+      "name": "main",
+      "label": "Jev + Claude research",
+      "main": true,
+      "equity": 100000.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 0,
+      "open_cost": 0,
+      "settled": 0,
+      "wins": 0
+    },
+    {
+      "name": "jev_alone",
+      "label": "Jev alone",
+      "main": false,
+      "equity": 100000.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 0,
+      "open_cost": 0,
+      "settled": 0,
+      "wins": 0
+    },
+    {
+      "name": "claude_direct",
+      "label": "Claude direct",
+      "main": false,
+      "equity": 100000.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 0,
+      "open_cost": 0,
+      "settled": 0,
+      "wins": 0
+    }
+  ],
+  "plan_usage": {
+    "ts": "2026-09-27T07:25:43Z",
+    "week": 0.78,
+    "week_resets": 1790578800,
+    "five_hour": 0.24
+  },
+  "research_runs_today": 2,
+  "learning": {
+    "reviewed": 0,
+    "post_mortems": 0,
+    "calibration": [],
+    "root_causes": {},
+    "proposals": {},
+    "recent": []
+  },
+  "repo_url": "https://github.com/MojoAI-King/jev-paper-trader",
+  "ledger_base": "https://raw.githubusercontent.com/MojoAI-King/jev-paper-trader/master/papertrade_data/"
+}
