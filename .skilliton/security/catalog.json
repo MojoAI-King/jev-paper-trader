@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "skillgate-baseline-2",
+  "description": "Partial original practice summaries related to NIST SSDF 1.1 tasks and OWASP ASVS 5.0.0 requirements. Related references are not equivalence or compliance claims. Applicability requires project review. Sources and verification: docs/security-catalog-sources.md in the Skilliton repository.",
+  "controls": [
+    {
+      "id": "SG-CHECK-CRITERIA",
+      "title": "Define the security checks a change needs",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PO.4.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Reviewed project criteria and the check definitions that implement them"
+      ]
+    },
+    {
+      "id": "SG-CHECK-EVIDENCE",
+      "title": "Retain evidence for security decisions",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PO.4.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "A scoped review record linked to its actual execution artifacts"
+      ]
+    },
+    {
+      "id": "SG-SECURITY-TESTS",
+      "title": "Test security behavior and record findings",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PW.8.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Results for authorized scoped tests, including denied and legitimate behavior"
+      ]
+    },
+    {
+      "id": "SG-ROOT-CAUSE",
+      "title": "Explain the mechanism behind a discovered vulnerability",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "RV.3.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Finding with root-cause analysis and linked correction"
+      ]
+    },
+    {
+      "id": "SG-RECURRING-PATTERNS",
+      "title": "Look for recurring causes across findings",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "RV.3.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Review of related findings and the resulting prevention work"
+      ]
+    },
+    {
+      "id": "SG-WORKFLOW-IMPROVEMENT",
+      "title": "Turn supported lessons into tested workflow improvements",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "RV.3.4",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Reviewed prevention change, regression scenario, and release record"
+      ]
+    },
+    {
+      "id": "SG-COMMAND-INJECTION",
+      "title": "Assess operating-system command construction",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-1.2.5",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Reviewed command entry points and tests of untrusted input, or a scoped explanation requiring human assessment"
+      ]
+    },
+    {
+      "id": "SG-SECRETS-IN-SOURCE",
+      "title": "Keep secret values out of source control",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-13.3.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "A scan of every tracked file for secret-shaped text, with each match reviewed and resolved",
+        "Where the project keeps its runtime secrets instead of the repository, and how they reach the running system"
+      ]
+    },
+    {
+      "id": "SG-DEPENDENCY-RISK",
+      "title": "Keep third-party components inventoried, current, and checked for known vulnerabilities",
+      "maxAgeDays": 30,
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PW.4.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PW.4.4",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "RV.1.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-15.1.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-15.1.2",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-15.2.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "An inventory of direct and transitive dependencies and where each one comes from",
+        "A dated check of that inventory against known vulnerabilities, with the update time frames the project agreed"
+      ]
+    },
+    {
+      "id": "SG-AUTHENTICATION",
+      "title": "Protect how people and services sign in",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-6.1.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-6.3.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-6.3.2",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-6.3.4",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The list of sign-in paths (web, API, service accounts) and the protections on each",
+        "Tests or review notes covering repeated failed sign-ins, default accounts, and any sign-in path missing from that list"
+      ]
+    },
+    {
+      "id": "SG-SESSION-HANDLING",
+      "title": "Issue, check and end sessions safely",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-7.2.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-7.2.4",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-7.4.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "Where session tokens are created, verified and revoked, and which server-side component does each",
+        "Tests showing a fresh token after sign-in and that an old token stops working after logout or expiry"
+      ]
+    },
+    {
+      "id": "SG-ACCESS-CONTROL",
+      "title": "Check permissions for every function and data item on the server",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-8.1.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-8.2.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-8.2.2",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-8.3.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The documented access rules for functions and for individual records",
+        "Tests in which one user requests another user's data or an administrator function and is denied"
+      ]
+    },
+    {
+      "id": "SG-INPUT-INJECTION",
+      "title": "Validate input and keep untrusted data out of queries and interpreters",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-2.2.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-2.2.2",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-1.2.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-1.2.4",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PW.5.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The entry points that accept untrusted input and the validation each one applies on the server",
+        "Tests of injection attempts against database queries and against rendered or encoded output"
+      ]
+    },
+    {
+      "id": "SG-SECURITY-LOGGING",
+      "title": "Log security events well enough to investigate them",
+      "mappings": [
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-16.1.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-16.2.5",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-16.3.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-16.3.2",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The list of security events the application logs, where the logs are kept, and who can read them",
+        "Sample log entries for sign-in and denied-access events, with sensitive values masked or left out"
+      ]
+    },
+    {
+      "id": "SG-POLICY-CHANGE-REVIEW",
+      "title": "Review changes to delivery and validation policy on their own",
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PO.3.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PS.1.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The list of policy paths (delivery checks, CI workflows, code owners) and the rule that requires their separate review",
+        "Review or signature records for recent changes to those paths by someone other than their author"
+      ]
+    }
+  ]
+}
