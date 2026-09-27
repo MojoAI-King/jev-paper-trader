@@ -446,6 +446,18 @@ class ScreenFactsTests(unittest.TestCase):
         self.assertEqual([k["fact"] for k in kept], ["Good one."])
         self.assertEqual(len(dropped), 4)
 
+    def test_web_addresses_are_checked_for_market_sites_only(self):
+        # Jev never sees a fact's web address, so a word like "prediction" in a news page's address is
+        # harmless; a prediction-market or betting site is still refused by its name (Joey, 2026-09-27).
+        urls = ["https://www.sportsmole.co.uk/football/preview/belgium-vs-france-prediction-team-news_1.html",
+                "https://www.oddschecker.com/football/france", "https://sportsbook.fanduel.com/x"]
+        facts = [fact("Mbappe will miss the match with a calf injury.", url=urls[0]),
+                 fact("France play Belgium on Monday.", url=urls[1]),
+                 fact("Kickoff is at 8:45 pm local time.", url=urls[2])]
+        kept, dropped = news.screen_facts(facts, self.M, "1999-12-25", urls, 20)
+        self.assertEqual([k["fact"] for k in kept], ["Mbappe will miss the match with a calf injury."])
+        self.assertEqual(len(dropped), 2)
+
     def test_caps_dedupes_and_normalizes(self):
         facts = [fact(f"Fact {i}.") for i in range(5)] + [fact("Fact 0."), dict(fact("Odd kind."), kind="rumor")]
         kept, dropped = self.screen(facts, max_facts=3)

@@ -3,6 +3,17 @@
 Plain-English record of the choices behind this project, newest first. Each entry says what was
 decided, why, and what is still unverified.
 
+## 2026-09-27 Price screen: web addresses checked for market sites only (Joey approved)
+
+The screen had been applying every rule to each fact's web address as well as its text. In the
+first live cycles, clean facts (schedules, injuries, results) were dropped only because a news
+page's address contained a word like "prediction". Jev never sees addresses, so the address is now
+checked only for being a prediction-market or betting site; the fact text and source name still get
+every rule. Measured on the 53 real facts gathered so far: 33 kept before, 41 after. The rule that
+drops any figure within 1 point of the market's price stays strict for now, by Joey's decision, and
+is to be revisited with a few days of logged drops. The leak tests still fail when the screen is
+switched off.
+
 ## 2026-09-27 Claude runs on Joey's Claude plan, not the API
 
 **Why.** The API-billed design was estimated at $40–180 a day of real money. Joey pays for a Claude

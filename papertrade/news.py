@@ -298,6 +298,16 @@ def _same_site(a: str, b: str) -> bool:
     return a == b or a.endswith("." + b) or b.endswith("." + a)
 
 
+def market_site(url: str) -> str | None:
+    """A fact's web address is checked only for being a prediction-market or betting site. Jev never
+    sees addresses, so words in a news page's path (".../france-prediction-team-news") are harmless;
+    the fact's text and source name get the full screen (Joey approved this narrowing, 2026-09-27)."""
+    host = _domain(url)
+    if any(_same_site(host, d) for d in BLOCKED_DOMAINS) or LEAK_RULES[0][1].search(host):
+        return "from a prediction-market or betting site"
+    return None
+
+
 def screen_facts(raw: list, markets: list[dict], today: str, source_urls, max_facts: int):
     """-> (kept, dropped). Kept facts are exactly what goes into Jev's state (plus their url, for the log)."""
     seen_sites = {_domain(u) for u in source_urls if u}
@@ -322,7 +332,7 @@ def screen_facts(raw: list, markets: list[dict], today: str, source_urls, max_fa
                                any(_same_site(_domain(url), s) for s in seen_sites)):
             reason = "source not among the pages the research call saw"
         if not reason:
-            reason = leak_reason(" ".join((fact, source, url)), markets)
+            reason = leak_reason(" ".join((fact, source)), markets) or market_site(url)
         if not reason and fact.lower() in texts:
             reason = "duplicate"
         if not reason and len(kept) >= max_facts:
