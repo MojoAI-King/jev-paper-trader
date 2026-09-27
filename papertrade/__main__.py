@@ -106,8 +106,8 @@ def cmd_health(policy) -> int:
                                           for x in runs) or "none found"))
         if runs and runs[0]["conclusion"] not in ("success", "", None):
             problems.append(f"the latest run ended {runs[0]['conclusion']}")
-        if not any(x["event"] == "schedule" and x["conclusion"] == "success" for x in runs):
-            problems.append("no scheduled (hourly) run succeeded among the last 6; only manual starts")
+        # Cycles are started by the Cloudflare trigger (shown as workflow_dispatch) or GitHub's schedule;
+        # which one doesn't matter, only that cycles keep landing (the age check below).
     try:
         scans = [json.loads(l) for l in _raw(policy, "scans.jsonl").splitlines() if l.strip()]
         summary = json.loads(_raw(policy, "summary.json"))
@@ -128,8 +128,9 @@ def cmd_health(policy) -> int:
               f"5-hour {100 * (w.get('five_hour') or {}).get('utilization', 0):.0f}%")
     for s in summary.get("strategies") or []:
         print(f"  {s['label']:<34} ${s['equity']:>12,.2f}  open {s['open']:>3}  settled {s['settled']:>3}")
-    if age_h > 2.5:
-        problems.append(f"the last cycle was {age_h:.1f} hours ago (hourly runs should keep it under 2)")
+    if age_h > 1.5:
+        problems.append(f"the last cycle was {age_h:.1f} hours ago (cycles should land about every 30 minutes; "
+                        "is GITHUB_DISPATCH_TOKEN set on the Cloudflare Worker? see docs/OPERATIONS.md)")
     if last.get("problems"):
         problems.append(f"{len(last['problems'])} problem(s) in the last cycle")
     print("\nHealthy." if not problems else "\nNeeds a look: " + "; ".join(problems))
