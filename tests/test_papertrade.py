@@ -594,6 +594,13 @@ class DashboardTests(DataDirTest):
         self.assertEqual((ls["date"], ls["judged"], ls["fail_info"], ls["fail_rules"], ls["fail_edge"]),
                          ("2026-09-27", 1, 1, 1, 0))
 
+    def test_last_scan_counts_only_the_latest_scan(self):
+        old = {"ts": "2026-09-27T03:50:00Z", "question_set": "papertrade-v1", "market": {"source": "kalshi"},
+               "decision": {"bet": False}}
+        new = dict(old, ts="2026-09-27T07:25:00Z", question_set=review.QUESTION_SET_VERSION)
+        ls = dashboard.last_scan(POLICY, [old] * 32 + [new] * 29)
+        self.assertEqual(ls["judged"], 29)
+
     def test_plan_usage_comes_from_the_latest_report(self):
         rate = {"unifiedWindows": {"seven_day": {"utilization": 0.4, "resetsAt": 1}, "five_hour": {"utilization": 0.2}}}
         u = dashboard.plan_usage([{"ts": "a", "claude": {"rate": rate}}, {"ts": "b", "kind": "review"}])

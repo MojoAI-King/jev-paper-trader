@@ -20,8 +20,11 @@ def last_scan(policy: dict, judgments: list[dict]) -> dict | None:
     """What the most recent day's scan judged and which gates stopped the bets."""
     if not judgments:
         return None
-    day = max(j["ts"][:10] for j in judgments)
-    js = [j for j in judgments if j["ts"][:10] == day]
+    current = [j for j in judgments if j.get("question_set") == engine.QUESTION_SET_VERSION]
+    pool = current or judgments  # older question sets only when nothing newer exists
+    latest = max(j["ts"] for j in pool)  # every judgment in one scan shares that scan's timestamp
+    js = [j for j in pool if j["ts"] == latest]
+    day = latest[:10]
     g = policy["gates"]
     ds = [j.get("decision") or {} for j in js]
     scored = [d for d in ds if "info_sufficient" in d]  # e.g. "already holding" decisions carry no gate scores
