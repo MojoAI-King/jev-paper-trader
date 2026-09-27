@@ -12,7 +12,7 @@ name: Trading cycle
 
 on:
   schedule:
-    - cron: "5 * * * *"  # hourly at :05 UTC; GitHub may start scheduled runs a few minutes late
+    - cron: "23 * * * *"  # hourly at :23; off the top of the hour, where GitHub delays scheduled runs most (a :05 slot started 45 minutes late)
   workflow_dispatch: {}
 
 concurrency:
