@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27T20:06:05Z",
+  "generated": "2026-09-27T20:36:15Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-27T20:06:05Z",
+      "t": "2026-09-27T20:36:15Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -45,7 +45,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 75,
+    "judged": 76,
     "resolved": 0,
     "sources": [
       {
@@ -82,17 +82,17 @@
   },
   "last_scan": {
     "date": "2026-09-27",
-    "judged": 4,
+    "judged": 1,
     "bets": 0,
-    "fail_info": 2,
-    "fail_rules": 2,
-    "fail_edge": 2,
+    "fail_info": 1,
+    "fail_rules": 0,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 4
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-27T20:05:17Z",
+    "ts": "2026-09-27T20:35:13Z",
     "stages": [
       [
         "Fetched",
@@ -100,15 +100,15 @@
       ],
       [
         "Passed free filters",
-        4
+        1
       ],
       [
         "Judged by Jev",
-        4
+        1
       ],
       [
         "Judged with research",
-        3
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -119,9 +119,9 @@
         0
       ]
     ],
-    "events": 3,
+    "events": 1,
     "researched_new": 1,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -132,8 +132,8 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 14,
-    "facts_dropped": 2,
+    "facts_kept": 4,
+    "facts_dropped": 4,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -146,8 +146,8 @@
       "bold": 0,
       "calibrated": 0
     },
-    "judged": 4,
-    "with_research": 3
+    "judged": 1,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -348,7 +348,11 @@
           99964.92
         ],
         [
-          "2026-09-27T20:06:05Z",
+          "2026-09-27T20:35:13Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T20:36:15Z",
           99964.92
         ]
       ]
@@ -437,7 +441,11 @@
           100000.0
         ],
         [
-          "2026-09-27T20:06:05Z",
+          "2026-09-27T20:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T20:36:15Z",
           100000.0
         ]
       ]
@@ -526,7 +534,11 @@
           99964.92
         ],
         [
-          "2026-09-27T20:06:05Z",
+          "2026-09-27T20:35:13Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T20:36:15Z",
           99964.92
         ]
       ]
@@ -615,7 +627,11 @@
           96674.4
         ],
         [
-          "2026-09-27T20:06:05Z",
+          "2026-09-27T20:35:13Z",
+          96674.4
+        ],
+        [
+          "2026-09-27T20:36:15Z",
           96674.4
         ]
       ]
@@ -704,7 +720,11 @@
           100000.0
         ],
         [
-          "2026-09-27T20:06:05Z",
+          "2026-09-27T20:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T20:36:15Z",
           100000.0
         ]
       ]
@@ -1058,6 +1078,52 @@
   ],
   "settled_recent": [],
   "calls": [
+    {
+      "ts": "2026-09-27T20:35:13Z",
+      "key": "polymarket:4689737",
+      "question": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.055,
+      "forecasts": {
+        "jev_research": 0.53,
+        "jev_plain": 0.31,
+        "claude_direct": 0.97,
+        "jev_calibrated": null
+      },
+      "info": 0.15,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 4
+    },
     {
       "ts": "2026-09-27T20:05:17Z",
       "key": "kalshi:KXLEADERMLBHR-26-KSCH",
@@ -1563,55 +1629,33 @@
         }
       },
       "facts_total": 8
-    },
-    {
-      "ts": "2026-09-27T17:49:01Z",
-      "key": "polymarket:4769494",
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.22,
-      "forecasts": {
-        "jev_research": 0.15,
-        "jev_plain": 0.07,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.46,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.050 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.40 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.050 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 11
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-27T20:35:13Z",
+      "type": "call",
+      "jev": 0.53,
+      "claude": 0.97,
+      "market": 0.055,
+      "q": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T20:35:13Z",
+      "type": "intel",
+      "facts": 8,
+      "q": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-27T20:35:13Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 1,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-27T20:05:17Z",
       "type": "call",
@@ -2148,15 +2192,6 @@
     },
     {
       "ts": "2026-09-27T15:30:28Z",
-      "type": "call",
-      "jev": 0.27,
-      "claude": 0.06,
-      "market": 0.0695,
-      "q": "Will Elon Musk post 140-159 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-140-159"
-    },
-    {
-      "ts": "2026-09-27T15:30:28Z",
       "type": "intel",
       "facts": 10,
       "q": "Will Bitcoin dip to $83,000 on September 27?",
@@ -2274,13 +2309,13 @@
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-27T20:05:17Z",
-    "week": 0.84,
+    "ts": "2026-09-27T20:35:13Z",
+    "week": 0.85,
     "week_resets": 1790578800,
-    "five_hour": 0.05
+    "five_hour": 0.08
   },
-  "research_runs_today": 18,
-  "cycles_24h": 11,
+  "research_runs_today": 19,
+  "cycles_24h": 12,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
