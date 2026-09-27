@@ -11,7 +11,9 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 
 | ID | Title | Status | Date |
 |---|---|---|---|
+| [2026-09-27-an-svg-glow-filter-on-a-perfectly-flat-l-fed8](lessons/2026-09-27-an-svg-glow-filter-on-a-perfectly-flat-l-fed8.md) | An SVG glow filter on a perfectly flat line makes the line disappear | accepted | 2026-09-27 |
 | [2026-09-27-dashboard-numbers-span-12-outside-a-grid-aa75](lessons/2026-09-27-dashboard-numbers-span-12-outside-a-grid-aa75.md) | Dashboard numbers: span-12 outside a grid, and last scan counted by day | accepted | 2026-09-27 |
+| [2026-09-27-github-s-scheduler-skipped-every-slot-fo-8f6f](lessons/2026-09-27-github-s-scheduler-skipped-every-slot-fo-8f6f.md) | GitHub's scheduler skipped every slot for this repo; a scheduled job isn't live until a scheduled run lands | accepted | 2026-09-27 |
 | [2026-09-27-headless-chrome-can-t-lay-out-below-abou-0171](lessons/2026-09-27-headless-chrome-can-t-lay-out-below-abou-0171.md) | Headless Chrome can't lay out below about 500px: check phone width in a fixed-width iframe | accepted | 2026-09-27 |
 | [2026-09-27-kalshi-answered-github-s-shared-runner-w-5e04](lessons/2026-09-27-kalshi-answered-github-s-shared-runner-w-5e04.md) | Kalshi answered GitHub's shared runner with 429 and a whole source vanished for an hour | accepted | 2026-09-27 |
 | [2026-09-27-polymarket-returned-nothing-the-api-reje-50b5](lessons/2026-09-27-polymarket-returned-nothing-the-api-reje-50b5.md) | Polymarket returned nothing: the API rejects snake_case sort fields | accepted | 2026-09-27 |

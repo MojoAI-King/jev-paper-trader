@@ -29,5 +29,6 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
+| [2026-09-27-dependable-trading-trigger-and-mission-c-d56e](tasks/2026-09-27-dependable-trading-trigger-and-mission-c-d56e.md) | Dependable trading trigger and mission-control dashboard | in-progress | master | unassigned |
 | [2026-09-27-self-improvement-loop-and-agent-ecosyste-b776](tasks/2026-09-27-self-improvement-loop-and-agent-ecosyste-b776.md) | Self-improvement loop and agent ecosystem | in-progress | learning-loop | unassigned |
 <!-- skilliton:index:tasks:end -->
