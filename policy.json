@@ -1,0 +1,38 @@
+{
+  "_readme": "Paper-trading rules. Every bet must pass every gate. Change numbers here, not in code.",
+  "model": "jev-latest",
+  "starting_bankroll": 100000,
+  "sources": ["polymarket", "kalshi"],
+
+  "market_filters": {
+    "days_ahead": 30,
+    "min_volume": 10000,
+    "markets_per_source": 60,
+    "min_price": 0.05,
+    "max_price": 0.95,
+    "rejudge_after_hours": 24
+  },
+
+  "gates": {
+    "min_edge": 0.08,
+    "_min_edge": "Jev's probability must beat the cost of the contract (including fees) by at least this much",
+    "min_rules_clear": 0.75,
+    "min_info_sufficient": 0.5,
+    "_min_info_sufficient": "Skip markets that depend on recent news Jev hasn't been given"
+  },
+
+  "sizing": {
+    "kelly_fraction": 0.25,
+    "max_stake_pct": 0.02,
+    "max_total_exposure_pct": 0.30,
+    "_readme": "Quarter-Kelly, capped at 2% of equity per bet and 30% of equity in open bets overall"
+  },
+
+  "fees": {
+    "kalshi_taker_coef": 0.07,
+    "polymarket_per_contract": 0.0,
+    "slippage": 0.01
+  },
+
+  "max_jev_calls_per_scan": 80
+}
