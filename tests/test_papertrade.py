@@ -56,6 +56,12 @@ POLY_FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "polymarket_mark
 class PolymarketFetchTests(unittest.TestCase):
     """Replays recorded Gamma API responses; no network."""
 
+    def setUp(self):
+        self.waits = []
+        p = mock.patch.object(mk, "_sleep", self.waits.append)  # no real waiting between pages or retries
+        p.start()
+        self.addCleanup(p.stop)
+
     def fake_urlopen(self, req, timeout):
         q = urllib.parse.parse_qs(urllib.parse.urlparse(req.full_url).query)
         # Sort fields the live API accepted on 2026-09-26; anything else gets the recorded 422.
@@ -116,6 +122,28 @@ class PolymarketFetchTests(unittest.TestCase):
         with mock.patch("urllib.request.urlopen", fake):
             self.assertEqual(mk.fetch_kalshi(30, 10000, 60), [])
         self.assertEqual(len(calls), mk.MAX_PAGES)
+
+    def test_rate_limit_is_retried_then_reported(self):
+        def limited(n):
+            calls = []
+
+            def fake(req, timeout):
+                calls.append(1)
+                if len(calls) <= n:
+                    raise urllib.error.HTTPError(req.full_url, 429, "Too Many Requests",
+                                                 {"Retry-After": "3"} if len(calls) == 1 else {},
+                                                 io.BytesIO(b'{"error":{"code":"too_many_requests"}}'))
+                return io.BytesIO(b'{"markets": []}')
+            return fake, calls
+        fake, calls = limited(2)  # two 429s, then an answer: GitHub's runners hit Kalshi's limit on 2026-09-27
+        with mock.patch("urllib.request.urlopen", fake):
+            self.assertEqual(mk._get(f"{mk.KALSHI}/markets"), {"markets": []})
+        self.assertEqual((len(calls), self.waits), (3, [3.0, 4.0]))  # honors Retry-After, else backs off
+        fake, calls = limited(99)
+        with mock.patch("urllib.request.urlopen", fake):
+            with self.assertRaisesRegex(RuntimeError, "HTTP 429.*too_many_requests"):
+                mk._get(f"{mk.KALSHI}/markets")
+        self.assertEqual(len(calls), mk.RETRIES)
 
     def test_http_error_keeps_api_reason(self):
         with mock.patch("urllib.request.urlopen", self.fake_urlopen):

@@ -9,6 +9,7 @@ Resolution check returns "yes", "no", or None (unresolved).
 from __future__ import annotations
 
 import json
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -19,20 +20,34 @@ POLY = "https://gamma-api.polymarket.com"
 KALSHI = "https://api.elections.kalshi.com/trade-api/v2"
 MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry can't loop forever
 POLY_PAGE = 100
+RETRIES = 4      # tries per request on "too many requests" (429) or a server error (5xx)
+KALSHI_PAGE_PAUSE = 0.5  # seconds between Kalshi pages: GitHub's shared runners hit its rate limit (429)
+_sleep = time.sleep  # swapped out in tests
+
+
+def _retry_wait(e: urllib.error.HTTPError, attempt: int) -> float:
+    try:
+        return min(30.0, float(e.headers.get("Retry-After")))
+    except (TypeError, ValueError):
+        return 2.0 * 2 ** attempt  # 2, 4, 8 seconds
 
 
 def _get(url: str, params: dict | None = None, timeout: float = 20) -> object:
     if params:
         url += "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers=UA)
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return json.loads(r.read().decode())
-    except urllib.error.HTTPError as e:
-        # Keep the API's own explanation: a bare "422 Unprocessable Entity" hid a bad sort field.
-        with e:
-            detail = e.read().decode(errors="replace")[:300]
-        raise RuntimeError(f"HTTP {e.code} from {url.split('?')[0]}: {detail}") from None
+    for attempt in range(RETRIES):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            # Keep the API's own explanation: a bare "422 Unprocessable Entity" hid a bad sort field.
+            with e:
+                detail = e.read().decode(errors="replace")[:300]
+            if (e.code == 429 or e.code >= 500) and attempt < RETRIES - 1:
+                _sleep(_retry_wait(e, attempt))
+                continue
+            raise RuntimeError(f"HTTP {e.code} from {url.split('?')[0]}: {detail}") from None
 
 
 def _f(x, default=None):
@@ -150,7 +165,9 @@ def normalize_kalshi(m: dict) -> dict | None:
 def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
     now = datetime.now(timezone.utc)
     out, cursor = [], None
-    for _ in range(MAX_PAGES):
+    for page in range(MAX_PAGES):
+        if page:
+            _sleep(KALSHI_PAGE_PAUSE)
         params = {"status": "open", "limit": 200, "mve_filter": "exclude",
                   "min_close_ts": int((now + timedelta(hours=12)).timestamp()),
                   "max_close_ts": int((now + timedelta(days=days_ahead)).timestamp())}
