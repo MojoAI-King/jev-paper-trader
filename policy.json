@@ -52,6 +52,25 @@
     "max_postmortems_per_day": 5
   },
 
+  "learning": {
+    "_readme": "The self-improvement loop (docs/LEARNING.md). Automatic: scoring, reviews of misses and wins, the research playbook, the calibration map. Anything that changes how money is bet runs as a challenger on its own fake $100k, and only starts once Joey approves it, unless auto_start_challengers is true.",
+    "max_win_reviews_per_day": 3,
+    "win_margin": 0.25,
+    "_win_margin": "A resolved market gets a 'why were we right' review when main won money, or Jev with research beat the market's error by at least this much",
+    "calibration_min_resolved": 30,
+    "calibration_prior": 5,
+    "_calibration_prior": "How strongly the calibration map is pulled toward 'Jev is already calibrated', so a handful of results can't swing it",
+    "coach_min_new_reviews": 3,
+    "coach_max_rules": 20,
+    "_coach": "The coach rewrites the research playbook once at least this many new reviews with a written post-mortem have come in, at most once a day",
+    "retro_every_days": 7,
+    "retro_min_reviews": 10,
+    "auto_start_challengers": false,
+    "max_running_challengers": 2,
+    "challenger_bounds": {"min_edge": [0.05, 0.20], "min_rules_clear": [0.5, 0.95], "min_info_sufficient": [0.1, 0.8], "max_framing_gap": [0.05, 0.30]},
+    "_challenger_bounds": "The only gates a challenger may move, and how far. Sizing, fees, exposure caps and the price screen are never a challenger's to change"
+  },
+
   "site": {
     "_readme": "The public page (Cloudflare Worker jev-paper-trader, see wrangler.jsonc). Set repo_url only if the GitHub repo is public, so the page's link to the full history works for friends.",
     "repo_url": "https://github.com/MojoAI-King/jev-paper-trader"
@@ -64,7 +83,9 @@
     "claude_direct": {"label": "Claude direct", "probability": "claude_direct", "gates": "jev_research"},
     "bold": {"label": "Jev + research, bold", "probability": "jev_research", "gates": "jev_research",
              "gate_overrides": {"min_info_sufficient": 0.2},
-             "_why": "Joey approved 2026-09-27: main but with the info bar at 0.2 instead of 0.5, to test whether the info gate is too cautious"}
+             "_why": "Joey approved 2026-09-27: main but with the info bar at 0.2 instead of 0.5, to test whether the info gate is too cautious"},
+    "calibrated": {"label": "Jev + research, self-calibrating", "probability": "jev_calibrated", "gates": "jev_research",
+                   "_why": "Main's gates, but the probability is corrected by a map learned from every resolved market (learn.calibration_map). Waits until learning.calibration_min_resolved markets have resolved"}
   },
 
   "sizing": {

@@ -27,6 +27,9 @@ python3 -m papertrade cycle     # settle -> scan -> review -> report -> dashboar
 python3 -m papertrade cycle --deploy   # ...and push the public page to Cloudflare
 python3 -m papertrade review    # score resolved markets; post-mortems for the misses
 python3 -m papertrade report    # just the report
+python3 -m papertrade health    # is it trading? live ledgers on GitHub + the last hourly runs
+python3 -m papertrade learn     # what the learning loop has learned so far
+python3 -m papertrade approve <id>   # start a proposed challenger strategy (reject / retire too)
 python3 -m papertrade dashboard # one page: trades, cash split, P&L (papertrade_data/dashboard.html)
 python3 -m papertrade publish   # build site/ (the public page + raw ledgers)
 ```
@@ -71,16 +74,28 @@ A fake bet is placed only if **every** gate in `policy.json` passes:
 - Size: quarter-Kelly, at most **2%** of that strategy's bankroll per bet and **30%** in open bets
 
 **Strategies.** Each trades its own fake $100,000 on the same markets with the same sizing:
-**main** (Jev + Claude research, the headline), **Jev alone**, **Claude direct**, and **bold** (main,
-but with an info bar of 0.2 instead of 0.5). Comparing them shows whether research helps, whether Jev
-adds anything over Claude, and whether the info gate is too cautious.
+**main** (Jev + Claude research, the headline), **Jev alone**, **Claude direct**, **bold** (main,
+but with an info bar of 0.2 instead of 0.5), and **self-calibrating** (main's gates, with Jev's
+probability corrected by what it learned from resolved markets). Comparing them shows whether research
+helps, whether Jev adds anything over Claude, whether the info gate is too cautious, and whether
+learning from outcomes pays.
 
-## Learning from mistakes
+## How it learns
 
-When a judged market resolves, `review` scores every forecaster against the real outcome. When the
-main forecast was confidently wrong or a bet lost money, Claude looks up what actually happened and
-writes a post-mortem: root cause, what we missed, a lesson and one suggested change. The page shows
-the patterns. Changes are never applied automatically; see "How it improves over time" in PLAN.md.
+Every resolved market feeds a learning loop (full design in `docs/LEARNING.md`):
+
+- **Reviews of misses and wins.** Claude explains what went wrong, or what went right, and the lesson.
+- **A research playbook** that a Claude coach rewrites from those lessons; every research call follows
+  it. Rules are screened in code like research facts and must cite a real review.
+- **A calibration map** learned from outcomes; the self-calibrating strategy bets with it once 30
+  markets have resolved.
+- **A gate ledger**: what each gate saved or cost, measured on real outcomes.
+- **A weekly retrospective** that proposes changes. Changes to how money is bet run as challenger
+  strategies on their own fake $100k, started with Joey's OK, and are judged on future markets.
+
+Main's pre-registered rules never change on their own. Every strategy is listed, with what it tests
+and how it will be judged, in `docs/EXPERIMENTS.md`. How to run and check the live system:
+`docs/OPERATIONS.md`.
 
 ## The public page
 
@@ -109,11 +124,13 @@ papertrade/
   news.py        # Claude research, Claude direct, and the price screen
   judge.py       # the questions Jev answers (bump QUESTION_SET_VERSION if you edit wording)
   engine.py      # the funnel, gates, sizing, fake ledgers, settlement, report
-  review.py      # the feedback loop: scoring and post-mortems
+  review.py      # the feedback loop: scoring, post-mortems of misses, reviews of wins
+  learn.py       # the loop's numbers: categories, calibration map, gate ledger (no Claude)
+  coach.py       # the loop's Claude steps: research playbook coach, weekly retrospective, proposals
   dashboard.py   # one-page HTML dashboard and the public site (+ dashboard_template.html)
   jev_client.py  # tiny Jev API client (stdlib only)
 policy.json      # every threshold and limit; tune here, not in code
-papertrade_data/ # portfolios/, judgments.jsonl, scans.jsonl, reviews.jsonl, resolutions.json (tracked)
+papertrade_data/ # portfolios/, judgments.jsonl, scans.jsonl, reviews.jsonl, resolutions.json, playbook.json, proposals.json, retros.jsonl (tracked)
 site/            # the public page, built each cycle (not tracked)
 tests/           # offline tests: python3 -m unittest discover -s tests -t .
 PLAN.md          # the experiment: question, design, success criteria, phases

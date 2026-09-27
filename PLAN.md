@@ -55,20 +55,28 @@ asked as NO (a consistency check), whether the rules are clear, whether it has e
 and whether the outcome is already decided. Every answer is logged, so later analysis can test
 which signals predict profit.
 
-## How it improves over time (the feedback loop)
+## How it improves over time (the learning loop)
+
+Every resolved market makes it a little better, automatically, without moving its own goalposts.
+Full design: `docs/LEARNING.md`.
 
 1. **Score everything.** When a judged market resolves, every forecaster is scored against the real
-   outcome, and the signals it had are recorded (`reviews.jsonl`).
-2. **Explain the misses.** When the main forecast was confidently wrong, or a bet lost money, Claude
-   looks up what actually happened and writes a post-mortem with a root cause from a fixed list
-   (research missed it, stale facts, misread rules, overconfident, a wrong fact, a resolution
-   quirk, or a reasonable call that was unlucky), a lesson, and one suggested change.
-3. **Look for patterns.** The page shows root-cause counts, and a calibration table comparing what
-   Jev said with how often it actually happened.
-4. **Change carefully.** When a pattern is clear (say, most misses are "research missed it"), the
-   suggested change is approved by Joey and runs as a **new strategy version beside the current
-   one** on the same markets. It replaces the old one only if it wins on the pre-registered
-   criteria. The system gets better without moving its own goalposts.
+   outcome, tagged with its category and the research playbook version it used (`reviews.jsonl`).
+2. **Explain misses and wins.** Claude writes a post-mortem when the researched forecast was
+   confidently wrong or any strategy lost money (root cause from a fixed list, what we missed, a
+   lesson), and a "why were we right" review when we beat the market or a bet won.
+3. **Learn how to research (automatic).** A Claude coach turns those reviews into the research
+   playbook: short rules on how to research a kind of question. Every research call follows it. Code
+   screens each rule like a research fact (no odds, markets or forecasts) and requires it to cite a
+   real review; every version is kept, and results are reported by playbook version.
+4. **Learn how far to trust Jev (automatic).** A calibration map is fitted to resolved outcomes; the
+   self-calibrating strategy bets with the corrected probability once 30 markets have resolved.
+5. **Measure every gate.** The gate ledger scores what a flat bet would have made on every edge each
+   gate stopped, so gate changes rest on evidence. The bold strategy tests the info gate live.
+6. **Propose weekly, test forward.** A weekly retrospective reads the numbers and proposes at most two
+   changes. Anything that changes how money is bet runs as a **challenger strategy on its own fake
+   $100,000** beside the others, started with Joey's approval (or automatically within fixed bounds, if
+   he turns that on). It replaces the old way only if it wins on criteria written before it started.
 
 ## Rules that keep the result honest
 
@@ -114,5 +122,9 @@ is absorbing; that amount is not billed.
    anything that settles or contradicts the case, and Jev re-judges before money moves.
 4. **Checkpoint review** at 50 resolved markets: which sources and signals help, what to change
    (dated).
+
+**Learning loop: built 2026-09-27** (playbook coach, win reviews, gate ledger, self-calibrating
+strategy, weekly retrospective, challengers), alongside the bold strategy. See `docs/LEARNING.md` and
+`docs/EXPERIMENTS.md`.
 
 Codex is a coding agent, not a forecaster. Its natural role is building parts of this system.

@@ -16,6 +16,18 @@
 - Tune behavior in `policy.json`, not in code. Keep hard limits (stake caps, exposure caps) in code-enforced policy.
 - Run the offline tests before and after changes: `python3 -m unittest discover -s tests -t .`
 - For Jev/TypeSafe API details, use the TypeSafe skill and the live docs at https://docs.typesafe.ai/llms.txt.
+- **It's live.** GitHub Actions runs a cycle hourly and is the only writer of `papertrade_data/`. Never
+  run `cycle`, `scan`, `settle` or `review` locally while it's on; read-only commands (`health`, `learn`,
+  `report`, `markets`) are fine. Runbook: `docs/OPERATIONS.md`. Start a session with the
+  `trading-health` skill (`.claude/skills/`) when the question is "is it working".
+- **The learning loop** (`docs/LEARNING.md`, `papertrade/learn.py`, `papertrade/coach.py`) improves the
+  research playbook and the calibration map by itself. Anything that changes how money is bet runs as a
+  challenger strategy on its own fake $100k, started only with Joey's OK (`approve`) unless he sets
+  `learning.auto_start_challengers`. Main's gates are pinned by `test_main_keeps_its_pre_registered_gates`.
+  Playbook rules pass the same screen as research facts (`learn.rule_problem`), when written and again
+  when loaded. Improvement sessions follow the `improve` skill.
+- Every strategy in `policy.json` needs a row in `docs/EXPERIMENTS.md`, written before its results
+  come in (`ExperimentsRegistryTests`).
 
 <!-- skilliton:harness:start v1 -->
 ## How we work here (Skilliton)

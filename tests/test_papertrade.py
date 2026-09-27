@@ -10,7 +10,9 @@ from pathlib import Path
 from unittest import mock
 
 from papertrade.jev_client import JevClient
-from papertrade import dashboard, jev_client, news, review
+import random
+
+from papertrade import coach, dashboard, jev_client, learn, news, review
 from papertrade import engine
 from papertrade import markets as mk
 
@@ -217,7 +219,8 @@ class FakeResearcher:
     def __init__(self, facts, usd=0.5, urls=("https://www.reuters.com/a",), fail=None):
         self.facts, self.usd, self.urls, self.fail, self.calls = facts, usd, list(urls), fail, []
 
-    def research(self, markets, today):
+    def research(self, markets, today, lessons=None):
+        self.lessons = lessons
         self.calls.append([m["question"] for m in markets])
         if self.fail:
             raise self.fail
@@ -236,7 +239,7 @@ class FakeForecaster:
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
     NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "SCANS", "REVIEWS", "RESEARCH",
-             "SUMMARY", "SITE")
+             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -245,7 +248,9 @@ class DataDirTest(unittest.TestCase):
         for n, v in {"DATA": d, "PORTFOLIO": d / "portfolio.json", "PORTFOLIOS": d / "portfolios",
                      "JUDGMENTS": d / "judgments.jsonl", "RESOLUTIONS": d / "resolutions.json",
                      "SCANS": d / "scans.jsonl", "REVIEWS": d / "reviews.jsonl", "RESEARCH": d / "research.jsonl",
-                     "SUMMARY": d / "summary.json", "SITE": d / "site"}.items():
+                     "SUMMARY": d / "summary.json", "SITE": d / "site", "PLAYBOOK": d / "playbook.json",
+                     "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
+                     "PROPOSALS": d / "proposals.json"}.items():
             setattr(engine, n, v)
 
     def tearDown(self):
@@ -275,7 +280,7 @@ class EndToEndTests(DataDirTest):
         stats = engine.scan(policy, researcher=FakeResearcher([fact("A clean fact.")]),
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
-        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0})
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -285,7 +290,7 @@ class EndToEndTests(DataDirTest):
 
         s = engine.settle(policy, resolvers={"polymarket": lambda mid: "yes" if mid in "12" else None},
                           log=lambda *_: None)
-        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2})
+        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -455,7 +460,7 @@ class ResearchPipelineTests(DataDirTest):
             return {"model": "jev-test", "answers": ans(0.70 if "recent_facts" in body["state"] else 0.60)}
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
-        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1, "calibrated": 0})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
         self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone"]["p_yes"]), (0.70, 0.60))
         # two days later the market is judged again for data, but no strategy adds to a position it holds
@@ -474,6 +479,57 @@ class ResearchPipelineTests(DataDirTest):
         self.assertIn("bold", engine.read_jsonl(engine.JUDGMENTS)[-1]["decisions"])
         stats = self.run_scan([self.lula()], r, now=SCAN_NOW + timedelta(hours=2))  # everyone has decided now
         self.assertEqual(stats["funnel"]["judged"], 0)
+
+    def test_playbook_lessons_reach_research_screened_and_logged(self):
+        engine.save_json(engine.PLAYBOOK, {"version": 4, "rules": [
+            {"id": "R1", "category": "politics", "rule": "Read the electoral court's official results page first."},
+            {"id": "R2", "category": "sports", "rule": "Read the league's official standings table first."},
+            {"id": "R3", "category": "general", "rule": "Note the exact time zone the resolution source uses."},
+            {"id": "R4", "category": "general", "rule": "Check what bookmakers and Polymarket traders expect first."}]})
+        r = FakeResearcher([fact(CLEAN[1])])
+        self.run_scan([self.lula()], r)  # a politics market
+        self.assertEqual([x["id"] for x in r.lessons], ["R1", "R3"])  # its category + general; R4 fails the screen
+        rec = engine.read_jsonl(engine.RESEARCH)[0]
+        self.assertEqual((rec["playbook_version"], rec["lessons"]), (4, ["R1", "R3"]))
+        self.assertEqual(engine.read_jsonl(engine.JUDGMENTS)[0]["research"]["playbook"], 4)
+
+    def test_calibrated_strategy_waits_then_bets_with_the_learned_map(self):
+        def transport(url, body, key, timeout):
+            return {"model": "jev-test", "answers": ans(0.80 if "recent_facts" in body["state"] else 0.5)}
+        self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]), transport=transport)
+        j = engine.read_jsonl(engine.JUDGMENTS)[-1]
+        self.assertIsNone(j["jev_calibrated"])
+        self.assertIn("still learning", j["decisions"]["calibrated"]["reasons"][0])
+        # 40 resolved markets where Jev said 80% and only half came true: Jev is overconfident
+        for i in range(40):
+            engine.append_jsonl(engine.REVIEWS, {"key": f"k{i}", "ts": "1999-12-01T00:00:00Z",
+                                                 "probs": {"jev_research": 0.8}, "outcome": "yes" if i % 2 else "no"})
+        self.run_scan([self.lula("M")], FakeResearcher([fact(CLEAN[1])]), transport=transport)
+        j = engine.read_jsonl(engine.JUDGMENTS)[-1]
+        self.assertLess(j["jev_calibrated"], 0.75)  # pulled from 0.80 toward what actually happened
+        self.assertGreater(j["jev_calibrated"], 0.5)  # but the prior keeps 40 results from erasing Jev's view
+        self.assertEqual(j["decisions"]["calibrated"]["p_yes"], j["jev_calibrated"])
+        self.assertEqual(j["calibration_map"]["n"], 40)
+
+    def test_running_challengers_trade_their_own_bankroll_and_bad_ones_never_load(self):
+        engine.save_json(engine.PROPOSALS, {"proposals": [
+            {"id": "ch1", "kind": "challenger", "status": "running", "title": "t",
+             "strategy": {"label": "Edge 5", "probability": "jev_research", "gates": "jev_research",
+                          "gate_overrides": {"min_edge": 0.05}}},
+            {"id": "ch2", "kind": "challenger", "status": "running", "title": "t",  # hand-edited past the bounds
+             "strategy": {"label": "Edge 1", "probability": "jev_research", "gates": "jev_research",
+                          "gate_overrides": {"min_edge": 0.01}}},
+            {"id": "ch3", "kind": "challenger", "status": "running", "title": "t",  # tries to change sizing
+             "strategy": {"label": "Big", "probability": "jev_research", "gates": "jev_research",
+                          "sizing": {"max_stake_pct": 0.5}}},
+            {"id": "ch4", "kind": "challenger", "status": "proposed", "title": "t",  # not approved yet
+             "strategy": {"label": "Later", "probability": "jev_plain", "gates": "jev_plain"}}]})
+        names = set(engine.strategies(POLICY))
+        self.assertIn("ch1", names)
+        self.assertFalse(names & {"ch2", "ch3", "ch4"})
+        self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
+        self.assertIn("ch1", engine.read_jsonl(engine.JUDGMENTS)[0]["decisions"])
+        self.assertTrue(engine.portfolio_path("ch1").exists())
 
     def test_scan_logs_its_funnel(self):
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
@@ -693,7 +749,13 @@ class IntradayTests(DataDirTest):
 
 class FakeAnalyst:
     def __init__(self):
-        self.cases = []
+        self.cases, self.wins = [], []
+
+    def explain_win(self, case):
+        self.wins.append(case)
+        return {"root_cause": "research_found_it", "what_happened": "It happened.", "what_worked": "The standings.",
+                "lesson": "Read the standings early.", "suggested_change": {"area": "none", "change": ""},
+                "meta": {"api_equivalent_usd": 0.1}, "kind": "win"}
 
     def explain(self, case):
         self.cases.append(case)
@@ -731,6 +793,26 @@ class ReviewTests(DataDirTest):
                          (3, 1, {"missing_info": 1}, {"research": 1}))
         self.assertEqual(L["recent"][0]["lesson"], "Read the standings.")
 
+    def test_wins_get_a_why_were_we_right_review(self):
+        self.judged("1", 0.90)  # market said 60%, Jev with research said 90%, it resolved YES
+        self.judged("2", 0.65)  # right, but not by a wide margin over the market: scored only
+        engine.save_json(engine.RESOLUTIONS, {"polymarket:1": "yes", "polymarket:2": "yes"})
+        analyst = FakeAnalyst()
+        s = review.review(POLICY, analyst=analyst, log=lambda *_: None, now_stamp="1999-12-26T00:00:00Z")
+        self.assertEqual((s["reviewed"], s["post_mortems"], s["win_reviews"]), (2, 0, 1))
+        L = review.learning(engine.read_jsonl(engine.REVIEWS))
+        self.assertEqual((L["win_reviews"], L["credits"]), (1, {"research_found_it": 1}))
+        self.assertEqual(L["recent_wins"][0]["what_worked"], "The standings.")
+
+    def test_a_losing_bet_by_any_strategy_gets_a_postmortem(self):
+        self.judged("1", 0.55)  # not confidently wrong...
+        engine.save_portfolio("bold", dict(fresh_pf(), closed=[{"key": "polymarket:1", "pnl": -40.0}]))
+        engine.save_json(engine.RESOLUTIONS, {"polymarket:1": "no"})
+        analyst = FakeAnalyst()
+        s = review.review(POLICY, analyst=analyst, log=lambda *_: None, now_stamp="1999-12-26T00:00:00Z")
+        self.assertEqual(s["post_mortems"], 1)  # ...but the bold strategy lost money on it
+        self.assertEqual(analyst.cases[0]["bets_by_strategy"], {"bold": -40.0})
+
     def test_postmortems_have_a_daily_cap(self):
         for i in range(8):
             self.judged(str(i), 0.95)
@@ -748,6 +830,165 @@ class ReviewTests(DataDirTest):
         self.assertEqual((out["root_cause"], out["suggested_change"]["area"]), ("overconfident", "gates"))
         with self.assertRaises(news.NewsError):
             pm.explain({"question": "Q"})
+
+
+class LearnTests(DataDirTest):
+    def test_categories(self):
+        cases = {"Will Bitcoin reach $90,000 in September?": "crypto", "San Antonio wins": "sports",
+                 "Will Lula win the 2026 Brazilian presidential election?": "politics",
+                 "Sense and Sensibility Rotten Tomatoes score? (Above 70)": "culture",
+                 "Saudi Oil Pipeline (East-West) restarts by October 15?": "world", "Will Pluto be a planet?": "other"}
+        self.assertEqual({q: learn.category({"question": q}) for q in cases}, cases)
+
+    def test_calibration_recovers_overconfidence(self):
+        rng, pairs = random.Random(7), []
+        for _ in range(3000):  # Jev says p, but the truth is only half as extreme (a = 0.5)
+            p = rng.uniform(0.05, 0.95)
+            pairs.append((p, 1.0 if rng.random() < learn._sigmoid(0.5 * learn._logit(p)) else 0.0))
+        fit = learn.fit_calibration(pairs, prior=5)
+        self.assertAlmostEqual(fit["a"], 0.5, delta=0.1)
+        self.assertAlmostEqual(fit["b"], 0.0, delta=0.1)
+        self.assertEqual(learn.fit_calibration([], prior=5), {"a": 1.0, "b": 0.0, "n": 0})  # nothing learned: identity
+
+    def test_gate_ledger_scores_what_each_gate_stopped(self):
+        def j(k, ts, d):
+            return {"ts": ts, "key": k, "question_set": review.QUESTION_SET_VERSION, "decisions": {"main": d}}
+        js = [j("a", "t1", {"bet": True, "side": "yes", "cost": 0.40, "edge": 0.2, "reasons": ["BET"]}),
+              j("b", "t1", {"bet": False, "side": "no", "cost": 0.50, "edge": 0.1, "reasons": ["needs recent info (0.2 < 0.5)"]}),
+              j("b", "t2", {"bet": False, "side": "no", "cost": 0.20, "edge": 0.3, "reasons": ["needs recent info (0.2 < 0.5)"]}),
+              j("c", "t1", {"bet": False, "side": "yes", "cost": 0.50, "edge": 0.02, "reasons": ["edge"]}),  # no edge: not counted
+              j("d", "t1", {"bet": False, "side": "yes", "cost": 0.50, "edge": 0.1,
+                            "reasons": ["rules_clear 0.5 < 0.75", "needs recent info (0.2 < 0.5)"]})]
+        led = learn.gate_ledger(POLICY, js, {"a": "yes", "b": "yes", "c": "yes", "d": "no"}, {"main": POLICY})
+        rows = {r["group"]: r for r in led["main"]}
+        self.assertEqual(rows["bet"]["pnl_per_100"], 150.0)          # $100 at 40c on a YES that came in
+        self.assertEqual((rows["info"]["n"], rows["info"]["pnl_per_100"]), (1, -100.0))  # first sight: NO at 50c, lost
+        self.assertEqual((rows["several"]["n"], rows["several"]["wins"]), (1, 0))
+        self.assertNotIn("c", [r["group"] for r in led["main"]])
+
+
+class FakeCoach:
+    def __init__(self, rules, changes=("added R1",)):
+        self.rules, self.changes, self.seen = rules, list(changes), []
+
+    def propose(self, playbook, reviews, max_rules):
+        self.seen.append([r["key"] for r in reviews])
+        return {"rules": self.rules, "changes": self.changes, "meta": {"api_equivalent_usd": 0.3}}
+
+
+class FakeRetro:
+    def __init__(self, proposals):
+        self.proposals, self.numbers = proposals, None
+
+    def write(self, numbers, bounds):
+        self.numbers = numbers
+        return {"headline": "A quiet week.", "went_well": ["x"], "went_badly": ["y"], "proposals": self.proposals,
+                "meta": {"api_equivalent_usd": 0.4}}
+
+
+def reviewed(key, kind="miss", ts="1999-12-26T00:00:00Z"):
+    return {"key": key, "ts": ts, "question": key, "outcome": "no", "category": "sports",
+            "probs": {"jev_research": 0.9, "market": 0.5}, "post_mortem": {
+                "kind": kind, "root_cause": "missing_info", "what_happened": "h", "what_we_missed": "m",
+                "lesson": "l", "suggested_change": {"area": "research", "change": "c"}}}
+
+
+class CoachTests(DataDirTest):
+    DAY1 = datetime(1999, 12, 26, 12, tzinfo=timezone.utc)
+
+    def test_coach_checks_every_rule_in_code_and_versions_the_playbook(self):
+        for k in ("a", "b", "c"):
+            engine.append_jsonl(engine.REVIEWS, reviewed(k))
+        good = {"id": "new", "category": "sports", "rule": "Read the league's official standings table before anything else.",
+                "evidence": ["a"]}
+        bad = [dict(good, rule="Check the betting odds at the big sportsbooks before anything else."),   # the screen
+               dict(good, rule="Read what the forecast models say about who will win the title."),     # a forecast
+               dict(good, rule="Read the league's official injury report before anything else.", evidence=["zzz"]),  # no such review
+               dict(good, rule="Read the league's official injury report, " + "and more " * 40),        # too long
+               dict(good, category="astrology", rule="Read the official schedule before anything else.")]
+        c = coach.coach(POLICY, coach_=FakeCoach([good] + bad), log=lambda *_: None, now=self.DAY1)
+        self.assertEqual((c["ran"], c["version"], c["added"], c["dropped"]), (True, 1, 1, 5))
+        pb = coach.load_playbook()
+        self.assertEqual([(r["id"], r["rule"]) for r in pb["rules"]], [("R1", good["rule"])])
+        hist = engine.read_jsonl(engine.PLAYBOOK_LOG)[-1]
+        self.assertEqual(len(hist["dropped"]), 5)
+        self.assertIn("names a prediction market or sportsbook", {d["reason"] for d in hist["dropped"]})
+        # the same day: not again; the next day with no new reviews: not again
+        f2 = FakeCoach([good])
+        self.assertFalse(coach.coach(POLICY, coach_=f2, log=lambda *_: None, now=self.DAY1)["ran"])
+        self.assertFalse(coach.coach(POLICY, coach_=f2, log=lambda *_: None, now=self.DAY1 + timedelta(days=1))["ran"])
+        # three more reviews: R1 is sharpened (keeps its id), one rule is added, nothing it saw is re-used
+        for k in ("d", "e", "f"):
+            engine.append_jsonl(engine.REVIEWS, reviewed(k, kind="win"))
+        sharper = dict(good, id="R1", rule="Read the league's official standings table, and check its update time.", evidence=["d"])
+        added = dict(good, rule="For a player's next team, read the team's official transactions page.", evidence=["e"])
+        f3 = FakeCoach([sharper, added])
+        c = coach.coach(POLICY, coach_=f3, log=lambda *_: None, now=self.DAY1 + timedelta(days=2))
+        self.assertEqual((c["version"], c["revised"], c["added"]), (2, 1, 1))
+        self.assertEqual(f3.seen, [["d", "e", "f"]])
+        self.assertEqual([r["id"] for r in coach.load_playbook()["rules"]], ["R1", "R2"])
+
+    def test_a_failed_coach_waits_a_day_instead_of_retrying_hourly(self):
+        for k in ("a", "b", "c"):
+            engine.append_jsonl(engine.REVIEWS, reviewed(k))
+
+        class Broken:
+            calls = 0
+
+            def propose(self, *a):
+                Broken.calls += 1
+                raise news.NewsError("bad reply")
+        coach.coach(POLICY, coach_=Broken(), log=lambda *_: None, now=self.DAY1)
+        coach.coach(POLICY, coach_=Broken(), log=lambda *_: None, now=self.DAY1 + timedelta(hours=1))
+        self.assertEqual(Broken.calls, 1)
+
+
+class RetroTests(DataDirTest):
+    NOW = datetime(1999, 12, 27, tzinfo=timezone.utc)
+    GOOD = {"title": "Lower edge bar", "why": "w", "kind": "challenger", "judge_by": "Brier after 50", "min_resolved": 50,
+            "strategy": {"label": "Edge 6", "probability": "jev_research", "gates": "jev_research",
+                         "gate_overrides": {"min_edge": 0.06}}}
+    BAD = dict(GOOD, title="Bigger bets", strategy=dict(GOOD["strategy"], gate_overrides={"min_edge": 0.0}))
+
+    def setUp(self):
+        super().setUp()
+        for i in range(POLICY["learning"]["retro_min_reviews"]):
+            engine.append_jsonl(engine.REVIEWS, reviewed(f"k{i}"))
+
+    def test_retro_files_proposals_and_nothing_starts_without_joey(self):
+        w = FakeRetro([self.GOOD, self.BAD, dict(self.GOOD, title="third")])
+        r = coach.retro(POLICY, writer=w, log=lambda *_: None, now=self.NOW)
+        self.assertEqual((r["ran"], r["proposals"]), (True, 2))  # at most two a week
+        props = {p["title"]: p for p in coach.load_proposals()["proposals"]}
+        self.assertEqual(props["Lower edge bar"]["status"], "proposed")
+        self.assertEqual(props["Bigger bets"]["status"], "invalid")
+        self.assertNotIn(props["Lower edge bar"]["id"], engine.strategies(POLICY))
+        self.assertIn("gate_ledger", w.numbers)  # Claude interprets numbers computed in code
+        self.assertFalse(coach.retro(POLICY, writer=w, log=lambda *_: None, now=self.NOW + timedelta(days=3))["ran"])
+        # Joey approves: it runs as its own strategy from the next cycle
+        pid = props["Lower edge bar"]["id"]
+        self.assertIn("running", coach.set_status(pid, "running", POLICY))
+        self.assertIn(pid, engine.strategies(POLICY))
+        self.assertIn("Can't start", coach.set_status(props["Bigger bets"]["id"], "running", POLICY))
+
+    def test_auto_start_only_when_joey_turned_it_on_and_only_within_bounds(self):
+        policy = dict(POLICY, learning=dict(POLICY["learning"], auto_start_challengers=True))
+        coach.retro(policy, writer=FakeRetro([self.GOOD, self.BAD]), log=lambda *_: None, now=self.NOW)
+        status = {p["title"]: p["status"] for p in coach.load_proposals()["proposals"]}
+        self.assertEqual(status, {"Lower edge bar": "running", "Bigger bets": "invalid"})
+
+
+class ExperimentsRegistryTests(unittest.TestCase):
+    """docs/EXPERIMENTS.md and policy.json describe the same strategies (each file reads fine alone)."""
+
+    def test_every_strategy_has_a_registry_row_and_every_row_a_strategy(self):
+        import re
+        text = (Path(__file__).parent.parent / "docs" / "EXPERIMENTS.md").read_text()
+        rows = set(re.findall(r"^\| `([a-z0-9_]+)` \|", text, re.M))
+        configured = {k for k in POLICY["strategies"] if not k.startswith("_")}
+        self.assertEqual(configured - rows, set(), "strategies in policy.json with no row in docs/EXPERIMENTS.md")
+        self.assertEqual({r for r in rows - configured if not re.fullmatch(r"ch\d+", r)}, set(),
+                         "rows in docs/EXPERIMENTS.md for strategies that don't exist")
 
 
 class PublishTests(DataDirTest):

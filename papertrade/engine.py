@@ -18,6 +18,7 @@ from pathlib import Path
 
 from .jev_client import PROJECT_ROOT, JevClient, JevError
 
+from . import learn
 from . import markets as mk
 from . import news
 from .judge import QUESTION_SET_VERSION, QUESTIONS, build_state
@@ -32,6 +33,10 @@ SCANS = DATA / "scans.jsonl"
 REVIEWS = DATA / "reviews.jsonl"
 RESEARCH = DATA / "research.jsonl"  # one record per research run, reused for a while
 SUMMARY = DATA / "summary.json"  # what the public page reads (straight from the GitHub repo)
+PLAYBOOK = DATA / "playbook.json"  # research lessons learned from reviews; coach.py keeps it, research reads it
+PLAYBOOK_LOG = DATA / "playbook_history.jsonl"  # every change to the playbook, with the reviews behind it
+RETROS = DATA / "retros.jsonl"  # the weekly retrospectives
+PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; approved challengers run from here
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
 TS = "%Y-%m-%dT%H:%M:%SZ"
@@ -50,7 +55,14 @@ def key(m: dict) -> str:
 
 
 def strategies(policy: dict) -> dict:
-    return {k: v for k, v in policy["strategies"].items() if not k.startswith("_")}
+    """policy.json's strategies, plus any challenger the learning loop is running (approved by Joey, or
+    started within fixed bounds if he turned that on; see coach.py). Each has its own fake bankroll."""
+    out = {k: v for k, v in policy["strategies"].items() if not k.startswith("_")}
+    for p in load_json(PROPOSALS, {"proposals": []})["proposals"]:
+        if (p.get("status") == "running" and p.get("strategy") and p["id"] not in out
+                and learn.challenger_problem(p["strategy"], policy) is None):  # re-checked on every load
+            out[p["id"]] = dict(p["strategy"], challenger=True)
+    return out
 
 
 def strategy_policy(policy: dict, strat: dict) -> dict:
@@ -278,13 +290,22 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     mf, rc, strats = policy["market_filters"], policy["research"], strategies(policy)
     spolicy = {name: strategy_policy(policy, s) for name, s in strats.items()}  # fails fast on a bad override
     books = load_books(policy)
+    playbook = load_json(PLAYBOOK, {"version": 0, "rules": []})
+    cmap = learn.calibration_map(read_jsonl(REVIEWS), policy["learning"])
+    waiting = {"jev_calibrated": f"still learning: calibrates once {cmap['need']} researched markets have "
+                                 f"resolved ({cmap['n']} so far)"}
     seen = last_judged()
     cutoff = (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
     funnel = {"fetched": 0, "passed_filters": 0, "judged": 0, "events": 0, "researched_new": 0,
               "research_reused": 0, "with_research": 0,
               "cleared_gates": {s: 0 for s in strats}, "bets": {s: 0 for s in strats}}
     cl = {"calls": 0, "limited": False, "rate": None, "api_equivalent_usd": 0.0, "note": None}
-    stats = {"funnel": funnel, "claude": cl, "errors": 0, "facts_kept": 0, "facts_dropped": 0, "deferred": 0}
+    stats = {"funnel": funnel, "claude": cl, "errors": 0, "facts_kept": 0, "facts_dropped": 0, "deferred": 0,
+             "problems": []}
+
+    def warn(msg: str) -> None:  # printed, and kept with the scan so the health check and the page can show it
+        stats["problems"].append(msg[2:302])
+        log(msg)
 
     # 1-2. fetch, then the free filters; only markets due for a look
     per_source = []
@@ -292,13 +313,14 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         try:
             ms = fetchers[src](mf["days_ahead"], mf["min_volume"], mf["markets_per_source"])
         except Exception as e:  # one broken source shouldn't stop the other
-            log(f"! {src}: could not fetch markets ({e})")
+            warn(f"! {src}: could not fetch markets ({e})")
             stats["errors"] += 1
             continue
         funnel["fetched"] += len(ms)
+        funnel.setdefault("by_source", {})[src] = len(ms)
         per_source.append([m for m in ms if due(m, seen, cutoff, mf["rejudge_on_price_move"], strats)
                            and passes_free_filters(m, mf, now) is None])
-    candidates = _interleave(per_source)
+    candidates = [dict(m, category=learn.category(m)) for m in _interleave(per_source)]
     candidates.sort(key=lambda m: seen.get(key(m), ("",))[0])  # never judged first, then judged longest ago
     funnel["passed_filters"] = len(candidates)
     todo = candidates[: policy["max_jev_calls_per_scan"] // 2]  # up to two Jev calls per market
@@ -310,7 +332,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         try:
             plain[key(m)] = client.ask(build_state(m, today), QUESTIONS)
         except JevError as e:
-            log(f"! Jev error on {m['question'][:60]}: {e}")
+            warn(f"! Jev error on {m['question'][:60]}: {e}")
             stats["errors"] += 1
     events = {}
     for m in todo:
@@ -348,7 +370,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             if claude is not None:
                 claude.last_rate = claude.last_rate or last_claude_rate(now)
         except news.NewsError as e:
-            log(f"! research unavailable this cycle: {e}")
+            warn(f"! research unavailable this cycle: {e}")
             stats["errors"] += 1
             cl["note"] = str(e)
             for ek in need:
@@ -359,8 +381,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             cl["limited"] = True
             why_not[ek] = "Claude plan busy (our share is used); research resumes when it frees up"
             continue
+        lessons = learn.lessons_for(playbook, events[ek][0]["category"])
         try:
-            r = researcher.research(events[ek], today)
+            r = researcher.research(events[ek], today, lessons=lessons)
             cl["calls"] += 1
             cl["api_equivalent_usd"] += r["meta"].get("api_equivalent_usd", 0.0)
         except news.NewsError as e:
@@ -370,7 +393,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             why_not[ek] = "Claude plan busy; research resumes when it frees up" if e.limited else f"research failed: {e}"
             if not e.limited:
                 stats["errors"] += 1
-                log(f"! research failed for {events[ek][0]['question'][:60]}: {e}")
+                warn(f"! research failed for {events[ek][0]['question'][:60]}: {e}")
             if e.fatal:
                 for rest in need[i + 1:]:
                     why_not.setdefault(rest, why_not[ek])
@@ -378,7 +401,8 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             continue
         rec = {"ts": stamp, "id": f"{ek}@{stamp}", "event": ek, "keys": [key(m) for m in events[ek]],
                "mids": {key(m): m["mid"] for m in events[ek]}, "raw_facts": r["raw_facts"],
-               "source_urls": r["source_urls"], "meta": r["meta"]}
+               "source_urls": r["source_urls"], "meta": r["meta"],
+               "playbook_version": playbook.get("version", 0), "lessons": [x["id"] for x in lessons]}
         append_jsonl(RESEARCH, rec)
         fresh[ek] = rec
     funnel["researched_new"], funnel["research_reused"] = len(fresh), len(reuse)
@@ -400,7 +424,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 try:
                     rich = client.ask(state, QUESTIONS)
                 except JevError as e:
-                    log(f"! Jev error on {m['question'][:60]}: {e}")
+                    warn(f"! Jev error on {m['question'][:60]}: {e}")
                     stats["errors"] += 1
                 if rich and ek in fresh and forecaster is not None and (claude is None or claude.usage_ok()):
                     try:
@@ -412,18 +436,22 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                         cl["limited"] = cl["limited"] or e.limited
                         if not e.limited:
                             stats["errors"] += 1
-                            log(f"! Claude direct failed on {m['question'][:60]}: {e}")
+                            warn(f"! Claude direct failed on {m['question'][:60]}: {e}")
             funnel["judged"] += 1
             funnel["with_research"] += int(rich is not None)
+            calibrated = (learn.apply_map(cmap, float(rich["answers"]["p_yes"]["noul"]))
+                          if rich and cmap["active"] else None)
             signals = {"jev_plain": p["answers"], "jev_research": rich["answers"] if rich else None,
-                       "claude_direct": {"p_yes": {"noul": direct["p_yes"]}} if direct else None}
+                       "claude_direct": {"p_yes": {"noul": direct["p_yes"]}} if direct else None,
+                       "jev_calibrated": {"p_yes": {"noul": calibrated}} if calibrated is not None else None}
             decisions = {}
             for name, strat in strats.items():
                 pf = books[name]
                 answers = strategy_answers(strat, signals)
                 if answers is None:
+                    why = why_not.get(ek) if rich is None else waiting.get(strat["probability"])
                     decisions[name] = {"bet": False, "cleared_gates": False,
-                                       "reasons": [why_not.get(ek) or "no probability this cycle"]}
+                                       "reasons": [why or "no probability this cycle"]}
                     continue
                 if key(m) in {x["key"] for x in pf["open"]}:
                     decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
@@ -441,9 +469,12 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 "recent_facts": state["recent_facts"] if state else None,
                 "fact_urls": [f["url"] for f in facts] if facts is not None else None,
                 "facts_dropped": dropped,
-                "research": {"id": rec["id"], "fresh": ek in fresh, "done_at": rec["ts"]} if rec else None,
+                "research": {"id": rec["id"], "fresh": ek in fresh, "done_at": rec["ts"],
+                             "playbook": rec.get("playbook_version", 0)} if rec else None,
                 "answers": rich["answers"] if rich else None, "answers_no_news": p["answers"],
                 "claude_direct": {"p_yes": direct["p_yes"], **direct["meta"]} if direct else None,
+                "jev_calibrated": calibrated,
+                "calibration_map": {k: cmap[k] for k in ("a", "b", "n")} if calibrated is not None else None,
                 "decision": decisions.get(MAIN), "decisions": decisions,
                 "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
             })
@@ -523,7 +554,8 @@ def brier(pairs):
 
 
 SOURCES = [("jev_research", "Jev + research"), ("jev_plain", "Jev alone"),
-           ("claude_direct", "Claude direct"), ("market", "Market price")]
+           ("claude_direct", "Claude direct"), ("jev_calibrated", "Jev + research, calibrated"),
+           ("market", "Market price")]
 
 
 def _prob(j: dict, source: str):
@@ -536,6 +568,9 @@ def _prob(j: dict, source: str):
     if source == "claude_direct":
         c = j.get("claude_direct")
         return float(c["p_yes"]) if c else None
+    if source == "jev_calibrated":
+        c = j.get("jev_calibrated")
+        return float(c) if c is not None else None
     return float(j["market"]["mid"])
 
 

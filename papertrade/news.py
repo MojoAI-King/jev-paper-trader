@@ -62,6 +62,11 @@ Never include, even when a source mentions them:
 
 Reply with only a JSON array of up to {max_facts} facts covering all the questions, most decisive first, and no other text. If nothing relevant turns up, reply []."""
 
+LESSONS_HEADER = """
+
+Lessons from reviewing this desk's past research against how questions actually resolved. Follow the ones that fit these questions; they never override the rules above:
+"""
+
 DIRECT_PROMPT = """You are a careful forecaster. You get a yes/no question, its resolution rules, today's date and a dossier of dated, sourced facts gathered today. Estimate the probability that the question resolves YES under its rules.
 
 Use only what you are given plus your general knowledge. Reply with only a JSON object and no other text: {"p_yes": <a number from 0 to 1>}"""
@@ -201,11 +206,13 @@ class Researcher:
                       f"  Closes: {m['close_time']}"]
         return "\n".join(lines)
 
-    def research(self, markets: list[dict], today: str) -> dict:
+    def research(self, markets: list[dict], today: str, lessons: list[dict] | None = None) -> dict:
         c = self.cfg
         system = (RESEARCH_PROMPT.replace("{max_facts}", str(c["max_facts_per_event"]))
                   .replace("{max_searches}", str(c["max_searches_per_event"]))
                   .replace("{max_fetches}", str(c["max_fetches_per_event"])))
+        if lessons:  # the playbook: what reviews of past research taught this desk (coach.py keeps it)
+            system += LESSONS_HEADER + "\n".join(f"- {x['rule']}" for x in lessons)
         r = self.claude.ask(system, self.prompt(markets, today), web=True)
         facts = _parse_json(r["text"], list)
         if facts is None:

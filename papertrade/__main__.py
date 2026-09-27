@@ -1,11 +1,15 @@
-"""python3 -m papertrade {cycle|scan|settle|review|report|dashboard|publish|ping|markets|reset}"""
+"""python3 -m papertrade {cycle|scan|settle|review|report|learn|health|approve|reject|retire|dashboard|publish|ping|markets|reset}"""
 from __future__ import annotations
 
 import argparse
+import json
+import shutil
 import subprocess
 import sys
+import urllib.request
+from datetime import datetime, timezone
 
-from . import dashboard, engine, review
+from . import coach, dashboard, engine, learn, review
 from . import markets as mk
 from .jev_client import JevClient, JevError
 
@@ -40,6 +44,98 @@ def cmd_markets(policy) -> int:
     return 0 if ok else 1
 
 
+def cmd_learn(policy) -> int:
+    """What the loop has learned so far, from the local data files (git pull first for the latest)."""
+    reviews = engine.read_jsonl(engine.REVIEWS)
+    judgments, resolved = engine.read_jsonl(engine.JUDGMENTS), engine.load_json(engine.RESOLUTIONS, {})
+    L = review.learning(reviews)
+    print(f"Resolved and reviewed: {L['reviewed']}   post-mortems of misses: {L['post_mortems']}   "
+          f"reviews of wins: {L['win_reviews']}")
+    if L["root_causes"]:
+        print("  Why we missed: " + ", ".join(f"{k} {v}" for k, v in L["root_causes"].items()))
+    if L["credits"]:
+        print("  Why we won:    " + ", ".join(f"{k} {v}" for k, v in L["credits"].items()))
+    cm = learn.calibration_map(reviews, policy["learning"])
+    print(f"\nCalibration map: " + (f"active, a={cm['a']} b={cm['b']} from {cm['n']} markets "
+                                     f"({'Jev is overconfident' if cm['a'] < 1 else 'Jev is too timid'})"
+                                     if cm["active"] else f"learning, {cm['n']} of {cm['need']} resolved markets"))
+    pb = coach.load_playbook()
+    print(f"\nResearch playbook v{pb['version']} ({len(pb['rules'])} rules, updated {pb.get('updated') or 'never'}):")
+    for r in pb["rules"]:
+        print(f"  {r['id']:>4} [{r['category']}] {r['rule']}")
+    strats = engine.strategies(policy)
+    ledger = learn.gate_ledger(policy, judgments, resolved,
+                               {n: engine.strategy_policy(policy, s) for n, s in strats.items()})
+    if ledger:
+        print("\nGate ledger (a flat $100 on every edge the strategy saw, by what happened):")
+        for name, rows in ledger.items():
+            print(f"  {strats.get(name, {}).get('label', name)}:")
+            for g in rows:
+                print(f"    {g['label']:<34} n={g['n']:>3}  won {g['wins']:>3}  avg {g['pnl_per_100']:+7.2f} per $100")
+    cats = learn.category_scores(judgments, resolved, engine._prob)
+    if cats:
+        print("\nBrier by category (lower is better):")
+        for c in cats:
+            print(f"  {c['category']:<9} n={c['n']:>3}  Jev+research {c.get('jev_research', float('nan')):.3f}  "
+                  f"market {c.get('market', float('nan')):.3f}")
+    props = coach.load_proposals()["proposals"]
+    if props:
+        print("\nProposals:")
+        for p in props:
+            print(f"  {p['id']:>4} {p['status']:<9} [{p['kind']}] {p['title']}  ({p['status_reason']})")
+    return 0
+
+
+def _raw(policy, name):
+    base = dashboard.raw_base(policy)
+    with urllib.request.urlopen(urllib.request.Request(base + "papertrade_data/" + name,
+                                                       headers={"Cache-Control": "no-cache"}), timeout=20) as r:
+        return r.read().decode()
+
+
+def cmd_health(policy) -> int:
+    """Is it trading? Reads the live ledgers on GitHub (what the public page shows) and the last runs."""
+    problems = []
+    now = datetime.now(timezone.utc)
+    if shutil.which("gh"):
+        repo = policy["site"]["repo_url"].split("github.com/", 1)[1]
+        r = subprocess.run(["gh", "run", "list", "--repo", repo, "--workflow", "trade.yml", "--limit", "6",
+                            "--json", "event,status,conclusion,createdAt"], capture_output=True, text=True)
+        runs = json.loads(r.stdout or "[]") if r.returncode == 0 else []
+        print("Last runs: " + ("  ".join(f"{x['createdAt'][11:16]}Z {x['event'][:8]} {x['conclusion'] or x['status']}"
+                                          for x in runs) or "none found"))
+        if runs and runs[0]["conclusion"] not in ("success", "", None):
+            problems.append(f"the latest run ended {runs[0]['conclusion']}")
+        if not any(x["event"] == "schedule" and x["conclusion"] == "success" for x in runs):
+            problems.append("no scheduled (hourly) run succeeded among the last 6; only manual starts")
+    try:
+        scans = [json.loads(l) for l in _raw(policy, "scans.jsonl").splitlines() if l.strip()]
+        summary = json.loads(_raw(policy, "summary.json"))
+    except Exception as e:
+        print(f"Could not read the live data from GitHub: {e}")
+        return 1
+    last = [x for x in scans if "funnel" in x][-1]
+    age_h = (now - datetime.strptime(last["ts"], engine.TS).replace(tzinfo=timezone.utc)).total_seconds() / 3600
+    f, cl = last["funnel"], last.get("claude") or {}
+    print(f"Last cycle: {last['ts']} ({age_h:.1f} h ago)   fetched {f['fetched']} "
+          f"{f.get('by_source') or ''} -> judged {f['judged']} -> with research {f['with_research']}")
+    print("  Bets that cycle: " + ", ".join(f"{k} {v}" for k, v in f["bets"].items()))
+    for msg in last.get("problems") or []:
+        print(f"  problem: {msg}")
+    w = (cl.get("rate") or {}).get("unifiedWindows") or {}
+    if w:
+        print(f"  Claude plan: week {100 * (w.get('seven_day') or {}).get('utilization', 0):.0f}%, "
+              f"5-hour {100 * (w.get('five_hour') or {}).get('utilization', 0):.0f}%")
+    for s in summary.get("strategies") or []:
+        print(f"  {s['label']:<34} ${s['equity']:>12,.2f}  open {s['open']:>3}  settled {s['settled']:>3}")
+    if age_h > 2.5:
+        problems.append(f"the last cycle was {age_h:.1f} hours ago (hourly runs should keep it under 2)")
+    if last.get("problems"):
+        problems.append(f"{len(last['problems'])} problem(s) in the last cycle")
+    print("\nHealthy." if not problems else "\nNeeds a look: " + "; ".join(problems))
+    return 0 if not problems else 1
+
+
 def deploy() -> int:
     """Push site/ to Cloudflare Workers with the project's wrangler.jsonc. Prints the live URL."""
     r = subprocess.run(["npx", "--yes", "wrangler", "deploy"], cwd=engine.PROJECT_ROOT,
@@ -67,6 +163,12 @@ def main(argv=None) -> int:
     sub.add_parser("settle", help="Pay out fake bets on markets that have resolved")
     sub.add_parser("review", help="Score newly resolved markets; write post-mortems for the misses")
     sub.add_parser("report", help="Bankroll, P&L, and each forecaster vs the market")
+    sub.add_parser("learn", help="What the learning loop has learned: playbook, calibration, gate ledger, proposals")
+    sub.add_parser("health", help="Is it trading? Checks the live ledgers on GitHub and the last hourly runs")
+    for name, text in (("approve", "Approve a proposal (a challenger starts on its own fake $100k next cycle)"),
+                       ("reject", "Reject a proposal"), ("retire", "Stop a running challenger (its ledger is kept)")):
+        c = sub.add_parser(name, help=text)
+        c.add_argument("id")
     sub.add_parser("ping", help="Check the Jev API key and connection")
     sub.add_parser("markets", help="Preview live markets from each source (no Jev calls, no bets)")
     sub.add_parser("dashboard", help="Write papertrade_data/dashboard.html: trades, cash, P&L on one page")
@@ -80,6 +182,13 @@ def main(argv=None) -> int:
 
     if a.cmd == "ping":
         return cmd_ping(policy)
+    if a.cmd == "learn":
+        return cmd_learn(policy)
+    if a.cmd == "health":
+        return cmd_health(policy)
+    if a.cmd in ("approve", "reject", "retire"):
+        print(coach.set_status(a.id, {"approve": "running", "reject": "rejected", "retire": "retired"}[a.cmd], policy))
+        return 0
     if a.cmd == "markets":
         return cmd_markets(policy)
     if a.cmd == "settle" or cycle:
@@ -105,8 +214,15 @@ def main(argv=None) -> int:
         rv = review.review(policy)
         if rv["reviewed"]:
             engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "review", **rv})
-        print(f"Review: {rv['reviewed']} newly resolved markets scored, {rv['post_mortems']} post-mortems"
-              + (" (paused: Claude plan busy)" if rv.get("limited") else "") + f", {rv['errors']} errors.\n")
+        print(f"Review: {rv['reviewed']} newly resolved markets scored, {rv['post_mortems']} post-mortems, "
+              f"{rv['win_reviews']} reviews of wins" + (" (paused: Claude plan busy)" if rv.get("limited") else "")
+              + f", {rv['errors']} errors.\n")
+    if cycle:
+        c, r = coach.coach(policy), coach.retro(policy)
+        if c["ran"] or r["ran"] or c.get("error") or r.get("error"):
+            engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "learning", "coach": c, "retro": r})
+        print(f"Learning: playbook v{c['version']}" + (" (updated)" if c["ran"] else "")
+              + (", weekly retrospective written" if r["ran"] else "") + "\n")
     if a.cmd == "report" or cycle:
         print(engine.report(policy))
     if a.cmd == "dashboard" or cycle:
@@ -123,7 +239,7 @@ def main(argv=None) -> int:
         if not a.yes:
             print("This wipes the fake portfolio and history. Re-run with --yes to confirm.")
             return 1
-        import shutil, time
+        import time
         if engine.DATA.exists():
             shutil.move(str(engine.DATA), str(engine.DATA) + time.strftime("-backup-%Y%m%d-%H%M%S"))
         print(f"Fresh ${policy['starting_bankroll']:,} fake bankroll ready.")
