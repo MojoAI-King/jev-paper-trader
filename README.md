@@ -31,8 +31,9 @@ python3 -m papertrade dashboard # one page: trades, cash split, P&L (papertrade_
 python3 -m papertrade publish   # build site/ (the public page + raw ledgers)
 ```
 
-Needs Python 3.9 or later and nothing else. Keys live in `.env`: `TYPESAFE_AI_API_KEY` for Jev and
-`ANTHROPIC_API_KEY` for Claude's research. Without the Anthropic key, a scan judges nothing and says so.
+Needs Python 3.9 or later, plus Claude Code signed in with a Claude plan for the research step.
+`.env` holds `TYPESAFE_AI_API_KEY` for Jev. **Never set `ANTHROPIC_API_KEY`:** it would switch Claude
+Code to paid API billing, so research refuses to run while it's set.
 
 For a first live run, research just a few events: `python3 -m papertrade scan --limit 3`.
 
@@ -43,8 +44,9 @@ Every hour, a funnel narrows the markets before any paid step:
 1. **Fetch** about 120 markets from Polymarket and Kalshi (free, read-only).
 2. **Free filters:** price 5–95¢, enough volume, closes within 30 days, and due for a look (never
    judged, judged over 6 hours ago, or its price moved 5+ points).
-3. **Research:** markets are grouped by event, and Claude Opus 5.5 researches each event with web
-   search and by reading pages. It returns dated, sourced facts: what the resolution source shows
+3. **Research, rationed:** Jev first judges every market without research. Events whose rules Jev
+   rates clear are then researched by Claude Opus 5.5 through Claude Code on the Claude plan (web
+   search and page reading only), reused for 24 hours, at most 3 an hour and 20 a day. It returns dated, sourced facts: what the resolution source shows
    today, recent events, what's still scheduled, historical base rates.
 4. **Price screen:** code drops any fact that mentions odds, prediction markets, forecasters,
    predictions, or a figure matching the market's price. The survivors become `recent_facts`.
@@ -84,10 +86,11 @@ the patterns. Changes are never applied automatically; see "How it improves over
 **Live at https://jev-paper-trader.greekgod.workers.dev** (source and full history:
 https://github.com/MojoAI-King/jev-paper-trader).
 
-`site/` (built every cycle, never committed) is served by a static Cloudflare Worker named
-`jev-paper-trader` (see `wrangler.jsonc`). It shows only real data, in Eastern time, with the raw
-ledgers linked for anyone who wants to check. Hourly runs on GitHub Actions are set up in
-`.github/workflows/trade.yml` and stay off until the `TRADING_ENABLED` repository variable is set.
+The page is a static Cloudflare Worker named `jev-paper-trader` (see `wrangler.jsonc`; the shell is
+built into `site/` by `publish`). Each time it's opened it loads `papertrade_data/summary.json` from
+the GitHub repo, so it's as fresh as the last hourly commit. It shows only real data, in Eastern
+time, with the raw ledgers on GitHub linked for anyone who wants to check. Hourly runs are set up
+in `.github/workflows/trade.yml` and stay off until the `TRADING_ENABLED` repository variable is set.
 
 ## Reading the report
 
@@ -118,16 +121,15 @@ DECISIONS.md     # why each choice was made
 
 ## Costs
 
-Market data is free, and Jev costs cents. Claude's research is the real cost: roughly $0.30–1.50
-per event plus a few cents per market for Claude direct. Trading hourly, that's about $40–180 a
-day. It's an estimate until the first live run; every scan logs its measured spend in
-`papertrade_data/scans.jsonl` and on the dashboard. There's no budget cap by design. Ceilings in
-`policy.json` ($150 per run, $500 per day, 120 events per run) only stop a bug from looping.
+No real money beyond the Claude plan you already pay for, plus a few cents a month for Jev. Claude
+runs on the plan's login, never an API key. Research uses part of the plan's usage limits, so it
+pauses automatically once the weekly window is 85% used or the 5-hour window 70%, leaving the rest
+for you. Every call logs what it would have cost on the API (not billed) in `scans.jsonl`.
 
 ## Known limits
 
-- **Research is unmeasured until the first live run:** real cost, run time, and how many facts the
-  price screen drops (every dropped fact is logged with its reason).
+- **Research is rationed** to fit the Claude plan, so on a busy day many markets are judged by Jev
+  without research. The page shows how many had research each cycle.
 - **At most 40 markets per cycle** are judged (`max_jev_calls_per_scan` is 80, two Jev calls per
   market). With hourly cycles, the rest are picked up in the next hour.
 - **The Kalshi reader was written from docs** that disagree on field names, so it handles both.

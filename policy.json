@@ -26,23 +26,30 @@
   },
 
   "research": {
-    "_readme": "Claude researches each event (web search + reading pages) before Jev judges. No cost cap by Joey's choice (2026-09-27): the ceilings below only stop a bug from burning money in a loop.",
+    "_readme": "Claude Code researches events on Joey's Claude Max plan, never an API key (the code refuses to run if ANTHROPIC_API_KEY is set). It shares the plan's usage limits with Joey's own Claude use, so research is rationed and pauses before the plan gets busy.",
     "model": "claude-opus-5-5",
-    "effort": "high",
-    "max_searches_per_event": 10,
-    "max_fetches_per_event": 5,
-    "max_facts_per_event": 20,
-    "concurrency": 4,
-    "max_events_per_scan": 120,
-    "max_usd_per_scan": 150,
-    "max_usd_per_day": 500
+    "effort": "medium",
+    "max_searches_per_event": 6,
+    "max_fetches_per_event": 3,
+    "max_facts_per_event": 15,
+    "triage_min_rules_clear": 0.75,
+    "_triage_min_rules_clear": "Only events where Jev rates the rules clear get researched: research can't unlock a bet on vague rules",
+    "research_after_hours": 24,
+    "research_on_price_move": 0.10,
+    "_research_after_hours": "An event's research is reused for 24 hours, or redone sooner if a price moves 10+ points",
+    "max_research_per_cycle": 3,
+    "max_research_per_day": 20,
+    "max_week_used": 0.85,
+    "max_five_hour_used": 0.70,
+    "_max_week_used": "Stop calling Claude once the plan's weekly window is 85% used (or the 5-hour window 70%), leaving the rest for Joey",
+    "timeout_seconds": 900,
+    "max_api_equivalent_usd_per_call": 5
   },
 
   "review": {
-    "_readme": "The feedback loop. Every resolved market is scored; misses get a Claude post-mortem. Reviews never change trading on their own: changes are approved by Joey and run as a new strategy version (PLAN.md).",
+    "_readme": "The feedback loop. Every resolved market is scored; main's losing bets and confident misses get a Claude post-mortem (on the plan). Reviews never change trading on their own: changes are approved by Joey and run as a new strategy version (PLAN.md).",
     "miss_threshold": 0.5,
-    "max_postmortems_per_run": 20,
-    "max_searches_per_postmortem": 5
+    "max_postmortems_per_day": 5
   },
 
   "site": {

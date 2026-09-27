@@ -3,6 +3,34 @@
 Plain-English record of the choices behind this project, newest first. Each entry says what was
 decided, why, and what is still unverified.
 
+## 2026-09-27 Claude runs on Joey's Claude plan, not the API
+
+**Why.** The API-billed design was estimated at $40–180 a day of real money. Joey pays for a Claude
+Max plan and can't spend that on an experiment. Anthropic's help center (checked 2026-09-27) says
+scripted Claude Code (`claude -p`) currently draws on the plan's usage limits; a planned move to a
+separate credit billed at API rates was paused. Claude Code only bills an API account when
+`ANTHROPIC_API_KEY` (or `ANTHROPIC_AUTH_TOKEN`) is set.
+
+**What changed.**
+- All Claude work (research, Claude direct, post-mortems) runs through `claude -p` on the plan's
+  login. The code refuses to start research if either API variable is set, strips them from the
+  child process, and runs Claude outside the repo with only web search and page reading allowed.
+  Verified live: the call reported `apiKeySource: none` on a `subscriptionType: max` login.
+- The plan's limits are shared with Joey's own Claude use, so research is rationed: only events
+  whose rules Jev rates clear, reused for 24 hours unless a price moves 10+ points, at most 3 per
+  hourly cycle and 20 per day, and paused once the plan's weekly window is 85% used or the 5-hour
+  window 70%. Every call reports usage, and the pause survives across cycles until the window resets.
+- Jev still judges every due market hourly without research (TypeSafe, pennies), which is also the
+  "Jev alone" strategy.
+- Hourly runs on GitHub sign in with a plan token from `claude setup-token`
+  (`CLAUDE_CODE_OAUTH_TOKEN`), Anthropic's documented way to run Claude Code in GitHub Actions.
+- The public page now reads `papertrade_data/summary.json` from the GitHub repo each time it opens,
+  so the hourly job only commits data and never needs a Cloudflare token.
+
+**Risk to watch.** If Anthropic resumes the paused change, scripted use would draw on a separate
+monthly credit ($200 on Max 20x) at API rates and stop when it runs out, as long as extra usage is
+off in Claude settings. Keep it off.
+
 ## 2026-09-27 Hourly trading, the feedback loop, and the public page
 
 **Trading all day (Joey's request).** One command, `python3 -m papertrade cycle`, settles, scans,

@@ -1,37 +1,33 @@
 """Research for Jev: Claude gathers dated, sourced facts about each event; code screens them.
 
+Claude runs through Claude Code on Joey's Max plan, never an API key. Claude Code bills an API
+account instead of the plan whenever ANTHROPIC_API_KEY (or ANTHROPIC_AUTH_TOKEN) is set, so this
+module refuses to start if either is set, and strips them from the child process as well.
+Research shares the plan's usage limits with Joey's own Claude use; every call reports how much of
+the 5-hour and weekly windows is used, and the engine stops calling Claude before they fill up.
+
 Jev must never see a market's price. Three layers keep it out of `recent_facts`:
   1. the prompt forbids odds, market prices, forecaster probabilities and predictions;
-  2. prediction-market, sportsbook and odds sites are blocked at search and fetch time;
+  2. page reads on prediction-market, sportsbook and odds sites are denied;
   3. screen_facts() drops any fact that still carries them. This layer is code, lives here and
      not in policy.json so a config edit can't loosen it, and is what the tests check.
 
 Also here: the "Claude direct" forecaster, which reads the same screened facts and gives its own
 probability, so the experiment can tell whether Jev adds anything over Claude alone.
-
-Paid API. Spend is computed from each response's `usage`, never estimated.
 """
 from __future__ import annotations
 
 import json
-import random
+import os
 import re
+import subprocess
+import tempfile
 import time
-import urllib.error
-import urllib.request
 from datetime import date
 from urllib.parse import urlparse
 
-from .jev_client import read_env_key
-
-API_URL = "https://api.anthropic.com/v1/messages"
-RETRY_STATUSES = {429, 500, 502, 503, 529}
-FATAL_STATUSES = {400, 401, 403, 404}
-
-# USD per million tokens, from platform.claude.com/docs/en/about-claude/pricing (read 2026-09-27).
-# A model missing here can't run: without prices the per-scan dollar ceiling can't be enforced.
-MODELS = {"claude-opus-5-5": {"in": 4.0, "out": 20.0}}
-USD_PER_SEARCH = 0.01  # $10 per 1,000 web searches; web fetch has no per-call fee
+CLAUDE_BIN = "claude"
+BILLING_VARS = ("ANTHROPIC_API_KEY", "ANTHROPIC_AUTH_TOKEN")  # either one switches Claude Code to API billing
 
 BLOCKED_DOMAINS = [
     "polymarket.com", "kalshi.com", "predictit.org", "manifold.markets", "metaculus.com",
@@ -40,10 +36,11 @@ BLOCKED_DOMAINS = [
     "covers.com", "vegasinsider.com", "electionbettingodds.com", "sportsbookreview.com",
 ]
 FACT_KINDS = ("status_now", "event", "schedule", "base_rate", "rules")
+_LIMIT_TEXT = re.compile(r"usage limit|session limit|weekly limit|rate limit|hit your .*limit", re.I)
 
 RESEARCH_PROMPT = """You are the research desk for a forecasting team. A separate forecaster will estimate how some yes/no questions resolve. Your job is to give it the evidence, never a forecast.
 
-Research the questions below thoroughly, with web search and by reading the most useful pages in full. Cover, where they apply:
+Research the questions thoroughly but efficiently: use at most {max_searches} web searches and read at most {max_fetches} pages in full. Cover, where they apply:
 - status_now: what the resolution source, standings, tallies, scores or official records show as of today. When the rules name a resolution source, read it.
 - event: developments from roughly the last 30 days that bear on the outcome.
 - schedule: what is still due to happen before the questions close (games left, votes, releases, deadlines).
@@ -71,104 +68,109 @@ Use only what you are given plus your general knowledge. Reply with only a JSON 
 
 
 class NewsError(RuntimeError):
-    """A research or forecast call failed. `fatal` means every later call would fail the same way."""
+    """A Claude call failed. `fatal`: every later call would fail the same way this run.
+    `limited`: the plan's usage limit (or our share of it) is reached; try again next cycle."""
 
-    def __init__(self, message: str, fatal: bool = False, meta: dict | None = None):
+    def __init__(self, message: str, fatal: bool = False, meta: dict | None = None, limited: bool = False):
         super().__init__(message)
-        self.fatal = fatal
+        self.fatal = fatal or limited
+        self.limited = limited
         self.meta = meta or {}
 
 
-class _HTTPError(Exception):
-    def __init__(self, status: int, detail: str, retry_after: float | None):
-        super().__init__(f"HTTP {status}: {detail}")
-        self.status, self.detail, self.retry_after = status, detail, retry_after
-
-
-def _http_post(url: str, body: dict, headers: dict, timeout: float) -> dict:
-    req = urllib.request.Request(url, data=json.dumps(body).encode(), headers=headers, method="POST")
+def _run_claude(args: list[str], env: dict, cwd: str, timeout: float) -> tuple[int, str, str]:
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return json.loads(resp.read().decode())
-    except urllib.error.HTTPError as e:
-        with e:
-            detail = e.read().decode(errors="replace")[:500]
-        ra = e.headers.get("retry-after") if e.headers else None
-        raise _HTTPError(e.code, detail, float(ra) if ra and ra.replace(".", "", 1).isdigit() else None) from None
-    except urllib.error.URLError as e:
-        raise _HTTPError(0, f"network error: {e.reason}", None) from None
-    except TimeoutError:
-        raise _HTTPError(0, f"timed out after {timeout}s", None) from None
+        r = subprocess.run(args, env=env, cwd=cwd, stdin=subprocess.DEVNULL, capture_output=True,
+                           text=True, timeout=timeout)
+    except FileNotFoundError:
+        raise NewsError("Claude Code (`claude`) is not installed on this machine", fatal=True) from None
+    except subprocess.TimeoutExpired:
+        raise NewsError(f"Claude Code timed out after {timeout:.0f}s") from None
+    return r.returncode, r.stdout, r.stderr
 
 
-def cost_usd(model: str, usage: dict) -> float:
-    p = MODELS[model]
-    tokens_in = (usage.get("input_tokens", 0) + 1.25 * usage.get("cache_creation_input_tokens", 0)
-                 + 0.1 * usage.get("cache_read_input_tokens", 0))
-    searches = (usage.get("server_tool_use") or {}).get("web_search_requests", 0)
-    return round(tokens_in * p["in"] / 1e6 + usage.get("output_tokens", 0) * p["out"] / 1e6
-                 + searches * USD_PER_SEARCH, 5)
-
-
-class ClaudeClient:
-    """Minimal Messages API client (stdlib only, like the Jev client)."""
-
-    def __init__(self, model: str, api_key: str | None = None, transport=None, timeout: float = 600.0,
-                 max_retries: int = 4):
-        if model not in MODELS:
-            raise NewsError(f"model {model!r} has no price row in news.MODELS", fatal=True)
-        self.model, self.timeout, self.max_retries = model, timeout, max_retries
-        self._transport = transport or _http_post
-        self._api_key = api_key or ("" if transport else read_env_key(("ANTHROPIC_API_KEY",)))
-        if not self._api_key and not transport:
-            raise NewsError("No ANTHROPIC_API_KEY in the environment or .env", fatal=True)
-
-    def post(self, body: dict) -> dict:
-        headers = {"x-api-key": self._api_key, "anthropic-version": "2023-06-01",
-                   "content-type": "application/json"}
-        attempt = 0
-        while True:
-            try:
-                return self._transport(API_URL, body, headers, self.timeout)
-            except _HTTPError as e:
-                if e.status in FATAL_STATUSES:
-                    raise NewsError(str(e), fatal=True) from None
-                if (e.status not in RETRY_STATUSES and e.status != 0) or attempt >= self.max_retries:
-                    raise NewsError(str(e)) from None
-                wait = e.retry_after if e.retry_after is not None else min(60.0, 2.0 * 2 ** attempt)
-                time.sleep(min(wait, 120.0) + random.random())
-                attempt += 1
-
-
-def _add_usage(total: dict, usage: dict) -> None:
-    for k in ("input_tokens", "output_tokens", "cache_creation_input_tokens", "cache_read_input_tokens"):
-        total[k] = total.get(k, 0) + (usage.get(k) or 0)
-    stu = usage.get("server_tool_use") or {}
-    agg = total.setdefault("server_tool_use", {})
-    for k, v in stu.items():
-        agg[k] = agg.get(k, 0) + (v or 0)
-
-
-def _text(content: list) -> str:
-    return "".join(b.get("text", "") for b in content if b.get("type") == "text")
-
-
-def _urls(content: list) -> set[str]:
-    """Every URL the call actually saw: search results, fetched pages, and citations."""
-    out = set()
-    for b in content:
-        t, c = b.get("type"), b.get("content")
-        if t == "web_search_tool_result" and isinstance(c, list):
-            out.update(r.get("url") for r in c if isinstance(r, dict) and r.get("url"))
-        elif t == "web_fetch_tool_result" and isinstance(c, dict) and c.get("url"):
-            out.add(c["url"])
-        elif t == "text":
-            out.update(x.get("url") for x in b.get("citations") or [] if isinstance(x, dict) and x.get("url"))
+def parse_stream(stdout: str) -> dict:
+    """Read Claude Code's stream-json output: the final result, every URL its tools returned, usage."""
+    out = {"result": None, "urls": set(), "rate": None, "searches": 0, "fetches": 0}
+    for line in stdout.splitlines():
+        try:
+            msg = json.loads(line)
+        except ValueError:
+            continue
+        kind = msg.get("type")
+        if kind == "rate_limit_event":
+            out["rate"] = msg.get("rate_limit_info")
+        elif kind == "assistant":
+            for b in (msg.get("message") or {}).get("content") or []:
+                if b.get("type") == "tool_use":
+                    out["searches"] += b.get("name") == "WebSearch"
+                    out["fetches"] += b.get("name") == "WebFetch"
+        elif kind == "user":
+            for b in (msg.get("message") or {}).get("content") or []:
+                if isinstance(b, dict) and b.get("type") == "tool_result":
+                    out["urls"].update(re.findall(r"https?://[^\s\"'<>)\]\\]+", json.dumps(b.get("content"))))
+        elif kind == "result":
+            out["result"] = msg
+    out["urls"] = sorted(u.rstrip(".,;") for u in out["urls"])
     return out
 
 
+class ClaudeCode:
+    """Claude Code in print mode, on the plan's login. Web search and page reading only, no files, no shell."""
+
+    def __init__(self, cfg: dict, runner=None, workdir: str | None = None):
+        leaked = [v for v in BILLING_VARS if os.environ.get(v)]
+        if leaked:
+            raise NewsError(f"{' and '.join(leaked)} is set, so Claude Code would bill an API account instead of "
+                            f"the Claude plan. Unset it to run research.", fatal=True)
+        self.cfg = cfg
+        self.model = cfg["model"]
+        self._run = runner or _run_claude
+        self.workdir = workdir or tempfile.mkdtemp(prefix="papertrade-claude-")  # outside the repo: no CLAUDE.md
+        self.last_rate = None
+
+    def usage_ok(self) -> bool:
+        """False once the plan's windows are fuller than our share allows (research then waits a cycle)."""
+        w = (self.last_rate or {}).get("unifiedWindows") or {}
+        week = (w.get("seven_day") or {}).get("utilization")
+        five = (w.get("five_hour") or {}).get("utilization")
+        return not ((week is not None and week >= self.cfg["max_week_used"]) or
+                    (five is not None and five >= self.cfg["max_five_hour_used"]))
+
+    def ask(self, system: str, prompt: str, web: bool, timeout: float | None = None) -> dict:
+        if not self.usage_ok():
+            raise NewsError("our share of the Claude plan's usage is used up for now", limited=True)
+        args = [CLAUDE_BIN, "-p", prompt, "--system-prompt", system, "--model", self.model,
+                "--effort", self.cfg["effort"], "--permission-mode", "dontAsk", "--setting-sources", "",
+                "--strict-mcp-config", "--disable-slash-commands", "--no-session-persistence",
+                "--max-budget-usd", str(self.cfg["max_api_equivalent_usd_per_call"]),
+                "--output-format", "stream-json", "--verbose"]
+        if web:
+            args += ["--tools", "WebSearch,WebFetch", "--allowedTools", "WebSearch", "WebFetch",
+                     "--disallowedTools", *[f"WebFetch(domain:{d})" for d in BLOCKED_DOMAINS]]
+        else:
+            args += ["--tools", ""]
+        env = {k: v for k, v in os.environ.items() if k not in BILLING_VARS}
+        start = time.monotonic()
+        code, stdout, stderr = self._run(args, env, self.workdir, timeout or self.cfg["timeout_seconds"])
+        s = parse_stream(stdout)
+        if s["rate"]:
+            self.last_rate = s["rate"]
+        res = s["result"] or {}
+        meta = {"model": self.model, "api_equivalent_usd": round(float(res.get("total_cost_usd") or 0), 5),
+                "searches": s["searches"], "fetches": s["fetches"], "turns": res.get("num_turns"),
+                "latency_ms": round((time.monotonic() - start) * 1000), "billing": "claude_plan"}
+        text = res.get("result") or ""
+        if s["rate"] and s["rate"].get("status") == "rejected" or (res.get("is_error") and _LIMIT_TEXT.search(text)):
+            raise NewsError(f"Claude plan usage limit reached: {text[:200]}", meta=meta, limited=True)
+        if code != 0 or res.get("is_error") or not res:
+            detail = (text or stderr or "no result").strip().splitlines()
+            raise NewsError(f"Claude Code failed (exit {code}): {detail[-1][:300] if detail else ''}", meta=meta)
+        return {"text": text, "urls": s["urls"], "meta": meta}
+
+
 def _parse_json(text: str, want):
-    """Last JSON value of type `want` in the text (the reply may carry preamble or citation splits)."""
+    """Last JSON value of type `want` in the text (the reply may carry preamble)."""
     dec, i, found = json.JSONDecoder(), 0, None
     opener = "[" if want is list else "{"
     while True:
@@ -186,90 +188,47 @@ def _parse_json(text: str, want):
 
 
 class Researcher:
-    """One Claude call per event: web search + page reading -> raw facts (unscreened)."""
+    """One Claude Code run per event: web search + page reading -> raw facts (unscreened)."""
 
-    MAX_CONTINUATIONS = 6  # server-side tool loops pause after 10 steps; resume up to this many times
+    def __init__(self, cfg: dict, claude: ClaudeCode):
+        self.cfg, self.claude = cfg, claude
 
-    def __init__(self, cfg: dict, client: ClaudeClient | None = None):
-        self.cfg = cfg
-        self.client = client or ClaudeClient(cfg["model"])
-
-    def body(self, markets: list[dict], today: str) -> dict:
-        c = self.cfg
+    def prompt(self, markets: list[dict], today: str) -> str:
         lines = [f"Today is {today}.", "", "Questions (all from one event):"]
         for m in markets:
             lines += [f"- Question: {m['question']}",
                       f"  Resolution rules: {(m.get('rules') or '').strip()[:2500]}",
                       f"  Closes: {m['close_time']}"]
-        return {
-            "model": self.client.model, "max_tokens": 16000,
-            "system": RESEARCH_PROMPT.replace("{max_facts}", str(c["max_facts_per_event"])),
-            "messages": [{"role": "user", "content": "\n".join(lines)}],
-            "tools": [
-                {"type": "web_search_20260318", "name": "web_search", "max_uses": c["max_searches_per_event"],
-                 "blocked_domains": BLOCKED_DOMAINS},
-                {"type": "web_fetch_20260209", "name": "web_fetch", "max_uses": c["max_fetches_per_event"],
-                 "max_content_tokens": 20000, "blocked_domains": BLOCKED_DOMAINS},
-            ],
-            "output_config": {"effort": c["effort"]},
-        }
+        return "\n".join(lines)
 
     def research(self, markets: list[dict], today: str) -> dict:
-        body = self.body(markets, today)
-        usage, urls, content, calls, start = {}, set(), [], 0, time.monotonic()
-        stop = None
-        while True:
-            data = self.client.post(body)
-            calls += 1
-            _add_usage(usage, data.get("usage") or {})
-            content = data.get("content") or []
-            urls |= _urls(content)
-            stop = data.get("stop_reason")
-            if stop != "pause_turn" or calls > self.MAX_CONTINUATIONS:
-                break
-            # Resume a paused server-side loop: send the paused turn back unchanged, no new user message.
-            body = dict(body, messages=body["messages"] + [{"role": "assistant", "content": content}])
-        meta = {"model": self.client.model, "calls": calls, "stop_reason": stop,
-                "searches": (usage.get("server_tool_use") or {}).get("web_search_requests", 0),
-                "fetches": (usage.get("server_tool_use") or {}).get("web_fetch_requests", 0),
-                "input_tokens": usage.get("input_tokens", 0), "output_tokens": usage.get("output_tokens", 0),
-                "cost_usd": cost_usd(self.client.model, usage),
-                "latency_ms": round((time.monotonic() - start) * 1000)}
-        if stop in ("refusal", "pause_turn", "max_tokens"):
-            raise NewsError(f"research stopped: {stop}", meta=meta)
-        facts = _parse_json(_text(content), list)
+        c = self.cfg
+        system = (RESEARCH_PROMPT.replace("{max_facts}", str(c["max_facts_per_event"]))
+                  .replace("{max_searches}", str(c["max_searches_per_event"]))
+                  .replace("{max_fetches}", str(c["max_fetches_per_event"])))
+        r = self.claude.ask(system, self.prompt(markets, today), web=True)
+        facts = _parse_json(r["text"], list)
         if facts is None:
-            raise NewsError("research reply had no JSON list of facts", meta=meta)
-        return {"raw_facts": facts, "source_urls": sorted(urls), "meta": meta}
+            raise NewsError("research reply had no JSON list of facts", meta=r["meta"])
+        return {"raw_facts": facts, "source_urls": r["urls"], "meta": r["meta"]}
 
 
 class DirectForecaster:
     """Claude's own probability from the same screened state Jev sees (no tools, no price)."""
 
-    def __init__(self, cfg: dict, client: ClaudeClient | None = None):
-        self.cfg = cfg
-        self.client = client or ClaudeClient(cfg["model"])
+    def __init__(self, cfg: dict, claude: ClaudeCode):
+        self.cfg, self.claude = cfg, claude
 
     def forecast(self, state: dict) -> dict:
-        start = time.monotonic()
-        data = self.client.post({
-            "model": self.client.model, "max_tokens": 8000, "system": DIRECT_PROMPT,
-            "messages": [{"role": "user", "content": json.dumps(state, ensure_ascii=False, indent=1)}],
-            "output_config": {"effort": self.cfg["effort"]},
-        })
-        usage = data.get("usage") or {}
-        meta = {"model": self.client.model, "cost_usd": cost_usd(self.client.model, usage),
-                "latency_ms": round((time.monotonic() - start) * 1000)}
-        if data.get("stop_reason") in ("refusal", "max_tokens"):
-            raise NewsError(f"forecast stopped: {data.get('stop_reason')}", meta=meta)
-        obj = _parse_json(_text(data.get("content") or []), dict)
+        r = self.claude.ask(DIRECT_PROMPT, json.dumps(state, ensure_ascii=False, indent=1), web=False, timeout=300)
+        obj = _parse_json(r["text"], dict)
         try:
             p = float(obj["p_yes"])
         except (TypeError, KeyError, ValueError):
-            raise NewsError("forecast reply had no p_yes", meta=meta) from None
+            raise NewsError("forecast reply had no p_yes", meta=r["meta"]) from None
         if not 0.0 <= p <= 1.0:
-            raise NewsError(f"forecast p_yes out of range: {p}", meta=meta)
-        return {"p_yes": round(p, 4), "meta": meta}
+            raise NewsError(f"forecast p_yes out of range: {p}", meta=r["meta"])
+        return {"p_yes": round(p, 4), "meta": r["meta"]}
 
 
 # ---------------- the price screen (layer 3) ----------------

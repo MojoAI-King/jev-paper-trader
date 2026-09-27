@@ -61,7 +61,7 @@ def main(argv=None) -> int:
                        ("daily", "Same as cycle (kept for the old name)")):
         c = sub.add_parser(name, help=text)
         c.add_argument("--limit", type=int, help="Research at most this many events (for a small test run)")
-        c.add_argument("--deploy", action="store_true", help="Also push the public page to Cloudflare")
+        c.add_argument("--deploy", action="store_true", help="Also rebuild and push the page shell to Cloudflare")
     sc = sub.add_parser("scan", help="Pull live markets, research them, ask Jev, place fake bets that pass every gate")
     sc.add_argument("--limit", type=int, help="Research at most this many events (for a small test run)")
     sub.add_parser("settle", help="Pay out fake bets on markets that have resolved")
@@ -70,7 +70,7 @@ def main(argv=None) -> int:
     sub.add_parser("ping", help="Check the Jev API key and connection")
     sub.add_parser("markets", help="Preview live markets from each source (no Jev calls, no bets)")
     sub.add_parser("dashboard", help="Write papertrade_data/dashboard.html: trades, cash, P&L on one page")
-    pb = sub.add_parser("publish", help="Build site/ (public page + raw ledgers)")
+    pb = sub.add_parser("publish", help="Build site/ (the public page shell; data comes from GitHub)")
     pb.add_argument("--deploy", action="store_true", help="Also push it to Cloudflare Workers")
     r = sub.add_parser("reset", help="Start over with a fresh fake bankroll (keeps a backup)")
     r.add_argument("--yes", action="store_true")
@@ -88,27 +88,35 @@ def main(argv=None) -> int:
               f"{s['settled_bets']} bets paid out.\n")
     if a.cmd == "scan" or cycle:
         s = engine.scan(policy, limit=getattr(a, "limit", None))
-        f = s["funnel"]
+        f, cl = s["funnel"], s["claude"]
         print(f"\nScan funnel: fetched {f['fetched']} -> passed free filters {f['passed_filters']} -> "
-              f"{f['events']} events researched ({f['researched']} markets) -> judged {f['judged']}")
+              f"judged by Jev {f['judged']} -> with research {f['with_research']}")
+        print(f"  Research: {f['researched_new']} new, {f['research_reused']} reused   "
+              f"Claude calls {cl['calls']} (on the Claude plan; ~${cl['api_equivalent_usd']:.2f} API-equivalent, not billed)"
+              + ("   PAUSED: plan busy" if cl["limited"] else ""))
         print("  Bets: " + ", ".join(f"{k} {v}" for k, v in f["bets"].items())
-              + f"   ({s['deferred']} markets wait for the next run, {s['errors']} errors)")
-        print(f"  Facts kept {s['facts_kept']}, dropped by the screen {s['facts_dropped']}   "
-              f"Spend: research ${s['research_usd']:.2f} + Claude direct ${s['forecast_usd']:.2f}\n")
+              + f"   ({s['deferred']} markets wait for the next cycle, {s['errors']} errors)")
+        w = ((cl.get("rate") or {}).get("unifiedWindows") or {})
+        if w:
+            print(f"  Claude plan usage: week {100 * (w.get('seven_day') or {}).get('utilization', 0):.0f}%, "
+                  f"5-hour {100 * (w.get('five_hour') or {}).get('utilization', 0):.0f}%")
+        print(f"  Facts kept {s['facts_kept']}, dropped by the price screen {s['facts_dropped']}\n")
     if a.cmd == "review" or cycle:
         rv = review.review(policy)
         if rv["reviewed"]:
             engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "review", **rv})
-        print(f"Review: {rv['reviewed']} newly resolved markets scored, {rv['post_mortems']} post-mortems "
-              f"(${rv['review_usd']:.2f}), {rv['errors']} errors.\n")
+        print(f"Review: {rv['reviewed']} newly resolved markets scored, {rv['post_mortems']} post-mortems"
+              + (" (paused: Claude plan busy)" if rv.get("limited") else "") + f", {rv['errors']} errors.\n")
     if a.cmd == "report" or cycle:
         print(engine.report(policy))
     if a.cmd == "dashboard" or cycle:
         path = dashboard.write_dashboard(policy)
         print(f"\nDashboard: {path}  (open it in a browser)")
-    if a.cmd == "publish" or cycle:
+    if cycle:
+        print(f"Summary for the public page: {dashboard.write_summary(policy)}")
+    if a.cmd == "publish" or getattr(a, "deploy", False):
         out = dashboard.build_site(policy)
-        print(f"Public page built: {out}/index.html")
+        print(f"Public page shell built: {out}/index.html (it loads the latest summary.json from GitHub)")
         if getattr(a, "deploy", False):
             return deploy()
     if a.cmd == "reset":

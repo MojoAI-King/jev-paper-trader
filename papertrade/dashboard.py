@@ -42,16 +42,30 @@ def funnel(scans: list[dict]) -> dict | None:
     s = scans[-1]
     f = s["funnel"]
     main = engine.MAIN
+    cl = s.get("claude") or {}
     return {
         "ts": s.get("ts"),
         "stages": [["Fetched", f["fetched"]], ["Passed free filters", f["passed_filters"]],
-                   ["Researched", f["researched"]], ["Judged three ways", f["judged"]],
+                   ["Judged by Jev", f.get("judged", 0)], ["Judged with research", f.get("with_research", 0)],
                    ["Cleared every gate (main)", f["cleared_gates"].get(main, 0)],
                    ["Bets placed (main)", f["bets"].get(main, 0)]],
-        "events": f["events"], "bets": f["bets"],
-        "research_usd": s.get("research_usd", 0.0), "forecast_usd": s.get("forecast_usd", 0.0),
+        "events": f.get("events", 0), "researched_new": f.get("researched_new", 0),
+        "research_reused": f.get("research_reused", 0), "bets": f["bets"],
+        "claude_calls": cl.get("calls", 0), "claude_limited": bool(cl.get("limited")), "claude_note": cl.get("note"),
         "facts_kept": s.get("facts_kept", 0), "facts_dropped": s.get("facts_dropped", 0),
     }
+
+
+def plan_usage(scans: list[dict]) -> dict | None:
+    """The latest usage Claude reported for Joey's plan (share of the 5-hour and weekly windows)."""
+    for s in reversed(scans):
+        rate = (s.get("claude") or {}).get("rate")
+        if rate:
+            w = rate.get("unifiedWindows") or {}
+            return {"ts": s.get("ts"), "week": (w.get("seven_day") or {}).get("utilization"),
+                    "week_resets": (w.get("seven_day") or {}).get("resetsAt"),
+                    "five_hour": (w.get("five_hour") or {}).get("utilization")}
+    return None
 
 
 def strategy_rows(policy: dict, books: dict) -> list[dict]:
@@ -89,7 +103,6 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         by_source[p["source"]] += p["total_cost"]
     keep_open = ("question", "url", "source", "side", "contracts", "cost_per", "total_cost", "p_side",
                  "market_ask", "edge", "opened", "close_time")
-    spend = sum(s.get("research_usd", 0.0) + s.get("forecast_usd", 0.0) + s.get("review_usd", 0.0) for s in scans or [])
     return {
         "generated": generated_at, "example": example, "question_set": engine.QUESTION_SET_VERSION,
         "start": start, "cash": round(pf["cash"], 2), "open_cost": open_cost, "equity": equity,
@@ -105,7 +118,8 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "last_scan": last_scan(policy, judgments),
         "funnel": funnel(scans or []),
         "strategies": strategy_rows(policy, books),
-        "research_spend": round(spend, 2) if scans else None,
+        "plan_usage": plan_usage(scans or []),
+        "research_runs_today": sum(1 for r in engine.read_jsonl(engine.RESEARCH) if str(r.get("ts", "")).startswith(generated_at[:10])),
         "learning": review.learning(reviews or []),
         "repo_url": policy.get("site", {}).get("repo_url") or None,
     }
@@ -124,27 +138,38 @@ def current_summary(policy: dict) -> dict:
                      scans=engine.read_jsonl(engine.SCANS), reviews=engine.read_jsonl(engine.REVIEWS))
 
 
-# The raw ledgers published next to the page, at the same relative paths the page links to.
-PUBLIC_FILES = ("scans.jsonl", "reviews.jsonl", "resolutions.json")
+def raw_base(policy: dict) -> str | None:
+    """Where the public repo's files can be read by a browser (GitHub serves them with CORS allowed)."""
+    repo = (policy.get("site", {}).get("repo_url") or "").rstrip("/")
+    prefix = "https://github.com/"
+    if not repo.startswith(prefix):
+        return None
+    return f"https://raw.githubusercontent.com/{repo[len(prefix):]}/{policy['site'].get('branch', 'master')}/"
+
+
+def write_summary(policy: dict) -> Path:
+    """papertrade_data/summary.json: what the public page reads, committed with the ledgers every cycle."""
+    s = current_summary(policy)
+    base = raw_base(policy)
+    s["ledger_base"] = base + "papertrade_data/" if base else None
+    engine.save_json(engine.SUMMARY, s)
+    return engine.SUMMARY
 
 
 def build_site(policy: dict, out: Path | None = None, summary: dict | None = None) -> Path:
-    """Write the public page and its raw ledgers into site/. Refuses example data."""
-    summary = summary or current_summary(policy)
+    """Write the public page shell into site/. It carries a snapshot and, when the repo is public,
+    fetches the latest summary.json from GitHub each time it's opened. Refuses example data."""
+    summary = dict(summary or current_summary(policy))
     if summary.get("example"):
         raise RuntimeError("refusing to publish: this summary is marked as example data")
+    base = raw_base(policy)
+    summary["data_url"] = base + "papertrade_data/summary.json" if base else None
+    summary["ledger_base"] = base + "papertrade_data/" if base else None
     out = out or engine.SITE
     if out.exists():
         shutil.rmtree(out)
-    (out / "portfolios").mkdir(parents=True)
+    out.mkdir(parents=True)
     (out / "index.html").write_text(build_html(summary))
-    for name in engine.strategies(policy):
-        src = engine.portfolio_path(name)
-        if src.exists():
-            shutil.copyfile(src, out / "portfolios" / src.name)
-    for f in PUBLIC_FILES:
-        if (engine.DATA / f).exists():
-            shutil.copyfile(engine.DATA / f, out / f)
     return out
 
 

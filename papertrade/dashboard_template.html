@@ -228,9 +228,8 @@ footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-
 
 <script type="application/json" id="data">__DASHBOARD_DATA__</script>
 <script>
-(function () {
+function render(D) {
   "use strict";
-  const D = JSON.parse(document.getElementById("data").textContent);
   const NS = "http://www.w3.org/2000/svg";
   const $ = id => document.getElementById(id);
   const usd0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
@@ -280,7 +279,7 @@ footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-
 
   // ---------- header ----------
   $("bankroll-pill").textContent = `${usd0.format(D.start)} bankroll`;
-  $("stamp").textContent = `Updated ${when(D.generated)}`;
+  $("stamp").textContent = `Updated ${when(D.generated)}` + (D.data_url && D.live === false ? " (saved copy: live data didn't load)" : "");
   if (D.example) $("example").hidden = false;
 
   // ---------- KPIs ----------
@@ -564,7 +563,7 @@ footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-
   (function scan() {
     const fn = D.funnel, ls = D.last_scan, box = $("scan");
     if (fn) {
-      $("ls-sub").textContent = `${when(fn.ts)} · ${fn.events} events researched`;
+      $("ls-sub").textContent = `${when(fn.ts)} · research: ${fn.researched_new} new, ${fn.research_reused} reused`;
       const top = Math.max(1, fn.stages[0][1]);
       const bars = h("div", { class: "bars" });
       fn.stages.forEach(([name, v]) => bars.append(h("div", { class: "bar-row", style: "grid-template-columns:132px 1fr 34px" },
@@ -574,8 +573,9 @@ footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-
       box.append(h("div", { class: "rules", style: "margin-top:10px",
         text: `Bets by strategy: ${Object.entries(fn.bets).map(([k, v]) => `${k} ${v}`).join(", ")}` }));
       box.append(h("div", { class: "rules", text: `Facts kept ${fn.facts_kept}, dropped by the price screen ${fn.facts_dropped}` }));
-      box.append(h("div", { class: "rules", text: `This scan: research ${usd2.format(fn.research_usd)} + Claude direct ${usd2.format(fn.forecast_usd)}` }));
-      if (D.research_spend != null) box.append(h("div", { class: "rules", text: `All scans to date: ${usd2.format(D.research_spend)}` }));
+      if (fn.claude_limited) box.append(h("div", { class: "rules", text: "Research paused this cycle: the Claude plan is busy. It resumes automatically." }));
+      const u = D.plan_usage;
+      if (u && u.week != null) box.append(h("div", { class: "rules", text: `Claude plan this week: ${pct(u.week, 0)} used · research runs today: ${D.research_runs_today || 0}` }));
       return;
     }
     if (!ls) { $("ls-sub").textContent = "No scans yet"; return; }
@@ -643,15 +643,29 @@ footer { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-
       p("The forecasters never see the price.", "Research is screened to remove odds, market prices and forecaster percentages before Jev or Claude reads it."),
       p("What's simulated:", "fills at the listed ask plus 1¢ (real fills on thin markets can be worse), and open bets valued at what they cost."));
     const links = h("div", { class: "links" });
-    Object.keys(Object.fromEntries((D.strategies || []).map(s => [s.name, 1]))).forEach(n =>
-      links.append(h("a", { href: `portfolios/${n}.json`, text: `portfolios/${n}.json` })));
-    ["scans.jsonl", "reviews.jsonl", "resolutions.json"].forEach(f => links.append(h("a", { href: f, text: f })));
+    const base = safeUrl(D.ledger_base) || "";  // the GitHub copies on the public page, the local files otherwise
+    const files = (D.strategies || []).map(s => `portfolios/${s.name}.json`)
+      .concat(["judgments.jsonl", "research.jsonl", "scans.jsonl", "reviews.jsonl", "resolutions.json"]);
+    files.forEach(f => links.append(h("a", { href: base + f, target: base ? "_blank" : "_self", rel: "noopener noreferrer", text: f })));
     const u = safeUrl(D.repo_url);
     if (u) links.append(h("a", { href: u, target: "_blank", rel: "noopener noreferrer", text: "Full history on GitHub" }));
     box.append(h("div", {}, h("div", { class: "rules", style: "margin-bottom:6px", text: "Raw ledgers this page is built from:" }), links));
   })();
 
-  $("footer").textContent = `Fake money only: no accounts, no real orders. Data: papertrade_data/portfolios/, judgments.jsonl, scans.jsonl, resolutions.json · question set ${D.question_set} · times in Eastern (ET) · refreshed every trading cycle.`;
+  $("footer").textContent = `Fake money only: no accounts, no real orders. Research by Claude on a Claude plan, forecasts by Jev · question set ${D.question_set} · times in Eastern (ET) · refreshed every trading cycle.`;
+}
+
+// The public page loads the latest data from the GitHub repo each time it's opened, and falls back to
+// the copy built into the page. Anything marked as example data is never shown.
+(function boot() {
+  const EMBED = JSON.parse(document.getElementById("data").textContent);
+  if (!EMBED.data_url || !EMBED.data_url.startsWith("https://")) return render(EMBED);
+  const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 6000);
+  fetch(EMBED.data_url, { signal: ctl.signal, cache: "no-store" })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
+    .then(d => { if (d.example) throw new Error("example data"); render(Object.assign(d, { data_url: EMBED.data_url, live: true })); })
+    .catch(() => render(Object.assign(EMBED, { live: false })))
+    .finally(() => clearTimeout(timer));
 })();
 </script>
 </body>

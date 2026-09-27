@@ -2,7 +2,10 @@
 
 - This is a **paper-trading** experiment: fake money only. Never add code that places real orders,
   connects to a trading account, or handles exchange credentials, unless Joey explicitly asks.
-- `.env` holds `TYPESAFE_AI_API_KEY` (Jev) and `ANTHROPIC_API_KEY` (Claude research). Never print, log, or commit either.
+- `.env` holds `TYPESAFE_AI_API_KEY` (Jev). Never print, log, or commit it.
+- Claude research runs through Claude Code on Joey's Claude plan, **never an API key**. Never add
+  `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` anywhere (env, `.env`, CI secrets): either one switches
+  Claude Code to paid API billing, and `news.ClaudeCode` refuses to run while one is set.
 - No forecaster (Jev or Claude direct) may see market prices, directly or through research. The price
   screen is `news.screen_facts()`, kept in code on purpose. Tests: `test_scan_settle_report`,
   `test_price_never_reaches_jev_or_claude_through_research`, `ScreenFactsTests`. Never loosen the screen

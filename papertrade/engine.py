@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import json
 import math
-from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from itertools import zip_longest
 from pathlib import Path
@@ -31,7 +30,9 @@ JUDGMENTS = DATA / "judgments.jsonl"
 RESOLUTIONS = DATA / "resolutions.json"
 SCANS = DATA / "scans.jsonl"
 REVIEWS = DATA / "reviews.jsonl"
-SITE = PROJECT_ROOT / "site"  # the public page: built by `publish`, deployed to Cloudflare
+RESEARCH = DATA / "research.jsonl"  # one record per research run, reused for a while
+SUMMARY = DATA / "summary.json"  # what the public page reads (straight from the GitHub repo)
+SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
 TS = "%Y-%m-%dT%H:%M:%SZ"
 
@@ -208,44 +209,54 @@ def due(m: dict, seen: dict, cutoff: str, move: float) -> bool:
     return ts < cutoff or (mid is not None and abs(float(m["mid"]) - float(mid)) >= move)
 
 
-def spent_today(day: str) -> float:
-    return sum(s.get("research_usd", 0.0) + s.get("forecast_usd", 0.0) + s.get("review_usd", 0.0)
-               for s in read_jsonl(SCANS) if str(s.get("ts", "")).startswith(day))
-
-
 def _interleave(lists: list[list]) -> list:
     return [m for group in zip_longest(*lists) for m in group if m is not None]
 
 
-def _research_events(researcher, chosen, today, rc, log, stats) -> dict:
-    """Research events a few at a time; stop starting new calls at the dollar ceiling or a fatal error."""
-    out, conc, fatal = {}, max(1, int(rc.get("concurrency", 1))), False
-    for i in range(0, len(chosen), conc):
-        if fatal:
-            break
-        if stats["research_usd"] + stats["forecast_usd"] >= rc["max_usd_per_scan"]:
-            log(f"! spend reached max_usd_per_scan (${rc['max_usd_per_scan']}); "
-                f"{len(chosen) - i} events wait for the next run")
-            break
-        batch = chosen[i:i + conc]
-        with ThreadPoolExecutor(max_workers=conc) as pool:
-            futures = [(ek, ms, pool.submit(researcher.research, ms, today)) for ek, ms in batch]
-        for ek, ms, fut in futures:
-            try:
-                r = fut.result()
-            except news.NewsError as e:
-                stats["research_usd"] += e.meta.get("cost_usd", 0.0)
-                stats["errors"] += 1
-                fatal = fatal or e.fatal
-                log(f"! research failed for {ms[0]['question'][:60]}: {e}")
-                continue
-            stats["research_usd"] += r["meta"]["cost_usd"]
-            out[ek] = r
+def latest_research() -> dict:
+    """event -> its most recent research record (research is reused for a while, not redone hourly)."""
+    out = {}
+    for r in read_jsonl(RESEARCH):
+        out[r["event"]] = r
     return out
 
 
-def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print, researcher=None,
-         forecaster=None, limit: int | None = None, now: datetime | None = None) -> dict:
+def research_count(day: str) -> int:
+    return sum(1 for r in read_jsonl(RESEARCH) if str(r.get("ts", "")).startswith(day))
+
+
+def last_claude_rate(now: datetime) -> dict | None:
+    """The plan usage Claude reported on the last call, with windows that have since reset dropped."""
+    rate = None
+    for s in read_jsonl(SCANS):
+        if (s.get("claude") or {}).get("rate"):
+            rate = s["claude"]["rate"]
+    if not rate:
+        return None
+    windows = {k: v for k, v in (rate.get("unifiedWindows") or {}).items()
+               if (v or {}).get("resetsAt", 0) > now.timestamp()}
+    return dict(rate, unifiedWindows=windows)
+
+
+def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log) -> None:
+    pf["cash"] = round(pf["cash"] - d["total_cost"], 2)
+    pf["open"].append({
+        "key": key(m), "source": m["source"], "market_id": m["market_id"],
+        "question": m["question"], "url": m["url"], "close_time": m["close_time"],
+        "side": d["side"], "contracts": d["contracts"], "cost_per": d["cost"],
+        "total_cost": d["total_cost"], "p_side": round(d["q"], 4),
+        "market_ask": d["ask"], "edge": d["edge"], "opened": stamp,
+        "question_set": QUESTION_SET_VERSION,
+    })
+    save_portfolio(name, pf)  # saved per bet, so an interrupted run can't lose one
+    log(f"+ [{name}] {d['side'].upper():3} ${d['total_cost']:>8,.2f}  edge {d['edge']:+.2f}  "
+        f"[{m['source']}] {m['question'][:60]}")
+
+
+def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print, claude=None,
+         researcher=None, forecaster=None, limit: int | None = None, now: datetime | None = None) -> dict:
+    """One pass of the funnel. Jev judges every due market (pennies); Claude researches only where it
+    can change a bet, rationed so it never crowds out Joey's own use of the Claude plan."""
     fetchers = fetchers or mk.FETCHERS
     client = client or JevClient(model=policy["model"])
     now = now or datetime.now(timezone.utc)
@@ -254,12 +265,13 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     books = load_books(policy)
     seen = last_judged()
     cutoff = (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
-    funnel = {"fetched": 0, "passed_filters": 0, "events": 0, "researched": 0, "judged": 0,
+    funnel = {"fetched": 0, "passed_filters": 0, "judged": 0, "events": 0, "researched_new": 0,
+              "research_reused": 0, "with_research": 0,
               "cleared_gates": {s: 0 for s in strats}, "bets": {s: 0 for s in strats}}
-    stats = {"funnel": funnel, "errors": 0, "research_usd": 0.0, "forecast_usd": 0.0,
-             "facts_kept": 0, "facts_dropped": 0, "deferred": 0}
+    cl = {"calls": 0, "limited": False, "rate": None, "api_equivalent_usd": 0.0, "note": None}
+    stats = {"funnel": funnel, "claude": cl, "errors": 0, "facts_kept": 0, "facts_dropped": 0, "deferred": 0}
 
-    # 1-2. fetch, then the free filters (and skip anything judged in the last 24h)
+    # 1-2. fetch, then the free filters; only markets due for a look
     per_source = []
     for src in policy["sources"]:
         try:
@@ -274,117 +286,158 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     candidates = _interleave(per_source)
     candidates.sort(key=lambda m: seen.get(key(m), ("",))[0])  # never judged first, then judged longest ago
     funnel["passed_filters"] = len(candidates)
+    todo = candidates[: policy["max_jev_calls_per_scan"] // 2]  # up to two Jev calls per market
+    stats["deferred"] = len(candidates) - len(todo)
 
-    # 3. group by event; bounded by the Jev-call limit (2 calls per market) and a runaway guard
-    events = {}
-    for m in candidates:
-        events.setdefault(m.get("event") or key(m), []).append(m)
-    max_markets = policy["max_jev_calls_per_scan"] // 2
-    max_events = rc["max_events_per_scan"] if limit is None else min(limit, rc["max_events_per_scan"])
-    chosen, n = [], 0
-    for ek, ms in events.items():
-        if len(chosen) >= max_events:
-            break
-        if n + len(ms) <= max_markets:
-            chosen.append((ek, ms))
-            n += len(ms)
-    stats["deferred"] = len(candidates) - n
-
-    if chosen and spent_today(today) >= rc["max_usd_per_day"]:
-        log(f"! today's spend already reached max_usd_per_day (${rc['max_usd_per_day']}); judging nothing this run")
-        stats["deferred"] = len(candidates)
-        _record_scan(stats, stamp)
-        return stats
-
-    if chosen and (researcher is None or forecaster is None):
+    # 3. Jev without research, for every market: this is also the "Jev alone" strategy
+    plain = {}
+    for m in todo:
         try:
-            cc = news.ClaudeClient(rc["model"])
-            researcher = researcher or news.Researcher(rc, cc)
-            forecaster = forecaster or news.DirectForecaster(rc, cc)
-        except news.NewsError as e:
-            log(f"! research unavailable, judging nothing this run: {e}")
+            plain[key(m)] = client.ask(build_state(m, today), QUESTIONS)
+        except JevError as e:
+            log(f"! Jev error on {m['question'][:60]}: {e}")
             stats["errors"] += 1
-            stats["deferred"] = len(candidates)
-            _record_scan(stats, stamp)
-            return stats
+    events = {}
+    for m in todo:
+        if key(m) in plain:
+            events.setdefault(m.get("event") or key(m), []).append(m)
+    funnel["events"] = len(events)
 
-    # 4. research each event
-    results = _research_events(researcher, chosen, today, rc, log, stats)
-    funnel["events"] = len(results)  # events actually researched, not just planned
+    # 4. which events get research: reuse a recent one, research anew (rationed), or skip
+    cache, fresh_cut = latest_research(), (now - timedelta(hours=rc["research_after_hours"])).strftime(TS)
+    reuse, need, why_not = {}, [], {}
+    for ek, ms in events.items():
+        c = cache.get(ek)
+        moved = c is not None and any(abs(m["mid"] - c["mids"].get(key(m), m["mid"])) >= rc["research_on_price_move"]
+                                      for m in ms)
+        if c and c["ts"] >= fresh_cut and not moved:
+            reuse[ek] = c
+        elif any(plain[key(m)]["answers"]["rules_clear"]["noul"] >= rc["triage_min_rules_clear"] for m in ms):
+            need.append(ek)  # research can only unlock a bet where the rules are clear
+        else:
+            why_not[ek] = "rules unclear to Jev, so not researched"
+    budget = min(rc["max_research_per_cycle"], max(0, rc["max_research_per_day"] - research_count(today)))
+    if limit is not None:
+        budget = min(budget, limit)
+    for ek in need[budget:]:
+        why_not[ek] = "research cap reached; picked up in a later cycle"
+    need = need[:budget]
 
-    # 5-6. screen, judge three ways, decide per strategy
-    for ek, ms in chosen:
-        r = results.get(ek)
-        if r is None:
-            continue  # no research, no judgment: the market waits for the next run
-        funnel["researched"] += len(ms)
-        facts, dropped = news.screen_facts(r["raw_facts"], ms, today, r["source_urls"], rc["max_facts_per_event"])
-        stats["facts_kept"] += len(facts)
-        stats["facts_dropped"] += len(dropped)
-        share = round(r["meta"]["cost_usd"] / len(ms), 5)
-        for m in ms:
-            state = build_state(m, today, recent_facts=facts)
-            try:
-                plain = client.ask(build_state(m, today), QUESTIONS)
-                rich = client.ask(state, QUESTIONS)
-            except JevError as e:
-                log(f"! Jev error on {m['question'][:60]}: {e}")
+    fresh = {}
+    if need:
+        try:
+            if claude is None and (researcher is None or forecaster is None):
+                claude = news.ClaudeCode(rc)
+            researcher = researcher or news.Researcher(rc, claude)
+            forecaster = forecaster or news.DirectForecaster(rc, claude)
+            if claude is not None:
+                claude.last_rate = claude.last_rate or last_claude_rate(now)
+        except news.NewsError as e:
+            log(f"! research unavailable this cycle: {e}")
+            stats["errors"] += 1
+            cl["note"] = str(e)
+            for ek in need:
+                why_not[ek] = f"research unavailable: {e}"
+            need = []
+    for i, ek in enumerate(need):
+        if claude is not None and not claude.usage_ok():
+            cl["limited"] = True
+            why_not[ek] = "Claude plan busy (our share is used); research resumes when it frees up"
+            continue
+        try:
+            r = researcher.research(events[ek], today)
+            cl["calls"] += 1
+            cl["api_equivalent_usd"] += r["meta"].get("api_equivalent_usd", 0.0)
+        except news.NewsError as e:
+            cl["calls"] += 1
+            cl["api_equivalent_usd"] += e.meta.get("api_equivalent_usd", 0.0)
+            cl["limited"] = cl["limited"] or e.limited
+            why_not[ek] = "Claude plan busy; research resumes when it frees up" if e.limited else f"research failed: {e}"
+            if not e.limited:
                 stats["errors"] += 1
-                continue
-            direct = None
-            if stats["research_usd"] + stats["forecast_usd"] < rc["max_usd_per_scan"]:
+                log(f"! research failed for {events[ek][0]['question'][:60]}: {e}")
+            if e.fatal:
+                for rest in need[i + 1:]:
+                    why_not.setdefault(rest, why_not[ek])
+                break
+            continue
+        rec = {"ts": stamp, "id": f"{ek}@{stamp}", "event": ek, "keys": [key(m) for m in events[ek]],
+               "mids": {key(m): m["mid"] for m in events[ek]}, "raw_facts": r["raw_facts"],
+               "source_urls": r["source_urls"], "meta": r["meta"]}
+        append_jsonl(RESEARCH, rec)
+        fresh[ek] = rec
+    funnel["researched_new"], funnel["research_reused"] = len(fresh), len(reuse)
+
+    # 5-6. judge with research where there is some, then each strategy decides
+    for ek, ms in events.items():
+        rec = fresh.get(ek) or reuse.get(ek)
+        facts = dropped = None
+        if rec:
+            # Screened against the prices of right now, not the prices when the research was done.
+            facts, dropped = news.screen_facts(rec["raw_facts"], ms, today, rec["source_urls"], rc["max_facts_per_event"])
+            stats["facts_kept"] += len(facts)
+            stats["facts_dropped"] += len(dropped)
+        for m in ms:
+            p = plain[key(m)]
+            rich = direct = state = None
+            if rec:
+                state = build_state(m, today, recent_facts=facts)
                 try:
-                    direct = forecaster.forecast(state)
-                    stats["forecast_usd"] += direct["meta"]["cost_usd"]
-                except news.NewsError as e:
-                    stats["forecast_usd"] += e.meta.get("cost_usd", 0.0)
+                    rich = client.ask(state, QUESTIONS)
+                except JevError as e:
+                    log(f"! Jev error on {m['question'][:60]}: {e}")
                     stats["errors"] += 1
-                    log(f"! Claude direct failed on {m['question'][:60]}: {e}")
+                if rich and ek in fresh and forecaster is not None and (claude is None or claude.usage_ok()):
+                    try:
+                        direct = forecaster.forecast(state)
+                        cl["calls"] += 1
+                        cl["api_equivalent_usd"] += direct["meta"].get("api_equivalent_usd", 0.0)
+                    except news.NewsError as e:
+                        cl["calls"] += 1
+                        cl["limited"] = cl["limited"] or e.limited
+                        if not e.limited:
+                            stats["errors"] += 1
+                            log(f"! Claude direct failed on {m['question'][:60]}: {e}")
             funnel["judged"] += 1
-            signals = {"jev_research": rich["answers"], "jev_plain": plain["answers"],
+            funnel["with_research"] += int(rich is not None)
+            signals = {"jev_plain": p["answers"], "jev_research": rich["answers"] if rich else None,
                        "claude_direct": {"p_yes": {"noul": direct["p_yes"]}} if direct else None}
             decisions = {}
             for name, strat in strats.items():
                 pf = books[name]
                 answers = strategy_answers(strat, signals)
                 if answers is None:
-                    decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["no probability this run"]}
+                    decisions[name] = {"bet": False, "cleared_gates": False,
+                                       "reasons": [why_not.get(ek) or "no probability this cycle"]}
                     continue
-                if key(m) in {p["key"] for p in pf["open"]}:
+                if key(m) in {x["key"] for x in pf["open"]}:
                     decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
                     continue
-                open_cost = sum(p["total_cost"] for p in pf["open"])
+                open_cost = sum(x["total_cost"] for x in pf["open"])
                 d = decide(m, answers, policy, equity_at_cost(pf), open_cost, pf["cash"])
                 decisions[name] = d
                 funnel["cleared_gates"][name] += int(d["cleared_gates"])
                 if d["bet"]:
-                    pf["cash"] = round(pf["cash"] - d["total_cost"], 2)
-                    pf["open"].append({
-                        "key": key(m), "source": m["source"], "market_id": m["market_id"],
-                        "question": m["question"], "url": m["url"], "close_time": m["close_time"],
-                        "side": d["side"], "contracts": d["contracts"], "cost_per": d["cost"],
-                        "total_cost": d["total_cost"], "p_side": round(d["q"], 4),
-                        "market_ask": d["ask"], "edge": d["edge"], "opened": stamp,
-                        "question_set": QUESTION_SET_VERSION,
-                    })
-                    save_portfolio(name, pf)  # saved per bet, so an interrupted run can't lose one
+                    _bet(name, pf, m, d, stamp, log)
                     funnel["bets"][name] += 1
-                    log(f"+ [{name}] {d['side'].upper():3} ${d['total_cost']:>8,.2f}  edge {d['edge']:+.2f}  "
-                        f"[{m['source']}] {m['question'][:60]}")
             append_jsonl(JUDGMENTS, {
                 "ts": stamp, "key": key(m), "event": ek, "question_set": QUESTION_SET_VERSION,
-                "model": rich["model"], "market": m,
-                "recent_facts": state["recent_facts"], "fact_urls": [f["url"] for f in facts],
-                "facts_dropped": dropped, "research": dict(r["meta"], cost_share_usd=share),
-                "answers": rich["answers"], "answers_no_news": plain["answers"],
+                "model": p["model"], "market": m,
+                "recent_facts": state["recent_facts"] if state else None,
+                "fact_urls": [f["url"] for f in facts] if facts is not None else None,
+                "facts_dropped": dropped,
+                "research": {"id": rec["id"], "fresh": ek in fresh, "done_at": rec["ts"]} if rec else None,
+                "answers": rich["answers"] if rich else None, "answers_no_news": p["answers"],
                 "claude_direct": {"p_yes": direct["p_yes"], **direct["meta"]} if direct else None,
                 "decision": decisions.get(MAIN), "decisions": decisions,
-                "latency_ms": rich["latency_ms"], "latency_ms_no_news": plain["latency_ms"],
+                "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
             })
     for name, pf in books.items():
         save_portfolio(name, pf)
-    stats["research_usd"] = round(stats["research_usd"], 4)
-    stats["forecast_usd"] = round(stats["forecast_usd"], 4)
+    if claude is not None and claude.last_rate:
+        r = claude.last_rate
+        cl["rate"] = {"status": r.get("status"), "unifiedWindows": r.get("unifiedWindows") or {}}
+    cl["api_equivalent_usd"] = round(cl["api_equivalent_usd"], 4)
     _record_scan(stats, stamp)
     return stats
 
@@ -460,7 +513,8 @@ SOURCES = [("jev_research", "Jev + research"), ("jev_plain", "Jev alone"),
 
 def _prob(j: dict, source: str):
     if source == "jev_research":
-        return float(j["answers"]["p_yes"]["noul"])
+        a = j.get("answers")
+        return float(a["p_yes"]["noul"]) if a else None
     if source == "jev_plain":
         a = j.get("answers_no_news")
         return float(a["p_yes"]["noul"]) if a else None

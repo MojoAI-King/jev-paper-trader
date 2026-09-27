@@ -157,6 +157,7 @@ class DecideTests(unittest.TestCase):
 
 
 SCAN_NOW = datetime(1999, 12, 25, tzinfo=timezone.utc)  # test markets close 2000-01-01/02: inside the window
+STREAM = (Path(__file__).parent / "fixtures" / "claude_stream.jsonl").read_text()  # a real Claude Code run, recorded
 
 
 def fact(text, kind="event", date_="1999-12-20", source="Reuters", url="https://www.reuters.com/a"):
@@ -164,14 +165,14 @@ def fact(text, kind="event", date_="1999-12-20", source="Reuters", url="https://
 
 
 class FakeResearcher:
-    def __init__(self, facts, cost=0.5, urls=("https://www.reuters.com/a",), fail=None):
-        self.facts, self.cost, self.urls, self.fail, self.calls = facts, cost, list(urls), fail, []
+    def __init__(self, facts, usd=0.5, urls=("https://www.reuters.com/a",), fail=None):
+        self.facts, self.usd, self.urls, self.fail, self.calls = facts, usd, list(urls), fail, []
 
     def research(self, markets, today):
         self.calls.append([m["question"] for m in markets])
         if self.fail:
             raise self.fail
-        return {"raw_facts": self.facts, "source_urls": self.urls, "meta": {"cost_usd": self.cost}}
+        return {"raw_facts": self.facts, "source_urls": self.urls, "meta": {"api_equivalent_usd": self.usd}}
 
 
 class FakeForecaster:
@@ -180,24 +181,27 @@ class FakeForecaster:
 
     def forecast(self, state):
         self.states.append(state)
-        return {"p_yes": self.probs.get(state["market"]["question"], 0.5), "meta": {"cost_usd": 0.01}}
+        return {"p_yes": self.probs.get(state["market"]["question"], 0.5), "meta": {"api_equivalent_usd": 0.01}}
 
 
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
+    NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "SCANS", "REVIEWS", "RESEARCH",
+             "SUMMARY", "SITE")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         d = Path(self.tmp.name)
-        self._saved = (engine.DATA, engine.PORTFOLIO, engine.PORTFOLIOS, engine.JUDGMENTS,
-                       engine.RESOLUTIONS, engine.SCANS, engine.REVIEWS, engine.SITE)
-        engine.DATA, engine.PORTFOLIO, engine.PORTFOLIOS = d, d / "portfolio.json", d / "portfolios"
-        engine.JUDGMENTS, engine.RESOLUTIONS, engine.SCANS = d / "judgments.jsonl", d / "resolutions.json", d / "scans.jsonl"
-        engine.REVIEWS, engine.SITE = d / "reviews.jsonl", d / "site"
+        self._saved = {n: getattr(engine, n) for n in self.NAMES}
+        for n, v in {"DATA": d, "PORTFOLIO": d / "portfolio.json", "PORTFOLIOS": d / "portfolios",
+                     "JUDGMENTS": d / "judgments.jsonl", "RESOLUTIONS": d / "resolutions.json",
+                     "SCANS": d / "scans.jsonl", "REVIEWS": d / "reviews.jsonl", "RESEARCH": d / "research.jsonl",
+                     "SUMMARY": d / "summary.json", "SITE": d / "site"}.items():
+            setattr(engine, n, v)
 
     def tearDown(self):
-        (engine.DATA, engine.PORTFOLIO, engine.PORTFOLIOS, engine.JUDGMENTS,
-         engine.RESOLUTIONS, engine.SCANS, engine.REVIEWS, engine.SITE) = self._saved
+        for n, v in self._saved.items():
+            setattr(engine, n, v)
         self.tmp.cleanup()
 
 
@@ -221,11 +225,11 @@ class EndToEndTests(DataDirTest):
                   log=lambda *_: None, now=SCAN_NOW)
         stats = engine.scan(policy, researcher=FakeResearcher([fact("A clean fact.")]),
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
-        self.assertEqual(stats["funnel"]["judged"], 3)
+        self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
         self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1})
         self.assertFalse(any(seen_prices))
 
-        # second scan within 24h must not re-judge (or pay for research again)
+        # a second scan in the same hour judges nothing and asks Claude for nothing
         r2 = FakeResearcher([])
         stats2 = engine.scan(policy, researcher=r2, forecaster=FakeForecaster({}), **kw)
         self.assertEqual((stats2["funnel"]["judged"], r2.calls), (0, []))
@@ -276,7 +280,7 @@ class ResearchPipelineTests(DataDirTest):
         m = market(mid=mid, yes_ask=0.43, no_ask=0.58, m=0.43, close="2000-01-01T00:00:00Z", **kw)
         return dict(m, question=f"Will Lula win the election? ({mid})", event=event)
 
-    def run_scan(self, ms, researcher, forecaster=None, policy=None, transport=None, **kw):
+    def run_scan(self, ms, researcher, forecaster=None, policy=None, transport=None, now=SCAN_NOW, **kw):
         self.states = []
 
         def default_transport(url, body, key, timeout):
@@ -284,7 +288,7 @@ class ResearchPipelineTests(DataDirTest):
             return {"model": "jev-test", "answers": ans(0.5)}
         policy = policy or dict(POLICY, sources=["polymarket"])
         return engine.scan(policy, client=JevClient(transport=transport or default_transport),
-                           fetchers={"polymarket": lambda *a: ms}, log=lambda *_: None, now=SCAN_NOW,
+                           fetchers={"polymarket": lambda *a: ms}, log=lambda *_: None, now=now,
                            researcher=researcher, forecaster=forecaster or FakeForecaster({}), **kw)
 
     def test_price_never_reaches_jev_or_claude_through_research(self):
@@ -321,30 +325,81 @@ class ResearchPipelineTests(DataDirTest):
         stats = self.run_scan([thin, far, cheap], r)
         self.assertEqual((r.calls, stats["funnel"]["passed_filters"]), ([], 0))
 
-    def test_dollar_ceiling_stops_new_research(self):
-        policy = dict(POLICY, sources=["polymarket"], research=dict(POLICY["research"], concurrency=1, max_usd_per_scan=150))
-        r = FakeResearcher([], cost=100)
-        ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(4)]
-        stats = self.run_scan(ms, r, policy=policy)
-        self.assertEqual(len(r.calls), 2)  # $0, then $100 spent; stops at $200 >= $150
-        self.assertEqual(stats["funnel"]["researched"], 2)
+    def test_research_only_where_jev_finds_the_rules_clear(self):
+        def transport(url, body, key, timeout):
+            vague = "(V)" in body["state"]["market"]["question"]
+            return {"model": "jev-test", "answers": ans(0.5, clear=0.4 if vague else 0.9)}
+        r = FakeResearcher([])
+        stats = self.run_scan([self.lula("V", event="polymarket:ev"), self.lula("K", event="polymarket:ek")], r,
+                              transport=transport)
+        self.assertEqual(r.calls, [["Will Lula win the election? (K)"]])
+        self.assertEqual(stats["funnel"]["judged"], 2)  # Jev still judged both (Jev alone decides on both)
+        vague = [j for j in engine.read_jsonl(engine.JUDGMENTS) if "(V)" in j["market"]["question"]][0]
+        self.assertIn("rules unclear", vague["decisions"]["main"]["reasons"][0])
 
-    def test_research_failure_skips_the_market_and_fatal_stops_the_run(self):
-        policy = dict(POLICY, sources=["polymarket"], research=dict(POLICY["research"], concurrency=1))
+    def test_research_caps_per_cycle_and_per_day(self):
+        ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(6)]
+        r = FakeResearcher([])
+        self.run_scan(ms, r)
+        self.assertEqual(len(r.calls), POLICY["research"]["max_research_per_cycle"])
+        for i in range(30):  # a day that has already used its research allowance
+            engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T01:00:00Z", "event": f"old{i}", "mids": {}})
+        r2 = FakeResearcher([])
+        self.run_scan([self.lula("N", event="polymarket:new")], r2, now=SCAN_NOW + timedelta(hours=2))
+        self.assertEqual(r2.calls, [])
+
+    def test_research_is_reused_until_stale_or_the_price_moves(self):
+        r = FakeResearcher([fact(CLEAN[1])])
+        self.run_scan([self.lula()], r)
+        self.assertEqual(len(r.calls), 1)
+        fc = FakeForecaster({})
+        stats = self.run_scan([self.lula()], r, fc, now=SCAN_NOW + timedelta(hours=7))   # due again, research fresh
+        self.assertEqual((len(r.calls), stats["funnel"]["research_reused"], stats["funnel"]["with_research"]), (1, 1, 1))
+        self.assertEqual(fc.states, [])  # Claude direct only runs on fresh research
+        moved = dict(self.lula(), mid=0.60)
+        self.run_scan([moved], r, now=SCAN_NOW + timedelta(hours=14))                   # price moved 17 points
+        self.assertEqual(len(r.calls), 2)
+        self.run_scan([moved], r, now=SCAN_NOW + timedelta(hours=40))                   # older than 24 hours
+        self.assertEqual(len(r.calls), 3)
+
+    def test_research_failure_leaves_jev_alone_running_and_fatal_stops_research(self):
         ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(3)]
         r = FakeResearcher([], fail=news.NewsError("bad reply"))
-        stats = self.run_scan(ms, r, policy=policy)
-        self.assertEqual((len(r.calls), stats["funnel"]["judged"], stats["errors"]), (3, 0, 3))
-        r2 = FakeResearcher([], fail=news.NewsError("HTTP 401", fatal=True))
-        self.run_scan([dict(m, market_id=m["market_id"] + "x") for m in ms], r2, policy=policy)
+        stats = self.run_scan(ms, r)
+        self.assertEqual((len(r.calls), stats["funnel"]["judged"], stats["funnel"]["with_research"], stats["errors"]),
+                         (3, 3, 0, 3))
+        r2 = FakeResearcher([], fail=news.NewsError("not installed", fatal=True))
+        self.run_scan([dict(m, market_id=m["market_id"] + "x") for m in ms], r2)
         self.assertEqual(len(r2.calls), 1)
-        self.assertEqual(engine.read_jsonl(engine.JUDGMENTS), [])  # nothing judged without research
 
-    def test_no_research_client_judges_nothing(self):
-        policy = dict(POLICY, sources=["polymarket"], research=dict(POLICY["research"], model="not-a-priced-model"))
-        stats = engine.scan(policy, client=JevClient(transport=lambda *a: self.fail("Jev called")),
-                            fetchers={"polymarket": lambda *a: [self.lula()]}, log=lambda *_: None, now=SCAN_NOW)
-        self.assertEqual((stats["funnel"]["judged"], stats["errors"], stats["deferred"]), (0, 1, 1))
+    def test_an_api_key_in_the_environment_stops_research_not_jev(self):
+        with mock.patch.dict("os.environ", {"ANTHROPIC_API_KEY": "sk-test"}):
+            stats = engine.scan(dict(POLICY, sources=["polymarket"]),
+                                client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
+                                fetchers={"polymarket": lambda *a: [self.lula()]}, log=lambda *_: None, now=SCAN_NOW)
+        self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"], stats["errors"]), (1, 0, 1))
+        self.assertIn("API account", stats["claude"]["note"])
+        j = engine.read_jsonl(engine.JUDGMENTS)[0]
+        self.assertIn("research unavailable", j["decisions"]["main"]["reasons"][0])
+
+    def test_plan_usage_guard_waits_for_the_window_to_reset(self):
+        runs = []
+
+        def runner(args, env, cwd, timeout):
+            runs.append(args)
+            return 0, STREAM, ""
+        rc = POLICY["research"]
+        busy = {"status": "allowed_warning", "unifiedWindows": {
+            "seven_day": {"utilization": 0.95, "resetsAt": (SCAN_NOW + timedelta(hours=10)).timestamp()}}}
+        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-24T23:00:00Z", "claude": {"rate": busy}})
+        cc = news.ClaudeCode(rc, runner=runner)
+        stats = self.run_scan([self.lula()], news.Researcher(rc, cc), news.DirectForecaster(rc, cc), claude=cc)
+        self.assertEqual((runs, stats["claude"]["limited"], stats["funnel"]["judged"]), ([], True, 1))
+        # after the weekly window resets, research runs again
+        cc2 = news.ClaudeCode(rc, runner=runner)
+        self.run_scan([self.lula()], news.Researcher(rc, cc2), news.DirectForecaster(rc, cc2), claude=cc2,
+                      now=SCAN_NOW + timedelta(hours=11))
+        self.assertGreaterEqual(len(runs), 1)
 
     def test_each_strategy_uses_its_own_probability_and_never_doubles_up(self):
         def transport(url, body, key, timeout):
@@ -354,10 +409,8 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
         self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone"]["p_yes"]), (0.70, 0.60))
-        # two days later the market is re-judged for data, but no strategy adds to a position it holds
-        stats2 = engine.scan(dict(POLICY, sources=["polymarket"]), client=JevClient(transport=transport),
-                             fetchers={"polymarket": lambda *a: [self.lula()]}, log=lambda *_: None,
-                             now=SCAN_NOW + timedelta(days=2), researcher=FakeResearcher([]), forecaster=fc)
+        # two days later the market is judged again for data, but no strategy adds to a position it holds
+        stats2 = self.run_scan([self.lula()], FakeResearcher([]), fc, transport=transport, now=SCAN_NOW + timedelta(days=2))
         self.assertEqual(stats2["funnel"]["judged"], 1)
         self.assertEqual(stats2["funnel"]["bets"]["main"], 0)
         self.assertEqual(len(engine.load_portfolio(POLICY)["open"]), 1)
@@ -365,8 +418,9 @@ class ResearchPipelineTests(DataDirTest):
     def test_scan_logs_its_funnel(self):
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
         s = engine.read_jsonl(engine.SCANS)[-1]
-        self.assertEqual((s["funnel"]["fetched"], s["funnel"]["researched"], s["funnel"]["judged"]), (1, 1, 1))
-        self.assertEqual(s["research_usd"], 0.5)
+        f = s["funnel"]
+        self.assertEqual((f["fetched"], f["judged"], f["researched_new"], f["with_research"]), (1, 1, 1, 1))
+        self.assertEqual(s["claude"]["api_equivalent_usd"], 0.51)
 
 
 class ScreenFactsTests(unittest.TestCase):
@@ -401,84 +455,92 @@ class ScreenFactsTests(unittest.TestCase):
         self.assertEqual(kept2[0]["kind"], "event")
 
 
-class ClaudeClientTests(unittest.TestCase):
+def stream(text, is_error=False, rate_status="allowed", week=0.3):
+    """A Claude Code stream-json reply in the recorded shape."""
+    lines = [{"type": "rate_limit_event", "rate_limit_info": {"status": rate_status, "unifiedWindows": {
+                 "seven_day": {"utilization": week, "resetsAt": 4102444800}, "five_hour": {"utilization": 0.1, "resetsAt": 4102444800}}}},
+             {"type": "user", "message": {"content": [{"type": "tool_result", "content": "Links: https://www.reuters.com/a"}]}},
+             {"type": "result", "subtype": "success", "is_error": is_error, "result": text, "num_turns": 2,
+              "total_cost_usd": 0.12}]
+    return "\n".join(json.dumps(x) for x in lines)
+
+
+class ClaudeCodeTests(unittest.TestCase):
     CFG = POLICY["research"]
 
-    def client(self, responses, calls):
-        it = iter(responses)
+    def claude(self, replies, calls):
+        it = iter(replies)
 
-        def transport(url, body, headers, timeout):
-            calls.append(json.loads(json.dumps(body)))
+        def runner(args, env, cwd, timeout):
+            calls.append({"args": args, "env": env, "cwd": cwd})
             r = next(it)
-            if isinstance(r, Exception):
-                raise r
-            return r
-        return news.ClaudeClient(self.CFG["model"], transport=transport)
+            return r if isinstance(r, tuple) else (0, r, "")
+        with mock.patch.dict("os.environ", {}, clear=False):
+            return news.ClaudeCode(self.CFG, runner=runner)
 
-    def reply(self, text, stop="end_turn", usage=None, urls=()):
-        content = [{"type": "web_search_tool_result", "content": [{"type": "web_search_result", "url": u} for u in urls]},
-                   {"type": "text", "text": text[: len(text) // 2]},
-                   {"type": "text", "text": text[len(text) // 2:], "citations": [{"url": "https://cited.example/c"}]}]
-        return {"content": content, "stop_reason": stop,
-                "usage": usage or {"input_tokens": 20000, "output_tokens": 2000, "server_tool_use": {"web_search_requests": 2}}}
+    def test_parses_a_real_recorded_run(self):
+        s = news.parse_stream(STREAM)
+        self.assertFalse(s["result"]["is_error"])
+        self.assertEqual((s["searches"], s["fetches"]), (1, 0))
+        self.assertIn("https://en.wikipedia.org/wiki/Columbus_Day", s["urls"])
+        self.assertIn("seven_day", s["rate"]["unifiedWindows"])
 
-    def test_request_carries_no_price_and_blocks_market_sites(self):
+    def test_refuses_to_run_with_an_api_key_set(self):
+        for var in news.BILLING_VARS:
+            with mock.patch.dict("os.environ", {var: "x"}):
+                with self.assertRaises(news.NewsError) as cm:
+                    news.ClaudeCode(self.CFG, runner=lambda *a: (0, "", ""))
+                self.assertTrue(cm.exception.fatal)
+
+    def test_runs_on_the_plan_with_only_web_tools_and_no_market_sites(self):
         calls = []
-        r = news.Researcher(self.CFG, self.client([self.reply("[]")], calls))
-        m = market(yes_ask=0.4321, no_ask=0.5876, m=0.4312)
-        r.research([m], "1999-12-25")
-        blob = json.dumps(calls[0])
+        cc = self.claude([stream(json.dumps([fact("A.")]))], calls)
+        out = news.Researcher(self.CFG, cc).research([market(yes_ask=0.4321, no_ask=0.5876, m=0.4312)], "1999-12-25")
+        a, env = calls[0]["args"], calls[0]["env"]
+        self.assertEqual(a[:2], ["claude", "-p"])
+        self.assertEqual(a[a.index("--tools") + 1], "WebSearch,WebFetch")
+        self.assertEqual(a[a.index("--permission-mode") + 1], "dontAsk")
+        self.assertEqual(a[a.index("--setting-sources") + 1], "")
+        self.assertEqual(a[a.index("--model") + 1], "claude-opus-5-5")
+        self.assertIn("WebFetch(domain:kalshi.com)", a)
+        self.assertNotIn("--bare", a)  # bare mode would require an API key
+        self.assertFalse(set(news.BILLING_VARS) & set(env))
+        self.assertNotIn("jev-paper-trader", calls[0]["cwd"])  # runs outside the repo: no CLAUDE.md, no hooks
+        blob = json.dumps(a)
         for price in ("0.4321", "0.5876", "0.4312", "43.2"):
             self.assertNotIn(price, blob)
-        tools = calls[0]["tools"]
-        self.assertTrue(all("kalshi.com" in t["blocked_domains"] and "polymarket.com" in t["blocked_domains"] for t in tools))
-        self.assertEqual(tools[0]["max_uses"], self.CFG["max_searches_per_event"])
-        self.assertEqual(calls[0]["model"], "claude-opus-5-5")
+        self.assertEqual((out["raw_facts"][0]["fact"], out["source_urls"]), ("A.", ["https://www.reuters.com/a"]))
+        self.assertEqual(out["meta"]["billing"], "claude_plan")
 
-    def test_pause_turn_resumes_and_sums_cost(self):
+    def test_forecast_has_no_tools_and_validates(self):
         calls = []
-        facts = json.dumps([fact("A.")])
-        r = news.Researcher(self.CFG, self.client(
-            [self.reply("", stop="pause_turn", urls=["https://a.example/1"]), self.reply(facts, urls=["https://b.example/2"])], calls))
-        out = r.research([market()], "1999-12-25")
-        self.assertEqual(len(calls), 2)
-        self.assertEqual(calls[1]["messages"][-1]["role"], "assistant")  # the paused turn, sent back unchanged
-        self.assertEqual(out["raw_facts"][0]["fact"], "A.")
-        self.assertEqual(set(out["source_urls"]), {"https://a.example/1", "https://b.example/2", "https://cited.example/c"})
-        self.assertAlmostEqual(out["meta"]["cost_usd"], 2 * (20000 * 4 / 1e6 + 2000 * 20 / 1e6 + 0.02))
-
-    def test_refusal_and_unparseable_replies_are_errors_with_cost(self):
-        for reply in (self.reply("[]", stop="refusal"), self.reply("no json here")):
-            with self.assertRaises(news.NewsError) as cm:
-                news.Researcher(self.CFG, self.client([reply], [])).research([market()], "1999-12-25")
-            self.assertFalse(cm.exception.fatal)
-            self.assertGreater(cm.exception.meta["cost_usd"], 0)
-
-    def test_auth_error_is_fatal_and_rate_limit_retries(self):
-        with self.assertRaises(news.NewsError) as cm:
-            self.client([news._HTTPError(401, "bad key", None)], []).post({})
-        self.assertTrue(cm.exception.fatal)
-        calls = []
-        with mock.patch("time.sleep"):
-            out = self.client([news._HTTPError(429, "slow down", 1.0), {"ok": 1}], calls).post({})
-        self.assertEqual((out, len(calls)), ({"ok": 1}, 2))
-
-    def test_direct_forecast_parses_and_validates(self):
-        f = news.DirectForecaster(self.CFG, self.client([self.reply('{"p_yes": 0.37}')], []))
+        cc = self.claude([stream('{"p_yes": 0.37}'), stream('{"p_yes": 1.7}')], calls)
+        f = news.DirectForecaster(self.CFG, cc)
         self.assertEqual(f.forecast({"market": {}})["p_yes"], 0.37)
-        bad = news.DirectForecaster(self.CFG, self.client([self.reply('{"p_yes": 1.7}')], []))
+        self.assertEqual(calls[0]["args"][calls[0]["args"].index("--tools") + 1], "")
         with self.assertRaises(news.NewsError):
-            bad.forecast({"market": {}})
+            f.forecast({"market": {}})
 
-    def test_unpriced_model_and_missing_key_are_fatal(self):
-        with self.assertRaises(news.NewsError) as cm:
-            news.ClaudeClient("claude-sonnet-5", transport=lambda *a: {})
-        self.assertTrue(cm.exception.fatal)
-        with tempfile.TemporaryDirectory() as d, mock.patch.object(jev_client, "PROJECT_ROOT", Path(d)), \
-                mock.patch.dict("os.environ", {}, clear=True):
+    def test_limits_errors_and_usage_share(self):
+        calls = []
+        cc = self.claude([stream("You've hit your session limit · resets 3am", is_error=True),
+                          stream("", rate_status="rejected"), (1, "", "boom"), stream("no json")], calls)
+        r = news.Researcher(self.CFG, cc)
+        for expect_limited in (True, True):
             with self.assertRaises(news.NewsError) as cm:
-                news.ClaudeClient("claude-opus-5-5")
-            self.assertTrue(cm.exception.fatal)
+                r.research([market()], "1999-12-25")
+            self.assertEqual((cm.exception.limited, cm.exception.fatal), (expect_limited, True))
+        cc.last_rate = None
+        with self.assertRaises(news.NewsError) as cm:
+            r.research([market()], "1999-12-25")
+        self.assertFalse(cm.exception.limited)
+        with self.assertRaises(news.NewsError):
+            r.research([market()], "1999-12-25")  # no JSON list in the reply
+        cc.last_rate = {"unifiedWindows": {"seven_day": {"utilization": self.CFG["max_week_used"]}}}
+        self.assertFalse(cc.usage_ok())
+        cc.last_rate = {"unifiedWindows": {"five_hour": {"utilization": self.CFG["max_five_hour_used"] - 0.01}}}
+        self.assertTrue(cc.usage_ok())
+
 
 def fresh_pf():
     return {"created": "2026-09-27T00:00:00Z", "starting_bankroll": 100000, "cash": 100000.0, "open": [], "closed": []}
@@ -488,7 +550,7 @@ def books(main):
     return {"main": main, "jev_alone": fresh_pf(), "claude_direct": fresh_pf()}
 
 
-class DashboardTests(unittest.TestCase):
+class DashboardTests(DataDirTest):
     def pf(self):
         opened = {"key": "kalshi:A", "source": "kalshi", "market_id": "A", "question": "Open one", "url": "https://kalshi.com/x",
                   "close_time": "2099-01-01T00:00:00Z", "side": "yes", "contracts": 100, "cost_per": 0.41,
@@ -532,6 +594,11 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual((ls["date"], ls["judged"], ls["fail_info"], ls["fail_rules"], ls["fail_edge"]),
                          ("2026-09-27", 1, 1, 1, 0))
 
+    def test_plan_usage_comes_from_the_latest_report(self):
+        rate = {"unifiedWindows": {"seven_day": {"utilization": 0.4, "resetsAt": 1}, "five_hour": {"utilization": 0.2}}}
+        u = dashboard.plan_usage([{"ts": "a", "claude": {"rate": rate}}, {"ts": "b", "kind": "review"}])
+        self.assertEqual((u["week"], u["five_hour"]), (0.4, 0.2))
+
 
 class IntradayTests(DataDirTest):
     def test_due_after_time_or_a_price_move(self):
@@ -542,14 +609,6 @@ class IntradayTests(DataDirTest):
         self.assertTrue(engine.due(m, seen, "2000-01-01T07:00:00Z", 0.05))                    # older than the window
         self.assertTrue(engine.due(dict(m, mid=0.46), seen, "2000-01-01T00:00:00Z", 0.05))    # price moved 6 points
 
-    def test_daily_spend_guard_stops_research(self):
-        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-25T01:00:00Z", "research_usd": 600.0, "forecast_usd": 0.0})
-        r = FakeResearcher([])
-        stats = engine.scan(dict(POLICY, sources=["polymarket"]), client=JevClient(transport=lambda *a: self.fail("Jev called")),
-                            fetchers={"polymarket": lambda *a: [dict(market(mid="1", close="2000-01-01T00:00:00Z"))]},
-                            log=lambda *_: None, now=SCAN_NOW, researcher=r, forecaster=FakeForecaster({}))
-        self.assertEqual((r.calls, stats["funnel"]["judged"], stats["deferred"]), ([], 0, 1))
-
 
 class FakeAnalyst:
     def __init__(self):
@@ -559,60 +618,75 @@ class FakeAnalyst:
         self.cases.append(case)
         return {"root_cause": "missing_info", "what_happened": "It happened.", "what_we_missed": "The standings.",
                 "lesson": "Read the standings.", "suggested_change": {"area": "research", "change": "Read the table."},
-                "meta": {"cost_usd": 0.2}}
+                "meta": {"api_equivalent_usd": 0.2}}
 
 
 class ReviewTests(DataDirTest):
-    def judged(self, mid, p, plain=0.5, direct=0.5):
+    def judged(self, mid, p, plain=0.5, direct=0.5, researched=True):
         m = dict(market(mid=mid, m=0.60), url="https://kalshi.com/markets/x")
         engine.append_jsonl(engine.JUDGMENTS, {"ts": "1999-12-25T00:00:00Z", "key": f"polymarket:{mid}", "question_set": review.QUESTION_SET_VERSION,
-                                               "market": m, "recent_facts": [fact("A.")], "answers": ans(p),
-                                               "answers_no_news": ans(plain), "claude_direct": {"p_yes": direct}})
+                                               "market": m, "recent_facts": [fact("A.")] if researched else None,
+                                               "answers": ans(p) if researched else None,
+                                               "answers_no_news": ans(plain), "claude_direct": {"p_yes": direct} if researched else None})
 
     def test_scores_every_resolved_market_once_and_explains_misses(self):
         self.judged("1", 0.90)   # resolves NO: confidently wrong -> post-mortem
         self.judged("2", 0.70)   # resolves YES: fine -> scored only
         self.judged("3", 0.50)   # unresolved -> not reviewed yet
-        engine.save_json(engine.RESOLUTIONS, {"polymarket:1": "no", "polymarket:2": "yes"})
+        self.judged("4", 0.50, researched=False)  # resolved, never researched -> scored on Jev alone, no post-mortem
+        engine.save_json(engine.RESOLUTIONS, {"polymarket:1": "no", "polymarket:2": "yes", "polymarket:4": "no"})
         analyst = FakeAnalyst()
-        s = review.review(POLICY, analyst=analyst, log=lambda *_: None)
-        self.assertEqual((s["reviewed"], s["post_mortems"], s["review_usd"]), (2, 1, 0.2))
+        s = review.review(POLICY, analyst=analyst, log=lambda *_: None, now_stamp="1999-12-26T00:00:00Z")
+        self.assertEqual((s["reviewed"], s["post_mortems"], s["api_equivalent_usd"]), (3, 1, 0.2))
         self.assertEqual(analyst.cases[0]["actual_outcome"], "no")
         rows = {r["key"]: r for r in engine.read_jsonl(engine.REVIEWS)}
         self.assertEqual(rows["polymarket:1"]["errors"]["jev_research"], 0.9)
         self.assertIsNone(rows["polymarket:2"]["post_mortem"])
+        self.assertNotIn("jev_research", rows["polymarket:4"]["errors"])
         self.assertEqual(review.review(POLICY, analyst=analyst, log=lambda *_: None)["reviewed"], 0)  # once only
 
         L = review.learning(engine.read_jsonl(engine.REVIEWS))
         self.assertEqual((L["reviewed"], L["post_mortems"], L["root_causes"], L["proposals"]),
-                         (2, 1, {"missing_info": 1}, {"research": 1}))
+                         (3, 1, {"missing_info": 1}, {"research": 1}))
         self.assertEqual(L["recent"][0]["lesson"], "Read the standings.")
 
+    def test_postmortems_have_a_daily_cap(self):
+        for i in range(8):
+            self.judged(str(i), 0.95)
+        engine.save_json(engine.RESOLUTIONS, {f"polymarket:{i}": "no" for i in range(8)})
+        s = review.review(POLICY, analyst=FakeAnalyst(), log=lambda *_: None, now_stamp="1999-12-26T00:00:00Z")
+        self.assertEqual((s["reviewed"], s["post_mortems"]), (8, POLICY["review"]["max_postmortems_per_day"]))
+
     def test_postmortem_parses_and_rejects_bad_replies(self):
-        calls = []
-        cc = ClaudeClientTests().client([ClaudeClientTests().reply(json.dumps(
-            {"root_cause": "overconfident", "what_happened": "x", "what_we_missed": "", "lesson": "y",
-             "suggested_change": {"area": "gates", "change": "z"}}))], calls)
-        pm = review.PostMortem(POLICY["research"], POLICY["review"], cc).explain({"question": "Q"})
-        self.assertEqual((pm["root_cause"], pm["suggested_change"]["area"]), ("overconfident", "gates"))
-        bad = ClaudeClientTests().client([ClaudeClientTests().reply('{"root_cause": "vibes"}')], [])
+        good = {"root_cause": "overconfident", "what_happened": "x", "what_we_missed": "", "lesson": "y",
+                "suggested_change": {"area": "gates", "change": "z"}}
+        replies = iter([stream(json.dumps(good)), stream('{"root_cause": "vibes"}')])
+        cc = news.ClaudeCode(POLICY["research"], runner=lambda *a: (0, next(replies), ""))
+        pm = review.PostMortem(POLICY["research"], POLICY["review"], cc)
+        out = pm.explain({"question": "Q"})
+        self.assertEqual((out["root_cause"], out["suggested_change"]["area"]), ("overconfident", "gates"))
         with self.assertRaises(news.NewsError):
-            review.PostMortem(POLICY["research"], POLICY["review"], bad).explain({"question": "Q"})
+            pm.explain({"question": "Q"})
 
 
 class PublishTests(DataDirTest):
-    def test_site_has_the_page_and_the_ledgers_but_no_private_files(self):
+    def test_page_shell_loads_live_data_from_the_public_repo(self):
         engine.save_portfolio("main", fresh_pf())
-        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-25T00:00:00Z", "research_usd": 0.5, "forecast_usd": 0.0,
-                                           "facts_kept": 3, "facts_dropped": 1, "funnel": {
-                                               "fetched": 1, "passed_filters": 1, "events": 1, "researched": 1, "judged": 1,
-                                               "cleared_gates": {"main": 0}, "bets": {"main": 0}}})
-        engine.append_jsonl(engine.JUDGMENTS, {"ts": "1999-12-25T00:00:00Z", "key": "polymarket:1", "market": market(),
-                                               "decision": {"bet": False}})  # judgments stay private (size)
         out = dashboard.build_site(POLICY)
         files = sorted(str(p.relative_to(out)) for p in out.rglob("*") if p.is_file())
-        self.assertEqual(files, ["index.html", "portfolios/main.json", "scans.jsonl"])
-        self.assertIn("America/New_York", (out / "index.html").read_text())
+        self.assertEqual(files, ["index.html"])
+        html = (out / "index.html").read_text()
+        self.assertIn("America/New_York", html)
+        blob = json.loads(html.split('<script type="application/json" id="data">', 1)[1].split("</script>", 1)[0])
+        self.assertEqual(blob["data_url"],
+                         "https://raw.githubusercontent.com/MojoAI-King/jev-paper-trader/master/papertrade_data/summary.json")
+        self.assertFalse(blob["example"])
+
+    def test_summary_json_is_real_data_with_ledger_links(self):
+        engine.save_portfolio("main", fresh_pf())
+        s = json.loads(dashboard.write_summary(POLICY).read_text())
+        self.assertFalse(s["example"])
+        self.assertTrue(s["ledger_base"].endswith("/papertrade_data/"))
 
     def test_refuses_to_publish_example_data(self):
         s = dashboard.summarize(POLICY, books(fresh_pf()), [], {}, "2026-09-27T00:00:00Z", example=True)

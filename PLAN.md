@@ -45,8 +45,8 @@ and sizing:
 | Jev alone | Jev with no research | The baseline, and your step 3's "without news" arm |
 | Claude direct | Claude Opus 5.5 reading the same research | Whether Jev adds anything over Claude |
 
-**Research, as deep as it's useful.** Claude Opus 5.5 at high effort: up to 10 searches and 5
-full-page reads per event, up to 20 dated, sourced facts. Facts cover what the resolution source
+**Research, rationed to the Claude plan.** Claude Opus 5.5 through Claude Code, medium effort: up to
+6 searches and 3 full-page reads per event, up to 15 dated, sourced facts. Facts cover what the resolution source
 shows today, recent events, what's still scheduled, historical base rates, and how the rules are
 measured.
 
@@ -91,15 +91,15 @@ which signals predict profit.
 
 ## Money
 
-No budget cap (Joey, 2026-09-27). Two ceilings in `policy.json` only stop a bug from burning money
-in a loop: $150 per run and 120 events per run.
+**No real money beyond Joey's existing $200/month Claude plan, plus a few cents a month for Jev.**
+Claude runs through Claude Code on the plan's login, never an API key (DECISIONS.md explains how
+that's enforced). The page (Cloudflare) and hourly runs (GitHub, public repo) are free.
 
-**Estimated cost, not yet measured:** $0.30–1.50 of research per event, plus $0.03–0.08 per
-market for Claude direct. Trading hourly, each market is re-researched about every 6 hours or when
-its price moves, so roughly 60 markets x 4 looks a day: **about $40–180 a day, $1,200–5,400 a
-month.** The range is wide because page reads and resumed search loops vary a lot. The first live
-run replaces it with measured numbers, which every scan logs. Bug guards: $150 per run, $500 per
-day.
+What research costs instead is a share of the plan's usage limits, which Joey also uses himself. So
+it's rationed: at most 3 research runs per hour and 20 per day, only on events where the rules are
+clear, reused for 24 hours, and paused whenever the plan's weekly window is 85% used or its 5-hour
+window 70%. Each call logs what it would have cost on the API, as a measure of how much the plan
+is absorbing; that amount is not billed.
 
 ## Phases
 
