@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-09-27-joey-s-calls-challengers-self-start-oppo-dff6
-- **State:** in-progress
+- **State:** merged
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-09-27T18:51:42.534Z
+- **Updated:** 2026-09-27T18:51:45.084Z
 
 ## Request
 

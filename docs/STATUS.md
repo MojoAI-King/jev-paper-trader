@@ -26,7 +26,5 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-| ID | Title | State | Branch | Owner |
-|---|---|---|---|---|
-| [2026-09-27-joey-s-calls-challengers-self-start-oppo-dff6](tasks/2026-09-27-joey-s-calls-challengers-self-start-oppo-dff6.md) | Joey's calls: challengers self-start, opposing bets and thin markets allowed | in-progress | master | unassigned |
+No open tasks.
 <!-- skilliton:index:tasks:end -->
