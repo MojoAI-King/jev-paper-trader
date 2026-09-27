@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27T15:14:56Z",
+  "generated": "2026-09-27T15:33:40Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -20,7 +20,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-27T15:14:56Z",
+      "t": "2026-09-27T15:33:40Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -59,34 +59,33 @@
   },
   "last_scan": {
     "date": "2026-09-27",
-    "judged": 12,
+    "judged": 22,
     "bets": 0,
-    "fail_info": 5,
-    "fail_rules": 0,
-    "fail_edge": 3,
+    "fail_info": 16,
+    "fail_rules": 1,
+    "fail_edge": 7,
     "sources": {
-      "kalshi": 1,
-      "polymarket": 11
+      "polymarket": 22
     }
   },
   "funnel": {
-    "ts": "2026-09-27T15:11:30Z",
+    "ts": "2026-09-27T15:30:28Z",
     "stages": [
       [
         "Fetched",
-        120
+        60
       ],
       [
         "Passed free filters",
-        12
+        22
       ],
       [
         "Judged by Jev",
-        12
+        22
       ],
       [
         "Judged with research",
-        5
+        17
       ],
       [
         "Cleared every gate (main)",
@@ -97,19 +96,20 @@
         0
       ]
     ],
-    "events": 9,
+    "events": 13,
     "researched_new": 3,
-    "research_reused": 0,
+    "research_reused": 6,
     "bets": {
       "main": 0,
       "jev_alone": 0,
-      "claude_direct": 0
+      "claude_direct": 0,
+      "bold": 7
     },
     "claude_calls": 8,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 33,
-    "facts_dropped": 1
+    "facts_kept": 75,
+    "facts_dropped": 18
   },
   "strategies": [
     {
@@ -147,15 +147,27 @@
       "open_cost": 0,
       "settled": 0,
       "wins": 0
+    },
+    {
+      "name": "bold",
+      "label": "Jev + research, bold",
+      "main": false,
+      "equity": 100000.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 7,
+      "open_cost": 13998.9,
+      "settled": 0,
+      "wins": 0
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-27T15:11:30Z",
+    "ts": "2026-09-27T15:30:28Z",
     "week": 0.79,
     "week_resets": 1790578800,
-    "five_hour": 0.04
+    "five_hour": 0.05
   },
-  "research_runs_today": 8,
+  "research_runs_today": 11,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
