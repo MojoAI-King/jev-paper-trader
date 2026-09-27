@@ -11,9 +11,14 @@ after 6 hours (was 24), or sooner if its price moves 5 or more points; the price
 to look again and is never shown to a forecaster. Because research now repeats through the day, a
 third bug guard was added: `max_usd_per_day` $500.
 
-**Where the hourly cycle runs is Joey's call** (it moves API keys or needs a machine that's awake):
-a GitHub Actions workflow is committed but stays off until the repository variable
-`TRADING_ENABLED` is set. It runs the tests, then a cycle, commits the ledgers, and deploys the page.
+**Where it runs (Joey's choices, 2026-09-27).** Hourly cycles run on GitHub Actions in the public
+repo https://github.com/MojoAI-King/jev-paper-trader (public: free Actions minutes, and friends can
+check every trade's timestamp in the history). The page is a Cloudflare Worker on Joey's personal
+account (Joey@mojoai.org), at https://jev-paper-trader.greekgod.workers.dev. The Jev key and the
+Cloudflare account ID were copied from `.env` into the repo's encrypted secrets without being
+printed. The workflow stays off until `ANTHROPIC_API_KEY` and a `CLOUDFLARE_API_TOKEN` are added as
+secrets and the repository variable `TRADING_ENABLED` is set to `true`. Commits pushed to the public
+repo use GitHub's no-reply address, not Joey's email.
 
 **The feedback loop.** `review` scores every newly resolved market once, for every forecaster.
 When the main forecast was confidently wrong (off by 0.5 or more) or a bet lost money, Claude looks

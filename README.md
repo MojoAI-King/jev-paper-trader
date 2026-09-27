@@ -81,6 +81,9 @@ the patterns. Changes are never applied automatically; see "How it improves over
 
 ## The public page
 
+**Live at https://jev-paper-trader.greekgod.workers.dev** (source and full history:
+https://github.com/MojoAI-King/jev-paper-trader).
+
 `site/` (built every cycle, never committed) is served by a static Cloudflare Worker named
 `jev-paper-trader` (see `wrangler.jsonc`). It shows only real data, in Eastern time, with the raw
 ledgers linked for anyone who wants to check. Hourly runs on GitHub Actions are set up in
