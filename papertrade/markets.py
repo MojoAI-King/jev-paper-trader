@@ -16,6 +16,8 @@ from datetime import datetime, timedelta, timezone
 UA = {"User-Agent": "jev-papertrade/0.1", "Accept": "application/json"}
 POLY = "https://gamma-api.polymarket.com"
 KALSHI = "https://api.elections.kalshi.com/trade-api/v2"
+MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry can't loop forever
+POLY_PAGE = 100
 
 
 def _get(url: str, params: dict | None = None, timeout: float = 20) -> object:
@@ -70,17 +72,27 @@ def normalize_polymarket(m: dict) -> dict | None:
 
 
 def fetch_polymarket(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
+    """Page through by 24h volume until `limit` Yes/No markets (most pages are team-vs-team sports)."""
     now = datetime.now(timezone.utc)
-    raw = _get(f"{POLY}/markets", {
-        "active": "true", "closed": "false", "limit": min(limit, 100),
-        # camelCase field name: "volume_24hr" is rejected with HTTP 422 "order fields are not valid"
-        "order": "volume24hr", "ascending": "false",
-        "end_date_min": _iso(now + timedelta(hours=12)),
-        "end_date_max": _iso(now + timedelta(days=days_ahead)),
-        "volume_num_min": min_volume,
-    })
-    out = [normalize_polymarket(m) for m in (raw if isinstance(raw, list) else [])]
-    return [m for m in out if m]
+    out, seen = [], set()
+    for page in range(MAX_PAGES):
+        raw = _get(f"{POLY}/markets", {
+            "active": "true", "closed": "false", "limit": POLY_PAGE, "offset": page * POLY_PAGE,
+            # camelCase field name: "volume_24hr" is rejected with HTTP 422 "order fields are not valid"
+            "order": "volume24hr", "ascending": "false",
+            "end_date_min": _iso(now + timedelta(hours=12)),
+            "end_date_max": _iso(now + timedelta(days=days_ahead)),
+            "volume_num_min": min_volume,
+        })
+        raw = raw if isinstance(raw, list) else []
+        for m in raw:
+            n = normalize_polymarket(m)
+            if n and n["market_id"] not in seen:  # offset paging can repeat a market if rankings shift
+                seen.add(n["market_id"])
+                out.append(n)
+        if len(out) >= limit or len(raw) < POLY_PAGE:
+            break
+    return out[:limit]
 
 
 def resolve_polymarket(market_id: str) -> str | None:
@@ -133,7 +145,7 @@ def normalize_kalshi(m: dict) -> dict | None:
 def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
     now = datetime.now(timezone.utc)
     out, cursor = [], None
-    while len(out) < limit:
+    for _ in range(MAX_PAGES):
         params = {"status": "open", "limit": 200, "mve_filter": "exclude",
                   "min_close_ts": int((now + timedelta(hours=12)).timestamp()),
                   "max_close_ts": int((now + timedelta(days=days_ahead)).timestamp())}
@@ -145,7 +157,7 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
             if n and n["volume"] >= min_volume:
                 out.append(n)
         cursor = data.get("cursor")
-        if not cursor or not data.get("markets"):
+        if len(out) >= limit or not cursor or not data.get("markets"):
             break
     out.sort(key=lambda m: m["volume"], reverse=True)
     return out[:limit]

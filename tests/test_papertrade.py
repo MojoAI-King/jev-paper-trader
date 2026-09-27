@@ -67,6 +67,52 @@ class PolymarketFetchTests(unittest.TestCase):
         self.assertEqual(len(ms), 3)  # the team-vs-team market is not Yes/No, so it's skipped
         self.assertTrue(all(m["source"] == "polymarket" and m["question"] for m in ms))
 
+    def paged(self, page_fn):
+        """Fake urlopen serving page_fn(i) for offset i * POLY_PAGE; records the pages asked for."""
+        self.pages_asked = []
+
+        def fake(req, timeout):
+            q = urllib.parse.parse_qs(urllib.parse.urlparse(req.full_url).query)
+            i = int(q["offset"][0]) // mk.POLY_PAGE
+            self.pages_asked.append(i)
+            return io.BytesIO(json.dumps(page_fn(i)).encode())
+        return fake
+
+    @staticmethod
+    def full_page(template_idx, prefix):
+        base = POLY_FIXTURE["ok_body"][template_idx]  # 0 = Yes/No market, 3 = team-vs-team
+        return [dict(base, id=f"{prefix}-{k}") for k in range(mk.POLY_PAGE)]
+
+    def test_paginates_until_limit(self):
+        # Page 0 is all team-vs-team markets (skipped); Yes/No markets start on page 1.
+        page_fn = lambda i: self.full_page(3, "team") if i == 0 else self.full_page(0, i)
+        with mock.patch("urllib.request.urlopen", self.paged(page_fn)):
+            ms = mk.fetch_polymarket(30, 10000, 150)
+        self.assertEqual(len(ms), 150)
+        self.assertEqual(self.pages_asked, [0, 1, 2])
+
+    def test_page_limit_stops_a_feed_that_never_runs_dry(self):
+        with mock.patch("urllib.request.urlopen", self.paged(lambda i: self.full_page(3, i))):
+            ms = mk.fetch_polymarket(30, 10000, 60)
+        self.assertEqual((ms, len(self.pages_asked)), ([], mk.MAX_PAGES))
+
+    def test_repeated_market_counted_once(self):
+        with mock.patch("urllib.request.urlopen", self.paged(lambda i: self.full_page(0, "same"))):
+            ms = mk.fetch_polymarket(30, 10000, 150)
+        self.assertEqual(len(ms), len({m["market_id"] for m in ms}))
+        self.assertEqual(len(ms), mk.POLY_PAGE)
+
+    def test_kalshi_page_limit(self):
+        calls = []
+
+        def fake(req, timeout):  # a cursor that never runs out, and nothing with enough volume
+            calls.append(req.full_url)
+            return io.BytesIO(json.dumps({"markets": [{"ticker": "T", "yes_ask": 40, "no_ask": 62,
+                                                       "volume": 5}], "cursor": "more"}).encode())
+        with mock.patch("urllib.request.urlopen", fake):
+            self.assertEqual(mk.fetch_kalshi(30, 10000, 60), [])
+        self.assertEqual(len(calls), mk.MAX_PAGES)
+
     def test_http_error_keeps_api_reason(self):
         with mock.patch("urllib.request.urlopen", self.fake_urlopen):
             with self.assertRaisesRegex(RuntimeError, "422.*order fields are not valid"):
