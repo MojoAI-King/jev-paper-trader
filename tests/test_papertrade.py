@@ -1,8 +1,12 @@
 """Offline tests for the paper trader. Run: python3 -m unittest discover -s tests -t ."""
+import io
 import json
 import tempfile
 import unittest
+import urllib.error
+import urllib.parse
 from pathlib import Path
+from unittest import mock
 
 from papertrade.jev_client import JevClient
 from papertrade import engine
@@ -40,6 +44,33 @@ class NormalizeTests(unittest.TestCase):
 
     def test_kalshi_skips_parlays(self):
         self.assertIsNone(mk.normalize_kalshi({"ticker": "KXMVEFOO", "yes_ask": 40, "no_ask": 62}))
+
+
+POLY_FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "polymarket_markets.json").read_text())
+
+
+class PolymarketFetchTests(unittest.TestCase):
+    """Replays recorded Gamma API responses; no network."""
+
+    def fake_urlopen(self, req, timeout):
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(req.full_url).query)
+        # Sort fields the live API accepted on 2026-09-26; anything else gets the recorded 422.
+        if q.get("order", [""])[0] not in ("volume24hr", "volumeNum", "volume"):
+            body = json.dumps(POLY_FIXTURE["bad_order_body"]).encode()
+            raise urllib.error.HTTPError(req.full_url, 422, "Unprocessable Entity", {}, io.BytesIO(body))
+        return io.BytesIO(json.dumps(POLY_FIXTURE["ok_body"]).encode())
+
+    def test_fetch_uses_a_sort_field_the_api_accepts(self):
+        # Regression: order=volume_24hr got HTTP 422, so Polymarket returned nothing.
+        with mock.patch("urllib.request.urlopen", self.fake_urlopen):
+            ms = mk.fetch_polymarket(30, 10000, 60)
+        self.assertEqual(len(ms), 3)  # the team-vs-team market is not Yes/No, so it's skipped
+        self.assertTrue(all(m["source"] == "polymarket" and m["question"] for m in ms))
+
+    def test_http_error_keeps_api_reason(self):
+        with mock.patch("urllib.request.urlopen", self.fake_urlopen):
+            with self.assertRaisesRegex(RuntimeError, "422.*order fields are not valid"):
+                mk._get(f"{mk.POLY}/markets", {"order": "volume_24hr"})
 
 
 class DecideTests(unittest.TestCase):

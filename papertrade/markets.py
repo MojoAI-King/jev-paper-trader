@@ -8,6 +8,7 @@ Resolution check returns "yes", "no", or None (unresolved).
 from __future__ import annotations
 
 import json
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -21,8 +22,13 @@ def _get(url: str, params: dict | None = None, timeout: float = 20) -> object:
     if params:
         url += "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode())
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode())
+    except urllib.error.HTTPError as e:
+        # Keep the API's own explanation: a bare "422 Unprocessable Entity" hid a bad sort field.
+        detail = e.read().decode(errors="replace")[:300]
+        raise RuntimeError(f"HTTP {e.code} from {url.split('?')[0]}: {detail}") from None
 
 
 def _f(x, default=None):
@@ -67,7 +73,8 @@ def fetch_polymarket(days_ahead: int, min_volume: float, limit: int) -> list[dic
     now = datetime.now(timezone.utc)
     raw = _get(f"{POLY}/markets", {
         "active": "true", "closed": "false", "limit": min(limit, 100),
-        "order": "volume_24hr", "ascending": "false",
+        # camelCase field name: "volume_24hr" is rejected with HTTP 422 "order fields are not valid"
+        "order": "volume24hr", "ascending": "false",
         "end_date_min": _iso(now + timedelta(hours=12)),
         "end_date_max": _iso(now + timedelta(days=days_ahead)),
         "volume_num_min": min_volume,
