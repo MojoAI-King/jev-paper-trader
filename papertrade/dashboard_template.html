@@ -49,6 +49,9 @@ a:hover { color: var(--cyan-2); }
 .bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap;
           font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .example { grid-column: 1 / -1; background: var(--warning); color: #111; padding: 6px 12px; font-weight: 700; letter-spacing: 0.06em; }
+/* big monitors: scale the whole dashboard up instead of stretching the chart */
+@media (min-width: 1900px) and (min-height: 1000px) { .hud { zoom: 1.25; height: calc(100vh / 1.25); } }
+@media (min-width: 2300px) and (min-height: 1200px) { .hud { zoom: 1.5; height: calc(100vh / 1.5); } }
 @media (max-width: 1150px) {
   .hud { height: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   #p-strat, #p-equity, #p-feed, #p-risk, #p-open { grid-column: 1; grid-row: auto; }
@@ -459,8 +462,9 @@ function drawChart(update, S, col, label) {
   s("stop", { offset: "0%", "stop-color": "#36e2ff", "stop-opacity": 0 }, sg); s("stop", { offset: "100%", "stop-color": "#36e2ff", "stop-opacity": 0.12 }, sg);
   let x0 = Math.min(...all.map(p => p.x)), x1 = Math.max(...all.map(p => p.x));
   if (x1 - x0 < 3 * 3600000) x1 = x0 + 3 * 3600000;
-  let lo = Math.min(D.start, ...all.map(p => p.v)), hi = Math.max(D.start, ...all.map(p => p.v));
-  const pad = Math.max((hi - lo) * 0.14, D.start * 0.004), step = niceStep((hi - lo + 2 * pad) / 4);
+  // never zoom in tighter than +/-5% of the bankroll: a 3% paper dip shouldn't look like a crash
+  let lo = Math.min(D.start * 0.95, ...all.map(p => p.v)), hi = Math.max(D.start * 1.05, ...all.map(p => p.v));
+  const pad = (hi - lo) * 0.04, step = niceStep((hi - lo + 2 * pad) / 4);
   lo = Math.floor((lo - pad) / step) * step; hi = Math.ceil((hi + pad) / step) * step;
   const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => T + (hi - v) / (hi - lo) * (H - T - B);
   const kfmt = v => { const a = v / 1000; return "$" + (Number.isInteger(a) ? a : a.toFixed(1)) + "k"; };
