@@ -197,5 +197,8 @@ reader got the same cap.
 <!-- skilliton:index:decisions:start -->
 Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes this list from the entries; edit the entries, not the list.
 
-No decision entries yet.
+| ID | Title | Status | Date |
+|---|---|---|---|
+| [2026-09-27-bold-strategy-info-bar-0-2-and-no-weekly-5851](docs/decisions/2026-09-27-bold-strategy-info-bar-0-2-and-no-weekly-5851.md) | Bold strategy (info bar 0.2) and no weekly research pause | accepted | 2026-09-27 |
+| [2026-09-27-learning-loop-playbook-coach-win-reviews-ac5d](docs/decisions/2026-09-27-learning-loop-playbook-coach-win-reviews-ac5d.md) | Learning loop: playbook coach, win reviews, gate ledger, self-calibration, weekly retro, challengers | accepted | 2026-09-27 |
 <!-- skilliton:index:decisions:end -->

@@ -3,7 +3,7 @@
 Kind: Living. Decision entry.
 
 - **ID:** 2026-09-27-bold-strategy-info-bar-0-2-and-no-weekly-5851
-- **Status:** proposed
+- **Status:** accepted
 - **Date:** 2026-09-27
 
 ## Decision

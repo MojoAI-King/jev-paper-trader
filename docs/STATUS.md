@@ -25,5 +25,8 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-No open tasks.
+| ID | Title | State | Branch | Owner |
+|---|---|---|---|---|
+| [2026-09-27-bold-strategy-and-no-weekly-research-pau-970f](tasks/2026-09-27-bold-strategy-and-no-weekly-research-pau-970f.md) | Bold strategy and no weekly research pause | in-progress | bold-strategy | unassigned |
+| [2026-09-27-self-improvement-loop-and-agent-ecosyste-b776](tasks/2026-09-27-self-improvement-loop-and-agent-ecosyste-b776.md) | Self-improvement loop and agent ecosystem | in-progress | learning-loop | unassigned |
 <!-- skilliton:index:tasks:end -->

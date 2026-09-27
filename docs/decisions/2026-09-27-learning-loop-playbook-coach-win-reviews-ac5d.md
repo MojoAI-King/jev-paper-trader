@@ -3,7 +3,7 @@
 Kind: Living. Decision entry.
 
 - **ID:** 2026-09-27-learning-loop-playbook-coach-win-reviews-ac5d
-- **Status:** proposed
+- **Status:** accepted
 - **Date:** 2026-09-27
 
 ## Decision
