@@ -136,6 +136,20 @@ def cmd_health(policy) -> int:
     return 0 if not problems else 1
 
 
+def cmd_due(minutes: int) -> int:
+    """For the scheduler: print run=true when the last cycle is at least `minutes` old (GitHub drops some
+    scheduled slots, so the workflow offers several an hour and this keeps the cadence even)."""
+    scans = [s for s in engine.read_jsonl(engine.SCANS) if "funnel" in s]
+    if scans:
+        last = datetime.strptime(scans[-1]["ts"], engine.TS).replace(tzinfo=timezone.utc)
+        age = (datetime.now(timezone.utc) - last).total_seconds() / 60
+        print(f"run={'true' if age >= minutes else 'false'}")
+        print(f"The last cycle was {age:.0f} minutes ago; the minimum gap is {minutes}.", file=sys.stderr)
+    else:
+        print("run=true")
+    return 0
+
+
 def deploy() -> int:
     """Push site/ to Cloudflare Workers with the project's wrangler.jsonc. Prints the live URL."""
     r = subprocess.run(["npx", "--yes", "wrangler", "deploy"], cwd=engine.PROJECT_ROOT,
@@ -165,6 +179,8 @@ def main(argv=None) -> int:
     sub.add_parser("report", help="Bankroll, P&L, and each forecaster vs the market")
     sub.add_parser("learn", help="What the learning loop has learned: playbook, calibration, gate ledger, proposals")
     sub.add_parser("health", help="Is it trading? Checks the live ledgers on GitHub and the last hourly runs")
+    du = sub.add_parser("due", help="For the scheduler: print run=true if the last cycle is old enough")
+    du.add_argument("--minutes", type=int, default=25)
     for name, text in (("approve", "Approve a proposal (a challenger starts on its own fake $100k next cycle)"),
                        ("reject", "Reject a proposal"), ("retire", "Stop a running challenger (its ledger is kept)")):
         c = sub.add_parser(name, help=text)
@@ -186,6 +202,8 @@ def main(argv=None) -> int:
         return cmd_learn(policy)
     if a.cmd == "health":
         return cmd_health(policy)
+    if a.cmd == "due":
+        return cmd_due(a.minutes)
     if a.cmd in ("approve", "reject", "retire"):
         print(coach.set_status(a.id, {"approve": "running", "reject": "rejected", "retire": "retired"}[a.cmd], policy))
         return 0

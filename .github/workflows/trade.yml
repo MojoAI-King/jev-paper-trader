@@ -1,4 +1,4 @@
-# Hourly trading cycle: settle -> scan -> review -> write summary.json -> commit the ledgers.
+# Trading cycle about every half hour: settle -> scan -> review -> learn -> write summary.json -> commit the ledgers.
 # The public page (Cloudflare) reads papertrade_data/summary.json straight from this repo, so no deploy is needed.
 #
 # Claude runs on Joey's Claude Max plan through Claude Code, signed in with CLAUDE_CODE_OAUTH_TOKEN
@@ -12,8 +12,10 @@ name: Trading cycle
 
 on:
   schedule:
-    - cron: "23 * * * *"  # hourly at :23; off the top of the hour, where GitHub delays scheduled runs most (a :05 slot started 45 minutes late)
-  workflow_dispatch: {}
+    # GitHub drops scheduled slots under load (on 2026-09-27 the :05 slot ran once in four hours, 45 minutes
+    # late), so offer four slots an hour; the "due" step skips a slot if a cycle ran in the last 25 minutes.
+    - cron: "8,23,38,53 * * * *"
+  workflow_dispatch: {}  # a manual start always runs a cycle
 
 concurrency:
   group: trading-cycle
@@ -30,24 +32,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Due for a cycle?
+        id: due
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"
+          else python3 -m papertrade due --minutes 25 >> "$GITHUB_OUTPUT"; fi
+
       - uses: actions/setup-python@v5
+        if: steps.due.outputs.run == 'true'
         with:
           python-version: "3.12"
 
       - uses: actions/setup-node@v4
+        if: steps.due.outputs.run == 'true'
         with:
           node-version: "22"
 
       - name: Install Claude Code
+        if: steps.due.outputs.run == 'true'
         run: npm install -g @anthropic-ai/claude-code && claude --version
 
       - name: Run the tests, then one trading cycle
+        if: steps.due.outputs.run == 'true'
         env:
           TYPESAFE_AI_API_KEY: ${{ secrets.TYPESAFE_AI_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: python3 -m unittest discover -s tests -t . && python3 -m papertrade cycle
 
       - name: Commit the ledgers (the audit trail the page reads)
+        if: steps.due.outputs.run == 'true'
         run: |
           git config user.name "papertrade-bot"
           git config user.email "papertrade-bot@users.noreply.github.com"

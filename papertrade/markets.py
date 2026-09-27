@@ -20,16 +20,17 @@ POLY = "https://gamma-api.polymarket.com"
 KALSHI = "https://api.elections.kalshi.com/trade-api/v2"
 MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry can't loop forever
 POLY_PAGE = 100
-RETRIES = 4      # tries per request on "too many requests" (429) or a server error (5xx)
-KALSHI_PAGE_PAUSE = 0.5  # seconds between Kalshi pages: GitHub's shared runners hit its rate limit (429)
+RETRIES = 5      # tries per request on "too many requests" (429) or a server error (5xx): waits 3+6+12+24s
+KALSHI_PAGE = 1000       # Kalshi's largest page: about 4 requests a fetch instead of 16 at 200 a page
+KALSHI_PAGE_PAUSE = 1.0  # seconds between Kalshi pages: GitHub's shared runners hit its rate limit (429)
 _sleep = time.sleep  # swapped out in tests
 
 
 def _retry_wait(e: urllib.error.HTTPError, attempt: int) -> float:
     try:
-        return min(30.0, float(e.headers.get("Retry-After")))
+        return min(60.0, float(e.headers.get("Retry-After")))
     except (TypeError, ValueError):
-        return 2.0 * 2 ** attempt  # 2, 4, 8 seconds
+        return 3.0 * 2 ** attempt  # 3, 6, 12, 24 seconds
 
 
 def _get(url: str, params: dict | None = None, timeout: float = 20) -> object:
@@ -168,7 +169,7 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
     for page in range(MAX_PAGES):
         if page:
             _sleep(KALSHI_PAGE_PAUSE)
-        params = {"status": "open", "limit": 200, "mve_filter": "exclude",
+        params = {"status": "open", "limit": KALSHI_PAGE, "mve_filter": "exclude",
                   "min_close_ts": int((now + timedelta(hours=12)).timestamp()),
                   "max_close_ts": int((now + timedelta(days=days_ahead)).timestamp())}
         if cursor:

@@ -140,7 +140,7 @@ class PolymarketFetchTests(unittest.TestCase):
         fake, calls = limited(2)  # two 429s, then an answer: GitHub's runners hit Kalshi's limit on 2026-09-27
         with mock.patch("urllib.request.urlopen", fake):
             self.assertEqual(mk._get(f"{mk.KALSHI}/markets"), {"markets": []})
-        self.assertEqual((len(calls), self.waits), (3, [3.0, 4.0]))  # honors Retry-After, else backs off
+        self.assertEqual((len(calls), self.waits), (3, [3.0, 6.0]))  # honors Retry-After, else backs off
         fake, calls = limited(99)
         with mock.patch("urllib.request.urlopen", fake):
             with self.assertRaisesRegex(RuntimeError, "HTTP 429.*too_many_requests"):
@@ -976,6 +976,23 @@ class RetroTests(DataDirTest):
         coach.retro(policy, writer=FakeRetro([self.GOOD, self.BAD]), log=lambda *_: None, now=self.NOW)
         status = {p["title"]: p["status"] for p in coach.load_proposals()["proposals"]}
         self.assertEqual(status, {"Lower edge bar": "running", "Bigger bets": "invalid"})
+
+
+class SchedulerGateTests(DataDirTest):
+    def due(self):
+        from papertrade import __main__ as cli
+        out = io.StringIO()
+        with mock.patch("sys.stdout", out), mock.patch("sys.stderr", io.StringIO()):
+            cli.cmd_due(25)
+        return out.getvalue().strip()
+
+    def test_runs_when_no_cycle_or_the_last_one_is_old_and_skips_when_recent(self):
+        self.assertEqual(self.due(), "run=true")  # never ran
+        engine.append_jsonl(engine.SCANS, {"ts": (datetime.now(timezone.utc) - timedelta(minutes=40)).strftime(engine.TS), "funnel": {}})
+        self.assertEqual(self.due(), "run=true")
+        engine.append_jsonl(engine.SCANS, {"ts": (datetime.now(timezone.utc) - timedelta(minutes=5)).strftime(engine.TS), "funnel": {}})
+        engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "review"})  # not a cycle
+        self.assertEqual(self.due(), "run=false")
 
 
 class ExperimentsRegistryTests(unittest.TestCase):
