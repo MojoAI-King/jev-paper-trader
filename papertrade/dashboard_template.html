@@ -115,7 +115,7 @@ a:hover { color: var(--cyan-2); }
 .chart { position: relative; flex: 1; min-height: 0; }
 .chart svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .tick { font-size: 10.5px; fill: var(--muted); font-family: var(--mono); }
-.dl { font-size: 11px; font-family: var(--display); font-weight: 600; letter-spacing: 0.05em; }
+.dl { font-size: 10.5px; font-family: var(--display); font-weight: 600; letter-spacing: 0.04em; }
 @media (prefers-reduced-motion: no-preference) {
   .draw path.ln { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.3, .6, .2, 1) 300ms forwards; }
   .ring-pulse { animation: ring 2.2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
@@ -475,16 +475,12 @@ function drawChart(update, S, col, label) {
     s("circle", { class: "ring-pulse", cx: X(e.x), cy: Y(e.v), r: 4, fill: "none", stroke: col(r.name), "stroke-width": 1.5 }, svg);
     s("circle", { cx: X(e.x), cy: Y(e.v), r: 3.5, fill: col(r.name), stroke: "#03070a", "stroke-width": 1.5 }, svg);
   });
-  // direct labels, nudged apart; tied strategies share one label
+  // direct labels: every strategy named in its own color, nudged apart where lines sit together
   const ends = order.map(r => ({ name: r.name, y: Y(r.pts[r.pts.length - 1].v) })).sort((a, b) => a.y - b.y);
-  const groups = [];
-  ends.forEach(e => { const gr = groups.find(x => Math.abs(x.y - e.y) < 1); gr ? gr.names.push(e.name) : groups.push({ y: e.y, names: [e.name] }); });
   let prev = -Infinity;
-  groups.forEach(gr => {
-    const y = Math.max(gr.y, prev + 14); prev = y;
-    const t = s("text", { x: W - R + 10, y: y + 4, class: "dl", fill: gr.names.length === 1 ? col(gr.names[0]) : "#9dbac2" }, svg);
-    t.textContent = gr.names.length === 1 ? label(gr.names[0]).toUpperCase() : `${gr.names.length} TIED`;
-    if (gr.names.length > 1) t.append(s("title")), t.lastChild.textContent = gr.names.map(label).join(", ");
+  ends.forEach(e => {
+    const y = Math.max(e.y, prev + 13); prev = y;
+    s("text", { x: W - R + 10, y: y + 4, class: "dl", fill: col(e.name) }, svg).textContent = label(e.name).toUpperCase();
   });
   // a scan line sweeping the plot, like a radar trace
   if (!REDUCED) {
