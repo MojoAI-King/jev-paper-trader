@@ -78,18 +78,18 @@
 
   "strategies": {
     "_readme": "Each strategy trades its own fake $100k on the same markets with the same sizing. They differ in the probability source and, only where gate_overrides says so, in a gate. main is the pre-registered headline (PLAN.md); its gates are never overridden.",
-    "main": {"label": "Jev + Claude research", "short": "Jev + Claude", "desc": "Jev reads Claude's research", "badge": "Headline", "probability": "jev_research", "gates": "jev_research",
-             "blurb": "Jev reads Claude's research and bets only when it's sure of its information. The headline."},
+    "main": {"label": "Jev + Claude research", "short": "Jev + Claude", "desc": "Jev reads Claude's research", "probability": "jev_research", "gates": "jev_research",
+             "blurb": "Jev reads Claude's research and bets only when it's sure of its information. The main test."},
     "jev_alone": {"label": "Jev alone", "short": "Jev alone", "desc": "Jev with no research", "probability": "jev_plain", "gates": "jev_plain",
                   "blurb": "Jev with no research at all. The baseline: does research help?"},
     "claude_direct": {"label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
                       "blurb": "Claude reads the same research and makes its own call. Does Jev add anything?"},
     "bold": {"label": "Jev + research, bold", "short": "Bold", "desc": "also bets when Jev is unsure", "badge": "Challenger", "probability": "jev_research", "gates": "jev_research",
              "gate_overrides": {"min_info_sufficient": 0.2},
-             "blurb": "The headline strategy, but it bets even when Jev says it's short on information.",
+             "blurb": "Jev + Claude, but it bets even when Jev says it's short on information.",
              "_why": "Joey approved 2026-09-27: main but with the info bar at 0.2 instead of 0.5, to test whether the info gate is too cautious"},
     "calibrated": {"label": "Jev + research, self-calibrating", "short": "Self-calibrating", "desc": "corrected by past results", "badge": "Learning", "probability": "jev_calibrated", "gates": "jev_research",
-                   "blurb": "The headline strategy, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
+                   "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
                    "_why": "Main's gates, but the probability is corrected by a map learned from every resolved market (learn.calibration_map). Waits until learning.calibration_min_resolved markets have resolved"}
   },
 

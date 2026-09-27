@@ -18,7 +18,11 @@ Kind: Living. Decision entry.
    unsure"), Self-calibrating (Learning n/30, "corrected by past results").
 3. The equity chart never zooms tighter than ±5% of the bankroll ($95k to $105k); it widens only when a
    strategy moves further.
-4. On monitors at least 1900px wide the dashboard is scaled up (CSS zoom 1.25, or 1.5 from 2300px).
+4. ~~On monitors at least 1900px wide the dashboard is scaled up (CSS zoom 1.25, or 1.5 from 2300px).~~
+   **Reversed the same day:** Joey: "it was a little nicer when it was smaller". The page renders at 1x
+   on every screen again (Worker version 5536aa80). Joey had not asked for the scale-up.
+5. **Amended the same day:** main's "Headline" tag is gone (Joey asked what "Headline" meant; the row's
+   name already says Jev + Claude). Main is still the pre-registered strategy and still glows on the chart.
 
 ## Why
 

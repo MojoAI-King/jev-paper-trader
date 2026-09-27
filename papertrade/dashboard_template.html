@@ -49,9 +49,6 @@ a:hover { color: var(--cyan-2); }
 .bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap;
           font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .example { grid-column: 1 / -1; background: var(--warning); color: #111; padding: 6px 12px; font-weight: 700; letter-spacing: 0.06em; }
-/* big monitors: scale the whole dashboard up instead of stretching the chart */
-@media (min-width: 1900px) and (min-height: 1000px) { .hud { zoom: 1.25; height: calc(100vh / 1.25); } }
-@media (min-width: 2300px) and (min-height: 1200px) { .hud { zoom: 1.5; height: calc(100vh / 1.5); } }
 @media (max-width: 1150px) {
   .hud { height: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   #p-strat, #p-equity, #p-feed, #p-risk, #p-open { grid-column: 1; grid-row: auto; }
