@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-09-27-bold-strategy-and-no-weekly-research-pau-970f
-- **State:** in-progress
+- **State:** verified
 - **Branch:** bold-strategy
 - **Owner:** unassigned
-- **Updated:** 2026-09-27T15:30:08.482Z
+- **Updated:** 2026-09-27T15:58:11.864Z
 
 ## Request
 

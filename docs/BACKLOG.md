@@ -4,15 +4,18 @@ Kind: Living.
 
 | ID | Requested outcome | State | Evidence or next step |
 |---|---|---|---|
-| B1 | Confirm the scheduled hourly runs land | open | Only the manual run 36326789989 has been watched. Check the Actions tab for runs at about :05 each hour and new `Trading cycle` commits. |
+| B1 | Confirm the scheduled hourly runs land | open | As of 2026-09-27 16:00 UTC no scheduled run has succeeded: the three successful runs were manual starts, and the cron moved to :23 at 15:0x UTC. `python3 -m papertrade health` flags this. If scheduled runs keep not appearing, do B10. |
 | B2 | Decide on the price-match rule | open (Joey, after a few days of data) | It dropped 8 of 53 real facts, likely poll numbers within 1 point of the market price. Kept strict by Joey's choice; review the logged `facts_dropped` reasons in `judgments.jsonl`. |
-| B3 | Make linked markets' probabilities add up | proposed | Jev gave Lula 38% and Bolsonaro 23% in a two-way race (market: 43% + 57%). Test normalizing within an event as a new challenger strategy, per PLAN.md's improvement process. |
+| B3 | Make linked markets' probabilities add up | proposed | Jev gave Lula 38% and Bolsonaro 23% in a two-way race (market: 43% + 57%). Needs a new probability source in code (normalized within an event), then it can run as a challenger. |
 | B4 | ChatGPT as a second researcher (PLAN phase 2) | not started | Needs a way to run on a ChatGPT plan rather than per-call API billing, since API spend was ruled out. |
-| B5 | Research-agent check before a bet (PLAN phase 3) | not started | Only once main starts clearing its gates. |
+| B5 | Research-agent check before a bet (PLAN phase 3) | not started | Bold now bets (7 on 2026-09-27); main hasn't cleared its gates yet. |
 | B6 | Keep `judgments.jsonl` a manageable size | watch | Hourly runs append about 40 records an hour, some carrying research facts. Rotate the file by month if it passes about 50 MB. |
 | B7 | Fix the README quick start | open | It points at VS Code tasks, but the repo has no `.vscode/` folder. |
-| B8 | Check the dashboard at phone width | open | Headless Chrome won't render narrower than about 500px, so layouts below that are unverified. |
+| B8 | Check the dashboard at phone width | closes with B11 | The redesigned page was checked at 390px in an iframe harness (lesson 2026-09-27-headless-chrome-can-t-lay-out-below-abou-0171): no horizontal overflow. |
 | B9 | Decide the 15 open security findings | open (needs a human) | Listed in `docs/SECURITY_FINDINGS.md`; `skilliton security status` reports 15 controls missing and undecided. |
+| B10 | An outside hourly trigger, if GitHub's scheduler keeps skipping | only if B1 fails | A Cloudflare cron trigger calling the workflow's `workflow_dispatch` API. Needs a fine-grained GitHub token with Actions read/write on this repo only, created by Joey and stored as a Worker secret. |
+| B11 | Ship the page redesign | waiting for Joey's OK | Branch `page-redesign` (a0cd87e). Private preview: <https://claude.ai/artifact/TP84qLCdrVPHPnRaBTcEAf>. On OK: merge, run tests, push, redeploy with `CLOUDFLARE_ACCOUNT_ID` set to the `Joey@mojoai.org` account, load the live page to confirm. |
+| B12 | Decide whether challengers may start by themselves | Joey | `learning.auto_start_challengers` is false. If true, the weekly retrospective's valid challengers start within `learning.challenger_bounds`, at most 2 at a time. |
 
 Give each item a stable ID and link its task and decisions. Move a completed item to `docs/BACKLOG_ARCHIVE.md` with its closure date and evidence.
 

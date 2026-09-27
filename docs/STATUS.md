@@ -2,21 +2,23 @@
 
 Kind: Living.
 
-Current state (2026-09-27): **Phase 1 is live.** Hourly GitHub Actions runs trade three fake-$100,000
-strategies on real Polymarket and Kalshi markets: Jev with Claude research (main), Jev alone, and Claude
-direct. Claude runs through Claude Code on Joey's Claude Max plan (`CLAUDE_CODE_OAUTH_TOKEN`), never an
-API key, rationed to at most 3 research runs an hour and 20 a day, and paused at 85% of the plan's weekly
-window. The public page, https://jev-paper-trader.greekgod.workers.dev, reads `papertrade_data/summary.json`
-from the public repo https://github.com/MojoAI-King/jev-paper-trader. No fake bets have been placed yet:
-with research, Jev's probabilities land close to the market's and its information score stays under the
-0.5 gate.
+Current state (2026-09-27, 12:00 EDT): **Phase 1 is live and trading.** GitHub Actions runs trade five
+fake-$100,000 strategies on real Polymarket and Kalshi markets: Jev with Claude research (main, the
+pre-registered headline), Jev alone, Claude direct, **bold** (main with an info bar of 0.2, approved by Joey
+2026-09-27) and **self-calibrating** (waits for 30 resolved markets). Claude runs through Claude Code on
+Joey's Claude Max plan (`CLAUDE_CODE_OAUTH_TOKEN`), never an API key; research runs until the plan's weekly
+limit (the 85% pause was lifted by Joey) and pauses at 70% of the 5-hour window. The **learning loop** is
+merged (87801e5): reviews of misses and wins, a research playbook rewritten by a Claude coach, the gate
+ledger, the calibration map, a weekly retrospective and approval-gated challengers (`docs/LEARNING.md`).
+The public page, https://jev-paper-trader.greekgod.workers.dev, reads `papertrade_data/summary.json` from
+the public repo https://github.com/MojoAI-King/jev-paper-trader; its redesign waits for Joey's OK on a
+private preview (BACKLOG B11).
 
-Verified: 53 offline tests pass (`python3 -m unittest discover -s tests -t .`); the price-leak tests fail
-when the screen is switched off; GitHub run 36326789989 succeeded end to end (ledgers committed as
-a96cbb8); the live page and GitHub's `summary.json` were checked by plain request and headless Chrome.
-Not yet observed: a scheduled (cron) run; only the manual first run has been watched. The plan, with its
-pre-registered success and stop criteria, is in `PLAN.md`; the reasons behind each choice are in
-`DECISIONS.md`.
+Verified: 71 offline tests pass; the new guards (playbook screen at load, challenger bounds at load, the
+coach's rule screen, the retrospective's challenger check, the experiments registry) each fail when
+switched off. GitHub run 36329790430 succeeded with the bold strategy: 7 fake bets, main 0. Not yet
+observed: a scheduled (cron) run, and a live run of the learning-loop code (BACKLOG B1). Runbook:
+`docs/OPERATIONS.md`; `python3 -m papertrade health` checks the live system.
 
 Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding work. Keep branch-complete, merged, deployed and verified separate; one task's result does not make the whole project complete.
 
@@ -27,6 +29,5 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
-| [2026-09-27-bold-strategy-and-no-weekly-research-pau-970f](tasks/2026-09-27-bold-strategy-and-no-weekly-research-pau-970f.md) | Bold strategy and no weekly research pause | in-progress | bold-strategy | unassigned |
 | [2026-09-27-self-improvement-loop-and-agent-ecosyste-b776](tasks/2026-09-27-self-improvement-loop-and-agent-ecosyste-b776.md) | Self-improvement loop and agent ecosystem | in-progress | learning-loop | unassigned |
 <!-- skilliton:index:tasks:end -->
