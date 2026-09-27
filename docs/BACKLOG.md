@@ -4,9 +4,8 @@ Kind: Living.
 
 | ID | Requested outcome | State | Evidence or next step |
 |---|---|---|---|
-| B1 | Cycles start by themselves, about every 30 minutes | waiting for Joey | GitHub's scheduler skipped every slot on 2026-09-27. The Cloudflare trigger (`worker/index.js`, :04 and :34) is deployed and needs `GITHUB_DISPATCH_TOKEN`; steps in `docs/OPERATIONS.md`, "What starts a cycle". Verify: a run at the next :04/:34 after the secret is set. |
 | B2 | Decide on the price-match rule | open (Joey, after a few days of data) | It dropped 8 of 53 real facts, likely poll numbers within 1 point of the market price. Kept strict by Joey's choice; review the logged `facts_dropped` reasons in `judgments.jsonl`. |
-| B3 | Make linked markets' probabilities add up | proposed | Jev gave Lula 38% and Bolsonaro 23% in a two-way race (market: 43% + 57%). Needs a new probability source in code (normalized within an event), then it can run as a challenger. |
+| B3 | Make linked markets' probabilities add up | proposed, now with a live example | Jev gave Lula 38% and Bolsonaro 23% in a two-way race (market: 43% + 57%). On 2026-09-27 Bold bet YES on "Bitcoin above $86,000 on Sep 28" (17:49 UTC) and NO on "above $84,000 on Sep 28" (18:34 UTC): both lose if Bitcoin ends between $84k and $86k. Needs a probability source normalized within an event (code), then a challenger; or a rule that a strategy never holds contradicting sides in one event. |
 | B4 | ChatGPT as a second researcher (PLAN phase 2) | not started | Needs a way to run on a ChatGPT plan rather than per-call API billing, since API spend was ruled out. |
 | B5 | Research-agent check before a bet (PLAN phase 3) | not started | Bold now bets (7 on 2026-09-27); main hasn't cleared its gates yet. |
 | B6 | Keep `judgments.jsonl` a manageable size | watch | Hourly runs append about 40 records an hour, some carrying research facts. Rotate the file by month if it passes about 50 MB. |
