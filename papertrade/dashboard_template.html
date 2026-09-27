@@ -570,7 +570,8 @@ window.addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer
   if (!EMBED.data_url || !EMBED.data_url.startsWith("https://")) return render(EMBED);
   const load = first => {
     const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 8000);
-    return fetch(EMBED.data_url, { signal: ctl.signal, cache: "no-store" })
+    // a per-minute query string gets past GitHub's 5-minute file cache without hammering it
+    return fetch(`${EMBED.data_url}?m=${Math.floor(Date.now() / 60000)}`, { signal: ctl.signal, cache: "no-store" })
       .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
       .then(d => {
         if (d.example) throw new Error("example data");
