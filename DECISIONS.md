@@ -27,6 +27,18 @@ separate credit billed at API rates was paused. Claude Code only bills an API ac
 - The public page now reads `papertrade_data/summary.json` from the GitHub repo each time it opens,
   so the hourly job only commits data and never needs a Cloudflare token.
 
+**First live cycle (2026-09-27, 07:25 UTC, run locally with research capped at 2).** 120 markets
+fetched, 29 due, all judged by Jev, 2 events researched (4 markets). 6 Claude calls; about $0.65 at
+API prices, billed to the plan instead. Weekly plan usage went from 77% to 78%. No bets: with research, Jev's
+probabilities moved to within a few points of the market (France 38% -> 52% vs a 52¢ price), and its
+info score stayed under 0.5. The price screen dropped 12 of 25 facts: 6 only because the source
+page's address contained "prediction" (a match preview; the fact text was clean), and 6 under the
+"figure within 1 point of this market's price" rule, likely poll numbers near the 43¢/57¢ Brazil
+prices. Whether to narrow either rule is Joey's call (the screen is never loosened without his OK).
+Also seen: Jev gave Lula 38% and Bolsonaro 23% in what is essentially a two-way race; the market's
+two prices add up to 100%. Making linked markets' probabilities add up is a candidate change for the
+feedback loop.
+
 **Risk to watch.** If Anthropic resumes the paused change, scripted use would draw on a separate
 monthly credit ($200 on Max 20x) at API rates and stop when it runs out, as long as extra usage is
 off in Claude settings. Keep it off.
