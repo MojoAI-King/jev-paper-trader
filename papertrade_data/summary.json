@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-27T23:05:50Z",
+  "generated": "2026-09-27T23:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-27T23:05:50Z",
+      "t": "2026-09-27T23:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -84,16 +84,15 @@
     "date": "2026-09-27",
     "judged": 2,
     "bets": 0,
-    "fail_info": 1,
+    "fail_info": 0,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 0,
     "sources": {
-      "polymarket": 1,
-      "kalshi": 1
+      "polymarket": 2
     }
   },
   "funnel": {
-    "ts": "2026-09-27T23:05:46Z",
+    "ts": "2026-09-27T23:35:10Z",
     "stages": [
       [
         "Fetched",
@@ -109,7 +108,7 @@
       ],
       [
         "Judged with research",
-        1
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -122,7 +121,7 @@
     ],
     "events": 2,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -133,8 +132,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 9,
-    "facts_dropped": 1,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -148,7 +147,7 @@
       "calibrated": 0
     },
     "judged": 2,
-    "with_research": 1
+    "with_research": 0
   },
   "strategies": [
     {
@@ -373,7 +372,11 @@
           99964.92
         ],
         [
-          "2026-09-27T23:05:50Z",
+          "2026-09-27T23:35:10Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T23:35:14Z",
           99964.92
         ]
       ]
@@ -486,7 +489,11 @@
           99712.34
         ],
         [
-          "2026-09-27T23:05:50Z",
+          "2026-09-27T23:35:10Z",
+          99712.34
+        ],
+        [
+          "2026-09-27T23:35:14Z",
           99712.34
         ]
       ]
@@ -599,7 +606,11 @@
           99964.92
         ],
         [
-          "2026-09-27T23:05:50Z",
+          "2026-09-27T23:35:10Z",
+          99964.92
+        ],
+        [
+          "2026-09-27T23:35:14Z",
           99964.92
         ]
       ]
@@ -712,7 +723,11 @@
           97210.73
         ],
         [
-          "2026-09-27T23:05:50Z",
+          "2026-09-27T23:35:10Z",
+          97210.73
+        ],
+        [
+          "2026-09-27T23:35:14Z",
           97210.73
         ]
       ]
@@ -825,7 +840,11 @@
           100000.0
         ],
         [
-          "2026-09-27T23:05:50Z",
+          "2026-09-27T23:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T23:35:14Z",
           100000.0
         ]
       ]
@@ -1757,6 +1776,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-27T23:35:10Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 2,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-27T23:05:46Z",
       "type": "call",
       "jev": 0.18,
@@ -2450,14 +2477,6 @@
       "facts": 10,
       "q": "Will Bitcoin dip to $84,000 on September 27?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-84k-on-september-27-2026"
-    },
-    {
-      "ts": "2026-09-27T14:41:02Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 40,
-      "researched": 13,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -2467,7 +2486,7 @@
     "five_hour": 0.09
   },
   "research_runs_today": 20,
-  "cycles_24h": 17,
+  "cycles_24h": 18,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
