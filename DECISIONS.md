@@ -39,6 +39,13 @@ Also seen: Jev gave Lula 38% and Bolsonaro 23% in what is essentially a two-way 
 two prices add up to 100%. Making linked markets' probabilities add up is a candidate change for the
 feedback loop.
 
+**Hourly trading switched on (2026-09-27, 14:40 UTC).** Joey added `CLAUDE_CODE_OAUTH_TOKEN`; the
+repository variable `TRADING_ENABLED` is `true`. The first GitHub run (manual start) passed all 52
+tests, judged 40 markets (13 with research: 3 new events, 2 reused), made 13 Claude calls on the plan
+(weekly usage unchanged at 78%), placed no bets, and committed its ledgers. From then on it runs every
+hour at about :05 UTC. Cycles are no longer run on the Mac, so the ledgers have one writer. To stop:
+`gh variable set TRADING_ENABLED --body false --repo MojoAI-King/jev-paper-trader`.
+
 **Risk to watch.** If Anthropic resumes the paused change, scripted use would draw on a separate
 monthly credit ($200 on Max 20x) at API rates and stop when it runs out, as long as extra usage is
 off in Claude settings. Keep it off.

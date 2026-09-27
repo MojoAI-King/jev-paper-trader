@@ -1,8 +1,8 @@
 # Plan: can an AI research team grow $100,000 on prediction markets?
 
 Status, 2026-09-27: decisions made (Joey delegated them; details in DECISIONS.md). **Phase 1 is
-built and tested offline, with hourly cycles, the feedback loop and the public page.** The first
-live run waits on `ANTHROPIC_API_KEY` in `.env`; hourly runs wait on Joey's hosting choices.
+live:** hourly cycles on GitHub (Claude on Joey's Claude plan, never an API key), the feedback loop,
+and the public page at https://jev-paper-trader.greekgod.workers.dev.
 
 ## The question
 
