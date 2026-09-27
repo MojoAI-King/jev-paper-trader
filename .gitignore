@@ -1,5 +1,22 @@
 .env
-papertrade_data*/
+# The trading ledgers ARE tracked (the experiment's record and audit trail); only generated or backup files are not
+papertrade_data-backup-*/
+papertrade_data/dashboard.html
+papertrade_data/*.tmp
+papertrade_data/portfolios/*.tmp
+# Built by `python3 -m papertrade publish` every cycle; deployed to Cloudflare, not committed
+site/
+.wrangler/
+# Leftover copy of a broken .git folder (checked 2026-09-27: no keys, only placeholder text); kept out of the repo
+_to_delete/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Skilliton setup lock and private evidence
+/.skilliton/prepare.lock
+/.skilliton/private-evidence/
+# Reference copy of the earlier model-router project: read-only, never part of this repo (2026-09-27)
+model-router/
+# Dispatch lane plan: a working file, not part of the repo
+LANES.md
