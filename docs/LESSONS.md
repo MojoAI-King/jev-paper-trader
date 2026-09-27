@@ -9,5 +9,12 @@ Each lesson is one file in `docs/lessons/`, created with `skilliton record lesso
 <!-- skilliton:index:lessons:start -->
 Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this list from the entries; edit the entries, not the list.
 
-No lesson entries yet.
+| ID | Title | Status | Date |
+|---|---|---|---|
+| [2026-09-27-dashboard-numbers-span-12-outside-a-grid-aa75](lessons/2026-09-27-dashboard-numbers-span-12-outside-a-grid-aa75.md) | Dashboard numbers: span-12 outside a grid, and last scan counted by day | accepted | 2026-09-27 |
+| [2026-09-27-polymarket-returned-nothing-the-api-reje-50b5](lessons/2026-09-27-polymarket-returned-nothing-the-api-reje-50b5.md) | Polymarket returned nothing: the API rejects snake_case sort fields | accepted | 2026-09-27 |
+| [2026-09-27-publishing-a-public-repo-and-page-author-9e3d](lessons/2026-09-27-publishing-a-public-repo-and-page-author-9e3d.md) | Publishing a public repo and page: author emails, backup refs, 5-minute raw cache | accepted | 2026-09-27 |
+| [2026-09-27-research-must-run-on-the-claude-plan-an-46c5](lessons/2026-09-27-research-must-run-on-the-claude-plan-an-46c5.md) | Research must run on the Claude plan: an API key silently switches billing | accepted | 2026-09-27 |
+| [2026-09-27-the-price-screen-checked-web-addresses-j-173f](lessons/2026-09-27-the-price-screen-checked-web-addresses-j-173f.md) | The price screen checked web addresses Jev never sees and dropped clean facts | accepted | 2026-09-27 |
+| [2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d](lessons/2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d.md) | zsh traps: a path loop variable wipes PATH; a command in a string never runs | accepted | 2026-09-27 |
 <!-- skilliton:index:lessons:end -->

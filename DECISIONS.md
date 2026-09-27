@@ -3,6 +3,10 @@
 Plain-English record of the choices behind this project, newest first. Each entry says what was
 decided, why, and what is still unverified.
 
+The dated sections below were written on 2026-09-27, before this project kept one file per decision.
+New decisions are recorded with `skilliton record decision "<title>"` in `docs/decisions/` and listed in
+the index at the end of this page.
+
 ## 2026-09-27 Price screen: web addresses checked for market sites only (Joey approved)
 
 The screen had been applying every rule to each fact's web address as well as its text. In the
@@ -187,3 +191,11 @@ Polymarket returned nothing because the API rejected our sort field (`volume_24h
 until it has 60 Yes/No markets, because most top-volume Polymarket markets are team-vs-team sports
 markets we skip. A hard cap of 25 pages per source stops any feed from looping forever; Kalshi's
 reader got the same cap.
+
+## Index
+
+<!-- skilliton:index:decisions:start -->
+Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes this list from the entries; edit the entries, not the list.
+
+No decision entries yet.
+<!-- skilliton:index:decisions:end -->
