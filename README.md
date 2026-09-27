@@ -4,9 +4,11 @@ Paper trading on **real** Polymarket and Kalshi prediction markets, using a **fa
 and TypeSafe's Jev as the judge. No accounts, no real money, and no real orders. The project only reads
 public market prices.
 
-The goal isn't P&L. It's to answer one question honestly: **does Jev forecast these markets better than
-the market's own price?** If it does, there's an edge worth testing with real money. If it doesn't,
-any profit is luck.
+The question it answers: **can Jev, fed research by Claude (and later ChatGPT and research agents),
+grow the fake $100,000 by more than luck would explain?** Two numbers decide it: the profit or loss,
+and whether the forecasts beat the market's own price (Brier score). The full plan, with its
+pre-registered success and stop criteria, is in `PLAN.md`; the reasoning behind each choice is in
+`DECISIONS.md`.
 
 ## Quick start
 
@@ -21,35 +23,74 @@ Run the daily task once a day. The same commands work from any terminal:
 ```bash
 python3 -m papertrade ping      # key + connection check
 python3 -m papertrade markets   # preview market feeds
-python3 -m papertrade daily     # settle -> scan -> report
+python3 -m papertrade cycle     # settle -> scan -> review -> report -> dashboard -> site/ (run hourly)
+python3 -m papertrade cycle --deploy   # ...and push the public page to Cloudflare
+python3 -m papertrade review    # score resolved markets; post-mortems for the misses
 python3 -m papertrade report    # just the report
+python3 -m papertrade dashboard # one page: trades, cash split, P&L (papertrade_data/dashboard.html)
+python3 -m papertrade publish   # build site/ (the public page + raw ledgers)
 ```
 
-Needs Python 3.9 or later and nothing else. Your key lives in `.env` as `TYPESAFE_AI_API_KEY`.
+Needs Python 3.9 or later and nothing else. Keys live in `.env`: `TYPESAFE_AI_API_KEY` for Jev and
+`ANTHROPIC_API_KEY` for Claude's research. Without the Anthropic key, a scan judges nothing and says so.
+
+For a first live run, research just a few events: `python3 -m papertrade scan --limit 3`.
 
 ## How a bet happens
 
-For each market (question, resolution rules, and close date, **but never the price**), Jev answers three
-questions in a single call:
+Every hour, a funnel narrows the markets before any paid step:
+
+1. **Fetch** about 120 markets from Polymarket and Kalshi (free, read-only).
+2. **Free filters:** price 5–95¢, enough volume, closes within 30 days, and due for a look (never
+   judged, judged over 6 hours ago, or its price moved 5+ points).
+3. **Research:** markets are grouped by event, and Claude Opus 5.5 researches each event with web
+   search and by reading pages. It returns dated, sourced facts: what the resolution source shows
+   today, recent events, what's still scheduled, historical base rates.
+4. **Price screen:** code drops any fact that mentions odds, prediction markets, forecasters,
+   predictions, or a figure matching the market's price. The survivors become `recent_facts`.
+5. **Judged three ways** (never shown the price): Jev with the facts, Jev without them, and Claude
+   directly from the same facts.
+6. **Each strategy decides** with its own fake $100,000 (see below).
+
+Jev answers five questions in one call:
 
 | Question | Used for |
 | --- | --- |
 | `p_yes`: will this resolve YES? | Jev's probability |
+| `p_no`: will it resolve NO? | Consistency check: skip if YES and NO don't add up |
 | `rules_clear`: are the resolution rules objective? | Skip vague markets |
-| `info_sufficient`: can this be judged without recent news? | Skip markets Jev would be guessing on |
+| `info_sufficient`: can this be judged from what Jev has? | Skip markets Jev would be guessing on |
+| `already_decided`: is the outcome settled in practice? | Logged for analysis |
 
-Code then compares Jev's probability with the actual cost of the contract, including fees and slippage.
 A fake bet is placed only if **every** gate in `policy.json` passes:
 
-- Edge of at least **8 points** after costs
-- Rules clear of at least 0.75, and information sufficient of at least 0.5
-- Price between 5¢ and 95¢, closing within 30 days, with enough trading volume
-- Size: quarter-Kelly, at most **2%** of the bankroll per bet and **30%** in open bets overall
+- Edge of at least **8 points** after fees and slippage
+- Rules clear of at least 0.75, information sufficient of at least 0.5, YES/NO gap at most 0.15
+- Size: quarter-Kelly, at most **2%** of that strategy's bankroll per bet and **30%** in open bets
+
+**Strategies.** Each trades its own fake $100,000 on the same markets with the same gates:
+**main** (Jev + Claude research, the headline), **Jev alone**, and **Claude direct**. Comparing them
+shows whether research helps and whether Jev adds anything over Claude.
+
+## Learning from mistakes
+
+When a judged market resolves, `review` scores every forecaster against the real outcome. When the
+main forecast was confidently wrong or a bet lost money, Claude looks up what actually happened and
+writes a post-mortem: root cause, what we missed, a lesson and one suggested change. The page shows
+the patterns. Changes are never applied automatically; see "How it improves over time" in PLAN.md.
+
+## The public page
+
+`site/` (built every cycle, never committed) is served by a static Cloudflare Worker named
+`jev-paper-trader` (see `wrangler.jsonc`). It shows only real data, in Eastern time, with the raw
+ledgers linked for anyone who wants to check. Hourly runs on GitHub Actions are set up in
+`.github/workflows/trade.yml` and stay off until the `TRADING_ENABLED` repository variable is set.
 
 ## Reading the report
 
 - **Bankroll and P&L**: how the fake $100k is doing. Open bets are valued at what they cost.
-- **Brier score, Jev vs. Market**: the number that matters. Lower is better. It's measured on
+- **Strategies**: each strategy's bankroll and P&L side by side.
+- **Brier score** for each forecaster (Jev with research, Jev alone, Claude direct) and the market: the number that matters. Lower is better. It's measured on
   every judged market that resolved, not just the ones bet on. If Jev's score isn't lower than the market's, the
   "edge" is noise. Don't trust either number until about **50 or more** markets have resolved.
 
@@ -58,25 +99,33 @@ A fake bet is placed only if **every** gate in `policy.json` passes:
 ```
 papertrade/
   markets.py     # reads Polymarket + Kalshi public data (read-only)
+  news.py        # Claude research, Claude direct, and the price screen
   judge.py       # the questions Jev answers (bump QUESTION_SET_VERSION if you edit wording)
-  engine.py      # gates, sizing, fake ledger, settlement, report
+  engine.py      # the funnel, gates, sizing, fake ledgers, settlement, report
+  review.py      # the feedback loop: scoring and post-mortems
+  dashboard.py   # one-page HTML dashboard and the public site (+ dashboard_template.html)
   jev_client.py  # tiny Jev API client (stdlib only)
 policy.json      # every threshold and limit; tune here, not in code
-papertrade_data/ # created on first run: portfolio, every judgment, resolutions
+papertrade_data/ # portfolios/, judgments.jsonl, scans.jsonl, reviews.jsonl, resolutions.json (tracked)
+site/            # the public page, built each cycle (not tracked)
 tests/           # offline tests: python3 -m unittest discover -s tests -t .
+PLAN.md          # the experiment: question, design, success criteria, phases
+DECISIONS.md     # why each choice was made
 ```
 
 ## Costs
 
-Market data is free. Jev charges roughly 4¢ per million input tokens with free output (check your
-TypeSafe dashboard for your actual rate). A full scan is about 80k tokens, so a month of daily runs costs
-around a dime.
+Market data is free, and Jev costs cents. Claude's research is the real cost: roughly $0.30–1.50
+per event plus a few cents per market for Claude direct. Trading hourly, that's about $40–180 a
+day. It's an estimate until the first live run; every scan logs its measured spend in
+`papertrade_data/scans.jsonl` and on the dashboard. There's no budget cap by design. Ceilings in
+`policy.json` ($150 per run, $500 per day, 120 events per run) only stop a bug from looping.
 
-## Known limits (v1)
+## Known limits
 
-- **No news feed yet.** Jev only knows the market's own text plus its general knowledge, so the
-  `info_sufficient` gate will skip many current-events markets. That's deliberate. Next step: have Claude or ChatGPT
-  summarize recent facts for each market into the state, then compare how Jev does with and without it.
-- **The Kalshi reader is untested against the live API.** Its field names are handled two ways because the docs
-  disagree. If `markets` shows Kalshi failing, Polymarket still works on its own.
+- **Research is unmeasured until the first live run:** real cost, run time, and how many facts the
+  price screen drops (every dropped fact is logged with its reason).
+- **At most 40 markets per cycle** are judged (`max_jev_calls_per_scan` is 80, two Jev calls per
+  market). With hourly cycles, the rest are picked up in the next hour.
+- **The Kalshi reader was written from docs** that disagree on field names, so it handles both.
 - Bets are filled at the listed ask plus 1¢ of slippage. Real fills on thin markets can be worse.
