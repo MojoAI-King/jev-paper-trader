@@ -105,6 +105,7 @@ def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: d
         if strat.get("probability") == "jev_calibrated" and cmap and not cmap.get("active"):
             note = f"Learning: {cmap['n']} of {cmap['need']} results in"
         rows.append({"name": name, "label": strat["label"], "short": strat.get("short") or strat["label"],
+                     "desc": strat.get("desc") or "", "badge": strat.get("badge") or ("Challenger" if strat.get("challenger") else None),
                      "main": name == engine.MAIN, "equity": eq,
                      "slot": i + 1 if i < SLOTS else None, "blurb": strat.get("blurb") or strat.get("_why") or "",
                      "challenger": bool(strat.get("challenger")), "note": note,

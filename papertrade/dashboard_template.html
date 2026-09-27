@@ -97,16 +97,21 @@ a:hover { color: var(--cyan-2); }
 
 /* strategies */
 .strats { display: flex; flex-direction: column; overflow-y: auto; min-height: 0; }
-.srow { display: grid; grid-template-columns: 3px minmax(0, 1fr) auto; gap: 4px 10px; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.srow { display: grid; grid-template-columns: 3px minmax(0, 1fr) auto; gap: 3px 10px; padding: 7px 4px 7px 0; border-bottom: 1px solid var(--line); align-items: center; }
 .srow:last-child { border-bottom: 0; }
-.srow .bar { grid-row: 1 / 3; align-self: stretch; border-radius: 2px; }
+.srow .bar { grid-row: 1 / 4; align-self: stretch; border-radius: 2px; }
 .srow .nm { font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em; display: flex; gap: 8px; align-items: baseline; min-width: 0; }
-.srow .nm small { font-family: var(--mono); font-weight: 400; font-size: 9.5px; color: var(--muted); letter-spacing: 0.1em; }
+.srow .badge { font-family: var(--mono); font-weight: 500; font-size: 8.5px; color: var(--cyan-dim); letter-spacing: 0.12em; text-transform: uppercase;
+                border: 1px solid var(--line); padding: 0 4px; border-radius: 2px; margin-right: 6px; }
+.srow .ds { grid-column: 2 / 4; font-size: 11px; color: var(--muted); margin-top: -3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.srow .pl { grid-column: 2 / 4; display: flex; gap: 10px; align-items: center; font-size: 11px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.srow .pl .spark { margin-left: auto; }
+.srow .pl span { white-space: nowrap; } .srow .pl i { font-style: normal; color: var(--muted); }
 .srow .v { font-size: 15px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
 .srow .d { grid-column: 2 / 4; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 11px; color: var(--ink-2); white-space: nowrap; }
 .srow.lead .v { color: var(--cyan-2); text-shadow: 0 0 12px rgba(54, 226, 255, 0.5); }
 .up { color: var(--good); } .down { color: var(--critical); } .flat { color: var(--muted); }
-.spark { width: 70px; height: 18px; flex: none; }
+.spark { width: 56px; height: 16px; flex: none; }
 
 /* equity */
 .eq-head { display: flex; align-items: flex-end; gap: 10px 28px; flex-wrap: wrap; flex: none; }
@@ -220,7 +225,7 @@ const usd0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD"
 const usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const pct = (v, d = 0) => v == null ? "—" : `${(v * 100).toFixed(d)}%`;
 const cents = v => v == null ? "—" : `${(v * 100).toFixed(v * 100 < 10 ? 1 : 0)}¢`;
-const signed = (v, f = usd0) => (v > 0 ? "+" : v < 0 ? "−" : "±") + f.format(Math.abs(v));
+const signed = (v, f = usd0) => Math.abs(v) < 0.005 ? usd0.format(0) : (v > 0 ? "+" : "−") + f.format(Math.abs(v));
 const hm = iso => new Date(iso).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: TZ });
 const when = iso => iso ? new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZone: TZ }) + " ET" : "—";
 const h = (tag, props = {}, ...kids) => {
@@ -289,7 +294,7 @@ function render(data, { update = false } = {}) {
   // ---------- strategies ----------
   const ranked = strategies.slice().sort((a, b) => worth(b) - worth(a));
   const box = $("strats"); box.textContent = "";
-  $("strat-r").textContent = `${strategies.length} × ${usd0.format(D.start)}`;
+  $("strat-r").textContent = `${usd0.format(D.start)} each · open = not settled`;
   const race = Object.fromEntries((D.race || []).map(r => [r.name, r.points]));
   const leadTie = ranked.length > 1 && Math.abs(worth(ranked[0]) - worth(ranked[1])) < 0.5;
   ranked.forEach((r, i) => {
@@ -297,12 +302,18 @@ function render(data, { update = false } = {}) {
     const v = h("span", { class: "v" });
     const lm = r.note ? r.note.match(/(\d+) of (\d+)/) : null;
     const note = lm ? `learning ${lm[1]}/${lm[2]}` : `${r.open} open${r.settled ? ` · ${r.wins}W ${r.settled - r.wins}L` : ""}`;
-    box.append(h("div", { class: `srow${i === 0 && !leadTie ? " lead" : ""}`, title: r.blurb || r.label },
+    const unreal = r.unrealized ?? 0, real = r.realized ?? 0;
+    const badge = lm ? `${r.badge || "Learning"} ${lm[1]}/${lm[2]}` : r.badge;
+    box.append(h("div", { class: `srow${i === 0 && !leadTie ? " lead" : ""}`, title: `${r.blurb || r.label} · ${note} · ${chg >= 0 ? "+" : "−"}${Math.abs(chg * 100).toFixed(2)}%` },
       h("span", { class: "bar", style: `background:${col(r.name)};box-shadow:0 0 8px ${col(r.name)}` }),
-      h("span", { class: "nm" }, document.createTextNode(label(r.name)), r.main ? h("small", { text: "HEADLINE" }) : null, r.challenger ? h("small", { text: "CHALLENGER" }) : null),
+      h("span", { class: "nm", text: label(r.name) }),
       v,
-      h("span", { class: "d" }, h("span", { class: dir(chg), text: `${arrow(chg)} ${chg >= 0 ? "+" : "−"}${Math.abs(chg * 100).toFixed(2)}%` }),
-        h("span", { text: note }), spark(race[r.name], col(r.name), D.start))));
+      h("span", { class: "ds" }, badge ? h("span", { class: "badge", text: badge }) : null, document.createTextNode(r.desc || "")),
+      h("span", { class: "pl" },
+        h("span", {}, h("i", { text: "settled " }), h("b", { class: real ? dir(real) : "flat", text: signed(real) })),
+        h("span", { title: "Open bets valued at today's market prices. Not final until the market settles." }, h("i", { text: `${r.open} open ` }),
+          h("b", { class: Math.abs(unreal) < 0.5 ? "flat" : dir(unreal), text: signed(unreal) })),
+        spark(race[r.name], col(r.name), D.start))));
     roll(v, `s-${r.name}`, worth(r), x => usd0.format(x));
   });
 
@@ -312,10 +323,11 @@ function render(data, { update = false } = {}) {
   const lead = ranked[0];
   head.append(h("div", { class: "stat" }, h("span", { text: leadTie ? "Leader · tied" : `Leader · ${label(lead.name)}` }), big));
   roll(big, "lead", lead ? worth(lead) : 0, v => usd2.format(v));
-  const main = S.main;
-  if (main && lead && lead.name !== "main") head.append(h("div", { class: "stat" }, h("span", { text: "Headline" }), h("b", { text: usd2.format(worth(main)) })));
-  head.append(h("div", { class: "stat" }, h("span", { text: "In play" }), h("b", { text: usd0.format(inPlay) })));
-  $("eq-r").textContent = "open bets at last seen price";
+  const realized = strategies.reduce((a, r) => a + (r.realized || 0), 0), unrealized = strategies.reduce((a, r) => a + (r.unrealized || 0), 0);
+  head.append(h("div", { class: "stat" }, h("span", { text: "Settled profit · final" }), h("b", { class: realized ? dir(realized) : "", text: signed(realized, usd2) })),
+    h("div", { class: "stat", title: "What the open bets would be worth at today's market prices. It moves until each market settles; only settled money is final." },
+      h("span", { text: "Open bets · not settled" }), h("b", { class: Math.abs(unrealized) < 0.5 ? "" : dir(unrealized), text: signed(unrealized, usd2) })));
+  $("eq-r").textContent = "open bets at today's prices · final when settled";
   drawChart(update, S, col, label);
 
   // ---------- exposure ----------
@@ -344,7 +356,7 @@ function render(data, { update = false } = {}) {
   // ---------- open positions ----------
   const cards = $("cards"); cards.textContent = "";
   const bets = D.open_bets || [];
-  $("open-r").textContent = bets.length ? `${bets.length} markets · ${usd0.format(inPlay)}` : "";
+  $("open-r").textContent = bets.length ? `${bets.length} markets · ${usd0.format(inPlay)} · not settled yet` : "";
   if (!bets.length) cards.append(h("div", { class: "none", text: "NO OPEN POSITIONS · a bet needs every gate to pass" }));
   bets.forEach(m => m.positions.forEach(p => {
     const cd = h("div", { class: "cd" });
@@ -359,8 +371,9 @@ function render(data, { update = false } = {}) {
         h("span", { class: "s" }, h("i", { style: `background:${col(p.strategy)};box-shadow:0 0 6px ${col(p.strategy)}` }), document.createTextNode(label(p.strategy).toUpperCase())),
         h("span", { class: "p", text: `${p.side.toUpperCase()} @ ${cents(p.cost_per)} · AI ${pct(p.p_side)}` }))),
       link(m.url, m.question, "q"),
-      h("div", { class: "m" }, h("span", { text: usd0.format(p.total_cost) }),
-        h("span", { class: pl == null ? "flat" : dir(pl / p.total_cost), text: pl == null ? "—" : `${usd0.format(p.value)} ${signed(pl)}` }))));
+      h("div", { class: "m", title: "Worth now at today's market price. The result is final only when the market settles: each contract pays $1 or $0." },
+        h("span", { text: `${usd0.format(p.total_cost)} bet` }),
+        h("span", { class: pl == null ? "flat" : dir(pl / p.total_cost), text: pl == null ? "—" : `now ${usd0.format(p.value)} (${signed(pl)})` }))));
   }));
 
   // ---------- live feed ----------
