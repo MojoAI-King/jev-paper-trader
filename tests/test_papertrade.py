@@ -955,27 +955,37 @@ class RetroTests(DataDirTest):
         for i in range(POLICY["learning"]["retro_min_reviews"]):
             engine.append_jsonl(engine.REVIEWS, reviewed(f"k{i}"))
 
-    def test_retro_files_proposals_and_nothing_starts_without_joey(self):
+    def test_with_auto_start_off_nothing_starts_until_approved(self):
+        off = dict(POLICY, learning=dict(POLICY["learning"], auto_start_challengers=False))
         w = FakeRetro([self.GOOD, self.BAD, dict(self.GOOD, title="third")])
-        r = coach.retro(POLICY, writer=w, log=lambda *_: None, now=self.NOW)
+        r = coach.retro(off, writer=w, log=lambda *_: None, now=self.NOW)
         self.assertEqual((r["ran"], r["proposals"]), (True, 2))  # at most two a week
         props = {p["title"]: p for p in coach.load_proposals()["proposals"]}
         self.assertEqual(props["Lower edge bar"]["status"], "proposed")
         self.assertEqual(props["Bigger bets"]["status"], "invalid")
         self.assertNotIn(props["Lower edge bar"]["id"], engine.strategies(POLICY))
         self.assertIn("gate_ledger", w.numbers)  # Claude interprets numbers computed in code
-        self.assertFalse(coach.retro(POLICY, writer=w, log=lambda *_: None, now=self.NOW + timedelta(days=3))["ran"])
+        self.assertFalse(coach.retro(off, writer=w, log=lambda *_: None, now=self.NOW + timedelta(days=3))["ran"])
         # Joey approves: it runs as its own strategy from the next cycle
         pid = props["Lower edge bar"]["id"]
-        self.assertIn("running", coach.set_status(pid, "running", POLICY))
-        self.assertIn(pid, engine.strategies(POLICY))
-        self.assertIn("Can't start", coach.set_status(props["Bigger bets"]["id"], "running", POLICY))
+        self.assertIn("running", coach.set_status(pid, "running", off))
+        self.assertIn(pid, engine.strategies(off))
+        self.assertIn("Can't start", coach.set_status(props["Bigger bets"]["id"], "running", off))
 
-    def test_auto_start_only_when_joey_turned_it_on_and_only_within_bounds(self):
-        policy = dict(POLICY, learning=dict(POLICY["learning"], auto_start_challengers=True))
-        coach.retro(policy, writer=FakeRetro([self.GOOD, self.BAD]), log=lambda *_: None, now=self.NOW)
+    def test_challengers_start_by_themselves_but_only_within_bounds_and_slots(self):
+        self.assertTrue(POLICY["learning"]["auto_start_challengers"])  # Joey's choice, 2026-09-27
+        coach.retro(POLICY, writer=FakeRetro([self.GOOD, self.BAD]), log=lambda *_: None, now=self.NOW)
         status = {p["title"]: p["status"] for p in coach.load_proposals()["proposals"]}
         self.assertEqual(status, {"Lower edge bar": "running", "Bigger bets": "invalid"})
+        self.assertIn(next(p["id"] for p in coach.load_proposals()["proposals"] if p["status"] == "running"),
+                      engine.strategies(POLICY))
+        # a week later, more valid challengers than free slots: the extra one waits
+        two = [dict(self.GOOD, title="A", strategy=dict(self.GOOD["strategy"], gate_overrides={"min_edge": 0.07})),
+               dict(self.GOOD, title="B", strategy=dict(self.GOOD["strategy"], gate_overrides={"min_edge": 0.10}))]
+        coach.retro(POLICY, writer=FakeRetro(two), log=lambda *_: None, now=self.NOW + timedelta(days=8))
+        status = {p["title"]: p["status"] for p in coach.load_proposals()["proposals"]}
+        self.assertEqual((status["A"], status["B"]), ("running", "proposed"))
+        self.assertIn("free slot", next(p for p in coach.load_proposals()["proposals"] if p["title"] == "B")["status_reason"])
 
 
 class SchedulerGateTests(DataDirTest):

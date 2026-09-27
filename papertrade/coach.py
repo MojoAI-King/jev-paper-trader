@@ -10,8 +10,9 @@ can change how money is bet on its own.
   in playbook_history.jsonl and every research record notes the version it used, so results can be
   compared before and after each change.
 - The retrospective reads the week's numbers and writes up to two proposals. A proposed challenger
-  (a strategy on its own fake $100k) starts only when Joey approves it (`python3 -m papertrade approve
-  <id>`), or by itself within learning.challenger_bounds if he set auto_start_challengers to true.
+  (a strategy on its own fake $100k) starts by itself within learning.challenger_bounds, at most
+  learning.max_running_challengers at a time (Joey turned auto_start_challengers on, 2026-09-27); with it
+  off, it waits for `python3 -m papertrade approve <id>`.
 
 How the loops fit together: docs/LEARNING.md.
 """
@@ -298,6 +299,8 @@ def retro(policy: dict, writer=None, log=print, now: datetime | None = None) -> 
                 p.update(status="running", status_reason="started automatically within the allowed bounds",
                          started=stamp)
                 running += 1
+            elif lc["auto_start_challengers"]:
+                p.update(status_reason=f"waiting for a free slot ({running} challengers already running)")
         book["proposals"].append(p)
         filed.append(p)
     engine.save_json(engine.PROPOSALS, book)

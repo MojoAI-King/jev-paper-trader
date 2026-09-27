@@ -91,7 +91,8 @@ Every resolved market feeds a learning loop (full design in `docs/LEARNING.md`):
   markets have resolved.
 - **A gate ledger**: what each gate saved or cost, measured on real outcomes.
 - **A weekly retrospective** that proposes changes. Changes to how money is bet run as challenger
-  strategies on their own fake $100k, started with Joey's OK, and are judged on future markets.
+  strategies on their own fake $100k, start by themselves within fixed bounds, and are judged on future
+  markets.
 
 Main's pre-registered rules never change on their own. Every strategy is listed, with what it tests
 and how it will be judged, in `docs/EXPERIMENTS.md`. How to run and check the live system:

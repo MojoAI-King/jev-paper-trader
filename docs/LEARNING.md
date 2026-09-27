@@ -17,11 +17,12 @@ What changes by itself, and what doesn't:
 
 | Changes automatically | Needs Joey |
 | --- | --- |
-| Scores for every resolved market | Starting a challenger strategy (unless he turns on auto-start, below) |
+| Scores for every resolved market | Promoting a challenger into main |
 | Written reviews of misses and of wins | Any change to main, sizing, fees, exposure caps |
 | The research playbook (how to research, never what to bet) | Loosening the price screen |
 | The calibration map, and the self-calibrating strategy using it | Question wording (bumps `QUESTION_SET_VERSION`) |
 | The weekly retrospective and its proposals | Code changes a proposal asks for |
+| Starting a challenger strategy, within fixed bounds (Joey, 2026-09-27) | |
 
 ## The loops
 
@@ -70,13 +71,12 @@ the calibration map) and writes an honest summary plus at most two proposals. It
 30 resolved markets is noise. Each proposal says how it will be judged before it starts
 (`judge_by`, `min_resolved`).
 
-**7. Challengers (with Joey's OK).** A proposal of kind `challenger` is a strategy config: a
+**7. Challengers (automatic, within bounds).** A proposal of kind `challenger` is a strategy config: a
 probability source and gate changes inside `learning.challenger_bounds`. It can never touch sizing,
 fees, exposure caps or the price screen, and `learn.challenger_problem` re-checks this every time it's
-loaded. Joey starts one with `python3 -m papertrade approve <id>` (then commit and push
-`papertrade_data/proposals.json`), stops one with `retire`. If he sets
-`learning.auto_start_challengers` to true, valid challengers start by themselves, at most
-`learning.max_running_challengers` at a time. It's off until he says so.
+loaded. Valid challengers start by themselves (`learning.auto_start_challengers` is true, Joey's call on
+2026-09-27), at most `learning.max_running_challengers` at a time; an extra one waits for a free slot.
+`python3 -m papertrade retire <id>` stops one (its ledger is kept) and `approve` starts one by hand.
 
 ## When a challenger replaces something
 

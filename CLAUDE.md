@@ -22,8 +22,9 @@
   `trading-health` skill (`.claude/skills/`) when the question is "is it working".
 - **The learning loop** (`docs/LEARNING.md`, `papertrade/learn.py`, `papertrade/coach.py`) improves the
   research playbook and the calibration map by itself. Anything that changes how money is bet runs as a
-  challenger strategy on its own fake $100k, started only with Joey's OK (`approve`) unless he sets
-  `learning.auto_start_challengers`. Main's gates are pinned by `test_main_keeps_its_pre_registered_gates`.
+  challenger strategy on its own fake $100k. Challengers start by themselves within
+  `learning.challenger_bounds` (Joey turned `auto_start_challengers` on, 2026-09-27); they can never touch
+  sizing, fees, caps or the price screen. Main's gates are pinned by `test_main_keeps_its_pre_registered_gates`.
   Playbook rules pass the same screen as research facts (`learn.rule_problem`), when written and again
   when loaded. Improvement sessions follow the `improve` skill.
 - Every strategy in `policy.json` needs a row in `docs/EXPERIMENTS.md`, written before its results

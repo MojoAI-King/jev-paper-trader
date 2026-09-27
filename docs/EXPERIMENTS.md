@@ -12,5 +12,6 @@ Written when the strategy starts, before its results come in. A test
 | `bold` | 2026-09-27 | Info bar 0.2 instead of 0.5 | Is the info gate too cautious? | P&L and Brier on its bets vs main's; the gate ledger's "stopped only by the info gate" row, after 30 settled bets |
 | `calibrated` | 2026-09-27 | Jev's probability corrected by a map learned from resolved markets; waits for 30 | Does learning from outcomes make Jev's numbers better? | Brier vs main on the same markets after 50 resolved markets past activation |
 
-Challengers the weekly retrospective proposes get a row here when Joey approves them, with the
-proposal's own `judge_by` and `min_resolved`.
+Challengers the weekly retrospective proposes start by themselves (within `learning.challenger_bounds`)
+and are listed, with their own `judge_by` and `min_resolved`, in `papertrade_data/proposals.json` and on
+the page. The next improvement session copies each running challenger into this table.

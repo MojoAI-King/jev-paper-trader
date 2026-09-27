@@ -4,15 +4,22 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-09-27 14:47 EDT
+Written: 2026-09-27 14:51 EDT
 
+- **State:** Challengers now start by themselves within bounds (max 2 running); opposing bets and thin markets stay allowed; trading automatic every ~30 min; 16 open bets, none settled. Evidence: 72 tests pass incl. auto-start, bounds and free-slot tests; decision 2026-09-27-challengers-start-by-themselves-opposing-4dc1.
+- **Next:** First results around midnight ET feed reviews, the coach and calibration; first weekly retrospective after 10 reviewed markets may start challengers; improvements queued: B3 (linked probabilities fit together), B15 (fill size vs market depth), B13 (phone layout)
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
+- **Git:** master @ b475bda, 16 uncommitted
+
+## Earlier
+
+### 2026-09-27 14:47 EDT
 - **State:** Trading automatically every ~30 min via the Cloudflare trigger (verified 18:04/18:34 UTC); 5 strategies, 16 open bets, none settled; learning loop merged and running in every cycle (playbook v0, 0 resolved); mission-control page live with settled vs not-settled money, plain strategy names, chart floor of +/-5%, big-monitor scaling. Evidence: 72 tests pass; runs 36339317403 and 36341181637 started by Cloudflare; live page checked by request and headless Chrome at 1440x900 and 2550x1281.
 - **Next:** First results around midnight ET feed the review, coach and calibration loops; Joey to decide B3 (no contradicting bets in one event), B14 (thin-market filter), B12 (auto-start challengers); phone layout later (B13)
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the GitHub dispatch token lives only as a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
 - **Git:** master @ 63b4576, 9 uncommitted
-
-## Earlier
 
 ### 2026-09-27 14:36 EDT
 - **State:** Automatic: Cloudflare trigger started runs 36339317403 (18:04 UTC, skipped by the 25-minute gate) and 36341181637 (18:34 UTC, full cycle, 1 bold bet) on its own after Joey set GITHUB_DISPATCH_TOKEN; mission-control page live. Evidence: wrangler secret list shows GITHUB_DISPATCH_TOKEN; both runs are workflow_dispatch with nobody starting them; run logs show the gate message and the funnel.

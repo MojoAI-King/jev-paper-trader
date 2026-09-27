@@ -53,7 +53,7 @@
   },
 
   "learning": {
-    "_readme": "The self-improvement loop (docs/LEARNING.md). Automatic: scoring, reviews of misses and wins, the research playbook, the calibration map. Anything that changes how money is bet runs as a challenger on its own fake $100k, and only starts once Joey approves it, unless auto_start_challengers is true.",
+    "_readme": "The self-improvement loop (docs/LEARNING.md). Automatic: scoring, reviews of misses and wins, the research playbook, the calibration map, and challengers: a weekly-retrospective proposal that changes how money is bet starts on its own fake $100k by itself (Joey, 2026-09-27), within challenger_bounds and at most max_running_challengers at a time. Main never changes on its own.",
     "max_win_reviews_per_day": 3,
     "win_margin": 0.25,
     "_win_margin": "A resolved market gets a 'why were we right' review when main won money, or Jev with research beat the market's error by at least this much",
@@ -65,7 +65,7 @@
     "_coach": "The coach rewrites the research playbook once at least this many new reviews with a written post-mortem have come in, at most once a day",
     "retro_every_days": 7,
     "retro_min_reviews": 10,
-    "auto_start_challengers": false,
+    "auto_start_challengers": true,
     "max_running_challengers": 2,
     "challenger_bounds": {"min_edge": [0.05, 0.20], "min_rules_clear": [0.5, 0.95], "min_info_sufficient": [0.1, 0.8], "max_framing_gap": [0.05, 0.30]},
     "_challenger_bounds": "The only gates a challenger may move, and how far. Sizing, fees, exposure caps and the price screen are never a challenger's to change"
