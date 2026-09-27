@@ -202,4 +202,5 @@ Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes th
 | [2026-09-27-bold-strategy-info-bar-0-2-and-no-weekly-5851](docs/decisions/2026-09-27-bold-strategy-info-bar-0-2-and-no-weekly-5851.md) | Bold strategy (info bar 0.2) and no weekly research pause | accepted | 2026-09-27 |
 | [2026-09-27-cloudflare-cron-trigger-starts-cycles-mi-0089](docs/decisions/2026-09-27-cloudflare-cron-trigger-starts-cycles-mi-0089.md) | Cloudflare cron trigger starts cycles; mission-control one-screen dashboard | accepted | 2026-09-27 |
 | [2026-09-27-learning-loop-playbook-coach-win-reviews-ac5d](docs/decisions/2026-09-27-learning-loop-playbook-coach-win-reviews-ac5d.md) | Learning loop: playbook coach, win reviews, gate ledger, self-calibration, weekly retro, challengers | accepted | 2026-09-27 |
+| [2026-09-27-show-settled-and-unsettled-money-apart-p-f0c2](docs/decisions/2026-09-27-show-settled-and-unsettled-money-apart-p-f0c2.md) | Show settled and unsettled money apart; plain strategy names; chart never tighter than 5 percent | accepted | 2026-09-27 |
 <!-- skilliton:index:decisions:end -->

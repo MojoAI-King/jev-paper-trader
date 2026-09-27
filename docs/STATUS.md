@@ -2,22 +2,21 @@
 
 Kind: Living.
 
-Current state (2026-09-27, 12:00 EDT): **Phase 1 is live and trading.** GitHub Actions runs trade five
-fake-$100,000 strategies on real Polymarket and Kalshi markets: Jev with Claude research (main, the
-pre-registered headline), Jev alone, Claude direct, **bold** (main with an info bar of 0.2, approved by Joey
-2026-09-27) and **self-calibrating** (waits for 30 resolved markets). Claude runs through Claude Code on
-Joey's Claude Max plan (`CLAUDE_CODE_OAUTH_TOKEN`), never an API key; research runs until the plan's weekly
-limit (the 85% pause was lifted by Joey) and pauses at 70% of the 5-hour window. The **learning loop** is
-merged (87801e5): reviews of misses and wins, a research playbook rewritten by a Claude coach, the gate
-ledger, the calibration map, a weekly retrospective and approval-gated challengers (`docs/LEARNING.md`).
-The public page, https://jev-paper-trader.greekgod.workers.dev, reads `papertrade_data/summary.json` from
-the public repo https://github.com/MojoAI-King/jev-paper-trader; its redesign waits for Joey's OK on a
-private preview (BACKLOG B11).
+Current state (2026-09-27, 14:50 EDT): **Trading automatically.** A Cloudflare cron trigger
+(`worker/index.js`, :04 and :34) starts a GitHub Actions cycle about every 30 minutes; GitHub's own schedule
+is a backup that skipped every slot today, and a 25-minute gate stops double cycles. Five fake-$100,000
+strategies trade real Polymarket and Kalshi markets: Jev + Claude (the pre-registered headline), Jev alone,
+Claude direct, Bold (info bar 0.2) and Self-calibrating (waits for 30 results). Claude runs on Joey's
+Claude Max plan, never an API key. 16 bets are open (the headline strategy's first on 2026-09-27), none
+settled yet. The learning loop (reviews of misses and wins, research playbook coach, gate ledger,
+calibration map, weekly retrospective, approval-gated challengers) is merged and waits for markets to
+resolve. The public page, https://jev-paper-trader.greekgod.workers.dev, is a one-screen mission-control
+dashboard that reads `papertrade_data/summary.json` from the public repo every 5 minutes and shows settled
+and not-settled money apart.
 
-Verified: 71 offline tests pass; the new guards (playbook screen at load, challenger bounds at load, the
-coach's rule screen, the retrospective's challenger check, the experiments registry) each fail when
-switched off. GitHub run 36329790430 succeeded with the bold strategy: 7 fake bets, main 0. Not yet
-observed: a scheduled (cron) run, and a live run of the learning-loop code (BACKLOG B1). Runbook:
+Verified: 72 offline tests pass; Cloudflare-triggered runs 36339317403 (18:04 UTC, skipped by the gate) and
+36341181637 (18:34 UTC, full cycle) started with nobody involved; run 36333603111 fetched all 120 markets
+after the Kalshi change; the live page was checked by request and headless Chrome. Runbook:
 `docs/OPERATIONS.md`; `python3 -m papertrade health` checks the live system.
 
 Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding work. Keep branch-complete, merged, deployed and verified separate; one task's result does not make the whole project complete.
@@ -27,7 +26,5 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-| ID | Title | State | Branch | Owner |
-|---|---|---|---|---|
-| [2026-09-27-self-improvement-loop-and-agent-ecosyste-b776](tasks/2026-09-27-self-improvement-loop-and-agent-ecosyste-b776.md) | Self-improvement loop and agent ecosystem | in-progress | learning-loop | unassigned |
+No open tasks.
 <!-- skilliton:index:tasks:end -->

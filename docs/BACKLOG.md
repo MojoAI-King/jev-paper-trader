@@ -13,6 +13,7 @@ Kind: Living.
 | B9 | Decide the 15 open security findings | open (needs a human) | Listed in `docs/SECURITY_FINDINGS.md`; `skilliton security status` reports 15 controls missing and undecided. |
 | B12 | Decide whether challengers may start by themselves | Joey | `learning.auto_start_challengers` is false. If true, the weekly retrospective's valid challengers start within `learning.challenger_bounds`, at most 2 at a time. |
 | B13 | Tune the dashboard for phones | later (Joey) | The mission-control page stacks its panels below 1150px wide; Joey: "on the phone, we can figure that out later". |
+| B14 | Skip markets with almost no trading | waiting for Joey | A filter on the bid-ask spread (for example over 10¢) in `market_filters`. On 2026-09-27 Bold bought NO at 50¢ in a tennis market whose mid put NO at 24.5¢ (−$1,020 on paper at once). Changes which markets the headline strategy can bet on, so it needs Joey's OK (lesson 2026-09-27-marking-brand-new-bets-at-the-mid-price-58f3). |
 
 Give each item a stable ID and link its task and decisions. Move a completed item to `docs/BACKLOG_ARCHIVE.md` with its closure date and evidence.
 

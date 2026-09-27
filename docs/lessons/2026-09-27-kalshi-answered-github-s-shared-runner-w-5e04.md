@@ -29,6 +29,11 @@ Kalshi pages are `KALSHI_PAGE_PAUSE = 0.5` seconds apart. Each scan now records 
 source (`funnel.by_source`) and its problem lines (`problems`) in `scans.jsonl` (commit 87801e5), and
 `python3 -m papertrade health` prints both.
 
+Commit 3d466b7 cut the requests themselves: Kalshi is read in 1,000-market pages (`KALSHI_PAGE`), 4
+requests a fetch instead of 16 at 200 a page (measured from the Mac: 60 markets in 4.6 seconds instead of
+12.4), 1 second apart, and each request now tries 5 times (3/6/12/24-second backoff, or `Retry-After`
+up to 60 seconds). The next GitHub run (36333603111) fetched all 120 markets with no errors.
+
 ## The rule
 
 A job that runs on shared CI infrastructure must treat 429 as normal: retry with backoff and honor
