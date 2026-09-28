@@ -87,6 +87,7 @@ a:hover { color: var(--cyan-2); }
 .stat { display: flex; flex-direction: column; gap: 1px; }
 .stat span { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 .stat b { font-weight: 500; font-size: 14px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.stat b.up { color: var(--good); } .stat b.down { color: var(--critical); }
 .live { display: inline-flex; align-items: center; gap: 7px; color: var(--good); font-weight: 700; letter-spacing: 0.14em; }
 .live i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; }
 .live.stale { color: var(--warning); }
@@ -105,7 +106,7 @@ a:hover { color: var(--cyan-2); }
                 border: 1px solid var(--line); padding: 0 4px; border-radius: 2px; margin-right: 6px; }
 .srow .ds { grid-column: 2 / 4; font-size: 11px; color: var(--muted); margin-top: -3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .srow .pl { grid-column: 2 / 4; display: flex; gap: 10px; align-items: center; font-size: 11px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.srow .pl .spark { margin-left: auto; }
+.srow .pl .spark { margin-left: auto; flex: 0 1 56px; min-width: 0; }  /* the sparkline gives way before the numbers do */
 .srow .pl span { white-space: nowrap; } .srow .pl i { font-style: normal; color: var(--muted); }
 .srow .v { font-size: 15px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
 .srow .d { grid-column: 2 / 4; display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 11px; color: var(--ink-2); white-space: nowrap; }
@@ -310,7 +311,9 @@ function render(data, { update = false } = {}) {
       v,
       h("span", { class: "ds" }, badge ? h("span", { class: "badge", text: badge }) : null, document.createTextNode(r.desc || "")),
       h("span", { class: "pl" },
-        h("span", {}, h("i", { text: "settled " }), h("b", { class: real ? dir(real) : "flat", text: signed(real) })),
+        h("span", { title: `${r.wins || 0} won ${signed(r.won_amt || 0)} · ${r.losses || 0} lost ${signed(r.lost_amt || 0)}` },
+          h("i", { text: r.settled ? `${r.wins}W ${r.losses ?? r.settled - r.wins}L ` : "settled " }),
+          h("b", { class: real ? dir(real) : "flat", text: signed(real) })),
         h("span", { title: "Open bets valued at today's market prices. Not final until the market settles." }, h("i", { text: `${r.open} open ` }),
           h("b", { class: Math.abs(unreal) < 0.5 ? "flat" : dir(unreal), text: signed(unreal) })),
         spark(race[r.name], col(r.name), D.start))));
@@ -324,7 +327,16 @@ function render(data, { update = false } = {}) {
   head.append(h("div", { class: "stat" }, h("span", { text: leadTie ? "Leader · tied" : `Leader · ${label(lead.name)}` }), big));
   roll(big, "lead", lead ? worth(lead) : 0, v => usd2.format(v));
   const realized = strategies.reduce((a, r) => a + (r.realized || 0), 0), unrealized = strategies.reduce((a, r) => a + (r.unrealized || 0), 0);
+  // lifetime record across every strategy: how many settled bets won and lost, and the money on each side
+  const tally = f => strategies.reduce((a, r) => a + (r[f] || 0), 0);
+  const nWon = tally("wins"), nLost = tally("losses"), won = tally("won_amt"), lost = tally("lost_amt");
+  const betCount = n => `${n} bet${n === 1 ? "" : "s"}`;
+  const hasRecord = strategies.some(r => r.won_amt !== undefined);  // older summary.json files lack the money split
   head.append(h("div", { class: "stat" }, h("span", { text: "Settled profit · final" }), h("b", { class: realized ? dir(realized) : "", text: signed(realized, usd2) })),
+    hasRecord ? h("div", { class: "stat", title: "Every settled bet that made money, all strategies, since the start" },
+      h("span", { text: `Won · ${betCount(nWon)}` }), h("b", { class: won ? "up" : "", text: signed(won, usd2) })) : "",
+    hasRecord ? h("div", { class: "stat", title: "Every settled bet that lost money, all strategies, since the start" },
+      h("span", { text: `Lost · ${betCount(nLost)}` }), h("b", { class: lost ? "down" : "", text: signed(lost, usd2) })) : "",
     h("div", { class: "stat", title: "What the open bets would be worth at today's market prices. It moves until each market settles; only settled money is final." },
       h("span", { text: "Open bets · not settled" }), h("b", { class: Math.abs(unrealized) < 0.5 ? "" : dir(unrealized), text: signed(unrealized, usd2) })));
   $("eq-r").textContent = "open bets at today's prices · final when settled";
@@ -350,7 +362,7 @@ function render(data, { update = false } = {}) {
   const u = D.plan_usage;
   const kv = (k, v) => h("div", {}, h("span", { text: k }), h("b", { text: v }));
   risk.append(g, h("div", { class: "kv" }, kv("Open bets", String(openN)), kv("Bets today", String(betsToday)), kv("Settled", settled ? `${wins}W · ${settled - wins}L` : "0"),
-    kv("Scans · 24h", String(D.cycles_24h ?? "—")), kv("Research today", `${D.research_runs_today ?? 0}/20`), kv("Claude week", u && u.week != null ? pct(u.week) : "—")));
+    kv("Scans · 24h", String(D.cycles_24h ?? "—")), kv("Research today", `${D.research_runs_today ?? 0}/${D.research_per_day ?? "—"}`), kv("Claude week", u && u.week != null ? pct(u.week) : "—")));
   $("risk-r").textContent = `of ${usd0.format(start)}`;
 
   // ---------- open positions ----------

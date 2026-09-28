@@ -114,7 +114,10 @@ def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: d
                      "change": round(eq - float(b["starting_bankroll"]), 2),
                      "realized": round(sum(p["pnl"] for p in b["closed"]), 2),
                      "open": len(b["open"]), "open_cost": round(sum(p["total_cost"] for p in b["open"]), 2),
-                     "settled": len(b["closed"]), "wins": sum(1 for p in b["closed"] if p["pnl"] > 0)})
+                     "settled": len(b["closed"]), "wins": sum(1 for p in b["closed"] if p["pnl"] > 0),
+                     "losses": sum(1 for p in b["closed"] if p["pnl"] <= 0),
+                     "won_amt": round(sum(p["pnl"] for p in b["closed"] if p["pnl"] > 0), 2),
+                     "lost_amt": round(sum(p["pnl"] for p in b["closed"] if p["pnl"] <= 0), 2)})
     return rows
 
 
@@ -329,6 +332,7 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "feed": feed(books, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or []),
         "plan_usage": plan_usage(scans or []),
         "research_runs_today": sum(1 for r in engine.read_jsonl(engine.RESEARCH) if str(r.get("ts", "")).startswith(generated_at[:10])),
+        "research_per_day": policy["research"]["max_research_per_day"],
         "cycles_24h": sum(1 for s in (scans or []) if "funnel" in s and s["ts"] >= _hours_before(generated_at, 24)),
         "learning": learning_state(policy, reviews or [], judgments, resolved),
         "repo_url": policy.get("site", {}).get("repo_url") or None,

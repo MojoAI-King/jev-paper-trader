@@ -713,6 +713,11 @@ class DashboardTests(DataDirTest):
         self.assertEqual([p["equity"] for p in s["curve"]], [100000, 99970.0, 100020.0, 100020.0])
         self.assertEqual(s["by_source"], {"kalshi": 41.0})
         self.assertEqual([c["question"] for c in s["closed"]], ["Won one", "Lost one"])  # newest first
+        # the page's lifetime record: wins and losses counted, and the money won and lost kept apart
+        main = next(r for r in s["strategies"] if r["name"] == "main")
+        self.assertEqual((main["wins"], main["losses"], main["won_amt"], main["lost_amt"], main["realized"]),
+                         (1, 1, 50.0, -30.0, 20.0))
+        self.assertEqual(s["research_per_day"], POLICY["research"]["max_research_per_day"])
 
     def test_empty_portfolio(self):
         s = dashboard.summarize(POLICY, books(fresh_pf()), [], {}, "2026-09-27T01:00:00Z")
