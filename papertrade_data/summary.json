@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T22:07:21Z",
+  "generated": "2026-09-28T22:34:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T22:07:21Z",
+      "t": "2026-09-28T22:34:29Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 6,
+    "judged": 1,
     "bets": 0,
-    "fail_info": 5,
+    "fail_info": 0,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 2,
-      "polymarket": 4
+      "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T22:04:31Z",
+    "ts": "2026-09-28T22:34:27Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        6
+        1
       ],
       [
         "Judged by Jev",
-        6
+        1
       ],
       [
         "Judged with research",
-        5
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -177,21 +176,21 @@
         0
       ]
     ],
-    "events": 5,
-    "researched_new": 3,
-    "research_reused": 1,
+    "events": 1,
+    "researched_new": 0,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "claude_calls": 7,
+    "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 30,
-    "facts_dropped": 6,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -201,11 +200,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 6,
-    "with_research": 5
+    "judged": 1,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -629,7 +628,11 @@
           98808.18
         ],
         [
-          "2026-09-28T22:07:21Z",
+          "2026-09-28T22:34:27Z",
+          98808.18
+        ],
+        [
+          "2026-09-28T22:34:29Z",
           98808.18
         ]
       ]
@@ -926,7 +929,11 @@
           99636.24
         ],
         [
-          "2026-09-28T22:07:21Z",
+          "2026-09-28T22:34:27Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T22:34:29Z",
           99636.24
         ]
       ]
@@ -1223,7 +1230,11 @@
           99912.29
         ],
         [
-          "2026-09-28T22:07:21Z",
+          "2026-09-28T22:34:27Z",
+          99912.29
+        ],
+        [
+          "2026-09-28T22:34:29Z",
           99912.29
         ]
       ]
@@ -1520,7 +1531,11 @@
           98133.48
         ],
         [
-          "2026-09-28T22:07:21Z",
+          "2026-09-28T22:34:27Z",
+          98133.48
+        ],
+        [
+          "2026-09-28T22:34:29Z",
           98133.48
         ]
       ]
@@ -1817,7 +1832,11 @@
           100000.0
         ],
         [
-          "2026-09-28T22:07:21Z",
+          "2026-09-28T22:34:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T22:34:29Z",
           100000.0
         ]
       ]
@@ -3015,6 +3034,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T22:34:27Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 1,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T22:04:31Z",
       "type": "bet",
       "strategy": "bold",
@@ -3673,14 +3700,6 @@
       "judged": 5,
       "researched": 2,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T07:35:11Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 3,
-      "researched": 1,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -3691,7 +3710,7 @@
   },
   "research_runs_today": 24,
   "research_per_day": 60,
-  "cycles_24h": 48,
+  "cycles_24h": 49,
   "learning": {
     "reviewed": 9,
     "post_mortems": 2,
