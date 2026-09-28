@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T13:05:17Z",
+  "generated": "2026-09-28T13:36:33Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T13:05:17Z",
+      "t": "2026-09-28T13:36:33Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -102,7 +102,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 102,
+    "judged": 103,
     "resolved": 3,
     "sources": [
       {
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 17,
+    "judged": 8,
     "bets": 0,
-    "fail_info": 10,
+    "fail_info": 0,
     "fail_rules": 0,
-    "fail_edge": 5,
+    "fail_edge": 0,
     "sources": {
-      "polymarket": 10,
-      "kalshi": 7
+      "kalshi": 3,
+      "polymarket": 5
     }
   },
   "funnel": {
-    "ts": "2026-09-28T13:05:09Z",
+    "ts": "2026-09-28T13:35:12Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        17
+        13
       ],
       [
         "Judged by Jev",
-        17
+        8
       ],
       [
         "Judged with research",
-        11
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +177,9 @@
         0
       ]
     ],
-    "events": 14,
+    "events": 7,
     "researched_new": 0,
-    "research_reused": 8,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,13 +190,19 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 65,
-    "facts_dropped": 10,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
-    "problems": [],
+    "problems": [
+      "Jev error on Will Bank of Canada Hike rates by 0bps at their October 2026: Timed out after 10.0s",
+      "Jev error on Sense and Sensibility Rotten Tomatoes score? (Above 80): Timed out after 10.0s",
+      "Jev error on What will be Domantas Sabonis's next team? (Detroit): Timed out after 10.0s",
+      "Jev error on Will Elon Musk post 220-239 tweets from September 22 to Sept: Timed out after 10.0s",
+      "Jev error on Will Elon Musk post 180-199 tweets from September 22 to Sept: Timed out after 10.0s"
+    ],
     "cleared_gates": {
       "main": 0,
       "jev_alone": 0,
@@ -204,8 +210,8 @@
       "bold": 0,
       "calibrated": 0
     },
-    "judged": 17,
-    "with_research": 11
+    "judged": 8,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -289,8 +295,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 100374.84,
-      "unrealized": 2374.82,
+      "marked": 99155.68,
+      "unrealized": 1155.65,
       "change": -1999.98,
       "realized": -1999.98,
       "open": 16,
@@ -542,7 +548,11 @@
           99117.35
         ],
         [
-          "2026-09-28T13:05:17Z",
+          "2026-09-28T13:35:12Z",
+          99117.35
+        ],
+        [
+          "2026-09-28T13:36:33Z",
           99117.35
         ]
       ]
@@ -767,7 +777,11 @@
           99636.24
         ],
         [
-          "2026-09-28T13:05:17Z",
+          "2026-09-28T13:35:12Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T13:36:33Z",
           99636.24
         ]
       ]
@@ -992,7 +1006,11 @@
           99807.03
         ],
         [
-          "2026-09-28T13:05:17Z",
+          "2026-09-28T13:35:12Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T13:36:33Z",
           99807.03
         ]
       ]
@@ -1217,8 +1235,12 @@
           100374.84
         ],
         [
-          "2026-09-28T13:05:17Z",
-          100374.84
+          "2026-09-28T13:35:12Z",
+          99155.68
+        ],
+        [
+          "2026-09-28T13:36:33Z",
+          99155.68
         ]
       ]
     },
@@ -1442,7 +1464,11 @@
           100000.0
         ],
         [
-          "2026-09-28T13:05:17Z",
+          "2026-09-28T13:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T13:36:33Z",
           100000.0
         ]
       ]
@@ -1639,8 +1665,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.715,
-      "price_at": "2026-09-28T12:35:10Z",
+      "price": 0.66,
+      "price_at": "2026-09-28T13:35:12Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1651,7 +1677,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 3177.46
+          "value": 2933.04
         }
       ]
     },
@@ -1662,8 +1688,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.208,
-      "price_at": "2026-09-28T12:05:10Z",
+      "price": 0.15,
+      "price_at": "2026-09-28T13:35:12Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1674,7 +1700,7 @@
           "p_side": 0.57,
           "edge": 0.451,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 3495.65
+          "value": 2520.9
         }
       ]
     },
@@ -2516,6 +2542,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T13:35:12Z",
+      "type": "problem",
+      "text": "Jev error on Will Bank of Canada Hike rates by 0bps at their October 2026: Timed out after 10.0s"
+    },
+    {
+      "ts": "2026-09-28T13:35:12Z",
+      "type": "problem",
+      "text": "Jev error on Sense and Sensibility Rotten Tomatoes score? (Above 80): Timed out after 10.0s"
+    },
+    {
+      "ts": "2026-09-28T13:35:12Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 8,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T13:05:09Z",
       "type": "call",
       "jev": 0.26,
@@ -3163,28 +3207,6 @@
       "facts": 7,
       "q": "Will the price of Bitcoin be above $84,000 on September 28?",
       "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-28-2026"
-    },
-    {
-      "ts": "2026-09-28T01:05:14Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-28T01:05:14Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Will Bitcoin dip to $82,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
-    },
-    {
-      "ts": "2026-09-28T01:05:14Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 9,
-      "researched": 5,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -3194,7 +3216,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 43,
+  "cycles_24h": 44,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
