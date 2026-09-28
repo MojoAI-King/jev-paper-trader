@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T08:05:23Z",
+  "generated": "2026-09-28T08:35:12Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T08:05:23Z",
+      "t": "2026-09-28T08:35:12Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 5,
+    "judged": 1,
     "bets": 0,
-    "fail_info": 2,
-    "fail_rules": 1,
+    "fail_info": 1,
+    "fail_rules": 0,
     "fail_edge": 0,
     "sources": {
-      "kalshi": 2,
-      "polymarket": 3
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T08:05:18Z",
+    "ts": "2026-09-28T08:35:10Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        5
+        1
       ],
       [
         "Judged by Jev",
-        5
+        1
       ],
       [
         "Judged with research",
-        2
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +176,9 @@
         0
       ]
     ],
-    "events": 5,
+    "events": 1,
     "researched_new": 0,
-    "research_reused": 2,
+    "research_reused": 1,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,8 +189,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 14,
-    "facts_dropped": 5,
+    "facts_kept": 8,
+    "facts_dropped": 1,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -201,11 +200,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 5,
-    "with_research": 2
+    "judged": 1,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -502,7 +501,11 @@
           99354.18
         ],
         [
-          "2026-09-28T08:05:23Z",
+          "2026-09-28T08:35:10Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T08:35:12Z",
           99354.18
         ]
       ]
@@ -687,7 +690,11 @@
           99636.24
         ],
         [
-          "2026-09-28T08:05:23Z",
+          "2026-09-28T08:35:10Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T08:35:12Z",
           99636.24
         ]
       ]
@@ -872,7 +879,11 @@
           99807.03
         ],
         [
-          "2026-09-28T08:05:23Z",
+          "2026-09-28T08:35:10Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T08:35:12Z",
           99807.03
         ]
       ]
@@ -1057,7 +1068,11 @@
           101745.06
         ],
         [
-          "2026-09-28T08:05:23Z",
+          "2026-09-28T08:35:10Z",
+          101745.06
+        ],
+        [
+          "2026-09-28T08:35:12Z",
           101745.06
         ]
       ]
@@ -1242,7 +1257,11 @@
           100000.0
         ],
         [
-          "2026-09-28T08:05:23Z",
+          "2026-09-28T08:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T08:35:12Z",
           100000.0
         ]
       ]
@@ -1554,7 +1573,7 @@
       "close_time": "2026-10-05T03:59:00Z",
       "category": "politics",
       "price": 0.755,
-      "price_at": "2026-09-28T00:05:10Z",
+      "price_at": "2026-09-28T08:35:10Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1761,6 +1780,52 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-28T08:35:10Z",
+      "key": "polymarket:1365861",
+      "question": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-05T03:59:00Z",
+      "market": 0.755,
+      "forecasts": {
+        "jev_research": 0.56,
+        "jev_plain": 0.29,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.23,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.08 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 8
+    },
     {
       "ts": "2026-09-28T08:05:18Z",
       "key": "polymarket:4689737",
@@ -2266,55 +2331,26 @@
         }
       },
       "facts_total": 8
-    },
-    {
-      "ts": "2026-09-28T06:35:18Z",
-      "key": "polymarket:4885967",
-      "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
-      "source": "polymarket",
-      "category": "world",
-      "close_time": "2026-10-16T03:59:00Z",
-      "market": 0.445,
-      "forecasts": {
-        "jev_research": 0.15,
-        "jev_plain": 0.16,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.23,
-      "rules": 0.89,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.17 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 14
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T08:35:10Z",
+      "type": "call",
+      "jev": 0.56,
+      "claude": null,
+      "market": 0.755,
+      "q": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
+      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
+    },
+    {
+      "ts": "2026-09-28T08:35:10Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 1,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T08:05:18Z",
       "type": "call",
@@ -2649,15 +2685,6 @@
       "ts": "2026-09-28T05:05:10Z",
       "type": "call",
       "jev": 0.47,
-      "claude": 0.36,
-      "market": 0.745,
-      "q": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW"
-    },
-    {
-      "ts": "2026-09-28T05:05:10Z",
-      "type": "call",
-      "jev": 0.47,
       "claude": null,
       "market": 0.515,
       "q": "Will France win on 2026-09-28?",
@@ -2984,14 +3011,6 @@
       "p": 0.36,
       "q": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
       "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-27T22:35:13Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 30,
-      "researched": 11,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -3001,7 +3020,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 19,
-  "cycles_24h": 33,
+  "cycles_24h": 34,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
