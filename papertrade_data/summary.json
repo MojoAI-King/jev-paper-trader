@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T07:35:14Z",
+  "generated": "2026-09-28T08:05:23Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T07:35:14Z",
+      "t": "2026-09-28T08:05:23Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 3,
+    "judged": 5,
     "bets": 0,
-    "fail_info": 1,
-    "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_info": 2,
+    "fail_rules": 1,
+    "fail_edge": 0,
     "sources": {
       "kalshi": 2,
-      "polymarket": 1
+      "polymarket": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-28T07:35:11Z",
+    "ts": "2026-09-28T08:05:18Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        3
+        5
       ],
       [
         "Judged by Jev",
-        3
+        5
       ],
       [
         "Judged with research",
-        1
+        2
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +177,9 @@
         0
       ]
     ],
-    "events": 3,
+    "events": 5,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 2,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,8 +190,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 7,
-    "facts_dropped": 1,
+    "facts_kept": 14,
+    "facts_dropped": 5,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -201,11 +201,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
-    "judged": 3,
-    "with_research": 1
+    "judged": 5,
+    "with_research": 2
   },
   "strategies": [
     {
@@ -498,7 +498,11 @@
           99354.18
         ],
         [
-          "2026-09-28T07:35:14Z",
+          "2026-09-28T08:05:18Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T08:05:23Z",
           99354.18
         ]
       ]
@@ -679,7 +683,11 @@
           99636.24
         ],
         [
-          "2026-09-28T07:35:14Z",
+          "2026-09-28T08:05:18Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T08:05:23Z",
           99636.24
         ]
       ]
@@ -860,7 +868,11 @@
           99807.03
         ],
         [
-          "2026-09-28T07:35:14Z",
+          "2026-09-28T08:05:18Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T08:05:23Z",
           99807.03
         ]
       ]
@@ -1041,7 +1053,11 @@
           101745.06
         ],
         [
-          "2026-09-28T07:35:14Z",
+          "2026-09-28T08:05:18Z",
+          101745.06
+        ],
+        [
+          "2026-09-28T08:05:23Z",
           101745.06
         ]
       ]
@@ -1222,7 +1238,11 @@
           100000.0
         ],
         [
-          "2026-09-28T07:35:14Z",
+          "2026-09-28T08:05:18Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T08:05:23Z",
           100000.0
         ]
       ]
@@ -1742,6 +1762,98 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T08:05:18Z",
+      "key": "polymarket:4689737",
+      "question": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.125,
+      "forecasts": {
+        "jev_research": 0.4,
+        "jev_plain": 0.31,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.21,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.21 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "no room: exposure cap or cash"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-28T08:05:18Z",
+      "key": "polymarket:4689728",
+      "question": "Will Bitcoin dip to $77,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-77pt5k-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.0545,
+      "forecasts": {
+        "jev_research": 0.52,
+        "jev_plain": 0.35,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.22,
+      "rules": 0.74,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.09 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 8
+    },
+    {
       "ts": "2026-09-28T07:35:11Z",
       "key": "kalshi:KXRT-SENS-80",
       "question": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
@@ -2200,101 +2312,35 @@
         }
       },
       "facts_total": 14
-    },
-    {
-      "ts": "2026-09-28T06:35:18Z",
-      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
-      "question": "Deiveson Figueiredo wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-18T01:00:00Z",
-      "market": 0.185,
-      "forecasts": {
-        "jev_research": 0.38,
-        "jev_plain": 0.5,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.26,
-      "rules": 0.79,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.14 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 6
-    },
-    {
-      "ts": "2026-09-28T06:35:18Z",
-      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-TAL",
-      "question": "Payton Talbott wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-18T01:00:00Z",
-      "market": 0.815,
-      "forecasts": {
-        "jev_research": 0.46,
-        "jev_plain": 0.37,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.29,
-      "rules": 0.74,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 6
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T08:05:18Z",
+      "type": "call",
+      "jev": 0.4,
+      "claude": null,
+      "market": 0.125,
+      "q": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-28T08:05:18Z",
+      "type": "call",
+      "jev": 0.52,
+      "claude": null,
+      "market": 0.0545,
+      "q": "Will Bitcoin dip to $77,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-77pt5k-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-28T08:05:18Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 5,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T07:35:11Z",
       "type": "call",
@@ -2598,24 +2644,6 @@
       "judged": 6,
       "researched": 4,
       "bets": 1
-    },
-    {
-      "ts": "2026-09-28T05:05:10Z",
-      "type": "call",
-      "jev": 0.23,
-      "claude": 0.2,
-      "market": 0.2,
-      "q": "Indiana vs Las Vegas First Round series winner: Indiana wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
-    },
-    {
-      "ts": "2026-09-28T05:05:10Z",
-      "type": "call",
-      "jev": 0.74,
-      "claude": 0.79,
-      "market": 0.8,
-      "q": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
     },
     {
       "ts": "2026-09-28T05:05:10Z",
@@ -2964,14 +2992,6 @@
       "judged": 30,
       "researched": 11,
       "bets": 1
-    },
-    {
-      "ts": "2026-09-27T22:05:17Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 2,
-      "researched": 1,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -2981,7 +3001,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 19,
-  "cycles_24h": 32,
+  "cycles_24h": 33,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
