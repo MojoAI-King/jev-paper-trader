@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T01:08:11Z",
+  "generated": "2026-09-28T01:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T01:08:11Z",
+      "t": "2026-09-28T01:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -45,7 +45,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 86,
+    "judged": 87,
     "resolved": 0,
     "sources": [
       {
@@ -82,18 +82,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 9,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 5,
+    "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 3,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 4,
-      "polymarket": 5
+      "polymarket": 4
     }
   },
   "funnel": {
-    "ts": "2026-09-28T01:05:14Z",
+    "ts": "2026-09-28T01:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -101,15 +100,15 @@
       ],
       [
         "Passed free filters",
-        9
+        4
       ],
       [
         "Judged by Jev",
-        9
+        4
       ],
       [
         "Judged with research",
-        5
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -120,9 +119,9 @@
         0
       ]
     ],
-    "events": 8,
-    "researched_new": 3,
-    "research_reused": 2,
+    "events": 3,
+    "researched_new": 0,
+    "research_reused": 1,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -130,11 +129,11 @@
       "bold": 0,
       "calibrated": 0
     },
-    "claude_calls": 6,
+    "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 40,
-    "facts_dropped": 6,
+    "facts_kept": 5,
+    "facts_dropped": 2,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -147,8 +146,8 @@
       "bold": 1,
       "calibrated": 0
     },
-    "judged": 9,
-    "with_research": 5
+    "judged": 4,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -389,7 +388,11 @@
           99964.92
         ],
         [
-          "2026-09-28T01:08:11Z",
+          "2026-09-28T01:35:11Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T01:35:14Z",
           99964.92
         ]
       ]
@@ -518,7 +521,11 @@
           99712.34
         ],
         [
-          "2026-09-28T01:08:11Z",
+          "2026-09-28T01:35:11Z",
+          99712.34
+        ],
+        [
+          "2026-09-28T01:35:14Z",
           99712.34
         ]
       ]
@@ -647,7 +654,11 @@
           99964.92
         ],
         [
-          "2026-09-28T01:08:11Z",
+          "2026-09-28T01:35:11Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T01:35:14Z",
           99964.92
         ]
       ]
@@ -776,7 +787,11 @@
           97183.6
         ],
         [
-          "2026-09-28T01:08:11Z",
+          "2026-09-28T01:35:11Z",
+          97183.6
+        ],
+        [
+          "2026-09-28T01:35:14Z",
           97183.6
         ]
       ]
@@ -905,7 +920,11 @@
           100000.0
         ],
         [
-          "2026-09-28T01:08:11Z",
+          "2026-09-28T01:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T01:35:14Z",
           100000.0
         ]
       ]
@@ -1328,6 +1347,52 @@
   ],
   "settled_recent": [],
   "calls": [
+    {
+      "ts": "2026-09-28T01:35:11Z",
+      "key": "polymarket:4797508",
+      "question": "Will the price of Bitcoin be above $82,000 on September 28?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-28-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-28T16:00:00Z",
+      "market": 0.9435,
+      "forecasts": {
+        "jev_research": 0.67,
+        "jev_plain": 0.4,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.24,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.24 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "no room: exposure cap or cash"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 5
+    },
     {
       "ts": "2026-09-28T01:05:14Z",
       "key": "kalshi:KXRT-SENS-80",
@@ -1833,55 +1898,26 @@
         }
       },
       "facts_total": 9
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "key": "polymarket:4689727",
-      "question": "Will Bitcoin dip to $80,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.0985,
-      "forecasts": {
-        "jev_research": 0.51,
-        "jev_plain": 0.32,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.25,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.25 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.11 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 9
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T01:35:11Z",
+      "type": "call",
+      "jev": 0.67,
+      "claude": null,
+      "market": 0.9435,
+      "q": "Will the price of Bitcoin be above $82,000 on September 28?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-28-2026"
+    },
+    {
+      "ts": "2026-09-28T01:35:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 4,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T01:05:14Z",
       "type": "call",
@@ -2276,15 +2312,6 @@
     {
       "ts": "2026-09-27T21:05:09Z",
       "type": "call",
-      "jev": 0.6,
-      "claude": 0.64,
-      "market": 0.765,
-      "q": "Will Lula win the most votes in the first round of the 2026 Brazil presidential election?",
-      "url": "https://polymarket.com/market/will-lula-win-the-most-votes-in-the-first-round-of-the-2026-brazil-presidential-election"
-    },
-    {
-      "ts": "2026-09-27T21:05:09Z",
-      "type": "call",
       "jev": 0.41,
       "claude": null,
       "market": 0.395,
@@ -2582,17 +2609,6 @@
       "p": 0.47,
       "q": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
       "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
-    },
-    {
-      "ts": "2026-09-27T15:30:28Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.56,
-      "amount": 1999.76,
-      "p": 0.86,
-      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
     }
   ],
   "plan_usage": {
@@ -2602,7 +2618,7 @@
     "five_hour": 0.09
   },
   "research_runs_today": 6,
-  "cycles_24h": 21,
+  "cycles_24h": 22,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
