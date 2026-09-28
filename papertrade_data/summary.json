@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T20:05:15Z",
+  "generated": "2026-09-28T20:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T20:05:15Z",
+      "t": "2026-09-28T20:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -141,15 +141,16 @@
     "date": "2026-09-28",
     "judged": 5,
     "bets": 0,
-    "fail_info": 1,
+    "fail_info": 0,
     "fail_rules": 0,
     "fail_edge": 0,
     "sources": {
-      "polymarket": 5
+      "kalshi": 1,
+      "polymarket": 4
     }
   },
   "funnel": {
-    "ts": "2026-09-28T20:05:12Z",
+    "ts": "2026-09-28T20:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -165,7 +166,7 @@
       ],
       [
         "Judged with research",
-        1
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -176,21 +177,21 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 5,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 6,
-    "facts_dropped": 2,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -200,11 +201,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
     "judged": 5,
-    "with_research": 1
+    "with_research": 0
   },
   "strategies": [
     {
@@ -288,8 +289,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96694.64,
-      "unrealized": -4201.59,
+      "marked": 95972.5,
+      "unrealized": -4923.73,
       "change": 896.23,
       "realized": 896.23,
       "open": 18,
@@ -597,7 +598,11 @@
           98808.18
         ],
         [
-          "2026-09-28T20:05:15Z",
+          "2026-09-28T20:35:11Z",
+          98808.18
+        ],
+        [
+          "2026-09-28T20:35:14Z",
           98808.18
         ]
       ]
@@ -878,7 +883,11 @@
           99636.24
         ],
         [
-          "2026-09-28T20:05:15Z",
+          "2026-09-28T20:35:11Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T20:35:14Z",
           99636.24
         ]
       ]
@@ -1159,7 +1168,11 @@
           99912.29
         ],
         [
-          "2026-09-28T20:05:15Z",
+          "2026-09-28T20:35:11Z",
+          99912.29
+        ],
+        [
+          "2026-09-28T20:35:14Z",
           99912.29
         ]
       ]
@@ -1440,8 +1453,12 @@
           96694.64
         ],
         [
-          "2026-09-28T20:05:15Z",
-          96694.64
+          "2026-09-28T20:35:11Z",
+          95972.5
+        ],
+        [
+          "2026-09-28T20:35:14Z",
+          95972.5
         ]
       ]
     },
@@ -1721,7 +1738,11 @@
           100000.0
         ],
         [
-          "2026-09-28T20:05:15Z",
+          "2026-09-28T20:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T20:35:14Z",
           100000.0
         ]
       ]
@@ -1895,8 +1916,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.675,
-      "price_at": "2026-09-28T20:05:12Z",
+      "price": 0.625,
+      "price_at": "2026-09-28T20:35:11Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1907,7 +1928,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2999.7
+          "value": 2777.5
         }
       ]
     },
@@ -2055,8 +2076,8 @@
       "source": "polymarket",
       "close_time": "2026-10-16T03:59:00Z",
       "category": "world",
-      "price": 0.54,
-      "price_at": "2026-09-28T15:35:13Z",
+      "price": 0.68,
+      "price_at": "2026-09-28T20:35:11Z",
       "positions": [
         {
           "strategy": "bold",
@@ -2067,7 +2088,7 @@
           "p_side": 0.86,
           "edge": 0.3,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 1642.66
+          "value": 1142.72
         }
       ]
     },
@@ -2873,6 +2894,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T20:35:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 5,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T20:05:12Z",
       "type": "bet",
       "strategy": "bold",
@@ -3531,13 +3560,6 @@
       "facts": 12,
       "q": "Will Sweden win on 2026-09-28?",
       "url": "https://polymarket.com/market/unl-swe-pol-2026-09-28-swe"
-    },
-    {
-      "ts": "2026-09-28T05:35:45Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Will Bitcoin reach $87,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026"
     }
   ],
   "plan_usage": {
@@ -3547,7 +3569,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 49,
+  "cycles_24h": 48,
   "learning": {
     "reviewed": 9,
     "post_mortems": 2,
