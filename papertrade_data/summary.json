@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T05:37:58Z",
+  "generated": "2026-09-28T06:05:13Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T05:37:58Z",
+      "t": "2026-09-28T06:05:13Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -87,7 +87,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 93,
+    "judged": 94,
     "resolved": 3,
     "sources": [
       {
@@ -124,18 +124,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 6,
-    "bets": 1,
-    "fail_info": 3,
-    "fail_rules": 2,
-    "fail_edge": 0,
+    "judged": 3,
+    "bets": 0,
+    "fail_info": 1,
+    "fail_rules": 0,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 5,
+      "polymarket": 2,
       "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T05:35:45Z",
+    "ts": "2026-09-28T06:05:10Z",
     "stages": [
       [
         "Fetched",
@@ -143,54 +143,54 @@
       ],
       [
         "Passed free filters",
-        6
+        3
       ],
       [
         "Judged by Jev",
-        6
+        3
       ],
       [
         "Judged with research",
-        4
+        1
       ],
       [
         "Cleared every gate (main)",
-        1
+        0
       ],
       [
         "Bets placed (main)",
-        1
+        0
       ]
     ],
-    "events": 4,
-    "researched_new": 2,
-    "research_reused": 0,
+    "events": 3,
+    "researched_new": 0,
+    "research_reused": 1,
     "bets": {
-      "main": 1,
+      "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0
     },
-    "claude_calls": 6,
+    "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 20,
-    "facts_dropped": 3,
+    "facts_kept": 10,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
     "problems": [],
     "cleared_gates": {
-      "main": 1,
+      "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 6,
-    "with_research": 4
+    "judged": 3,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -467,7 +467,11 @@
           99696.38
         ],
         [
-          "2026-09-28T05:37:58Z",
+          "2026-09-28T06:05:10Z",
+          99696.38
+        ],
+        [
+          "2026-09-28T06:05:13Z",
           99696.38
         ]
       ]
@@ -632,7 +636,11 @@
           99636.24
         ],
         [
-          "2026-09-28T05:37:58Z",
+          "2026-09-28T06:05:10Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T06:05:13Z",
           99636.24
         ]
       ]
@@ -797,7 +805,11 @@
           99807.03
         ],
         [
-          "2026-09-28T05:37:58Z",
+          "2026-09-28T06:05:10Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T06:05:13Z",
           99807.03
         ]
       ]
@@ -962,7 +974,11 @@
           101352.35
         ],
         [
-          "2026-09-28T05:37:58Z",
+          "2026-09-28T06:05:10Z",
+          101352.35
+        ],
+        [
+          "2026-09-28T06:05:13Z",
           101352.35
         ]
       ]
@@ -1127,7 +1143,11 @@
           100000.0
         ],
         [
-          "2026-09-28T05:37:58Z",
+          "2026-09-28T06:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T06:05:13Z",
           100000.0
         ]
       ]
@@ -1636,6 +1656,52 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T06:05:10Z",
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.275,
+      "forecasts": {
+        "jev_research": 0.19,
+        "jev_plain": 0.07,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.39,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.41 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
       "ts": "2026-09-28T05:35:45Z",
       "key": "polymarket:4689727",
       "question": "Will Bitcoin dip to $80,000 in September?",
@@ -2140,55 +2206,26 @@
         }
       },
       "facts_total": 8
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
-      "key": "polymarket:4609854",
-      "question": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp",
-      "source": "polymarket",
-      "category": "sports",
-      "close_time": "2026-09-29T18:45:00Z",
-      "market": 0.825,
-      "forecasts": {
-        "jev_research": 0.65,
-        "jev_plain": 0.35,
-        "claude_direct": 0.64,
-        "jev_calibrated": null
-      },
-      "info": 0.54,
-      "rules": 0.89,
-      "decisions": {
-        "main": {
-          "bet": true,
-          "side": "no",
-          "why": "BET NO x10526 @ 0.190: p 0.35 vs cost 0.190, edge +0.160"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": true,
-          "side": "no",
-          "why": "BET NO x10526 @ 0.190: p 0.36 vs cost 0.190, edge +0.170"
-        },
-        "bold": {
-          "bet": true,
-          "side": "no",
-          "why": "BET NO x7368 @ 0.190: p 0.35 vs cost 0.190, edge +0.160"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (1 so far)"
-        }
-      },
-      "facts_total": 9
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T06:05:10Z",
+      "type": "call",
+      "jev": 0.19,
+      "claude": null,
+      "market": 0.275,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-09-28T06:05:10Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 3,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T05:35:45Z",
       "type": "bet",
@@ -2555,15 +2592,6 @@
     {
       "ts": "2026-09-28T02:05:10Z",
       "type": "call",
-      "jev": 0.19,
-      "claude": null,
-      "market": 0.225,
-      "q": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-28T02:05:10Z",
-      "type": "call",
       "jev": 0.24,
       "claude": null,
       "market": 0.335,
@@ -2855,13 +2883,6 @@
       "judged": 4,
       "researched": 3,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-27T19:35:10Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will Kyle Schwarber lead Pro Baseball in home runs for the 2026 regular season?",
-      "url": "https://kalshi.com/markets/KXLEADERMLBHR-26"
     }
   ],
   "plan_usage": {
@@ -2871,7 +2892,7 @@
     "five_hour": 0.01
   },
   "research_runs_today": 16,
-  "cycles_24h": 30,
+  "cycles_24h": 31,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
