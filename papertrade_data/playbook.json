@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "updated": "2026-09-28T16:35:53Z",
+  "rules": [
+    {
+      "id": "R1",
+      "category": "crypto",
+      "rule": "For short-window crypto price questions, record a spot price from the exchange and pair named in the resolution rules (e.g. Binance BTC/USDT), taken as close to judgment time as possible, and state its timestamp and age.",
+      "evidence": [
+        "polymarket:4797513",
+        "polymarket:5009022"
+      ],
+      "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R2",
+      "category": "crypto",
+      "rule": "For crypto threshold questions, report the percent distance from current spot to the strike, the hours left in the window, and recent realized volatility over a similar span, noting whether the window falls on a usually quieter weekend.",
+      "evidence": [
+        "polymarket:5009022",
+        "polymarket:4797513"
+      ],
+      "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R3",
+      "category": "crypto",
+      "rule": "Read the resolution rules to see whether a crypto question needs any touch of the level during the window or a close at a specific candle and time, and measure the current price against that exact test.",
+      "evidence": [
+        "polymarket:5009022",
+        "polymarket:4797513"
+      ],
+      "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R4",
+      "category": "crypto",
+      "rule": "Do not treat earlier-week touches of a level or prior days' closes as evidence about the current window; identify what drove those moves (e.g. a weekday bond-yield spike) and check whether that driver is still active now.",
+      "evidence": [
+        "polymarket:5009022"
+      ],
+      "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R5",
+      "category": "crypto",
+      "rule": "For short-horizon crypto questions, search same-day macro and geopolitical news (dollar, bond yields, oil, major policy statements) and report any specific catalyst with timestamps, or state plainly that none was found.",
+      "evidence": [
+        "polymarket:4797513"
+      ],
+      "added": "2026-09-28T16:35:53Z"
+    }
+  ],
+  "reviews_used": [
+    "polymarket:4797511",
+    "polymarket:4797513",
+    "polymarket:5009022"
+  ],
+  "retired_ids": []
+}
