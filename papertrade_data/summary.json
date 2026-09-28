@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T07:06:12Z",
+  "generated": "2026-09-28T07:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T07:06:12Z",
+      "t": "2026-09-28T07:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 6,
-    "bets": 1,
-    "fail_info": 5,
-    "fail_rules": 2,
+    "judged": 3,
+    "bets": 0,
+    "fail_info": 1,
+    "fail_rules": 0,
     "fail_edge": 1,
     "sources": {
-      "kalshi": 3,
-      "polymarket": 3
+      "kalshi": 2,
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T07:02:29Z",
+    "ts": "2026-09-28T07:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -158,54 +158,54 @@
       ],
       [
         "Passed free filters",
-        6
+        3
       ],
       [
         "Judged by Jev",
-        6
+        3
       ],
       [
         "Judged with research",
-        6
+        1
       ],
       [
         "Cleared every gate (main)",
-        1
+        0
       ],
       [
         "Bets placed (main)",
-        1
+        0
       ]
     ],
-    "events": 5,
-    "researched_new": 3,
-    "research_reused": 2,
+    "events": 3,
+    "researched_new": 0,
+    "research_reused": 1,
     "bets": {
-      "main": 1,
+      "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0
     },
-    "claude_calls": 6,
+    "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 35,
-    "facts_dropped": 8,
+    "facts_kept": 7,
+    "facts_dropped": 1,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
     "problems": [],
     "cleared_gates": {
-      "main": 1,
+      "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 6,
-    "with_research": 6
+    "judged": 3,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -494,7 +494,11 @@
           99354.18
         ],
         [
-          "2026-09-28T07:06:12Z",
+          "2026-09-28T07:35:11Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T07:35:14Z",
           99354.18
         ]
       ]
@@ -671,7 +675,11 @@
           99636.24
         ],
         [
-          "2026-09-28T07:06:12Z",
+          "2026-09-28T07:35:11Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T07:35:14Z",
           99636.24
         ]
       ]
@@ -848,7 +856,11 @@
           99807.03
         ],
         [
-          "2026-09-28T07:06:12Z",
+          "2026-09-28T07:35:11Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T07:35:14Z",
           99807.03
         ]
       ]
@@ -1025,7 +1037,11 @@
           101745.06
         ],
         [
-          "2026-09-28T07:06:12Z",
+          "2026-09-28T07:35:11Z",
+          101745.06
+        ],
+        [
+          "2026-09-28T07:35:14Z",
           101745.06
         ]
       ]
@@ -1202,7 +1218,11 @@
           100000.0
         ],
         [
-          "2026-09-28T07:06:12Z",
+          "2026-09-28T07:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T07:35:14Z",
           100000.0
         ]
       ]
@@ -1722,6 +1742,52 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T07:35:11Z",
+      "key": "kalshi:KXRT-SENS-80",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-19T14:00:00Z",
+      "market": 0.305,
+      "forecasts": {
+        "jev_research": 0.29,
+        "jev_plain": 0.64,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.25,
+      "rules": 0.88,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.015 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.46 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.015 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 7
+    },
+    {
       "ts": "2026-09-28T07:02:29Z",
       "key": "polymarket:4716411",
       "question": "Will Elon Musk post 220-239 tweets from September 22 to September 29, 2026?",
@@ -2226,55 +2292,26 @@
         }
       },
       "facts_total": 6
-    },
-    {
-      "ts": "2026-09-28T06:35:18Z",
-      "key": "polymarket:4716409",
-      "question": "Will Elon Musk post 200-219 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-200-219",
-      "source": "polymarket",
-      "category": "culture",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.275,
-      "forecasts": {
-        "jev_research": 0.2,
-        "jev_plain": 0.2,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.23,
-      "rules": 0.7,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 0
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T07:35:11Z",
+      "type": "call",
+      "jev": 0.29,
+      "claude": null,
+      "market": 0.305,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-28T07:35:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 3,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T07:02:29Z",
       "type": "bet",
@@ -2698,15 +2735,6 @@
     },
     {
       "ts": "2026-09-28T04:35:12Z",
-      "type": "call",
-      "jev": 0.65,
-      "claude": 0.64,
-      "market": 0.825,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
       "type": "intel",
       "facts": 9,
       "q": "Will Spain win on 2026-09-29?",
@@ -2943,14 +2971,6 @@
       "fetched": 120,
       "judged": 2,
       "researched": 1,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-27T21:35:20Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 6,
-      "researched": 0,
       "bets": 0
     }
   ],
