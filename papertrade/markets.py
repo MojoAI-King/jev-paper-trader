@@ -22,8 +22,13 @@ KALSHI = "https://api.elections.kalshi.com/trade-api/v2"
 MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry can't loop forever
 POLY_PAGE = 100
 RETRIES = 5      # tries per request on "too many requests" (429) or a server error (5xx): waits 3+6+12+24s
-KALSHI_PAGE = 1000       # Kalshi's largest page: about 4 requests a fetch instead of 16 at 200 a page
+KALSHI_PAGE = 1000       # Kalshi's largest page (about 2 MB)
 KALSHI_PAGE_PAUSE = 1.0  # seconds between Kalshi pages: GitHub's shared runners hit its rate limit (429)
+KALSHI_MAX_PAGES = 60    # all slices together; the whole 30-day window was about 32 pages on 2026-09-28
+KALSHI_SLICES = (timedelta(hours=12), timedelta(days=3), timedelta(days=7))  # slice edges, soonest first
+KALSHI_BATCH = 50        # tickers per settlement check (61 came back in one call on 2026-09-28)
+KALSHI_DEADLINE = 300    # seconds: a walk still going after this stops, keeping what it has (65 s measured)
+LAST_FETCH: dict = {}    # source -> what the last fetch did (pages, seconds, cut short, error), for the scan log
 _sleep = time.sleep  # swapped out in tests
 
 
@@ -59,6 +64,16 @@ def _f(x, default=None):
         return default
 
 
+def _utc(s) -> str | None:
+    """'2026-09-28 19:25:00+00' (Polymarket's gameStartTime) -> '2026-09-28T19:25:00Z', or None."""
+    text = re.sub(r"([+-]\d\d)$", r"\1:00", str(s or "").strip().replace(" ", "T").replace("Z", "+00:00"))
+    try:
+        d = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    return (d if d.tzinfo else d.replace(tzinfo=timezone.utc)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def _iso(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -84,6 +99,9 @@ def normalize_polymarket(m: dict) -> dict | None:
         "question": m.get("question", ""),
         "rules": (m.get("description") or "")[:4000],
         "close_time": m.get("endDate"),
+        # a sports market's endDate is about a week after the match; gameStartTime is the match itself.
+        # Other markets' gameStartTime is the start of a counting period, so only sports keep it.
+        "starts": _utc(m.get("gameStartTime")) if m.get("sportsMarketType") else None,
         "yes_ask": round(yes_ask, 4),
         "no_ask": round(no_ask, 4),
         "mid": round(prices[0], 4),
@@ -92,8 +110,9 @@ def normalize_polymarket(m: dict) -> dict | None:
     }
 
 
-def fetch_polymarket(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
-    """Page through by 24h volume until `limit` Yes/No markets (most pages are team-vs-team sports)."""
+def fetch_polymarket(days_ahead: int, min_volume: float, limit: int, keep=None) -> list[dict]:
+    """Page through by 24h volume until `limit` Yes/No markets that `keep` accepts (the scan's free
+    filters), so no slot goes to a market the filters would throw away (most pages are sports)."""
     now = datetime.now(timezone.utc)
     out, seen = [], set()
     for page in range(MAX_PAGES):
@@ -110,7 +129,8 @@ def fetch_polymarket(days_ahead: int, min_volume: float, limit: int) -> list[dic
             n = normalize_polymarket(m)
             if n and n["market_id"] not in seen:  # offset paging can repeat a market if rankings shift
                 seen.add(n["market_id"])
-                out.append(n)
+                if keep is None or keep(n):
+                    out.append(n)
         if len(out) >= limit or len(raw) < POLY_PAGE:
             break
     return out[:limit]
@@ -161,6 +181,8 @@ def normalize_kalshi(m: dict) -> dict | None:
         "mid": round(((yes_bid or yes_ask) + yes_ask) / 2, 4),
         "volume": _f(m.get("volume_fp"), None) or _f(m.get("volume"), 0.0),
         "url": kalshi_url(m.get("event_ticker") or m.get("ticker") or "", m.get("series_ticker") or "", title),
+        # when the event itself is expected to be decided; close_time can be days or weeks later
+        "expected_expiration": m.get("expected_expiration_time"),
     }
 
 
@@ -183,27 +205,86 @@ def fix_url(url: str | None) -> str | None:
     return kalshi_url(old.group(1)) if old else url
 
 
-def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:
-    now = datetime.now(timezone.utc)
-    out, cursor = [], None
-    for page in range(MAX_PAGES):
-        if page:
-            _sleep(KALSHI_PAGE_PAUSE)
-        params = {"status": "open", "limit": KALSHI_PAGE, "mve_filter": "exclude",
-                  "min_close_ts": int((now + timedelta(hours=12)).timestamp()),
-                  "max_close_ts": int((now + timedelta(days=days_ahead)).timestamp())}
-        if cursor:
-            params["cursor"] = cursor
-        data = _get(f"{KALSHI}/markets", params)
-        for m in data.get("markets", []):
-            n = normalize_kalshi(m)
-            if n and n["volume"] >= min_volume:
-                out.append(n)
-        cursor = data.get("cursor")
-        if len(out) >= limit or not cursor or not data.get("markets"):
+def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> list[dict]:
+    """The `limit` highest-volume markets `keep` accepts, from the whole window.
+
+    Kalshi lists markets latest-closing first, and stopping at the first pages used to leave only markets
+    closing 2-4 weeks out (every Kalshi market judged before 2026-09-28). So the window is walked in slices,
+    soonest first (12h-3d, 3d-7d, 7d-days_ahead), each paged to the end: if the page limit or an error cuts
+    the walk short, what's lost is the far-dated end. What happened is left in LAST_FETCH for the scan log.
+    """
+    now, started = datetime.now(timezone.utc), time.monotonic()
+    deadline = started + KALSHI_DEADLINE
+    edges = [e for e in KALSHI_SLICES if e < timedelta(days=days_ahead)] + [timedelta(days=days_ahead)]
+    out, seen, pages, cut_short, error = [], set(), 0, False, None
+    for lo, hi in zip(edges, edges[1:]):
+        cursor = None
+        while not error:
+            if pages >= KALSHI_MAX_PAGES or time.monotonic() > deadline:
+                cut_short = True
+                break
+            if pages:
+                _sleep(KALSHI_PAGE_PAUSE)
+            params = {"status": "open", "limit": KALSHI_PAGE, "mve_filter": "exclude",
+                      "min_close_ts": int((now + lo).timestamp()), "max_close_ts": int((now + hi).timestamp())}
+            if cursor:
+                params["cursor"] = cursor
+            try:
+                data = _get(f"{KALSHI}/markets", params)
+            except Exception as e:  # after _get's own retries: keep what the earlier pages found
+                error = str(e)
+                break
+            pages += 1
+            for m in data.get("markets", []):
+                n = normalize_kalshi(m)
+                if n and n["market_id"] not in seen and n["volume"] >= min_volume and (keep is None or keep(n)):
+                    seen.add(n["market_id"])
+                    out.append(n)
+            cursor = data.get("cursor")
+            if not cursor or not data.get("markets"):
+                break
+        if error or cut_short:
             break
+    LAST_FETCH["kalshi"] = {"pages": pages, "seconds": round(time.monotonic() - started, 1),
+                            "cut_short": cut_short, "error": error, "passing": len(out)}
+    if error and not out:
+        raise RuntimeError(error)
     out.sort(key=lambda m: m["volume"], reverse=True)
     return out[:limit]
+
+
+def check_kalshi(tickers: list[str]) -> dict:
+    """ticker -> "yes" / "no", or ("void", value) for a market settled at a value rather than yes/no.
+
+    One request per KALSHI_BATCH tickers, whatever their stored close times: Kalshi's close_time is a late
+    upper bound (a market decided on Sep 28 still showed Oct 15), so waiting for it held results back weeks.
+    Only finalized results count ("determined" can still be disputed); it's checked again next cycle. A
+    failed request loses only its own batch; what went wrong is left in LAST_FETCH["kalshi_check"].
+    """
+    out, errors = {}, []
+    for i in range(0, len(tickers), KALSHI_BATCH):
+        if i:
+            _sleep(KALSHI_PAGE_PAUSE)
+        chunk = tickers[i:i + KALSHI_BATCH]
+        try:
+            data = _get(f"{KALSHI}/markets", {"tickers": ",".join(chunk), "limit": len(chunk)})
+        except Exception as e:
+            errors.append(str(e)[:200])
+            continue
+        for m in data.get("markets", []):
+            if m.get("status") not in ("finalized", "settled"):
+                continue
+            result = (m.get("result") or "").lower()
+            if result in ("yes", "no"):
+                out[m.get("ticker")] = result
+            elif result == "scalar":
+                value = _f(m.get("settlement_value_dollars"), None)
+                if value is not None and 0 <= value <= 1:
+                    out[m.get("ticker")] = ("void", value)
+    LAST_FETCH["kalshi_check"] = {"batches": -(-len(tickers) // KALSHI_BATCH), "errors": errors}
+    if errors and not out and len(errors) * KALSHI_BATCH >= len(tickers):
+        raise RuntimeError(errors[0])
+    return out
 
 
 def resolve_kalshi(ticker: str) -> str | None:
@@ -216,3 +297,4 @@ def resolve_kalshi(ticker: str) -> str | None:
 
 FETCHERS = {"polymarket": fetch_polymarket, "kalshi": fetch_kalshi}
 RESOLVERS = {"polymarket": resolve_polymarket, "kalshi": resolve_kalshi}
+BATCH_RESOLVERS = {"kalshi": check_kalshi}  # checked every cycle, before the stored close time

@@ -44,12 +44,13 @@ For a first live run, research just a few events: `python3 -m papertrade scan --
 
 Every hour, a funnel narrows the markets before any paid step:
 
-1. **Fetch** about 120 markets from Polymarket and Kalshi (free, read-only).
+1. **Fetch** the 60 busiest markets from each of Polymarket and Kalshi that pass the free filters, out of
+   every market closing in the next 30 days (free, read-only).
 2. **Free filters:** price 5–95¢, enough volume, closes within 30 days, and due for a look (never
    judged, judged over 6 hours ago, or its price moved 5+ points).
 3. **Research, rationed:** Jev first judges every market without research. Events whose rules Jev
    rates clear are then researched by Claude Opus 5.5 through Claude Code on the Claude plan (web
-   search and page reading only), reused for 24 hours, at most 3 a cycle and 60 a day. It returns dated, sourced facts: what the resolution source shows
+   search and page reading only), reused for 24 hours, at most 60 a day spread through the day, soonest-decided events first. It returns dated, sourced facts: what the resolution source shows
    today, recent events, what's still scheduled, historical base rates.
 4. **Price screen:** code drops any fact that mentions odds, prediction markets, forecasters,
    predictions, or a figure matching the market's price. The survivors become `recent_facts`.
@@ -75,10 +76,11 @@ A fake bet is placed only if **every** gate in `policy.json` passes:
 
 **Strategies.** Each trades its own fake $100,000 on the same markets with the same sizing:
 **main** (Jev + Claude research, the headline), **Jev alone**, **Claude direct**, **bold** (main,
-but with an info bar of 0.2 instead of 0.5), and **self-calibrating** (main's gates, with Jev's
-probability corrected by what it learned from resolved markets). Comparing them shows whether research
-helps, whether Jev adds anything over Claude, whether the info gate is too cautious, and whether
-learning from outcomes pays.
+but with an info bar of 0.2 instead of 0.5), **self-calibrating** (main's gates, with Jev's
+probability corrected by what it learned from resolved markets), and **Jev alone, bold** (no research,
+Bold's info bar). Comparing them shows whether research helps, whether Jev adds anything over Claude,
+whether the info gate is too cautious, whether research pays when betting boldly, and whether learning
+from outcomes pays. `docs/EXPERIMENTS.md` lists every one with what it tests.
 
 ## How it learns
 

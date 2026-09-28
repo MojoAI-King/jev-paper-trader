@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Jev Paper Trader</title>
-<meta name="description" content="Five AI strategies bet $100,000 of fake money each on real Polymarket and Kalshi markets. Live.">
+<meta name="description" content="AI strategies bet $100,000 of fake money each on real Polymarket and Kalshi markets. Live.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
@@ -540,8 +540,11 @@ function openVerify() {
   const base = safeUrl(D.ledger_base) || "";
   const p = (b, t) => { const e = h("p"); e.append(h("b", { text: b }), document.createTextNode(" " + t)); return e; };
   const links = h("div", { class: "links" });
-  (D.strategies || []).map(x => `portfolios/${x.name}.json`).concat(["judgments.jsonl", "research.jsonl", "scans.jsonl", "reviews.jsonl", "resolutions.json", "playbook.json", "proposals.json"])
+  (D.strategies || []).map(x => `portfolios/${x.name}.json`).concat(["judgments.jsonl", "research.jsonl", "scans.jsonl", "reviews.jsonl", "resolutions.json", "voids.json", "playbook.json", "proposals.json"])
     .forEach(f => links.append(h("a", { href: base + f, target: base ? "_blank" : "_self", rel: "noopener noreferrer", text: f })));
+  // older judgments and research move to gzipped files in archive/ once a log passes 20 MB
+  const repo = safeUrl(D.repo_url);
+  if (repo) links.append(h("a", { href: `${repo}/tree/master/papertrade_data/archive`, target: "_blank", rel: "noopener noreferrer", text: "archive/" }));
   const close = h("button", { class: "btn", type: "button", text: "Close" });
   close.addEventListener("click", () => { $("verify").hidden = true; });
   m.append(h("h2", { id: "v-h", text: "How to check this is real" }),

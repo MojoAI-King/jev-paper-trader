@@ -132,9 +132,96 @@ class PolymarketFetchTests(unittest.TestCase):
             calls.append(req.full_url)
             return io.BytesIO(json.dumps({"markets": [{"ticker": "T", "yes_ask": 40, "no_ask": 62,
                                                        "volume": 5}], "cursor": "more"}).encode())
-        with mock.patch("urllib.request.urlopen", fake):
+        with mock.patch("urllib.request.urlopen", fake), mock.patch.object(mk, "_sleep", lambda s: None):
             self.assertEqual(mk.fetch_kalshi(30, 10000, 60), [])
-        self.assertEqual(len(calls), mk.MAX_PAGES)
+        self.assertEqual(len(calls), mk.KALSHI_MAX_PAGES)
+        self.assertTrue(mk.LAST_FETCH["kalshi"]["cut_short"])  # the scan logs it as a problem
+
+    @staticmethod
+    def kalshi_raw(ticker, volume):
+        return {"ticker": ticker, "event_ticker": ticker.split("-")[0] + "-E", "title": ticker, "yes_ask": 40,
+                "no_ask": 62, "yes_bid": 38, "volume": volume}
+
+    def test_kalshi_walks_the_window_soonest_first_and_ranks_all_of_it(self):
+        # Kalshi lists latest-closing first; the biggest market sits in the far-dated slice, and a
+        # market the free filters reject never takes a slot
+        asked, slices, edges = [], {}, []
+
+        def fake_get(url, params=None, timeout=20):
+            asked.append(params["min_close_ts"])
+            edges.append((params["min_close_ts"], params["max_close_ts"]))
+            i = slices.setdefault(params["min_close_ts"], len(slices))
+            markets = [self.kalshi_raw(f"S{i}-M", [20000, 30000, 90000][i])]
+            if i == 0:
+                markets.append(self.kalshi_raw("BAD-M", 500000))
+            return {"markets": markets, "cursor": None}
+        with mock.patch.object(mk, "_get", fake_get):
+            ms = mk.fetch_kalshi(30, 10000, 2, lambda m: m["market_id"] != "BAD-M")
+        self.assertEqual(asked, sorted(asked))  # soonest slice first
+        self.assertEqual([hi for _, hi in edges[:-1]], [lo for lo, _ in edges[1:]])  # no gaps between slices
+        self.assertEqual(len(slices), 3)
+        self.assertEqual([m["market_id"] for m in ms], ["S2-M", "S1-M"])
+        self.assertEqual(mk.LAST_FETCH["kalshi"]["pages"], 3)
+
+    def test_kalshi_keeps_what_it_fetched_when_a_later_page_fails(self):
+        calls = []
+
+        def fake_get(url, params=None, timeout=20):
+            calls.append(1)
+            if len(calls) > 1:
+                raise RuntimeError("HTTP 429 from kalshi")
+            return {"markets": [self.kalshi_raw("S0-M", 20000)], "cursor": None}
+        with mock.patch.object(mk, "_get", fake_get):
+            ms = mk.fetch_kalshi(30, 10000, 60)
+        self.assertEqual([m["market_id"] for m in ms], ["S0-M"])  # the soonest slice survived
+        self.assertIn("429", mk.LAST_FETCH["kalshi"]["error"])
+        with mock.patch.object(mk, "_get", mock.Mock(side_effect=RuntimeError("down"))):
+            with self.assertRaises(RuntimeError):  # nothing fetched at all: the scan reports the source as down
+                mk.fetch_kalshi(30, 10000, 60)
+
+    def test_polymarket_filters_before_taking_the_top(self):
+        with mock.patch("urllib.request.urlopen", self.fake_urlopen):
+            self.assertEqual(mk.fetch_polymarket(30, 10000, 60, lambda m: False), [])
+            self.assertEqual(len(mk.fetch_polymarket(30, 10000, 60, lambda m: True)), 3)
+
+    def test_kalshi_results_are_checked_in_batches_and_scalar_is_void(self):
+        seen = []
+
+        def fake_get(url, params=None, timeout=20):
+            seen.append(params["tickers"].split(","))
+            return {"markets": [
+                {"ticker": "A", "status": "finalized", "result": "yes"},
+                {"ticker": "B", "status": "active", "result": ""},
+                {"ticker": "C", "status": "finalized", "result": "scalar", "settlement_value_dollars": "0.5000"},
+                {"ticker": "D", "status": "determined", "result": "no"}]}  # not final: can still be disputed
+        with mock.patch.object(mk, "_get", fake_get):
+            out = mk.check_kalshi([f"T{i}" for i in range(mk.KALSHI_BATCH + 1)])
+        self.assertEqual([len(s) for s in seen], [mk.KALSHI_BATCH, 1])  # one request per batch
+        self.assertEqual(out, {"A": "yes", "C": ("void", 0.5)})
+
+    def test_a_failed_result_batch_loses_only_itself(self):
+        calls = []
+
+        def fake_get(url, params=None, timeout=20):
+            calls.append(1)
+            if len(calls) == 1:
+                raise TimeoutError("timed out")
+            return {"markets": [{"ticker": "B", "status": "finalized", "result": "no"}]}
+        with mock.patch.object(mk, "_get", fake_get):
+            out = mk.check_kalshi([f"T{i}" for i in range(mk.KALSHI_BATCH + 1)])
+        self.assertEqual(out, {"B": "no"})  # the second batch still counts
+        self.assertEqual(len(mk.LAST_FETCH["kalshi_check"]["errors"]), 1)
+        with mock.patch.object(mk, "_get", mock.Mock(side_effect=TimeoutError("down"))):
+            with self.assertRaises(RuntimeError):  # every batch failed: settle logs it
+                mk.check_kalshi(["T1"])
+
+    def test_normalized_markets_carry_when_the_event_happens(self):
+        k = mk.normalize_kalshi(dict(self.kalshi_raw("KX-1", 20000), expected_expiration_time="2026-10-01T14:00:00Z"))
+        self.assertEqual(k["expected_expiration"], "2026-10-01T14:00:00Z")
+        base = POLY_FIXTURE["ok_body"][0]
+        sports = mk.normalize_polymarket(dict(base, sportsMarketType="moneyline", gameStartTime="2026-09-28 19:25:00+00"))
+        counting = mk.normalize_polymarket(dict(base, gameStartTime="2026-09-22 16:00:00+00"))  # a tweet-count period
+        self.assertEqual((sports["starts"], counting["starts"]), ("2026-09-28T19:25:00Z", None))
 
     def test_rate_limit_is_retried_then_reported(self):
         def limited(n):
@@ -216,6 +303,15 @@ class StrategyGateTests(unittest.TestCase):
         self.assertTrue(engine.decide(market(), a, bold, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(), ans(0.60, info=0.1), bold, 100000, 0, 100000)["bet"])
 
+    def test_jev_alone_bold_differs_from_jev_alone_only_in_the_info_bar(self):
+        s = POLICY["strategies"]["jev_alone_bold"]
+        self.assertEqual((s["probability"], s["gates"]), ("jev_plain", "jev_plain"))  # no research, like jev_alone
+        pol = engine.strategy_policy(POLICY, s)
+        self.assertEqual(pol["gates"], dict(POLICY["gates"], min_info_sufficient=0.2))  # Bold's bar
+        self.assertEqual((pol["sizing"], pol["fees"]), (POLICY["sizing"], POLICY["fees"]))
+        self.assertIsNone(learn.challenger_problem({k: s[k] for k in ("label", "probability", "gates", "gate_overrides")},
+                                                   POLICY))  # inside the bounds a challenger could reach
+
     def test_an_override_of_a_gate_that_does_not_exist_is_refused(self):
         with self.assertRaises(ValueError):
             engine.strategy_policy(POLICY, {"label": "typo", "gate_overrides": {"min_info_sufficent": 0.1}})
@@ -252,7 +348,7 @@ class FakeForecaster:
 
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
-    NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "SCANS", "REVIEWS", "RESEARCH",
+    NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "VOIDS", "SCANS", "REVIEWS", "RESEARCH",
              "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS")
 
     def setUp(self):
@@ -260,7 +356,7 @@ class DataDirTest(unittest.TestCase):
         d = Path(self.tmp.name)
         self._saved = {n: getattr(engine, n) for n in self.NAMES}
         for n, v in {"DATA": d, "PORTFOLIO": d / "portfolio.json", "PORTFOLIOS": d / "portfolios",
-                     "JUDGMENTS": d / "judgments.jsonl", "RESOLUTIONS": d / "resolutions.json",
+                     "JUDGMENTS": d / "judgments.jsonl", "RESOLUTIONS": d / "resolutions.json", "VOIDS": d / "voids.json",
                      "SCANS": d / "scans.jsonl", "REVIEWS": d / "reviews.jsonl", "RESEARCH": d / "research.jsonl",
                      "SUMMARY": d / "summary.json", "SITE": d / "site", "PLAYBOOK": d / "playbook.json",
                      "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
@@ -294,7 +390,8 @@ class EndToEndTests(DataDirTest):
         stats = engine.scan(policy, researcher=FakeResearcher([fact("A clean fact.")]),
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
-        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
+                                                   "jev_alone_bold": 0})
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -304,7 +401,8 @@ class EndToEndTests(DataDirTest):
 
         s = engine.settle(policy, resolvers={"polymarket": lambda mid: "yes" if mid in "12" else None},
                           log=lambda *_: None)
-        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0})
+        self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
+                                            "jev_alone_bold": 0})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -323,6 +421,105 @@ class EndToEndTests(DataDirTest):
         self.assertEqual(pf["cash"], 99000.0)
         self.assertFalse(engine.PORTFOLIO.exists())
         self.assertTrue(engine.portfolio_path("main").exists())
+
+
+class SettleAndStorageTests(DataDirTest):
+    def test_kalshi_results_count_before_the_stored_close_and_a_scalar_pays_its_value(self):
+        far = "2099-01-01T00:00:00Z"  # Kalshi's close_time is a late upper bound; the result is in already
+        bet = {"key": "kalshi:K1", "source": "kalshi", "market_id": "K1", "question": "Decided early", "url": "u",
+               "close_time": far, "side": "yes", "contracts": 100, "cost_per": 0.4, "total_cost": 40.0,
+               "p_side": 0.6, "market_ask": 0.39, "edge": 0.1, "opened": "2026-09-20T00:00:00Z"}
+        void_bet = dict(bet, key="kalshi:K2", market_id="K2", question="Settled at a value", side="no")
+        engine.save_portfolio("main", dict(fresh_pf(), cash=100000 - 80.0, open=[bet, void_bet]))
+        engine.append_jsonl(engine.JUDGMENTS, {"key": "kalshi:K3", "market": {"close_time": far}})  # judged, no bet
+        asked = []
+
+        def check(ids):
+            asked.append(sorted(ids))
+            return {"K1": "yes", "K2": ("void", 0.25), "K3": "no"}
+        engine.settle(POLICY, resolvers={}, batch={"kalshi": check}, log=lambda *_: None)
+        self.assertEqual(asked, [["K1", "K2", "K3"]])
+        self.assertEqual(engine.load_json(engine.RESOLUTIONS, {}), {"kalshi:K1": "yes", "kalshi:K3": "no"})  # never scored
+        self.assertEqual(engine.load_json(engine.VOIDS, {}), {"kalshi:K2": 0.25})
+        pf = engine.load_portfolio(POLICY)
+        closed = {p["key"]: p for p in pf["closed"]}
+        self.assertEqual((closed["kalshi:K1"]["payout"], closed["kalshi:K2"]["outcome"], closed["kalshi:K2"]["payout"]),
+                         (100.0, "void", 75.0))  # NO is paid 1 - value per contract
+        self.assertAlmostEqual(pf["cash"], 100000 - 80.0 + 175.0)
+        engine.settle(POLICY, resolvers={}, batch={"kalshi": check}, log=lambda *_: None)
+        self.assertEqual(len(asked), 1)  # settled markets aren't asked about again
+
+    def test_a_kalshi_event_under_way_is_filtered_by_its_expected_expiration(self):
+        m = dict(market(src="kalshi", close="1999-12-28T00:00:00Z"), expected_expiration="1999-12-25T02:00:00Z")
+        self.assertEqual(engine.passes_free_filters(m, POLICY["market_filters"], SCAN_NOW), "close date")
+        m["expected_expiration"] = "1999-12-26T02:00:00Z"
+        self.assertIsNone(engine.passes_free_filters(m, POLICY["market_filters"], SCAN_NOW))
+
+    def test_logs_rotate_into_archives_and_are_still_read_whole(self):
+        for i in range(50):
+            engine.append_jsonl(engine.JUDGMENTS, {"ts": f"1999-12-25T00:{i:02d}:00Z", "key": f"k{i}", "pad": "x" * 200})
+        self.assertIsNone(engine.rotate_log(engine.JUDGMENTS, 1))  # under the limit: left alone
+        target = engine.rotate_log(engine.JUDGMENTS, 0.005)
+        self.assertEqual(target.name, "judgments-19991225T000000Z.jsonl.gz")
+        self.assertEqual(engine.JUDGMENTS.read_text(), "")
+        engine.append_jsonl(engine.JUDGMENTS, {"ts": "1999-12-25T01:00:00Z", "key": "new"})
+        self.assertEqual([r["key"] for r in engine.read_jsonl(engine.JUDGMENTS)], [f"k{i}" for i in range(50)] + ["new"])
+
+    def test_the_scan_hands_the_free_filters_to_the_fetcher_and_logs_a_fetch_cut_short(self):
+        got = []
+
+        def fetch(*a):
+            got.append(a)
+            mk.LAST_FETCH["polymarket"] = {"pages": 3, "seconds": 1.0, "cut_short": False, "error": "HTTP 429", "passing": 0}
+            return []
+        stats = engine.scan(dict(POLICY, sources=["polymarket"]), client=JevClient(transport=lambda *a: None),
+                            fetchers={"polymarket": fetch}, log=lambda *_: None, now=SCAN_NOW)
+        keep = got[0][3]
+        self.assertFalse(keep(dict(market(close="2000-01-01T00:00:00Z"), mid=0.02)))  # outside the price range
+        self.assertTrue(keep(market(close="2000-01-01T00:00:00Z")))
+        self.assertTrue(any("429" in p for p in stats["problems"]))
+        self.assertEqual(stats["funnel"]["fetch"]["polymarket"]["pages"], 3)
+
+        def cut(*a):
+            mk.LAST_FETCH["polymarket"] = {"pages": 60, "seconds": 90.0, "cut_short": True, "error": None, "passing": 0}
+            return []
+        stats = engine.scan(dict(POLICY, sources=["polymarket"]), client=JevClient(transport=lambda *a: None),
+                            fetchers={"polymarket": cut}, log=lambda *_: None, now=SCAN_NOW)
+        self.assertTrue(any("page limit" in p for p in stats["problems"]))
+
+    def test_settle_checks_kalshi_every_cycle_by_default(self):
+        engine.append_jsonl(engine.JUDGMENTS, {"key": "kalshi:K9", "market": {"close_time": "2099-01-01T00:00:00Z"}})
+        check = mock.Mock(return_value={"K9": "yes"})
+        with mock.patch.dict(mk.BATCH_RESOLVERS, {"kalshi": check}), \
+             mock.patch.dict(mk.RESOLVERS, {"polymarket": mock.Mock(return_value=None)}):
+            engine.settle(POLICY, log=lambda *_: None)
+        check.assert_called_once_with(["K9"])
+        self.assertEqual(engine.load_json(engine.RESOLUTIONS, {}), {"kalshi:K9": "yes"})
+
+    def test_a_match_is_skipped_from_an_hour_before_it_starts_and_checked_soon_after(self):
+        mf = POLICY["market_filters"]
+        m = dict(market(close="2000-01-01T00:00:00Z"), starts="1999-12-25T00:30:00Z")
+        self.assertEqual(engine.passes_free_filters(m, mf, SCAN_NOW), "started")
+        m["starts"] = "1999-12-25T03:00:00Z"
+        self.assertIsNone(engine.passes_free_filters(m, mf, SCAN_NOW))
+        # listed to close in 2099, but the match started long ago: its result is checked now
+        engine.append_jsonl(engine.JUDGMENTS, {"key": "polymarket:P1", "market": {"close_time": "2099-01-01T00:00:00Z",
+                                                                                   "starts": "2020-01-01T00:00:00Z"}})
+        asked = []
+        engine.settle(POLICY, resolvers={"polymarket": lambda mid: asked.append(mid) or "no"}, log=lambda *_: None)
+        self.assertEqual(asked, ["P1"])
+
+    def test_research_stops_starting_when_the_cycle_is_out_of_time(self):
+        ticks = iter([0, 0, 10 ** 6, 10 ** 6, 10 ** 6, 10 ** 6, 10 ** 6, 10 ** 6, 10 ** 6, 10 ** 6])
+        ms = [dict(market(mid=str(i), close="2000-01-01T00:00:00Z"), event=f"polymarket:e{i}") for i in range(3)]
+        r = FakeResearcher([])
+        with mock.patch.object(engine, "_clock", lambda: next(ticks, 10 ** 6)):
+            engine.scan(dict(POLICY, sources=["polymarket"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
+                        fetchers={"polymarket": lambda *a: ms}, log=lambda *_: None, now=SCAN_NOW + timedelta(hours=12),
+                        researcher=r, forecaster=FakeForecaster({}))
+        self.assertEqual(len(r.calls), 1)  # the first started in time; the rest wait for a later cycle
+        later = [j for j in engine.read_jsonl(engine.JUDGMENTS) if j["key"] == "polymarket:2"][0]
+        self.assertIn("research time for this cycle used up", later["decisions"]["main"]["reasons"][0])
 
 
 LEAKY = [
@@ -406,15 +603,40 @@ class ResearchPipelineTests(DataDirTest):
         self.assertIn("rules unclear", vague["decisions"]["main"]["reasons"][0])
 
     def test_research_caps_per_cycle_and_per_day(self):
-        ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(6)]
+        cap = POLICY["research"]["max_research_per_cycle"]
+        ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(cap + 3)]
         r = FakeResearcher([])
-        self.run_scan(ms, r)
+        unpaced = dict(POLICY, sources=["polymarket"], research=dict(POLICY["research"], pace_through_day=False))
+        self.run_scan(ms, r, policy=unpaced)
         self.assertEqual(len(r.calls), POLICY["research"]["max_research_per_cycle"])
         for i in range(POLICY["research"]["max_research_per_day"]):  # a day that has already used its research allowance
             engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T01:00:00Z", "event": f"old{i}", "mids": {}})
         r2 = FakeResearcher([])
-        self.run_scan([self.lula("N", event="polymarket:new")], r2, now=SCAN_NOW + timedelta(hours=2))
+        self.run_scan([self.lula("N", event="polymarket:new")], r2, policy=unpaced, now=SCAN_NOW + timedelta(hours=2))
         self.assertEqual(r2.calls, [])
+
+    def test_research_is_paced_through_the_day_and_soonest_first(self):
+        rc = POLICY["research"]
+        self.assertTrue(rc["pace_through_day"])
+        ms = [dict(self.lula(str(i), event=f"polymarket:e{i}"), close_time=f"2000-01-0{9 - i}T00:00:00Z") for i in range(8)]
+        r = FakeResearcher([])
+        self.run_scan(ms, r)  # 00:00 UTC, nothing used yet: only the first hour's share of the day
+        first_hour = -(-rc["max_research_per_day"] * 1 // 24)
+        self.assertEqual(len(r.calls), min(first_hour, rc["max_research_per_cycle"]))
+        # the events decided soonest were researched first (e7 closes Jan 2, e0 Jan 9)
+        self.assertEqual([c[0] for c in r.calls], [f"Will Lula win the election? ({i})" for i in (7, 6, 5)][:len(r.calls)])
+        for i in range(20):  # by noon 20 have run: the day's pace allows up to 60 x 13/24 = 33, capped per cycle
+            engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T11:00:00Z", "event": f"old{i}", "mids": {}})
+        r2 = FakeResearcher([])
+        more = [self.lula(f"n{i}", event=f"polymarket:n{i}") for i in range(8)]
+        self.run_scan(more, r2, now=SCAN_NOW + timedelta(hours=12))
+        self.assertEqual(len(r2.calls), rc["max_research_per_cycle"])
+        for i in range(4):  # 3 + 20 + 6 + 4 = 33 used by 12:30; the pace allows 34 (60 x 13.5/24, rounded up)
+            engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T12:10:00Z", "event": f"x{i}", "mids": {}})
+        r3 = FakeResearcher([])
+        self.run_scan([self.lula(f"m{i}", event=f"polymarket:m{i}") for i in range(8)], r3,
+                      now=SCAN_NOW + timedelta(hours=12, minutes=30))
+        self.assertEqual(len(r3.calls), 1)  # one more, not a whole cycle's worth
 
     def test_research_is_reused_until_stale_or_the_price_moves(self):
         r = FakeResearcher([fact(CLEAN[1])])
@@ -434,8 +656,11 @@ class ResearchPipelineTests(DataDirTest):
         ms = [self.lula(str(i), event=f"polymarket:e{i}") for i in range(3)]
         r = FakeResearcher([], fail=news.NewsError("bad reply"))
         stats = self.run_scan(ms, r)
+        # two failures in a row end research for the cycle; Jev alone still judges every market
         self.assertEqual((len(r.calls), stats["funnel"]["judged"], stats["funnel"]["with_research"], stats["errors"]),
-                         (3, 3, 0, 3))
+                         (2, 3, 0, 2))
+        third = [j for j in engine.read_jsonl(engine.JUDGMENTS) if j["market"]["question"].endswith("(2)")][0]
+        self.assertIn("research failing this cycle", third["decisions"]["main"]["reasons"][0])
         r2 = FakeResearcher([], fail=news.NewsError("not installed", fatal=True))
         self.run_scan([dict(m, market_id=m["market_id"] + "x") for m in ms], r2)
         self.assertEqual(len(r2.calls), 1)
@@ -474,7 +699,8 @@ class ResearchPipelineTests(DataDirTest):
             return {"model": "jev-test", "answers": ans(0.70 if "recent_facts" in body["state"] else 0.60)}
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
-        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1, "calibrated": 0})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1, "calibrated": 0,
+                                                   "jev_alone_bold": 1})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
         self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone"]["p_yes"]), (0.70, 0.60))
         # two days later the market is judged again for data, but no strategy adds to a position it holds

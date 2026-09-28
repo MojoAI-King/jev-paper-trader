@@ -12,6 +12,9 @@
     "max_price": 0.95,
     "rejudge_after_hours": 6,
     "rejudge_on_price_move": 0.05,
+    "min_hours_before_start": 1,
+    "check_hours_after_start": 3,
+    "_min_hours_before_start": "A match with a known start (Polymarket sports) is skipped from an hour before it starts, so nothing is judged in play; its result is checked from 3 hours after the start instead of a week later at the listed close",
     "_rejudge": "Trading runs hourly. A market is researched and judged again after 6 hours, or sooner if its price moves 5+ points. The price only triggers a new look; forecasters never see it."
   },
 
@@ -37,13 +40,18 @@
     "research_after_hours": 24,
     "research_on_price_move": 0.10,
     "_research_after_hours": "An event's research is reused for 24 hours, or redone sooner if a price moves 10+ points",
-    "max_research_per_cycle": 3,
+    "max_research_per_cycle": 6,
     "max_research_per_day": 60,
-    "_max_research_per_day": "Raised from 20 on 2026-09-28: 20 ran out by 5 AM ET both days, leaving the rest of the day with no new research (about $0.12 API-equivalent a run, on the plan)",
+    "_max_research_per_day": "Raised from 20 on 2026-09-28: 20 ran out by 5 AM ET both days, leaving the rest of the day with no new research. A research run costs a median $0.28 API-equivalent, on the plan",
+    "pace_through_day": true,
+    "order": "soonest",
+    "_pace_through_day": "The day's research is spread over the UTC day (by hour h, at most per_day x (h+1)/24 used), so it never runs out by morning; per-cycle 6 only lets a cycle catch up after a gap. 'soonest' researches the events decided soonest first, so results come back sooner",
     "max_week_used": 1.0,
     "max_five_hour_used": 0.70,
     "_max_week_used": "Joey lifted the 85% weekly pause on 2026-09-27: research runs until the plan itself says the week is full. It still pauses when the 5-hour window is 70% used, so Joey's own sessions keep room",
-    "timeout_seconds": 900,
+    "timeout_seconds": 300,
+    "max_minutes_per_cycle": 25,
+    "_max_minutes_per_cycle": "No new research or Claude direct call starts after this many minutes of a cycle, and a call is cut at 300 s (the longest measured was 73 s), so stalled calls can't push the job past GitHub's 55-minute limit",
     "max_api_equivalent_usd_per_call": 5
   },
 
@@ -91,9 +99,17 @@
              "_why": "Joey approved 2026-09-27: main but with the info bar at 0.2 instead of 0.5, to test whether the info gate is too cautious"},
     "calibrated": {"label": "Jev + research, self-calibrating", "short": "Self-calibrating", "desc": "corrected by past results", "badge": "Learning", "probability": "jev_calibrated", "gates": "jev_research",
                    "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
-                   "_why": "Main's gates, but the probability is corrected by a map learned from every resolved market (learn.calibration_map). Waits until learning.calibration_min_resolved markets have resolved"}
+                   "_why": "Main's gates, but the probability is corrected by a map learned from every resolved market (learn.calibration_map). Waits until learning.calibration_min_resolved markets have resolved"},
+    "jev_alone_bold": {"label": "Jev alone, bold", "short": "Jev alone, bold", "desc": "no research, bets when unsure", "badge": "Challenger", "probability": "jev_plain", "gates": "jev_plain",
+                       "gate_overrides": {"min_info_sufficient": 0.2},
+                       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
+                       "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"}
   },
 
+  "storage": {
+    "rotate_logs_mb": 20,
+    "_readme": "judgments.jsonl and research.jsonl move into papertrade_data/archive/ (gzipped) once past this size; every reader still reads the archives. GitHub refuses files over 100 MB"
+  },
   "sizing": {
     "kelly_fraction": 0.25,
     "max_stake_pct": 0.02,

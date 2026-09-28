@@ -10,8 +10,10 @@ Every stage's counts are logged to scans.jsonl.
 """
 from __future__ import annotations
 
+import gzip
 import json
 import math
+import time
 from datetime import datetime, timedelta, timezone
 from itertools import zip_longest
 from pathlib import Path
@@ -29,6 +31,7 @@ PORTFOLIO = DATA / "portfolio.json"  # v1's single ledger; moved to portfolios/m
 PORTFOLIOS = DATA / "portfolios"
 JUDGMENTS = DATA / "judgments.jsonl"
 RESOLUTIONS = DATA / "resolutions.json"
+VOIDS = DATA / "voids.json"  # markets settled at a value, not yes/no (Kalshi "scalar"): paid out, never scored
 SCANS = DATA / "scans.jsonl"
 REVIEWS = DATA / "reviews.jsonl"
 RESEARCH = DATA / "research.jsonl"  # one record per research run, reused for a while
@@ -40,6 +43,7 @@ PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; appr
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
 TS = "%Y-%m-%dT%H:%M:%SZ"
+_clock = time.monotonic  # swapped out in tests
 
 
 def now_iso() -> str:
@@ -96,10 +100,36 @@ def append_jsonl(path: Path, obj: dict) -> None:
         f.write(json.dumps(obj) + "\n")
 
 
+def _archives(path: Path) -> list[Path]:
+    return sorted((path.parent / "archive").glob(f"{path.stem}-*.jsonl.gz"))
+
+
 def read_jsonl(path: Path) -> list[dict]:
-    if not path.exists():
-        return []
-    return [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
+    """Every record, oldest first: the rotated archives (archive/<name>-<first ts>.jsonl.gz), then the file."""
+    rows = []
+    for part in _archives(path):
+        with gzip.open(part, "rt") as f:
+            rows.extend(json.loads(l) for l in f if l.strip())
+    if path.exists():
+        rows.extend(json.loads(l) for l in path.read_text().splitlines() if l.strip())
+    return rows
+
+
+def rotate_log(path: Path, max_mb: float) -> Path | None:
+    """Move a log past `max_mb` into a gzipped archive and start it afresh. GitHub refuses files over
+    100 MB, and the judgment log grows several MB a day; read_jsonl still reads every archive."""
+    if not path.exists() or path.stat().st_size < max_mb * 1e6:
+        return None
+    first = json.loads(next(l for l in path.read_text().splitlines() if l.strip()))
+    stamp = str(first.get("ts", now_iso())).replace("-", "").replace(":", "")
+    target = path.parent / "archive" / f"{path.stem}-{stamp}.jsonl.gz"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    tmp = target.with_suffix(".tmp")
+    with gzip.open(tmp, "wt") as f:
+        f.write(path.read_text())
+    tmp.replace(target)
+    path.write_text("")
+    return target
 
 
 def portfolio_path(name: str) -> Path:
@@ -209,9 +239,33 @@ def passes_free_filters(m: dict, mf: dict, now: datetime) -> str | None:
         return "close date"
     if ct.tzinfo is None:
         ct = ct.replace(tzinfo=timezone.utc)
-    if not (now + timedelta(hours=12) <= ct <= now + timedelta(days=mf["days_ahead"])):
+    if not (now + timedelta(hours=12) <= event_time(m) <= ct <= now + timedelta(days=mf["days_ahead"])):
         return "close date"
+    starts = _when(m.get("starts"))
+    if starts and starts < now + timedelta(hours=mf.get("min_hours_before_start", 1)):
+        return "started"  # a match under way or over: its price may already know what the forecasters don't
     return None
+
+
+def _when(v) -> datetime | None:
+    try:
+        d = datetime.fromisoformat(str(v).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+
+
+def event_time(m: dict) -> datetime:
+    """When the market's event is decided: the earlier of its close and, on Kalshi, its expected expiration
+    (a Kalshi game's close_time falls a median 1.9 days after the game). The 12-hour rule uses this, so
+    no bet is placed on an event that is under way or over."""
+    times = [d for d in (_when(m.get("close_time")), _when(m.get("expected_expiration"))) if d]
+    return min(times) if times else datetime.max.replace(tzinfo=timezone.utc)
+
+
+def soonest(m: dict) -> datetime:
+    """The earliest thing known about when a market plays out: its event time or, for a match, its start."""
+    return min(d for d in (event_time(m), _when(m.get("starts"))) if d)
 
 
 # ---------------- scan: the funnel ----------------
@@ -286,6 +340,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     fetchers = fetchers or mk.FETCHERS
     client = client or JevClient(model=policy["model"])
     now = now or datetime.now(timezone.utc)
+    started = _clock()
+    for path in (JUDGMENTS, RESEARCH):
+        rotate_log(path, policy.get("storage", {}).get("rotate_logs_mb", 20))
     today, stamp = now.strftime("%Y-%m-%d"), now.strftime(TS)  # one clock for filtering and logging
     mf, rc, strats = policy["market_filters"], policy["research"], strategies(policy)
     spolicy = {name: strategy_policy(policy, s) for name, s in strats.items()}  # fails fast on a bad override
@@ -309,13 +366,22 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
 
     # 1-2. fetch, then the free filters; only markets due for a look
     per_source = []
+    keep = lambda m: passes_free_filters(m, mf, now) is None  # the free filters, before the top-N cut
     for src in policy["sources"]:
+        mk.LAST_FETCH.pop(src, None)
         try:
-            ms = fetchers[src](mf["days_ahead"], mf["min_volume"], mf["markets_per_source"])
+            ms = fetchers[src](mf["days_ahead"], mf["min_volume"], mf["markets_per_source"], keep)
         except Exception as e:  # one broken source shouldn't stop the other
             warn(f"! {src}: could not fetch markets ({e})")
             stats["errors"] += 1
             continue
+        fetch = mk.LAST_FETCH.get(src)
+        if fetch:
+            funnel.setdefault("fetch", {})[src] = fetch
+            if fetch.get("error"):
+                warn(f"! {src}: fetch stopped after {fetch['pages']} pages ({fetch['error']}); kept what it had")
+            if fetch.get("cut_short"):
+                warn(f"! {src}: fetch hit its page limit after {fetch['pages']} pages; far-dated markets left out")
         funnel["fetched"] += len(ms)
         funnel.setdefault("by_source", {})[src] = len(ms)
         per_source.append([m for m in ms if due(m, seen, cutoff, mf["rejudge_on_price_move"], strats)
@@ -353,7 +419,15 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             need.append(ek)  # research can only unlock a bet where the rules are clear
         else:
             why_not[ek] = "rules unclear to Jev, so not researched"
-    budget = min(rc["max_research_per_cycle"], max(0, rc["max_research_per_day"] - research_count(today)))
+    used = research_count(today)
+    allowed = rc["max_research_per_day"] - used
+    if rc.get("pace_through_day"):
+        # spread the day's research over the UTC day, so it never runs out by morning (it did at 5 AM ET)
+        hours = now.hour + now.minute / 60
+        allowed = min(allowed, math.ceil(rc["max_research_per_day"] * (hours + 1) / 24) - used)
+    budget = min(rc["max_research_per_cycle"], max(0, allowed))
+    if rc.get("order") == "soonest":  # results come back soonest, so the learning loop hears back sooner
+        need.sort(key=lambda ek: min(soonest(m) for m in events[ek]))
     if limit is not None:
         budget = min(budget, limit)
     for ek in need[budget:]:
@@ -376,7 +450,15 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             for ek in need:
                 why_not[ek] = f"research unavailable: {e}"
             need = []
+    # Claude calls stop starting once the cycle has used its research time, so a run of stalled calls can't
+    # push the job past GitHub's 55-minute limit (which would throw the whole cycle away)
+    out_of_time = lambda: _clock() - started > rc.get("max_minutes_per_cycle", 25) * 60
+    failed_in_a_row = 0
     for i, ek in enumerate(need):
+        if out_of_time() or failed_in_a_row >= 2:
+            why_not[ek] = ("research time for this cycle used up" if failed_in_a_row < 2 else
+                           "research failing this cycle") + "; picked up in a later cycle"
+            continue
         if claude is not None and not claude.usage_ok():
             cl["limited"] = True
             why_not[ek] = "Claude plan busy (our share is used); research resumes when it frees up"
@@ -393,6 +475,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             why_not[ek] = "Claude plan busy; research resumes when it frees up" if e.limited else f"research failed: {e}"
             if not e.limited:
                 stats["errors"] += 1
+                failed_in_a_row += 1
                 warn(f"! research failed for {events[ek][0]['question'][:60]}: {e}")
             if e.fatal:
                 for rest in need[i + 1:]:
@@ -405,6 +488,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                "playbook_version": playbook.get("version", 0), "lessons": [x["id"] for x in lessons]}
         append_jsonl(RESEARCH, rec)
         fresh[ek] = rec
+        failed_in_a_row = 0
     funnel["researched_new"], funnel["research_reused"] = len(fresh), len(reuse)
 
     # 5-6. judge with research where there is some, then each strategy decides
@@ -426,7 +510,8 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 except JevError as e:
                     warn(f"! Jev error on {m['question'][:60]}: {e}")
                     stats["errors"] += 1
-                if rich and ek in fresh and forecaster is not None and (claude is None or claude.usage_ok()):
+                if (rich and ek in fresh and forecaster is not None and not out_of_time()
+                        and (claude is None or claude.usage_ok())):
                     try:
                         direct = forecaster.forecast(state)
                         cl["calls"] += 1
@@ -494,10 +579,15 @@ def _record_scan(stats: dict, stamp: str) -> None:
 
 # ---------------- settle ----------------
 
-def settle(policy: dict, resolvers=None, log=print) -> dict:
+def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
+    """Record outcomes and pay out bets. `batch` sources (Kalshi) are checked every cycle whatever the
+    stored close time; the rest once their close time has passed. A market settled at a value instead of
+    yes/no goes to voids.json: its bets are paid at that value, and it is never scored."""
+    if batch is None:
+        batch = mk.BATCH_RESOLVERS if resolvers is None else {}
     resolvers = resolvers or mk.RESOLVERS
     books = load_books(policy)
-    resolved = load_json(RESOLUTIONS, {})
+    resolved, voids = load_json(RESOLUTIONS, {}), load_json(VOIDS, {})
     now = datetime.now(timezone.utc)
 
     closes = {}
@@ -506,9 +596,36 @@ def settle(policy: dict, resolvers=None, log=print) -> dict:
             closes[p["key"]] = p["close_time"]
     for j in read_jsonl(JUDGMENTS):
         closes.setdefault(j["key"], j["market"]["close_time"])
+        starts = _when(j["market"].get("starts"))
+        if starts:  # a match: check a few hours after it starts, not a week later at the listed close
+            after = (starts + timedelta(hours=policy["market_filters"].get("check_hours_after_start", 3))).strftime(TS)
+            closes[j["key"]] = min(closes[j["key"]], after)
 
-    stats = {"checked": 0, "resolved": 0, "settled_bets": 0, "by_strategy": {}}
-    for k in sorted(set(closes) - set(resolved)):
+    stats = {"checked": 0, "resolved": 0, "voided": 0, "settled_bets": 0, "by_strategy": {}}
+    pending = sorted(set(closes) - set(resolved) - set(voids))
+    for src, check in batch.items():
+        ids = [k.split(":", 1)[1] for k in pending if k.startswith(src + ":")]
+        if not ids:
+            continue
+        try:
+            found = check(ids)
+        except Exception as e:
+            log(f"! could not check {src} results: {e}")
+            continue
+        for err in (mk.LAST_FETCH.get(f"{src}_check") or {}).get("errors") or []:
+            log(f"! {src} results: one batch failed ({err}); checked again next cycle")
+        stats["checked"] += len(ids)
+        for mid, outcome in found.items():
+            k = f"{src}:{mid}"
+            if isinstance(outcome, tuple) and outcome[0] == "void":
+                voids[k] = outcome[1]
+                stats["voided"] += 1
+            elif outcome in ("yes", "no"):
+                resolved[k] = outcome
+                stats["resolved"] += 1
+    for k in sorted(set(closes) - set(resolved) - set(voids)):
+        if k.split(":", 1)[0] in batch:
+            continue  # checked above, every cycle
         ct = closes.get(k)
         try:
             if ct and datetime.fromisoformat(ct.replace("Z", "+00:00")) > now:
@@ -530,10 +647,14 @@ def settle(policy: dict, resolvers=None, log=print) -> dict:
         still_open, n = [], 0
         for p in pf["open"]:
             outcome = resolved.get(p["key"])
-            if not outcome:
+            if p["key"] in voids:  # settled at a value: YES is paid the value per contract, NO the rest
+                value = float(voids[p["key"]])
+                outcome, payout = "void", round(float(p["contracts"]) * (value if p["side"] == "yes" else 1 - value), 2)
+            elif outcome:
+                payout = float(p["contracts"]) if p["side"] == outcome else 0.0
+            else:
                 still_open.append(p)
                 continue
-            payout = float(p["contracts"]) if p["side"] == outcome else 0.0
             pnl = round(payout - p["total_cost"], 2)
             pf["cash"] = round(pf["cash"] + payout, 2)
             pf["closed"].append({**p, "outcome": outcome, "payout": payout, "pnl": pnl, "settled": now_iso()})
@@ -544,6 +665,8 @@ def settle(policy: dict, resolvers=None, log=print) -> dict:
         stats["by_strategy"][name] = n
         stats["settled_bets"] += n
     save_json(RESOLUTIONS, resolved)
+    if voids:
+        save_json(VOIDS, voids)
     return stats
 
 
