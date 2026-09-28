@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T09:35:14Z",
+  "generated": "2026-09-28T10:05:15Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T09:35:14Z",
+      "t": "2026-09-28T10:05:15Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -102,7 +102,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 96,
+    "judged": 97,
     "resolved": 3,
     "sources": [
       {
@@ -139,17 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 1,
+    "judged": 3,
     "bets": 0,
-    "fail_info": 1,
-    "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_info": 2,
+    "fail_rules": 1,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 1
+      "polymarket": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-28T09:35:11Z",
+    "ts": "2026-09-28T10:05:11Z",
     "stages": [
       [
         "Fetched",
@@ -157,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        1
+        3
       ],
       [
         "Judged by Jev",
-        1
+        3
       ],
       [
         "Judged with research",
-        1
+        2
       ],
       [
         "Cleared every gate (main)",
@@ -176,9 +176,9 @@
         0
       ]
     ],
-    "events": 1,
+    "events": 3,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 2,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -189,8 +189,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 6,
-    "facts_dropped": 2,
+    "facts_kept": 23,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -200,11 +200,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
-    "judged": 1,
-    "with_research": 1
+    "judged": 3,
+    "with_research": 2
   },
   "strategies": [
     {
@@ -513,7 +513,11 @@
           99354.18
         ],
         [
-          "2026-09-28T09:35:14Z",
+          "2026-09-28T10:05:11Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T10:05:15Z",
           99354.18
         ]
       ]
@@ -710,7 +714,11 @@
           99636.24
         ],
         [
-          "2026-09-28T09:35:14Z",
+          "2026-09-28T10:05:11Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T10:05:15Z",
           99636.24
         ]
       ]
@@ -907,7 +915,11 @@
           99807.03
         ],
         [
-          "2026-09-28T09:35:14Z",
+          "2026-09-28T10:05:11Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T10:05:15Z",
           99807.03
         ]
       ]
@@ -1104,7 +1116,11 @@
           103616.76
         ],
         [
-          "2026-09-28T09:35:14Z",
+          "2026-09-28T10:05:11Z",
+          103616.76
+        ],
+        [
+          "2026-09-28T10:05:15Z",
           103616.76
         ]
       ]
@@ -1301,7 +1317,11 @@
           100000.0
         ],
         [
-          "2026-09-28T09:35:14Z",
+          "2026-09-28T10:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T10:05:15Z",
           100000.0
         ]
       ]
@@ -1821,6 +1841,98 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T10:05:11Z",
+      "key": "polymarket:4609859",
+      "question": "Will England win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-cze-eng-2026-09-29-eng",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-09-29T18:45:00Z",
+      "market": 0.715,
+      "forecasts": {
+        "jev_research": 0.55,
+        "jev_plain": 0.37,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.39,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.39 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "no room: exposure cap or cash"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 11
+    },
+    {
+      "ts": "2026-09-28T10:05:11Z",
+      "key": "polymarket:682706",
+      "question": "Will Naftali Bennett be the next Prime Minister of Israel?",
+      "url": "https://polymarket.com/market/will-naftali-bennett-be-the-next-prime-minister-of-israel",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-27T23:59:00Z",
+      "market": 0.125,
+      "forecasts": {
+        "jev_research": 0.04,
+        "jev_plain": 0.09,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.17,
+      "rules": 0.74,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.020 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 12
+    },
+    {
       "ts": "2026-09-28T09:35:11Z",
       "key": "polymarket:4884203",
       "question": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
@@ -2279,101 +2391,35 @@
         }
       },
       "facts_total": 6
-    },
-    {
-      "ts": "2026-09-28T07:02:29Z",
-      "key": "kalshi:KXWNBASERIES-26WSHATLR1-WSH",
-      "question": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-25T23:00:00Z",
-      "market": 0.14,
-      "forecasts": {
-        "jev_research": 0.27,
-        "jev_plain": 0.43,
-        "claude_direct": 0.18,
-        "jev_calibrated": null
-      },
-      "info": 0.52,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": true,
-          "side": "yes",
-          "why": "BET YES x11841 @ 0.169: p 0.27 vs cost 0.169, edge +0.101"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.14 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.011 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 9
-    },
-    {
-      "ts": "2026-09-28T07:02:29Z",
-      "key": "polymarket:4716407",
-      "question": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199",
-      "source": "polymarket",
-      "category": "culture",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.495,
-      "forecasts": {
-        "jev_research": 0.22,
-        "jev_plain": 0.22,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.21,
-      "rules": 0.73,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.71 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 0
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T10:05:11Z",
+      "type": "call",
+      "jev": 0.55,
+      "claude": null,
+      "market": 0.715,
+      "q": "Will England win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-cze-eng-2026-09-29-eng"
+    },
+    {
+      "ts": "2026-09-28T10:05:11Z",
+      "type": "call",
+      "jev": 0.04,
+      "claude": null,
+      "market": 0.125,
+      "q": "Will Naftali Bennett be the next Prime Minister of Israel?",
+      "url": "https://polymarket.com/market/will-naftali-bennett-be-the-next-prime-minister-of-israel"
+    },
+    {
+      "ts": "2026-09-28T10:05:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 3,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T09:35:11Z",
       "type": "call",
@@ -2764,24 +2810,6 @@
     },
     {
       "ts": "2026-09-28T05:05:10Z",
-      "type": "call",
-      "jev": 0.73,
-      "claude": null,
-      "market": 0.785,
-      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-28T05:05:10Z",
-      "type": "call",
-      "jev": 0.63,
-      "claude": null,
-      "market": 0.585,
-      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 75)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-28T05:05:10Z",
       "type": "intel",
       "facts": 12,
       "q": "Indiana vs Las Vegas First Round series winner: Indiana wins",
@@ -3039,14 +3067,6 @@
       "facts": 10,
       "q": "Washington vs Atlanta First Round series winner: Washington wins",
       "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 11,
-      "researched": 9,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -3056,7 +3076,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 36,
+  "cycles_24h": 37,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
