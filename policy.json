@@ -38,7 +38,8 @@
     "research_on_price_move": 0.10,
     "_research_after_hours": "An event's research is reused for 24 hours, or redone sooner if a price moves 10+ points",
     "max_research_per_cycle": 3,
-    "max_research_per_day": 20,
+    "max_research_per_day": 60,
+    "_max_research_per_day": "Raised from 20 on 2026-09-28: 20 ran out by 5 AM ET both days, leaving the rest of the day with no new research (about $0.12 API-equivalent a run, on the plan)",
     "max_week_used": 1.0,
     "max_five_hour_used": 0.70,
     "_max_week_used": "Joey lifted the 85% weekly pause on 2026-09-27: research runs until the plan itself says the week is full. It still pauses when the 5-hour window is 70% used, so Joey's own sessions keep room",
@@ -96,8 +97,8 @@
   "sizing": {
     "kelly_fraction": 0.25,
     "max_stake_pct": 0.02,
-    "max_total_exposure_pct": 0.30,
-    "_readme": "Quarter-Kelly, capped at 2% of equity per bet and 30% of equity in open bets overall"
+    "max_total_exposure_pct": 0.50,
+    "_readme": "Quarter-Kelly, capped at 2% of equity per bet and 50% of equity in open bets overall (Joey raised it from 30% on 2026-09-28: keep betting until half the bankroll is tied up)"
   },
 
   "fees": {

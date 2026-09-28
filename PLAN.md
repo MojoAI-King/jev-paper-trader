@@ -104,7 +104,7 @@ Claude runs through Claude Code on the plan's login, never an API key (DECISIONS
 that's enforced). The page (Cloudflare) and hourly runs (GitHub, public repo) are free.
 
 What research costs instead is a share of the plan's usage limits, which Joey also uses himself. So
-it's rationed: at most 3 research runs per hour and 20 per day, only on events where the rules are
+it's rationed: at most 3 research runs per cycle and 60 per day (20 until 2026-09-28, when 20 ran out by 5 AM ET), only on events where the rules are
 clear, reused for 24 hours, and paused whenever the plan's 5-hour window is 70% used. (The pause at
 85% of the weekly window was lifted by Joey on 2026-09-27.) Each call logs what it would have cost on the API, as a measure of how much the plan
 is absorbing; that amount is not billed.

@@ -51,6 +51,17 @@ class NormalizeTests(unittest.TestCase):
     def test_kalshi_skips_parlays(self):
         self.assertIsNone(mk.normalize_kalshi({"ticker": "KXMVEFOO", "yes_ask": 40, "no_ask": 62}))
 
+    def test_kalshi_links_open_the_event_page(self):
+        # kalshi.com/markets/<EVENT> is Kalshi's "Page not found"; /markets/<series>/<slug>/<event> opens the event
+        m = mk.normalize_kalshi({"ticker": "KXNBAGAME-26OCT20BOSDET-DET", "event_ticker": "KXNBAGAME-26OCT20BOSDET",
+                                 "title": "Boston vs Detroit Winner?", "yes_ask": 45, "no_ask": 57, "volume": 900})
+        self.assertEqual(m["url"], "https://kalshi.com/markets/kxnbagame/boston-vs-detroit-winner/kxnbagame-26oct20bosdet")
+        # links saved in old ledgers are repaired on the way to the page; other links pass through untouched
+        self.assertEqual(mk.fix_url("https://kalshi.com/markets/KXNBAGAME-26OCT20BOSDET"),
+                         "https://kalshi.com/markets/kxnbagame/market/kxnbagame-26oct20bosdet")
+        for fine in ("https://polymarket.com/market/abc", m["url"], None):
+            self.assertEqual(mk.fix_url(fine), fine)
+
 
 POLY_FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "polymarket_markets.json").read_text())
 
@@ -171,8 +182,11 @@ class DecideTests(unittest.TestCase):
         self.assertFalse(engine.decide(market(), ans(0.9, info=0.2), POLICY, 100000, 0, 100000)["bet"])
 
     def test_exposure_cap(self):
-        d = engine.decide(market(), ans(0.9), POLICY, 100000, 30000, 70000)
+        full = POLICY["sizing"]["max_total_exposure_pct"] * 100000  # open bets already at the cap
+        d = engine.decide(market(), ans(0.9), POLICY, 100000, full, 100000 - full)
         self.assertFalse(d["bet"])
+        self.assertIn("no room", d["reasons"][0])
+        self.assertTrue(engine.decide(market(), ans(0.9), POLICY, 100000, full - 5000, 100000 - full + 5000)["bet"])
 
     def test_yes_no_disagreement_blocks(self):
         self.assertTrue(engine.decide(market(), ans(0.60, p_no=0.42), POLICY, 100000, 0, 100000)["bet"])
@@ -396,7 +410,7 @@ class ResearchPipelineTests(DataDirTest):
         r = FakeResearcher([])
         self.run_scan(ms, r)
         self.assertEqual(len(r.calls), POLICY["research"]["max_research_per_cycle"])
-        for i in range(30):  # a day that has already used its research allowance
+        for i in range(POLICY["research"]["max_research_per_day"]):  # a day that has already used its research allowance
             engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T01:00:00Z", "event": f"old{i}", "mids": {}})
         r2 = FakeResearcher([])
         self.run_scan([self.lula("N", event="polymarket:new")], r2, now=SCAN_NOW + timedelta(hours=2))

@@ -49,7 +49,7 @@ Every hour, a funnel narrows the markets before any paid step:
    judged, judged over 6 hours ago, or its price moved 5+ points).
 3. **Research, rationed:** Jev first judges every market without research. Events whose rules Jev
    rates clear are then researched by Claude Opus 5.5 through Claude Code on the Claude plan (web
-   search and page reading only), reused for 24 hours, at most 3 an hour and 20 a day. It returns dated, sourced facts: what the resolution source shows
+   search and page reading only), reused for 24 hours, at most 3 a cycle and 60 a day. It returns dated, sourced facts: what the resolution source shows
    today, recent events, what's still scheduled, historical base rates.
 4. **Price screen:** code drops any fact that mentions odds, prediction markets, forecasters,
    predictions, or a figure matching the market's price. The survivors become `recent_facts`.
@@ -71,7 +71,7 @@ A fake bet is placed only if **every** gate in `policy.json` passes:
 
 - Edge of at least **8 points** after fees and slippage
 - Rules clear of at least 0.75, information sufficient of at least 0.5, YES/NO gap at most 0.15
-- Size: quarter-Kelly, at most **2%** of that strategy's bankroll per bet and **30%** in open bets
+- Size: quarter-Kelly, at most **2%** of that strategy's bankroll per bet and **50%** in open bets
 
 **Strategies.** Each trades its own fake $100,000 on the same markets with the same sizing:
 **main** (Jev + Claude research, the headline), **Jev alone**, **Claude direct**, **bold** (main,

@@ -12,7 +12,7 @@ from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import coach, engine, learn, review
+from . import coach, engine, learn, markets, review
 
 TEMPLATE = Path(__file__).with_name("dashboard_template.html")
 SLOTS = 7  # categorical colors on the page; a strategy keeps its slot for good (color follows the entity)
@@ -307,7 +307,7 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         by_source[p["source"]] += p["total_cost"]
     keep_open = ("question", "url", "source", "side", "contracts", "cost_per", "total_cost", "p_side",
                  "market_ask", "edge", "opened", "close_time")
-    return {
+    return _fix_links({
         "generated": generated_at, "example": example, "question_set": engine.QUESTION_SET_VERSION,
         "start": start, "cash": round(pf["cash"], 2), "open_cost": open_cost, "equity": equity,
         "realized": realized, "roi_settled": (realized / staked) if staked else None,
@@ -332,7 +332,16 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "cycles_24h": sum(1 for s in (scans or []) if "funnel" in s and s["ts"] >= _hours_before(generated_at, 24)),
         "learning": learning_state(policy, reviews or [], judgments, resolved),
         "repo_url": policy.get("site", {}).get("repo_url") or None,
-    }
+    })
+
+
+def _fix_links(x):
+    """Every market link on the page goes through markets.fix_url, so bets saved with an old link still open."""
+    if isinstance(x, dict):
+        return {k: markets.fix_url(v) if k == "url" and isinstance(v, str) else _fix_links(v) for k, v in x.items()}
+    if isinstance(x, list):
+        return [_fix_links(v) for v in x]
+    return x
 
 
 def _hours_before(stamp: str, hours: int) -> str:

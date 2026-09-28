@@ -9,6 +9,7 @@ Resolution check returns "yes", "no", or None (unresolved).
 from __future__ import annotations
 
 import json
+import re
 import time
 import urllib.error
 import urllib.parse
@@ -159,8 +160,27 @@ def normalize_kalshi(m: dict) -> dict | None:
         "no_ask": round(no_ask, 4),
         "mid": round(((yes_bid or yes_ask) + yes_ask) / 2, 4),
         "volume": _f(m.get("volume_fp"), None) or _f(m.get("volume"), 0.0),
-        "url": f"https://kalshi.com/markets/{m.get('event_ticker', '')}",
+        "url": kalshi_url(m.get("event_ticker") or m.get("ticker") or "", m.get("series_ticker") or "", title),
     }
+
+
+def kalshi_url(event_ticker: str, series_ticker: str = "", title: str = "") -> str:
+    """Kalshi's page for one event. kalshi.com/markets/<EVENT> is "Page not found"; the site wants
+    /markets/<series>/<any slug>/<event> (checked in Chrome, 2026-09-28). A series ticker is the event
+    ticker's first part (KXNBAGAME-26OCT20BOSDET -> KXNBAGAME)."""
+    event = event_ticker.lower()
+    series = (series_ticker or event.split("-")[0]).lower()
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:60].strip("-") or "market"
+    return f"https://kalshi.com/markets/{series}/{slug}/{event}"
+
+
+_OLD_KALSHI = re.compile(r"^https://kalshi\.com/markets/([A-Za-z0-9]+-[A-Za-z0-9-]+)$")
+
+
+def fix_url(url: str | None) -> str | None:
+    """Links saved before 2026-09-28 used the Kalshi form that 404s; repair them on the way to the page."""
+    old = _OLD_KALSHI.match(url or "")
+    return kalshi_url(old.group(1)) if old else url
 
 
 def fetch_kalshi(days_ahead: int, min_volume: float, limit: int) -> list[dict]:

@@ -22,4 +22,5 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-09-27-research-must-run-on-the-claude-plan-an-46c5](lessons/2026-09-27-research-must-run-on-the-claude-plan-an-46c5.md) | Research must run on the Claude plan: an API key silently switches billing | accepted | 2026-09-27 |
 | [2026-09-27-the-price-screen-checked-web-addresses-j-173f](lessons/2026-09-27-the-price-screen-checked-web-addresses-j-173f.md) | The price screen checked web addresses Jev never sees and dropped clean facts | accepted | 2026-09-27 |
 | [2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d](lessons/2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d.md) | zsh traps: a path loop variable wipes PATH; a command in a string never runs | accepted | 2026-09-27 |
+| [2026-09-28-kalshi-links-to-the-bare-event-ticker-we-9776](lessons/2026-09-28-kalshi-links-to-the-bare-event-ticker-we-9776.md) | Kalshi links to the bare event ticker were Page not found | accepted | 2026-09-28 |
 <!-- skilliton:index:lessons:end -->
