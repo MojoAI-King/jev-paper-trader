@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T18:05:32Z",
+  "generated": "2026-09-28T18:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T18:05:32Z",
+      "t": "2026-09-28T18:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 6,
+    "judged": 1,
     "bets": 0,
-    "fail_info": 1,
+    "fail_info": 0,
     "fail_rules": 0,
     "fail_edge": 0,
     "sources": {
-      "kalshi": 3,
-      "polymarket": 3
+      "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T18:05:28Z",
+    "ts": "2026-09-28T18:35:10Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        6
+        1
       ],
       [
         "Judged by Jev",
-        6
+        1
       ],
       [
         "Judged with research",
-        1
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +176,9 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 1,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,8 +189,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 4,
-    "facts_dropped": 4,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -204,8 +203,8 @@
       "bold": 0,
       "calibrated": 0
     },
-    "judged": 6,
-    "with_research": 1
+    "judged": 1,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -582,7 +581,11 @@
           99222.62
         ],
         [
-          "2026-09-28T18:05:32Z",
+          "2026-09-28T18:35:10Z",
+          99222.62
+        ],
+        [
+          "2026-09-28T18:35:14Z",
           99222.62
         ]
       ]
@@ -847,7 +850,11 @@
           99636.24
         ],
         [
-          "2026-09-28T18:05:32Z",
+          "2026-09-28T18:35:10Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T18:35:14Z",
           99636.24
         ]
       ]
@@ -1112,7 +1119,11 @@
           99912.29
         ],
         [
-          "2026-09-28T18:05:32Z",
+          "2026-09-28T18:35:10Z",
+          99912.29
+        ],
+        [
+          "2026-09-28T18:35:14Z",
           99912.29
         ]
       ]
@@ -1377,7 +1388,11 @@
           96009.98
         ],
         [
-          "2026-09-28T18:05:32Z",
+          "2026-09-28T18:35:10Z",
+          96009.98
+        ],
+        [
+          "2026-09-28T18:35:14Z",
           96009.98
         ]
       ]
@@ -1642,7 +1657,11 @@
           100000.0
         ],
         [
-          "2026-09-28T18:05:32Z",
+          "2026-09-28T18:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T18:35:14Z",
           100000.0
         ]
       ]
@@ -2748,6 +2767,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T18:35:10Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 1,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T18:05:28Z",
       "type": "call",
       "jev": 0.54,
@@ -3395,14 +3422,6 @@
       "type": "review",
       "kind": "miss",
       "cause": "overconfident",
-      "q": "Will Bitcoin dip to $83,000 on September 27?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
-      "type": "loss",
-      "strategy": "bold",
-      "amount": -1999.98,
       "q": "Will Bitcoin dip to $83,000 on September 27?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
     }
