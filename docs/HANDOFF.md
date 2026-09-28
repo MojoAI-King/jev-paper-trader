@@ -4,15 +4,22 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-09-28 17:37 EDT
+Written: 2026-09-28 19:14 EDT
 
+- **State:** Verified on GitHub: 23:04Z cycle ran the new code (Kalshi 35 pages/61s, 120 passing, 8 bets, 7 early Kalshi results + 5 voids, first retro). Evidence: run 36495992909 success 8m26s; health Healthy; scans.jsonl funnel.fetch recorded; 88 tests pass.
+- **Next:** Watch deferred fall to 0 over the next cycles; after a day, measure bets/day and research use, then decide B16 (markets_per_source 100); options B17-B20 wait for Joey
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
+- **Git:** master @ e8a91da, 4 uncommitted
+
+## Earlier
+
+### 2026-09-28 17:37 EDT
 - **State:** Kalshi links fixed and verified live (21:36Z summary: 0 old-form, 39 new-form; a repaired link opens its event in Chrome); open-bet cap 50% (Bold now 19 open, past the old 30%); research 60/day. Evidence: 73 tests pass; run 21:34Z success; health Healthy; plan week 5%, 5-hour 12%.
 - **Next:** Watch a day of cycles: research should run past 5 AM ET and main/Claude direct should bet more; if research goes unused, BACKLOG B16 (widen markets_per_source); B3, B15, B13 queued
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
 - **Git:** master @ 41082cd, 6 uncommitted
-
-## Earlier
 
 ### 2026-09-27 15:02 EDT
 - **State:** Page back at 1x everywhere (Worker 5536aa80, live checked); main's Headline tag dropped in policy.json, hover blurbs say Jev + Claude. Evidence: 72 tests pass; live page byte-equal to the new build, no zoom rules; tag leaves the page at the next cycle's summary.json.
@@ -41,10 +48,3 @@ Written: 2026-09-28 17:37 EDT
 - **Blocked:** nothing
 - **Watch out:** The GitHub token expires in a year (docs/OPERATIONS.md); GitHub's own schedule stays unreliable and is only a backup; Claude plan week at 81%, resets Mon 3 AM ET
 - **Git:** master @ d8b0fe6, 2 uncommitted
-
-### 2026-09-27 12:45 EDT
-- **State:** Mission-control page live (Worker 4c6ee8a0); Kalshi 4 requests/fetch, 120 markets fetched in run 36333603111 where main placed its first bet; Cloudflare cron trigger deployed at :04/:34 but idle until GITHUB_DISPATCH_TOKEN is set; GitHub schedule (backup) skipped every slot today. Evidence: Run 36333603111: 120 fetched, 0 errors, bets main 1 claude_direct 1 bold 5; 72 tests pass; live page checked in headless Chrome 1440x900 with the 12:32 ET data; health: Healthy.
-- **Next:** Joey sets GITHUB_DISPATCH_TOKEN (docs/OPERATIONS.md 'What starts a cycle'); then confirm a run lands at the next :04/:34 and the page updates; phone layout later (B13)
-- **Blocked:** Automatic cycles wait on Joey's token (B1)
-- **Watch out:** Until the token is set, cycles only run when GitHub's schedule fires or someone runs gh workflow run; never put the token in chat or a file; the Mac background job was removed (permission check: unapproved persistence)
-- **Git:** master @ d6640f6, 3 uncommitted

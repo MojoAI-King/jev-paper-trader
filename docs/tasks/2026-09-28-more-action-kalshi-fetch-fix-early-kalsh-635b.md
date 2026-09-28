@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-09-28-more-action-kalshi-fetch-fix-early-kalsh-635b
-- **State:** in-progress
+- **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-09-28T22:28:34.640Z
+- **Updated:** 2026-09-28T23:14:03.672Z
 
 ## Request
 
@@ -29,9 +29,23 @@ not yet written
 - **Next:** Read the review workflow (wt6x9twrf) findings, fix confirmed ones, then commit, push, deploy the page and watch the next cycle
 - **Git:** master @ 7a15dfb, 15 uncommitted
 
+### 2026-09-28T22:48:43.889Z
+
+- **State:** Merged to master (eb7e2eb) and page deployed (Worker c94ca916, live checked); review fixes in: research time budget, in-play match rule, final-only Kalshi results, per-batch failures, fetch deadline, Verify links. Not yet verified on a GitHub cycle
+- **Evidence:** 88 offline tests pass; live read-only fetch Kalshi 35 pages/65s, 488 passing; Polymarket 60 kept, earliest match start tomorrow 13:00Z; live page byte-equal to build
+- **Next:** Read the 23:04Z cycle (background b8e4gfbjg): Kalshi walk on GitHub, 7 early results + 5 voids, re-judge wave, deferred count
+- **Git:** master @ eb7e2eb, 2 uncommitted
+
+### 2026-09-28T23:14:03.540Z
+
+- **State:** Verified on GitHub: 23:04Z cycle ran the new code (Kalshi 35 pages/61s, 120 passing, 8 bets, 7 early Kalshi results + 5 voids, first retro)
+- **Evidence:** run 36495992909 success 8m26s; health Healthy; scans.jsonl funnel.fetch recorded; 88 tests pass
+- **Next:** Watch deferred fall to 0 over the next cycles; after a day, measure bets/day and research use, then decide B16 (markets_per_source 100); options B17-B20 wait for Joey
+- **Git:** master @ e8a91da, 4 uncommitted
+
 ## Handoff
 
-- **State:** Code done, not committed: Kalshi whole-window soonest-first fetch, filters before top-N, event-time 12h rule, batched early Kalshi results + voids, research paced/soonest, log rotation, jev_alone_bold; docs, decision, lesson, backlog B16-B20 written. Evidence: 83 offline tests pass; live read-only fetch: Kalshi 35 pages/65s, 488 passing, 43 of top 60 within 7 days; check_kalshi found 7 final yes/no + 5 scalar; page renders 6 rows at 1440x900.
-- **Next:** Read the review workflow (wt6x9twrf) findings, fix confirmed ones, then commit, push, deploy the page and watch the next cycle
+- **State:** Verified on GitHub: 23:04Z cycle ran the new code (Kalshi 35 pages/61s, 120 passing, 8 bets, 7 early Kalshi results + 5 voids, first retro). Evidence: run 36495992909 success 8m26s; health Healthy; scans.jsonl funnel.fetch recorded; 88 tests pass.
+- **Next:** Watch deferred fall to 0 over the next cycles; after a day, measure bets/day and research use, then decide B16 (markets_per_source 100); options B17-B20 wait for Joey
 - **Blocked:** nothing
-- **Watch out:** nothing known
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
