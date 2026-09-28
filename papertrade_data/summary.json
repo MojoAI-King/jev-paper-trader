@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T16:36:09Z",
+  "generated": "2026-09-28T17:05:15Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T16:36:09Z",
+      "t": "2026-09-28T17:05:15Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 8,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 1,
+    "fail_info": 0,
     "fail_rules": 0,
     "fail_edge": 0,
     "sources": {
-      "polymarket": 7,
+      "polymarket": 3,
       "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T16:35:14Z",
+    "ts": "2026-09-28T17:05:12Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        8
+        4
       ],
       [
         "Judged by Jev",
-        8
+        4
       ],
       [
         "Judged with research",
-        1
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -177,20 +177,20 @@
         0
       ]
     ],
-    "events": 6,
+    "events": 4,
     "researched_new": 0,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 11,
+    "facts_kept": 0,
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
@@ -201,11 +201,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 8,
-    "with_research": 1
+    "judged": 4,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -289,8 +289,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96139.13,
-      "unrealized": -4757.1,
+      "marked": 96539.09,
+      "unrealized": -4357.14,
       "change": 896.23,
       "realized": 896.23,
       "open": 15,
@@ -570,7 +570,11 @@
           99117.35
         ],
         [
-          "2026-09-28T16:36:09Z",
+          "2026-09-28T17:05:12Z",
+          99117.35
+        ],
+        [
+          "2026-09-28T17:05:15Z",
           99117.35
         ]
       ]
@@ -823,7 +827,11 @@
           99636.24
         ],
         [
-          "2026-09-28T16:36:09Z",
+          "2026-09-28T17:05:12Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T17:05:15Z",
           99636.24
         ]
       ]
@@ -1076,7 +1084,11 @@
           99807.03
         ],
         [
-          "2026-09-28T16:36:09Z",
+          "2026-09-28T17:05:12Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T17:05:15Z",
           99807.03
         ]
       ]
@@ -1329,8 +1341,12 @@
           96139.13
         ],
         [
-          "2026-09-28T16:36:09Z",
-          96139.13
+          "2026-09-28T17:05:12Z",
+          96539.09
+        ],
+        [
+          "2026-09-28T17:05:15Z",
+          96539.09
         ]
       ]
     },
@@ -1582,7 +1598,11 @@
           100000.0
         ],
         [
-          "2026-09-28T16:36:09Z",
+          "2026-09-28T17:05:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T17:05:15Z",
           100000.0
         ]
       ]
@@ -1756,8 +1776,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.495,
-      "price_at": "2026-09-28T16:35:14Z",
+      "price": 0.585,
+      "price_at": "2026-09-28T17:05:12Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1768,7 +1788,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2199.78
+          "value": 2599.74
         }
       ]
     },
@@ -2665,6 +2685,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T17:05:12Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 4,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T16:36:09Z",
       "type": "learn",
       "text": "Research playbook updated to v1"
@@ -3320,13 +3348,6 @@
       "p": 0.35,
       "q": "Will Spain win on 2026-09-29?",
       "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
     }
   ],
   "plan_usage": {
@@ -3336,7 +3357,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 46,
+  "cycles_24h": 47,
   "learning": {
     "reviewed": 7,
     "post_mortems": 2,
