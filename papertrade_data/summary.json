@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T21:05:13Z",
+  "generated": "2026-09-28T21:36:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -10,7 +10,7 @@
   "roi_settled": null,
   "wins": 0,
   "settled": 0,
-  "exposure_cap_pct": 0.3,
+  "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
     "polymarket": 7998.92,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T21:05:13Z",
+      "t": "2026-09-28T21:36:20Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -87,7 +87,7 @@
     },
     {
       "question": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1",
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1",
       "source": "kalshi",
       "side": "yes",
       "contracts": 11841,
@@ -102,7 +102,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 113,
+    "judged": 114,
     "resolved": 9,
     "sources": [
       {
@@ -139,17 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 2,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 0,
+    "fail_info": 1,
     "fail_rules": 0,
     "fail_edge": 0,
     "sources": {
-      "polymarket": 2
+      "kalshi": 3,
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T21:05:11Z",
+    "ts": "2026-09-28T21:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -157,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        2
+        4
       ],
       [
         "Judged by Jev",
-        2
+        4
       ],
       [
         "Judged with research",
-        0
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -176,20 +177,20 @@
         0
       ]
     ],
-    "events": 2,
-    "researched_new": 0,
+    "events": 4,
+    "researched_new": 1,
     "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
-    "claude_calls": 0,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 0,
+    "facts_kept": 11,
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
@@ -200,11 +201,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
-    "judged": 2,
-    "with_research": 0
+    "judged": 4,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -288,12 +289,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96254.2,
-      "unrealized": -4642.03,
+      "marked": 95773.85,
+      "unrealized": -5122.38,
       "change": 896.23,
       "realized": 896.23,
-      "open": 18,
-      "open_cost": 30268.73,
+      "open": 19,
+      "open_cost": 32286.63,
       "settled": 3,
       "wins": 1
     },
@@ -605,7 +606,11 @@
           98808.18
         ],
         [
-          "2026-09-28T21:05:13Z",
+          "2026-09-28T21:35:11Z",
+          98808.18
+        ],
+        [
+          "2026-09-28T21:36:20Z",
           98808.18
         ]
       ]
@@ -894,7 +899,11 @@
           99636.24
         ],
         [
-          "2026-09-28T21:05:13Z",
+          "2026-09-28T21:35:11Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T21:36:20Z",
           99636.24
         ]
       ]
@@ -1183,7 +1192,11 @@
           99912.29
         ],
         [
-          "2026-09-28T21:05:13Z",
+          "2026-09-28T21:35:11Z",
+          99912.29
+        ],
+        [
+          "2026-09-28T21:36:20Z",
           99912.29
         ]
       ]
@@ -1472,8 +1485,12 @@
           96254.2
         ],
         [
-          "2026-09-28T21:05:13Z",
-          96254.2
+          "2026-09-28T21:35:11Z",
+          95773.85
+        ],
+        [
+          "2026-09-28T21:36:20Z",
+          95773.85
         ]
       ]
     },
@@ -1761,7 +1778,11 @@
           100000.0
         ],
         [
-          "2026-09-28T21:05:13Z",
+          "2026-09-28T21:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T21:36:20Z",
           100000.0
         ]
       ]
@@ -2114,7 +2135,7 @@
     {
       "key": "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
       "question": "King Green wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB",
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03grerib",
       "source": "kalshi",
       "close_time": "2026-10-18T00:40:00Z",
       "category": "sports",
@@ -2137,7 +2158,7 @@
     {
       "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
       "question": "Deiveson Figueiredo wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03figtal",
       "source": "kalshi",
       "close_time": "2026-10-18T01:00:00Z",
       "category": "sports",
@@ -2160,7 +2181,7 @@
     {
       "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-TAL",
       "question": "Payton Talbott wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03figtal",
       "source": "kalshi",
       "close_time": "2026-10-18T01:00:00Z",
       "category": "sports",
@@ -2181,9 +2202,32 @@
       ]
     },
     {
+      "key": "kalshi:KXPGATOUR-BAOUC26-JKOI",
+      "question": "Bank of Utah Championship: Jackson Koivun wins",
+      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26",
+      "source": "kalshi",
+      "close_time": "2026-10-18T04:00:00Z",
+      "category": "sports",
+      "price": 0.0685,
+      "price_at": "2026-09-28T21:35:11Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 22446,
+          "cost_per": 0.0899,
+          "total_cost": 2017.9,
+          "p_side": 0.19,
+          "edge": 0.1001,
+          "opened": "2026-09-28T21:35:11Z",
+          "value": 1537.55
+        }
+      ]
+    },
+    {
       "key": "kalshi:KXRT-SENS-70",
       "question": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
-      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-sens",
       "source": "kalshi",
       "close_time": "2026-10-19T14:00:00Z",
       "category": "culture",
@@ -2206,7 +2250,7 @@
     {
       "key": "kalshi:KXRT-SENS-65",
       "question": "Sense and Sensibility Rotten Tomatoes score? (Above 65)",
-      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-sens",
       "source": "kalshi",
       "close_time": "2026-10-19T14:00:00Z",
       "category": "culture",
@@ -2229,7 +2273,7 @@
     {
       "key": "kalshi:KXWNBASERIES-26WSHATLR1-WSH",
       "question": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1",
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1",
       "source": "kalshi",
       "close_time": "2026-10-25T23:00:00Z",
       "category": "sports",
@@ -2263,7 +2307,7 @@
     {
       "key": "kalshi:KXRT-WILDW-90",
       "question": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW",
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-wildw",
       "source": "kalshi",
       "close_time": "2026-10-26T14:00:00Z",
       "category": "culture",
@@ -2286,7 +2330,7 @@
     {
       "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
       "question": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC",
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
       "source": "kalshi",
       "close_time": "2026-10-27T23:00:00Z",
       "category": "sports",
@@ -2358,6 +2402,52 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-28T21:35:11Z",
+      "key": "kalshi:KXPGATOUR-BAOUC26-JKOI",
+      "question": "Bank of Utah Championship: Jackson Koivun wins",
+      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T04:00:00Z",
+      "market": 0.0685,
+      "forecasts": {
+        "jev_research": 0.19,
+        "jev_plain": 0.3,
+        "claude_direct": 0.06,
+        "jev_calibrated": null
+      },
+      "info": 0.4,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.40 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.13 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.012 < 0.08"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x22446 @ 0.090: p 0.19 vs cost 0.090, edge +0.100"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 11
+    },
     {
       "ts": "2026-09-28T20:05:12Z",
       "key": "polymarket:4844455",
@@ -2454,7 +2544,7 @@
       "ts": "2026-09-28T19:05:13Z",
       "key": "kalshi:KXWNBASERIES-26WSHATLR1-WSH",
       "question": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1",
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1",
       "source": "kalshi",
       "category": "sports",
       "close_time": "2026-10-25T23:00:00Z",
@@ -2500,7 +2590,7 @@
       "ts": "2026-09-28T19:05:13Z",
       "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
       "question": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC",
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
       "source": "kalshi",
       "category": "sports",
       "close_time": "2026-10-27T23:00:00Z",
@@ -2546,7 +2636,7 @@
       "ts": "2026-09-28T19:05:13Z",
       "key": "kalshi:KXMLBSERIES-26BOSNYYWC-NYY",
       "question": "Boston vs New York Y Wild Card series winner: New York Y wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC",
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
       "source": "kalshi",
       "category": "sports",
       "close_time": "2026-10-27T23:00:00Z",
@@ -2776,7 +2866,7 @@
       "ts": "2026-09-28T17:35:45Z",
       "key": "kalshi:KXWNBASERIES-26INDLVR1-IND",
       "question": "Indiana vs Las Vegas First Round series winner: Indiana wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1",
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26indlvr1",
       "source": "kalshi",
       "category": "sports",
       "close_time": "2026-10-25T20:00:00Z",
@@ -2822,7 +2912,7 @@
       "ts": "2026-09-28T17:35:45Z",
       "key": "kalshi:KXWNBASERIES-26INDLVR1-LV",
       "question": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1",
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26indlvr1",
       "source": "kalshi",
       "category": "sports",
       "close_time": "2026-10-25T20:00:00Z",
@@ -2863,55 +2953,44 @@
         }
       },
       "facts_total": 12
-    },
-    {
-      "ts": "2026-09-28T17:35:45Z",
-      "key": "kalshi:KXRT-WILDW-90",
-      "question": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-26T14:00:00Z",
-      "market": 0.745,
-      "forecasts": {
-        "jev_research": 0.46,
-        "jev_plain": 0.35,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.42,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.42 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.14 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": true,
-          "side": "no",
-          "why": "BET NO x7117 @ 0.283: p 0.54 vs cost 0.283, edge +0.257"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
-        }
-      },
-      "facts_total": 8
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T21:35:11Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.0899,
+      "amount": 2017.9,
+      "p": 0.19,
+      "q": "Bank of Utah Championship: Jackson Koivun wins",
+      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26"
+    },
+    {
+      "ts": "2026-09-28T21:35:11Z",
+      "type": "call",
+      "jev": 0.19,
+      "claude": 0.06,
+      "market": 0.0685,
+      "q": "Bank of Utah Championship: Jackson Koivun wins",
+      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26"
+    },
+    {
+      "ts": "2026-09-28T21:35:11Z",
+      "type": "intel",
+      "facts": 11,
+      "q": "Bank of Utah Championship: Jackson Koivun wins",
+      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26"
+    },
+    {
+      "ts": "2026-09-28T21:35:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 4,
+      "researched": 1,
+      "bets": 1
+    },
     {
       "ts": "2026-09-28T21:05:11Z",
       "type": "scan",
@@ -2973,7 +3052,7 @@
       "amount": 832.94,
       "p": 0.71,
       "q": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC"
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc"
     },
     {
       "ts": "2026-09-28T19:05:13Z",
@@ -2982,7 +3061,7 @@
       "claude": null,
       "market": 0.085,
       "q": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1"
     },
     {
       "ts": "2026-09-28T19:05:13Z",
@@ -3000,7 +3079,7 @@
       "claude": null,
       "market": 0.425,
       "q": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC"
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc"
     },
     {
       "ts": "2026-09-28T19:05:13Z",
@@ -3009,7 +3088,7 @@
       "claude": null,
       "market": 0.595,
       "q": "Boston vs New York Y Wild Card series winner: New York Y wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC"
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc"
     },
     {
       "ts": "2026-09-28T19:05:13Z",
@@ -3062,7 +3141,7 @@
       "amount": 2017.67,
       "p": 0.54,
       "q": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW"
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-wildw"
     },
     {
       "ts": "2026-09-28T17:35:45Z",
@@ -3071,7 +3150,7 @@
       "claude": null,
       "market": 0.18,
       "q": "Indiana vs Las Vegas First Round series winner: Indiana wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26indlvr1"
     },
     {
       "ts": "2026-09-28T17:35:45Z",
@@ -3080,7 +3159,7 @@
       "claude": null,
       "market": 0.815,
       "q": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26indlvr1"
     },
     {
       "ts": "2026-09-28T17:35:45Z",
@@ -3089,7 +3168,7 @@
       "claude": null,
       "market": 0.745,
       "q": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW"
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-wildw"
     },
     {
       "ts": "2026-09-28T17:35:45Z",
@@ -3205,7 +3284,7 @@
       "claude": null,
       "market": 0.195,
       "q": "Deiveson Figueiredo wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03figtal"
     },
     {
       "ts": "2026-09-28T15:35:13Z",
@@ -3214,7 +3293,7 @@
       "claude": null,
       "market": 0.325,
       "q": "King Green wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB"
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03grerib"
     },
     {
       "ts": "2026-09-28T15:35:13Z",
@@ -3223,7 +3302,7 @@
       "claude": null,
       "market": 0.425,
       "q": "New York vs Minnesota First Round series winner: Minnesota wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26NYMINR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26nyminr1"
     },
     {
       "ts": "2026-09-28T15:35:13Z",
@@ -3320,7 +3399,7 @@
       "claude": null,
       "market": 0.31,
       "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-sens"
     },
     {
       "ts": "2026-09-28T14:05:13Z",
@@ -3364,7 +3443,7 @@
       "claude": null,
       "market": 0.815,
       "q": "Payton Talbott wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03figtal"
     },
     {
       "ts": "2026-09-28T13:05:09Z",
@@ -3373,7 +3452,7 @@
       "claude": null,
       "market": 0.655,
       "q": "Natalia Silva wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON"
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03silcon"
     },
     {
       "ts": "2026-09-28T13:05:09Z",
@@ -3391,7 +3470,7 @@
       "claude": null,
       "market": 0.335,
       "q": "Wang Cong wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON"
+      "url": "https://kalshi.com/markets/kxufcfight/market/kxufcfight-26oct03silcon"
     },
     {
       "ts": "2026-09-28T13:05:09Z",
@@ -3408,15 +3487,6 @@
       "judged": 15,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T12:05:10Z",
-      "type": "call",
-      "jev": 0.25,
-      "claude": null,
-      "market": 0.075,
-      "q": "Will Bitcoin reach $87,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026"
     },
     {
       "ts": "2026-09-28T12:05:10Z",
@@ -3480,7 +3550,7 @@
       "type": "intel",
       "facts": 12,
       "q": "Street Fighter Rotten Tomatoes score? (Above 50)",
-      "url": "https://kalshi.com/markets/KXRT-STRA"
+      "url": "https://kalshi.com/markets/kxrt/market/kxrt-stra"
     },
     {
       "ts": "2026-09-28T09:05:18Z",
@@ -3523,28 +3593,28 @@
       "amount": 1999.94,
       "p": 0.27,
       "q": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1"
     },
     {
       "ts": "2026-09-28T07:02:29Z",
       "type": "intel",
       "facts": 10,
       "q": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/KXMLBSERIES-26BOSNYYWC"
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc"
     },
     {
       "ts": "2026-09-28T07:02:29Z",
       "type": "intel",
       "facts": 10,
       "q": "New York vs Minnesota First Round series winner: Minnesota wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26NYMINR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26nyminr1"
     },
     {
       "ts": "2026-09-28T07:02:29Z",
       "type": "intel",
       "facts": 9,
       "q": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
+      "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1"
     },
     {
       "ts": "2026-09-28T07:02:29Z",
@@ -3553,42 +3623,15 @@
       "judged": 6,
       "researched": 6,
       "bets": 1
-    },
-    {
-      "ts": "2026-09-28T06:35:18Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 11,
-      "researched": 11,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-28T06:05:10Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 3,
-      "researched": 1,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-28T05:35:45Z",
-      "type": "bet",
-      "strategy": "main",
-      "side": "yes",
-      "price": 0.46,
-      "amount": 1999.62,
-      "p": 0.55,
-      "q": "Will Sweden win on 2026-09-28?",
-      "url": "https://polymarket.com/market/unl-swe-pol-2026-09-28-swe"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-28T09:05:18Z",
-    "week": 0,
+    "ts": "2026-09-28T21:35:11Z",
+    "week": 0.05,
     "week_resets": 1791183600,
-    "five_hour": 0.08
+    "five_hour": 0.12
   },
-  "research_runs_today": 20,
+  "research_runs_today": 21,
   "cycles_24h": 48,
   "learning": {
     "reviewed": 9,
