@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T10:05:15Z",
+  "generated": "2026-09-28T10:35:16Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T10:05:15Z",
+      "t": "2026-09-28T10:35:16Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,17 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 3,
+    "judged": 2,
     "bets": 0,
-    "fail_info": 2,
-    "fail_rules": 1,
-    "fail_edge": 1,
+    "fail_info": 0,
+    "fail_rules": 0,
+    "fail_edge": 0,
     "sources": {
-      "polymarket": 3
+      "polymarket": 2
     }
   },
   "funnel": {
-    "ts": "2026-09-28T10:05:11Z",
+    "ts": "2026-09-28T10:35:12Z",
     "stages": [
       [
         "Fetched",
@@ -157,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        3
+        2
       ],
       [
         "Judged by Jev",
-        3
+        2
       ],
       [
         "Judged with research",
-        2
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -176,9 +176,9 @@
         0
       ]
     ],
-    "events": 3,
+    "events": 2,
     "researched_new": 0,
-    "research_reused": 2,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -189,7 +189,7 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 23,
+    "facts_kept": 0,
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
@@ -200,11 +200,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 3,
-    "with_research": 2
+    "judged": 2,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -288,8 +288,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 103616.76,
-      "unrealized": 5616.74,
+      "marked": 105385.92,
+      "unrealized": 7385.9,
       "change": -1999.98,
       "realized": -1999.98,
       "open": 16,
@@ -517,7 +517,11 @@
           99354.18
         ],
         [
-          "2026-09-28T10:05:15Z",
+          "2026-09-28T10:35:12Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T10:35:16Z",
           99354.18
         ]
       ]
@@ -718,7 +722,11 @@
           99636.24
         ],
         [
-          "2026-09-28T10:05:15Z",
+          "2026-09-28T10:35:12Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T10:35:16Z",
           99636.24
         ]
       ]
@@ -919,7 +927,11 @@
           99807.03
         ],
         [
-          "2026-09-28T10:05:15Z",
+          "2026-09-28T10:35:12Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T10:35:16Z",
           99807.03
         ]
       ]
@@ -1120,8 +1132,12 @@
           103616.76
         ],
         [
-          "2026-09-28T10:05:15Z",
-          103616.76
+          "2026-09-28T10:35:12Z",
+          105385.92
+        ],
+        [
+          "2026-09-28T10:35:16Z",
+          105385.92
         ]
       ]
     },
@@ -1321,7 +1337,11 @@
           100000.0
         ],
         [
-          "2026-09-28T10:05:15Z",
+          "2026-09-28T10:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T10:35:16Z",
           100000.0
         ]
       ]
@@ -1472,8 +1492,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:59.999Z",
       "category": "world",
-      "price": 0.265,
-      "price_at": "2026-09-28T09:05:18Z",
+      "price": 0.38,
+      "price_at": "2026-09-28T10:35:12Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1484,7 +1504,7 @@
           "p_side": 0.85,
           "edge": 0.72,
           "opened": "2026-09-27T16:32:25Z",
-          "value": 4076.76
+          "value": 5845.92
         }
       ]
     },
@@ -2395,6 +2415,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T10:35:12Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 2,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T10:05:11Z",
       "type": "call",
       "jev": 0.55,
@@ -3060,13 +3088,6 @@
       "facts": 12,
       "q": "Will Benjamin Netanyahu be the next Prime Minister of Israel?",
       "url": "https://polymarket.com/market/will-benjamin-netanyahu-be-the-next-prime-minister-of-israel"
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
     }
   ],
   "plan_usage": {
@@ -3076,7 +3097,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 37,
+  "cycles_24h": 38,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
