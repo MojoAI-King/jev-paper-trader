@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-28T04:07:09Z",
+  "generated": "2026-09-28T04:36:18Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
-  "cash": 96000.64,
-  "open_cost": 3999.36,
+  "cash": 94000.7,
+  "open_cost": 5999.3,
   "equity": 100000.0,
   "realized": 0,
   "roi_settled": null,
@@ -13,7 +13,7 @@
   "exposure_cap_pct": 0.3,
   "max_stake_pct": 0.02,
   "by_source": {
-    "polymarket": 3999.36
+    "polymarket": 5999.3
   },
   "curve": [
     {
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T04:07:09Z",
+      "t": "2026-09-28T04:36:18Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -43,6 +43,20 @@
       "close_time": "2026-09-28T18:45:00Z"
     },
     {
+      "question": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp",
+      "source": "polymarket",
+      "side": "no",
+      "contracts": 10526,
+      "cost_per": 0.19,
+      "total_cost": 1999.94,
+      "p_side": 0.35,
+      "market_ask": 0.18,
+      "edge": 0.16,
+      "opened": "2026-09-28T04:35:12Z",
+      "close_time": "2026-09-29T18:45:00Z"
+    },
+    {
       "question": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
       "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match",
       "source": "polymarket",
@@ -60,25 +74,25 @@
   "closed": [],
   "calibration": {
     "judged": 92,
-    "resolved": 1,
+    "resolved": 3,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.21159999999999995,
-        "n": 1
+        "brier": 0.1508,
+        "n": 2
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.48999999999999994,
-        "n": 1
+        "brier": 0.22536666666666663,
+        "n": 3
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.10889999999999997,
-        "n": 1
+        "brier": 0.07864999999999998,
+        "n": 2
       },
       {
         "name": "jev_calibrated",
@@ -89,25 +103,25 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.2304,
-        "n": 1
+        "brier": 0.08345708333333333,
+        "n": 3
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 7,
+    "judged": 2,
     "bets": 1,
-    "fail_info": 5,
-    "fail_rules": 2,
-    "fail_edge": 1,
+    "fail_info": 0,
+    "fail_rules": 0,
+    "fail_edge": 0,
     "sources": {
-      "polymarket": 6,
+      "polymarket": 1,
       "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T04:05:09Z",
+    "ts": "2026-09-28T04:35:12Z",
     "stages": [
       [
         "Fetched",
@@ -115,15 +129,15 @@
       ],
       [
         "Passed free filters",
-        7
+        2
       ],
       [
         "Judged by Jev",
-        7
+        2
       ],
       [
         "Judged with research",
-        6
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -134,21 +148,21 @@
         1
       ]
     ],
-    "events": 7,
-    "researched_new": 2,
-    "research_reused": 4,
+    "events": 2,
+    "researched_new": 1,
+    "research_reused": 0,
     "bets": {
       "main": 1,
       "jev_alone": 0,
-      "claude_direct": 0,
-      "bold": 0,
+      "claude_direct": 1,
+      "bold": 1,
       "calibrated": 0
     },
-    "claude_calls": 4,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 56,
-    "facts_dropped": 6,
+    "facts_kept": 9,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -157,12 +171,12 @@
     "cleared_gates": {
       "main": 1,
       "jev_alone": 0,
-      "claude_direct": 0,
-      "bold": 2,
+      "claude_direct": 1,
+      "bold": 1,
       "calibrated": 0
     },
-    "judged": 7,
-    "with_research": 6
+    "judged": 2,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -178,12 +192,12 @@
       "challenger": false,
       "note": null,
       "gate_overrides": {},
-      "marked": 99919.47,
-      "unrealized": -80.53,
+      "marked": 99761.58,
+      "unrealized": -238.42,
       "change": 0.0,
       "realized": 0,
-      "open": 2,
-      "open_cost": 3999.36,
+      "open": 3,
+      "open_cost": 5999.3,
       "settled": 0,
       "wins": 0
     },
@@ -222,12 +236,12 @@
       "challenger": false,
       "note": null,
       "gate_overrides": {},
-      "marked": 99964.92,
-      "unrealized": -35.08,
+      "marked": 99807.03,
+      "unrealized": -192.97,
       "change": 0.0,
       "realized": 0,
-      "open": 1,
-      "open_cost": 1999.56,
+      "open": 2,
+      "open_cost": 3999.5,
       "settled": 0,
       "wins": 0
     },
@@ -238,7 +252,7 @@
       "desc": "also bets when Jev is unsure",
       "badge": "Challenger",
       "main": false,
-      "equity": 100000.0,
+      "equity": 98000.02,
       "slot": 4,
       "blurb": "Jev + Claude, but it bets even when Jev says it's short on information.",
       "challenger": false,
@@ -246,13 +260,13 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 101438.4,
-      "unrealized": 1438.4,
-      "change": 0.0,
-      "realized": 0,
+      "marked": 99616.78,
+      "unrealized": 1616.76,
+      "change": -1999.98,
+      "realized": -1999.98,
       "open": 16,
-      "open_cost": 29999.98,
-      "settled": 0,
+      "open_cost": 29399.92,
+      "settled": 1,
       "wins": 0
     },
     {
@@ -266,7 +280,7 @@
       "slot": 5,
       "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
       "challenger": false,
-      "note": "Learning: 1 of 30 results in",
+      "note": "Learning: 2 of 30 results in",
       "gate_overrides": {},
       "marked": 100000.0,
       "unrealized": 0.0,
@@ -427,8 +441,12 @@
           99919.47
         ],
         [
-          "2026-09-28T04:07:09Z",
-          99919.47
+          "2026-09-28T04:35:12Z",
+          99761.58
+        ],
+        [
+          "2026-09-28T04:36:18Z",
+          99761.58
         ]
       ]
     },
@@ -580,7 +598,11 @@
           99712.34
         ],
         [
-          "2026-09-28T04:07:09Z",
+          "2026-09-28T04:35:12Z",
+          99712.34
+        ],
+        [
+          "2026-09-28T04:36:18Z",
           99712.34
         ]
       ]
@@ -733,8 +755,12 @@
           99964.92
         ],
         [
-          "2026-09-28T04:07:09Z",
-          99964.92
+          "2026-09-28T04:35:12Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T04:36:18Z",
+          99807.03
         ]
       ]
     },
@@ -886,8 +912,12 @@
           101438.4
         ],
         [
-          "2026-09-28T04:07:09Z",
-          101438.4
+          "2026-09-28T04:35:12Z",
+          99616.78
+        ],
+        [
+          "2026-09-28T04:36:18Z",
+          99616.78
         ]
       ]
     },
@@ -1039,36 +1069,17 @@
           100000.0
         ],
         [
-          "2026-09-28T04:07:09Z",
+          "2026-09-28T04:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T04:36:18Z",
           100000.0
         ]
       ]
     }
   ],
   "open_bets": [
-    {
-      "key": "polymarket:5009022",
-      "question": "Will Bitcoin dip to $83,000 on September 27?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026",
-      "source": "polymarket",
-      "close_time": "2026-09-28T04:00:00Z",
-      "category": null,
-      "price": 0.077,
-      "price_at": "2026-09-27T15:30:28Z",
-      "positions": [
-        {
-          "strategy": "bold",
-          "side": "yes",
-          "contracts": 22222,
-          "cost_per": 0.09,
-          "total_cost": 1999.98,
-          "p_side": 0.3,
-          "edge": 0.21,
-          "opened": "2026-09-27T15:30:28Z",
-          "value": 1711.09
-        }
-      ]
-    },
     {
       "key": "polymarket:4797513",
       "question": "Will the price of Bitcoin be above $86,000 on September 28?",
@@ -1135,6 +1146,51 @@
           "edge": 0.26,
           "opened": "2026-09-28T04:05:09Z",
           "value": 1954.35
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4609854",
+      "question": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp",
+      "source": "polymarket",
+      "close_time": "2026-09-29T18:45:00Z",
+      "category": "sports",
+      "price": 0.825,
+      "price_at": "2026-09-28T04:35:12Z",
+      "positions": [
+        {
+          "strategy": "main",
+          "side": "no",
+          "contracts": 10526,
+          "cost_per": 0.19,
+          "total_cost": 1999.94,
+          "p_side": 0.35,
+          "edge": 0.16,
+          "opened": "2026-09-28T04:35:12Z",
+          "value": 1842.05
+        },
+        {
+          "strategy": "claude_direct",
+          "side": "no",
+          "contracts": 10526,
+          "cost_per": 0.19,
+          "total_cost": 1999.94,
+          "p_side": 0.36,
+          "edge": 0.17,
+          "opened": "2026-09-28T04:35:12Z",
+          "value": 1842.05
+        },
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 7368,
+          "cost_per": 0.19,
+          "total_cost": 1399.92,
+          "p_side": 0.35,
+          "edge": 0.16,
+          "opened": "2026-09-28T04:35:12Z",
+          "value": 1289.4
         }
       ]
     },
@@ -1483,8 +1539,71 @@
       ]
     }
   ],
-  "settled_recent": [],
+  "settled_recent": [
+    {
+      "key": "polymarket:5009022",
+      "question": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026",
+      "source": "polymarket",
+      "side": "yes",
+      "total_cost": 1999.98,
+      "cost_per": 0.09,
+      "p_side": 0.3,
+      "outcome": "no",
+      "payout": 0.0,
+      "pnl": -1999.98,
+      "opened": "2026-09-27T15:30:28Z",
+      "settled": "2026-09-28T04:35:12Z",
+      "strategy": "bold"
+    }
+  ],
   "calls": [
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "key": "polymarket:4609854",
+      "question": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-09-29T18:45:00Z",
+      "market": 0.825,
+      "forecasts": {
+        "jev_research": 0.65,
+        "jev_plain": 0.35,
+        "claude_direct": 0.64,
+        "jev_calibrated": null
+      },
+      "info": 0.54,
+      "rules": 0.89,
+      "decisions": {
+        "main": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x10526 @ 0.190: p 0.35 vs cost 0.190, edge +0.160"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x10526 @ 0.190: p 0.36 vs cost 0.190, edge +0.170"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x7368 @ 0.190: p 0.35 vs cost 0.190, edge +0.160"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (1 so far)"
+        }
+      },
+      "facts_total": 9
+    },
     {
       "ts": "2026-09-28T04:05:09Z",
       "key": "polymarket:4797724",
@@ -1990,55 +2109,82 @@
         }
       },
       "facts_total": 8
-    },
-    {
-      "ts": "2026-09-28T02:05:10Z",
-      "key": "polymarket:4769494",
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.225,
-      "forecasts": {
-        "jev_research": 0.19,
-        "jev_plain": 0.07,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.38,
-      "rules": 0.82,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.020 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.40 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.020 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 10
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T04:36:06Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "loss",
+      "strategy": "bold",
+      "amount": -1999.98,
+      "q": "Will Bitcoin dip to $83,000 on September 27?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "bet",
+      "strategy": "main",
+      "side": "no",
+      "price": 0.19,
+      "amount": 1999.94,
+      "p": 0.35,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "bet",
+      "strategy": "claude_direct",
+      "side": "no",
+      "price": 0.19,
+      "amount": 1999.94,
+      "p": 0.36,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.19,
+      "amount": 1399.92,
+      "p": 0.35,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "call",
+      "jev": 0.65,
+      "claude": 0.64,
+      "market": 0.825,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T04:35:12Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 2,
+      "researched": 1,
+      "bets": 3
+    },
     {
       "ts": "2026-09-28T04:05:09Z",
       "type": "bet",
@@ -2503,15 +2649,6 @@
     {
       "ts": "2026-09-27T22:35:13Z",
       "type": "call",
-      "jev": 0.09,
-      "claude": null,
-      "market": 0.0625,
-      "q": "Will Bitcoin reach $90,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-90k-in-september-2026"
-    },
-    {
-      "ts": "2026-09-27T22:35:13Z",
-      "type": "call",
       "jev": 0.25,
       "claude": null,
       "market": 0.085,
@@ -2653,95 +2790,27 @@
       "facts": 8,
       "q": "Will the price of Bitcoin be above $86,000 on September 28?",
       "url": "https://polymarket.com/market/bitcoin-above-86k-on-september-28-2026"
-    },
-    {
-      "ts": "2026-09-27T17:49:01Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 17,
-      "researched": 13,
-      "bets": 1
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "main",
-      "side": "no",
-      "price": 0.57,
-      "amount": 1999.56,
-      "p": 0.97,
-      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
-      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "claude_direct",
-      "side": "no",
-      "price": 0.57,
-      "amount": 1999.56,
-      "p": 0.97,
-      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
-      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.2003,
-      "amount": 2000.0,
-      "p": 0.36,
-      "q": "Deiveson Figueiredo wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.2003,
-      "amount": 2000.0,
-      "p": 0.54,
-      "q": "Payton Talbott wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.13,
-      "amount": 1999.92,
-      "p": 0.85,
-      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
-      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18"
-    },
-    {
-      "ts": "2026-09-27T16:32:25Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.57,
-      "amount": 1999.56,
-      "p": 0.97,
-      "q": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
-      "url": "https://polymarket.com/market/itf-huang3-vidal2-2026-09-27-completed-match"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-28T04:05:09Z",
+    "ts": "2026-09-28T04:35:12Z",
     "week": 0.93,
     "week_resets": 1790578800,
-    "five_hour": 0.24
+    "five_hour": 0.25
   },
-  "research_runs_today": 11,
-  "cycles_24h": 27,
+  "research_runs_today": 12,
+  "cycles_24h": 28,
   "learning": {
-    "reviewed": 1,
-    "post_mortems": 0,
+    "reviewed": 3,
+    "post_mortems": 1,
     "win_reviews": 0,
     "calibration": [
+      {
+        "range": "20\u201340%",
+        "n": 1,
+        "predicted": 0.3,
+        "actual": 0.0
+      },
       {
         "range": "40\u201360%",
         "n": 1,
@@ -2749,9 +2818,34 @@
         "actual": 1.0
       }
     ],
-    "root_causes": {},
+    "root_causes": {
+      "overconfident": 1
+    },
     "credits": {},
-    "recent": [],
+    "recent": [
+      {
+        "question": "Will Bitcoin dip to $83,000 on September 27?",
+        "url": "https://polymarket.com/market/will-bitcoin-dip-to-83k-on-september-27-2026",
+        "outcome": "no",
+        "category": null,
+        "p": 0.3,
+        "market": 0.077,
+        "ts": "2026-09-28T04:36:06Z",
+        "bets": {
+          "bold": -1999.98
+        },
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "On Sunday, Sep 27, BTC stayed in a tight range around $84K\u2013$85K as volatility compressed near the end of the quarter, and at one point traded near $84,830. Binance BTC/USDT never touched $83,000, so the market resolved NO.",
+        "what_we_missed": "The forecast came in at 11:30 AM ET, with only about 12.5 hours left in the window and BTC about 1.5\u20132% above the strike. It was a quiet weekend with falling volatility, and bitcoin was still drifting up. The market's 7.7% priced that correctly. Our 30% (22% from claude_direct) put too much weight on the Sep 24 dip below $83K, which happened on a weekday during a spike in bond yields.",
+        "what_worked": "",
+        "lesson": "For intraday 'dip to X' markets, base the probability on hours remaining, distance to the strike and current realized volatility (weekend volatility is usually lower). Earlier-week tests of a level don't justify a probability 4x the market's.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Block large bets that disagree with a crypto touch market by more than 3x unless a simple barrier-hit volatility model (distance to strike, hours left, recent realized vol) supports the forecaster's number."
+        }
+      }
+    ],
     "recent_wins": [],
     "playbook": {
       "version": 0,
@@ -2761,11 +2855,21 @@
     },
     "calibration_map": {
       "active": false,
-      "n": 1,
+      "n": 2,
       "need": 30
     },
     "gate_ledger": {
       "jev_alone": [
+        {
+          "group": "info",
+          "label": "Stopped only by the info gate",
+          "n": 3,
+          "wins": 0,
+          "pnl_per_100": -100.0,
+          "total_per_100": -300.0
+        }
+      ],
+      "main": [
         {
           "group": "info",
           "label": "Stopped only by the info gate",
@@ -2779,29 +2883,41 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 1,
+          "n": 2,
           "wins": 1,
-          "pnl_per_100": 85.19,
-          "total_per_100": 85.19
+          "pnl_per_100": -7.41,
+          "total_per_100": -14.81
+        }
+      ],
+      "bold": [
+        {
+          "group": "bet",
+          "label": "Bets placed",
+          "n": 1,
+          "wins": 0,
+          "pnl_per_100": -100.0,
+          "total_per_100": -100.0
         }
       ]
     },
     "by_category": [
       {
         "category": "crypto",
-        "n": 1,
-        "jev_research": 0.2116,
-        "jev_plain": 0.49,
-        "claude_direct": 0.1089,
-        "market": 0.2304,
-        "n_jev_research": 1,
-        "n_jev_plain": 1,
-        "n_claude_direct": 1,
-        "n_market": 1
+        "n": 3,
+        "jev_plain": 0.2254,
+        "market": 0.0835,
+        "jev_research": 0.1508,
+        "claude_direct": 0.0786,
+        "n_jev_plain": 3,
+        "n_market": 3,
+        "n_jev_research": 2,
+        "n_claude_direct": 2
       }
     ],
     "proposals": [],
-    "suggested_areas": {},
+    "suggested_areas": {
+      "gates": 1
+    },
     "retro": null,
     "auto_start": true
   },
