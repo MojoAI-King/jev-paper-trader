@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T17:05:15Z",
+  "generated": "2026-09-28T17:35:53Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T17:05:15Z",
+      "t": "2026-09-28T17:35:53Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -102,7 +102,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 106,
+    "judged": 109,
     "resolved": 7,
     "sources": [
       {
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 4,
+    "judged": 25,
     "bets": 0,
-    "fail_info": 0,
+    "fail_info": 4,
     "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_edge": 3,
     "sources": {
-      "polymarket": 3,
-      "kalshi": 1
+      "polymarket": 9,
+      "kalshi": 16
     }
   },
   "funnel": {
-    "ts": "2026-09-28T17:05:12Z",
+    "ts": "2026-09-28T17:35:45Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        4
+        25
       ],
       [
         "Judged by Jev",
-        4
+        25
       ],
       [
         "Judged with research",
-        0
+        5
       ],
       [
         "Cleared every gate (main)",
@@ -177,21 +177,21 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 20,
     "researched_new": 0,
-    "research_reused": 0,
+    "research_reused": 4,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 0,
-    "facts_dropped": 0,
+    "facts_kept": 39,
+    "facts_dropped": 1,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -201,11 +201,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0
     },
-    "judged": 4,
-    "with_research": 0
+    "judged": 25,
+    "with_research": 5
   },
   "strategies": [
     {
@@ -221,8 +221,8 @@
       "challenger": false,
       "note": null,
       "gate_overrides": {},
-      "marked": 99117.35,
-      "unrealized": -882.65,
+      "marked": 99222.62,
+      "unrealized": -777.38,
       "change": 0.0,
       "realized": 0,
       "open": 5,
@@ -265,8 +265,8 @@
       "challenger": false,
       "note": null,
       "gate_overrides": {},
-      "marked": 99807.03,
-      "unrealized": -192.97,
+      "marked": 99912.29,
+      "unrealized": -87.71,
       "change": 0.0,
       "realized": 0,
       "open": 2,
@@ -289,12 +289,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96539.09,
-      "unrealized": -4357.14,
+      "marked": 96009.98,
+      "unrealized": -4886.25,
       "change": 896.23,
       "realized": 896.23,
-      "open": 15,
-      "open_cost": 27417.93,
+      "open": 16,
+      "open_cost": 29435.6,
       "settled": 3,
       "wins": 1
     },
@@ -574,8 +574,12 @@
           99117.35
         ],
         [
-          "2026-09-28T17:05:15Z",
-          99117.35
+          "2026-09-28T17:35:45Z",
+          99222.62
+        ],
+        [
+          "2026-09-28T17:35:53Z",
+          99222.62
         ]
       ]
     },
@@ -831,7 +835,11 @@
           99636.24
         ],
         [
-          "2026-09-28T17:05:15Z",
+          "2026-09-28T17:35:45Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T17:35:53Z",
           99636.24
         ]
       ]
@@ -1088,8 +1096,12 @@
           99807.03
         ],
         [
-          "2026-09-28T17:05:15Z",
-          99807.03
+          "2026-09-28T17:35:45Z",
+          99912.29
+        ],
+        [
+          "2026-09-28T17:35:53Z",
+          99912.29
         ]
       ]
     },
@@ -1345,8 +1357,12 @@
           96539.09
         ],
         [
-          "2026-09-28T17:05:15Z",
-          96539.09
+          "2026-09-28T17:35:45Z",
+          96009.98
+        ],
+        [
+          "2026-09-28T17:35:53Z",
+          96009.98
         ]
       ]
     },
@@ -1602,7 +1618,11 @@
           100000.0
         ],
         [
-          "2026-09-28T17:05:15Z",
+          "2026-09-28T17:35:45Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T17:35:53Z",
           100000.0
         ]
       ]
@@ -1662,8 +1682,8 @@
       "source": "polymarket",
       "close_time": "2026-09-29T18:45:00Z",
       "category": "sports",
-      "price": 0.825,
-      "price_at": "2026-09-28T11:05:12Z",
+      "price": 0.815,
+      "price_at": "2026-09-28T17:35:45Z",
       "positions": [
         {
           "strategy": "main",
@@ -1674,7 +1694,7 @@
           "p_side": 0.35,
           "edge": 0.16,
           "opened": "2026-09-28T04:35:12Z",
-          "value": 1842.05
+          "value": 1947.31
         },
         {
           "strategy": "claude_direct",
@@ -1685,7 +1705,7 @@
           "p_side": 0.36,
           "edge": 0.17,
           "opened": "2026-09-28T04:35:12Z",
-          "value": 1842.05
+          "value": 1947.31
         },
         {
           "strategy": "bold",
@@ -1696,7 +1716,7 @@
           "p_side": 0.35,
           "edge": 0.16,
           "opened": "2026-09-28T04:35:12Z",
-          "value": 1289.4
+          "value": 1363.08
         }
       ]
     },
@@ -1776,8 +1796,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.585,
-      "price_at": "2026-09-28T17:05:12Z",
+      "price": 0.495,
+      "price_at": "2026-09-28T17:35:45Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1788,7 +1808,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2599.74
+          "value": 2199.78
         }
       ]
     },
@@ -2006,7 +2026,7 @@
       "close_time": "2026-10-19T14:00:00Z",
       "category": "culture",
       "price": 0.785,
-      "price_at": "2026-09-28T11:05:12Z",
+      "price_at": "2026-09-28T17:35:45Z",
       "positions": [
         {
           "strategy": "jev_alone",
@@ -2077,6 +2097,29 @@
           "value": 695.16
         }
       ]
+    },
+    {
+      "key": "kalshi:KXRT-WILDW-90",
+      "question": "Wildwood Rotten Tomatoes score? (Above 90)",
+      "url": "https://kalshi.com/markets/KXRT-WILDW",
+      "source": "kalshi",
+      "close_time": "2026-10-26T14:00:00Z",
+      "category": "culture",
+      "price": 0.745,
+      "price_at": "2026-09-28T17:35:45Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 7117,
+          "cost_per": 0.2835,
+          "total_cost": 2017.67,
+          "p_side": 0.54,
+          "edge": 0.2565,
+          "opened": "2026-09-28T17:35:45Z",
+          "value": 1814.84
+        }
+      ]
     }
   ],
   "settled_recent": [
@@ -2130,6 +2173,236 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.235,
+      "forecasts": {
+        "jev_research": 0.18,
+        "jev_plain": 0.08,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.38,
+      "rules": 0.82,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.040 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.36 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.040 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "key": "polymarket:4609854",
+      "question": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-09-29T18:45:00Z",
+      "market": 0.815,
+      "forecasts": {
+        "jev_research": 0.66,
+        "jev_plain": 0.37,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.56,
+      "rules": 0.89,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 9
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "key": "kalshi:KXWNBASERIES-26INDLVR1-IND",
+      "question": "Indiana vs Las Vegas First Round series winner: Indiana wins",
+      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-25T20:00:00Z",
+      "market": 0.18,
+      "forecasts": {
+        "jev_research": 0.24,
+        "jev_plain": 0.45,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.37,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.029 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.14 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.029 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 12
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "key": "kalshi:KXWNBASERIES-26INDLVR1-LV",
+      "question": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
+      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-25T20:00:00Z",
+      "market": 0.815,
+      "forecasts": {
+        "jev_research": 0.73,
+        "jev_plain": 0.48,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.45,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.049 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.049 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 12
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "key": "kalshi:KXRT-WILDW-90",
+      "question": "Wildwood Rotten Tomatoes score? (Above 90)",
+      "url": "https://kalshi.com/markets/KXRT-WILDW",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-26T14:00:00Z",
+      "market": 0.745,
+      "forecasts": {
+        "jev_research": 0.46,
+        "jev_plain": 0.35,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.42,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.42 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x7117 @ 0.283: p 0.54 vs cost 0.283, edge +0.257"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (5 so far)"
+        }
+      },
+      "facts_total": 8
+    },
     {
       "ts": "2026-09-28T16:35:14Z",
       "key": "polymarket:4609859",
@@ -2451,239 +2724,73 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-28T14:35:16Z",
-      "key": "polymarket:1365861",
-      "question": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
-      "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-05T03:59:00Z",
-      "market": 0.74,
-      "forecasts": {
-        "jev_research": 0.62,
-        "jev_plain": 0.28,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.26,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.08 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 8
-    },
-    {
-      "ts": "2026-09-28T14:35:16Z",
-      "key": "polymarket:4769494",
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.305,
-      "forecasts": {
-        "jev_research": 0.2,
-        "jev_plain": 0.07,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.37,
-      "rules": 0.83,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.37 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.41 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: exposure cap or cash"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-28T14:35:16Z",
-      "key": "polymarket:4716411",
-      "question": "Will Elon Musk post 220-239 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-220-239",
-      "source": "polymarket",
-      "category": "culture",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.062,
-      "forecasts": {
-        "jev_research": 0.22,
-        "jev_plain": 0.23,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.21,
-      "rules": 0.74,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 0
-    },
-    {
-      "ts": "2026-09-28T14:35:16Z",
-      "key": "polymarket:4690431",
-      "question": "Will WTI Crude Oil (WTI) hit (HIGH) $100 in September?",
-      "url": "https://polymarket.com/market/will-wti-reach-100-in-september-2026-from-september-18",
-      "source": "polymarket",
-      "category": "world",
-      "close_time": "2026-10-01T03:59:59.999Z",
-      "market": 0.13,
-      "forecasts": {
-        "jev_research": 0.81,
-        "jev_plain": 0.23,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.23,
-      "rules": 0.81,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 6
-    },
-    {
-      "ts": "2026-09-28T14:05:13Z",
-      "key": "kalshi:KXRT-SENS-80",
-      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
-      "url": "https://kalshi.com/markets/KXRT-SENS",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-19T14:00:00Z",
-      "market": 0.31,
-      "forecasts": {
-        "jev_research": 0.31,
-        "jev_plain": 0.62,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.23,
-      "rules": 0.88,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.035 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.47 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.035 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 7
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.2835,
+      "amount": 2017.67,
+      "p": 0.54,
+      "q": "Wildwood Rotten Tomatoes score? (Above 90)",
+      "url": "https://kalshi.com/markets/KXRT-WILDW"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "call",
+      "jev": 0.24,
+      "claude": null,
+      "market": 0.18,
+      "q": "Indiana vs Las Vegas First Round series winner: Indiana wins",
+      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "call",
+      "jev": 0.73,
+      "claude": null,
+      "market": 0.815,
+      "q": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
+      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "call",
+      "jev": 0.46,
+      "claude": null,
+      "market": 0.745,
+      "q": "Wildwood Rotten Tomatoes score? (Above 90)",
+      "url": "https://kalshi.com/markets/KXRT-WILDW"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "call",
+      "jev": 0.18,
+      "claude": null,
+      "market": 0.235,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "call",
+      "jev": 0.66,
+      "claude": null,
+      "market": 0.815,
+      "q": "Will Spain win on 2026-09-29?",
+      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
+    },
+    {
+      "ts": "2026-09-28T17:35:45Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 25,
+      "researched": 5,
+      "bets": 1
+    },
     {
       "ts": "2026-09-28T17:05:12Z",
       "type": "scan",
@@ -2853,15 +2960,6 @@
       "market": 0.74,
       "q": "Will Fl\u00e1vio Bolsonaro finish in second place in the first round of the 2026 Brazilian presidential election?",
       "url": "https://polymarket.com/market/will-flvio-bolsonaro-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
-    },
-    {
-      "ts": "2026-09-28T14:35:16Z",
-      "type": "call",
-      "jev": 0.2,
-      "claude": null,
-      "market": 0.305,
-      "q": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
     },
     {
       "ts": "2026-09-28T14:35:16Z",
@@ -3076,47 +3174,11 @@
     {
       "ts": "2026-09-28T11:05:12Z",
       "type": "call",
-      "jev": 0.73,
-      "claude": null,
-      "market": 0.795,
-      "q": "Indiana vs Las Vegas First Round series winner: Las Vegas wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26INDLVR1"
-    },
-    {
-      "ts": "2026-09-28T11:05:12Z",
-      "type": "call",
-      "jev": 0.47,
-      "claude": null,
-      "market": 0.745,
-      "q": "Wildwood Rotten Tomatoes score? (Above 90)",
-      "url": "https://kalshi.com/markets/KXRT-WILDW"
-    },
-    {
-      "ts": "2026-09-28T11:05:12Z",
-      "type": "call",
-      "jev": 0.71,
-      "claude": null,
-      "market": 0.785,
-      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-28T11:05:12Z",
-      "type": "call",
       "jev": 0.63,
       "claude": null,
       "market": 0.585,
       "q": "Sense and Sensibility Rotten Tomatoes score? (Above 75)",
       "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-28T11:05:12Z",
-      "type": "call",
-      "jev": 0.65,
-      "claude": null,
-      "market": 0.825,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
     },
     {
       "ts": "2026-09-28T11:05:12Z",
@@ -3326,28 +3388,6 @@
       "p": 0.35,
       "q": "Will Spain win on 2026-09-29?",
       "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
-      "type": "bet",
-      "strategy": "claude_direct",
-      "side": "no",
-      "price": 0.19,
-      "amount": 1999.94,
-      "p": 0.36,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-28T04:35:12Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.19,
-      "amount": 1399.92,
-      "p": 0.35,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
     }
   ],
   "plan_usage": {
@@ -3357,7 +3397,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 47,
+  "cycles_24h": 48,
   "learning": {
     "reviewed": 7,
     "post_mortems": 2,
