@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T14:35:26Z",
+  "generated": "2026-09-28T15:06:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T14:35:26Z",
+      "t": "2026-09-28T15:06:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,17 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 6,
+    "judged": 5,
     "bets": 0,
-    "fail_info": 5,
+    "fail_info": 2,
     "fail_rules": 2,
     "fail_edge": 0,
     "sources": {
-      "polymarket": 6
+      "polymarket": 5
     }
   },
   "funnel": {
-    "ts": "2026-09-28T14:35:16Z",
+    "ts": "2026-09-28T15:05:15Z",
     "stages": [
       [
         "Fetched",
@@ -157,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        6
+        7
       ],
       [
         "Judged by Jev",
-        6
+        5
       ],
       [
         "Judged with research",
-        5
+        2
       ],
       [
         "Cleared every gate (main)",
@@ -176,9 +176,9 @@
         0
       ]
     ],
-    "events": 6,
+    "events": 3,
     "researched_new": 0,
-    "research_reused": 5,
+    "research_reused": 2,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -189,22 +189,27 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 34,
-    "facts_dropped": 10,
+    "facts_kept": 8,
+    "facts_dropped": 9,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
-    "problems": [],
+    "problems": [
+      "Jev error on New York vs Minnesota First Round series winner: Minnesota w: Timed out after 10.0s",
+      "Jev error on Saudi Oil Pipeline (East-West) restarts by September 30?: Timed out after 10.0s",
+      "Jev error on Will Bitcoin dip to $77,500 in September?: Timed out after 10.0s",
+      "Jev error on Will Bitcoin dip to $82,500 in September?: Timed out after 10.0s"
+    ],
     "cleared_gates": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 6,
-    "with_research": 5
+    "judged": 5,
+    "with_research": 2
   },
   "strategies": [
     {
@@ -288,8 +293,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 98632.6,
-      "unrealized": 632.58,
+      "marked": 101799.25,
+      "unrealized": 3799.23,
       "change": -1999.98,
       "realized": -1999.98,
       "open": 16,
@@ -553,7 +558,11 @@
           99117.35
         ],
         [
-          "2026-09-28T14:35:26Z",
+          "2026-09-28T15:05:15Z",
+          99117.35
+        ],
+        [
+          "2026-09-28T15:06:14Z",
           99117.35
         ]
       ]
@@ -790,7 +799,11 @@
           99636.24
         ],
         [
-          "2026-09-28T14:35:26Z",
+          "2026-09-28T15:05:15Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T15:06:14Z",
           99636.24
         ]
       ]
@@ -1027,7 +1040,11 @@
           99807.03
         ],
         [
-          "2026-09-28T14:35:26Z",
+          "2026-09-28T15:05:15Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T15:06:14Z",
           99807.03
         ]
       ]
@@ -1264,8 +1281,12 @@
           98632.6
         ],
         [
-          "2026-09-28T14:35:26Z",
-          98632.6
+          "2026-09-28T15:05:15Z",
+          101799.25
+        ],
+        [
+          "2026-09-28T15:06:14Z",
+          101799.25
         ]
       ]
     },
@@ -1501,7 +1522,11 @@
           100000.0
         ],
         [
-          "2026-09-28T14:35:26Z",
+          "2026-09-28T15:05:15Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T15:06:14Z",
           100000.0
         ]
       ]
@@ -1652,8 +1677,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:59.999Z",
       "category": "world",
-      "price": 0.13,
-      "price_at": "2026-09-28T14:35:16Z",
+      "price": 0.245,
+      "price_at": "2026-09-28T15:05:15Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1664,7 +1689,7 @@
           "p_side": 0.85,
           "edge": 0.72,
           "opened": "2026-09-27T16:32:25Z",
-          "value": 1999.92
+          "value": 3769.08
         }
       ]
     },
@@ -1698,8 +1723,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.725,
-      "price_at": "2026-09-28T14:35:16Z",
+      "price": 0.805,
+      "price_at": "2026-09-28T15:05:15Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1710,7 +1735,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 3221.9
+          "value": 3577.42
         }
       ]
     },
@@ -1721,8 +1746,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.15,
-      "price_at": "2026-09-28T13:35:12Z",
+      "price": 0.212,
+      "price_at": "2026-09-28T15:05:15Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1733,7 +1758,7 @@
           "p_side": 0.57,
           "edge": 0.451,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2520.9
+          "value": 3562.87
         }
       ]
     },
@@ -2021,6 +2046,98 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T15:05:15Z",
+      "key": "polymarket:4689727",
+      "question": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.212,
+      "forecasts": {
+        "jev_research": 0.42,
+        "jev_plain": 0.33,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.23,
+      "rules": 0.72,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.72 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 8
+    },
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "key": "polymarket:4716407",
+      "question": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199",
+      "source": "polymarket",
+      "category": "culture",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.555,
+      "forecasts": {
+        "jev_research": 0.23,
+        "jev_plain": 0.21,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.22,
+      "rules": 0.73,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.72 < 0.75"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 0
+    },
+    {
       "ts": "2026-09-28T14:35:16Z",
       "key": "polymarket:4797724",
       "question": "Will Bitcoin dip to $82,500 in September?",
@@ -2297,52 +2414,6 @@
       "facts_total": 7
     },
     {
-      "ts": "2026-09-28T14:05:13Z",
-      "key": "polymarket:4716407",
-      "question": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199",
-      "source": "polymarket",
-      "category": "culture",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.505,
-      "forecasts": {
-        "jev_research": 0.22,
-        "jev_plain": 0.22,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.2,
-      "rules": 0.73,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.70 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 0
-    },
-    {
       "ts": "2026-09-28T13:05:09Z",
       "key": "polymarket:1365854",
       "question": "Will Luiz In\u00e1cio Lula da Silva finish in second place in the first round of the 2026 Brazilian presidential election?",
@@ -2525,55 +2596,45 @@
         }
       },
       "facts_total": 12
-    },
-    {
-      "ts": "2026-09-28T13:05:09Z",
-      "key": "polymarket:682708",
-      "question": "Will Gadi Eizenkot be the next Prime Minister of Israel?",
-      "url": "https://polymarket.com/market/will-gadi-eizenkot-be-the-next-prime-minister-of-israel",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-27T23:59:00Z",
-      "market": 0.5145,
-      "forecasts": {
-        "jev_research": 0.05,
-        "jev_plain": 0.1,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.17,
-      "rules": 0.76,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.17 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.17 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 12
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "type": "call",
+      "jev": 0.42,
+      "claude": null,
+      "market": 0.212,
+      "q": "Will Bitcoin dip to $80,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "type": "call",
+      "jev": 0.23,
+      "claude": null,
+      "market": 0.555,
+      "q": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199"
+    },
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "type": "problem",
+      "text": "Jev error on New York vs Minnesota First Round series winner: Minnesota w: Timed out after 10.0s"
+    },
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "type": "problem",
+      "text": "Jev error on Saudi Oil Pipeline (East-West) restarts by September 30?: Timed out after 10.0s"
+    },
+    {
+      "ts": "2026-09-28T15:05:15Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 5,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T14:35:16Z",
       "type": "call",
@@ -2635,15 +2696,6 @@
       "market": 0.31,
       "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
       "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-28T14:05:13Z",
-      "type": "call",
-      "jev": 0.22,
-      "claude": null,
-      "market": 0.505,
-      "q": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199"
     },
     {
       "ts": "2026-09-28T14:05:13Z",
@@ -2776,15 +2828,6 @@
       "judged": 15,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T12:05:10Z",
-      "type": "call",
-      "jev": 0.42,
-      "claude": null,
-      "market": 0.208,
-      "q": "Will Bitcoin dip to $80,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18"
     },
     {
       "ts": "2026-09-28T12:05:10Z",
@@ -3218,28 +3261,6 @@
       "fetched": 120,
       "judged": 5,
       "researched": 2,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-28T02:05:10Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Will Bitcoin dip to $77,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-77pt5k-in-september-2026-from-september-18"
-    },
-    {
-      "ts": "2026-09-28T02:05:10Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will the price of Bitcoin be above $84,000 on September 28?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-28-2026"
-    },
-    {
-      "ts": "2026-09-28T02:05:10Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 9,
-      "researched": 8,
       "bets": 0
     }
   ],
