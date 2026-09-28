@@ -7,12 +7,13 @@ Kind: Living.
 | B2 | Decide on the price-match rule | open (Joey, after a few days of data) | It dropped 8 of 53 real facts, likely poll numbers within 1 point of the market price. Kept strict by Joey's choice; review the logged `facts_dropped` reasons in `judgments.jsonl`. |
 | B3 | Make linked markets' probabilities fit together | proposed | Jev gave Lula 38% and Bolsonaro 23% in a two-way race (market: 43% + 57%). Needs a probability source normalized within an event (mutually exclusive outcomes add up to 100%; "above $X" ladders never rise with X), then a challenger. Opposing bets within an event stay allowed when each has an edge (decision 2026-09-27-challengers-start-by-themselves-opposing-4dc1). |
 | B4 | ChatGPT as a second researcher (PLAN phase 2) | not started | Needs a way to run on a ChatGPT plan rather than per-call API billing, since API spend was ruled out. |
-| B5 | Research-agent check before a bet (PLAN phase 3) | not started | Bold now bets (7 on 2026-09-27); main hasn't cleared its gates yet. |
-| B6 | Keep `judgments.jsonl` a manageable size | watch | Hourly runs append about 40 records an hour, some carrying research facts. Rotate the file by month if it passes about 50 MB. |
+| B5 | Research-agent check before a bet (PLAN phase 3) | not started | Main bets now (5 open on 2026-09-28); Bold holds 18. |
+| B6 | Keep `judgments.jsonl` a manageable size | watch | 2.6 MB on 2026-09-28 after two days of half-hourly cycles. Rotate the file by month if it passes about 50 MB. |
 | B7 | Fix the README quick start | open | It points at VS Code tasks, but the repo has no `.vscode/` folder. |
 | B9 | Decide the 15 open security findings | open (needs a human) | Listed in `docs/SECURITY_FINDINGS.md`; `skilliton security status` reports 15 controls missing and undecided. |
 | B13 | Tune the dashboard for phones | later (Joey) | The mission-control page stacks its panels below 1150px wide; Joey: "on the phone, we can figure that out later". |
 | B15 | Size fills to what a market could actually fill | proposed | The simulation fills a $2,000 order at the listed ask however little is offered there. Cap each bet at a share of the market's displayed depth or liquidity (Polymarket `liquidityNum`; check Kalshi's fields), so thin markets stay allowed but fills stay realistic. |
+| B16 | Widen the market universe if research stops running out | watch | Only 120 markets are fetched a cycle (`markets_per_source` 60). On 2026-09-28 research was the bottleneck, so it went from 20 to 60 a day (decision 2026-09-28-open-bet-cap-50-percent-and-research-60-4998). If research then goes unused while few new markets pass the filters, raise `markets_per_source`. |
 
 Give each item a stable ID and link its task and decisions. Move a completed item to `docs/BACKLOG_ARCHIVE.md` with its closure date and evidence.
 
