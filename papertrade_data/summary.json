@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T02:35:14Z",
+  "generated": "2026-09-28T03:05:13Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T02:35:14Z",
+      "t": "2026-09-28T03:05:13Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -82,18 +82,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 5,
+    "judged": 1,
     "bets": 0,
-    "fail_info": 2,
-    "fail_rules": 1,
-    "fail_edge": 1,
+    "fail_info": 0,
+    "fail_rules": 0,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 1,
-      "polymarket": 4
+      "kalshi": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T02:35:10Z",
+    "ts": "2026-09-28T03:05:11Z",
     "stages": [
       [
         "Fetched",
@@ -101,15 +100,15 @@
       ],
       [
         "Passed free filters",
-        5
+        1
       ],
       [
         "Judged by Jev",
-        5
+        1
       ],
       [
         "Judged with research",
-        2
+        0
       ],
       [
         "Cleared every gate (main)",
@@ -120,9 +119,9 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 1,
     "researched_new": 0,
-    "research_reused": 2,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -133,8 +132,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 8,
-    "facts_dropped": 7,
+    "facts_kept": 0,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -147,8 +146,8 @@
       "bold": 0,
       "calibrated": 0
     },
-    "judged": 5,
-    "with_research": 2
+    "judged": 1,
+    "with_research": 0
   },
   "strategies": [
     {
@@ -401,7 +400,11 @@
           99964.92
         ],
         [
-          "2026-09-28T02:35:14Z",
+          "2026-09-28T03:05:11Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T03:05:13Z",
           99964.92
         ]
       ]
@@ -542,7 +545,11 @@
           99712.34
         ],
         [
-          "2026-09-28T02:35:14Z",
+          "2026-09-28T03:05:11Z",
+          99712.34
+        ],
+        [
+          "2026-09-28T03:05:13Z",
           99712.34
         ]
       ]
@@ -683,7 +690,11 @@
           99964.92
         ],
         [
-          "2026-09-28T02:35:14Z",
+          "2026-09-28T03:05:11Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T03:05:13Z",
           99964.92
         ]
       ]
@@ -824,7 +835,11 @@
           100689.04
         ],
         [
-          "2026-09-28T02:35:14Z",
+          "2026-09-28T03:05:11Z",
+          100689.04
+        ],
+        [
+          "2026-09-28T03:05:13Z",
           100689.04
         ]
       ]
@@ -965,7 +980,11 @@
           100000.0
         ],
         [
-          "2026-09-28T02:35:14Z",
+          "2026-09-28T03:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T03:05:13Z",
           100000.0
         ]
       ]
@@ -1943,6 +1962,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-28T03:05:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 1,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-28T02:35:10Z",
       "type": "call",
       "jev": 0.23,
@@ -2625,17 +2652,6 @@
       "p": 0.89,
       "q": "Will Bitcoin reach $87,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026"
-    },
-    {
-      "ts": "2026-09-27T15:30:28Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.45,
-      "amount": 1999.8,
-      "p": 0.53,
-      "q": "Will Bitcoin dip to $82,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
     }
   ],
   "plan_usage": {
@@ -2645,7 +2661,7 @@
     "five_hour": 0.1
   },
   "research_runs_today": 8,
-  "cycles_24h": 24,
+  "cycles_24h": 25,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
