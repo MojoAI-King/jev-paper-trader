@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T13:36:33Z",
+  "generated": "2026-09-28T14:05:21Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T13:36:33Z",
+      "t": "2026-09-28T14:05:21Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -102,7 +102,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 103,
+    "judged": 104,
     "resolved": 3,
     "sources": [
       {
@@ -139,18 +139,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 8,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 0,
-    "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_info": 2,
+    "fail_rules": 1,
+    "fail_edge": 1,
     "sources": {
       "kalshi": 3,
-      "polymarket": 5
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-09-28T13:35:12Z",
+    "ts": "2026-09-28T14:05:13Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +158,15 @@
       ],
       [
         "Passed free filters",
-        13
+        4
       ],
       [
         "Judged by Jev",
-        8
+        4
       ],
       [
         "Judged with research",
-        0
+        2
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +177,9 @@
         0
       ]
     ],
-    "events": 7,
+    "events": 4,
     "researched_new": 0,
-    "research_reused": 0,
+    "research_reused": 2,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,19 +190,13 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 0,
-    "facts_dropped": 0,
+    "facts_kept": 7,
+    "facts_dropped": 7,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
-    "problems": [
-      "Jev error on Will Bank of Canada Hike rates by 0bps at their October 2026: Timed out after 10.0s",
-      "Jev error on Sense and Sensibility Rotten Tomatoes score? (Above 80): Timed out after 10.0s",
-      "Jev error on What will be Domantas Sabonis's next team? (Detroit): Timed out after 10.0s",
-      "Jev error on Will Elon Musk post 220-239 tweets from September 22 to Sept: Timed out after 10.0s",
-      "Jev error on Will Elon Musk post 180-199 tweets from September 22 to Sept: Timed out after 10.0s"
-    ],
+    "problems": [],
     "cleared_gates": {
       "main": 0,
       "jev_alone": 0,
@@ -210,8 +204,8 @@
       "bold": 0,
       "calibrated": 0
     },
-    "judged": 8,
-    "with_research": 0
+    "judged": 4,
+    "with_research": 2
   },
   "strategies": [
     {
@@ -552,7 +546,11 @@
           99117.35
         ],
         [
-          "2026-09-28T13:36:33Z",
+          "2026-09-28T14:05:13Z",
+          99117.35
+        ],
+        [
+          "2026-09-28T14:05:21Z",
           99117.35
         ]
       ]
@@ -781,7 +779,11 @@
           99636.24
         ],
         [
-          "2026-09-28T13:36:33Z",
+          "2026-09-28T14:05:13Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T14:05:21Z",
           99636.24
         ]
       ]
@@ -1010,7 +1012,11 @@
           99807.03
         ],
         [
-          "2026-09-28T13:36:33Z",
+          "2026-09-28T14:05:13Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T14:05:21Z",
           99807.03
         ]
       ]
@@ -1239,7 +1245,11 @@
           99155.68
         ],
         [
-          "2026-09-28T13:36:33Z",
+          "2026-09-28T14:05:13Z",
+          99155.68
+        ],
+        [
+          "2026-09-28T14:05:21Z",
           99155.68
         ]
       ]
@@ -1468,7 +1478,11 @@
           100000.0
         ],
         [
-          "2026-09-28T13:36:33Z",
+          "2026-09-28T14:05:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T14:05:21Z",
           100000.0
         ]
       ]
@@ -1988,6 +2002,98 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-28T14:05:13Z",
+      "key": "kalshi:KXRT-SENS-80",
+      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
+      "url": "https://kalshi.com/markets/KXRT-SENS",
+      "source": "kalshi",
+      "category": "culture",
+      "close_time": "2026-10-19T14:00:00Z",
+      "market": 0.31,
+      "forecasts": {
+        "jev_research": 0.31,
+        "jev_plain": 0.62,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.23,
+      "rules": 0.88,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.035 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.47 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.035 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 7
+    },
+    {
+      "ts": "2026-09-28T14:05:13Z",
+      "key": "polymarket:4716407",
+      "question": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199",
+      "source": "polymarket",
+      "category": "culture",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.505,
+      "forecasts": {
+        "jev_research": 0.22,
+        "jev_plain": 0.22,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.2,
+      "rules": 0.73,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.70 < 0.75"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 0
+    },
+    {
       "ts": "2026-09-28T13:05:09Z",
       "key": "polymarket:1365854",
       "question": "Will Luiz In\u00e1cio Lula da Silva finish in second place in the first round of the 2026 Brazilian presidential election?",
@@ -2446,101 +2552,35 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-28T13:05:09Z",
-      "key": "polymarket:4052449",
-      "question": "Will Ethereum reach $2,900 in September?",
-      "url": "https://polymarket.com/market/will-ethereum-reach-2900-in-september-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.0625,
-      "forecasts": {
-        "jev_research": 0.29,
-        "jev_plain": 0.27,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.12,
-      "rules": 0.9,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.12 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.11 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.12 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-09-28T12:05:10Z",
-      "key": "polymarket:4689727",
-      "question": "Will Bitcoin dip to $80,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-september-2026-from-september-18",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.208,
-      "forecasts": {
-        "jev_research": 0.42,
-        "jev_plain": 0.32,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.24,
-      "rules": 0.74,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 10
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T14:05:13Z",
+      "type": "call",
+      "jev": 0.31,
+      "claude": null,
+      "market": 0.31,
+      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
+      "url": "https://kalshi.com/markets/KXRT-SENS"
+    },
+    {
+      "ts": "2026-09-28T14:05:13Z",
+      "type": "call",
+      "jev": 0.22,
+      "claude": null,
+      "market": 0.505,
+      "q": "Will Elon Musk post 180-199 tweets from September 22 to September 29, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-22-september-29-2026-180-199"
+    },
+    {
+      "ts": "2026-09-28T14:05:13Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 4,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T13:35:12Z",
       "type": "problem",
@@ -2900,29 +2940,11 @@
     },
     {
       "ts": "2026-09-28T08:05:18Z",
-      "type": "call",
-      "jev": 0.52,
-      "claude": null,
-      "market": 0.0545,
-      "q": "Will Bitcoin dip to $77,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-77pt5k-in-september-2026-from-september-18"
-    },
-    {
-      "ts": "2026-09-28T08:05:18Z",
       "type": "scan",
       "fetched": 120,
       "judged": 5,
       "researched": 2,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T07:35:11Z",
-      "type": "call",
-      "jev": 0.29,
-      "claude": null,
-      "market": 0.305,
-      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
     },
     {
       "ts": "2026-09-28T07:35:11Z",
@@ -3200,13 +3222,6 @@
       "judged": 4,
       "researched": 1,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T01:05:14Z",
-      "type": "intel",
-      "facts": 7,
-      "q": "Will the price of Bitcoin be above $84,000 on September 28?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-28-2026"
     }
   ],
   "plan_usage": {
@@ -3216,7 +3231,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 44,
+  "cycles_24h": 45,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
