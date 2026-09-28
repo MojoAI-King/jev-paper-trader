@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T00:07:48Z",
+  "generated": "2026-09-28T00:36:25Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -22,7 +22,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T00:07:48Z",
+      "t": "2026-09-28T00:36:25Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -45,7 +45,7 @@
   ],
   "closed": [],
   "calibration": {
-    "judged": 84,
+    "judged": 85,
     "resolved": 0,
     "sources": [
       {
@@ -82,18 +82,18 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 11,
+    "judged": 9,
     "bets": 0,
-    "fail_info": 9,
+    "fail_info": 5,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 2,
     "sources": {
-      "polymarket": 10,
-      "kalshi": 1
+      "kalshi": 6,
+      "polymarket": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-28T00:05:10Z",
+    "ts": "2026-09-28T00:35:13Z",
     "stages": [
       [
         "Fetched",
@@ -101,15 +101,15 @@
       ],
       [
         "Passed free filters",
-        11
+        9
       ],
       [
         "Judged by Jev",
-        11
+        9
       ],
       [
         "Judged with research",
-        9
+        5
       ],
       [
         "Cleared every gate (main)",
@@ -120,9 +120,9 @@
         0
       ]
     ],
-    "events": 7,
-    "researched_new": 2,
-    "research_reused": 4,
+    "events": 6,
+    "researched_new": 1,
+    "research_reused": 2,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -130,11 +130,11 @@
       "bold": 1,
       "calibrated": 0
     },
-    "claude_calls": 5,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 62,
-    "facts_dropped": 5,
+    "facts_kept": 26,
+    "facts_dropped": 4,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -147,8 +147,8 @@
       "bold": 1,
       "calibrated": 0
     },
-    "judged": 11,
-    "with_research": 9
+    "judged": 9,
+    "with_research": 5
   },
   "strategies": [
     {
@@ -232,12 +232,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96238.13,
-      "unrealized": -3761.87,
+      "marked": 96437.65,
+      "unrealized": -3562.35,
       "change": 0.0,
       "realized": 0,
-      "open": 15,
-      "open_cost": 29997.85,
+      "open": 16,
+      "open_cost": 29999.98,
       "settled": 0,
       "wins": 0
     },
@@ -381,7 +381,11 @@
           99964.92
         ],
         [
-          "2026-09-28T00:07:48Z",
+          "2026-09-28T00:35:13Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T00:36:25Z",
           99964.92
         ]
       ]
@@ -502,7 +506,11 @@
           99712.34
         ],
         [
-          "2026-09-28T00:07:48Z",
+          "2026-09-28T00:35:13Z",
+          99712.34
+        ],
+        [
+          "2026-09-28T00:36:25Z",
           99712.34
         ]
       ]
@@ -623,7 +631,11 @@
           99964.92
         ],
         [
-          "2026-09-28T00:07:48Z",
+          "2026-09-28T00:35:13Z",
+          99964.92
+        ],
+        [
+          "2026-09-28T00:36:25Z",
           99964.92
         ]
       ]
@@ -744,8 +756,12 @@
           96238.13
         ],
         [
-          "2026-09-28T00:07:48Z",
-          96238.13
+          "2026-09-28T00:35:13Z",
+          96437.65
+        ],
+        [
+          "2026-09-28T00:36:25Z",
+          96437.65
         ]
       ]
     },
@@ -865,7 +881,11 @@
           100000.0
         ],
         [
-          "2026-09-28T00:07:48Z",
+          "2026-09-28T00:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T00:36:25Z",
           100000.0
         ]
       ]
@@ -1148,14 +1168,37 @@
       ]
     },
     {
+      "key": "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
+      "question": "King Green wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB",
+      "source": "kalshi",
+      "close_time": "2026-10-18T00:40:00Z",
+      "category": "sports",
+      "price": 0.325,
+      "price_at": "2026-09-28T00:35:13Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 6,
+          "cost_per": 0.3555,
+          "total_cost": 2.13,
+          "p_side": 0.54,
+          "edge": 0.1845,
+          "opened": "2026-09-28T00:35:13Z",
+          "value": 1.95
+        }
+      ]
+    },
+    {
       "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
       "question": "Deiveson Figueiredo wins",
       "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
       "source": "kalshi",
       "close_time": "2026-10-18T01:00:00Z",
       "category": "sports",
-      "price": 0.175,
-      "price_at": "2026-09-27T16:32:25Z",
+      "price": 0.185,
+      "price_at": "2026-09-28T00:35:13Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1166,7 +1209,7 @@
           "p_side": 0.36,
           "edge": 0.1597,
           "opened": "2026-09-27T16:32:25Z",
-          "value": 1747.38
+          "value": 1847.22
         }
       ]
     },
@@ -1177,8 +1220,8 @@
       "source": "kalshi",
       "close_time": "2026-10-18T01:00:00Z",
       "category": "sports",
-      "price": 0.825,
-      "price_at": "2026-09-27T16:32:25Z",
+      "price": 0.815,
+      "price_at": "2026-09-28T00:35:13Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1189,7 +1232,7 @@
           "p_side": 0.54,
           "edge": 0.3397,
           "opened": "2026-09-27T16:32:25Z",
-          "value": 1747.38
+          "value": 1847.23
         }
       ]
     },
@@ -1265,6 +1308,236 @@
   ],
   "settled_recent": [],
   "calls": [
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-FIG",
+      "question": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:00:00Z",
+      "market": 0.185,
+      "forecasts": {
+        "jev_research": 0.38,
+        "jev_plain": 0.49,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.26,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.26 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03FIGTAL-TAL",
+      "question": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:00:00Z",
+      "market": 0.815,
+      "forecasts": {
+        "jev_research": 0.45,
+        "jev_plain": 0.38,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.3,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.30 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.13 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03SILCON-SIL",
+      "question": "Natalia Silva wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:20:00Z",
+      "market": 0.655,
+      "forecasts": {
+        "jev_research": 0.6,
+        "jev_plain": 0.43,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.35,
+      "rules": 0.75,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.024 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.12 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.024 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
+      "question": "King Green wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T00:40:00Z",
+      "market": 0.325,
+      "forecasts": {
+        "jev_research": 0.54,
+        "jev_plain": 0.45,
+        "claude_direct": 0.38,
+        "jev_calibrated": null
+      },
+      "info": 0.31,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.31 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.12 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.025 < 0.08"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x6 @ 0.355: p 0.54 vs cost 0.355, edge +0.184"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "key": "kalshi:KXUFCFIGHT-26OCT03SILCON-CON",
+      "question": "Wang Cong wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T01:20:00Z",
+      "market": 0.345,
+      "forecasts": {
+        "jev_research": 0.35,
+        "jev_plain": 0.41,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.31,
+      "rules": 0.78,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.026 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.034 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.026 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
+        }
+      },
+      "facts_total": 10
+    },
     {
       "ts": "2026-09-28T00:05:10Z",
       "key": "polymarket:601826",
@@ -1586,239 +1859,80 @@
         }
       },
       "facts_total": 12
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "key": "polymarket:682708",
-      "question": "Will Gadi Eizenkot be the next Prime Minister of Israel?",
-      "url": "https://polymarket.com/market/will-gadi-eizenkot-be-the-next-prime-minister-of-israel",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-27T23:59:00Z",
-      "market": 0.527,
-      "forecasts": {
-        "jev_research": 0.04,
-        "jev_plain": 0.09,
-        "claude_direct": 0.33,
-        "jev_calibrated": null
-      },
-      "info": 0.18,
-      "rules": 0.75,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.18 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.18 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.18 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 12
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "key": "kalshi:KXWNBASERIES-26WSHATLR1-WSH",
-      "question": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-25T23:00:00Z",
-      "market": 0.295,
-      "forecasts": {
-        "jev_research": 0.6,
-        "jev_plain": 0.44,
-        "claude_direct": 0.56,
-        "jev_calibrated": null
-      },
-      "info": 0.26,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "bold": {
-          "bet": true,
-          "side": "yes",
-          "why": "BET YES x5793 @ 0.345: p 0.60 vs cost 0.345, edge +0.255"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-27T23:05:46Z",
-      "key": "polymarket:4052418",
-      "question": "Will Bitcoin reach $87,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.185,
-      "forecasts": {
-        "jev_research": 0.18,
-        "jev_plain": 0.28,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.29,
-      "rules": 0.9,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.010 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 9
-    },
-    {
-      "ts": "2026-09-27T22:35:13Z",
-      "key": "polymarket:4581768",
-      "question": "Will France win on 2026-09-28?",
-      "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-fra",
-      "source": "polymarket",
-      "category": "sports",
-      "close_time": "2026-09-28T18:45:00Z",
-      "market": 0.505,
-      "forecasts": {
-        "jev_research": 0.48,
-        "jev_plain": 0.37,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.49,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.010 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.11 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.010 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 13
-    },
-    {
-      "ts": "2026-09-27T22:35:13Z",
-      "key": "polymarket:601819",
-      "question": "Will Luiz In\u00e1cio Lula da Silva win the 2026 Brazilian presidential election?",
-      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-2026-brazilian-presidential-election",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-04T00:00:00Z",
-      "market": 0.425,
-      "forecasts": {
-        "jev_research": 0.45,
-        "jev_plain": 0.31,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.16,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.010 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.010 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (0 so far)"
-        }
-      },
-      "facts_total": 6
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.3555,
+      "amount": 2.13,
+      "p": 0.54,
+      "q": "King Green wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "call",
+      "jev": 0.38,
+      "claude": null,
+      "market": 0.185,
+      "q": "Deiveson Figueiredo wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "call",
+      "jev": 0.45,
+      "claude": null,
+      "market": 0.815,
+      "q": "Payton Talbott wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03FIGTAL"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "call",
+      "jev": 0.6,
+      "claude": null,
+      "market": 0.655,
+      "q": "Natalia Silva wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "call",
+      "jev": 0.54,
+      "claude": 0.38,
+      "market": 0.325,
+      "q": "King Green wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "call",
+      "jev": 0.35,
+      "claude": null,
+      "market": 0.345,
+      "q": "Wang Cong wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "intel",
+      "facts": 11,
+      "q": "King Green wins",
+      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03GRERIB"
+    },
+    {
+      "ts": "2026-09-28T00:35:13Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 9,
+      "researched": 5,
+      "bets": 1
+    },
     {
       "ts": "2026-09-28T00:05:10Z",
       "type": "bet",
@@ -2152,24 +2266,6 @@
     {
       "ts": "2026-09-27T20:05:17Z",
       "type": "call",
-      "jev": 0.36,
-      "claude": null,
-      "market": 0.37,
-      "q": "Will Kyle Schwarber lead Pro Baseball in home runs for the 2026 regular season?",
-      "url": "https://kalshi.com/markets/KXLEADERMLBHR-26"
-    },
-    {
-      "ts": "2026-09-27T20:05:17Z",
-      "type": "call",
-      "jev": 0.23,
-      "claude": null,
-      "market": 0.64,
-      "q": "Will Pete Crow-Armstrong lead Pro Baseball in home runs for the 2026 regular season?",
-      "url": "https://kalshi.com/markets/KXLEADERMLBHR-26"
-    },
-    {
-      "ts": "2026-09-27T20:05:17Z",
-      "type": "call",
       "jev": 0.09,
       "claude": 0.004,
       "market": 0.06,
@@ -2208,15 +2304,6 @@
     },
     {
       "ts": "2026-09-27T19:05:10Z",
-      "type": "call",
-      "jev": 0.3,
-      "claude": null,
-      "market": 0.265,
-      "q": "Sense and Sensibility Rotten Tomatoes score? (Above 80)",
-      "url": "https://kalshi.com/markets/KXRT-SENS"
-    },
-    {
-      "ts": "2026-09-27T19:05:10Z",
       "type": "scan",
       "fetched": 120,
       "judged": 3,
@@ -2252,24 +2339,6 @@
       "p": 0.24,
       "q": "Will the price of Bitcoin be above $86,000 on September 28?",
       "url": "https://polymarket.com/market/bitcoin-above-86k-on-september-28-2026"
-    },
-    {
-      "ts": "2026-09-27T17:49:01Z",
-      "type": "call",
-      "jev": 0.29,
-      "claude": null,
-      "market": 0.755,
-      "q": "W15 Maanshan, Qualifying: Completed Match: xu yunzhang vs Alisa Piliptsevich",
-      "url": "https://polymarket.com/market/itf-yunzha1-pilipt1-2026-09-27-completed-match"
-    },
-    {
-      "ts": "2026-09-27T17:49:01Z",
-      "type": "call",
-      "jev": 0.62,
-      "claude": 0.75,
-      "market": 0.655,
-      "q": "Natalia Silva wins",
-      "url": "https://kalshi.com/markets/KXUFCFIGHT-26OCT03SILCON"
     },
     {
       "ts": "2026-09-27T17:49:01Z",
@@ -2504,37 +2573,16 @@
       "judged": 22,
       "researched": 17,
       "bets": 7
-    },
-    {
-      "ts": "2026-09-27T15:11:30Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will Luiz In\u00e1cio Lula da Silva finish in second place in the first round of the 2026 Brazilian presidential election?",
-      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-finish-in-second-place-in-the-first-round-of-the-2026-brazilian-presidential-election"
-    },
-    {
-      "ts": "2026-09-27T15:11:30Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-27T15:11:30Z",
-      "type": "intel",
-      "facts": 14,
-      "q": "Saudi Oil Pipeline (East-West) restarts by September 30?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-september-30"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-28T00:05:10Z",
-    "week": 0.85,
+    "ts": "2026-09-28T00:35:13Z",
+    "week": 0.87,
     "week_resets": 1790578800,
-    "five_hour": 0.09
+    "five_hour": 0.02
   },
-  "research_runs_today": 2,
-  "cycles_24h": 19,
+  "research_runs_today": 3,
+  "cycles_24h": 20,
   "learning": {
     "reviewed": 0,
     "post_mortems": 0,
