@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-28T11:05:18Z",
+  "generated": "2026-09-28T11:35:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -23,7 +23,7 @@
       "label": "Starting bankroll"
     },
     {
-      "t": "2026-09-28T11:05:18Z",
+      "t": "2026-09-28T11:35:14Z",
       "equity": 100000.0,
       "label": "Now (open bets valued at cost)"
     }
@@ -139,18 +139,17 @@
   },
   "last_scan": {
     "date": "2026-09-28",
-    "judged": 20,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 6,
-    "fail_rules": 1,
-    "fail_edge": 4,
+    "fail_info": 1,
+    "fail_rules": 0,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 17,
-      "polymarket": 3
+      "polymarket": 4
     }
   },
   "funnel": {
-    "ts": "2026-09-28T11:05:12Z",
+    "ts": "2026-09-28T11:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -158,15 +157,15 @@
       ],
       [
         "Passed free filters",
-        20
+        4
       ],
       [
         "Judged by Jev",
-        20
+        4
       ],
       [
         "Judged with research",
-        7
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -177,9 +176,9 @@
         0
       ]
     ],
-    "events": 14,
+    "events": 3,
     "researched_new": 0,
-    "research_reused": 5,
+    "research_reused": 1,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -190,8 +189,8 @@
     "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 43,
-    "facts_dropped": 6,
+    "facts_kept": 5,
+    "facts_dropped": 3,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -201,11 +200,11 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0
     },
-    "judged": 20,
-    "with_research": 7
+    "judged": 4,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -289,8 +288,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 105074.84,
-      "unrealized": 7074.82,
+      "marked": 104717.74,
+      "unrealized": 6717.72,
       "change": -1999.98,
       "realized": -1999.98,
       "open": 16,
@@ -526,7 +525,11 @@
           99354.18
         ],
         [
-          "2026-09-28T11:05:18Z",
+          "2026-09-28T11:35:11Z",
+          99354.18
+        ],
+        [
+          "2026-09-28T11:35:14Z",
           99354.18
         ]
       ]
@@ -735,7 +738,11 @@
           99636.24
         ],
         [
-          "2026-09-28T11:05:18Z",
+          "2026-09-28T11:35:11Z",
+          99636.24
+        ],
+        [
+          "2026-09-28T11:35:14Z",
           99636.24
         ]
       ]
@@ -944,7 +951,11 @@
           99807.03
         ],
         [
-          "2026-09-28T11:05:18Z",
+          "2026-09-28T11:35:11Z",
+          99807.03
+        ],
+        [
+          "2026-09-28T11:35:14Z",
           99807.03
         ]
       ]
@@ -1153,8 +1164,12 @@
           105074.84
         ],
         [
-          "2026-09-28T11:05:18Z",
-          105074.84
+          "2026-09-28T11:35:11Z",
+          104717.74
+        ],
+        [
+          "2026-09-28T11:35:14Z",
+          104717.74
         ]
       ]
     },
@@ -1362,7 +1377,11 @@
           100000.0
         ],
         [
-          "2026-09-28T11:05:18Z",
+          "2026-09-28T11:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T11:35:14Z",
           100000.0
         ]
       ]
@@ -1696,8 +1715,8 @@
       "source": "polymarket",
       "close_time": "2026-10-16T03:59:00Z",
       "category": "world",
-      "price": 0.445,
-      "price_at": "2026-09-28T06:35:18Z",
+      "price": 0.545,
+      "price_at": "2026-09-28T11:35:11Z",
       "positions": [
         {
           "strategy": "bold",
@@ -1708,7 +1727,7 @@
           "p_side": 0.86,
           "edge": 0.3,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 1981.9
+          "value": 1624.8
         }
       ]
     },
@@ -1881,6 +1900,52 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-28T11:35:11Z",
+      "key": "polymarket:4689737",
+      "question": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.075,
+      "forecasts": {
+        "jev_research": 0.49,
+        "jev_plain": 0.31,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.17,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.17 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.17 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
+        }
+      },
+      "facts_total": 5
+    },
     {
       "ts": "2026-09-28T11:05:12Z",
       "key": "kalshi:KXRT-SENS-70",
@@ -2386,55 +2451,26 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-28T09:05:18Z",
-      "key": "kalshi:KXRT-STRA-50",
-      "question": "Street Fighter Rotten Tomatoes score? (Above 50)",
-      "url": "https://kalshi.com/markets/KXRT-STRA",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-19T14:00:00Z",
-      "market": 0.645,
-      "forecasts": {
-        "jev_research": 0.41,
-        "jev_plain": 0.41,
-        "claude_direct": 0.5,
-        "jev_calibrated": null
-      },
-      "info": 0.39,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.39 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.32 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.39 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: exposure cap or cash"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (2 so far)"
-        }
-      },
-      "facts_total": 8
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-28T11:35:11Z",
+      "type": "call",
+      "jev": 0.49,
+      "claude": null,
+      "market": 0.075,
+      "q": "Will Ethereum dip to $2,500 in September?",
+      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
+    },
+    {
+      "ts": "2026-09-28T11:35:11Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 4,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-28T11:05:12Z",
       "type": "call",
@@ -2606,15 +2642,6 @@
       "judged": 1,
       "researched": 1,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-28T08:05:18Z",
-      "type": "call",
-      "jev": 0.4,
-      "claude": null,
-      "market": 0.125,
-      "q": "Will Ethereum dip to $2,500 in September?",
-      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
     },
     {
       "ts": "2026-09-28T08:05:18Z",
@@ -3099,17 +3126,6 @@
       "judged": 9,
       "researched": 5,
       "bets": 1
-    },
-    {
-      "ts": "2026-09-28T00:05:10Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.3452,
-      "amount": 1999.74,
-      "p": 0.6,
-      "q": "Washington vs Atlanta First Round series winner: Washington wins",
-      "url": "https://kalshi.com/markets/KXWNBASERIES-26WSHATLR1"
     }
   ],
   "plan_usage": {
@@ -3119,7 +3135,7 @@
     "five_hour": 0.08
   },
   "research_runs_today": 20,
-  "cycles_24h": 39,
+  "cycles_24h": 40,
   "learning": {
     "reviewed": 3,
     "post_mortems": 1,
