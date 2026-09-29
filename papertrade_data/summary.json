@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T05:36:44Z",
+  "generated": "2026-09-29T06:06:42Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -33,7 +33,7 @@
       "label": "Will Sweden win on 2026-09-28?"
     },
     {
-      "t": "2026-09-29T05:36:44Z",
+      "t": "2026-09-29T06:06:42Z",
       "equity": 103377.58,
       "label": "Now (open bets valued at cost)"
     }
@@ -178,25 +178,25 @@
   ],
   "calibration": {
     "judged": 233,
-    "resolved": 19,
+    "resolved": 20,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.11949000000000001,
-        "n": 10
+        "brier": 0.14586363636363636,
+        "n": 11
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.32380526315789476,
-        "n": 19
+        "brier": 0.313395,
+        "n": 20
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.09705200000000001,
-        "n": 8
+        "brier": 0.08876844444444446,
+        "n": 9
       },
       {
         "name": "jev_calibrated",
@@ -207,25 +207,25 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.10602955263157893,
-        "n": 19
+        "brier": 0.101228075,
+        "n": 20
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 11,
+    "judged": 9,
     "bets": 0,
-    "fail_info": 3,
-    "fail_rules": 0,
+    "fail_info": 1,
+    "fail_rules": 1,
     "fail_edge": 1,
     "sources": {
-      "kalshi": 3,
-      "polymarket": 8
+      "kalshi": 5,
+      "polymarket": 4
     }
   },
   "funnel": {
-    "ts": "2026-09-29T05:34:32Z",
+    "ts": "2026-09-29T06:04:30Z",
     "stages": [
       [
         "Fetched",
@@ -233,15 +233,15 @@
       ],
       [
         "Passed free filters",
-        11
+        9
       ],
       [
         "Judged by Jev",
-        11
+        9
       ],
       [
         "Judged with research",
-        3
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -252,23 +252,23 @@
         0
       ]
     ],
-    "events": 9,
+    "events": 6,
     "researched_new": 1,
-    "research_reused": 2,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0
     },
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 27,
-    "facts_dropped": 9,
+    "facts_kept": 3,
+    "facts_dropped": 6,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -278,13 +278,13 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0
     },
-    "judged": 11,
-    "with_research": 3
+    "judged": 9,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -393,8 +393,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 95368.61,
-      "unrealized": -5527.62,
+      "marked": 95315.59,
+      "unrealized": -5580.64,
       "change": 896.23,
       "realized": 896.23,
       "open": 29,
@@ -417,7 +417,7 @@
       "slot": 5,
       "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
       "challenger": false,
-      "note": "Learning: 10 of 30 results in",
+      "note": "Learning: 11 of 30 results in",
       "rules_version": 1,
       "tuned_at": null,
       "frozen": false,
@@ -442,7 +442,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 100000.0,
+      "equity": 98000.0,
       "slot": 6,
       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
       "challenger": false,
@@ -453,17 +453,17 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 99540.34,
-      "unrealized": -459.66,
-      "change": 0.0,
-      "realized": 0,
-      "open": 11,
-      "open_cost": 21997.56,
-      "settled": 0,
+      "marked": 95734.98,
+      "unrealized": -2265.02,
+      "change": -2000.0,
+      "realized": -2000.0,
+      "open": 10,
+      "open_cost": 19997.56,
+      "settled": 1,
       "wins": 0,
-      "losses": 0,
+      "losses": 1,
       "won_amt": 0,
-      "lost_amt": 0
+      "lost_amt": -2000.0
     },
     {
       "name": "original",
@@ -848,7 +848,11 @@
           100678.86
         ],
         [
-          "2026-09-29T05:36:44Z",
+          "2026-09-29T06:04:30Z",
+          100678.86
+        ],
+        [
+          "2026-09-29T06:06:42Z",
           100678.86
         ]
       ]
@@ -1205,7 +1209,11 @@
           99636.24
         ],
         [
-          "2026-09-29T05:36:44Z",
+          "2026-09-29T06:04:30Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T06:06:42Z",
           99636.24
         ]
       ]
@@ -1562,7 +1570,11 @@
           99436.21
         ],
         [
-          "2026-09-29T05:36:44Z",
+          "2026-09-29T06:04:30Z",
+          99436.21
+        ],
+        [
+          "2026-09-29T06:06:42Z",
           99436.21
         ]
       ]
@@ -1919,8 +1931,12 @@
           95368.61
         ],
         [
-          "2026-09-29T05:36:44Z",
-          95368.61
+          "2026-09-29T06:04:30Z",
+          95315.59
+        ],
+        [
+          "2026-09-29T06:06:42Z",
+          95315.59
         ]
       ]
     },
@@ -2276,7 +2292,11 @@
           100000.0
         ],
         [
-          "2026-09-29T05:36:44Z",
+          "2026-09-29T06:04:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T06:06:42Z",
           100000.0
         ]
       ]
@@ -2633,8 +2653,12 @@
           99540.34
         ],
         [
-          "2026-09-29T05:36:44Z",
-          99540.34
+          "2026-09-29T06:04:30Z",
+          95734.98
+        ],
+        [
+          "2026-09-29T06:06:42Z",
+          95734.98
         ]
       ]
     },
@@ -2990,7 +3014,11 @@
           99279.58
         ],
         [
-          "2026-09-29T05:36:44Z",
+          "2026-09-29T06:04:30Z",
+          99279.58
+        ],
+        [
+          "2026-09-29T06:06:42Z",
           99279.58
         ]
       ]
@@ -3185,8 +3213,8 @@
       "source": "polymarket",
       "close_time": "2026-09-30T16:00:00Z",
       "category": "culture",
-      "price": 0.465,
-      "price_at": "2026-09-29T04:34:29Z",
+      "price": 0.525,
+      "price_at": "2026-09-29T06:04:30Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -3197,7 +3225,7 @@
           "p_side": 0.73,
           "edge": 0.12,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 1753.73
+          "value": 1557.05
         }
       ]
     },
@@ -3369,8 +3397,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.675,
-      "price_at": "2026-09-29T05:04:29Z",
+      "price": 0.605,
+      "price_at": "2026-09-29T06:04:30Z",
       "positions": [
         {
           "strategy": "bold",
@@ -3381,7 +3409,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2999.7
+          "value": 2688.62
         }
       ]
     },
@@ -3438,8 +3466,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.325,
-      "price_at": "2026-09-29T05:04:29Z",
+      "price": 0.38,
+      "price_at": "2026-09-29T06:04:30Z",
       "positions": [
         {
           "strategy": "bold",
@@ -3450,7 +3478,7 @@
           "p_side": 0.79,
           "edge": 0.36,
           "opened": "2026-09-28T23:04:32Z",
-          "value": 1524.9
+          "value": 1782.96
         }
       ]
     },
@@ -3644,8 +3672,8 @@
       "source": "polymarket",
       "close_time": "2026-10-03T23:59:00Z",
       "category": "other",
-      "price": 0.307,
-      "price_at": "2026-09-29T05:34:32Z",
+      "price": 0.187,
+      "price_at": "2026-09-29T06:04:30Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -3656,7 +3684,7 @@
           "p_side": 0.35,
           "edge": 0.258,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 6673.87
+          "value": 4065.19
         }
       ]
     },
@@ -3794,29 +3822,6 @@
           "edge": 0.2,
           "opened": "2026-09-27T15:30:28Z",
           "value": 1740.64
-        }
-      ]
-    },
-    {
-      "key": "polymarket:5023463",
-      "question": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
-      "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match",
-      "source": "polymarket",
-      "close_time": "2026-10-06T03:00:00Z",
-      "category": "sports",
-      "price": 0.9,
-      "price_at": "2026-09-29T00:34:27Z",
-      "positions": [
-        {
-          "strategy": "jev_alone_bold",
-          "side": "no",
-          "contracts": 10000,
-          "cost_per": 0.2,
-          "total_cost": 2000.0,
-          "p_side": 0.34,
-          "edge": 0.14,
-          "opened": "2026-09-29T00:34:27Z",
-          "value": 1000.0
         }
       ]
     },
@@ -4133,6 +4138,22 @@
   ],
   "settled_recent": [
     {
+      "key": "polymarket:5023463",
+      "question": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
+      "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match",
+      "source": "polymarket",
+      "side": "no",
+      "total_cost": 2000.0,
+      "cost_per": 0.2,
+      "p_side": 0.34,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2000.0,
+      "opened": "2026-09-29T00:34:27Z",
+      "settled": "2026-09-29T06:04:30Z",
+      "strategy": "jev_alone_bold"
+    },
+    {
       "key": "polymarket:4581752",
       "question": "Will T\u00fcrkiye win on 2026-09-28?",
       "url": "https://polymarket.com/market/unl-tur-ita-2026-09-28-tur",
@@ -4214,6 +4235,62 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-29T06:04:30Z",
+      "key": "polymarket:4986268",
+      "question": "Will Elon Musk post 40-64 tweets from September 28 to September 30, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-28-september-30-2026-40-64",
+      "source": "polymarket",
+      "category": "culture",
+      "close_time": "2026-09-30T16:00:00Z",
+      "market": 0.525,
+      "forecasts": {
+        "jev_research": 0.51,
+        "jev_plain": 0.28,
+        "claude_direct": 0.45,
+        "jev_calibrated": null
+      },
+      "info": 0.37,
+      "rules": 0.73,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.22 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
+        }
+      },
+      "facts_total": 3
+    },
     {
       "ts": "2026-09-29T05:34:32Z",
       "key": "polymarket:4882981",
@@ -4829,65 +4906,49 @@
         }
       },
       "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T05:04:29Z",
-      "key": "polymarket:5062280",
-      "question": "Will Bitcoin dip to $78,000 September 28-October 4?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-78k-september-28-october-4-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-05T04:00:00Z",
-      "market": 0.125,
-      "forecasts": {
-        "jev_research": 0.34,
-        "jev_plain": 0.4,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.26,
-      "rules": 0.91,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "no room: open-bet limit reached"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        }
-      },
-      "facts_total": 9
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-29T06:06:28Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
+      "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match"
+    },
+    {
+      "ts": "2026-09-29T06:04:30Z",
+      "type": "loss",
+      "strategy": "jev_alone_bold",
+      "amount": -2000.0,
+      "q": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
+      "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match"
+    },
+    {
+      "ts": "2026-09-29T06:04:30Z",
+      "type": "call",
+      "jev": 0.51,
+      "claude": 0.45,
+      "market": 0.525,
+      "q": "Will Elon Musk post 40-64 tweets from September 28 to September 30, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-28-september-30-2026-40-64"
+    },
+    {
+      "ts": "2026-09-29T06:04:30Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Will Elon Musk post 40-64 tweets from September 28 to September 30, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-28-september-30-2026-40-64"
+    },
+    {
+      "ts": "2026-09-29T06:04:30Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 9,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-29T05:34:32Z",
       "type": "bet",
@@ -5258,15 +5319,6 @@
     {
       "ts": "2026-09-29T04:04:32Z",
       "type": "call",
-      "jev": 0.12,
-      "claude": null,
-      "market": 0.065,
-      "q": "Will Croatia win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-hrv"
-    },
-    {
-      "ts": "2026-09-29T04:04:32Z",
-      "type": "call",
       "jev": 0.51,
       "claude": null,
       "market": 0.745,
@@ -5553,64 +5605,20 @@
       "p": 0.84,
       "q": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
       "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26sep27"
-    },
-    {
-      "ts": "2026-09-28T23:34:41Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.2003,
-      "amount": 2000.0,
-      "p": 0.63,
-      "q": "Will the rate of CPI inflation be above 3.5% for the year ending in September 2026? (Above 3.5%)",
-      "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-5-for-the-year-end/kxcpiyoy-26sep"
-    },
-    {
-      "ts": "2026-09-28T23:34:41Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.7731,
-      "amount": 1999.24,
-      "p": 0.95,
-      "q": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
-      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep"
-    },
-    {
-      "ts": "2026-09-28T23:34:41Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.61,
-      "amount": 1999.58,
-      "p": 0.73,
-      "q": "Will Elon Musk post 40-64 tweets from September 28 to September 30, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-28-september-30-2026-40-64"
-    },
-    {
-      "ts": "2026-09-28T23:34:41Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.2,
-      "amount": 2000.0,
-      "p": 0.48,
-      "q": "Will \"The Life of a Showgirl: The Encore\" first week sales be at least 150k?",
-      "url": "https://polymarket.com/market/will-the-life-of-a-showgirl-the-encore-first-week-sales-be-at-least-150k"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T05:34:32Z",
-    "week": 0.31,
+    "ts": "2026-09-29T06:04:30Z",
+    "week": 0.32,
     "week_resets": 1791183600,
-    "five_hour": 0.16
+    "five_hour": 0.18
   },
-  "research_runs_today": 17,
+  "research_runs_today": 18,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 19,
-    "post_mortems": 3,
+    "reviewed": 20,
+    "post_mortems": 4,
     "win_reviews": 3,
     "calibration": [
       {
@@ -5621,9 +5629,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 3,
-        "predicted": 0.257,
-        "actual": 0.0
+        "n": 4,
+        "predicted": 0.282,
+        "actual": 0.25
       },
       {
         "range": "40\u201360%",
@@ -5639,7 +5647,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 2,
+      "overconfident": 3,
       "unlucky": 1
     },
     "credits": {
@@ -5647,6 +5655,28 @@
       "base_rate": 1
     },
     "recent": [
+      {
+        "question": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
+        "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match",
+        "outcome": "yes",
+        "category": "sports",
+        "p": 0.36,
+        "market": 0.9,
+        "ts": "2026-09-29T06:06:28Z",
+        "bets": {
+          "jev_alone_bold": -2000.0
+        },
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "The first-round match at the WTA 125 Jingshan was played on September 29 local time and finished through normal play, so the market resolved Yes. Search results show Mladenovic winning, although the exact score reported was garbled.",
+        "what_we_missed": "Our research-backed forecast of 0.36 leaned heavily on a few past retirements (Mladenovic in Les Sables d'Olonne and Lugano, Costoulas in Istanbul). That ignored the base rate: well over 90% of WTA matches finish normally. Both players had also just played a full doubles match in Singapore the week before, which suggested they were fit to play.",
+        "what_worked": "",
+        "lesson": "Start from the base rate that about 93\u201397% of WTA matches are completed. Only move far below it on specific, current evidence of injury or withdrawal, not on a player's occasional past retirements.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "When a 'completed match' forecast sits more than 30 points below both the base rate and the market price (0.90 here) without direct news of injury or withdrawal, cap how far it can move or flag it for review."
+        }
+      },
       {
         "question": "Will France win on 2026-09-28?",
         "url": "https://polymarket.com/market/unl-bel-fra-2026-09-28-fra",
@@ -5880,7 +5910,7 @@
     },
     "calibration_map": {
       "active": false,
-      "n": 10,
+      "n": 11,
       "need": 30
     },
     "gate_ledger": {
@@ -5888,10 +5918,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 12,
+          "n": 13,
           "wins": 1,
-          "pnl_per_100": -77.48,
-          "total_per_100": -929.73
+          "pnl_per_100": -79.21,
+          "total_per_100": -1029.73
         },
         {
           "group": "several",
@@ -5914,10 +5944,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 4,
+          "n": 5,
           "wins": 1,
-          "pnl_per_100": -13.79,
-          "total_per_100": -55.17
+          "pnl_per_100": -31.03,
+          "total_per_100": -155.17
         }
       ],
       "claude_direct": [
@@ -5942,25 +5972,35 @@
         {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 3,
+          "n": 4,
           "wins": 2,
-          "pnl_per_100": 22.97,
-          "total_per_100": 68.91
+          "pnl_per_100": -7.77,
+          "total_per_100": -31.09
+        }
+      ],
+      "jev_alone_bold": [
+        {
+          "group": "bet",
+          "label": "Bets placed",
+          "n": 1,
+          "wins": 0,
+          "pnl_per_100": -100.0,
+          "total_per_100": -100.0
         }
       ]
     },
     "by_category": [
       {
         "category": "sports",
-        "n": 9,
-        "jev_research": 0.1093,
-        "jev_plain": 0.4079,
-        "market": 0.0882,
-        "claude_direct": 0.1267,
-        "n_jev_research": 5,
-        "n_jev_plain": 9,
-        "n_market": 9,
-        "n_claude_direct": 4
+        "n": 10,
+        "jev_research": 0.1593,
+        "jev_plain": 0.3786,
+        "market": 0.0803,
+        "claude_direct": 0.1058,
+        "n_jev_research": 6,
+        "n_jev_plain": 10,
+        "n_market": 10,
+        "n_claude_direct": 5
       },
       {
         "category": "crypto",
@@ -5985,7 +6025,7 @@
     ],
     "proposals": [],
     "suggested_areas": {
-      "gates": 4,
+      "gates": 5,
       "research": 1
     },
     "retro": {
