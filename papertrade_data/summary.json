@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T09:07:34Z",
+  "generated": "2026-09-29T09:36:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -33,7 +33,7 @@
       "label": "Will Sweden win on 2026-09-28?"
     },
     {
-      "t": "2026-09-29T09:07:34Z",
+      "t": "2026-09-29T09:36:20Z",
       "equity": 103377.58,
       "label": "Now (open bets valued at cost)"
     }
@@ -177,7 +177,7 @@
     }
   ],
   "calibration": {
-    "judged": 253,
+    "judged": 256,
     "resolved": 20,
     "sources": [
       {
@@ -214,18 +214,17 @@
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 12,
+    "judged": 6,
     "bets": 0,
-    "fail_info": 3,
-    "fail_rules": 1,
-    "fail_edge": 3,
+    "fail_info": 0,
+    "fail_rules": 0,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 9,
-      "kalshi": 3
+      "polymarket": 6
     }
   },
   "funnel": {
-    "ts": "2026-09-29T09:04:34Z",
+    "ts": "2026-09-29T09:34:33Z",
     "stages": [
       [
         "Fetched",
@@ -233,15 +232,15 @@
       ],
       [
         "Passed free filters",
-        12
+        6
       ],
       [
         "Judged by Jev",
-        12
+        6
       ],
       [
         "Judged with research",
-        5
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -252,23 +251,23 @@
         0
       ]
     ],
-    "events": 12,
-    "researched_new": 2,
-    "research_reused": 3,
+    "events": 6,
+    "researched_new": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0
     },
-    "claude_calls": 4,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 37,
-    "facts_dropped": 9,
+    "facts_kept": 8,
+    "facts_dropped": 1,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -280,11 +279,11 @@
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0
     },
-    "judged": 12,
-    "with_research": 5
+    "judged": 6,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -876,7 +875,11 @@
           100678.86
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          100678.86
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           100678.86
         ]
       ]
@@ -1261,7 +1264,11 @@
           99636.24
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           99636.24
         ]
       ]
@@ -1646,7 +1653,11 @@
           99436.21
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          99436.21
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           99436.21
         ]
       ]
@@ -2031,7 +2042,11 @@
           92624.28
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          92624.28
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           92624.28
         ]
       ]
@@ -2416,7 +2431,11 @@
           100000.0
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           100000.0
         ]
       ]
@@ -2801,7 +2820,11 @@
           98344.45
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          98344.45
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           98344.45
         ]
       ]
@@ -3186,7 +3209,11 @@
           99279.58
         ],
         [
-          "2026-09-29T09:07:34Z",
+          "2026-09-29T09:34:33Z",
+          99279.58
+        ],
+        [
+          "2026-09-29T09:36:20Z",
           99279.58
         ]
       ]
@@ -4450,6 +4477,62 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-29T09:34:33Z",
+      "key": "polymarket:5083452",
+      "question": "Bari: Completed Match: Imanol Lopez Morillo vs Martin Krumich",
+      "url": "https://polymarket.com/market/atp-morillo-krumich-2026-09-29-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-06T11:00:00Z",
+      "market": 0.54,
+      "forecasts": {
+        "jev_research": 0.56,
+        "jev_plain": 0.65,
+        "claude_direct": 0.95,
+        "jev_calibrated": null
+      },
+      "info": 0.6,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.350 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.050 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (11 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.350 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        }
+      },
+      "facts_total": 8
+    },
+    {
       "ts": "2026-09-29T09:04:34Z",
       "key": "polymarket:5037412",
       "question": "Will Bitcoin reach $85,000 in September?",
@@ -5064,65 +5147,33 @@
         }
       },
       "facts_total": 8
-    },
-    {
-      "ts": "2026-09-29T07:34:32Z",
-      "key": "polymarket:4844455",
-      "question": "Will Ethereum reach $2,800 in September?",
-      "url": "https://polymarket.com/market/will-ethereum-reach-2800-in-september-2026-from-september-22",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.325,
-      "forecasts": {
-        "jev_research": 0.46,
-        "jev_plain": 0.25,
-        "claude_direct": 0.74,
-        "jev_calibrated": null
-      },
-      "info": 0.27,
-      "rules": 0.81,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (11 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        }
-      },
-      "facts_total": 8
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-29T09:34:33Z",
+      "type": "call",
+      "jev": 0.56,
+      "claude": 0.95,
+      "market": 0.54,
+      "q": "Bari: Completed Match: Imanol Lopez Morillo vs Martin Krumich",
+      "url": "https://polymarket.com/market/atp-morillo-krumich-2026-09-29-completed-match"
+    },
+    {
+      "ts": "2026-09-29T09:34:33Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Bari: Completed Match: Imanol Lopez Morillo vs Martin Krumich",
+      "url": "https://polymarket.com/market/atp-morillo-krumich-2026-09-29-completed-match"
+    },
+    {
+      "ts": "2026-09-29T09:34:33Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 6,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-29T09:04:34Z",
       "type": "bet",
@@ -5635,15 +5686,6 @@
     },
     {
       "ts": "2026-09-29T04:34:29Z",
-      "type": "call",
-      "jev": 0.15,
-      "claude": 0.08,
-      "market": 0.055,
-      "q": "Exact Score: Czechia 0 - 0 England?",
-      "url": "https://polymarket.com/market/unl-cze-eng-2026-09-29-exact-score-0-0"
-    },
-    {
-      "ts": "2026-09-29T04:34:29Z",
       "type": "intel",
       "facts": 9,
       "q": "Exact Score: Czechia 0 - 0 England?",
@@ -5789,30 +5831,15 @@
       "facts": 11,
       "q": "Will the price of Bitcoin be above $80,000 on September 30?",
       "url": "https://polymarket.com/market/bitcoin-above-80k-on-september-30-2026"
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 15,
-      "researched": 6,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-29T01:03:05Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Will the price of Ethereum be above $2,600 on September 29?",
-      "url": "https://polymarket.com/market/ethereum-above-2600-on-september-29-2026"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T09:04:34Z",
+    "ts": "2026-09-29T09:34:33Z",
     "week": 0.33,
     "week_resets": 1791183600,
     "five_hour": 0
   },
-  "research_runs_today": 26,
+  "research_runs_today": 27,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
