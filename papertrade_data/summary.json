@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T02:06:26Z",
+  "generated": "2026-09-29T02:36:53Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -33,7 +33,7 @@
       "label": "Will Sweden win on 2026-09-28?"
     },
     {
-      "t": "2026-09-29T02:06:26Z",
+      "t": "2026-09-29T02:36:53Z",
       "equity": 103377.58,
       "label": "Now (open bets valued at cost)"
     }
@@ -149,7 +149,7 @@
     }
   ],
   "calibration": {
-    "judged": 206,
+    "judged": 208,
     "resolved": 18,
     "sources": [
       {
@@ -186,18 +186,18 @@
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 7,
+    "judged": 8,
     "bets": 0,
-    "fail_info": 2,
+    "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 3,
-      "polymarket": 4
+      "polymarket": 5,
+      "kalshi": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-29T02:04:29Z",
+    "ts": "2026-09-29T02:34:51Z",
     "stages": [
       [
         "Fetched",
@@ -205,15 +205,15 @@
       ],
       [
         "Passed free filters",
-        7
+        8
       ],
       [
         "Judged by Jev",
-        7
+        8
       ],
       [
         "Judged with research",
-        2
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -224,9 +224,9 @@
         0
       ]
     ],
-    "events": 7,
+    "events": 8,
     "researched_new": 1,
-    "research_reused": 1,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -238,7 +238,7 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 13,
+    "facts_kept": 7,
     "facts_dropped": 3,
     "by_source": {
       "polymarket": 60,
@@ -249,12 +249,12 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0,
       "jev_alone_bold": 0
     },
-    "judged": 7,
-    "with_research": 2
+    "judged": 8,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -399,8 +399,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 96199.38,
-      "unrealized": -3800.62,
+      "marked": 97432.56,
+      "unrealized": -2567.44,
       "change": 0.0,
       "realized": 0,
       "open": 8,
@@ -737,7 +737,11 @@
           101282.59
         ],
         [
-          "2026-09-29T02:06:26Z",
+          "2026-09-29T02:34:51Z",
+          101282.59
+        ],
+        [
+          "2026-09-29T02:36:53Z",
           101282.59
         ]
       ]
@@ -1066,7 +1070,11 @@
           99636.24
         ],
         [
-          "2026-09-29T02:06:26Z",
+          "2026-09-29T02:34:51Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T02:36:53Z",
           99636.24
         ]
       ]
@@ -1395,7 +1403,11 @@
           99554.4
         ],
         [
-          "2026-09-29T02:06:26Z",
+          "2026-09-29T02:34:51Z",
+          99554.4
+        ],
+        [
+          "2026-09-29T02:36:53Z",
           99554.4
         ]
       ]
@@ -1724,7 +1736,11 @@
           96174.62
         ],
         [
-          "2026-09-29T02:06:26Z",
+          "2026-09-29T02:34:51Z",
+          96174.62
+        ],
+        [
+          "2026-09-29T02:36:53Z",
           96174.62
         ]
       ]
@@ -2053,7 +2069,11 @@
           100000.0
         ],
         [
-          "2026-09-29T02:06:26Z",
+          "2026-09-29T02:34:51Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T02:36:53Z",
           100000.0
         ]
       ]
@@ -2382,8 +2402,12 @@
           96199.38
         ],
         [
-          "2026-09-29T02:06:26Z",
-          96199.38
+          "2026-09-29T02:34:51Z",
+          97432.56
+        ],
+        [
+          "2026-09-29T02:36:53Z",
+          97432.56
         ]
       ]
     }
@@ -2544,8 +2568,8 @@
       "source": "kalshi",
       "close_time": "2026-10-01T03:59:00Z",
       "category": "politics",
-      "price": 0.455,
-      "price_at": "2026-09-29T02:04:29Z",
+      "price": 0.385,
+      "price_at": "2026-09-29T02:34:51Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -2556,7 +2580,7 @@
           "p_side": 0.95,
           "edge": 0.1769,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 1409.37
+          "value": 1590.39
         }
       ]
     },
@@ -2843,8 +2867,8 @@
       "source": "polymarket",
       "close_time": "2026-10-02T00:00:00Z",
       "category": "other",
-      "price": 0.825,
-      "price_at": "2026-09-28T23:34:41Z",
+      "price": 0.885,
+      "price_at": "2026-09-29T02:34:51Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -2855,7 +2879,7 @@
           "p_side": 0.48,
           "edge": 0.28,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 1750.0
+          "value": 1150.0
         }
       ]
     },
@@ -2923,8 +2947,8 @@
       "source": "polymarket",
       "close_time": "2026-10-03T23:59:00Z",
       "category": "other",
-      "price": 0.0695,
-      "price_at": "2026-09-28T23:34:41Z",
+      "price": 0.1455,
+      "price_at": "2026-09-29T02:34:51Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -2935,7 +2959,7 @@
           "p_side": 0.35,
           "edge": 0.258,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 1510.86
+          "value": 3163.02
         }
       ]
     },
@@ -3447,6 +3471,57 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-29T02:34:51Z",
+      "key": "polymarket:4841896",
+      "question": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
+      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.167,
+      "forecasts": {
+        "jev_research": 0.24,
+        "jev_plain": 0.22,
+        "claude_direct": 0.14,
+        "jev_calibrated": null
+      },
+      "info": 0.16,
+      "rules": 0.81,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.057 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.037 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.011 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.057 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.037 < 0.08"
+        }
+      },
+      "facts_total": 7
+    },
     {
       "ts": "2026-09-29T02:04:29Z",
       "key": "polymarket:4797724",
@@ -4007,60 +4082,33 @@
         }
       },
       "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T00:34:27Z",
-      "key": "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
-      "question": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
-      "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26sep27",
-      "source": "kalshi",
-      "category": "other",
-      "close_time": "2026-09-29T13:00:00Z",
-      "market": 0.205,
-      "forecasts": {
-        "jev_research": 0.15,
-        "jev_plain": 0.42,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.33,
-      "rules": 0.88,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.028 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.18 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.18 < 0.2)"
-        }
-      },
-      "facts_total": 12
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-29T02:34:51Z",
+      "type": "call",
+      "jev": 0.24,
+      "claude": 0.14,
+      "market": 0.167,
+      "q": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
+      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026"
+    },
+    {
+      "ts": "2026-09-29T02:34:51Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
+      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026"
+    },
+    {
+      "ts": "2026-09-29T02:34:51Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 8,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-29T02:04:29Z",
       "type": "call",
@@ -4557,15 +4605,6 @@
     },
     {
       "ts": "2026-09-28T23:34:41Z",
-      "type": "call",
-      "jev": 0.19,
-      "claude": 0.13,
-      "market": 0.105,
-      "q": "Will Ethiopia win on 2026-09-29?",
-      "url": "https://polymarket.com/market/afcq-eth-sen-2026-09-29-eth"
-    },
-    {
-      "ts": "2026-09-28T23:34:41Z",
       "type": "intel",
       "facts": 12,
       "q": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
@@ -4753,29 +4792,15 @@
       "facts": 11,
       "q": "Paper Rex wins",
       "url": "https://kalshi.com/markets/kxvalorantgame/paper-rex-wins/kxvalorantgame-26sep290500g2pr"
-    },
-    {
-      "ts": "2026-09-28T23:04:32Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Will the price of Bitcoin be above $84,000 on September 29?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-29-2026"
-    },
-    {
-      "ts": "2026-09-28T23:04:32Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Croatia wins",
-      "url": "https://kalshi.com/markets/kxuefanlgame/croatia-wins/kxuefanlgame-26sep29espcro"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T02:04:29Z",
-    "week": 0.2,
+    "ts": "2026-09-29T02:34:51Z",
+    "week": 0.21,
     "week_resets": 1791183600,
-    "five_hour": 0.26
+    "five_hour": 0.3
   },
-  "research_runs_today": 8,
+  "research_runs_today": 9,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
