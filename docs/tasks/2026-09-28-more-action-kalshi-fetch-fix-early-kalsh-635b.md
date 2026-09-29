@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-09-28T23:14:03.672Z
+- **Updated:** 2026-09-29T01:22:39.308Z
 
 ## Request
 
@@ -43,9 +43,16 @@ not yet written
 - **Next:** Watch deferred fall to 0 over the next cycles; after a day, measure bets/day and research use, then decide B16 (markets_per_source 100); options B17-B20 wait for Joey
 - **Git:** master @ e8a91da, 4 uncommitted
 
+### 2026-09-29T01:22:39.308Z
+
+- **State:** More-action change live and verified: 120 markets pass a cycle, 8 bets on the first cycle, main +$3,378 on its first two wins, early Kalshi results and voids working; the 80-market wave cleared (01:03Z judged 13)
+- **Evidence:** health Healthy at 01:03Z; 88 tests pass; skilliton maintain run
+- **Next:** After a day: measure bets/day, research use and deferred, then decide B16 (markets_per_source ~100). Joey's open choices: B17 one bet per event, B18 scoring, B19 page additions, B20 weekly Claude guard (week 19% at 01:03Z, much of it this session's analysis)
+- **Git:** master @ 6009b40, 2 uncommitted
+
 ## Handoff
 
-- **State:** Verified on GitHub: 23:04Z cycle ran the new code (Kalshi 35 pages/61s, 120 passing, 8 bets, 7 early Kalshi results + 5 voids, first retro). Evidence: run 36495992909 success 8m26s; health Healthy; scans.jsonl funnel.fetch recorded; 88 tests pass.
-- **Next:** Watch deferred fall to 0 over the next cycles; after a day, measure bets/day and research use, then decide B16 (markets_per_source 100); options B17-B20 wait for Joey
+- **State:** More-action change live and verified: 120 markets pass a cycle, 8 bets on the first cycle, main +$3,378 on its first two wins, early Kalshi results and voids working; the 80-market wave cleared (01:03Z judged 13). Evidence: health Healthy at 01:03Z; 88 tests pass; skilliton maintain run.
+- **Next:** After a day: measure bets/day, research use and deferred, then decide B16 (markets_per_source ~100). Joey's open choices: B17 one bet per event, B18 scoring, B19 page additions, B20 weekly Claude guard (week 19% at 01:03Z, much of it this session's analysis)
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
