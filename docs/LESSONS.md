@@ -24,4 +24,6 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d](lessons/2026-09-27-zsh-traps-a-path-loop-variable-wipes-pat-a24d.md) | zsh traps: a path loop variable wipes PATH; a command in a string never runs | accepted | 2026-09-27 |
 | [2026-09-28-kalshi-links-to-the-bare-event-ticker-we-9776](lessons/2026-09-28-kalshi-links-to-the-bare-event-ticker-we-9776.md) | Kalshi links to the bare event ticker were Page not found | accepted | 2026-09-28 |
 | [2026-09-28-kalshi-lists-markets-latest-closing-firs-640e](lessons/2026-09-28-kalshi-lists-markets-latest-closing-firs-640e.md) | Kalshi lists markets latest-closing first so the top 60 were all 2-4 weeks out | accepted | 2026-09-28 |
+| [2026-09-29-a-retired-strategy-s-losses-would-have-v-d569](lessons/2026-09-29-a-retired-strategy-s-losses-would-have-v-d569.md) | A retired strategy's losses would have vanished from the page | accepted | 2026-09-29 |
+| [2026-09-29-bad-input-tests-passed-on-a-different-gu-191f](lessons/2026-09-29-bad-input-tests-passed-on-a-different-gu-191f.md) | Bad-input tests passed on a different guard than the one named | accepted | 2026-09-29 |
 <!-- skilliton:index:lessons:end -->
