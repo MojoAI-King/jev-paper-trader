@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updated": "2026-09-28T16:35:53Z",
+  "version": 2,
+  "updated": "2026-09-29T00:09:39Z",
   "rules": [
     {
       "id": "R1",
@@ -17,8 +17,8 @@
       "category": "crypto",
       "rule": "For crypto threshold questions, report the percent distance from current spot to the strike, the hours left in the window, and recent realized volatility over a similar span, noting whether the window falls on a usually quieter weekend.",
       "evidence": [
-        "polymarket:5009022",
-        "polymarket:4797513"
+        "polymarket:4797513",
+        "polymarket:5009022"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -27,8 +27,8 @@
       "category": "crypto",
       "rule": "Read the resolution rules to see whether a crypto question needs any touch of the level during the window or a close at a specific candle and time, and measure the current price against that exact test.",
       "evidence": [
-        "polymarket:5009022",
-        "polymarket:4797513"
+        "polymarket:4797513",
+        "polymarket:5009022"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -49,9 +49,39 @@
         "polymarket:4797513"
       ],
       "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R6",
+      "category": "sports",
+      "rule": "For single-match win questions, read the resolution rules to confirm whether only a win in regulation time counts, and state plainly that a draw would resolve No.",
+      "evidence": [
+        "polymarket:4581752"
+      ],
+      "added": "2026-09-29T00:09:39Z"
+    },
+    {
+      "id": "R7",
+      "category": "sports",
+      "rule": "For match questions, report the full head-to-head record between the two teams and each side's confirmed suspensions and injuries, citing dated team, federation or reputable news sources for each absence.",
+      "evidence": [
+        "polymarket:4581752"
+      ],
+      "added": "2026-09-29T00:09:39Z"
+    },
+    {
+      "id": "R8",
+      "category": "sports",
+      "rule": "Discard any search snippet claiming a match result that is undated or dated before kickoff; report a result only from sources published after the match was played.",
+      "evidence": [
+        "polymarket:4581752"
+      ],
+      "added": "2026-09-29T00:09:39Z"
     }
   ],
   "reviews_used": [
+    "polymarket:4581722",
+    "polymarket:4581752",
+    "polymarket:4581768",
     "polymarket:4797511",
     "polymarket:4797513",
     "polymarket:5009022"
