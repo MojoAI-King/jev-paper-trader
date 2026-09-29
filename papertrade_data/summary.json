@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-29T21:36:58Z",
+  "generated": "2026-09-29T22:06:45Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
-  "cash": 89597.38,
-  "open_cost": 16336.81,
+  "cash": 87478.76,
+  "open_cost": 18455.43,
   "equity": 105934.19,
   "realized": 5934.19,
   "roi_settled": 0.9781400769102708,
@@ -13,7 +13,7 @@
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
-    "polymarket": 10201.99,
+    "polymarket": 12320.61,
     "kalshi": 6134.82
   },
   "curve": [
@@ -38,7 +38,7 @@
       "label": "1st inning: Over 0.5 runs"
     },
     {
-      "t": "2026-09-29T21:36:58Z",
+      "t": "2026-09-29T22:06:45Z",
       "equity": 105934.19,
       "label": "Now (open bets valued at cost)"
     }
@@ -98,6 +98,20 @@
       "market_ask": 0.49,
       "edge": 0.4,
       "opened": "2026-09-29T13:34:41Z",
+      "close_time": "2026-10-01T03:59:00Z"
+    },
+    {
+      "question": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30",
+      "source": "polymarket",
+      "side": "yes",
+      "contracts": 30266,
+      "cost_per": 0.07,
+      "total_cost": 2118.62,
+      "p_side": 0.3,
+      "market_ask": 0.06,
+      "edge": 0.23,
+      "opened": "2026-09-29T22:04:31Z",
       "close_time": "2026-10-01T03:59:00Z"
     },
     {
@@ -215,54 +229,54 @@
   ],
   "calibration": {
     "judged": 318,
-    "resolved": 61,
+    "resolved": 62,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.16208378378378377,
-        "n": 37
+        "brier": 0.1676105263157895,
+        "n": 38
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.24963114754098362,
-        "n": 61
+        "brier": 0.2598564516129032,
+        "n": 62
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.14690552380952382,
-        "n": 21
+        "brier": 0.14204618181818182,
+        "n": 22
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": null,
-        "n": 0
+        "brier": 0.3012912099999999,
+        "n": 1
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.12445459016393441,
-        "n": 61
+        "brier": 0.12249604838709677,
+        "n": 62
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 17,
-    "bets": 0,
-    "fail_info": 13,
+    "judged": 12,
+    "bets": 1,
+    "fail_info": 5,
     "fail_rules": 0,
-    "fail_edge": 7,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 11,
-      "polymarket": 6
+      "polymarket": 6,
+      "kalshi": 6
     }
   },
   "funnel": {
-    "ts": "2026-09-29T21:34:31Z",
+    "ts": "2026-09-29T22:04:31Z",
     "stages": [
       [
         "Fetched",
@@ -270,41 +284,41 @@
       ],
       [
         "Passed free filters",
-        17
+        12
       ],
       [
         "Judged by Jev",
-        17
+        12
       ],
       [
         "Judged with research",
-        13
+        6
       ],
       [
         "Cleared every gate (main)",
-        0
+        1
       ],
       [
         "Bets placed (main)",
-        0
+        1
       ]
     ],
-    "events": 8,
+    "events": 11,
     "researched_new": 1,
-    "research_reused": 3,
+    "research_reused": 4,
     "bets": {
-      "main": 0,
+      "main": 1,
       "jev_alone": 0,
-      "claude_direct": 0,
-      "bold": 0,
-      "calibrated": 0,
+      "claude_direct": 1,
+      "bold": 2,
+      "calibrated": 1,
       "jev_alone_bold": 0,
-      "original": 0
+      "original": 1
     },
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 19,
+    "facts_kept": 31,
     "facts_dropped": 16,
     "by_source": {
       "polymarket": 60,
@@ -312,16 +326,16 @@
     },
     "problems": [],
     "cleared_gates": {
-      "main": 0,
+      "main": 1,
       "jev_alone": 0,
-      "claude_direct": 0,
-      "bold": 0,
-      "calibrated": 0,
+      "claude_direct": 1,
+      "bold": 2,
+      "calibrated": 1,
       "jev_alone_bold": 0,
-      "original": 0
+      "original": 1
     },
-    "judged": 17,
-    "with_research": 13
+    "judged": 12,
+    "with_research": 6
   },
   "strategies": [
     {
@@ -341,12 +355,12 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 102712.53,
-      "unrealized": -3221.66,
+      "marked": 102107.21,
+      "unrealized": -3826.98,
       "change": 5934.19,
       "realized": 5934.19,
-      "open": 8,
-      "open_cost": 16336.81,
+      "open": 9,
+      "open_cost": 18455.43,
       "settled": 3,
       "wins": 3,
       "losses": 0,
@@ -399,12 +413,12 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 96391.98,
-      "unrealized": -1608.02,
+      "marked": 95832.0,
+      "unrealized": -2168.0,
       "change": -2000.0,
       "realized": -2000.0,
-      "open": 4,
-      "open_cost": 7999.29,
+      "open": 5,
+      "open_cost": 9959.22,
       "settled": 1,
       "wins": 0,
       "losses": 1,
@@ -430,12 +444,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 90322.59,
-      "unrealized": -7197.02,
+      "marked": 89513.61,
+      "unrealized": -8006.0,
       "change": -2480.39,
       "realized": -2480.39,
-      "open": 28,
-      "open_cost": 46741.91,
+      "open": 30,
+      "open_cost": 48759.64,
       "settled": 6,
       "wins": 2,
       "losses": 4,
@@ -459,12 +473,12 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 100000.0,
-      "unrealized": 0.0,
+      "marked": 99428.58,
+      "unrealized": -571.42,
       "change": 0.0,
       "realized": 0,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 1999.97,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -479,7 +493,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 100423.36,
+      "equity": 98424.12,
       "slot": 6,
       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
       "challenger": false,
@@ -490,17 +504,17 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 97023.97,
-      "unrealized": -3399.39,
-      "change": 423.36,
-      "realized": 423.36,
-      "open": 14,
-      "open_cost": 27885.87,
-      "settled": 2,
+      "marked": 96700.76,
+      "unrealized": -1723.36,
+      "change": -1575.88,
+      "realized": -1575.88,
+      "open": 13,
+      "open_cost": 25886.63,
+      "settled": 3,
       "wins": 1,
-      "losses": 1,
+      "losses": 2,
       "won_amt": 2423.36,
-      "lost_amt": -2000.0
+      "lost_amt": -3999.24
     },
     {
       "name": "original",
@@ -519,12 +533,12 @@
       "tuned_at": null,
       "frozen": true,
       "gate_overrides": {},
-      "marked": 101142.75,
-      "unrealized": -1330.37,
+      "marked": 100557.19,
+      "unrealized": -1915.93,
       "change": 2473.12,
       "realized": 2473.12,
-      "open": 5,
-      "open_cost": 9999.75,
+      "open": 6,
+      "open_cost": 12049.21,
       "settled": 1,
       "wins": 1,
       "losses": 0,
@@ -1013,8 +1027,12 @@
           102712.53
         ],
         [
-          "2026-09-29T21:36:58Z",
-          102712.53
+          "2026-09-29T22:04:31Z",
+          102107.21
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          102107.21
         ]
       ]
     },
@@ -1498,7 +1516,11 @@
           99636.24
         ],
         [
-          "2026-09-29T21:36:58Z",
+          "2026-09-29T22:04:31Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T22:06:45Z",
           99636.24
         ]
       ]
@@ -1983,8 +2005,12 @@
           96391.98
         ],
         [
-          "2026-09-29T21:36:58Z",
-          96391.98
+          "2026-09-29T22:04:31Z",
+          95832.0
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          95832.0
         ]
       ]
     },
@@ -2468,8 +2494,12 @@
           90322.59
         ],
         [
-          "2026-09-29T21:36:58Z",
-          90322.59
+          "2026-09-29T22:04:31Z",
+          89513.61
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          89513.61
         ]
       ]
     },
@@ -2953,8 +2983,12 @@
           100000.0
         ],
         [
-          "2026-09-29T21:36:58Z",
-          100000.0
+          "2026-09-29T22:04:31Z",
+          99428.58
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          99428.58
         ]
       ]
     },
@@ -3438,8 +3472,12 @@
           97023.97
         ],
         [
-          "2026-09-29T21:36:58Z",
-          97023.97
+          "2026-09-29T22:04:31Z",
+          96700.76
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          96700.76
         ]
       ]
     },
@@ -3923,8 +3961,12 @@
           101142.75
         ],
         [
-          "2026-09-29T21:36:58Z",
-          101142.75
+          "2026-09-29T22:04:31Z",
+          100557.19
+        ],
+        [
+          "2026-09-29T22:06:45Z",
+          100557.19
         ]
       ]
     }
@@ -4168,38 +4210,59 @@
       ]
     },
     {
-      "key": "kalshi:KXTRUMPAIRENAME-26SEP-OCT01",
-      "question": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
-      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep",
-      "source": "kalshi",
-      "close_time": "2026-10-01T03:59:00Z",
-      "category": "politics",
-      "price": 0.945,
-      "price_at": "2026-09-29T20:05:02Z",
-      "positions": [
-        {
-          "strategy": "jev_alone_bold",
-          "side": "no",
-          "contracts": 2586,
-          "cost_per": 0.7731,
-          "total_cost": 1999.24,
-          "p_side": 0.95,
-          "edge": 0.1769,
-          "opened": "2026-09-28T23:34:41Z",
-          "value": 142.23
-        }
-      ]
-    },
-    {
       "key": "polymarket:3903043",
       "question": "0 ships transit Hormuz on any date by September 30?",
       "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30",
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:00Z",
       "category": "other",
-      "price": 0.08,
-      "price_at": "2026-09-29T15:34:36Z",
+      "price": 0.05,
+      "price_at": "2026-09-29T22:04:31Z",
       "positions": [
+        {
+          "strategy": "main",
+          "side": "yes",
+          "contracts": 30266,
+          "cost_per": 0.07,
+          "total_cost": 2118.62,
+          "p_side": 0.3,
+          "edge": 0.23,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 1513.3
+        },
+        {
+          "strategy": "claude_direct",
+          "side": "yes",
+          "contracts": 27999,
+          "cost_per": 0.07,
+          "total_cost": 1959.93,
+          "p_side": 0.22,
+          "edge": 0.15,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 1399.95
+        },
+        {
+          "strategy": "bold",
+          "side": "yes",
+          "contracts": 27862,
+          "cost_per": 0.07,
+          "total_cost": 1950.34,
+          "p_side": 0.3,
+          "edge": 0.23,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 1393.1
+        },
+        {
+          "strategy": "calibrated",
+          "side": "yes",
+          "contracts": 28571,
+          "cost_per": 0.07,
+          "total_cost": 1999.97,
+          "p_side": 0.3004,
+          "edge": 0.2304,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 1428.55
+        },
         {
           "strategy": "jev_alone_bold",
           "side": "no",
@@ -4209,7 +4272,18 @@
           "p_side": 0.81,
           "edge": 0.08,
           "opened": "2026-09-29T05:04:29Z",
-          "value": 2519.88
+          "value": 2602.05
+        },
+        {
+          "strategy": "original",
+          "side": "yes",
+          "contracts": 29278,
+          "cost_per": 0.07,
+          "total_cost": 2049.46,
+          "p_side": 0.3,
+          "edge": 0.23,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 1463.9
         }
       ]
     },
@@ -4335,8 +4409,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.49,
-      "price_at": "2026-09-29T21:34:31Z",
+      "price": 0.435,
+      "price_at": "2026-09-29T22:04:31Z",
       "positions": [
         {
           "strategy": "bold",
@@ -4347,7 +4421,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2177.56
+          "value": 1933.14
         }
       ]
     },
@@ -4592,6 +4666,40 @@
       ]
     },
     {
+      "key": "polymarket:4868021",
+      "question": "Will MrBeast Gaming's next video get between 30 and 35 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-30-and-35-million-views-in-week-1-20260922",
+      "source": "polymarket",
+      "close_time": "2026-10-03T23:59:00Z",
+      "category": "other",
+      "price": 0.795,
+      "price_at": "2026-09-29T22:04:31Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 293,
+          "cost_per": 0.23,
+          "total_cost": 67.39,
+          "p_side": 0.68,
+          "edge": 0.45,
+          "opened": "2026-09-29T22:04:31Z",
+          "value": 60.06
+        },
+        {
+          "strategy": "jev_alone_bold",
+          "side": "no",
+          "contracts": 5263,
+          "cost_per": 0.38,
+          "total_cost": 1999.94,
+          "p_side": 0.69,
+          "edge": 0.31,
+          "opened": "2026-09-29T04:04:32Z",
+          "value": 1078.91
+        }
+      ]
+    },
+    {
       "key": "polymarket:4868020",
       "question": "Will MrBeast Gaming's next video get between 25 and 30 million views in week 1?",
       "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-25-and-30-million-views-in-week-1-20260922",
@@ -4611,29 +4719,6 @@
           "edge": 0.258,
           "opened": "2026-09-28T23:34:41Z",
           "value": 1195.64
-        }
-      ]
-    },
-    {
-      "key": "polymarket:4868021",
-      "question": "Will MrBeast Gaming's next video get between 30 and 35 million views in week 1?",
-      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-30-and-35-million-views-in-week-1-20260922",
-      "source": "polymarket",
-      "close_time": "2026-10-03T23:59:00Z",
-      "category": "other",
-      "price": 0.745,
-      "price_at": "2026-09-29T18:04:49Z",
-      "positions": [
-        {
-          "strategy": "jev_alone_bold",
-          "side": "no",
-          "contracts": 5263,
-          "cost_per": 0.38,
-          "total_cost": 1999.94,
-          "p_side": 0.69,
-          "edge": 0.31,
-          "opened": "2026-09-29T04:04:32Z",
-          "value": 1342.07
         }
       ]
     },
@@ -5121,6 +5206,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXTRUMPAIRENAME-26SEP-OCT01",
+      "question": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
+      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 1999.24,
+      "cost_per": 0.7731,
+      "p_side": 0.95,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -1999.24,
+      "opened": "2026-09-28T23:34:41Z",
+      "settled": "2026-09-29T22:04:31Z",
+      "strategy": "jev_alone_bold"
+    },
+    {
       "key": "kalshi:KXUEFANLGAME-26SEP29ESPCRO-ESP",
       "question": "Spain wins",
       "url": "https://kalshi.com/markets/kxuefanlgame/spain-wins/kxuefanlgame-26sep29espcro",
@@ -5331,32 +5432,32 @@
   ],
   "calls": [
     {
-      "ts": "2026-09-29T21:34:31Z",
+      "ts": "2026-09-29T22:04:31Z",
       "key": "polymarket:4797724",
       "question": "Will Bitcoin dip to $82,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026",
       "source": "polymarket",
       "category": "crypto",
       "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.49,
+      "market": 0.435,
       "forecasts": {
-        "jev_research": 0.77,
-        "jev_plain": 0.35,
+        "jev_research": 0.72,
+        "jev_plain": 0.34,
         "claude_direct": null,
-        "jev_calibrated": 0.9133
+        "jev_calibrated": 0.8748
       },
-      "info": 0.33,
+      "info": 0.32,
       "rules": 0.86,
       "decisions": {
         "main": {
           "bet": false,
           "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "why": "needs recent info (0.32 < 0.5)"
         },
         "jev_alone": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.11 < 0.5)"
+          "why": "needs recent info (0.10 < 0.5)"
         },
         "claude_direct": {
           "bet": false,
@@ -5371,20 +5472,300 @@
         "calibrated": {
           "bet": false,
           "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "why": "needs recent info (0.32 < 0.5)"
         },
         "jev_alone_bold": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.11 < 0.2)"
+          "why": "needs recent info (0.10 < 0.2)"
         },
         "original": {
           "bet": false,
           "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "why": "needs recent info (0.32 < 0.5)"
         }
       },
       "facts_total": 7
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "key": "polymarket:3903043",
+      "question": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30",
+      "source": "polymarket",
+      "category": "other",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.05,
+      "forecasts": {
+        "jev_research": 0.3,
+        "jev_plain": 0.17,
+        "claude_direct": 0.22,
+        "jev_calibrated": 0.3004
+      },
+      "info": 0.53,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x30266 @ 0.070: p 0.30 vs cost 0.070, edge +0.230"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.30 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x27999 @ 0.070: p 0.22 vs cost 0.070, edge +0.150"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x27862 @ 0.070: p 0.30 vs cost 0.070, edge +0.230"
+        },
+        "calibrated": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x28571 @ 0.070: p 0.30 vs cost 0.070, edge +0.230"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x29278 @ 0.070: p 0.30 vs cost 0.070, edge +0.230"
+        }
+      },
+      "facts_total": 13
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "key": "polymarket:4868021",
+      "question": "Will MrBeast Gaming's next video get between 30 and 35 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-30-and-35-million-views-in-week-1-20260922",
+      "source": "polymarket",
+      "category": "other",
+      "close_time": "2026-10-03T23:59:00Z",
+      "market": 0.795,
+      "forecasts": {
+        "jev_research": 0.32,
+        "jev_plain": 0.32,
+        "claude_direct": null,
+        "jev_calibrated": 0.3318
+      },
+      "info": 0.28,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.28 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x293 @ 0.230: p 0.68 vs cost 0.230, edge +0.450"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.28 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.28 < 0.5)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "key": "kalshi:KXINXU-26SEP30H1600-T7569.9999",
+      "question": "Will the S&P 500 be above 7569.9999 on Sep 30, 2026 at 4pm EDT? (7,570 or above)",
+      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7569-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600",
+      "source": "kalshi",
+      "category": "economy",
+      "close_time": "2026-09-30T20:00:00Z",
+      "market": 0.91,
+      "forecasts": {
+        "jev_research": 0.42,
+        "jev_plain": 0.43,
+        "claude_direct": null,
+        "jev_calibrated": 0.4928
+      },
+      "info": 0.15,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.09 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.09 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.5)"
+        }
+      },
+      "facts_total": 4
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "key": "kalshi:KXNASDAQ100U-26SEP30H1600-T29719.99",
+      "question": "Will the Nasdaq-100 be above 29719.99 at the end of Sep 30, 2026 at 4pm EDT? (29,720 or above)",
+      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29719-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600",
+      "source": "kalshi",
+      "category": "economy",
+      "close_time": "2026-09-30T20:00:00Z",
+      "market": 0.5,
+      "forecasts": {
+        "jev_research": 0.43,
+        "jev_plain": 0.47,
+        "claude_direct": null,
+        "jev_calibrated": 0.5087
+      },
+      "info": 0.09,
+      "rules": 0.81,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.431 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.471 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.431 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.492 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.471 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.431 < 0.08"
+        }
+      },
+      "facts_total": 1
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "key": "kalshi:KXINXU-26SEP30H1600-T7574.9999",
+      "question": "Will the S&P 500 be above 7574.9999 on Sep 30, 2026 at 4pm EDT? (7,575 or above)",
+      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7574-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600",
+      "source": "kalshi",
+      "category": "economy",
+      "close_time": "2026-09-30T20:00:00Z",
+      "market": 0.82,
+      "forecasts": {
+        "jev_research": 0.42,
+        "jev_plain": 0.46,
+        "claude_direct": null,
+        "jev_calibrated": 0.4928
+      },
+      "info": 0.14,
+      "rules": 0.81,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.10 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
+        }
+      },
+      "facts_total": 4
     },
     {
       "ts": "2026-09-29T21:34:31Z",
@@ -5500,62 +5881,6 @@
     },
     {
       "ts": "2026-09-29T21:34:31Z",
-      "key": "kalshi:KXINXU-26SEP30H1600-T7569.9999",
-      "question": "Will the S&P 500 be above 7569.9999 on Sep 30, 2026 at 4pm EDT? (7,570 or above)",
-      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7569-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-09-30T20:00:00Z",
-      "market": 0.86,
-      "forecasts": {
-        "jev_research": 0.43,
-        "jev_plain": 0.43,
-        "claude_direct": null,
-        "jev_calibrated": 0.5087
-      },
-      "info": 0.15,
-      "rules": 0.81,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
       "key": "kalshi:KXINXU-26SEP30H1600-T7559.9999",
       "question": "Will the S&P 500 be above 7559.9999 on Sep 30, 2026 at 4pm EDT? (7,560 or above)",
       "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7559-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600",
@@ -5668,62 +5993,6 @@
     },
     {
       "ts": "2026-09-29T21:34:31Z",
-      "key": "kalshi:KXINXU-26SEP30H1600-T7574.9999",
-      "question": "Will the S&P 500 be above 7574.9999 on Sep 30, 2026 at 4pm EDT? (7,575 or above)",
-      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7574-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-09-30T20:00:00Z",
-      "market": 0.895,
-      "forecasts": {
-        "jev_research": 0.42,
-        "jev_plain": 0.46,
-        "claude_direct": null,
-        "jev_calibrated": 0.4928
-      },
-      "info": 0.14,
-      "rules": 0.8,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.14 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.14 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.14 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.14 < 0.5)"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
       "key": "kalshi:KXNASDAQ100U-26SEP30H1600-T29269.99",
       "question": "Will the Nasdaq-100 be above 29269.99 at the end of Sep 30, 2026 at 4pm EDT? (29,270 or above)",
       "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29269-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600",
@@ -5833,185 +6102,151 @@
         }
       },
       "facts_total": 1
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
-      "key": "kalshi:KXNASDAQ100U-26SEP30H1600-T28249.99",
-      "question": "Will the Nasdaq-100 be above 28249.99 at the end of Sep 30, 2026 at 4pm EDT? (28,250 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-28249-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-09-30T20:00:00Z",
-      "market": 0.5,
-      "forecasts": {
-        "jev_research": 0.43,
-        "jev_plain": 0.46,
-        "claude_direct": null,
-        "jev_calibrated": 0.5087
-      },
-      "info": 0.1,
-      "rules": 0.79,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.412 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.442 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.412 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.473 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.442 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.412 < 0.08"
-        }
-      },
-      "facts_total": 1
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
-      "key": "kalshi:KXNASDAQ100U-26SEP30H1600-T29699.99",
-      "question": "Will the Nasdaq-100 be above 29699.99 at the end of Sep 30, 2026 at 4pm EDT? (29,700 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29699-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-09-30T20:00:00Z",
-      "market": 0.51,
-      "forecasts": {
-        "jev_research": 0.41,
-        "jev_plain": 0.48,
-        "claude_direct": null,
-        "jev_calibrated": 0.4768
-      },
-      "info": 0.09,
-      "rules": 0.82,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.392 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.462 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.392 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.459 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.462 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.392 < 0.08"
-        }
-      },
-      "facts_total": 1
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
-      "key": "kalshi:KXNASDAQ100U-26SEP30H1600-T28789.99",
-      "question": "Will the Nasdaq-100 be above 28789.99 at the end of Sep 30, 2026 at 4pm EDT? (28,790 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-28789-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-09-30T20:00:00Z",
-      "market": 0.505,
-      "forecasts": {
-        "jev_research": 0.42,
-        "jev_plain": 0.46,
-        "claude_direct": null,
-        "jev_calibrated": 0.4928
-      },
-      "info": 0.1,
-      "rules": 0.81,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.402 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.442 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.402 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.475 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.442 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.402 < 0.08"
-        }
-      },
-      "facts_total": 1
     }
   ],
   "feed": [
     {
-      "ts": "2026-09-29T21:34:31Z",
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "loss",
+      "strategy": "jev_alone_bold",
+      "amount": -1999.24,
+      "q": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
+      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "main",
+      "side": "yes",
+      "price": 0.07,
+      "amount": 2118.62,
+      "p": 0.3,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "claude_direct",
+      "side": "yes",
+      "price": 0.07,
+      "amount": 1959.93,
+      "p": 0.22,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.07,
+      "amount": 1950.34,
+      "p": 0.3,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.23,
+      "amount": 67.39,
+      "p": 0.68,
+      "q": "Will MrBeast Gaming's next video get between 30 and 35 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-30-and-35-million-views-in-week-1-20260922"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "calibrated",
+      "side": "yes",
+      "price": 0.07,
+      "amount": 1999.97,
+      "p": 0.3004,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "bet",
+      "strategy": "original",
+      "side": "yes",
+      "price": 0.07,
+      "amount": 2049.46,
+      "p": 0.3,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
       "type": "call",
-      "jev": 0.77,
+      "jev": 0.72,
       "claude": null,
-      "market": 0.49,
+      "market": 0.435,
       "q": "Will Bitcoin dip to $82,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "call",
+      "jev": 0.3,
+      "claude": 0.22,
+      "market": 0.05,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "call",
+      "jev": 0.32,
+      "claude": null,
+      "market": 0.795,
+      "q": "Will MrBeast Gaming's next video get between 30 and 35 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-30-and-35-million-views-in-week-1-20260922"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "call",
+      "jev": 0.42,
+      "claude": null,
+      "market": 0.91,
+      "q": "Will the S&P 500 be above 7569.9999 on Sep 30, 2026 at 4pm EDT? (7,570 or above)",
+      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7569-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "call",
+      "jev": 0.43,
+      "claude": null,
+      "market": 0.5,
+      "q": "Will the Nasdaq-100 be above 29719.99 at the end of Sep 30, 2026 at 4pm EDT? (29,720 or above)",
+      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29719-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "call",
+      "jev": 0.42,
+      "claude": null,
+      "market": 0.82,
+      "q": "Will the S&P 500 be above 7574.9999 on Sep 30, 2026 at 4pm EDT? (7,575 or above)",
+      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7574-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "intel",
+      "facts": 15,
+      "q": "0 ships transit Hormuz on any date by September 30?",
+      "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T22:04:31Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 12,
+      "researched": 6,
+      "bets": 6
     },
     {
       "ts": "2026-09-29T21:34:31Z",
@@ -6034,15 +6269,6 @@
     {
       "ts": "2026-09-29T21:34:31Z",
       "type": "call",
-      "jev": 0.43,
-      "claude": null,
-      "market": 0.86,
-      "q": "Will the S&P 500 be above 7569.9999 on Sep 30, 2026 at 4pm EDT? (7,570 or above)",
-      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7569-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600"
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
-      "type": "call",
       "jev": 0.41,
       "claude": null,
       "market": 0.855,
@@ -6057,15 +6283,6 @@
       "market": 0.505,
       "q": "Will the Nasdaq-100 be above 29739.99 at the end of Sep 30, 2026 at 4pm EDT? (29,740 or above)",
       "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29739-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600"
-    },
-    {
-      "ts": "2026-09-29T21:34:31Z",
-      "type": "call",
-      "jev": 0.42,
-      "claude": null,
-      "market": 0.895,
-      "q": "Will the S&P 500 be above 7574.9999 on Sep 30, 2026 at 4pm EDT? (7,575 or above)",
-      "url": "https://kalshi.com/markets/kxinxu/will-the-s-p-500-be-above-7574-9999-on-sep-30-2026-at-4pm-ed/kxinxu-26sep30h1600"
     },
     {
       "ts": "2026-09-29T21:34:31Z",
@@ -6186,15 +6403,6 @@
       "market": 0.58,
       "q": "Will the Nasdaq-100 be above 29749.99 at the end of Sep 30, 2026 at 4pm EDT? (29,750 or above)",
       "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29749-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600"
-    },
-    {
-      "ts": "2026-09-29T21:05:02Z",
-      "type": "call",
-      "jev": 0.49,
-      "claude": 0.32,
-      "market": 0.595,
-      "q": "Will the Nasdaq-100 be above 29719.99 at the end of Sep 30, 2026 at 4pm EDT? (29,720 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-29719-99-at-the-end-of-sep-30-2/kxnasdaq100u-26sep30h1600"
     },
     {
       "ts": "2026-09-29T21:05:02Z",
@@ -6407,24 +6615,6 @@
     },
     {
       "ts": "2026-09-29T19:04:32Z",
-      "type": "call",
-      "jev": 0.29,
-      "claude": null,
-      "market": 0.41,
-      "q": "Philadelphia vs Atlanta Wild Card series winner: Philadelphia wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/philadelphia-vs-atlanta-wild-card-series-winner-philadelphia/kxmlbseries-26phiatlwc"
-    },
-    {
-      "ts": "2026-09-29T19:04:32Z",
-      "type": "call",
-      "jev": 0.16,
-      "claude": 0.32,
-      "market": 0.335,
-      "q": "Mississippi St. wins",
-      "url": "https://kalshi.com/markets/kxncaafgame/mississippi-st-wins/kxncaafgame-26oct03alamsst"
-    },
-    {
-      "ts": "2026-09-29T19:04:32Z",
       "type": "intel",
       "facts": 10,
       "q": "Will Bitcoin dip to $82,500 in September?",
@@ -6589,99 +6779,19 @@
       "facts": 11,
       "q": "Trump renames AI by September 30?",
       "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 23,
-      "researched": 8,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-29T14:37:13Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "missing_info",
-      "q": "Bari: Completed Match: Imanol Lopez Morillo vs Martin Krumich",
-      "url": "https://polymarket.com/market/atp-morillo-krumich-2026-09-29-completed-match"
-    },
-    {
-      "ts": "2026-09-29T14:36:56Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "overconfident",
-      "q": "Adana: Completed Match: Polina Iatcenko vs Erika Andreeva",
-      "url": "https://polymarket.com/market/wta-iatcenk-andree-2026-09-29-completed-match"
-    },
-    {
-      "ts": "2026-09-29T14:36:37Z",
-      "type": "review",
-      "kind": "win",
-      "cause": "research_found_it",
-      "q": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
-      "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26sep27"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "win",
-      "strategy": "bold",
-      "amount": 659.08,
-      "q": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
-      "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26sep27"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.28,
-      "amount": 2030.84,
-      "p": 0.9,
-      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in September?",
-      "url": "https://polymarket.com/market/will-wti-reach-95-in-september-2026-from-september-28"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.11,
-      "amount": 316.58,
-      "p": 0.42,
-      "q": "Will Bitcoin dip to $78,000 September 28-October 4?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-78k-september-28-october-4-2026"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.51,
-      "amount": 1959.93,
-      "p": 0.85,
-      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
-      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T21:34:31Z",
-    "week": 0.7,
+    "ts": "2026-09-29T22:04:31Z",
+    "week": 0.74,
     "week_resets": 1791183600,
-    "five_hour": 0.55
+    "five_hour": 0.69
   },
-  "research_runs_today": 57,
+  "research_runs_today": 58,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 61,
+    "reviewed": 62,
     "post_mortems": 8,
     "win_reviews": 5,
     "calibration": [
@@ -6693,9 +6803,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 10,
-        "predicted": 0.286,
-        "actual": 0.2
+        "n": 11,
+        "predicted": 0.295,
+        "actual": 0.273
       },
       {
         "range": "40\u201360%",
@@ -7057,9 +7167,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.5569,
-      "b": 0.4737,
-      "n": 37,
+      "a": 1.5359,
+      "b": 0.5169,
+      "n": 38,
       "active": true,
       "need": 30
     },
@@ -7068,10 +7178,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 30,
+          "n": 31,
           "wins": 3,
-          "pnl_per_100": -75.41,
-          "total_per_100": -2262.16
+          "pnl_per_100": -76.2,
+          "total_per_100": -2362.16
         },
         {
           "group": "several",
@@ -7094,10 +7204,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 14,
+          "n": 15,
           "wins": 2,
-          "pnl_per_100": -65.89,
-          "total_per_100": -922.51
+          "pnl_per_100": -68.17,
+          "total_per_100": -1022.51
         },
         {
           "group": "framing",
@@ -7128,10 +7238,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 6,
+          "n": 7,
           "wins": 1,
-          "pnl_per_100": -69.14,
-          "total_per_100": -414.81
+          "pnl_per_100": -73.54,
+          "total_per_100": -514.81
         },
         {
           "group": "several",
@@ -7178,20 +7288,20 @@
         {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 7,
+          "n": 8,
           "wins": 3,
-          "pnl_per_100": -15.35,
-          "total_per_100": -107.43
+          "pnl_per_100": -25.93,
+          "total_per_100": -207.43
         }
       ],
       "jev_alone_bold": [
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 2,
+          "n": 3,
           "wins": 1,
-          "pnl_per_100": 11.83,
-          "total_per_100": 23.66
+          "pnl_per_100": -25.45,
+          "total_per_100": -76.34
         },
         {
           "group": "info",
@@ -7222,10 +7332,20 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 3,
+          "n": 4,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -300.0
+          "total_per_100": -400.0
+        }
+      ],
+      "calibrated": [
+        {
+          "group": "info",
+          "label": "Stopped only by the info gate",
+          "n": 1,
+          "wins": 0,
+          "pnl_per_100": -100.0,
+          "total_per_100": -100.0
         }
       ]
     },
@@ -7275,6 +7395,18 @@
         "n_jev_research": 1,
         "n_jev_plain": 2,
         "n_market": 2
+      },
+      {
+        "category": "politics",
+        "n": 1,
+        "jev_research": 0.3721,
+        "jev_plain": 0.8836,
+        "claude_direct": 0.04,
+        "market": 0.003,
+        "n_jev_research": 1,
+        "n_jev_plain": 1,
+        "n_claude_direct": 1,
+        "n_market": 1
       },
       {
         "category": "weather",
