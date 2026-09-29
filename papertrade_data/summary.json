@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T15:36:57Z",
+  "generated": "2026-09-29T16:06:02Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -33,7 +33,7 @@
       "label": "Will Sweden win on 2026-09-28?"
     },
     {
-      "t": "2026-09-29T15:36:57Z",
+      "t": "2026-09-29T16:06:02Z",
       "equity": 103377.58,
       "label": "Now (open bets valued at cost)"
     }
@@ -205,26 +205,26 @@
     }
   ],
   "calibration": {
-    "judged": 276,
-    "resolved": 36,
+    "judged": 280,
+    "resolved": 39,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.16829500000000003,
-        "n": 20
+        "brier": 0.16375238095238095,
+        "n": 21
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2776111111111111,
-        "n": 36
+        "brier": 0.2605769230769231,
+        "n": 39
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.12821975,
-        "n": 16
+        "brier": 0.12088917647058824,
+        "n": 17
       },
       {
         "name": "jev_calibrated",
@@ -235,25 +235,25 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1335122361111111,
-        "n": 36
+        "brier": 0.12910478846153844,
+        "n": 39
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 19,
+    "judged": 18,
     "bets": 0,
-    "fail_info": 7,
-    "fail_rules": 1,
+    "fail_info": 6,
+    "fail_rules": 0,
     "fail_edge": 2,
     "sources": {
-      "polymarket": 15,
-      "kalshi": 4
+      "polymarket": 8,
+      "kalshi": 10
     }
   },
   "funnel": {
-    "ts": "2026-09-29T15:34:36Z",
+    "ts": "2026-09-29T16:04:35Z",
     "stages": [
       [
         "Fetched",
@@ -261,11 +261,11 @@
       ],
       [
         "Passed free filters",
-        19
+        18
       ],
       [
         "Judged by Jev",
-        19
+        18
       ],
       [
         "Judged with research",
@@ -280,9 +280,9 @@
         0
       ]
     ],
-    "events": 13,
+    "events": 12,
     "researched_new": 1,
-    "research_reused": 4,
+    "research_reused": 5,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -295,8 +295,8 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 37,
-    "facts_dropped": 14,
+    "facts_kept": 39,
+    "facts_dropped": 19,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -306,12 +306,12 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 3,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0
     },
-    "judged": 19,
+    "judged": 18,
     "with_research": 7
   },
   "strategies": [
@@ -332,8 +332,8 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 99738.72,
-      "unrealized": -3638.86,
+      "marked": 99428.59,
+      "unrealized": -3948.99,
       "change": 3377.58,
       "realized": 3377.58,
       "open": 9,
@@ -421,8 +421,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 94428.72,
-      "unrealized": -7126.59,
+      "marked": 93066.93,
+      "unrealized": -8488.38,
       "change": 1555.31,
       "realized": 1555.31,
       "open": 30,
@@ -445,7 +445,7 @@
       "slot": 5,
       "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
       "challenger": false,
-      "note": "Learning: 20 of 30 results in",
+      "note": "Learning: 21 of 30 results in",
       "rules_version": 1,
       "tuned_at": null,
       "frozen": false,
@@ -481,8 +481,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 90323.7,
-      "unrealized": -7676.3,
+      "marked": 89865.15,
+      "unrealized": -8134.85,
       "change": -2000.0,
       "realized": -2000.0,
       "open": 14,
@@ -510,8 +510,8 @@
       "tuned_at": null,
       "frozen": true,
       "gate_overrides": {},
-      "marked": 98266.04,
-      "unrealized": -1733.96,
+      "marked": 97966.04,
+      "unrealized": -2033.96,
       "change": 0.0,
       "realized": 0,
       "open": 6,
@@ -956,8 +956,12 @@
           99738.72
         ],
         [
-          "2026-09-29T15:36:57Z",
-          99738.72
+          "2026-09-29T16:04:35Z",
+          99428.59
+        ],
+        [
+          "2026-09-29T16:06:02Z",
+          99428.59
         ]
       ]
     },
@@ -1393,7 +1397,11 @@
           99636.24
         ],
         [
-          "2026-09-29T15:36:57Z",
+          "2026-09-29T16:04:35Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T16:06:02Z",
           99636.24
         ]
       ]
@@ -1830,7 +1838,11 @@
           99436.21
         ],
         [
-          "2026-09-29T15:36:57Z",
+          "2026-09-29T16:04:35Z",
+          99436.21
+        ],
+        [
+          "2026-09-29T16:06:02Z",
           99436.21
         ]
       ]
@@ -2267,8 +2279,12 @@
           94428.72
         ],
         [
-          "2026-09-29T15:36:57Z",
-          94428.72
+          "2026-09-29T16:04:35Z",
+          93066.93
+        ],
+        [
+          "2026-09-29T16:06:02Z",
+          93066.93
         ]
       ]
     },
@@ -2704,7 +2720,11 @@
           100000.0
         ],
         [
-          "2026-09-29T15:36:57Z",
+          "2026-09-29T16:04:35Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T16:06:02Z",
           100000.0
         ]
       ]
@@ -3141,8 +3161,12 @@
           90323.7
         ],
         [
-          "2026-09-29T15:36:57Z",
-          90323.7
+          "2026-09-29T16:04:35Z",
+          89865.15
+        ],
+        [
+          "2026-09-29T16:06:02Z",
+          89865.15
         ]
       ]
     },
@@ -3578,8 +3602,12 @@
           98266.04
         ],
         [
-          "2026-09-29T15:36:57Z",
-          98266.04
+          "2026-09-29T16:04:35Z",
+          97966.04
+        ],
+        [
+          "2026-09-29T16:06:02Z",
+          97966.04
         ]
       ]
     }
@@ -3784,8 +3812,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:00Z",
       "category": "politics",
-      "price": 0.635,
-      "price_at": "2026-09-29T15:04:58Z",
+      "price": 0.71,
+      "price_at": "2026-09-29T16:04:35Z",
       "positions": [
         {
           "strategy": "main",
@@ -3796,7 +3824,7 @@
           "p_side": 0.9,
           "edge": 0.4,
           "opened": "2026-09-29T13:34:41Z",
-          "value": 1509.27
+          "value": 1199.15
         },
         {
           "strategy": "jev_alone_bold",
@@ -3807,7 +3835,7 @@
           "p_side": 0.93,
           "edge": 0.18,
           "opened": "2026-09-29T00:04:27Z",
-          "value": 973.09
+          "value": 773.14
         },
         {
           "strategy": "original",
@@ -3818,7 +3846,7 @@
           "p_side": 0.9,
           "edge": 0.4,
           "opened": "2026-09-29T13:34:41Z",
-          "value": 1460.0
+          "value": 1160.0
         }
       ]
     },
@@ -3829,8 +3857,8 @@
       "source": "kalshi",
       "close_time": "2026-10-01T03:59:00Z",
       "category": "politics",
-      "price": 0.59,
-      "price_at": "2026-09-29T15:04:58Z",
+      "price": 0.69,
+      "price_at": "2026-09-29T16:04:35Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -3841,7 +3869,7 @@
           "p_side": 0.95,
           "edge": 0.1769,
           "opened": "2026-09-28T23:34:41Z",
-          "value": 1060.26
+          "value": 801.66
         }
       ]
     },
@@ -3921,8 +3949,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:59.999Z",
       "category": "world",
-      "price": 0.53,
-      "price_at": "2026-09-29T14:34:39Z",
+      "price": 0.805,
+      "price_at": "2026-09-29T16:04:35Z",
       "positions": [
         {
           "strategy": "bold",
@@ -3933,7 +3961,7 @@
           "p_side": 0.8,
           "edge": 0.09,
           "opened": "2026-09-29T00:04:27Z",
-          "value": 1335.74
+          "value": 554.19
         }
       ]
     },
@@ -3944,8 +3972,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:59.999Z",
       "category": "world",
-      "price": 0.24,
-      "price_at": "2026-09-29T14:34:39Z",
+      "price": 0.16,
+      "price_at": "2026-09-29T16:04:35Z",
       "positions": [
         {
           "strategy": "bold",
@@ -3956,7 +3984,7 @@
           "p_side": 0.9,
           "edge": 0.62,
           "opened": "2026-09-29T14:34:39Z",
-          "value": 1740.72
+          "value": 1160.48
         }
       ]
     },
@@ -4970,6 +4998,398 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.71,
+      "forecasts": {
+        "jev_research": 0.22,
+        "jev_plain": 0.06,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.41,
+      "rules": 0.79,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.42 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "no room: open-bet limit reached"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "polymarket:4884203",
+      "question": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23",
+      "source": "polymarket",
+      "category": "world",
+      "close_time": "2026-10-01T03:59:59.999Z",
+      "market": 0.805,
+      "forecasts": {
+        "jev_research": 0.68,
+        "jev_plain": 0.33,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.23,
+      "rules": 0.82,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.070 < 0.08"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "polymarket:4797726",
+      "question": "Will Solana dip to $110 in September?",
+      "url": "https://polymarket.com/market/will-solana-dip-to-110-in-september-2026-from-september-21",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.128,
+      "forecasts": {
+        "jev_research": 0.42,
+        "jev_plain": 0.33,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.17,
+      "rules": 0.88,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.17 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.17 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.17 < 0.5)"
+        }
+      },
+      "facts_total": 3
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "polymarket:5083130",
+      "question": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-95-in-september-2026-from-september-28",
+      "source": "polymarket",
+      "category": "world",
+      "close_time": "2026-10-01T03:59:59.999Z",
+      "market": 0.16,
+      "forecasts": {
+        "jev_research": 0.9,
+        "jev_plain": 0.25,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.26,
+      "rules": 0.82,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.26 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.050 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.050 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.26 < 0.5)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "kalshi:KXTRUMPAIRENAME-26SEP-OCT01",
+      "question": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
+      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep",
+      "source": "kalshi",
+      "category": "politics",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.69,
+      "forecasts": {
+        "jev_research": 0.09,
+        "jev_plain": 0.05,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.41,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.41 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.41 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "no room: open-bet limit reached"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.41 < 0.5)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "polymarket:5062265",
+      "question": "Will Bitcoin reach $88,000 September 28-October 4?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-88k-september-28-october-4-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-05T04:00:00Z",
+      "market": 0.155,
+      "forecasts": {
+        "jev_research": 0.35,
+        "jev_plain": 0.35,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.28,
+      "rules": 0.91,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.28 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.07 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "no room: open-bet limit reached"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.07 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.28 < 0.5)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "key": "kalshi:KXRAIN-26SEP29-OKC",
+      "question": "Will it rain in Oklahoma City on Sep 29, 2026?",
+      "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-oklahoma-city-on-sep-29-2026/kxrain-26sep29",
+      "source": "kalshi",
+      "category": "weather",
+      "close_time": "2026-09-30T06:00:00Z",
+      "market": 0.46,
+      "forecasts": {
+        "jev_research": 0.39,
+        "jev_plain": 0.36,
+        "claude_direct": 0.2,
+        "jev_calibrated": null
+      },
+      "info": 0.17,
+      "rules": 0.91,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.033 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.063 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.17 < 0.5)"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.033 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.063 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.033 < 0.08"
+        }
+      },
+      "facts_total": 0
+    },
+    {
       "ts": "2026-09-29T15:34:36Z",
       "key": "polymarket:4689727",
       "question": "Will Bitcoin dip to $80,000 in September?",
@@ -5248,401 +5668,87 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-29T15:34:36Z",
-      "key": "polymarket:4986267",
-      "question": "Will Elon Musk post <40 tweets from September 28 to September 30, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-28-september-30-2026-0-39",
-      "source": "polymarket",
-      "category": "culture",
-      "close_time": "2026-09-30T16:00:00Z",
-      "market": 0.1295,
-      "forecasts": {
-        "jev_research": 0.43,
-        "jev_plain": 0.65,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.37,
-      "rules": 0.72,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.72 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.71 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.72 < 0.75"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.71 < 0.75"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.72 < 0.75"
-        }
-      },
-      "facts_total": 3
-    },
-    {
-      "ts": "2026-09-29T15:34:36Z",
-      "key": "polymarket:5114441",
-      "question": "Will Bitcoin dip to $82,000 on September 29?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82k-on-september-29-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-30T04:00:00Z",
-      "market": 0.2195,
-      "forecasts": {
-        "jev_research": 0.22,
-        "jev_plain": 0.3,
-        "claude_direct": 0.18,
-        "jev_calibrated": null
-      },
-      "info": 0.3,
-      "rules": 0.9,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.025 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.055 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.014 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.025 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (20 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.055 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.025 < 0.08"
-        }
-      },
-      "facts_total": 12
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "key": "polymarket:4769494",
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.635,
-      "forecasts": {
-        "jev_research": 0.23,
-        "jev_plain": 0.07,
-        "claude_direct": 0.2,
-        "jev_calibrated": null
-      },
-      "info": 0.38,
-      "rules": 0.79,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.40 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.38 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: open-bet limit reached"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (18 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "key": "kalshi:KXPGATOUR-BAOUC26-JKOI",
-      "question": "Bank of Utah Championship: Jackson Koivun wins",
-      "url": "https://kalshi.com/markets/kxpgatour/bank-of-utah-championship-jackson-koivun-wins/kxpgatour-baouc26",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-18T04:00:00Z",
-      "market": 0.075,
-      "forecasts": {
-        "jev_research": 0.22,
-        "jev_plain": 0.29,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.41,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.41 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (18 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.41 < 0.5)"
-        }
-      },
-      "facts_total": 11
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "key": "polymarket:4882985",
-      "question": "Will the price of Bitcoin be above $86,000 on September 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-86k-on-september-30-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-30T16:00:00Z",
-      "market": 0.055,
-      "forecasts": {
-        "jev_research": 0.38,
-        "jev_plain": 0.4,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.26,
-      "rules": 0.85,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.06 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "no room: open-bet limit reached"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (18 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.06 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        }
-      },
-      "facts_total": 7
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "key": "polymarket:5114413",
-      "question": "Will Bitcoin reach $85,000 on September 29?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-85k-on-september-29-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-30T04:00:00Z",
-      "market": 0.1,
-      "forecasts": {
-        "jev_research": 0.23,
-        "jev_plain": 0.23,
-        "claude_direct": 0.27,
-        "jev_calibrated": null
-      },
-      "info": 0.27,
-      "rules": 0.88,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.08 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "no room: open-bet limit reached"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (18 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.08 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.27 < 0.5)"
-        }
-      },
-      "facts_total": 6
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "key": "kalshi:KXTRUMPAIRENAME-26SEP-OCT01",
-      "question": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
-      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep",
-      "source": "kalshi",
-      "category": "politics",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.59,
-      "forecasts": {
-        "jev_research": 0.08,
-        "jev_plain": 0.05,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.41,
-      "rules": 0.83,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.41 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.43 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: open-bet limit reached"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (18 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.41 < 0.5)"
-        }
-      },
-      "facts_total": 10
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.22,
+      "claude": null,
+      "market": 0.71,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.68,
+      "claude": null,
+      "market": 0.805,
+      "q": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.42,
+      "claude": null,
+      "market": 0.128,
+      "q": "Will Solana dip to $110 in September?",
+      "url": "https://polymarket.com/market/will-solana-dip-to-110-in-september-2026-from-september-21"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.9,
+      "claude": null,
+      "market": 0.16,
+      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in September?",
+      "url": "https://polymarket.com/market/will-wti-reach-95-in-september-2026-from-september-28"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.09,
+      "claude": null,
+      "market": 0.69,
+      "q": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
+      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.35,
+      "claude": null,
+      "market": 0.155,
+      "q": "Will Bitcoin reach $88,000 September 28-October 4?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-88k-september-28-october-4-2026"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "call",
+      "jev": 0.39,
+      "claude": 0.2,
+      "market": 0.46,
+      "q": "Will it rain in Oklahoma City on Sep 29, 2026?",
+      "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-oklahoma-city-on-sep-29-2026/kxrain-26sep29"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "intel",
+      "facts": 6,
+      "q": "Will it rain in Oklahoma City on Sep 29, 2026?",
+      "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-oklahoma-city-on-sep-29-2026/kxrain-26sep29"
+    },
+    {
+      "ts": "2026-09-29T16:04:35Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 18,
+      "researched": 7,
+      "bets": 0
+    },
     {
       "ts": "2026-09-29T15:34:36Z",
       "type": "call",
@@ -5732,15 +5838,6 @@
     {
       "ts": "2026-09-29T15:04:58Z",
       "type": "call",
-      "jev": 0.23,
-      "claude": 0.2,
-      "market": 0.635,
-      "q": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "type": "call",
       "jev": 0.22,
       "claude": null,
       "market": 0.075,
@@ -5764,15 +5861,6 @@
       "market": 0.1,
       "q": "Will Bitcoin reach $85,000 on September 29?",
       "url": "https://polymarket.com/market/will-bitcoin-reach-85k-on-september-29-2026"
-    },
-    {
-      "ts": "2026-09-29T15:04:58Z",
-      "type": "call",
-      "jev": 0.08,
-      "claude": null,
-      "market": 0.59,
-      "q": "Will Trump officially rename AI before Oct 1, 2026? (Before Oct 1, 2026)",
-      "url": "https://kalshi.com/markets/kxtrumpairename/will-trump-officially-rename-ai-before-oct-1-2026/kxtrumpairename-26sep"
     },
     {
       "ts": "2026-09-29T15:04:58Z",
@@ -5882,15 +5970,6 @@
     {
       "ts": "2026-09-29T14:34:39Z",
       "type": "call",
-      "jev": 0.49,
-      "claude": null,
-      "market": 0.53,
-      "q": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
-      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "call",
       "jev": 0.48,
       "claude": null,
       "market": 0.295,
@@ -5932,15 +6011,6 @@
       "market": 0.0505,
       "q": "Will Bitcoin reach $86,000 on September 29?",
       "url": "https://polymarket.com/market/will-bitcoin-reach-86k-on-september-29-2026"
-    },
-    {
-      "ts": "2026-09-29T14:34:39Z",
-      "type": "call",
-      "jev": 0.9,
-      "claude": null,
-      "market": 0.24,
-      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $95 in September?",
-      "url": "https://polymarket.com/market/will-wti-reach-95-in-september-2026-from-september-28"
     },
     {
       "ts": "2026-09-29T14:34:39Z",
@@ -6047,15 +6117,6 @@
     {
       "ts": "2026-09-29T13:04:34Z",
       "type": "call",
-      "jev": 0.65,
-      "claude": null,
-      "market": 0.565,
-      "q": "Philadelphia vs Atlanta Wild Card series winner: Atlanta wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/philadelphia-vs-atlanta-wild-card-series-winner-atlanta-wins/kxmlbseries-26phiatlwc"
-    },
-    {
-      "ts": "2026-09-29T13:04:34Z",
-      "type": "call",
       "jev": 0.37,
       "claude": null,
       "market": 0.11,
@@ -6101,24 +6162,6 @@
       "judged": 10,
       "researched": 6,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-29T12:34:34Z",
-      "type": "call",
-      "jev": 0.09,
-      "claude": null,
-      "market": 0.115,
-      "q": "Saudi Oil Pipeline (East-West) restarts by September 30?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-september-30"
-    },
-    {
-      "ts": "2026-09-29T12:34:34Z",
-      "type": "call",
-      "jev": 0.49,
-      "claude": null,
-      "market": 0.55,
-      "q": "Bari: Completed Match: Carlos Taberner vs Elmer Moeller",
-      "url": "https://polymarket.com/market/atp-taberne-moeller-2026-09-28-completed-match"
     },
     {
       "ts": "2026-09-29T12:34:34Z",
@@ -6305,34 +6348,19 @@
       "facts": 10,
       "q": "Hangzhou Open: Completed Match: Daniil Medvedev vs Andrey Rublev",
       "url": "https://polymarket.com/market/atp-medvede-rublev-2026-09-29-completed-match"
-    },
-    {
-      "ts": "2026-09-29T09:04:34Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 12,
-      "researched": 5,
-      "bets": 1
-    },
-    {
-      "ts": "2026-09-29T08:34:31Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Adana: Completed Match: Lucia Bronzetti vs Lois Boisson",
-      "url": "https://polymarket.com/market/wta-bronzet-boisson-2026-09-29-completed-match"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T15:34:36Z",
-    "week": 0.36,
+    "ts": "2026-09-29T16:04:35Z",
+    "week": 0.37,
     "week_resets": 1791183600,
-    "five_hour": 0.12
+    "five_hour": 0.15
   },
-  "research_runs_today": 42,
+  "research_runs_today": 43,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 36,
+    "reviewed": 39,
     "post_mortems": 8,
     "win_reviews": 4,
     "calibration": [
@@ -6344,9 +6372,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 4,
-        "predicted": 0.282,
-        "actual": 0.25
+        "n": 5,
+        "predicted": 0.28,
+        "actual": 0.2
       },
       {
         "range": "40\u201360%",
@@ -6685,7 +6713,7 @@
     },
     "calibration_map": {
       "active": false,
-      "n": 20,
+      "n": 21,
       "need": 30
     },
     "gate_ledger": {
@@ -6701,10 +6729,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 6,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -600.0
+          "n": 8,
+          "wins": 1,
+          "pnl_per_100": -79.17,
+          "total_per_100": -633.33
         }
       ],
       "main": [
@@ -6719,18 +6747,18 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 6,
+          "n": 7,
           "wins": 2,
-          "pnl_per_100": -20.42,
-          "total_per_100": -122.51
+          "pnl_per_100": -31.79,
+          "total_per_100": -222.51
         },
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 1,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -100.0
+          "n": 2,
+          "wins": 1,
+          "pnl_per_100": -26.47,
+          "total_per_100": -52.94
         }
       ],
       "claude_direct": [
@@ -6741,6 +6769,14 @@
           "wins": 1,
           "pnl_per_100": -53.7,
           "total_per_100": -214.81
+        },
+        {
+          "group": "several",
+          "label": "Stopped by more than one gate",
+          "n": 1,
+          "wins": 1,
+          "pnl_per_100": 47.06,
+          "total_per_100": 47.06
         }
       ],
       "bold": [
@@ -6751,6 +6787,22 @@
           "wins": 2,
           "pnl_per_100": 19.37,
           "total_per_100": 77.49
+        },
+        {
+          "group": "info",
+          "label": "Stopped only by the info gate",
+          "n": 1,
+          "wins": 0,
+          "pnl_per_100": -100.0,
+          "total_per_100": -100.0
+        },
+        {
+          "group": "rules",
+          "label": "Stopped only by the rules gate",
+          "n": 1,
+          "wins": 1,
+          "pnl_per_100": 47.06,
+          "total_per_100": 47.06
         },
         {
           "group": "framing",
@@ -6799,14 +6851,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 24,
+        "n": 25,
         "jev_research": 0.1925,
-        "jev_plain": 0.2853,
-        "market": 0.1475,
+        "jev_plain": 0.2762,
+        "market": 0.1497,
         "claude_direct": 0.1485,
         "n_jev_research": 14,
-        "n_jev_plain": 24,
-        "n_market": 24,
+        "n_jev_plain": 25,
+        "n_market": 25,
         "n_claude_direct": 12
       },
       {
@@ -6823,11 +6875,15 @@
       },
       {
         "category": "culture",
-        "n": 3,
-        "jev_plain": 0.3481,
-        "market": 0.2955,
-        "n_jev_plain": 3,
-        "n_market": 3
+        "n": 5,
+        "jev_plain": 0.231,
+        "market": 0.1825,
+        "jev_research": 0.0729,
+        "claude_direct": 0.0036,
+        "n_jev_plain": 5,
+        "n_market": 5,
+        "n_jev_research": 1,
+        "n_claude_direct": 1
       },
       {
         "category": "other",
