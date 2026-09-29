@@ -1,3 +1,72 @@
 {
-  "proposals": []
+  "proposals": [
+    {
+      "id": "p1",
+      "created": "2026-09-29T23:35:30Z",
+      "kind": "tune",
+      "title": "Main skips crypto",
+      "why": "In crypto the market scores a Brier of 0.034 against Jev+research's 0.117 (9 resolved), so any edge we think we see there is most likely our own error. This is an experiment on a small sample.",
+      "judge_by": "On the yardstick, main's P&L on bets opened after this change is at least original's. Meanwhile, original's crypto bets over the same period lose money in total.",
+      "min_resolved": 20,
+      "status": "applied",
+      "status_reason": "main rules v2: skips none \u2192 crypto",
+      "strategy": "main",
+      "rules": {
+        "skip_categories": [
+          "crypto"
+        ]
+      }
+    },
+    {
+      "id": "p2",
+      "created": "2026-09-29T23:35:30Z",
+      "kind": "tune",
+      "title": "Bold meets the info gate halfway",
+      "why": "Bold's extra bets, where Jev's info rating is 0.2\u20130.5, are losing $31.79 per $100 (7 bets), and main's info-stopped markets lose $70 per $100 (16). A 0.35 threshold tests where the cutoff really belongs, without collapsing bold into a copy of main.",
+      "judge_by": "Bold's P&L per $100 staked since the change beats its old -$31.79 per $100, and is closer to or above main's over the same period.",
+      "min_resolved": 20,
+      "status": "applied",
+      "status_reason": "bold rules v2: info bar 0.2 \u2192 0.35",
+      "strategy": "bold",
+      "rules": {
+        "min_info_sufficient": 0.35
+      }
+    },
+    {
+      "id": "ch3",
+      "created": "2026-09-29T23:35:30Z",
+      "kind": "challenger",
+      "title": "Claude direct, pickier and without crypto",
+      "why": "Claude is our best forecaster (Brier 0.132 on 24) yet lost all 3 of its settled bets. The places where it disagrees with the market by only 8% are probably where the market is right. This challenger demands a 12% edge, skips crypto, and bets half as much per bet.",
+      "judge_by": "Positive P&L, and more P&L per $100 staked than claude_direct over the same period.",
+      "min_resolved": 20,
+      "status": "running",
+      "status_reason": "started automatically within the allowed bounds",
+      "strategy": {
+        "label": "Claude direct, strict",
+        "probability": "claude_direct",
+        "gates": "jev_research",
+        "rules": {
+          "min_edge": 0.12,
+          "skip_categories": [
+            "crypto"
+          ],
+          "max_stake_pct": 0.01
+        }
+      },
+      "started": "2026-09-29T23:35:30Z",
+      "slot": 7
+    },
+    {
+      "id": "p4",
+      "created": "2026-09-29T23:35:30Z",
+      "kind": "code",
+      "title": "Break results down by price paid",
+      "why": "Many losses, including all 3 of claude_direct's and every info-gate-stopped group, show -$100 per $100, meaning the whole stake was lost. That pattern suggests we may be buying cheap longshots. A breakdown of wins and P&L by ask price (for example <0.2, 0.2\u20130.5, 0.5\u20130.8, >0.8), for placed and stopped bets, would let us set min_ask and max_ask from evidence instead of guessing.",
+      "judge_by": "The review data includes a by-price breakdown, and within 2 reviews it leads to either a min_ask/max_ask tune or a clear finding that price doesn't matter.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    }
+  ]
 }
