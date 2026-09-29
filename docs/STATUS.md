@@ -34,5 +34,7 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-No open tasks.
+| ID | Title | State | Branch | Owner |
+|---|---|---|---|---|
+| [2026-09-28-learning-loop-may-change-any-strategy-s-dd4a](tasks/2026-09-28-learning-loop-may-change-any-strategy-s-dd4a.md) | Learning loop may change any strategy's rules and bet sizing; code changes are proposed to Joey | in-progress | master | unassigned |
 <!-- skilliton:index:tasks:end -->

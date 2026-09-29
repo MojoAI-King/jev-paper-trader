@@ -7,9 +7,9 @@ something breaks. For the design see PLAN.md; for the learning loop, docs/LEARNI
 
 | Piece | Where | Schedule |
 | --- | --- | --- |
-| Trading cycle: settle, scan, review, coach, retrospective, summary | GitHub Actions, `.github/workflows/trade.yml`, repo MojoAI-King/jev-paper-trader | about every 30 minutes (see "What starts a cycle") |
+| Trading cycle: settle, scan, review, coach, the daily review (tunes rules), summary | GitHub Actions, `.github/workflows/trade.yml`, repo MojoAI-King/jev-paper-trader | about every 30 minutes (see "What starts a cycle") |
 | Jev (TypeSafe) | `TYPESAFE_AI_API_KEY` repo secret | every cycle |
-| Claude (research, Claude direct, reviews, coach, retrospective) | Claude Code signed in with `CLAUDE_CODE_OAUTH_TOKEN` (Joey's Max plan) | rationed by `policy.json` research and learning settings |
+| Claude (research, Claude direct, reviews, coach, the daily review) | Claude Code signed in with `CLAUDE_CODE_OAUTH_TOKEN` (Joey's Max plan) | rationed by `policy.json` research and learning settings |
 | Ledgers | `papertrade_data/`, committed by `papertrade-bot` each cycle | every cycle |
 | Public page | Cloudflare Worker `jev-paper-trader` on the Joey@mojoai.org account, https://jev-paper-trader.greekgod.workers.dev | reads `summary.json` from GitHub on open and every 5 minutes; redeploy only when the page or `worker/index.js` changes |
 
@@ -66,9 +66,18 @@ In a Claude session, the `trading-health` skill does this and explains the resul
 gh variable set TRADING_ENABLED --body false --repo MojoAI-King/jev-paper-trader   # pause trading
 gh variable set TRADING_ENABLED --body true  --repo MojoAI-King/jev-paper-trader   # resume
 gh workflow run trade.yml --repo MojoAI-King/jev-paper-trader                      # one cycle now
-python3 -m papertrade approve <id>    # start a proposed challenger; then commit and push proposals.json
-python3 -m papertrade retire <id>     # stop a running challenger (its ledger is kept)
+python3 -m papertrade learn           # each strategy's rules now, recent rule changes, ideas waiting for Joey
+python3 -m papertrade approve <id>    # a code idea: mark it for a code session; a challenger: start it
+python3 -m papertrade reject <id>     # drop an idea or a proposal
+python3 -m papertrade retire <id>     # stop a running challenger (its ledger is kept, its open bets still settle)
+# after approve/reject/retire: commit and push papertrade_data/ so the next cycle sees it
 ```
+
+The daily review changes strategies' rules by itself (`learning.auto_tune`, Joey 2026-09-28). To stop
+that, set `learning.auto_tune` to false in `policy.json` and push: changes then wait for `approve`. To
+undo a change, a session edits the strategy's entry in `papertrade_data/rules.json` (removing it puts the
+strategy back on its starting rules) and pushes; the history in `rules_history.jsonl` stays, version
+numbers carry on from it, and the 2-day wait before the loop's next change to that strategy still applies.
 
 Redeploy the page shell and trigger (only when `papertrade/dashboard_template.html` or `worker/index.js` changes):
 

@@ -92,12 +92,13 @@ Every resolved market feeds a learning loop (full design in `docs/LEARNING.md`):
 - **A calibration map** learned from outcomes; the self-calibrating strategy bets with it once 30
   markets have resolved.
 - **A gate ledger**: what each gate saved or cost, measured on real outcomes.
-- **A weekly retrospective** that proposes changes. Changes to how money is bet run as challenger
-  strategies on their own fake $100k, start by themselves within fixed bounds, and are judged on future
-  markets.
+- **A daily review** that changes any strategy's betting rules by itself (gates, bet size, open-bet
+  limit, which markets it skips), starts and retires challenger strategies, and writes code ideas down
+  for Joey to approve or reject. Every change is logged with its reason and shown on the page, every bet
+  records the rules version it was placed under, and `original` keeps main's starting rules untouched
+  as the yardstick. Fees, the price screen, market data and settlement are out of its reach.
 
-Main's pre-registered rules never change on their own. Every strategy is listed, with what it tests
-and how it will be judged, in `docs/EXPERIMENTS.md`. How to run and check the live system:
+Every strategy is listed, with what it tests and how it will be judged, in `docs/EXPERIMENTS.md`. How to run and check the live system:
 `docs/OPERATIONS.md`.
 
 ## The public page
@@ -129,7 +130,7 @@ papertrade/
   engine.py      # the funnel, gates, sizing, fake ledgers, settlement, report
   review.py      # the feedback loop: scoring, post-mortems of misses, reviews of wins
   learn.py       # the loop's numbers: categories, calibration map, gate ledger (no Claude)
-  coach.py       # the loop's Claude steps: research playbook coach, weekly retrospective, proposals
+  coach.py       # the loop's Claude steps: research playbook coach, the daily review, rule changes, proposals
   dashboard.py   # one-page HTML dashboard and the public site (+ dashboard_template.html)
   jev_client.py  # tiny Jev API client (stdlib only)
 policy.json      # every threshold and limit; tune here, not in code

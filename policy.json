@@ -56,13 +56,13 @@
   },
 
   "review": {
-    "_readme": "The feedback loop. Every resolved market is scored; main's losing bets and confident misses get a Claude post-mortem (on the plan). Reviews never change trading on their own: changes are approved by Joey and run as a new strategy version (PLAN.md).",
+    "_readme": "The feedback loop. Every resolved market is scored; main's losing bets and confident misses get a Claude post-mortem (on the plan). Reviews feed the daily review (learning), which may change any strategy's betting rules by itself.",
     "miss_threshold": 0.5,
     "max_postmortems_per_day": 5
   },
 
   "learning": {
-    "_readme": "The self-improvement loop (docs/LEARNING.md). Automatic: scoring, reviews of misses and wins, the research playbook, the calibration map, and challengers: a weekly-retrospective proposal that changes how money is bet starts on its own fake $100k by itself (Joey, 2026-09-27), within challenger_bounds and at most max_running_challengers at a time. Main never changes on its own.",
+    "_readme": "The self-improvement loop (docs/LEARNING.md). Automatic: scoring, reviews of misses and wins, the research playbook, the calibration map, challengers, and betting rules. Joey, 2026-09-28: the daily review may change any strategy's rules by itself (gates, bet size, open-bet limit, market filters), main included, within bounds; only frozen_strategies never change. It can never change code, fees, the price screen, research budgets, market data or settlement: a code idea waits for Joey to approve or reject it.",
     "max_win_reviews_per_day": 3,
     "win_margin": 0.25,
     "_win_margin": "A resolved market gets a 'why were we right' review when main won money, or Jev with research beat the market's error by at least this much",
@@ -72,12 +72,22 @@
     "coach_min_new_reviews": 3,
     "coach_max_rules": 20,
     "_coach": "The coach rewrites the research playbook once at least this many new reviews with a written post-mortem have come in, at most once a day",
-    "retro_every_days": 7,
+    "retro_every_days": 1,
     "retro_min_reviews": 10,
+    "max_proposals_per_retro": 4,
+    "_retro": "The review runs daily (was weekly until 2026-09-28) once 10 markets have been reviewed, and files at most 4 proposals: rule changes, challengers, retiring a challenger, code ideas for Joey",
+    "auto_tune": true,
+    "_auto_tune": "Joey, 2026-09-28: a proposed rule change to any strategy but a frozen one applies by itself. With this off it waits for `approve`",
+    "min_days_between_changes": 2,
+    "_min_days_between_changes": "A strategy's rules change at most once every 2 days, so each version has some results before the next",
+    "frozen_strategies": ["original"],
+    "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
     "max_running_challengers": 2,
-    "challenger_bounds": {"min_edge": [0.05, 0.20], "min_rules_clear": [0.5, 0.95], "min_info_sufficient": [0.1, 0.8], "max_framing_gap": [0.05, 0.30]},
-    "_challenger_bounds": "The only gates a challenger may move, and how far. Sizing, fees, exposure caps and the price screen are never a challenger's to change"
+    "bounds": {"min_edge": [0.0, 0.5], "min_rules_clear": [0.0, 1.0], "min_info_sufficient": [0.0, 1.0], "max_framing_gap": [0.0, 1.0],
+               "kelly_fraction": [0.05, 1.0], "max_stake_pct": [0.005, 1.0], "max_total_exposure_pct": [0.05, 1.0],
+               "min_ask": [0.01, 0.99], "max_ask": [0.01, 0.99]},
+    "_bounds": "The rules the loop may set (learn.RULES, plus skip_categories) and their ranges: each rule's whole sensible range (Joey: 'whatever bet size', 'the limit is open'). min_edge stays at 0 or more, so no bet is placed that its own forecast says loses money; sizing keeps a small floor, so a change can't quietly stop a strategy betting (to stop one, raise its edge bar). Fees, slippage, the price screen and research budgets are not rules and can't be changed by the loop"
   },
 
   "site": {
@@ -86,9 +96,9 @@
   },
 
   "strategies": {
-    "_readme": "Each strategy trades its own fake $100k on the same markets with the same sizing. They differ in the probability source and, only where gate_overrides says so, in a gate. main is the pre-registered headline (PLAN.md); its gates are never overridden.",
+    "_readme": "Each strategy trades its own fake $100k on the same markets. They differ in the probability source and in their rules: these are the starting rules (gate_overrides), and the daily review tunes any strategy's rules from there (papertrade_data/rules.json), except 'original'. main is the headline.",
     "main": {"label": "Jev + Claude research", "short": "Jev + Claude", "desc": "Jev reads Claude's research", "probability": "jev_research", "gates": "jev_research",
-             "blurb": "Jev reads Claude's research and bets only when it's sure of its information. The main test."},
+             "blurb": "Jev reads Claude's research. The main test; the daily review tunes its rules as results come in."},
     "jev_alone": {"label": "Jev alone", "short": "Jev alone", "desc": "Jev with no research", "probability": "jev_plain", "gates": "jev_plain",
                   "blurb": "Jev with no research at all. The baseline: does research help?"},
     "claude_direct": {"label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
@@ -103,7 +113,10 @@
     "jev_alone_bold": {"label": "Jev alone, bold", "short": "Jev alone, bold", "desc": "no research, bets when unsure", "badge": "Challenger", "probability": "jev_plain", "gates": "jev_plain",
                        "gate_overrides": {"min_info_sufficient": 0.2},
                        "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
-                       "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"}
+                       "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"},
+    "original": {"label": "Jev + research, original rules", "short": "Original rules", "desc": "main's starting rules, never tuned", "badge": "Yardstick", "probability": "jev_research", "gates": "jev_research",
+                 "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying.",
+                 "_why": "Joey let the daily review tune any strategy's rules (2026-09-28). This copy of main's starting rules is frozen (learning.frozen_strategies), so the tuning is judged against leaving the rules alone"}
   },
 
   "storage": {
@@ -114,7 +127,7 @@
     "kelly_fraction": 0.25,
     "max_stake_pct": 0.02,
     "max_total_exposure_pct": 0.50,
-    "_readme": "Quarter-Kelly, capped at 2% of equity per bet and 50% of equity in open bets overall (Joey raised it from 30% on 2026-09-28: keep betting until half the bankroll is tied up)"
+    "_readme": "The starting sizing for every strategy: quarter-Kelly, capped at 2% of equity per bet and 50% of equity in open bets overall (Joey raised it from 30% on 2026-09-28). The daily review may change all three per strategy (learning.bounds)"
   },
 
   "fees": {

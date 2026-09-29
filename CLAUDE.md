@@ -21,12 +21,16 @@
   `report`, `markets`) are fine. Runbook: `docs/OPERATIONS.md`. Start a session with the
   `trading-health` skill (`.claude/skills/`) when the question is "is it working".
 - **The learning loop** (`docs/LEARNING.md`, `papertrade/learn.py`, `papertrade/coach.py`) improves the
-  research playbook and the calibration map by itself. Anything that changes how money is bet runs as a
-  challenger strategy on its own fake $100k. Challengers start by themselves within
-  `learning.challenger_bounds` (Joey turned `auto_start_challengers` on, 2026-09-27); they can never touch
-  sizing, fees, caps or the price screen. Main's gates are pinned by `test_main_keeps_its_pre_registered_gates`.
-  Playbook rules pass the same screen as research facts (`learn.rule_problem`), when written and again
-  when loaded. Improvement sessions follow the `improve` skill.
+  research playbook and the calibration map by itself, and (Joey, 2026-09-28) the daily review may change
+  **any strategy's betting rules by itself**, main included: gates, bet size, open-bet limit, market
+  filters, within `learning.bounds` (`learn.rules_problem`, checked in code and again on every load). It
+  starts and retires challengers. It can never change code, fees, the price screen, research budgets,
+  market data, settlement, or `original` (the frozen yardstick; `test_main_starts_from_its_pre_registered_gates_and_only_original_stays_on_them`).
+  **Code changes need Joey:** the loop files them as ideas (kind `code`) and he approves or rejects each;
+  the same goes for code changes you think of yourself, so ask him before starting one. Don't build an
+  unattended job that edits or ships this repo's code (Joey chose this on 2026-09-28 after Claude Code's
+  safety check refused one). Playbook rules pass the same screen as research facts (`learn.rule_problem`),
+  when written and again when loaded. Improvement sessions follow the `improve` skill.
 - Every strategy in `policy.json` needs a row in `docs/EXPERIMENTS.md`, written before its results
   come in (`ExperimentsRegistryTests`).
 

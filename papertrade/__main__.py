@@ -64,8 +64,7 @@ def cmd_learn(policy) -> int:
     for r in pb["rules"]:
         print(f"  {r['id']:>4} [{r['category']}] {r['rule']}")
     strats = engine.strategies(policy)
-    ledger = learn.gate_ledger(policy, judgments, resolved,
-                               {n: engine.strategy_policy(policy, s) for n, s in strats.items()})
+    ledger = learn.gate_ledger(policy, judgments, resolved, coach.starting_policies(policy, strats))
     if ledger:
         print("\nGate ledger (a flat $100 on every edge the strategy saw, by what happened):")
         for name, rows in ledger.items():
@@ -78,7 +77,22 @@ def cmd_learn(policy) -> int:
         for c in cats:
             print(f"  {c['category']:<9} n={c['n']:>3}  Jev+research {c.get('jev_research', float('nan')):.3f}  "
                   f"market {c.get('market', float('nan')):.3f}")
+    frozen = set(policy["learning"].get("frozen_strategies") or ())
+    print("\nRules now (the daily review tunes them; " + ("on" if policy["learning"].get("auto_tune") else "OFF") + "):")
+    for name, s in strats.items():
+        now_ = coach.effective_rules(engine.strategy_policy(policy, s))
+        start = coach.effective_rules(engine.strategy_policy(policy, dict(s, tuned={})))
+        diff = "; ".join(learn.describe_change(k, start[k], now_[k]) for k in learn.RULES if start[k] != now_[k])
+        tag = "frozen" if name in frozen else f"v{s['rules_version']}"
+        print(f"  {name:<15} {tag:<7} " + (diff + f"  (since {str(s.get('tuned_at') or '?')[:10]})" if diff else "starting rules"))
+    for c in engine.read_jsonl(engine.TUNED_LOG)[-5:]:
+        print(f"    {str(c.get('ts'))[:16]} {c.get('strategy')} v{c.get('version')}: {str(c.get('why') or '')[:110]}")
     props = coach.load_proposals()["proposals"]
+    ideas = [p for p in props if p["kind"] in ("code", "research") and p["status"] == "proposed"]
+    if ideas:
+        print("\nIdeas waiting for Joey (python3 -m papertrade approve|reject <id>):")
+        for p in ideas:
+            print(f"  {p['id']:>4} {p['title']}: {p['why'][:160]}")
     if props:
         print("\nProposals:")
         for p in props:
@@ -241,7 +255,8 @@ def main(argv=None) -> int:
         if c["ran"] or r["ran"] or c.get("error") or r.get("error"):
             engine.append_jsonl(engine.SCANS, {"ts": engine.now_iso(), "kind": "learning", "coach": c, "retro": r})
         print(f"Learning: playbook v{c['version']}" + (" (updated)" if c["ran"] else "")
-              + (", weekly retrospective written" if r["ran"] else "") + "\n")
+              + (", daily review written" if r["ran"] else "")
+              + (f", rules changed: {', '.join(r['tuned'])}" if r.get("tuned") else "") + "\n")
     if a.cmd == "report" or cycle:
         print(engine.report(policy))
     if a.cmd == "dashboard" or cycle:

@@ -8,7 +8,8 @@
                      tightening a gate, instead of a hunch.
 - category_scores(): Brier score per category, per forecaster: where we beat the market and where we don't.
 
-The parts that call Claude (the research playbook's coach and the weekly retrospective) are in coach.py.
+The parts that call Claude (the research playbook's coach and the daily review) are in coach.py; the checks
+on the rules the review may change (rules_problem, challenger_problem) are at the end of this file.
 How the loops fit together, and what may change without Joey: docs/LEARNING.md.
 """
 from __future__ import annotations
@@ -115,10 +116,11 @@ def apply_map(cmap: dict, p: float) -> float:
 # ---------------- the gate ledger ----------------
 
 GATE_WORDS = [("info", "needs recent info"), ("rules", "rules_clear"), ("framing", "disagree"),
-              ("room", "no room"), ("holding", "already holding")]
+              ("filter", "skips"), ("room", "no room"), ("holding", "already holding")]
 GROUP_LABELS = {"bet": "Bets placed", "info": "Stopped only by the info gate",
                 "rules": "Stopped only by the rules gate", "framing": "Stopped only by the YES/NO check",
-                "several": "Stopped by more than one gate", "room": "No room left (exposure cap or cash)",
+                "filter": "Skipped by the strategy's own market filter",
+                "several": "Stopped by more than one gate", "room": "No room to bet (open-bet limit, cash, or a stake under one contract)",
                 "holding": "Already holding it"}
 
 
@@ -143,7 +145,12 @@ def gate_ledger(policy: dict, judgments: list[dict], resolved: dict, strategy_po
             continue
         for name, d in (j.get("decisions") or {}).items():
             sp = strategy_policies.get(name)
-            if sp is None or "edge" not in d or d["edge"] < sp["gates"]["min_edge"]:
+            if sp is None or "edge" not in d:
+                continue
+            # the edge bar the decision was made under (recorded since 2026-09-28; the daily review tunes it),
+            # else the strategy's starting bar, which every decision before that date used
+            bar = d.get("min_edge", sp["gates"]["min_edge"])
+            if d["edge"] < bar:
                 continue
             firsts.setdefault((name, j["key"]), (j, d))
     out = {}
@@ -202,28 +209,98 @@ def lessons_for(playbook: dict, cat: str) -> list[dict]:
             and rule_problem(str(r.get("rule") or "")) is None]
 
 
-# ---------------- challengers ----------------
+# ---------------- rules the loop may change ----------------
 
 SIGNALS = ("jev_research", "jev_plain", "claude_direct", "jev_calibrated")
+GATE_RULES = ("min_edge", "min_rules_clear", "min_info_sufficient", "max_framing_gap")
+SIZING_RULES = ("kelly_fraction", "max_stake_pct", "max_total_exposure_pct")
+FILTER_RULES = ("min_ask", "max_ask", "skip_categories")
+RULES = GATE_RULES + SIZING_RULES + FILTER_RULES
+
+
+RULE_LABELS = {"min_edge": "edge bar", "min_rules_clear": "rules-clarity bar", "min_info_sufficient": "info bar",
+               "max_framing_gap": "YES/NO gap limit", "kelly_fraction": "Kelly fraction", "max_stake_pct": "max bet",
+               "max_total_exposure_pct": "open-bet limit", "min_ask": "lowest price", "max_ask": "highest price",
+               "skip_categories": "skips"}
+
+
+def _show(k: str, v) -> str:
+    if v is None or v == []:
+        return "none"
+    if k == "skip_categories":
+        return ", ".join(map(str, v))
+    if k in ("min_ask", "max_ask"):
+        return f"{v * 100:.0f}¢"
+    if k in ("min_edge", "max_stake_pct", "max_total_exposure_pct"):
+        return f"{v * 100:g}%"
+    return f"{v:g}"
+
+
+def describe_change(k: str, old, new) -> str:
+    """One rule change in words, e.g. "max bet 2% → 3%" (the page and the proposals show these)."""
+    return f"{RULE_LABELS.get(k, k)} {_show(k, old)} → {_show(k, new)}"
+
+
+def rules_problem(rules, policy: dict) -> str | None:
+    """Why a set of strategy rules can't be used, or None. The learning loop may set any of RULES within
+    learning.bounds, for any strategy but the frozen yardstick (Joey, 2026-09-28). Everything else is out
+    of its reach: fees, the price screen, research budgets, the market data, settlement and the page.
+    Checked when a change is proposed and again every time the rules load, so a hand edit can't slip
+    past. None as a value means "back to the strategy's starting value"."""
+    if not isinstance(rules, dict):
+        return "rules must be an object"
+    bounds = policy["learning"]["bounds"]
+    for k, v in rules.items():
+        if k not in RULES:
+            return f"{k} isn't a rule the learning loop may change"
+        if v is None:
+            continue
+        if k == "skip_categories":
+            if not isinstance(v, list) or not all(isinstance(c, str) for c in v):
+                return "skip_categories must be a list of categories"
+            unknown = sorted(set(v) - set(CATEGORIES))
+            if unknown:
+                return f"unknown categories: {', '.join(unknown)}"
+            continue
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            return f"{k} must be a number"
+        try:
+            v = float(v)  # a 400-digit JSON integer overflows here instead of crashing math.isfinite
+        except OverflowError:
+            return f"{k} is too large"
+        if not math.isfinite(v):
+            return f"{k} must be a finite number"
+        if not isinstance(bounds.get(k), list) or len(bounds[k]) != 2:
+            return f"{k} has no allowed range in learning.bounds"
+        lo, hi = bounds[k]
+        if not lo <= v <= hi:
+            return f"{k} {v} is outside the allowed range {lo}-{hi}"
+    lo, hi = rules.get("min_ask"), rules.get("max_ask")
+    if lo is not None and hi is not None and lo > hi:
+        return f"min_ask {lo} is above max_ask {hi}"
+    return None
 
 
 def challenger_problem(cfg: dict, policy: dict) -> str | None:
     """Why a proposed challenger strategy can't run, or None. Checked when it's proposed and every time
-    it's loaded, so a hand edit can't slip past. A challenger may pick its probability source and move
-    gates within learning.challenger_bounds; it can never touch sizing, fees, caps or the price screen."""
-    lc = policy["learning"]
-    allowed = {"label", "probability", "gates", "gate_overrides", "_why"}
+    it's loaded, so a hand edit can't slip past. A challenger picks its probability and gate sources and
+    may set any rule the loop may change (rules_problem); it can never touch fees or the price screen."""
+    allowed = {"label", "probability", "gates", "gate_overrides", "rules", "_why"}
     extra = sorted(set(cfg) - allowed)
     if extra:
         return f"not allowed to set {', '.join(extra)}"
-    if not str(cfg.get("label") or "").strip():
-        return "no label"
+    label = cfg.get("label")
+    if not isinstance(label, str) or not label.strip() or len(label) > 60:
+        return "a label of 1-60 characters is needed"
+    taken = {str(s.get(k) or "").strip().lower() for n, s in policy["strategies"].items()
+             if not n.startswith("_") for k in ("label", "short")} | {n.lower() for n in policy["strategies"]}
+    if label.strip().lower() in taken:
+        return f"the label {label!r} is another strategy's name"
     if cfg.get("probability") not in SIGNALS or cfg.get("gates") not in ("jev_research", "jev_plain"):
         return "unknown probability or gate source"
-    for gate, v in (cfg.get("gate_overrides") or {}).items():
-        lo_hi = lc["challenger_bounds"].get(gate)
-        if lo_hi is None:
-            return f"gate {gate} can't be changed by a challenger"
-        if not isinstance(v, (int, float)) or not lo_hi[0] <= v <= lo_hi[1]:
-            return f"{gate} {v} is outside the allowed range {lo_hi[0]}-{lo_hi[1]}"
-    return None
+    over, rules = cfg.get("gate_overrides") or {}, cfg.get("rules") or {}
+    if not isinstance(over, dict) or set(over) - set(GATE_RULES):
+        return "gate_overrides may name only gates"
+    if not isinstance(rules, dict):
+        return "rules must be an object"
+    return rules_problem({**over, **rules}, policy)

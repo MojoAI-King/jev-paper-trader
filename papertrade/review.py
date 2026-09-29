@@ -7,7 +7,7 @@ suggested change. When we were right and the market wasn't (or a bet won), Claud
 were we right" review, so the loop learns what works as well as what fails.
 
 Reviews never change betting on their own. coach.py turns their lessons into the research
-playbook, and the weekly retrospective turns patterns into proposals (docs/LEARNING.md).
+playbook, and the daily review turns patterns into rule changes and proposals (docs/LEARNING.md).
 """
 from __future__ import annotations
 

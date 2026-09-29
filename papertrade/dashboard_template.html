@@ -17,7 +17,7 @@
   --cyan: #36e2ff; --cyan-2: #8ff0ff; --cyan-dim: #4f9fb0;
   --ink: #e6f7fb; --ink-2: #9dbac2; --muted: #5d7b84; --grid: rgba(54, 226, 255, 0.07);
   /* strategies: the validated categorical steps for dark surfaces, fixed per strategy */
-  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s0: #6f7872;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #d9c96a; --sy: #c3ccc7; --s0: #6f7872;
   --good: #19c37d; --critical: #ff5b5b; --warning: #fab219;
   --display: "Chakra Petch", "Eurostile", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -173,7 +173,7 @@ a:hover { color: var(--cyan-2); }
 .fl .x { color: var(--ink-2); min-width: 0; overflow-wrap: anywhere; }
 .fl .x b { color: var(--ink); font-weight: 500; }
 .k-bet { color: var(--cyan); } .k-win { color: var(--good); } .k-loss { color: var(--critical); } .k-scan { color: var(--cyan-dim); }
-.k-intel { color: #9085e9; } .k-call { color: var(--ink); } .k-learn, .k-review { color: #e87ba4; } .k-problem { color: var(--warning); }
+.k-intel { color: #9085e9; } .k-call { color: var(--ink); } .k-learn, .k-review, .k-tune, .k-idea { color: #e87ba4; } .k-problem { color: var(--warning); }
 .cursor { color: var(--cyan); padding: 2px 2px 6px; font-size: 12px; }
 @media (prefers-reduced-motion: no-preference) {
   .cursor::after { content: "█"; animation: blink 1s steps(2, start) infinite; }
@@ -304,8 +304,10 @@ function render(data, { update = false } = {}) {
     const lm = r.note ? r.note.match(/(\d+) of (\d+)/) : null;
     const note = lm ? `learning ${lm[1]}/${lm[2]}` : `${r.open} open${r.settled ? ` · ${r.wins}W ${r.settled - r.wins}L` : ""}`;
     const unreal = r.unrealized ?? 0, real = r.realized ?? 0;
-    const badge = lm ? `${r.badge || "Learning"} ${lm[1]}/${lm[2]}` : r.badge;
-    box.append(h("div", { class: `srow${i === 0 && !leadTie ? " lead" : ""}`, title: `${r.blurb || r.label} · ${note} · ${chg >= 0 ? "+" : "−"}${Math.abs(chg * 100).toFixed(2)}%` },
+    const tuned = (r.rules_version || 1) > 1 ? `tuned v${r.rules_version}` : null;
+    const badge = [lm ? `${r.badge || "Learning"} ${lm[1]}/${lm[2]}` : r.badge, tuned].filter(Boolean).join(" · ");
+    const since = tuned && r.tuned_at ? ` · rules v${r.rules_version} since ${String(r.tuned_at).slice(0, 10)}` : "";
+    box.append(h("div", { class: `srow${i === 0 && !leadTie ? " lead" : ""}`, title: `${r.blurb || r.label}${since} · ${note} · ${chg >= 0 ? "+" : "−"}${Math.abs(chg * 100).toFixed(2)}%` },
       h("span", { class: "bar", style: `background:${col(r.name)};box-shadow:0 0 8px ${col(r.name)}` }),
       h("span", { class: "nm", text: label(r.name) }),
       v,
@@ -444,10 +446,12 @@ function feedLine(e, col, label) {
     case "call": x.append(h("b", { text: `Jev ${pct(e.jev)}` }), document.createTextNode(`${e.claude != null ? ` · Claude ${pct(e.claude)}` : ""} · mkt ${pct(e.market)} `), q(e.q)); break;
     case "review": k = e.kind === "win" ? "WHY ✓" : "WHY ✗"; x.append(h("b", { text: String(e.cause).replace(/_/g, " ") + " " }), q(e.q)); break;
     case "learn": x.append(h("b", { text: e.text })); break;
+    case "tune": x.append(h("b", { style: `color:${col(e.strategy)}`, text: `${label(e.strategy).toUpperCase()} v${e.version}` }), document.createTextNode(` ${e.text}`)); break;
+    case "idea": k = "IDEA"; x.append(document.createTextNode({ proposed: "for Joey to approve: ", approved: "Joey approved: ", rejected: "Joey said no: " }[e.status] || `${e.status || "idea"}: `), h("b", { text: e.text })); break;
     case "problem": k = "ALERT"; x.append(document.createTextNode(e.text)); break;
     default: return null;
   }
-  return h("div", { class: "fl" }, h("span", { class: "t", text: hm(e.ts) }), h("span", { class: `k k-${e.type}`, text: k }), x);
+  return h("div", { class: "fl", title: e.why || null }, h("span", { class: "t", text: hm(e.ts) }), h("span", { class: `k k-${e.type}`, text: k }), x);
 }
 
 function drawChart(update, S, col, label) {
@@ -540,7 +544,7 @@ function openVerify() {
   const base = safeUrl(D.ledger_base) || "";
   const p = (b, t) => { const e = h("p"); e.append(h("b", { text: b }), document.createTextNode(" " + t)); return e; };
   const links = h("div", { class: "links" });
-  (D.strategies || []).map(x => `portfolios/${x.name}.json`).concat(["judgments.jsonl", "research.jsonl", "scans.jsonl", "reviews.jsonl", "resolutions.json", "voids.json", "playbook.json", "proposals.json"])
+  (D.strategies || []).map(x => `portfolios/${x.name}.json`).concat(["judgments.jsonl", "research.jsonl", "scans.jsonl", "reviews.jsonl", "resolutions.json", "voids.json", "playbook.json", "proposals.json", "rules.json", "rules_history.jsonl"])
     .forEach(f => links.append(h("a", { href: base + f, target: base ? "_blank" : "_self", rel: "noopener noreferrer", text: f })));
   // older judgments and research move to gzipped files in archive/ once a log passes 20 MB
   const repo = safeUrl(D.repo_url);

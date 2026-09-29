@@ -15,7 +15,9 @@ from pathlib import Path
 from . import coach, engine, learn, markets, review
 
 TEMPLATE = Path(__file__).with_name("dashboard_template.html")
-SLOTS = 7  # categorical colors on the page; a strategy keeps its slot for good (color follows the entity)
+SLOTS = 6  # categorical colors s1-s6 for policy.json's strategies, in order; a strategy keeps its slot for good.
+# A running challenger keeps the colour it was given when it started (s7 or s8, coach._free_slot); a retired one
+# turns grey (s0); a frozen yardstick has its own neutral (sy).
 RACE_POINTS = 240  # the race chart's resolution; settlements and the latest point are always kept
 CALLS = 12  # how many recent researched calls the page shows
 FEED = 80  # events in the live feed
@@ -30,14 +32,21 @@ def last_scan(policy: dict, judgments: list[dict]) -> dict | None:
     latest = max(j["ts"] for j in pool)  # every judgment in one scan shares that scan's timestamp
     js = [j for j in pool if j["ts"] == latest]
     day = latest[:10]
-    g = policy["gates"]
+    g = engine.strategy_policy(policy, engine.strategies(policy)[engine.MAIN])["gates"]  # main's, as tuned
     ds = [j.get("decision") or {} for j in js]
     scored = [d for d in ds if "info_sufficient" in d]  # e.g. "already holding" decisions carry no gate scores
+
+    def failed(d: dict, word: str, score: str, gate: str) -> bool:
+        """From the decision's own reasons (the bars that scan used, before any later tuning); a record
+        without reasons is measured against main's bars now."""
+        if "reasons" in d:
+            return any(r.startswith(word) if word == "edge " else word in r for r in d["reasons"])
+        return d[score] < g[gate]
     return {
         "date": day, "judged": len(js), "bets": sum(1 for d in ds if d.get("bet")),
-        "fail_info": sum(1 for d in scored if d["info_sufficient"] < g["min_info_sufficient"]),
-        "fail_rules": sum(1 for d in scored if d["rules_clear"] < g["min_rules_clear"]),
-        "fail_edge": sum(1 for d in scored if d["edge"] < g["min_edge"]),
+        "fail_info": sum(1 for d in scored if failed(d, "needs recent info", "info_sufficient", "min_info_sufficient")),
+        "fail_rules": sum(1 for d in scored if failed(d, "rules_clear", "rules_clear", "min_rules_clear")),
+        "fail_edge": sum(1 for d in scored if failed(d, "edge ", "edge", "min_edge")),
         "sources": dict(Counter(j["market"]["source"] for j in js)),
     }
 
@@ -96,19 +105,49 @@ def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: d
     """One row per strategy. `marked` values open bets at the last price we saw (up to a few hours old);
     `equity` is the official number, with open bets at what they cost."""
     rows, prices = [], prices or {}
-    for i, (name, strat) in enumerate(engine.strategies(policy).items()):
+    frozen = set(policy["learning"].get("frozen_strategies") or ())
+    order = [n for n in policy["strategies"] if not n.startswith("_") and n not in frozen]
+    strats = engine.strategies(policy, retired=True)
+    for name in books:  # a ledger with no strategy any more (dropped from the rules) still shows, never hidden
+        if name not in strats:
+            strats[name] = {"label": name, "short": name, "desc": "no longer in the rules; its bets still settle",
+                            "retired": True, "stopped": True, "rules_version": 1}
+    taken = {s.get("slot") for s in strats.values() if s.get("challenger") and not s.get("retired")}
+    for name, strat in strats.items():
+        if name not in books:
+            continue
         b = books[name]
+        if name in frozen:
+            slot = "y"
+        elif strat.get("retired"):
+            slot = 0
+        elif strat.get("challenger"):
+            slot = strat.get("slot") or next((s for s in (7, 8) if s not in taken), None)
+            taken.add(slot)
+        else:
+            i = order.index(name)
+            slot = i + 1 if i < SLOTS else None
+        blurb = strat.get("blurb") or strat.get("_why") or ""
+        if name in frozen and engine.MAIN in books:  # the fair comparison (coach.yardstick), not main's head start
+            y = coach.yardstick(books, name)
+            m, t = y[engine.MAIN], y[name]
+            blurb += (f" Since {y['since'][:10]}, on markets both could bet: main {m['pnl']:+,.0f} on {m['settled']}"
+                      f" settled bets, this {t['pnl']:+,.0f} on {t['settled']}.")
         eq = round(engine.equity_at_cost(b), 2)
         marked = b["cash"] + sum(_side_value(p, prices[p["key"]][1]) if p["key"] in prices else p["total_cost"]
                                  for p in b["open"])
         note = None
         if strat.get("probability") == "jev_calibrated" and cmap and not cmap.get("active"):
             note = f"Learning: {cmap['n']} of {cmap['need']} results in"
+        badge = ("Stopped" if strat.get("stopped") else "Retired" if strat.get("retired")
+                 else strat.get("badge") or ("Challenger" if strat.get("challenger") else None))
         rows.append({"name": name, "label": strat["label"], "short": strat.get("short") or strat["label"],
-                     "desc": strat.get("desc") or "", "badge": strat.get("badge") or ("Challenger" if strat.get("challenger") else None),
+                     "desc": strat.get("desc") or "", "badge": badge, "retired": bool(strat.get("retired")),
                      "main": name == engine.MAIN, "equity": eq,
-                     "slot": i + 1 if i < SLOTS else None, "blurb": strat.get("blurb") or strat.get("_why") or "",
+                     "slot": slot, "blurb": blurb,
                      "challenger": bool(strat.get("challenger")), "note": note,
+                     "rules_version": strat.get("rules_version", 1), "tuned_at": strat.get("tuned_at"),
+                     "frozen": name in (policy["learning"].get("frozen_strategies") or ()),
                      "gate_overrides": {k: v for k, v in (strat.get("gate_overrides") or {}).items() if not k.startswith("_")},
                      "marked": round(marked, 2), "unrealized": round(marked - eq, 2),
                      "change": round(eq - float(b["starting_bankroll"]), 2),
@@ -218,10 +257,26 @@ def calls(judgments: list[dict], n: int = CALLS) -> list[dict]:
 
 
 def feed(books: dict, judgments: list[dict], scans: list[dict], research: list[dict], reviews: list[dict],
-         n: int = FEED) -> list[dict]:
+         n: int = FEED, changes: list[dict] | None = None, proposals: list[dict] | None = None) -> list[dict]:
     """The live feed: every real event from the ledgers, newest first. Nothing here is made up; each
-    line points back to a record in portfolios/, scans.jsonl, research.jsonl, judgments.jsonl or reviews.jsonl."""
+    line points back to a record in portfolios/, scans.jsonl, research.jsonl, judgments.jsonl, reviews.jsonl,
+    rules_history.jsonl or proposals.json."""
     ev = []
+    for c in changes or []:
+        ch = c.get("changed") if isinstance(c.get("changed"), dict) else {}
+        ev.append({"ts": c["ts"], "type": "tune", "strategy": c.get("strategy"), "version": c.get("version"),
+                   "text": "; ".join(learn.describe_change(k, *v) for k, v in ch.items() if isinstance(v, list) and len(v) == 2),
+                   "why": str(c.get("why") or "")[:300], "o": 5})
+    for p in proposals or []:
+        if p.get("kind") in ("code", "research") and p.get("created"):
+            ev.append({"ts": p["created"], "type": "idea", "text": str(p.get("title") or "")[:120],
+                       "status": p.get("status"), "why": str(p.get("why") or "")[:300], "o": 5})
+        if p.get("kind") == "challenger" and p.get("started"):
+            ev.append({"ts": p["started"], "type": "learn",
+                       "text": f"New challenger: {str((p.get('strategy') or {}).get('label') or p['id'])[:60]}", "o": 5})
+        if p.get("kind") == "challenger" and p.get("retired"):
+            ev.append({"ts": p["retired"], "type": "learn",
+                       "text": f"Challenger retired: {str((p.get('strategy') or {}).get('label') or p['id'])[:60]}", "o": 5})
     questions = {j["key"]: (j["market"]["question"], j["market"].get("url")) for j in judgments}
     for name, b in books.items():
         for p in b["open"] + b["closed"]:
@@ -242,7 +297,7 @@ def feed(books: dict, judgments: list[dict], scans: list[dict], research: list[d
             if c.get("ran"):
                 ev.append({"ts": s["ts"], "type": "learn", "text": f"Research playbook updated to v{c.get('version')}", "o": 5})
             if r.get("ran"):
-                ev.append({"ts": s["ts"], "type": "learn", "text": "Weekly review written", "o": 5})
+                ev.append({"ts": s["ts"], "type": "learn", "text": "Daily review written", "o": 5})
     for r in research:
         q, url = questions.get((r.get("keys") or [""])[0], ("", None))
         ev.append({"ts": r["ts"], "type": "intel", "facts": len(r.get("raw_facts") or []), "q": q, "url": url, "o": 1})
@@ -274,14 +329,19 @@ def learning_state(policy: dict, reviews: list[dict], judgments: list[dict], res
                      "history": [{k: h.get(k) for k in ("ts", "version", "added", "revised", "retired", "changes")}
                                  | {"refused": len(h.get("dropped") or [])} for h in hist[-5:]][::-1]},
         "calibration_map": learn.calibration_map(reviews, policy["learning"]),
-        "gate_ledger": learn.gate_ledger(policy, judgments, resolved,
-                                         {n: engine.strategy_policy(policy, s) for n, s in strats.items()}),
+        "gate_ledger": learn.gate_ledger(policy, judgments, resolved, coach.starting_policies(policy, strats)),
         "by_category": learn.category_scores(judgments, resolved, engine._prob),
         "proposals": [{k: p.get(k) for k in ("id", "kind", "title", "why", "judge_by", "min_resolved", "status",
                                              "status_reason", "created")} for p in coach.load_proposals()["proposals"]][::-1],
         "suggested_areas": out.pop("proposals"),
         "retro": ({k: retros[-1].get(k) for k in ("ts", "headline", "went_well", "went_badly")} if retros else None),
         "auto_start": bool(policy["learning"]["auto_start_challengers"]),
+        "auto_tune": bool(policy["learning"].get("auto_tune")),
+        "rule_changes": [{k: c.get(k) for k in ("ts", "strategy", "version", "changed", "why", "judge_by", "min_resolved")}
+                         for c in engine.read_jsonl(engine.TUNED_LOG)[-20:]][::-1],
+        "ideas_for_joey": [{k: p.get(k) for k in ("id", "title", "why", "created", "status")}
+                           for p in coach.load_proposals()["proposals"]
+                           if p.get("kind") in ("code", "research") and p.get("status") == "proposed"],
     })
     return out
 
@@ -310,13 +370,14 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         by_source[p["source"]] += p["total_cost"]
     keep_open = ("question", "url", "source", "side", "contracts", "cost_per", "total_cost", "p_side",
                  "market_ask", "edge", "opened", "close_time")
+    main_policy = engine.strategy_policy(policy, engine.strategies(policy)[engine.MAIN])
     return _fix_links({
         "generated": generated_at, "example": example, "question_set": engine.QUESTION_SET_VERSION,
         "start": start, "cash": round(pf["cash"], 2), "open_cost": open_cost, "equity": equity,
         "realized": realized, "roi_settled": (realized / staked) if staked else None,
         "wins": sum(1 for p in closed if p["pnl"] > 0), "settled": len(closed),
-        "exposure_cap_pct": policy["sizing"]["max_total_exposure_pct"],
-        "max_stake_pct": policy["sizing"]["max_stake_pct"],
+        "exposure_cap_pct": main_policy["sizing"]["max_total_exposure_pct"],  # main's, as tuned
+        "max_stake_pct": main_policy["sizing"]["max_stake_pct"],
         "by_source": {k: round(v, 2) for k, v in by_source.items()},
         "curve": curve,
         "open": [{k: p.get(k) for k in keep_open} for p in sorted(pf["open"], key=lambda p: p.get("close_time") or "")],
@@ -329,7 +390,8 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "open_bets": open_bets(books, prices, judgments),
         "settled_recent": recent_settled(books),
         "calls": calls(judgments),
-        "feed": feed(books, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or []),
+        "feed": feed(books, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or [],
+                     changes=engine.read_jsonl(engine.TUNED_LOG), proposals=coach.load_proposals()["proposals"]),
         "plan_usage": plan_usage(scans or []),
         "research_runs_today": sum(1 for r in engine.read_jsonl(engine.RESEARCH) if str(r.get("ts", "")).startswith(generated_at[:10])),
         "research_per_day": policy["research"]["max_research_per_day"],
@@ -361,7 +423,7 @@ def build_html(summary: dict) -> str:
 
 def current_summary(policy: dict) -> dict:
     """Built only from the real data files. Nothing here can mark data as example."""
-    return summarize(policy, engine.load_books(policy), engine.read_jsonl(engine.JUDGMENTS),
+    return summarize(policy, engine.all_books(policy), engine.read_jsonl(engine.JUDGMENTS),
                      engine.load_json(engine.RESOLUTIONS, {}), engine.now_iso(),
                      scans=engine.read_jsonl(engine.SCANS), reviews=engine.read_jsonl(engine.REVIEWS))
 

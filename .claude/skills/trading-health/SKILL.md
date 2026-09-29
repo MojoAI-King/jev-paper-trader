@@ -22,8 +22,10 @@ GitHub Actions is the only writer of the ledgers (docs/OPERATIONS.md).
    `example` must be false.
 5. Report to Joey in plain English, in this order: a one-line verdict (trading / not trading / trading
    with a problem), the last cycle's time in Eastern, new bets by strategy, money per strategy, anything
-   that resolved, anything broken and what you'll do about it. Say "not verified" for anything you
-   didn't check.
+   that resolved, any rule changes the daily review made (`python3 -m papertrade learn`, "Rules now"),
+   any code ideas waiting for Joey to approve or reject, anything broken and what you'll do about it.
+   Say "not verified" for anything you didn't check.
 
-Hard limits: never print or log a key; never set `ANTHROPIC_API_KEY`; don't loosen gates, limits or
-the price screen to "get bets flowing" without Joey's explicit OK.
+Hard limits: never print or log a key; never set `ANTHROPIC_API_KEY`; don't change gates, limits or
+the price screen by hand to "get bets flowing" without Joey's explicit OK (the daily review tunes rules
+itself; the price screen is never loosened).

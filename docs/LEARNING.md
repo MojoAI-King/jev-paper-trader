@@ -1,28 +1,48 @@
 # How the trader improves itself
 
-Kind: Living. Updated 2026-09-27.
+Kind: Living. Updated 2026-09-28.
 
 The goal: every resolved market makes the system a little better, automatically, without it
 fooling itself. This page is the design; `python3 -m papertrade learn` shows its current state, and
 the public page shows it to friends.
 
-## The rule that keeps it honest
+## Free rein over the rules, not over the scoreboard
 
-**Anything that changes how money is bet is tested on its own fake $100,000, next to the others,
-on markets that haven't happened yet.** Main's pre-registered rules never change on their own. A
-system that tuned its own bets on the results it's judged by would overfit and fool everyone
-watching; a challenger that has to win on future markets can't.
+Joey, 2026-09-28: the loop may change **any strategy's betting rules by itself**, main included: the
+gates, the bet size, the open-bet limit and which markets it skips. It may start and retire challengers.
+It can't change code: a code idea is written down and waits for Joey to approve or reject it.
+
+Until then main's rules were pinned, on the argument that a system tuning its own bets on the results
+it's judged by will chase noise and fool the people watching. That risk is real, so tuning comes with
+four things that keep it honest instead of forbidding it:
+
+- **The scoreboard is out of its reach.** Fees, the price screen, market data, settlement and how
+  results are scored are code and policy the loop can't touch (`learn.rules_problem` accepts only the
+  rules in `learn.RULES`).
+- **Every change is on the record.** `papertrade_data/rules_history.jsonl` keeps what changed, from
+  what to what, why, and how it will be judged; the page's live feed shows each one (TUNE), and a
+  tuned strategy shows its rules version.
+- **Every bet carries its rules version** (`rules_version` in the ledgers), so each version's results
+  are read on their own; the review judges a strategy by its record since its rules last changed.
+- **A yardstick that never changes.** `original` bets on main's starting rules for good
+  (`learning.frozen_strategies`). Main is compared with it only on bets placed since `original` started
+  (the review's `yardstick` numbers and `original`'s row on the page, from `coach.yardstick`), leaving out
+  markets main already held then, so neither main's earlier head start nor `original`'s fresh start
+  counts as tuning. If main does better there, the tuning is paying; if not, it isn't.
+- **The gate ledger scores each decision by the edge bar it was made under** (decisions record
+  `min_edge`), so a tuned bar doesn't rewrite what earlier gates did.
 
 What changes by itself, and what doesn't:
 
 | Changes automatically | Needs Joey |
 | --- | --- |
-| Scores for every resolved market | Promoting a challenger into main |
-| Written reviews of misses and of wins | Any change to main, sizing, fees, exposure caps |
+| Scores for every resolved market | Code changes (the loop files them as ideas) |
+| Written reviews of misses and of wins | Fees and slippage |
 | The research playbook (how to research, never what to bet) | Loosening the price screen |
 | The calibration map, and the self-calibrating strategy using it | Question wording (bumps `QUESTION_SET_VERSION`) |
-| The weekly retrospective and its proposals | Code changes a proposal asks for |
-| Starting a challenger strategy, within fixed bounds (Joey, 2026-09-27) | |
+| The daily review and its proposals | Research budgets (they spend Joey's Claude plan) |
+| Any strategy's rules: gates, bet size, open-bet limit, market filters (Joey, 2026-09-28) | Changing `original`, the yardstick |
+| Starting and retiring challengers | Which forecaster a strategy is (its label says it) |
 
 ## The loops
 
@@ -64,25 +84,46 @@ bets with the corrected probability on its own fake $100k, once `learning.calibr
 markets have resolved; until then it waits and the page shows how far along it is. The map learns only
 from markets that resolved before it's used, never from the future.
 
-**6. The weekly retrospective (weekly, Claude on the plan).** `coach.retro`: once
-`learning.retro_every_days` have passed and `learning.retro_min_reviews` markets are reviewed, Claude
-reads numbers computed in code (strategy results, Brier by category, the gate ledger, root causes,
-the calibration map) and writes an honest summary plus at most two proposals. It's told that under
-30 resolved markets is noise. Each proposal says how it will be judged before it starts
-(`judge_by`, `min_resolved`).
+**6. The daily review (daily, Claude on the plan).** `coach.retro`: once `learning.retro_every_days`
+(1) has passed and `learning.retro_min_reviews` markets are reviewed, Claude reads numbers computed in
+code (each strategy's rules and results, all time and since its rules last changed; Brier by category;
+the gate ledger; root causes; the calibration map; the recent rule changes) and writes an honest summary
+plus at most `learning.max_proposals_per_retro` (4) proposals. It's told its job is to make the
+strategies make more money by experimenting, that under 30 resolved markets a number is mostly noise
+(an experiment, not a finding), and that each proposal says how it will be judged before it starts
+(`judge_by`, `min_resolved`). It was weekly until 2026-09-28.
 
-**7. Challengers (automatic, within bounds).** A proposal of kind `challenger` is a strategy config: a
-probability source and gate changes inside `learning.challenger_bounds`. It can never touch sizing,
-fees, exposure caps or the price screen, and `learn.challenger_problem` re-checks this every time it's
-loaded. Valid challengers start by themselves (`learning.auto_start_challengers` is true, Joey's call on
-2026-09-27), at most `learning.max_running_challengers` at a time; an extra one waits for a free slot.
-`python3 -m papertrade retire <id>` stops one (its ledger is kept) and `approve` starts one by hand.
+**7. Rule changes (automatic, `learning.auto_tune`).** A proposal of kind `tune` names a strategy and
+new values for any of its rules: the four gates, `kelly_fraction`, `max_stake_pct` (the most one bet may
+be), `max_total_exposure_pct` (the open-bet limit), `min_ask`/`max_ask` (the price range it buys in) and
+`skip_categories`. Checked in code, never trusted to the prompt (`coach.tune`, `learn.rules_problem`):
+the strategy exists and isn't frozen; every rule is one of those, a real number (not text, not true/false,
+not NaN, not too large) inside `learning.bounds`, where the sizing rules keep a small floor so a change
+can't quietly stop a strategy betting; a challenger can't take another strategy's name; and the
+strategy's rules didn't change in the last `learning.min_days_between_changes` (2) days (counted from
+`rules_history.jsonl`, so a hand undo doesn't reset it), so each version gets some results. Version
+numbers never repeat (the next one follows the highest in the history), and a change that bets the same
+way (the same categories in another order) is not a new version. `null` puts a rule back
+to that strategy's starting value. The change lands in `papertrade_data/rules.json` (the current rules,
+only what differs from the start) and `rules_history.jsonl`, and `engine.strategies` re-checks the file
+on every load, so a hand edit past the bounds or to `original` is ignored, not traded on. With
+`auto_tune` off, a change waits for `python3 -m papertrade approve <id>`.
 
-## When a challenger replaces something
+**8. Challengers (automatic).** A proposal of kind `challenger` is a new strategy on its own fake
+$100k: a probability source, a gate source and any rules as above (`learn.challenger_problem`,
+re-checked on every load). Valid challengers start by themselves (`learning.auto_start_challengers`),
+at most `learning.max_running_challengers` at a time; one that has to wait starts by itself when a slot
+opens. A proposal of kind `retire` stops a running challenger to free its slot (retires are handled
+before new challengers in the same review). It no longer bets, but its open bets still settle
+(`engine.all_books`) and its whole record, losses included, stays on the page marked Retired.
+`python3 -m papertrade retire <id>` (or `reject <id>` on a running one) does the same by hand, and a hand
+`approve` respects the same limit. Two challengers can't share a name, so the same experiment isn't
+started twice. A ledger that no strategy owns any more still shows on the page, marked Stopped. One
+malformed proposal is marked invalid and never stops the others or the cycle.
 
-Never automatically. After a challenger's `min_resolved` markets, the retrospective reports whether it
-beat its parent on its `judge_by` test. Promoting it into main is Joey's call, recorded as a decision,
-and main's results before and after are reported separately (PLAN.md).
+**9. Code ideas (wait for Joey).** A proposal of kind `code` (or `research`) is an idea that needs a
+code change. Nothing happens until Joey says so: the page's feed shows it (IDEA), `learn` lists it, and
+`python3 -m papertrade approve <id>` marks it for a code session, `reject <id>` drops it.
 
 ## Where the records are
 
@@ -91,6 +132,8 @@ and main's results before and after are reported separately (PLAN.md).
 | `papertrade_data/reviews.jsonl` | every resolved market's scores, and its written review if it got one |
 | `papertrade_data/playbook.json` | the current research playbook |
 | `papertrade_data/playbook_history.jsonl` | every playbook change, with the rules refused by the checks |
-| `papertrade_data/retros.jsonl` | the weekly retrospectives, with the numbers they read |
+| `papertrade_data/retros.jsonl` | the daily reviews, with the numbers they read |
 | `papertrade_data/proposals.json` | proposals and their status; running challengers load from here |
+| `papertrade_data/rules.json` | each strategy's rules as tuned (only what differs from its start) |
+| `papertrade_data/rules_history.jsonl` | every rule change: from what to what, why, and how it will be judged |
 | `docs/EXPERIMENTS.md` | every strategy: what it tests and how it will be judged |

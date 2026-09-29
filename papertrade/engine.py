@@ -1,8 +1,11 @@
 """The funnel, bet gates, sizing, the fake-money ledgers, settlement and reporting.
 
 Several strategies (policy.json "strategies") each trade their own fake bankroll on the same
-markets, with the same gates and sizing. They differ only in where the probability comes from:
-Jev with research, Jev alone, or Claude directly. "main" is the pre-registered headline.
+markets. They differ in where the probability comes from (Jev with research, Jev alone, Claude directly)
+and in their rules: gates, bet sizing and market filters. The learning loop tunes any strategy's rules by
+itself (coach.retro, rules.json; Joey, 2026-09-28), except "original", which keeps main's starting rules
+as the yardstick. Fees, the price screen, market data and settlement are the same for all and out of the
+loop's reach. "main" is the headline.
 
 The daily funnel: fetch -> free filters -> group by event -> research each event -> screen the
 facts -> Jev without and with research, Claude direct -> gates and sizing per strategy -> bet.
@@ -38,8 +41,10 @@ RESEARCH = DATA / "research.jsonl"  # one record per research run, reused for a 
 SUMMARY = DATA / "summary.json"  # what the public page reads (straight from the GitHub repo)
 PLAYBOOK = DATA / "playbook.json"  # research lessons learned from reviews; coach.py keeps it, research reads it
 PLAYBOOK_LOG = DATA / "playbook_history.jsonl"  # every change to the playbook, with the reviews behind it
-RETROS = DATA / "retros.jsonl"  # the weekly retrospectives
+RETROS = DATA / "retros.jsonl"  # the daily reviews (weekly until 2026-09-28)
 PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; approved challengers run from here
+TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
+TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
 TS = "%Y-%m-%dT%H:%M:%SZ"
@@ -58,27 +63,57 @@ def key(m: dict) -> str:
     return f"{m['source']}:{m['market_id']}"
 
 
-def strategies(policy: dict) -> dict:
-    """policy.json's strategies, plus any challenger the learning loop is running (approved by Joey, or
-    started within fixed bounds if he turned that on; see coach.py). Each has its own fake bankroll."""
-    out = {k: v for k, v in policy["strategies"].items() if not k.startswith("_")}
-    for p in load_json(PROPOSALS, {"proposals": []})["proposals"]:
+def strategies(policy: dict, retired: bool = False) -> dict:
+    """policy.json's strategies, plus any challenger the learning loop is running, each with the rules the
+    loop has tuned (rules.json). Each has its own fake bankroll. Challengers and tuned rules are re-checked
+    on every load, so a hand edit past the bounds, or to the frozen yardstick, is ignored, not traded on.
+    retired=True adds the challengers that were retired (marked retired=True): they no longer bet, but
+    their ledgers still settle and the page still shows their record."""
+    out = {k: dict(v, rules_version=1) for k, v in policy["strategies"].items() if not k.startswith("_")}
+    props = load_json(PROPOSALS, {"proposals": []})["proposals"]
+    for p in props:
         if (p.get("status") == "running" and p.get("strategy") and p["id"] not in out
-                and learn.challenger_problem(p["strategy"], policy) is None):  # re-checked on every load
-            out[p["id"]] = dict(p["strategy"], challenger=True)
+                and learn.challenger_problem(p["strategy"], policy) is None):
+            out[p["id"]] = dict(p["strategy"], challenger=True, rules_version=1, slot=p.get("slot"))
+    if retired:
+        for p in props:
+            if (p.get("kind") == "challenger" and p.get("status") == "retired" and p.get("strategy")
+                    and p.get("started") and p["id"] not in out and learn.challenger_problem(p["strategy"], policy) is None):
+                out[p["id"]] = dict(p["strategy"], challenger=True, retired=True, rules_version=1)
+    frozen = set(policy["learning"].get("frozen_strategies") or ())
+    tuned = load_json(TUNED, {}).get("strategies")
+    for name, t in (tuned.items() if isinstance(tuned, dict) else ()):
+        if name not in out or name in frozen or not isinstance(t, dict) or out[name].get("retired"):
+            continue
+        rules, version = t.get("rules"), t.get("version")
+        if (learn.rules_problem(rules, policy) is None and None not in rules.values()
+                and learn.rules_problem({**strategy_rules(out[name]), **rules}, policy) is None
+                and isinstance(version, int) and not isinstance(version, bool) and version > 1):
+            out[name] = dict(out[name], tuned=rules, rules_version=version, tuned_at=t.get("since"))
     return out
 
 
-def strategy_policy(policy: dict, strat: dict) -> dict:
-    """The policy one strategy decides with: the shared gates, with that strategy's own gate overrides.
+def strategy_rules(strat: dict) -> dict:
+    """Everything one strategy sets over the shared defaults: its starting overrides (policy.json, or a
+    challenger's config), then what the learning loop tuned. Later wins."""
+    merged = {**(strat.get("gate_overrides") or {}), **(strat.get("rules") or {}), **(strat.get("tuned") or {})}
+    return {k: v for k, v in merged.items() if not k.startswith("_") and v is not None}
 
-    Only gates can differ between strategies. Sizing, fees and the exposure caps are the same for all.
-    An override naming a gate that doesn't exist is refused, so a typo can't silently do nothing."""
-    over = {k: v for k, v in (strat.get("gate_overrides") or {}).items() if not k.startswith("_")}
-    unknown = sorted(set(over) - set(policy["gates"]))
+
+def strategy_policy(policy: dict, strat: dict) -> dict:
+    """The policy one strategy decides with: the shared gates and sizing with that strategy's own rules on
+    top, plus its market filters (learn.FILTER_RULES). Fees, slippage and the price screen are the same for
+    all. A rule naming something that doesn't exist is refused, so a typo can't silently do nothing."""
+    r = strategy_rules(strat)
+    known = {k for k in (*policy["gates"], *policy["sizing"]) if not k.startswith("_")} | set(learn.FILTER_RULES)
+    unknown = sorted(set(r) - known)
     if unknown:
-        raise ValueError(f"strategy '{strat.get('label')}' overrides unknown gates: {', '.join(unknown)}")
-    return dict(policy, gates={**policy["gates"], **over}) if over else policy
+        raise ValueError(f"strategy '{strat.get('label')}' sets unknown rules: {', '.join(unknown)}")
+    if not r:
+        return policy
+    return dict(policy, gates={**policy["gates"], **{k: v for k, v in r.items() if k in policy["gates"]}},
+                sizing={**policy["sizing"], **{k: v for k, v in r.items() if k in policy["sizing"]}},
+                filters={k: r[k] for k in learn.FILTER_RULES if k in r})
 
 
 # ---------------- storage ----------------
@@ -155,6 +190,15 @@ def load_books(policy: dict) -> dict:
     return {name: load_portfolio(policy, name) for name in strategies(policy)}
 
 
+def all_books(policy: dict) -> dict:
+    """Every ledger, including challengers that have stopped running: their open bets still settle."""
+    books = {name: load_portfolio(policy, name) for name in strategies(policy, retired=True)}
+    for path in sorted(PORTFOLIOS.glob("*.json")) if PORTFOLIOS.exists() else ():
+        if path.stem not in books:
+            books[path.stem] = load_json(path, None)
+    return books
+
+
 def equity_at_cost(pf: dict) -> float:
     return pf["cash"] + sum(p["total_cost"] for p in pf["open"])
 
@@ -183,7 +227,7 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
                       "edge": round(q - cost, 4)})
     best = max(sides, key=lambda x: x["edge"])
     out = {"bet": False, "cleared_gates": False, **best, "p_yes": p, "rules_clear": rules_clear,
-           "info_sufficient": info_ok, "reasons": reasons}
+           "info_sufficient": info_ok, "min_edge": g["min_edge"], "reasons": reasons}
 
     if best["edge"] < g["min_edge"]:
         reasons.append(f"edge {best['edge']:+.3f} < {g['min_edge']}")
@@ -191,6 +235,15 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
         reasons.append(f"rules_clear {rules_clear:.2f} < {g['min_rules_clear']}")
     if info_ok < g["min_info_sufficient"]:
         reasons.append(f"needs recent info ({info_ok:.2f} < {g['min_info_sufficient']})")
+    f = policy.get("filters") or {}
+    if f.get("skip_categories"):
+        cat = learn.category(market)
+        if cat in f["skip_categories"]:
+            reasons.append(f"skips {cat} markets")
+    if f.get("min_ask") is not None and best["ask"] < f["min_ask"]:
+        reasons.append(f"skips prices under {f['min_ask']:.2f} (ask {best['ask']:.2f})")
+    if f.get("max_ask") is not None and best["ask"] > f["max_ask"]:
+        reasons.append(f"skips prices over {f['max_ask']:.2f} (ask {best['ask']:.2f})")
     if answers.get("p_no") is not None:
         # Asked both ways, a consistent answer has p_yes + p_no near 1. A big gap means Jev is unsure of itself.
         gap = abs(p + float(answers["p_no"]["noul"]) - 1)
@@ -207,7 +260,8 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
     stake = min(s["kelly_fraction"] * kelly * equity, s["max_stake_pct"] * equity, room, cash)
     contracts = math.floor(stake / c) if c > 0 else 0
     if contracts < 1:
-        reasons.append("no room: exposure cap or cash")
+        reasons.append("no room: " + ("open-bet limit reached" if room < c else "out of cash" if cash < c
+                                      else "stake under one contract (Kelly fraction or max bet too small)"))
         return out
     out.update(bet=True, contracts=contracts, total_cost=round(contracts * c, 2),
                kelly=round(kelly, 4))
@@ -318,7 +372,7 @@ def last_claude_rate(now: datetime) -> dict | None:
     return dict(rate, unifiedWindows=windows)
 
 
-def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log) -> None:
+def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log, rules_version: int = 1) -> None:
     pf["cash"] = round(pf["cash"] - d["total_cost"], 2)
     pf["open"].append({
         "key": key(m), "source": m["source"], "market_id": m["market_id"],
@@ -326,7 +380,7 @@ def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log) -> None:
         "side": d["side"], "contracts": d["contracts"], "cost_per": d["cost"],
         "total_cost": d["total_cost"], "p_side": round(d["q"], 4),
         "market_ask": d["ask"], "edge": d["edge"], "opened": stamp,
-        "question_set": QUESTION_SET_VERSION,
+        "question_set": QUESTION_SET_VERSION, "rules_version": rules_version,
     })
     save_portfolio(name, pf)  # saved per bet, so an interrupted run can't lose one
     log(f"+ [{name}] {d['side'].upper():3} ${d['total_cost']:>8,.2f}  edge {d['edge']:+.2f}  "
@@ -546,7 +600,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 decisions[name] = d
                 funnel["cleared_gates"][name] += int(d["cleared_gates"])
                 if d["bet"]:
-                    _bet(name, pf, m, d, stamp, log)
+                    _bet(name, pf, m, d, stamp, log, strat["rules_version"])
                     funnel["bets"][name] += 1
             append_jsonl(JUDGMENTS, {
                 "ts": stamp, "key": key(m), "event": ek, "question_set": QUESTION_SET_VERSION,
@@ -586,7 +640,7 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
     if batch is None:
         batch = mk.BATCH_RESOLVERS if resolvers is None else {}
     resolvers = resolvers or mk.RESOLVERS
-    books = load_books(policy)
+    books = all_books(policy)
     resolved, voids = load_json(RESOLUTIONS, {}), load_json(VOIDS, {})
     now = datetime.now(timezone.utc)
 

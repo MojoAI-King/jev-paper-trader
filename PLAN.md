@@ -74,18 +74,23 @@ Full design: `docs/LEARNING.md`.
    self-calibrating strategy bets with the corrected probability once 30 markets have resolved.
 5. **Measure every gate.** The gate ledger scores what a flat bet would have made on every edge each
    gate stopped, so gate changes rest on evidence. The bold strategy tests the info gate live.
-6. **Propose weekly, test forward.** A weekly retrospective reads the numbers and proposes at most two
-   changes. Anything that changes how money is bet runs as a **challenger strategy on its own fake
-   $100,000** beside the others, started with Joey's approval (or automatically within fixed bounds, if
-   he turns that on). It replaces the old way only if it wins on criteria written before it started.
+6. **Tune daily, keep a yardstick.** A daily review reads the numbers and may change any strategy's
+   betting rules by itself (Joey, 2026-09-28; until then only challengers could try a change). It can
+   also start a **challenger strategy on its own fake $100,000**, retire one, or write down a code idea
+   for Joey. Every change states in advance how it will be judged, and `original` keeps main's starting
+   rules so the tuning can be judged against leaving them alone.
 
 ## Rules that keep the result honest
 
 - No forecaster ever sees the market's price, directly or through research. Tested, and the tests
   were shown to fail when the screen is switched off.
 - Success and stop criteria are fixed below, before results come in.
-- No tuning on the results we're judging. Any change to gates or questions is dated, and results
-  before and after it are reported separately.
+- Any change to gates, sizing or questions is dated, and results before and after it are reported
+  separately. Until 2026-09-28 that meant no tuning on the results being judged; since then Joey lets
+  the daily review tune betting rules, so every bet records its rules version and `original` bets on
+  main's starting rules unchanged. Tuning changes which bets are placed, never the forecasts, so the
+  Brier criteria below are unaffected; the return criteria apply to main as tuned, reported beside
+  `original`.
 - Every input is logged: exact facts given to Jev, their sources, what each call cost.
 - Fills are priced at the ask plus 1¢.
 
@@ -126,7 +131,8 @@ is absorbing; that amount is not billed.
    (dated).
 
 **Learning loop: built 2026-09-27** (playbook coach, win reviews, gate ledger, self-calibrating
-strategy, weekly retrospective, challengers), alongside the bold strategy. See `docs/LEARNING.md` and
+strategy, weekly retrospective, challengers), alongside the bold strategy. **2026-09-28:** the review
+became daily and may tune any strategy's rules by itself; `original` added as the yardstick. See `docs/LEARNING.md` and
 `docs/EXPERIMENTS.md`.
 
 Codex is a coding agent, not a forecaster. Its natural role is building parts of this system.
