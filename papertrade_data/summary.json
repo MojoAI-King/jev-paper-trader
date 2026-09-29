@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T03:07:53Z",
+  "generated": "2026-09-29T03:36:41Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -33,7 +33,7 @@
       "label": "Will Sweden win on 2026-09-28?"
     },
     {
-      "t": "2026-09-29T03:07:53Z",
+      "t": "2026-09-29T03:36:41Z",
       "equity": 103377.58,
       "label": "Now (open bets valued at cost)"
     }
@@ -149,7 +149,7 @@
     }
   ],
   "calibration": {
-    "judged": 209,
+    "judged": 214,
     "resolved": 18,
     "sources": [
       {
@@ -186,18 +186,18 @@
   },
   "last_scan": {
     "date": "2026-09-29",
-    "judged": 4,
+    "judged": 14,
     "bets": 0,
-    "fail_info": 3,
+    "fail_info": 6,
     "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 3,
-      "kalshi": 1
+      "kalshi": 6,
+      "polymarket": 8
     }
   },
   "funnel": {
-    "ts": "2026-09-29T03:04:37Z",
+    "ts": "2026-09-29T03:34:28Z",
     "stages": [
       [
         "Fetched",
@@ -205,15 +205,15 @@
       ],
       [
         "Passed free filters",
-        4
+        14
       ],
       [
         "Judged by Jev",
-        4
+        14
       ],
       [
         "Judged with research",
-        3
+        6
       ],
       [
         "Cleared every gate (main)",
@@ -224,9 +224,9 @@
         0
       ]
     ],
-    "events": 4,
-    "researched_new": 2,
-    "research_reused": 1,
+    "events": 12,
+    "researched_new": 1,
+    "research_reused": 4,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -235,11 +235,11 @@
       "calibrated": 0,
       "jev_alone_bold": 0
     },
-    "claude_calls": 4,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 25,
-    "facts_dropped": 6,
+    "facts_kept": 35,
+    "facts_dropped": 17,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -249,12 +249,12 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 2,
+      "bold": 1,
       "calibrated": 0,
       "jev_alone_bold": 0
     },
-    "judged": 4,
-    "with_research": 3
+    "judged": 14,
+    "with_research": 6
   },
   "strategies": [
     {
@@ -745,7 +745,11 @@
           101282.59
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          101282.59
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           101282.59
         ]
       ]
@@ -1082,7 +1086,11 @@
           99636.24
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          99636.24
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           99636.24
         ]
       ]
@@ -1419,7 +1427,11 @@
           99554.4
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          99554.4
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           99554.4
         ]
       ]
@@ -1756,7 +1768,11 @@
           96330.93
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          96330.93
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           96330.93
         ]
       ]
@@ -2093,7 +2109,11 @@
           100000.0
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           100000.0
         ]
       ]
@@ -2430,7 +2450,11 @@
           97432.56
         ],
         [
-          "2026-09-29T03:07:53Z",
+          "2026-09-29T03:34:28Z",
+          97432.56
+        ],
+        [
+          "2026-09-29T03:36:41Z",
           97432.56
         ]
       ]
@@ -3496,6 +3520,312 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "polymarket:4841940",
+      "question": "Will the price of Bitcoin be above $84,000 on September 29?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-29-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.185,
+      "forecasts": {
+        "jev_research": 0.31,
+        "jev_plain": 0.38,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.18,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.18 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.18 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.2)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "polymarket:4841937",
+      "question": "Will the price of Bitcoin be above $82,000 on September 29?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-29-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.882,
+      "forecasts": {
+        "jev_research": 0.64,
+        "jev_plain": 0.39,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.19,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.2)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "polymarket:4882981",
+      "question": "Will the price of Bitcoin be above $82,000 on September 30?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-30-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-30T16:00:00Z",
+      "market": 0.755,
+      "forecasts": {
+        "jev_research": 0.53,
+        "jev_plain": 0.42,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.18,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.18 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.18 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.2)"
+        }
+      },
+      "facts_total": 5
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "polymarket:4841896",
+      "question": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
+      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-29T16:00:00Z",
+      "market": 0.109,
+      "forecasts": {
+        "jev_research": 0.21,
+        "jev_plain": 0.21,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.15,
+      "rules": 0.78,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.2)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.2)"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+      "question": "Minnesota wins",
+      "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-02T00:30:00Z",
+      "market": 0.6,
+      "forecasts": {
+        "jev_research": 0.24,
+        "jev_plain": 0.48,
+        "claude_direct": 0.47,
+        "jev_calibrated": null
+      },
+      "info": 0.48,
+      "rules": 0.8,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.48 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.48 < 0.5)"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "no room: exposure cap or cash"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.15 < 0.2)"
+        }
+      },
+      "facts_total": 9
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "key": "polymarket:5062271",
+      "question": "Will Bitcoin reach $86,000 September 28-October 4?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-86k-september-28-october-4-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-05T04:00:00Z",
+      "market": 0.405,
+      "forecasts": {
+        "jev_research": 0.47,
+        "jev_plain": 0.37,
+        "claude_direct": null,
+        "jev_calibrated": null
+      },
+      "info": 0.27,
+      "rules": 0.92,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.050 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.020 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.050 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": null,
+          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.020 < 0.08"
+        }
+      },
+      "facts_total": 10
+    },
+    {
       "ts": "2026-09-29T03:04:37Z",
       "key": "polymarket:4884203",
       "question": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
@@ -3649,57 +3979,6 @@
       "facts_total": 10
     },
     {
-      "ts": "2026-09-29T02:34:51Z",
-      "key": "polymarket:4841896",
-      "question": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
-      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.167,
-      "forecasts": {
-        "jev_research": 0.24,
-        "jev_plain": 0.22,
-        "claude_direct": 0.14,
-        "jev_calibrated": null
-      },
-      "info": 0.16,
-      "rules": 0.81,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.057 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.037 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.011 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.057 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.037 < 0.08"
-        }
-      },
-      "facts_total": 7
-    },
-    {
       "ts": "2026-09-29T02:04:29Z",
       "key": "polymarket:4797724",
       "question": "Will Bitcoin dip to $82,500 in September?",
@@ -3803,108 +4082,6 @@
     },
     {
       "ts": "2026-09-29T01:34:31Z",
-      "key": "polymarket:4841940",
-      "question": "Will the price of Bitcoin be above $84,000 on September 29?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-29-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.125,
-      "forecasts": {
-        "jev_research": 0.32,
-        "jev_plain": 0.38,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.17,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.17 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.17 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.2)"
-        }
-      },
-      "facts_total": 5
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "key": "polymarket:4841937",
-      "question": "Will the price of Bitcoin be above $82,000 on September 29?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-29-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-29T16:00:00Z",
-      "market": 0.8075,
-      "forecasts": {
-        "jev_research": 0.65,
-        "jev_plain": 0.37,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.19,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.19 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.19 < 0.2)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.2)"
-        }
-      },
-      "facts_total": 5
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
       "key": "polymarket:4841899",
       "question": "Will the price of Ethereum be above $2,600 on September 29?",
       "url": "https://polymarket.com/market/ethereum-above-2600-on-september-29-2026",
@@ -3953,162 +4130,78 @@
         }
       },
       "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "key": "kalshi:KXU3-26SEP-T4.2",
-      "question": "Will the unemployment rate (U-3) be above 4.2% in September? (Above 4.2%)",
-      "url": "https://kalshi.com/markets/kxu3/will-the-unemployment-rate-u-3-be-above-4-2-in-september/kxu3-26sep",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-10-02T12:29:00Z",
-      "market": 0.085,
-      "forecasts": {
-        "jev_research": 0.51,
-        "jev_plain": 0.45,
-        "claude_direct": null,
-        "jev_calibrated": null
-      },
-      "info": 0.49,
-      "rules": 0.93,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.49 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "no room: exposure cap or cash"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.2)"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "key": "polymarket:4882979",
-      "question": "Will the price of Bitcoin be above $80,000 on September 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-80k-on-september-30-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-30T16:00:00Z",
-      "market": 0.9445,
-      "forecasts": {
-        "jev_research": 0.59,
-        "jev_plain": 0.4,
-        "claude_direct": 0.9,
-        "jev_calibrated": null
-      },
-      "info": 0.21,
-      "rules": 0.88,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.21 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.034 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: exposure cap or cash"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.2)"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "key": "polymarket:4882981",
-      "question": "Will the price of Bitcoin be above $82,000 on September 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-30-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-09-30T16:00:00Z",
-      "market": 0.685,
-      "forecasts": {
-        "jev_research": 0.55,
-        "jev_plain": 0.42,
-        "claude_direct": 0.74,
-        "jev_calibrated": null
-      },
-      "info": 0.23,
-      "rules": 0.88,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.040 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "no room: exposure cap or cash"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "still learning: calibrates once 30 researched markets have resolved (10 so far)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.07 < 0.2)"
-        }
-      },
-      "facts_total": 4
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.31,
+      "claude": null,
+      "market": 0.185,
+      "q": "Will the price of Bitcoin be above $84,000 on September 29?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-29-2026"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.64,
+      "claude": null,
+      "market": 0.882,
+      "q": "Will the price of Bitcoin be above $82,000 on September 29?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-29-2026"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.53,
+      "claude": null,
+      "market": 0.755,
+      "q": "Will the price of Bitcoin be above $82,000 on September 30?",
+      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-30-2026"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.21,
+      "claude": null,
+      "market": 0.109,
+      "q": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
+      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.24,
+      "claude": 0.47,
+      "market": 0.6,
+      "q": "Minnesota wins",
+      "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "call",
+      "jev": 0.47,
+      "claude": null,
+      "market": 0.405,
+      "q": "Will Bitcoin reach $86,000 September 28-October 4?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-86k-september-28-october-4-2026"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Minnesota wins",
+      "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny"
+    },
+    {
+      "ts": "2026-09-29T03:34:28Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 14,
+      "researched": 6,
+      "bets": 0
+    },
     {
       "ts": "2026-09-29T03:04:37Z",
       "type": "call",
@@ -4157,15 +4250,6 @@
       "judged": 4,
       "researched": 3,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-29T02:34:51Z",
-      "type": "call",
-      "jev": 0.24,
-      "claude": 0.14,
-      "market": 0.167,
-      "q": "Will the price of Bitcoin be between $80,000 and $82,000 on September 29?",
-      "url": "https://polymarket.com/market/will-the-price-of-bitcoin-be-between-80000-82000-on-september-29-2026"
     },
     {
       "ts": "2026-09-29T02:34:51Z",
@@ -4218,24 +4302,6 @@
     {
       "ts": "2026-09-29T01:34:31Z",
       "type": "call",
-      "jev": 0.32,
-      "claude": null,
-      "market": 0.125,
-      "q": "Will the price of Bitcoin be above $84,000 on September 29?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-29-2026"
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "type": "call",
-      "jev": 0.65,
-      "claude": null,
-      "market": 0.8075,
-      "q": "Will the price of Bitcoin be above $82,000 on September 29?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-29-2026"
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "type": "call",
       "jev": 0.63,
       "claude": null,
       "market": 0.8955,
@@ -4259,15 +4325,6 @@
       "market": 0.9445,
       "q": "Will the price of Bitcoin be above $80,000 on September 30?",
       "url": "https://polymarket.com/market/bitcoin-above-80k-on-september-30-2026"
-    },
-    {
-      "ts": "2026-09-29T01:34:31Z",
-      "type": "call",
-      "jev": 0.55,
-      "claude": 0.74,
-      "market": 0.685,
-      "q": "Will the price of Bitcoin be above $82,000 on September 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-september-30-2026"
     },
     {
       "ts": "2026-09-29T01:34:31Z",
@@ -4436,24 +4493,6 @@
       "p": 0.93,
       "q": "Trump renames AI by September 30?",
       "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
-    },
-    {
-      "ts": "2026-09-29T00:04:27Z",
-      "type": "call",
-      "jev": 0.16,
-      "claude": 0.37,
-      "market": 0.56,
-      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
-    },
-    {
-      "ts": "2026-09-29T00:04:27Z",
-      "type": "call",
-      "jev": 0.45,
-      "claude": 0.88,
-      "market": 0.0565,
-      "q": "Will Ethereum dip to $2,500 in September?",
-      "url": "https://polymarket.com/market/will-ethereum-dip-to-2500-in-september-2026-from-september-18"
     },
     {
       "ts": "2026-09-29T00:04:27Z",
@@ -4787,37 +4826,15 @@
       "p": 0.17,
       "q": "Croatia wins",
       "url": "https://kalshi.com/markets/kxuefanlgame/croatia-wins/kxuefanlgame-26sep29espcro"
-    },
-    {
-      "ts": "2026-09-28T23:04:32Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.0952,
-      "amount": 2017.86,
-      "p": 0.22,
-      "q": "Will the unemployment rate (U-3) be above 3.9% in September? (Above 3.9%)",
-      "url": "https://kalshi.com/markets/kxu3/will-the-unemployment-rate-u-3-be-above-3-9-in-september/kxu3-26sep"
-    },
-    {
-      "ts": "2026-09-28T23:04:32Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.43,
-      "amount": 2017.56,
-      "p": 0.79,
-      "q": "Will Bitcoin reach $85,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-85k-in-september-2026-from-september-27"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-29T03:04:37Z",
-    "week": 0.23,
+    "ts": "2026-09-29T03:34:28Z",
+    "week": 0.25,
     "week_resets": 1791183600,
-    "five_hour": 0.35
+    "five_hour": 0.44
   },
-  "research_runs_today": 11,
+  "research_runs_today": 12,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
