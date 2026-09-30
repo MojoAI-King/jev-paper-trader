@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T04:36:06Z",
+  "generated": "2026-09-30T05:07:08Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -53,7 +53,7 @@
       "label": "Minnesota wins"
     },
     {
-      "t": "2026-09-30T04:36:06Z",
+      "t": "2026-09-30T05:07:08Z",
       "equity": 104643.31,
       "label": "Now (open bets valued at cost)"
     }
@@ -298,25 +298,25 @@
   ],
   "calibration": {
     "judged": 342,
-    "resolved": 83,
+    "resolved": 86,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.16730727272727272,
-        "n": 55
+        "brier": 0.17421551724137932,
+        "n": 58
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2577903614457831,
-        "n": 83
+        "brier": 0.2562,
+        "n": 86
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.13228207407407408,
-        "n": 27
+        "brier": 0.13836128571428571,
+        "n": 28
       },
       {
         "name": "jev_calibrated",
@@ -327,25 +327,24 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1291977168674699,
-        "n": 83
+        "brier": 0.1349614593023256,
+        "n": 86
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 4,
+    "judged": 2,
     "bets": 0,
-    "fail_info": 2,
+    "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 2,
       "polymarket": 2
     }
   },
   "funnel": {
-    "ts": "2026-09-30T04:34:19Z",
+    "ts": "2026-09-30T05:04:20Z",
     "stages": [
       [
         "Fetched",
@@ -353,15 +352,15 @@
       ],
       [
         "Passed free filters",
-        4
+        2
       ],
       [
         "Judged by Jev",
-        4
+        2
       ],
       [
         "Judged with research",
-        3
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -372,14 +371,14 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 2,
     "researched_new": 1,
-    "research_reused": 2,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
@@ -388,8 +387,8 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 26,
-    "facts_dropped": 4,
+    "facts_kept": 3,
+    "facts_dropped": 7,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -399,14 +398,14 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0
     },
-    "judged": 4,
-    "with_research": 3
+    "judged": 2,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -515,8 +514,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 86339.57,
-      "unrealized": -10541.36,
+      "marked": 86561.77,
+      "unrealized": -10319.16,
       "change": -3119.07,
       "realized": -3119.07,
       "open": 30,
@@ -1183,7 +1182,11 @@
           100261.78
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          100261.78
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           100261.78
         ]
       ]
@@ -1724,7 +1727,11 @@
           99636.24
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           99636.24
         ]
       ]
@@ -2265,7 +2272,11 @@
           91220.78
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          91220.78
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           91220.78
         ]
       ]
@@ -2806,8 +2817,12 @@
           86339.57
         ],
         [
-          "2026-09-30T04:36:06Z",
-          86339.57
+          "2026-09-30T05:04:20Z",
+          86561.77
+        ],
+        [
+          "2026-09-30T05:07:08Z",
+          86561.77
         ]
       ]
     },
@@ -3347,7 +3362,11 @@
           98608.19
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          98608.19
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           98608.19
         ]
       ]
@@ -3888,7 +3907,11 @@
           91843.65
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          91843.65
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           91843.65
         ]
       ]
@@ -4429,7 +4452,11 @@
           99111.43
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          99111.43
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           99111.43
         ]
       ]
@@ -4970,7 +4997,11 @@
           99827.43
         ],
         [
-          "2026-09-30T04:36:06Z",
+          "2026-09-30T05:04:20Z",
+          99827.43
+        ],
+        [
+          "2026-09-30T05:07:08Z",
           99827.43
         ]
       ]
@@ -5323,8 +5354,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.495,
-      "price_at": "2026-09-30T04:34:19Z",
+      "price": 0.545,
+      "price_at": "2026-09-30T05:04:20Z",
       "positions": [
         {
           "strategy": "bold",
@@ -5335,7 +5366,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2199.78
+          "value": 2421.98
         }
       ]
     },
@@ -6542,37 +6573,37 @@
   ],
   "calls": [
     {
-      "ts": "2026-09-30T04:34:19Z",
+      "ts": "2026-09-30T05:04:20Z",
       "key": "polymarket:4797724",
       "question": "Will Bitcoin dip to $82,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026",
       "source": "polymarket",
       "category": "crypto",
       "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.495,
+      "market": 0.545,
       "forecasts": {
-        "jev_research": 0.8,
+        "jev_research": 0.36,
         "jev_plain": 0.34,
-        "claude_direct": null,
-        "jev_calibrated": 0.9293
+        "claude_direct": 0.6,
+        "jev_calibrated": 0.3839
       },
-      "info": 0.33,
+      "info": 0.14,
       "rules": 0.86,
       "decisions": {
         "main": {
           "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
         },
         "jev_alone": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.08 < 0.5)"
+          "why": "needs recent info (0.09 < 0.5)"
         },
         "claude_direct": {
           "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
+          "side": "yes",
+          "why": "edge +0.040 < 0.08"
         },
         "bold": {
           "bet": false,
@@ -6581,26 +6612,26 @@
         },
         "calibrated": {
           "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
         },
         "jev_alone_bold": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.08 < 0.2)"
+          "why": "needs recent info (0.09 < 0.2)"
         },
         "original": {
           "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
+          "side": "no",
+          "why": "needs recent info (0.14 < 0.5)"
         },
         "ch3": {
           "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
+          "side": "yes",
+          "why": "edge +0.040 < 0.12"
         }
       },
-      "facts_total": 7
+      "facts_total": 3
     },
     {
       "ts": "2026-09-30T04:34:19Z",
@@ -7276,6 +7307,38 @@
   ],
   "feed": [
     {
+      "ts": "2026-09-30T05:06:47Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "San Diego wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/san-diego-wins/kxmlbgame-26sep292200chcsd"
+    },
+    {
+      "ts": "2026-09-30T05:04:20Z",
+      "type": "call",
+      "jev": 0.36,
+      "claude": 0.6,
+      "market": 0.545,
+      "q": "Will Bitcoin dip to $82,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-30T05:04:20Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "Will Bitcoin dip to $82,500 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
+    },
+    {
+      "ts": "2026-09-30T05:04:20Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 2,
+      "researched": 1,
+      "bets": 0
+    },
+    {
       "ts": "2026-09-30T04:34:19Z",
       "type": "bet",
       "strategy": "bold",
@@ -7285,15 +7348,6 @@
       "p": 0.7,
       "q": "Philadelphia wins",
       "url": "https://kalshi.com/markets/kxmlbgame/philadelphia-wins/kxmlbgame-26sep301400phiatl"
-    },
-    {
-      "ts": "2026-09-30T04:34:19Z",
-      "type": "call",
-      "jev": 0.8,
-      "claude": null,
-      "market": 0.495,
-      "q": "Will Bitcoin dip to $82,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
     },
     {
       "ts": "2026-09-30T04:34:19Z",
@@ -7958,40 +8012,20 @@
       "market": 0.7305,
       "q": "Will Bia Kicis win the second-most votes in the 2026 Federal District Senate election?",
       "url": "https://polymarket.com/market/will-bia-kicis-win-the-second-most-votes-in-the-2026-federal-district-senate-election"
-    },
-    {
-      "ts": "2026-09-30T00:34:16Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will Russia enter Mykolaivka by September 30, 2026?",
-      "url": "https://polymarket.com/market/will-russia-enter-mykolaivka-by-september-30-2026-20260805154948090"
-    },
-    {
-      "ts": "2026-09-30T00:34:16Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 40,
-      "researched": 8,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T00:09:00Z",
-      "type": "learn",
-      "text": "Research playbook updated to v3"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T04:34:19Z",
-    "week": 0.87,
+    "ts": "2026-09-30T05:04:20Z",
+    "week": 0.91,
     "week_resets": 1791183600,
-    "five_hour": 0.22
+    "five_hour": 0.04
   },
-  "research_runs_today": 14,
+  "research_runs_today": 15,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 83,
-    "post_mortems": 12,
+    "reviewed": 86,
+    "post_mortems": 13,
     "win_reviews": 8,
     "calibration": [
       {
@@ -8002,15 +8036,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 18,
-        "predicted": 0.277,
-        "actual": 0.222
+        "n": 19,
+        "predicted": 0.283,
+        "actual": 0.263
       },
       {
         "range": "40\u201360%",
-        "n": 19,
+        "n": 21,
         "predicted": 0.513,
-        "actual": 0.789
+        "actual": 0.714
       },
       {
         "range": "60\u201380%",
@@ -8026,7 +8060,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 8,
+      "overconfident": 9,
       "unlucky": 3,
       "missing_info": 1
     },
@@ -8036,6 +8070,26 @@
       "research_found_it": 3
     },
     "recent": [
+      {
+        "question": "San Diego wins",
+        "url": "https://kalshi.com/markets/kxmlbgame/san-diego-wins/kxmlbgame-26sep292200chcsd",
+        "outcome": "yes",
+        "category": "sports",
+        "p": 0.39,
+        "market": 0.545,
+        "ts": "2026-09-30T05:06:47Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "The Padres beat the Cubs 8-0 in Game 1 of the NL Wild Card Series at Petco Park. Tatis and Machado homered in the first inning, and Padres pitching, led by Michael King, held Chicago to one hit.",
+        "what_we_missed": "Our 0.39 bet heavily against a market at 0.545 because of thin evidence: a six-game regular-season series and a small sample of road teams winning early Wild Card Series. We gave too little weight to San Diego's home field, its 17-3 finish, its top offense since Sept. 1, and King's strong recent form against Boyd's weaker season numbers.",
+        "what_worked": "",
+        "lesson": "In a single playoff game between evenly matched teams, don't move more than a few points away from the market because of a small regular-season head-to-head record or a base rate built on about 12 series.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "When the market price is near 50/50 in a single-game sports market, cap how far the forecast can differ from it (for example, \u00b17 points) unless there is concrete new information such as a lineup or pitching change or an injury, not just historical head-to-head records."
+        }
+      },
       {
         "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
         "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
@@ -8137,26 +8191,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Block any match-completion forecast below 0.80 unless the research cites a specific injury, withdrawal, or retirement by one of the two players in this event."
-        }
-      },
-      {
-        "question": "Bari: Completed Match: Imanol Lopez Morillo vs Martin Krumich",
-        "url": "https://polymarket.com/market/atp-morillo-krumich-2026-09-29-completed-match",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.56,
-        "market": 0.54,
-        "ts": "2026-09-29T14:37:13Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "The market resolved No, so the Bari Challenger first-round match between Lopez Morillo and Krumich did not finish through normal play. It most likely ended in a retirement or a walkover. I couldn't confirm which from public sources: the Flashscore and TennisTemple pages returned no retrieved score.",
-        "what_we_missed": "When the forecast was made, before the match, the market priced completion at only 0.54. Challenger matches normally complete about 97% of the time, so a price that low almost certainly meant traders knew something, such as a withdrawal, an injury, or a posted walkover. The research never looked for what that was and relied only on the base rate and a 'no injuries reported' preview. The 0.56 forecast roughly followed the market, but the claude_direct forecast of 0.95 ignored it entirely.",
-        "what_worked": "",
-        "lesson": "If a completion market trades far below the roughly 95\u201397% base rate, assume there is outside information (a withdrawal, an injury, or a lucky-loser swap) and look for it before forecasting above the market.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Flag completion markets priced 20+ points below the base rate, and require a targeted search for withdrawals, walkovers, updated order of play, or lucky-loser replacements before any forecast above the market price is allowed."
         }
       }
     ],
@@ -8441,9 +8475,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.5648,
-      "b": 0.4273,
-      "n": 55,
+      "a": 1.5202,
+      "b": 0.3753,
+      "n": 58,
       "active": true,
       "need": 30
     },
@@ -8452,10 +8486,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 43,
-          "wins": 7,
-          "pnl_per_100": -60.94,
-          "total_per_100": -2620.32
+          "n": 44,
+          "wins": 8,
+          "pnl_per_100": -55.14,
+          "total_per_100": -2426.21
         },
         {
           "group": "several",
@@ -8478,10 +8512,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 24,
-          "wins": 6,
-          "pnl_per_100": -50.85,
-          "total_per_100": -1220.38
+          "n": 26,
+          "wins": 7,
+          "pnl_per_100": -42.97,
+          "total_per_100": -1117.35
         },
         {
           "group": "framing",
@@ -8512,10 +8546,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 11,
-          "wins": 2,
-          "pnl_per_100": -62.36,
-          "total_per_100": -685.93
+          "n": 12,
+          "wins": 3,
+          "pnl_per_100": -40.24,
+          "total_per_100": -482.9
         },
         {
           "group": "several",
@@ -8562,10 +8596,10 @@
         {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 16,
-          "wins": 6,
-          "pnl_per_100": -29.72,
-          "total_per_100": -475.6
+          "n": 18,
+          "wins": 7,
+          "pnl_per_100": -20.7,
+          "total_per_100": -372.57
         }
       ],
       "jev_alone_bold": [
@@ -8580,10 +8614,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 27,
-          "wins": 5,
-          "pnl_per_100": -56.08,
-          "total_per_100": -1514.26
+          "n": 28,
+          "wins": 6,
+          "pnl_per_100": -47.15,
+          "total_per_100": -1320.14
         },
         {
           "group": "rules",
@@ -8614,10 +8648,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 10,
-          "wins": 2,
-          "pnl_per_100": -68.89,
-          "total_per_100": -688.86
+          "n": 12,
+          "wins": 3,
+          "pnl_per_100": -48.82,
+          "total_per_100": -585.82
         },
         {
           "group": "several",
@@ -8642,15 +8676,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 54,
-        "jev_research": 0.1892,
-        "jev_plain": 0.2621,
-        "market": 0.1615,
-        "claude_direct": 0.1748,
-        "n_jev_research": 37,
-        "n_jev_plain": 54,
-        "n_market": 54,
-        "n_claude_direct": 18
+        "n": 57,
+        "jev_research": 0.1975,
+        "jev_plain": 0.2595,
+        "market": 0.1685,
+        "claude_direct": 0.1815,
+        "n_jev_research": 40,
+        "n_jev_plain": 57,
+        "n_market": 57,
+        "n_claude_direct": 19
       },
       {
         "category": "crypto",
@@ -8756,7 +8790,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 12,
+      "gates": 13,
       "research": 7
     },
     "retro": {
