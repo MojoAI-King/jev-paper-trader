@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-30T03:08:11Z",
+  "generated": "2026-09-30T03:36:57Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
-  "cash": 88248.24,
-  "open_cost": 16395.07,
+  "cash": 86155.47,
+  "open_cost": 18487.84,
   "equity": 104643.31,
   "realized": 4643.31,
   "roi_settled": 0.38054646528472696,
@@ -14,7 +14,7 @@
   "max_stake_pct": 0.02,
   "by_source": {
     "polymarket": 10290.42,
-    "kalshi": 6104.65
+    "kalshi": 8197.42
   },
   "curve": [
     {
@@ -53,7 +53,7 @@
       "label": "Minnesota wins"
     },
     {
-      "t": "2026-09-30T03:08:11Z",
+      "t": "2026-09-30T03:36:57Z",
       "equity": 104643.31,
       "label": "Now (open bets valued at cost)"
     }
@@ -128,6 +128,20 @@
       "edge": 0.1248,
       "opened": "2026-09-28T23:04:32Z",
       "close_time": "2026-10-02T12:29:00Z"
+    },
+    {
+      "question": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl",
+      "source": "kalshi",
+      "side": "yes",
+      "contracts": 4044,
+      "cost_per": 0.5175,
+      "total_cost": 2092.77,
+      "p_side": 0.66,
+      "market_ask": 0.49,
+      "edge": 0.1425,
+      "opened": "2026-09-30T03:34:19Z",
+      "close_time": "2026-10-03T18:00:00Z"
     },
     {
       "question": "W15 Maanshan, Qualifying: Completed Match: Yinuo Huang vs Victoria Vidal",
@@ -283,20 +297,20 @@
     }
   ],
   "calibration": {
-    "judged": 336,
-    "resolved": 77,
+    "judged": 338,
+    "resolved": 80,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.17075102040816326,
-        "n": 49
+        "brier": 0.17193461538461538,
+        "n": 52
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2598935064935065,
-        "n": 77
+        "brier": 0.26501,
+        "n": 80
       },
       {
         "name": "claude_direct",
@@ -307,31 +321,31 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.3012912099999999,
-        "n": 1
+        "brier": 0.28377360499999993,
+        "n": 2
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13135753246753248,
-        "n": 77
+        "brier": 0.1332835,
+        "n": 80
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 10,
-    "bets": 0,
-    "fail_info": 3,
+    "judged": 9,
+    "bets": 1,
+    "fail_info": 2,
     "fail_rules": 1,
-    "fail_edge": 2,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 4,
-      "polymarket": 6
+      "kalshi": 2,
+      "polymarket": 7
     }
   },
   "funnel": {
-    "ts": "2026-09-30T03:04:19Z",
+    "ts": "2026-09-30T03:34:19Z",
     "stages": [
       [
         "Fetched",
@@ -339,11 +353,11 @@
       ],
       [
         "Passed free filters",
-        10
+        9
       ],
       [
         "Judged by Jev",
-        10
+        9
       ],
       [
         "Judged with research",
@@ -351,47 +365,47 @@
       ],
       [
         "Cleared every gate (main)",
-        0
+        1
       ],
       [
         "Bets placed (main)",
-        0
+        1
       ]
     ],
     "events": 8,
-    "researched_new": 2,
-    "research_reused": 1,
+    "researched_new": 1,
+    "research_reused": 3,
     "bets": {
-      "main": 0,
+      "main": 1,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 1,
-      "calibrated": 0,
-      "jev_alone_bold": 1,
-      "original": 0,
+      "calibrated": 1,
+      "jev_alone_bold": 0,
+      "original": 1,
       "ch3": 0
     },
-    "claude_calls": 5,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 29,
-    "facts_dropped": 4,
+    "facts_kept": 36,
+    "facts_dropped": 6,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
     },
     "problems": [],
     "cleared_gates": {
-      "main": 0,
+      "main": 1,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 1,
-      "calibrated": 0,
-      "jev_alone_bold": 1,
-      "original": 0,
+      "calibrated": 1,
+      "jev_alone_bold": 0,
+      "original": 1,
       "ch3": 0
     },
-    "judged": 10,
+    "judged": 9,
     "with_research": 4
   },
   "strategies": [
@@ -412,12 +426,12 @@
       "tuned_at": "2026-09-29T23:35:30Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 100393.21,
-      "unrealized": -4250.1,
+      "marked": 100261.78,
+      "unrealized": -4381.53,
       "change": 4643.31,
       "realized": 4643.31,
-      "open": 8,
-      "open_cost": 16395.07,
+      "open": 9,
+      "open_cost": 18487.84,
       "settled": 6,
       "wins": 4,
       "losses": 2,
@@ -461,7 +475,7 @@
       "badge": null,
       "retired": false,
       "main": false,
-      "equity": 94000.09,
+      "equity": 92000.27,
       "slot": 3,
       "blurb": "Claude reads the same research and makes its own call. Does Jev add anything?",
       "challenger": false,
@@ -470,17 +484,17 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 92128.31,
-      "unrealized": -1871.78,
-      "change": -5999.91,
-      "realized": -5999.91,
-      "open": 4,
-      "open_cost": 7839.21,
-      "settled": 3,
+      "marked": 91220.78,
+      "unrealized": -779.49,
+      "change": -7999.73,
+      "realized": -7999.73,
+      "open": 3,
+      "open_cost": 5839.39,
+      "settled": 4,
       "wins": 0,
-      "losses": 3,
+      "losses": 4,
       "won_amt": 0,
-      "lost_amt": -5999.91
+      "lost_amt": -7999.73
     },
     {
       "name": "bold",
@@ -490,7 +504,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 95462.55,
+      "equity": 96880.93,
       "slot": 4,
       "blurb": "Jev + Claude, but it bets even when Jev says it's short on information.",
       "challenger": false,
@@ -501,16 +515,16 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 87056.1,
-      "unrealized": -8406.45,
-      "change": -4537.45,
-      "realized": -4537.45,
+      "marked": 86660.83,
+      "unrealized": -10220.1,
+      "change": -3119.07,
+      "realized": -3119.07,
       "open": 29,
-      "open_cost": 46942.77,
-      "settled": 9,
-      "wins": 3,
+      "open_cost": 46862.67,
+      "settled": 10,
+      "wins": 4,
       "losses": 6,
-      "won_amt": 6915.9,
+      "won_amt": 8334.28,
       "lost_amt": -11453.35
     },
     {
@@ -530,12 +544,12 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 98733.77,
-      "unrealized": -1266.23,
+      "marked": 98608.19,
+      "unrealized": -1391.81,
       "change": 0.0,
       "realized": 0,
-      "open": 3,
-      "open_cost": 5999.86,
+      "open": 4,
+      "open_cost": 7999.48,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -550,7 +564,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 98424.12,
+      "equity": 96415.67,
       "slot": 6,
       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
       "challenger": false,
@@ -561,17 +575,17 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 98016.18,
-      "unrealized": -407.94,
-      "change": -1575.88,
-      "realized": -1575.88,
-      "open": 15,
-      "open_cost": 29823.54,
-      "settled": 3,
+      "marked": 91843.65,
+      "unrealized": -4572.02,
+      "change": -3584.33,
+      "realized": -3584.33,
+      "open": 14,
+      "open_cost": 27815.09,
+      "settled": 4,
       "wins": 1,
-      "losses": 2,
+      "losses": 3,
       "won_amt": 2423.36,
-      "lost_amt": -3999.24
+      "lost_amt": -6007.69
     },
     {
       "name": "original",
@@ -590,12 +604,12 @@
       "tuned_at": null,
       "frozen": true,
       "gate_overrides": {},
-      "marked": 99238.47,
-      "unrealized": -1920.87,
+      "marked": 99111.43,
+      "unrealized": -2047.91,
       "change": 1159.34,
       "realized": 1159.34,
-      "open": 5,
-      "open_cost": 9988.26,
+      "open": 6,
+      "open_cost": 12011.17,
       "settled": 4,
       "wins": 2,
       "losses": 2,
@@ -1157,8 +1171,12 @@
           100393.21
         ],
         [
-          "2026-09-30T03:08:11Z",
-          100393.21
+          "2026-09-30T03:34:19Z",
+          100261.78
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          100261.78
         ]
       ]
     },
@@ -1686,7 +1704,11 @@
           99636.24
         ],
         [
-          "2026-09-30T03:08:11Z",
+          "2026-09-30T03:34:19Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T03:36:57Z",
           99636.24
         ]
       ]
@@ -2215,8 +2237,12 @@
           92128.31
         ],
         [
-          "2026-09-30T03:08:11Z",
-          92128.31
+          "2026-09-30T03:34:19Z",
+          91220.78
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          91220.78
         ]
       ]
     },
@@ -2744,8 +2770,12 @@
           87056.1
         ],
         [
-          "2026-09-30T03:08:11Z",
-          87056.1
+          "2026-09-30T03:34:19Z",
+          86660.83
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          86660.83
         ]
       ]
     },
@@ -3273,8 +3303,12 @@
           98733.77
         ],
         [
-          "2026-09-30T03:08:11Z",
-          98733.77
+          "2026-09-30T03:34:19Z",
+          98608.19
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          98608.19
         ]
       ]
     },
@@ -3802,8 +3836,12 @@
           98016.18
         ],
         [
-          "2026-09-30T03:08:11Z",
-          98016.18
+          "2026-09-30T03:34:19Z",
+          91843.65
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          91843.65
         ]
       ]
     },
@@ -4331,8 +4369,12 @@
           99238.47
         ],
         [
-          "2026-09-30T03:08:11Z",
-          99238.47
+          "2026-09-30T03:34:19Z",
+          99111.43
+        ],
+        [
+          "2026-09-30T03:36:57Z",
+          99111.43
         ]
       ]
     },
@@ -4860,7 +4902,11 @@
           99827.43
         ],
         [
-          "2026-09-30T03:08:11Z",
+          "2026-09-30T03:34:19Z",
+          99827.43
+        ],
+        [
+          "2026-09-30T03:36:57Z",
           99827.43
         ]
       ]
@@ -5144,8 +5190,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T03:59:59.999Z",
       "category": "world",
-      "price": 0.123,
-      "price_at": "2026-09-30T00:04:25Z",
+      "price": 0.0675,
+      "price_at": "2026-09-30T03:34:19Z",
       "positions": [
         {
           "strategy": "bold",
@@ -5156,7 +5202,7 @@
           "p_side": 0.17,
           "edge": 0.102,
           "opened": "2026-09-29T00:04:27Z",
-          "value": 3650.03
+          "value": 2003.06
         }
       ]
     },
@@ -5213,8 +5259,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.485,
-      "price_at": "2026-09-30T01:04:25Z",
+      "price": 0.545,
+      "price_at": "2026-09-30T03:34:19Z",
       "positions": [
         {
           "strategy": "bold",
@@ -5225,7 +5271,7 @@
           "p_side": 0.53,
           "edge": 0.08,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2155.34
+          "value": 2421.98
         }
       ]
     },
@@ -5282,8 +5328,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T04:00:00Z",
       "category": "crypto",
-      "price": 0.305,
-      "price_at": "2026-09-30T00:34:16Z",
+      "price": 0.215,
+      "price_at": "2026-09-30T03:34:19Z",
       "positions": [
         {
           "strategy": "bold",
@@ -5294,41 +5340,7 @@
           "p_side": 0.79,
           "edge": 0.36,
           "opened": "2026-09-28T23:04:32Z",
-          "value": 1431.06
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
-      "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
-      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
-      "source": "kalshi",
-      "close_time": "2026-10-01T14:00:00Z",
-      "category": "politics",
-      "price": 0.61,
-      "price_at": "2026-09-30T02:34:21Z",
-      "positions": [
-        {
-          "strategy": "claude_direct",
-          "side": "no",
-          "contracts": 2327,
-          "cost_per": 0.8594,
-          "total_cost": 1999.82,
-          "p_side": 0.97,
-          "edge": 0.1106,
-          "opened": "2026-09-29T17:04:36Z",
-          "value": 907.53
-        },
-        {
-          "strategy": "jev_alone_bold",
-          "side": "no",
-          "contracts": 15827,
-          "cost_per": 0.1269,
-          "total_cost": 2008.45,
-          "p_side": 0.81,
-          "edge": 0.6831,
-          "opened": "2026-09-29T19:35:05Z",
-          "value": 6172.53
+          "value": 1008.78
         }
       ]
     },
@@ -5447,25 +5459,58 @@
       ]
     },
     {
-      "key": "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-      "question": "Boston wins",
-      "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy",
+      "key": "kalshi:KXMLBGAME-26SEP301400PHIATL-ATL",
+      "question": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl",
       "source": "kalshi",
-      "close_time": "2026-10-03T00:00:00Z",
+      "close_time": "2026-10-03T18:00:00Z",
       "category": "sports",
-      "price": 0.445,
-      "price_at": "2026-09-29T10:34:34Z",
+      "price": 0.485,
+      "price_at": "2026-09-30T03:34:19Z",
       "positions": [
         {
+          "strategy": "main",
+          "side": "yes",
+          "contracts": 4044,
+          "cost_per": 0.5175,
+          "total_cost": 2092.77,
+          "p_side": 0.66,
+          "edge": 0.1425,
+          "opened": "2026-09-30T03:34:19Z",
+          "value": 1961.34
+        },
+        {
           "strategy": "bold",
-          "side": "no",
-          "contracts": 3436,
-          "cost_per": 0.5872,
-          "total_cost": 2017.62,
-          "p_side": 0.74,
-          "edge": 0.1528,
-          "opened": "2026-09-28T23:04:32Z",
-          "value": 1906.98
+          "side": "yes",
+          "contracts": 3744,
+          "cost_per": 0.5175,
+          "total_cost": 1937.52,
+          "p_side": 0.66,
+          "edge": 0.1425,
+          "opened": "2026-09-30T03:34:19Z",
+          "value": 1815.84
+        },
+        {
+          "strategy": "calibrated",
+          "side": "yes",
+          "contracts": 3864,
+          "cost_per": 0.5175,
+          "total_cost": 1999.62,
+          "p_side": 0.805,
+          "edge": 0.2875,
+          "opened": "2026-09-30T03:34:19Z",
+          "value": 1874.04
+        },
+        {
+          "strategy": "original",
+          "side": "yes",
+          "contracts": 3909,
+          "cost_per": 0.5175,
+          "total_cost": 2022.91,
+          "p_side": 0.66,
+          "edge": 0.1425,
+          "opened": "2026-09-30T03:34:19Z",
+          "value": 1895.87
         }
       ]
     },
@@ -6088,6 +6133,54 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
+      "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 1999.82,
+      "cost_per": 0.8594,
+      "p_side": 0.97,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -1999.82,
+      "opened": "2026-09-29T17:04:36Z",
+      "settled": "2026-09-30T03:34:19Z",
+      "strategy": "claude_direct"
+    },
+    {
+      "key": "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+      "question": "Boston wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 2017.62,
+      "cost_per": 0.5872,
+      "p_side": 0.74,
+      "outcome": "no",
+      "payout": 3436.0,
+      "pnl": 1418.38,
+      "opened": "2026-09-28T23:04:32Z",
+      "settled": "2026-09-30T03:34:19Z",
+      "strategy": "bold"
+    },
+    {
+      "key": "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
+      "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 2008.45,
+      "cost_per": 0.1269,
+      "p_side": 0.81,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2008.45,
+      "opened": "2026-09-29T19:35:05Z",
+      "settled": "2026-09-30T03:34:19Z",
+      "strategy": "jev_alone_bold"
+    },
+    {
       "key": "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
       "question": "Minnesota wins",
       "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny",
@@ -6358,57 +6451,253 @@
       "opened": "2026-09-29T11:34:38Z",
       "settled": "2026-09-29T19:04:32Z",
       "strategy": "jev_alone_bold"
-    },
-    {
-      "key": "kalshi:KXMLBRFI-26SEP291400PHIATL",
-      "question": "1st inning: Over 0.5 runs",
-      "url": "https://kalshi.com/markets/kxmlbrfi/1st-inning-over-0-5-runs/kxmlbrfi-26sep291400phiatl",
-      "source": "kalshi",
-      "side": "yes",
-      "total_cost": 1999.88,
-      "cost_per": 0.4471,
-      "p_side": 0.56,
-      "outcome": "yes",
-      "payout": 4473.0,
-      "pnl": 2473.12,
-      "opened": "2026-09-29T11:34:38Z",
-      "settled": "2026-09-29T19:04:32Z",
-      "strategy": "original"
-    },
-    {
-      "key": "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
-      "question": "Will there be more than 30 transit calls through the Strait of Hormuz from Sep 21, 2026 to Sep 27, 2026? (Above 30)",
-      "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26sep27",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 2017.92,
-      "cost_per": 0.7538,
-      "p_side": 0.84,
-      "outcome": "no",
-      "payout": 2677.0,
-      "pnl": 659.08,
-      "opened": "2026-09-28T23:34:41Z",
-      "settled": "2026-09-29T14:34:39Z",
-      "strategy": "bold"
-    },
-    {
-      "key": "polymarket:5023463",
-      "question": "Jingshan: Completed Match: Kristina Mladenovic vs Sofia Costoulas",
-      "url": "https://polymarket.com/market/wta-mladeno-costoul-2026-09-28-completed-match",
-      "source": "polymarket",
-      "side": "no",
-      "total_cost": 2000.0,
-      "cost_per": 0.2,
-      "p_side": 0.34,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -2000.0,
-      "opened": "2026-09-29T00:34:27Z",
-      "settled": "2026-09-29T06:04:30Z",
-      "strategy": "jev_alone_bold"
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "key": "polymarket:4063373",
+      "question": "Will WTI Crude Oil (WTI) hit (LOW) $85 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-85-in-september-2026",
+      "source": "polymarket",
+      "category": "world",
+      "close_time": "2026-10-01T03:59:59.999Z",
+      "market": 0.0675,
+      "forecasts": {
+        "jev_research": 0.09,
+        "jev_plain": 0.35,
+        "claude_direct": null,
+        "jev_calibrated": 0.0468
+      },
+      "info": 0.65,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.005 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.003 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.10 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.005 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 9
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "key": "polymarket:4882983",
+      "question": "Will the price of Bitcoin be above $84,000 on September 30?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-30-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-09-30T16:00:00Z",
+      "market": 0.225,
+      "forecasts": {
+        "jev_research": 0.38,
+        "jev_plain": 0.38,
+        "claude_direct": null,
+        "jev_calibrated": 0.4259
+      },
+      "info": 0.2,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.20 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.20 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.20 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.20 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 8
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "key": "polymarket:3372745",
+      "question": "Will Russia enter Mykolaivka by September 30, 2026?",
+      "url": "https://polymarket.com/market/will-russia-enter-mykolaivka-by-september-30-2026-20260805154948090",
+      "source": "polymarket",
+      "category": "world",
+      "close_time": "2026-10-01T03:59:00Z",
+      "market": 0.3065,
+      "forecasts": {
+        "jev_research": 0.14,
+        "jev_plain": 0.25,
+        "claude_direct": null,
+        "jev_calibrated": 0.0934
+      },
+      "info": 0.2,
+      "rules": 0.74,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.001 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.001 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 9
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "key": "kalshi:KXMLBGAME-26SEP301400PHIATL-ATL",
+      "question": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-03T18:00:00Z",
+      "market": 0.485,
+      "forecasts": {
+        "jev_research": 0.66,
+        "jev_plain": 0.46,
+        "claude_direct": 0.49,
+        "jev_calibrated": 0.805
+      },
+      "info": 0.5,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x4044 @ 0.517: p 0.66 vs cost 0.517, edge +0.142"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.007 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.028 < 0.08"
+        },
+        "bold": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x3744 @ 0.517: p 0.66 vs cost 0.517, edge +0.142"
+        },
+        "calibrated": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x3864 @ 0.517: p 0.81 vs cost 0.517, edge +0.287"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.007 < 0.08"
+        },
+        "original": {
+          "bet": true,
+          "side": "yes",
+          "why": "BET YES x3909 @ 0.517: p 0.66 vs cost 0.517, edge +0.142"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.028 < 0.12"
+        }
+      },
+      "facts_total": 10
+    },
     {
       "ts": "2026-09-30T03:04:19Z",
       "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
@@ -6530,67 +6819,6 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T03:04:19Z",
-      "key": "polymarket:3372745",
-      "question": "Will Russia enter Mykolaivka by September 30, 2026?",
-      "url": "https://polymarket.com/market/will-russia-enter-mykolaivka-by-september-30-2026-20260805154948090",
-      "source": "polymarket",
-      "category": "world",
-      "close_time": "2026-10-01T03:59:00Z",
-      "market": 0.39,
-      "forecasts": {
-        "jev_research": 0.13,
-        "jev_plain": 0.25,
-        "claude_direct": 0.5,
-        "jev_calibrated": 0.0923
-      },
-      "info": 0.18,
-      "rules": 0.73,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.10 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.73 < 0.75"
-        },
-        "ch3": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.090 < 0.12"
-        }
-      },
-      "facts_total": 9
     },
     {
       "ts": "2026-09-30T03:04:19Z",
@@ -6957,192 +7185,144 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T01:04:25Z",
-      "key": "polymarket:4797724",
-      "question": "Will Bitcoin dip to $82,500 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.485,
-      "forecasts": {
-        "jev_research": 0.74,
-        "jev_plain": 0.33,
-        "claude_direct": null,
-        "jev_calibrated": 0.8903
-      },
-      "info": 0.3,
-      "rules": 0.85,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.30 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.09 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.30 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.09 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.30 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 7
-    },
-    {
-      "ts": "2026-09-30T01:04:25Z",
-      "key": "kalshi:KXNFLTOTAL-26OCT04NYJCHI-58",
-      "question": "Full Game: over 57.5 points scored? (Over 57.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-57-5-points-scored/kxnfltotal-26oct04nyjchi",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-06T17:00:00Z",
-      "market": 0.125,
-      "forecasts": {
-        "jev_research": 0.33,
-        "jev_plain": 0.4,
-        "claude_direct": null,
-        "jev_calibrated": 0.3699
-      },
-      "info": 0.33,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.16 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.16 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T01:04:25Z",
-      "key": "kalshi:KXNFLTOTAL-26OCT04NYJCHI-34",
-      "question": "Full Game: over 33.5 points scored? (Over 33.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-33-5-points-scored/kxnfltotal-26oct04nyjchi",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-06T17:00:00Z",
-      "market": 0.765,
-      "forecasts": {
-        "jev_research": 0.5,
-        "jev_plain": 0.49,
-        "claude_direct": null,
-        "jev_calibrated": 0.6289
-      },
-      "info": 0.33,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.16 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.16 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-30T03:36:30Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01"
+    },
+    {
+      "ts": "2026-09-30T03:36:16Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "research_found_it",
+      "q": "Boston wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "loss",
+      "strategy": "claude_direct",
+      "amount": -1999.82,
+      "q": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "win",
+      "strategy": "bold",
+      "amount": 1418.38,
+      "q": "Boston wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "loss",
+      "strategy": "jev_alone_bold",
+      "amount": -2008.45,
+      "q": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "bet",
+      "strategy": "main",
+      "side": "yes",
+      "price": 0.5175,
+      "amount": 2092.77,
+      "p": 0.66,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "yes",
+      "price": 0.5175,
+      "amount": 1937.52,
+      "p": 0.66,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "bet",
+      "strategy": "calibrated",
+      "side": "yes",
+      "price": 0.5175,
+      "amount": 1999.62,
+      "p": 0.805,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "bet",
+      "strategy": "original",
+      "side": "yes",
+      "price": 0.5175,
+      "amount": 2022.91,
+      "p": 0.66,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "call",
+      "jev": 0.09,
+      "claude": null,
+      "market": 0.0675,
+      "q": "Will WTI Crude Oil (WTI) hit (LOW) $85 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-85-in-september-2026"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "call",
+      "jev": 0.38,
+      "claude": null,
+      "market": 0.225,
+      "q": "Will the price of Bitcoin be above $84,000 on September 30?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-30-2026"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "call",
+      "jev": 0.14,
+      "claude": null,
+      "market": 0.3065,
+      "q": "Will Russia enter Mykolaivka by September 30, 2026?",
+      "url": "https://polymarket.com/market/will-russia-enter-mykolaivka-by-september-30-2026-20260805154948090"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "call",
+      "jev": 0.66,
+      "claude": 0.49,
+      "market": 0.485,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "intel",
+      "facts": 11,
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
+    },
+    {
+      "ts": "2026-09-30T03:34:19Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 9,
+      "researched": 4,
+      "bets": 4
+    },
     {
       "ts": "2026-09-30T03:07:56Z",
       "type": "review",
@@ -7222,15 +7402,6 @@
       "market": 0.85,
       "q": "Boston vs New York Y Wild Card series winner: New York Y wins",
       "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc"
-    },
-    {
-      "ts": "2026-09-30T03:04:19Z",
-      "type": "call",
-      "jev": 0.13,
-      "claude": 0.5,
-      "market": 0.39,
-      "q": "Will Russia enter Mykolaivka by September 30, 2026?",
-      "url": "https://polymarket.com/market/will-russia-enter-mykolaivka-by-september-30-2026-20260805154948090"
     },
     {
       "ts": "2026-09-30T03:04:19Z",
@@ -7499,15 +7670,6 @@
     {
       "ts": "2026-09-30T01:04:25Z",
       "type": "call",
-      "jev": 0.38,
-      "claude": null,
-      "market": 0.305,
-      "q": "Will the price of Bitcoin be above $84,000 on September 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-september-30-2026"
-    },
-    {
-      "ts": "2026-09-30T01:04:25Z",
-      "type": "call",
       "jev": 0.17,
       "claude": null,
       "market": 0.135,
@@ -7674,24 +7836,6 @@
     {
       "ts": "2026-09-30T00:04:25Z",
       "type": "call",
-      "jev": 0.4,
-      "claude": null,
-      "market": 0.455,
-      "q": "Will Netherlands win on 2026-10-01?",
-      "url": "https://polymarket.com/market/unl-grc-nld-2026-10-01-nld"
-    },
-    {
-      "ts": "2026-09-30T00:04:25Z",
-      "type": "call",
-      "jev": 0.17,
-      "claude": null,
-      "market": 0.33,
-      "q": "Mississippi St. wins",
-      "url": "https://kalshi.com/markets/kxncaafgame/mississippi-st-wins/kxncaafgame-26oct03alamsst"
-    },
-    {
-      "ts": "2026-09-30T00:04:25Z",
-      "type": "call",
       "jev": 0.57,
       "claude": 0.45,
       "market": 0.655,
@@ -7740,105 +7884,21 @@
       "ts": "2026-09-29T23:36:12Z",
       "type": "learn",
       "text": "Daily review written"
-    },
-    {
-      "ts": "2026-09-29T23:35:30Z",
-      "type": "tune",
-      "strategy": "main",
-      "version": 2,
-      "text": "skips none \u2192 crypto",
-      "why": "In crypto the market scores a Brier of 0.034 against Jev+research's 0.117 (9 resolved), so any edge we think we see there is most likely our own error. This is an experiment on a small sample."
-    },
-    {
-      "ts": "2026-09-29T23:35:30Z",
-      "type": "tune",
-      "strategy": "bold",
-      "version": 2,
-      "text": "info bar 0.2 \u2192 0.35",
-      "why": "Bold's extra bets, where Jev's info rating is 0.2\u20130.5, are losing $31.79 per $100 (7 bets), and main's info-stopped markets lose $70 per $100 (16). A 0.35 threshold tests where the cutoff really belongs, without collapsing bold into a copy of main."
-    },
-    {
-      "ts": "2026-09-29T23:35:30Z",
-      "type": "learn",
-      "text": "New challenger: Claude direct, strict"
-    },
-    {
-      "ts": "2026-09-29T23:35:30Z",
-      "type": "idea",
-      "text": "Break results down by price paid",
-      "status": "proposed",
-      "why": "Many losses, including all 3 of claude_direct's and every info-gate-stopped group, show -$100 per $100, meaning the whole stake was lost. That pattern suggests we may be buying cheap longshots. A breakdown of wins and P&L by ask price (for example <0.2, 0.2\u20130.5, 0.5\u20130.8, >0.8), for placed and stoppe"
-    },
-    {
-      "ts": "2026-09-29T23:34:19Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 29,
-      "researched": 10,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "main",
-      "amount": -1999.94,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "main",
-      "amount": -2067.52,
-      "q": "Will Albania win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-smr-alb-2026-09-29-alb"
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "claude_direct",
-      "amount": -1999.94,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "claude_direct",
-      "amount": -1999.97,
-      "q": "Will Albania win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-smr-alb-2026-09-29-alb"
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "bold",
-      "amount": -1399.92,
-      "q": "Will Spain win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-esp-hrv-2026-09-29-esp"
-    },
-    {
-      "ts": "2026-09-29T23:04:23Z",
-      "type": "loss",
-      "strategy": "bold",
-      "amount": -2017.8,
-      "q": "Will England win on 2026-09-29?",
-      "url": "https://polymarket.com/market/unl-cze-eng-2026-09-29-eng"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T03:04:19Z",
-    "week": 0.82,
+    "ts": "2026-09-30T03:34:19Z",
+    "week": 0.83,
     "week_resets": 1791183600,
-    "five_hour": 0.01
+    "five_hour": 0.05
   },
-  "research_runs_today": 11,
+  "research_runs_today": 12,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 77,
-    "post_mortems": 11,
-    "win_reviews": 7,
+    "reviewed": 80,
+    "post_mortems": 12,
+    "win_reviews": 8,
     "calibration": [
       {
         "range": "0\u201320%",
@@ -7848,15 +7908,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 15,
-        "predicted": 0.286,
-        "actual": 0.267
+        "n": 16,
+        "predicted": 0.283,
+        "actual": 0.25
       },
       {
         "range": "40\u201360%",
-        "n": 16,
-        "predicted": 0.522,
-        "actual": 0.812
+        "n": 18,
+        "predicted": 0.519,
+        "actual": 0.833
       },
       {
         "range": "60\u201380%",
@@ -7873,15 +7933,38 @@
     ],
     "root_causes": {
       "overconfident": 8,
-      "unlucky": 2,
+      "unlucky": 3,
       "missing_info": 1
     },
     "credits": {
       "lucky": 3,
       "base_rate": 2,
-      "research_found_it": 2
+      "research_found_it": 3
     },
     "recent": [
+      {
+        "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
+        "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.41,
+        "market": 0.61,
+        "ts": "2026-09-30T03:36:30Z",
+        "bets": {
+          "claude_direct": -1999.82,
+          "jev_alone_bold": -2008.45
+        },
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "The market resolved YES: Trump said \"piggy\" in some form before the Oct 1, 2026 deadline. My searches did not find the exact remark. The \"piggy bank\" trade line he has used for years is the most likely source; a new insult is less likely. With about two days left, the market priced YES at 61%. The forecaster said 41%, and both betting strategies lost about $2,000 each on NO.",
+        "what_we_missed": "The research looked mostly for \"piggy\" used as an insult to reporters and put little weight on how often Trump says \"piggy bank\" when talking about tariffs and trade. It also didn't check full transcripts, such as Factba.se or Roll Call, where passing uses of the word turn up. The forecaster had no specific information to justify staying 20 points below the market.",
+        "what_worked": "",
+        "lesson": "For mention markets, count every phrase that contains the word (here \"piggy bank\"), not just its best-known use. Don't bet well below the market price without concrete evidence that the market has it wrong.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For word-mention questions, list the compound phrases Trump commonly uses that contain the target word, estimate how often he says them, and search transcript archives like Factba.se for recent uses before departing from the market price."
+        }
+      },
       {
         "question": "Las Vegas wins",
         "url": "https://kalshi.com/markets/kxwnbagame/las-vegas-wins/kxwnbagame-26sep29lvind",
@@ -7981,29 +8064,31 @@
           "area": "gates",
           "change": "Flag completion markets priced 20+ points below the base rate, and require a targeted search for withdrawals, walkovers, updated order of play, or lucky-loser replacements before any forecast above the market price is allowed."
         }
-      },
-      {
-        "question": "Adana: Completed Match: Polina Iatcenko vs Erika Andreeva",
-        "url": "https://polymarket.com/market/wta-iatcenk-andree-2026-09-29-completed-match",
-        "outcome": "yes",
-        "category": "sports",
-        "p": 0.49,
-        "market": 0.545,
-        "ts": "2026-09-29T14:36:56Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "The first-round match in Adana between Iatcenko and qualifier Erika Andreeva went ahead on September 29, 2026, around 10:10 UTC, and was played to the end, so the market resolved YES. My searches did not show the score or who won.",
-        "what_we_missed": "No evidence pointed to a retirement, walkover or cancellation. Main-draw WTA 125 matches finish normally about 93\u201396% of the time. The researched forecast of 0.49 treated a thin worry (Iatcenko coming straight from the Ankara event the week before) and a strangely low market price of 0.545 as if they were real signs of risk. Neither justified going below about 90%.",
-        "what_worked": "",
-        "lesson": "For 'match completed' markets, start from the roughly 94% base rate for normal play and only go well below it if there is concrete evidence, such as a reported injury, a withdrawal or a mid-match retirement. Back-to-back events or a low market price are not enough on their own.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Block forecasts below 0.80 on tennis match-completion markets unless the research cites a specific injury, withdrawal or retirement report, and don't let a low market price pull the forecast toward it when no such report exists."
-        }
       }
     ],
     "recent_wins": [
+      {
+        "question": "Boston wins",
+        "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy",
+        "outcome": "no",
+        "category": "sports",
+        "p": 0.24,
+        "market": 0.445,
+        "ts": "2026-09-30T03:36:16Z",
+        "bets": {
+          "bold": 1418.38
+        },
+        "kind": "win",
+        "root_cause": "research_found_it",
+        "what_happened": "The Yankees beat the Red Sox 9-0 in Game 1 of the AL Wild Card Series at Yankee Stadium. Cam Schlittler struck out 10 over six shutout innings, and Payton Tolle gave up one run in 4\u2154 innings before the Yankees pulled away against Boston's bullpen.",
+        "what_we_missed": "",
+        "what_worked": "The research turned up the lopsided starting-pitcher matchup (Schlittler's AL-leading 1.95 ERA and 215 ERA+ against a rookie), Boston's .579 OPS against the Yankees this season, and the Red Sox being outscored 34-15 at Yankee Stadium. Together these moved the forecast from 0.48 without research to 0.24, well below the market's 0.445. Even so, any single playoff game is noisy, and a 9-0 margin says more about the size of the edge than how sure we should have been.",
+        "lesson": "In single playoff games with a big starting-pitcher gap and a strong head-to-head split, trust the matchup-specific numbers over a hazy 'road teams win Game 1' base rate recalled from memory.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Treat base-rate counts the research desk flags as 'from memory, source disagreed' as unverified. Check them against a source or leave them out, instead of letting them pull the forecast toward the underdog."
+        }
+      },
       {
         "question": "Minnesota wins",
         "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny",
@@ -8115,28 +8200,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Before discounting a team for injuries, check who replaces the injured players and whether the team has won without them before (here Nygren, Ayari and Gy\u00f6keres covered for Isak), rather than treating a star's absence as a large penalty by default."
-        }
-      },
-      {
-        "question": "Will T\u00fcrkiye win on 2026-09-28?",
-        "url": "https://polymarket.com/market/unl-tur-ita-2026-09-28-tur",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.08,
-        "market": 0.355,
-        "ts": "2026-09-28T23:11:46Z",
-        "bets": {
-          "main": 1030.2
-        },
-        "kind": "win",
-        "root_cause": "base_rate",
-        "what_happened": "Italy won 4-1 in Bursa on 2026-09-28. Bastoni, Frattesi and Kayode had them 3-0 up by the 27th minute. Bar\u0131\u015f Alper Y\u0131lmaz scored for T\u00fcrkiye in the 47th, and Pio Esposito made it 4-1 in the 50th. So the market resolved No. Sources: [ESPN](https://www.espn.com/soccer/match/_/gameId/401861077), [Daily Sabah](https://www.dailysabah.com/sports/football/turkiye-concedes-4-1-to-italy-in-nations-league-match-in-bursa), [Goal](https://www.goal.com/en/lists/italy-turkiye-4-1-nations-league/bltf5040e172cf8be42), [beIN](https://www.beinsports.com/en-mena/football/uefa-nations-league/articles-video/italy-",
-        "what_we_missed": "",
-        "what_worked": "The forecast leaned on T\u00fcrkiye never having beaten Italy in 16 meetings, and on T\u00fcrkiye missing key players: \u00c7ak\u0131r suspended, \u00c7alhano\u011flu and Y\u0131ld\u0131z injured, K\u00f6k\u00e7\u00fc out with a toe injury. Both points held up. But a win-only market at 35.5% already made No the favourite, and 8% was much more confident than those facts justify. The unconfirmed '0-0 draw' search snippet was also wrong. The direction was right, but the size of the edge was partly luck.",
-        "lesson": "A long winless head-to-head record plus a depleted home side is a real signal to shade below the market. Before going far below it, say how much of the gap comes from the evidence, and ignore unverified result snippets found before kickoff.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "If a forecast is more than 20 points away from the market price and the research includes an unconfirmed result claim from before the match was played, drop that claim and cap the gap at what the confirmed evidence supports."
         }
       }
     ],
@@ -8284,9 +8347,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.4891,
-      "b": 0.4302,
-      "n": 49,
+      "a": 1.515,
+      "b": 0.4752,
+      "n": 52,
       "active": true,
       "need": 30
     },
@@ -8303,10 +8366,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 13,
+          "n": 14,
           "wins": 2,
-          "pnl_per_100": -75.87,
-          "total_per_100": -986.27
+          "pnl_per_100": -77.59,
+          "total_per_100": -1086.27
         }
       ],
       "main": [
@@ -8321,10 +8384,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 19,
-          "wins": 4,
-          "pnl_per_100": -54.29,
-          "total_per_100": -1031.53
+          "n": 21,
+          "wins": 5,
+          "pnl_per_100": -50.53,
+          "total_per_100": -1061.23
         },
         {
           "group": "framing",
@@ -8347,10 +8410,10 @@
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 3,
+          "n": 4,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -300.0
+          "total_per_100": -400.0
         },
         {
           "group": "info",
@@ -8373,10 +8436,10 @@
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 7,
-          "wins": 2,
-          "pnl_per_100": -31.79,
-          "total_per_100": -222.51
+          "n": 8,
+          "wins": 3,
+          "pnl_per_100": -19.03,
+          "total_per_100": -152.21
         },
         {
           "group": "info",
@@ -8405,10 +8468,10 @@
         {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 13,
+          "n": 14,
           "wins": 5,
-          "pnl_per_100": -24.34,
-          "total_per_100": -316.44
+          "pnl_per_100": -29.75,
+          "total_per_100": -416.44
         }
       ],
       "jev_alone_bold": [
@@ -8431,10 +8494,10 @@
         {
           "group": "rules",
           "label": "Stopped only by the rules gate",
-          "n": 3,
+          "n": 4,
           "wins": 1,
-          "pnl_per_100": -43.5,
-          "total_per_100": -130.51
+          "pnl_per_100": -57.63,
+          "total_per_100": -230.51
         },
         {
           "group": "several",
@@ -8457,10 +8520,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 5,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -500.0
+          "n": 7,
+          "wins": 1,
+          "pnl_per_100": -75.67,
+          "total_per_100": -529.7
         },
         {
           "group": "several",
@@ -8475,24 +8538,24 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 1,
+          "n": 2,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -100.0
+          "total_per_100": -200.0
         }
       ]
     },
     "by_category": [
       {
         "category": "sports",
-        "n": 52,
-        "jev_research": 0.1935,
-        "jev_plain": 0.262,
-        "market": 0.1601,
+        "n": 54,
+        "jev_research": 0.1892,
+        "jev_plain": 0.2621,
+        "market": 0.1615,
         "claude_direct": 0.1748,
-        "n_jev_research": 35,
-        "n_jev_plain": 52,
-        "n_market": 52,
+        "n_jev_research": 37,
+        "n_jev_plain": 54,
+        "n_market": 54,
         "n_claude_direct": 18
       },
       {
@@ -8533,15 +8596,15 @@
       },
       {
         "category": "politics",
-        "n": 1,
-        "jev_research": 0.3721,
-        "jev_plain": 0.8836,
+        "n": 2,
+        "jev_research": 0.3601,
+        "jev_plain": 0.7699,
+        "market": 0.0776,
         "claude_direct": 0.04,
-        "market": 0.003,
-        "n_jev_research": 1,
-        "n_jev_plain": 1,
-        "n_claude_direct": 1,
-        "n_market": 1
+        "n_jev_research": 2,
+        "n_jev_plain": 2,
+        "n_market": 2,
+        "n_claude_direct": 1
       },
       {
         "category": "weather",
@@ -8600,7 +8663,7 @@
     ],
     "suggested_areas": {
       "gates": 12,
-      "research": 5
+      "research": 7
     },
     "retro": {
       "ts": "2026-09-29T23:35:30Z",
