@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T17:36:58Z",
+  "generated": "2026-09-30T18:06:42Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -53,7 +53,7 @@
       "label": "Minnesota wins"
     },
     {
-      "t": "2026-09-30T17:36:58Z",
+      "t": "2026-09-30T18:06:42Z",
       "equity": 104643.31,
       "label": "Now (open bets valued at cost)"
     }
@@ -325,8 +325,8 @@
     }
   ],
   "calibration": {
-    "judged": 385,
-    "resolved": 99,
+    "judged": 389,
+    "resolved": 100,
     "sources": [
       {
         "name": "jev_research",
@@ -337,8 +337,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.257120202020202,
-        "n": 99
+        "brier": 0.262293,
+        "n": 100
       },
       {
         "name": "claude_direct",
@@ -355,24 +355,25 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13365774747474746,
-        "n": 99
+        "brier": 0.13297141999999998,
+        "n": 100
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 4,
+    "judged": 14,
     "bets": 0,
     "fail_info": 2,
     "fail_rules": 0,
     "fail_edge": 1,
     "sources": {
-      "polymarket": 4
+      "polymarket": 12,
+      "kalshi": 2
     }
   },
   "funnel": {
-    "ts": "2026-09-30T17:34:41Z",
+    "ts": "2026-09-30T18:04:28Z",
     "stages": [
       [
         "Fetched",
@@ -380,11 +381,11 @@
       ],
       [
         "Passed free filters",
-        4
+        14
       ],
       [
         "Judged by Jev",
-        4
+        14
       ],
       [
         "Judged with research",
@@ -399,7 +400,7 @@
         0
       ]
     ],
-    "events": 4,
+    "events": 11,
     "researched_new": 1,
     "research_reused": 1,
     "bets": {
@@ -415,8 +416,8 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 22,
-    "facts_dropped": 0,
+    "facts_kept": 15,
+    "facts_dropped": 5,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -432,7 +433,7 @@
       "original": 0,
       "ch3": 0
     },
-    "judged": 4,
+    "judged": 14,
     "with_research": 2
   },
   "strategies": [
@@ -602,8 +603,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 90512.81,
-      "unrealized": -3934.42,
+      "marked": 90977.07,
+      "unrealized": -3470.16,
       "change": -5552.77,
       "realized": -5552.77,
       "open": 17,
@@ -1314,7 +1315,11 @@
           100607.7
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          100607.7
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           100607.7
         ]
       ]
@@ -1959,7 +1964,11 @@
           99636.24
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           99636.24
         ]
       ]
@@ -2604,7 +2613,11 @@
           91072.64
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          91072.64
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           91072.64
         ]
       ]
@@ -3249,7 +3262,11 @@
           83991.97
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          83991.97
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           83991.97
         ]
       ]
@@ -3894,7 +3911,11 @@
           98379.92
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          98379.92
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           98379.92
         ]
       ]
@@ -4539,8 +4560,12 @@
           90512.81
         ],
         [
-          "2026-09-30T17:36:58Z",
-          90512.81
+          "2026-09-30T18:04:28Z",
+          90977.07
+        ],
+        [
+          "2026-09-30T18:06:42Z",
+          90977.07
         ]
       ]
     },
@@ -5184,7 +5209,11 @@
           99025.99
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          99025.99
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           99025.99
         ]
       ]
@@ -5829,7 +5858,11 @@
           99748.63
         ],
         [
-          "2026-09-30T17:36:58Z",
+          "2026-09-30T18:04:28Z",
+          99748.63
+        ],
+        [
+          "2026-09-30T18:06:42Z",
           99748.63
         ]
       ]
@@ -6582,8 +6615,8 @@
       "source": "polymarket",
       "close_time": "2026-10-03T23:59:00Z",
       "category": "other",
-      "price": 0.2115,
-      "price_at": "2026-09-30T11:34:43Z",
+      "price": 0.244,
+      "price_at": "2026-09-30T18:04:28Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -6594,7 +6627,7 @@
           "p_side": 0.33,
           "edge": 0.19,
           "opened": "2026-09-29T05:34:32Z",
-          "value": 3021.28
+          "value": 3485.54
         }
       ]
     },
@@ -7629,6 +7662,128 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-30T18:04:28Z",
+      "key": "polymarket:4909057",
+      "question": "Will the price of Bitcoin be above $84,000 on October 1?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-october-1-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T16:00:00Z",
+      "market": 0.485,
+      "forecasts": {
+        "jev_research": 0.3,
+        "jev_plain": 0.42,
+        "claude_direct": null,
+        "jev_calibrated": 0.2826
+      },
+      "info": 0.22,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.22 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.050 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.22 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.22 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.050 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.22 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-30T18:04:28Z",
+      "key": "polymarket:5152207",
+      "question": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
+      "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-09T03:00:00Z",
+      "market": 0.525,
+      "forecasts": {
+        "jev_research": 0.63,
+        "jev_plain": 0.47,
+        "claude_direct": 0.93,
+        "jev_calibrated": 0.7883
+      },
+      "info": 0.43,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.350 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.400 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.050 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.350 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.192 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.400 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.350 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.050 < 0.12"
+        }
+      },
+      "facts_total": 9
+    },
+    {
       "ts": "2026-09-30T17:34:41Z",
       "key": "polymarket:4885967",
       "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
@@ -8237,131 +8392,42 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "key": "polymarket:1366008",
-      "question": "Will Luiz In\u00e1cio Lula da Silva win the first round of the 2026 Brazilian presidential election by 5\u201310%?",
-      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-first-round-of-the-2026-brazilian-presidential-election-by-510-971",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-05T03:59:00Z",
-      "market": 0.165,
-      "forecasts": {
-        "jev_research": 0.31,
-        "jev_plain": 0.25,
-        "claude_direct": 0.3,
-        "jev_calibrated": 0.3017
-      },
-      "info": 0.13,
-      "rules": 0.85,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        }
-      },
-      "facts_total": 12
-    },
-    {
-      "ts": "2026-09-30T16:34:31Z",
-      "key": "polymarket:3660967",
-      "question": "Will Bia Kicis win the second-most votes in the 2026 Federal District Senate election?",
-      "url": "https://polymarket.com/market/will-bia-kicis-win-the-second-most-votes-in-the-2026-federal-district-senate-election",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-05T03:59:00Z",
-      "market": 0.786,
-      "forecasts": {
-        "jev_research": 0.47,
-        "jev_plain": 0.27,
-        "claude_direct": null,
-        "jev_calibrated": 0.5463
-      },
-      "info": 0.15,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.09 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.09 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 3
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-30T18:04:28Z",
+      "type": "call",
+      "jev": 0.3,
+      "claude": null,
+      "market": 0.485,
+      "q": "Will the price of Bitcoin be above $84,000 on October 1?",
+      "url": "https://polymarket.com/market/bitcoin-above-84k-on-october-1-2026"
+    },
+    {
+      "ts": "2026-09-30T18:04:28Z",
+      "type": "call",
+      "jev": 0.63,
+      "claude": 0.93,
+      "market": 0.525,
+      "q": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
+      "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-09-30T18:04:28Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
+      "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-09-30T18:04:28Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 14,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-30T17:34:41Z",
       "type": "call",
@@ -8717,15 +8783,6 @@
     {
       "ts": "2026-09-30T15:34:34Z",
       "type": "call",
-      "jev": 0.3,
-      "claude": null,
-      "market": 0.56,
-      "q": "Will the price of Bitcoin be above $84,000 on October 1?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-october-1-2026"
-    },
-    {
-      "ts": "2026-09-30T15:34:34Z",
-      "type": "call",
       "jev": 0.59,
       "claude": 0.92,
       "market": 0.56,
@@ -8746,15 +8803,6 @@
       "judged": 24,
       "researched": 9,
       "bets": 1
-    },
-    {
-      "ts": "2026-09-30T15:04:35Z",
-      "type": "call",
-      "jev": 0.29,
-      "claude": null,
-      "market": 0.0945,
-      "q": "Will Bitcoin dip to $82,000 on September 30?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-82k-on-september-30-2026"
     },
     {
       "ts": "2026-09-30T15:04:35Z",
@@ -9010,34 +9058,19 @@
       "facts": 12,
       "q": "Tampa Bay wins",
       "url": "https://kalshi.com/markets/kxnflgame/tampa-bay-wins/kxnflgame-26oct04gbtb"
-    },
-    {
-      "ts": "2026-09-30T09:04:22Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Will Andr\u00e9 do Prado win the second-most votes in the 2026 S\u00e3o Paulo Senate election?",
-      "url": "https://polymarket.com/market/will-andre-do-prado-win-the-second-most-votes-in-the-2026-sao-paulo-senate-election"
-    },
-    {
-      "ts": "2026-09-30T09:04:22Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 12,
-      "researched": 7,
-      "bets": 1
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T17:34:41Z",
+    "ts": "2026-09-30T18:04:28Z",
     "week": 0.99,
     "week_resets": 1791183600,
     "five_hour": 0.02
   },
-  "research_runs_today": 47,
+  "research_runs_today": 48,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 99,
+    "reviewed": 100,
     "post_mortems": 13,
     "win_reviews": 8,
     "calibration": [
@@ -9507,10 +9540,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 16,
+          "n": 17,
           "wins": 2,
-          "pnl_per_100": -80.39,
-          "total_per_100": -1286.27
+          "pnl_per_100": -81.55,
+          "total_per_100": -1386.27
         }
       ],
       "main": [
@@ -9643,10 +9676,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 3,
+          "n": 4,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -300.0
+          "total_per_100": -400.0
         }
       ],
       "original": [
@@ -9769,11 +9802,11 @@
       },
       {
         "category": "tech",
-        "n": 1,
-        "jev_plain": 0.1444,
-        "market": 0.0025,
-        "n_jev_plain": 1,
-        "n_market": 1
+        "n": 2,
+        "jev_plain": 0.4594,
+        "market": 0.0338,
+        "n_jev_plain": 2,
+        "n_market": 2
       }
     ],
     "proposals": [
