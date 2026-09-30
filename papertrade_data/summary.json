@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T22:36:41Z",
+  "generated": "2026-09-30T23:06:21Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -63,7 +63,7 @@
       "label": "Atlanta wins"
     },
     {
-      "t": "2026-09-30T22:36:41Z",
+      "t": "2026-09-30T23:06:21Z",
       "equity": 100483.07,
       "label": "Now (open bets valued at cost)"
     }
@@ -358,19 +358,19 @@
   ],
   "calibration": {
     "judged": 401,
-    "resolved": 117,
+    "resolved": 120,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.19325063291139244,
-        "n": 79
+        "brier": 0.1986329268292683,
+        "n": 82
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.26456068376068376,
-        "n": 117
+        "brier": 0.26635833333333336,
+        "n": 120
       },
       {
         "name": "claude_direct",
@@ -381,31 +381,31 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.22900256157894736,
-        "n": 19
+        "brier": 0.23566523454545454,
+        "n": 22
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13830399145299144,
-        "n": 117
+        "brier": 0.13506764166666665,
+        "n": 120
       }
     ]
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 10,
+    "judged": 6,
     "bets": 0,
-    "fail_info": 4,
+    "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 4,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 5,
-      "kalshi": 5
+      "polymarket": 3,
+      "kalshi": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-30T22:34:21Z",
+    "ts": "2026-09-30T23:04:21Z",
     "stages": [
       [
         "Fetched",
@@ -413,15 +413,15 @@
       ],
       [
         "Passed free filters",
-        10
+        6
       ],
       [
         "Judged by Jev",
-        10
+        6
       ],
       [
         "Judged with research",
-        5
+        1
       ],
       [
         "Cleared every gate (main)",
@@ -432,15 +432,15 @@
         0
       ]
     ],
-    "events": 9,
+    "events": 6,
     "researched_new": 1,
-    "research_reused": 4,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
-      "calibrated": 1,
+      "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0
@@ -448,8 +448,8 @@
     "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 52,
-    "facts_dropped": 3,
+    "facts_kept": 9,
+    "facts_dropped": 2,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -460,13 +460,13 @@
       "jev_alone": 0,
       "claude_direct": 0,
       "bold": 0,
-      "calibrated": 1,
+      "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0
     },
-    "judged": 10,
-    "with_research": 5
+    "judged": 6,
+    "with_research": 1
   },
   "strategies": [
     {
@@ -575,8 +575,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 81004.38,
-      "unrealized": -10450.73,
+      "marked": 81061.94,
+      "unrealized": -10393.17,
       "change": -8544.89,
       "realized": -8544.89,
       "open": 30,
@@ -1387,7 +1387,11 @@
           97091.07
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          97091.07
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           97091.07
         ]
       ]
@@ -2072,7 +2076,11 @@
           99636.24
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           99636.24
         ]
       ]
@@ -2757,7 +2765,11 @@
           90707.36
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          90707.36
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           90707.36
         ]
       ]
@@ -3442,8 +3454,12 @@
           81004.38
         ],
         [
-          "2026-09-30T22:36:41Z",
-          81004.38
+          "2026-09-30T23:04:21Z",
+          81061.94
+        ],
+        [
+          "2026-09-30T23:06:21Z",
+          81061.94
         ]
       ]
     },
@@ -4127,7 +4143,11 @@
           96617.09
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          96617.09
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           96617.09
         ]
       ]
@@ -4812,7 +4832,11 @@
           89362.5
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          89362.5
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           89362.5
         ]
       ]
@@ -5497,7 +5521,11 @@
           95275.3
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          95275.3
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           95275.3
         ]
       ]
@@ -6182,7 +6210,11 @@
           99550.11
         ],
         [
-          "2026-09-30T22:36:41Z",
+          "2026-09-30T23:04:21Z",
+          99550.11
+        ],
+        [
+          "2026-09-30T23:06:21Z",
           99550.11
         ]
       ]
@@ -7004,8 +7036,8 @@
       "source": "polymarket",
       "close_time": "2026-10-05T04:00:00Z",
       "category": "crypto",
-      "price": 0.055,
-      "price_at": "2026-09-30T16:34:31Z",
+      "price": 0.075,
+      "price_at": "2026-09-30T23:04:21Z",
       "positions": [
         {
           "strategy": "bold",
@@ -7016,7 +7048,7 @@
           "p_side": 0.42,
           "edge": 0.31,
           "opened": "2026-09-29T14:34:39Z",
-          "value": 158.29
+          "value": 215.85
         }
       ]
     },
@@ -7960,6 +7992,67 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-30T23:04:21Z",
+      "key": "kalshi:KXNFLTOTAL-26OCT01PITCLE-51",
+      "question": "Full Game: over 50.5 points scored? (Over 50.5 points)",
+      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-50-5-points-scored/kxnfltotal-26oct01pitcle",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-04T00:15:00Z",
+      "market": 0.18,
+      "forecasts": {
+        "jev_research": 0.2,
+        "jev_plain": 0.4,
+        "claude_direct": 0.09,
+        "jev_calibrated": 0.1901
+      },
+      "info": 0.47,
+      "rules": 0.9,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.011 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.16 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.011 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.021 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.16 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.011 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.12"
+        }
+      },
+      "facts_total": 9
+    },
+    {
       "ts": "2026-09-30T22:34:21Z",
       "key": "kalshi:KXBTCD-26OCT0217-T83499.99",
       "question": "Bitcoin price on Oct 2, 2026? ($83,500 or above)",
@@ -8629,70 +8722,33 @@
         }
       },
       "facts_total": 4
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "key": "kalshi:KXNFLGAME-26OCT04GBTB-TB",
-      "question": "Tampa Bay wins",
-      "url": "https://kalshi.com/markets/kxnflgame/tampa-bay-wins/kxnflgame-26oct04gbtb",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-06T17:00:00Z",
-      "market": 0.375,
-      "forecasts": {
-        "jev_research": 0.38,
-        "jev_plain": 0.4,
-        "claude_direct": null,
-        "jev_calibrated": 0.4698
-      },
-      "info": 0.25,
-      "rules": 0.78,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.026 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.006 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.026 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.063 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.006 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.026 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 11
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-30T23:04:21Z",
+      "type": "call",
+      "jev": 0.2,
+      "claude": 0.09,
+      "market": 0.18,
+      "q": "Full Game: over 50.5 points scored? (Over 50.5 points)",
+      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-50-5-points-scored/kxnfltotal-26oct01pitcle"
+    },
+    {
+      "ts": "2026-09-30T23:04:21Z",
+      "type": "intel",
+      "facts": 11,
+      "q": "Full Game: over 50.5 points scored? (Over 50.5 points)",
+      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-50-5-points-scored/kxnfltotal-26oct01pitcle"
+    },
+    {
+      "ts": "2026-09-30T23:04:21Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 6,
+      "researched": 1,
+      "bets": 0
+    },
     {
       "ts": "2026-09-30T22:34:21Z",
       "type": "bet",
@@ -9166,15 +9222,6 @@
     {
       "ts": "2026-09-30T19:04:32Z",
       "type": "call",
-      "jev": 0.66,
-      "claude": 0.62,
-      "market": 0.675,
-      "q": "Florida wins",
-      "url": "https://kalshi.com/markets/kxncaafgame/florida-wins/kxncaafgame-26oct03flamizz"
-    },
-    {
-      "ts": "2026-09-30T19:04:32Z",
-      "type": "call",
       "jev": 0.38,
       "claude": 0.075,
       "market": 0.0605,
@@ -9361,34 +9408,19 @@
       "p": 0.76,
       "q": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
       "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c"
-    },
-    {
-      "ts": "2026-09-30T16:34:31Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
-      "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c"
-    },
-    {
-      "ts": "2026-09-30T16:34:31Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 12,
-      "researched": 4,
-      "bets": 2
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T22:34:21Z",
+    "ts": "2026-09-30T23:04:21Z",
     "week": 0.99,
     "week_resets": 1791183600,
     "five_hour": 0.01
   },
-  "research_runs_today": 59,
+  "research_runs_today": 60,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 117,
+    "reviewed": 120,
     "post_mortems": 13,
     "win_reviews": 8,
     "calibration": [
@@ -9406,9 +9438,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 32,
-        "predicted": 0.496,
-        "actual": 0.812
+        "n": 35,
+        "predicted": 0.489,
+        "actual": 0.829
       },
       {
         "range": "60\u201380%",
@@ -9839,9 +9871,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.4994,
-      "b": 0.6291,
-      "n": 79,
+      "a": 1.489,
+      "b": 0.6944,
+      "n": 82,
       "active": true,
       "need": 30
     },
@@ -9850,10 +9882,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 55,
+          "n": 58,
           "wins": 9,
-          "pnl_per_100": -57.62,
-          "total_per_100": -3169.06
+          "pnl_per_100": -59.81,
+          "total_per_100": -3469.06
         },
         {
           "group": "several",
@@ -9876,10 +9908,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 34,
+          "n": 37,
           "wins": 9,
-          "pnl_per_100": -39.59,
-          "total_per_100": -1346.17
+          "pnl_per_100": -44.49,
+          "total_per_100": -1646.17
         },
         {
           "group": "framing",
@@ -9910,10 +9942,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 16,
+          "n": 18,
           "wins": 5,
-          "pnl_per_100": -30.98,
-          "total_per_100": -495.64
+          "pnl_per_100": -38.65,
+          "total_per_100": -695.64
         },
         {
           "group": "several",
@@ -9936,10 +9968,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 5,
+          "n": 8,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -500.0
+          "total_per_100": -800.0
         },
         {
           "group": "rules",
@@ -9978,10 +10010,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 37,
+          "n": 40,
           "wins": 7,
-          "pnl_per_100": -50.35,
-          "total_per_100": -1863.0
+          "pnl_per_100": -54.07,
+          "total_per_100": -2163.0
         },
         {
           "group": "rules",
@@ -10012,10 +10044,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 19,
+          "n": 22,
           "wins": 5,
-          "pnl_per_100": -37.61,
-          "total_per_100": -714.64
+          "pnl_per_100": -46.12,
+          "total_per_100": -1014.64
         },
         {
           "group": "several",
@@ -10038,10 +10070,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 9,
+          "n": 12,
           "wins": 2,
-          "pnl_per_100": -41.5,
-          "total_per_100": -373.46
+          "pnl_per_100": -56.12,
+          "total_per_100": -673.46
         },
         {
           "group": "several",
@@ -10092,13 +10124,13 @@
       },
       {
         "category": "economy",
-        "n": 9,
-        "jev_plain": 0.2798,
-        "market": 0.2204,
-        "jev_research": 0.3351,
-        "n_jev_plain": 9,
-        "n_market": 9,
-        "n_jev_research": 8
+        "n": 12,
+        "jev_research": 0.3365,
+        "jev_plain": 0.294,
+        "market": 0.1675,
+        "n_jev_research": 11,
+        "n_jev_plain": 12,
+        "n_market": 12
       },
       {
         "category": "tech",
