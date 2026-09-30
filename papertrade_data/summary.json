@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T23:06:21Z",
+  "generated": "2026-09-30T23:36:07Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -63,7 +63,7 @@
       "label": "Atlanta wins"
     },
     {
-      "t": "2026-09-30T23:06:21Z",
+      "t": "2026-09-30T23:36:07Z",
       "equity": 100483.07,
       "label": "Now (open bets valued at cost)"
     }
@@ -357,7 +357,7 @@
     }
   ],
   "calibration": {
-    "judged": 401,
+    "judged": 402,
     "resolved": 120,
     "sources": [
       {
@@ -394,18 +394,18 @@
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 6,
+    "judged": 9,
     "bets": 0,
-    "fail_info": 1,
+    "fail_info": 6,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 2,
     "sources": {
-      "polymarket": 3,
-      "kalshi": 3
+      "kalshi": 2,
+      "polymarket": 7
     }
   },
   "funnel": {
-    "ts": "2026-09-30T23:04:21Z",
+    "ts": "2026-09-30T23:34:21Z",
     "stages": [
       [
         "Fetched",
@@ -413,15 +413,15 @@
       ],
       [
         "Passed free filters",
-        6
+        9
       ],
       [
         "Judged by Jev",
-        6
+        9
       ],
       [
         "Judged with research",
-        1
+        6
       ],
       [
         "Cleared every gate (main)",
@@ -432,9 +432,9 @@
         0
       ]
     ],
-    "events": 6,
-    "researched_new": 1,
-    "research_reused": 0,
+    "events": 9,
+    "researched_new": 0,
+    "research_reused": 6,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -445,11 +445,11 @@
       "original": 0,
       "ch3": 0
     },
-    "claude_calls": 2,
+    "claude_calls": 0,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 9,
-    "facts_dropped": 2,
+    "facts_kept": 56,
+    "facts_dropped": 10,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -465,8 +465,8 @@
       "original": 0,
       "ch3": 0
     },
-    "judged": 6,
-    "with_research": 1
+    "judged": 9,
+    "with_research": 6
   },
   "strategies": [
     {
@@ -629,14 +629,14 @@
       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
       "challenger": false,
       "note": null,
-      "rules_version": 1,
-      "tuned_at": null,
+      "rules_version": 2,
+      "tuned_at": "2026-09-30T23:35:30Z",
       "frozen": false,
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 89362.5,
-      "unrealized": -3085.15,
+      "marked": 89252.38,
+      "unrealized": -3195.27,
       "change": -7552.35,
       "realized": -7552.35,
       "open": 16,
@@ -699,6 +699,35 @@
       "realized": 0,
       "open": 2,
       "open_cost": 1999.91,
+      "settled": 0,
+      "wins": 0,
+      "losses": 0,
+      "won_amt": 0,
+      "lost_amt": 0
+    },
+    {
+      "name": "ch6",
+      "label": "Jev + research, picky",
+      "short": "Jev + research, picky",
+      "desc": "",
+      "badge": "Challenger",
+      "retired": false,
+      "main": false,
+      "equity": 100000.0,
+      "slot": 8,
+      "blurb": "",
+      "challenger": true,
+      "note": null,
+      "rules_version": 1,
+      "tuned_at": null,
+      "frozen": false,
+      "gate_overrides": {},
+      "marked": 100000.0,
+      "unrealized": 0.0,
+      "change": 0.0,
+      "realized": 0,
+      "open": 0,
+      "open_cost": 0,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -1391,7 +1420,11 @@
           97091.07
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          97091.07
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           97091.07
         ]
       ]
@@ -2080,7 +2113,11 @@
           99636.24
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           99636.24
         ]
       ]
@@ -2769,7 +2806,11 @@
           90707.36
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          90707.36
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           90707.36
         ]
       ]
@@ -3458,7 +3499,11 @@
           81061.94
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          81061.94
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           81061.94
         ]
       ]
@@ -4147,7 +4192,11 @@
           96617.09
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          96617.09
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           96617.09
         ]
       ]
@@ -4836,8 +4885,12 @@
           89362.5
         ],
         [
-          "2026-09-30T23:06:21Z",
-          89362.5
+          "2026-09-30T23:34:21Z",
+          89252.38
+        ],
+        [
+          "2026-09-30T23:36:07Z",
+          89252.38
         ]
       ]
     },
@@ -5525,7 +5578,11 @@
           95275.3
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
+          95275.3
+        ],
+        [
+          "2026-09-30T23:36:07Z",
           95275.3
         ]
       ]
@@ -6214,8 +6271,705 @@
           99550.11
         ],
         [
-          "2026-09-30T23:06:21Z",
+          "2026-09-30T23:34:21Z",
           99550.11
+        ],
+        [
+          "2026-09-30T23:36:07Z",
+          99550.11
+        ]
+      ]
+    },
+    {
+      "name": "ch6",
+      "points": [
+        [
+          "2026-09-27T03:50:03Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:06Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:07Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:08Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T03:50:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T07:25:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T14:41:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:11:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T15:30:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T16:32:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T17:49:01Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T18:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T19:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T19:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T20:05:17Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T20:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T21:05:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T21:35:20Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T22:05:17Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T22:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T23:05:46Z",
+          100000.0
+        ],
+        [
+          "2026-09-27T23:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T00:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T00:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T01:05:14Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T01:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T02:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T02:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T03:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T03:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T04:05:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T04:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T05:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T05:35:45Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T06:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T06:35:18Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T07:02:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T07:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T08:05:18Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T08:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T09:05:18Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T09:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T10:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T10:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T11:05:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T11:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T12:05:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T12:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T13:05:09Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T13:35:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T14:05:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T14:35:16Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T15:05:15Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T15:35:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T16:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T16:35:14Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T17:05:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T17:35:45Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T18:05:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T18:35:10Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T19:05:13Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T19:35:16Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T20:05:12Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T20:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T21:05:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T21:35:11Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T22:04:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T22:34:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T23:04:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-28T23:34:41Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T00:04:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T00:34:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T01:03:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T01:34:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T02:04:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T02:34:51Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T03:04:37Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T03:34:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T04:04:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T04:34:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T05:04:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T05:34:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T06:04:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T06:34:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T07:04:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T07:34:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T08:04:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T08:34:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T09:04:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T09:34:33Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T10:04:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T10:34:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T11:04:33Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T11:34:38Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T12:04:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T12:34:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T13:04:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T13:34:41Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T14:04:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T14:34:39Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T15:04:58Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T15:34:36Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T16:04:35Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T16:34:37Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T17:04:36Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T17:34:33Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T18:04:49Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T18:34:40Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T19:04:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T19:35:05Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T20:05:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T20:35:04Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T21:05:02Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T21:34:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T22:04:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T22:34:20Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T23:04:23Z",
+          100000.0
+        ],
+        [
+          "2026-09-29T23:34:19Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T00:04:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T00:34:16Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T01:04:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T01:34:16Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T02:04:19Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T02:34:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T03:04:19Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T03:34:19Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T04:04:24Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T04:34:19Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T05:04:20Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T05:34:22Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T06:04:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T06:34:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T07:04:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T07:31:15Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T08:04:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T08:34:23Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T09:04:22Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T09:34:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T10:04:22Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T10:34:29Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T11:04:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T11:34:43Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T12:04:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T12:34:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T13:04:30Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T13:34:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T14:04:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T14:34:50Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T15:04:35Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T15:34:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T16:04:36Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T16:34:31Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T17:04:39Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T17:34:41Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T18:04:28Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T18:34:34Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T19:04:32Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T19:34:35Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T20:04:35Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T20:34:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T21:04:27Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T21:34:25Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T22:04:22Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T22:34:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T23:04:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T23:34:21Z",
+          100000.0
+        ],
+        [
+          "2026-09-30T23:36:07Z",
+          100000.0
         ]
       ]
     }
@@ -6614,8 +7368,8 @@
       "source": "polymarket",
       "close_time": "2026-10-01T12:00:00Z",
       "category": "weather",
-      "price": 0.935,
-      "price_at": "2026-09-30T17:04:39Z",
+      "price": 0.938,
+      "price_at": "2026-09-30T23:34:21Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -6626,7 +7380,7 @@
           "p_side": 0.76,
           "edge": 0.63,
           "opened": "2026-09-30T16:34:31Z",
-          "value": 964.14
+          "value": 919.65
         }
       ]
     },
@@ -7651,8 +8405,8 @@
       "source": "kalshi",
       "close_time": "2026-10-30T12:29:00Z",
       "category": "economy",
-      "price": 0.195,
-      "price_at": "2026-09-30T17:04:39Z",
+      "price": 0.22,
+      "price_at": "2026-09-30T23:34:21Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -7663,7 +8417,7 @@
           "p_side": 0.82,
           "edge": 0.0856,
           "opened": "2026-09-30T16:34:31Z",
-          "value": 2113.12
+          "value": 2047.5
         }
       ]
     }
@@ -7991,6 +8745,372 @@
     }
   ],
   "calls": [
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "polymarket:2757891",
+      "question": "Will Aleksandar Vu\u010di\u0107 be the next Prime Minister of Serbia?",
+      "url": "https://polymarket.com/market/will-aleksandar-vucic-be-the-next-prime-minister-of-serbia-20260629223938643",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-25T23:59:00Z",
+      "market": 0.6525,
+      "forecasts": {
+        "jev_research": 0.11,
+        "jev_plain": 0.07,
+        "claude_direct": null,
+        "jev_calibrated": 0.0818
+      },
+      "info": 0.21,
+      "rules": 0.82,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.21 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.27 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.21 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.21 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "YES/NO answers disagree (gap 0.21 > 0.15)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.21 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "polymarket:4906127",
+      "question": "US announces end of Iranian blockade by October 15, 2026?",
+      "url": "https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-october-15-2026",
+      "source": "polymarket",
+      "category": "other",
+      "close_time": "2026-10-16T03:59:00Z",
+      "market": 0.155,
+      "forecasts": {
+        "jev_research": 0.08,
+        "jev_plain": 0.14,
+        "claude_direct": null,
+        "jev_calibrated": 0.0501
+      },
+      "info": 0.47,
+      "rules": 0.77,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.47 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.060 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 11
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "polymarket:5116362",
+      "question": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
+      "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c",
+      "source": "polymarket",
+      "category": "weather",
+      "close_time": "2026-10-01T12:00:00Z",
+      "market": 0.938,
+      "forecasts": {
+        "jev_research": 0.25,
+        "jev_plain": 0.24,
+        "claude_direct": null,
+        "jev_calibrated": 0.2806
+      },
+      "info": 0.23,
+      "rules": 0.84,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.23 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 3
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "polymarket:5152205",
+      "question": "China Open: Completed Match: Clara Tauson vs Polina Kudermetova",
+      "url": "https://polymarket.com/market/wta-tauson-kuderme-2026-10-01-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-09T03:00:00Z",
+      "market": 0.54,
+      "forecasts": {
+        "jev_research": 0.56,
+        "jev_plain": 0.39,
+        "claude_direct": null,
+        "jev_calibrated": 0.7414
+      },
+      "info": 0.41,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.310 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.259 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.310 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.440 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "polymarket:1366008",
+      "question": "Will Luiz In\u00e1cio Lula da Silva win the first round of the 2026 Brazilian presidential election by 5\u201310%?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-first-round-of-the-2026-brazilian-presidential-election-by-510-971",
+      "source": "polymarket",
+      "category": "politics",
+      "close_time": "2026-10-05T03:59:00Z",
+      "market": 0.155,
+      "forecasts": {
+        "jev_research": 0.3,
+        "jev_plain": 0.24,
+        "claude_direct": null,
+        "jev_calibrated": 0.3619
+      },
+      "info": 0.13,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.13 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.070 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.13 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.13 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.070 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.13 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 12
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "key": "kalshi:KXDPWORLDTOUR-ALDLC26-MFIT",
+      "question": "Alfred Dunhill Links Championship: Matt Fitzpatrick wins",
+      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-matt-fitzpatrick-wins/kxdpworldtour-aldlc26",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T00:00:00Z",
+      "market": 0.094,
+      "forecasts": {
+        "jev_research": 0.21,
+        "jev_plain": 0.27,
+        "claude_direct": null,
+        "jev_calibrated": 0.2178
+      },
+      "info": 0.31,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.31 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.31 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.31 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.31 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 10
+    },
     {
       "ts": "2026-09-30T23:04:21Z",
       "key": "kalshi:KXNFLTOTAL-26OCT01PITCLE-51",
@@ -8356,375 +9476,96 @@
         }
       },
       "facts_total": 11
-    },
-    {
-      "ts": "2026-09-30T22:04:22Z",
-      "key": "polymarket:4885967",
-      "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
-      "source": "polymarket",
-      "category": "world",
-      "close_time": "2026-10-16T03:59:00Z",
-      "market": 0.385,
-      "forecasts": {
-        "jev_research": 0.17,
-        "jev_plain": 0.16,
-        "claude_direct": null,
-        "jev_calibrated": 0.1483
-      },
-      "info": 0.29,
-      "rules": 0.89,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.29 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.19 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.29 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.29 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T22:04:22Z",
-      "key": "kalshi:KXBTCD-26OCT0217-T83999.99",
-      "question": "Bitcoin price on Oct 2, 2026? ($84,000 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217",
-      "source": "kalshi",
-      "category": "crypto",
-      "close_time": "2026-10-02T21:00:00Z",
-      "market": 0.455,
-      "forecasts": {
-        "jev_research": 0.39,
-        "jev_plain": 0.45,
-        "claude_direct": null,
-        "jev_calibrated": 0.4896
-      },
-      "info": 0.22,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.027 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.002 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.027 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 11
-    },
-    {
-      "ts": "2026-09-30T22:04:22Z",
-      "key": "kalshi:KXNFLTOTAL-26OCT04TENBAL-35",
-      "question": "Full Game: over 34.5 points scored? (Over 34.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-34-5-points-scored/kxnfltotal-26oct04tenbal",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-06T17:00:00Z",
-      "market": 0.745,
-      "forecasts": {
-        "jev_research": 0.63,
-        "jev_plain": 0.58,
-        "claude_direct": 0.67,
-        "jev_calibrated": 0.8064
-      },
-      "info": 0.33,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.19 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.046 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.033 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.33 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.046 < 0.12"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
-      "question": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-boston-wins/kxmlbseries-26bosnyywc",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-27T23:00:00Z",
-      "market": 0.22,
-      "forecasts": {
-        "jev_research": 0.12,
-        "jev_plain": 0.45,
-        "claude_direct": null,
-        "jev_calibrated": 0.0742
-      },
-      "info": 0.47,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.068 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.12 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.47 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.12 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.068 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-NYY",
-      "question": "Boston vs New York Y Wild Card series winner: New York Y wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-27T23:00:00Z",
-      "market": 0.785,
-      "forecasts": {
-        "jev_research": 0.8,
-        "jev_plain": 0.47,
-        "claude_direct": null,
-        "jev_calibrated": 0.9468
-      },
-      "info": 0.56,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.012 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.12 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.012 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.12 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.012 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "key": "kalshi:KXRT-DIG-50",
-      "question": "Digger Rotten Tomatoes score? (Above 50)",
-      "url": "https://kalshi.com/markets/kxrt/digger-rotten-tomatoes-score/kxrt-dig",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-05T14:00:00Z",
-      "market": 0.44,
-      "forecasts": {
-        "jev_research": 0.73,
-        "jev_plain": 0.45,
-        "claude_direct": null,
-        "jev_calibrated": 0.9049
-      },
-      "info": 0.58,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.037 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.037 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 4
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-30T23:36:06Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-09-30T23:35:30Z",
+      "type": "tune",
+      "strategy": "jev_alone_bold",
+      "version": 2,
+      "text": "edge bar 8% \u2192 12%; skips none \u2192 crypto, economy",
+      "why": "Jev alone scores worse than the market in every category, with a Brier of 0.221 against 0.052 in crypto (21 resolved) and 0.294 against 0.168 in economy (12 resolved). This strategy has lost $17 per $100 staked (22 bets, 6 settled). The experiment is to demand a bigger edge and skip Jev's worst cate"
+    },
+    {
+      "ts": "2026-09-30T23:35:30Z",
+      "type": "learn",
+      "text": "New challenger: Jev + research, picky"
+    },
+    {
+      "ts": "2026-09-30T23:35:30Z",
+      "type": "idea",
+      "text": "Paired Brier scores and a calibration sanity check",
+      "status": "proposed",
+      "why": "Each source is scored on a different set of markets (Claude on 33, the market on 120), so 'Claude beats the market' can't be trusted. The calibration map has a=1.489, and its forecasts score worse than raw Jev (0.236 against 0.199), even though reviews blame Jev being overconfident. A=1.489 may be s"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.11,
+      "claude": null,
+      "market": 0.6525,
+      "q": "Will Aleksandar Vu\u010di\u0107 be the next Prime Minister of Serbia?",
+      "url": "https://polymarket.com/market/will-aleksandar-vucic-be-the-next-prime-minister-of-serbia-20260629223938643"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.08,
+      "claude": null,
+      "market": 0.155,
+      "q": "US announces end of Iranian blockade by October 15, 2026?",
+      "url": "https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-october-15-2026"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.25,
+      "claude": null,
+      "market": 0.938,
+      "q": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
+      "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.56,
+      "claude": null,
+      "market": 0.54,
+      "q": "China Open: Completed Match: Clara Tauson vs Polina Kudermetova",
+      "url": "https://polymarket.com/market/wta-tauson-kuderme-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.3,
+      "claude": null,
+      "market": 0.155,
+      "q": "Will Luiz In\u00e1cio Lula da Silva win the first round of the 2026 Brazilian presidential election by 5\u201310%?",
+      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-first-round-of-the-2026-brazilian-presidential-election-by-510-971"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "call",
+      "jev": 0.21,
+      "claude": null,
+      "market": 0.094,
+      "q": "Alfred Dunhill Links Championship: Matt Fitzpatrick wins",
+      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-matt-fitzpatrick-wins/kxdpworldtour-aldlc26"
+    },
+    {
+      "ts": "2026-09-30T23:34:21Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 9,
+      "researched": 6,
+      "bets": 0
+    },
     {
       "ts": "2026-09-30T23:04:21Z",
       "type": "call",
@@ -9065,33 +9906,6 @@
     {
       "ts": "2026-09-30T20:04:35Z",
       "type": "call",
-      "jev": 0.54,
-      "claude": null,
-      "market": 0.485,
-      "q": "Portugal wins",
-      "url": "https://kalshi.com/markets/kxuefanlgame/portugal-wins/kxuefanlgame-26oct01denpor"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
-      "jev": 0.52,
-      "claude": null,
-      "market": 0.465,
-      "q": "Netherlands wins",
-      "url": "https://kalshi.com/markets/kxuefanlgame/netherlands-wins/kxuefanlgame-26oct01grened"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
-      "jev": 0.57,
-      "claude": null,
-      "market": 0.615,
-      "q": "Bitcoin price on Oct 2, 2026? ($83,000 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
       "jev": 0.53,
       "claude": null,
       "market": 0.805,
@@ -9177,24 +9991,6 @@
     },
     {
       "ts": "2026-09-30T19:34:35Z",
-      "type": "call",
-      "jev": 0.27,
-      "claude": null,
-      "market": 0.14,
-      "q": "Bitcoin price on Oct 2, 2026? ($86,000 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217"
-    },
-    {
-      "ts": "2026-09-30T19:34:35Z",
-      "type": "call",
-      "jev": 0.69,
-      "claude": 0.66,
-      "market": 0.9455,
-      "q": "Will Lebanon win on 2026-10-01?",
-      "url": "https://polymarket.com/market/fif-mdv-lib-2026-10-01-lib"
-    },
-    {
-      "ts": "2026-09-30T19:34:35Z",
       "type": "intel",
       "facts": 8,
       "q": "Will Lebanon win on 2026-10-01?",
@@ -9216,15 +10012,6 @@
       "price": 0.075,
       "amount": 0.07,
       "p": 0.38,
-      "q": "Alfred Dunhill Links Championship: Tyrrell Hatton wins",
-      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-tyrrell-hatton-wins/kxdpworldtour-aldlc26"
-    },
-    {
-      "ts": "2026-09-30T19:04:32Z",
-      "type": "call",
-      "jev": 0.38,
-      "claude": 0.075,
-      "market": 0.0605,
       "q": "Alfred Dunhill Links Championship: Tyrrell Hatton wins",
       "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-tyrrell-hatton-wins/kxdpworldtour-aldlc26"
     },
@@ -9364,50 +10151,6 @@
       "p": 0.83,
       "q": "Digger Rotten Tomatoes score? (Above 50)",
       "url": "https://kalshi.com/markets/kxrt/digger-rotten-tomatoes-score/kxrt-dig"
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "intel",
-      "facts": 12,
-      "q": "China Open: Completed Match: Clara Tauson vs Polina Kudermetova",
-      "url": "https://polymarket.com/market/wta-tauson-kuderme-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "intel",
-      "facts": 13,
-      "q": "Will Luiz In\u00e1cio Lula da Silva win the first round of the 2026 Brazilian presidential election by 5\u201310%?",
-      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-first-round-of-the-2026-brazilian-presidential-election-by-510-971"
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 14,
-      "researched": 9,
-      "bets": 1
-    },
-    {
-      "ts": "2026-09-30T16:34:31Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.7344,
-      "amount": 1927.8,
-      "p": 0.82,
-      "q": "Will **real GDP** increase by more than 4.0% in Q3 2026? (Above 4.0%)",
-      "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-4-0-in-q3-2026/kxgdp-26oct30"
-    },
-    {
-      "ts": "2026-09-30T16:34:31Z",
-      "type": "bet",
-      "strategy": "jev_alone_bold",
-      "side": "no",
-      "price": 0.13,
-      "amount": 1928.29,
-      "p": 0.76,
-      "q": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
-      "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c"
     }
   ],
   "plan_usage": {
@@ -10181,6 +10924,39 @@
     ],
     "proposals": [
       {
+        "id": "p7",
+        "kind": "code",
+        "title": "Paired Brier scores and a calibration sanity check",
+        "why": "Each source is scored on a different set of markets (Claude on 33, the market on 120), so 'Claude beats the market' can't be trusted. The calibration map has a=1.489, and its forecasts score worse than raw Jev (0.236 against 0.199), even though reviews blame Jev being overconfident. A=1.489 may be stretching forecasts further from 50/50 instead of pulling them back.",
+        "judge_by": "Joey approves, and the next review shows Brier scores for each source against the market on the same resolved markets, plus the calibrated source's score on markets the map wasn't fitted to.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-09-30T23:35:30Z"
+      },
+      {
+        "id": "ch6",
+        "kind": "challenger",
+        "title": "Jev + research, picky",
+        "why": "Bets main actually placed have lost $15 per $100 (7 settled), and Jev + research trails the market badly in crypto and economy. This tests whether requiring a 15% edge, and dropping both categories, turns research-driven bets profitable. It can run now, while main is locked until tomorrow.",
+        "judge_by": "P&L per $100 staked is at or above zero, and above original's on the markets both bet over the same period.",
+        "min_resolved": 20,
+        "status": "running",
+        "status_reason": "started automatically within the allowed bounds",
+        "created": "2026-09-30T23:35:30Z"
+      },
+      {
+        "id": "p5",
+        "kind": "tune",
+        "title": "Jev alone, bold: pickier, no crypto or economy",
+        "why": "Jev alone scores worse than the market in every category, with a Brier of 0.221 against 0.052 in crypto (21 resolved) and 0.294 against 0.168 in economy (12 resolved). This strategy has lost $17 per $100 staked (22 bets, 6 settled). The experiment is to demand a bigger edge and skip Jev's worst categories, while leaving the info gate at 0.2 so it stays distinct from Jev alone.",
+        "judge_by": "On bets opened after this change, P&L per $100 staked beats its all-time -$17.4 per $100 and is at least as good as jev_alone over the same period.",
+        "min_resolved": 15,
+        "status": "applied",
+        "status_reason": "jev_alone_bold rules v2: edge bar 8% \u2192 12%; skips none \u2192 crypto, economy",
+        "created": "2026-09-30T23:35:30Z"
+      },
+      {
         "id": "p4",
         "kind": "code",
         "title": "Break results down by price paid",
@@ -10230,22 +11006,43 @@
       "research": 7
     },
     "retro": {
-      "ts": "2026-09-29T23:35:30Z",
-      "headline": "Day one: the market's own price is still the best forecaster (Brier 0.116 vs 0.132 for Claude and 0.157 for Jev+research); main is up $1,867 on just 5 settled bets, the loosened strategies are down about $6k each, and the info gate is the one filter that is clearly paying off.",
+      "ts": "2026-09-30T23:35:30Z",
+      "headline": "A losing day for most strategies. Only main is ahead, at +$483 on 8 settled bets. Every Jev forecast still scores worse than the market price, and every sample here is too small to call.",
       "went_well": [
-        "Main is up $1,866.73 (3 wins, 2 losses on 5 settled, 7 still open). That is too few to call a finding. Against original, which runs identical rules, the yardstick is a tie: +$489 vs +$473 on 2 settled bets. That is expected, since nothing has been tuned yet.",
-        "The info gate is saving money everywhere we can see it. Markets it alone stopped would have lost $70\u2013$88 per $100: main 16 stopped with 2 wins, jev_alone 37 with 3 wins, jev_alone_bold 21 with 1 win, claude_direct 8 with 1 win. These strategies look at many of the same markets, so this is fewer inde",
-        "Claude direct is the best of our forecasters, with a Brier of 0.132 on 24 resolved (lower is better). Jev with research scores 0.157 on 44."
+        "Main is up $483 on 8 settled bets (4 wins, 4 losses). On the yardstick, main made +$1,173 and original +$1,136 on the same 11 bets, but only 4 have settled, so that is a tie and says nothing yet about the crypto skip.",
+        "The info gate appears to be saving money. Markets it stopped for main would have lost $44 per $100 staked (37 markets), and for Jev alone $60 per $100 (58 markets).",
+        "Claude direct's forecasts score a Brier of 0.131 (33 resolved), against 0.135 for the market price (120 resolved). The two are not scored on the same markets, so this is a hint, not proof, that Claude matches the market."
       ],
       "went_badly": [
-        "Nothing we have beats the market. Its price scores 0.116 on 69 resolved. It is far ahead in crypto (0.034 vs Jev+research 0.117 on 9) and ahead in sports (0.141 vs 0.177 on 30).",
-        "Jev alone scores 0.262 on 69 resolved, which is worse than always guessing 50% (0.25). With 69 results this is a real finding, not noise.",
-        "Claude direct went 0 for 3 on settled bets (-$6,000). Bold went 2\u20136 on 8 settled (-$5,898), and its extra bets, taken where Jev's info rating was 0.2\u20130.5, are losing $31.79 per $100. Both samples are tiny."
+        "Claude direct has lost all 4 of its settled bets, for -$8,000, despite having the best Brier score. Four bets is noise, but it suggests the gaps it bets on are its own errors rather than real edge.",
+        "Bold is down $8,545 all time (4 wins, 10 losses) and has lost all 3 bets settled since its info threshold rose to 0.35 (-$5,424). Jev alone, bold, is down $7,552 with 1 win in 6.",
+        "We are not beating the market. By Brier score, the market is at 0.135, Jev + research at 0.199 (82 resolved), Jev alone at 0.266 (120) and self-calibrating Jev at 0.236 (22). Calibration seems to make Jev worse. In economy, Jev + research scores 0.337 against the market's 0.168 (11 resolved)."
       ]
     },
     "auto_start": true,
     "auto_tune": true,
     "rule_changes": [
+      {
+        "ts": "2026-09-30T23:35:30Z",
+        "strategy": "jev_alone_bold",
+        "version": 2,
+        "changed": {
+          "min_edge": [
+            0.08,
+            0.12
+          ],
+          "skip_categories": [
+            null,
+            [
+              "crypto",
+              "economy"
+            ]
+          ]
+        },
+        "why": "Jev alone scores worse than the market in every category, with a Brier of 0.221 against 0.052 in crypto (21 resolved) and 0.294 against 0.168 in economy (12 resolved). This strategy has lost $17 per $100 staked (22 bets, 6 settled). The experiment is to demand a bigger edge and skip Jev's worst categories, while leaving the info gate at 0.2 so it stays distinct from Jev alone.",
+        "judge_by": "On bets opened after this change, P&L per $100 staked beats its all-time -$17.4 per $100 and is at least as good as jev_alone over the same period.",
+        "min_resolved": 15
+      },
       {
         "ts": "2026-09-29T23:35:30Z",
         "strategy": "bold",
@@ -10283,6 +11080,13 @@
         "title": "Break results down by price paid",
         "why": "Many losses, including all 3 of claude_direct's and every info-gate-stopped group, show -$100 per $100, meaning the whole stake was lost. That pattern suggests we may be buying cheap longshots. A breakdown of wins and P&L by ask price (for example <0.2, 0.2\u20130.5, 0.5\u20130.8, >0.8), for placed and stopped bets, would let us set min_ask and max_ask from evidence instead of guessing.",
         "created": "2026-09-29T23:35:30Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p7",
+        "title": "Paired Brier scores and a calibration sanity check",
+        "why": "Each source is scored on a different set of markets (Claude on 33, the market on 120), so 'Claude beats the market' can't be trusted. The calibration map has a=1.489, and its forecasts score worse than raw Jev (0.236 against 0.199), even though reviews blame Jev being overconfident. A=1.489 may be stretching forecasts further from 50/50 instead of pulling them back.",
+        "created": "2026-09-30T23:35:30Z",
         "status": "proposed"
       }
     ]

@@ -67,6 +67,61 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p5",
+      "created": "2026-09-30T23:35:30Z",
+      "kind": "tune",
+      "title": "Jev alone, bold: pickier, no crypto or economy",
+      "why": "Jev alone scores worse than the market in every category, with a Brier of 0.221 against 0.052 in crypto (21 resolved) and 0.294 against 0.168 in economy (12 resolved). This strategy has lost $17 per $100 staked (22 bets, 6 settled). The experiment is to demand a bigger edge and skip Jev's worst categories, while leaving the info gate at 0.2 so it stays distinct from Jev alone.",
+      "judge_by": "On bets opened after this change, P&L per $100 staked beats its all-time -$17.4 per $100 and is at least as good as jev_alone over the same period.",
+      "min_resolved": 15,
+      "status": "applied",
+      "status_reason": "jev_alone_bold rules v2: edge bar 8% \u2192 12%; skips none \u2192 crypto, economy",
+      "strategy": "jev_alone_bold",
+      "rules": {
+        "min_edge": 0.12,
+        "skip_categories": [
+          "crypto",
+          "economy"
+        ]
+      }
+    },
+    {
+      "id": "ch6",
+      "created": "2026-09-30T23:35:30Z",
+      "kind": "challenger",
+      "title": "Jev + research, picky",
+      "why": "Bets main actually placed have lost $15 per $100 (7 settled), and Jev + research trails the market badly in crypto and economy. This tests whether requiring a 15% edge, and dropping both categories, turns research-driven bets profitable. It can run now, while main is locked until tomorrow.",
+      "judge_by": "P&L per $100 staked is at or above zero, and above original's on the markets both bet over the same period.",
+      "min_resolved": 20,
+      "status": "running",
+      "status_reason": "started automatically within the allowed bounds",
+      "strategy": {
+        "label": "Jev + research, picky",
+        "probability": "jev_research",
+        "gates": "jev_research",
+        "rules": {
+          "min_edge": 0.15,
+          "skip_categories": [
+            "crypto",
+            "economy"
+          ]
+        }
+      },
+      "started": "2026-09-30T23:35:30Z",
+      "slot": 8
+    },
+    {
+      "id": "p7",
+      "created": "2026-09-30T23:35:30Z",
+      "kind": "code",
+      "title": "Paired Brier scores and a calibration sanity check",
+      "why": "Each source is scored on a different set of markets (Claude on 33, the market on 120), so 'Claude beats the market' can't be trusted. The calibration map has a=1.489, and its forecasts score worse than raw Jev (0.236 against 0.199), even though reviews blame Jev being overconfident. A=1.489 may be stretching forecasts further from 50/50 instead of pulling them back.",
+      "judge_by": "Joey approves, and the next review shows Brier scores for each source against the market on the same resolved markets, plus the calibrated source's score on markets the map wasn't fitted to.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
