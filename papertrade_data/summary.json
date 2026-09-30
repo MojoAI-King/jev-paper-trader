@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T13:07:28Z",
+  "generated": "2026-09-30T13:36:32Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -53,7 +53,7 @@
       "label": "Minnesota wins"
     },
     {
-      "t": "2026-09-30T13:07:28Z",
+      "t": "2026-09-30T13:36:32Z",
       "equity": 104643.31,
       "label": "Now (open bets valued at cost)"
     }
@@ -325,7 +325,7 @@
     }
   ],
   "calibration": {
-    "judged": 363,
+    "judged": 366,
     "resolved": 88,
     "sources": [
       {
@@ -362,18 +362,18 @@
   },
   "last_scan": {
     "date": "2026-09-30",
-    "judged": 40,
+    "judged": 14,
     "bets": 0,
-    "fail_info": 12,
-    "fail_rules": 2,
-    "fail_edge": 6,
+    "fail_info": 2,
+    "fail_rules": 0,
+    "fail_edge": 1,
     "sources": {
-      "polymarket": 15,
-      "kalshi": 25
+      "polymarket": 11,
+      "kalshi": 3
     }
   },
   "funnel": {
-    "ts": "2026-09-30T13:04:30Z",
+    "ts": "2026-09-30T13:34:32Z",
     "stages": [
       [
         "Fetched",
@@ -381,15 +381,15 @@
       ],
       [
         "Passed free filters",
-        49
+        14
       ],
       [
         "Judged by Jev",
-        40
+        14
       ],
       [
         "Judged with research",
-        13
+        2
       ],
       [
         "Cleared every gate (main)",
@@ -400,9 +400,9 @@
         0
       ]
     ],
-    "events": 31,
-    "researched_new": 2,
-    "research_reused": 9,
+    "events": 11,
+    "researched_new": 1,
+    "research_reused": 1,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -413,11 +413,11 @@
       "original": 0,
       "ch3": 0
     },
-    "claude_calls": 4,
+    "claude_calls": 2,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 99,
-    "facts_dropped": 21,
+    "facts_kept": 13,
+    "facts_dropped": 4,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -427,14 +427,14 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 1,
+      "bold": 0,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0
     },
-    "judged": 40,
-    "with_research": 13
+    "judged": 14,
+    "with_research": 2
   },
   "strategies": [
     {
@@ -1279,7 +1279,11 @@
           100008.07
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          100008.07
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           100008.07
         ]
       ]
@@ -1888,7 +1892,11 @@
           99636.24
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          99636.24
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           99636.24
         ]
       ]
@@ -2497,7 +2505,11 @@
           91220.78
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          91220.78
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           91220.78
         ]
       ]
@@ -3106,7 +3118,11 @@
           86506.13
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          86506.13
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           86506.13
         ]
       ]
@@ -3715,7 +3731,11 @@
           97827.38
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          97827.38
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           97827.38
         ]
       ]
@@ -4324,7 +4344,11 @@
           93727.06
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          93727.06
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           93727.06
         ]
       ]
@@ -4933,7 +4957,11 @@
           98446.3
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          98446.3
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           98446.3
         ]
       ]
@@ -5542,7 +5570,11 @@
           99827.43
         ],
         [
-          "2026-09-30T13:07:28Z",
+          "2026-09-30T13:34:32Z",
+          99827.43
+        ],
+        [
+          "2026-09-30T13:36:32Z",
           99827.43
         ]
       ]
@@ -7273,6 +7305,128 @@
   ],
   "calls": [
     {
+      "ts": "2026-09-30T13:34:32Z",
+      "key": "polymarket:5146630",
+      "question": "Will Ethereum reach $2,800 on September 30?",
+      "url": "https://polymarket.com/market/will-ethereum-reach-2800-on-september-30-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-01T04:00:00Z",
+      "market": 0.135,
+      "forecasts": {
+        "jev_research": 0.23,
+        "jev_plain": 0.2,
+        "claude_direct": 0.07,
+        "jev_calibrated": 0.1824
+      },
+      "info": 0.26,
+      "rules": 0.89,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.064 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.034 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.034 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.064 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.016 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.034 < 0.08"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.064 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.034 < 0.12"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-09-30T13:34:32Z",
+      "key": "polymarket:4950492",
+      "question": "Will the price of Bitcoin be above $88,000 on October 2?",
+      "url": "https://polymarket.com/market/bitcoin-above-88k-on-october-2-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-02T16:00:00Z",
+      "market": 0.139,
+      "forecasts": {
+        "jev_research": 0.24,
+        "jev_plain": 0.41,
+        "claude_direct": null,
+        "jev_calibrated": 0.1955
+      },
+      "info": 0.24,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.24 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.24 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.040 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.06 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.24 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        }
+      },
+      "facts_total": 7
+    },
+    {
       "ts": "2026-09-30T13:04:30Z",
       "key": "polymarket:4052418",
       "question": "Will Bitcoin reach $87,500 in September?",
@@ -7881,131 +8035,42 @@
         }
       },
       "facts_total": 9
-    },
-    {
-      "ts": "2026-09-30T13:04:30Z",
-      "key": "polymarket:5146608",
-      "question": "Will Bitcoin reach $86,000 on September 30?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-86k-on-september-30-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T04:00:00Z",
-      "market": 0.461,
-      "forecasts": {
-        "jev_research": 0.15,
-        "jev_plain": 0.24,
-        "claude_direct": null,
-        "jev_calibrated": 0.0904
-      },
-      "info": 0.31,
-      "rules": 0.9,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.08 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.31 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.08 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T13:04:30Z",
-      "key": "polymarket:4909061",
-      "question": "Will the price of Bitcoin be above $88,000 on October 1?",
-      "url": "https://polymarket.com/market/bitcoin-above-88k-on-october-1-2026",
-      "source": "polymarket",
-      "category": "crypto",
-      "close_time": "2026-10-01T16:00:00Z",
-      "market": 0.0565,
-      "forecasts": {
-        "jev_research": 0.25,
-        "jev_plain": 0.39,
-        "claude_direct": null,
-        "jev_calibrated": 0.2089
-      },
-      "info": 0.26,
-      "rules": 0.85,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.07 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.26 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 5
     }
   ],
   "feed": [
+    {
+      "ts": "2026-09-30T13:34:32Z",
+      "type": "call",
+      "jev": 0.23,
+      "claude": 0.07,
+      "market": 0.135,
+      "q": "Will Ethereum reach $2,800 on September 30?",
+      "url": "https://polymarket.com/market/will-ethereum-reach-2800-on-september-30-2026"
+    },
+    {
+      "ts": "2026-09-30T13:34:32Z",
+      "type": "call",
+      "jev": 0.24,
+      "claude": null,
+      "market": 0.139,
+      "q": "Will the price of Bitcoin be above $88,000 on October 2?",
+      "url": "https://polymarket.com/market/bitcoin-above-88k-on-october-2-2026"
+    },
+    {
+      "ts": "2026-09-30T13:34:32Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Will Ethereum reach $2,800 on September 30?",
+      "url": "https://polymarket.com/market/will-ethereum-reach-2800-on-september-30-2026"
+    },
+    {
+      "ts": "2026-09-30T13:34:32Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 14,
+      "researched": 2,
+      "bets": 0
+    },
     {
       "ts": "2026-09-30T13:04:30Z",
       "type": "call",
@@ -8277,15 +8342,6 @@
     {
       "ts": "2026-09-30T11:34:43Z",
       "type": "call",
-      "jev": 0.18,
-      "claude": null,
-      "market": 0.405,
-      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
-    },
-    {
-      "ts": "2026-09-30T11:34:43Z",
-      "type": "call",
       "jev": 0.54,
       "claude": null,
       "market": 0.415,
@@ -8340,15 +8396,6 @@
       "judged": 9,
       "researched": 5,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-30T11:04:34Z",
-      "type": "call",
-      "jev": 0.12,
-      "claude": 0.72,
-      "market": 0.6085,
-      "q": "Will Aleksandar Vu\u010di\u0107 be the next Prime Minister of Serbia?",
-      "url": "https://polymarket.com/market/will-aleksandar-vucic-be-the-next-prime-minister-of-serbia-20260629223938643"
     },
     {
       "ts": "2026-09-30T11:04:34Z",
@@ -8664,34 +8711,15 @@
       "facts": 10,
       "q": "Will Bitcoin dip to $82,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-82pt5k-in-september-2026"
-    },
-    {
-      "ts": "2026-09-30T05:04:20Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 2,
-      "researched": 1,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T04:34:19Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "no",
-      "price": 0.5175,
-      "amount": 1577.34,
-      "p": 0.7,
-      "q": "Philadelphia wins",
-      "url": "https://kalshi.com/markets/kxmlbgame/philadelphia-wins/kxmlbgame-26sep301400phiatl"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T13:04:30Z",
+    "ts": "2026-09-30T13:34:32Z",
     "week": 0.99,
     "week_resets": 1791183600,
     "five_hour": 0.01
   },
-  "research_runs_today": 36,
+  "research_runs_today": 37,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
