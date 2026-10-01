@@ -41,7 +41,5 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-| ID | Title | State | Branch | Owner |
-|---|---|---|---|---|
-| [2026-10-01-turn-the-losses-around-stop-long-shots-f-9d23](tasks/2026-10-01-turn-the-losses-around-stop-long-shots-f-9d23.md) | Turn the losses around: stop long shots, find every loss pattern, more and better bets | in-progress | master | unassigned |
+No open tasks.
 <!-- skilliton:index:tasks:end -->

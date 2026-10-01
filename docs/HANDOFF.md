@@ -4,15 +4,22 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-01 00:10 EDT
+Written: 2026-10-01 01:04 EDT
 
+- **State:** Verified: research back on Joey's current Claude account (run 36816087586 at 04:39Z: 10 new research runs, 22 Claude calls, week 41%, 5-hour 40%); 30c floor, 150 research/day with week pace guard, review twice daily, 100 markets/source all live. Ledger audit clean (9 ledgers add up; 32 settled markets match the exchanges; page equals ledgers). Evidence: 121 tests OK; health run success; audit script output.
+- **Next:** Check in: bets/wins/losses since 2026-10-01 vs original; what the twice-daily review changed; plan meter vs the pace guard
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
+- **Git:** master @ a1e13d0, 3 uncommitted
+
+## Earlier
+
+### 2026-10-01 00:10 EDT
 - **State:** Diagnosed losses (read-only): long shots under 30c caused -32.6k of -35.7k settled; options in BACKLOG B22 put to Joey; nothing changed yet. Claude week 100%: daily review and research paused until Mon 3 AM ET. Evidence: health Healthy 04:04Z 2026-10-01; settled-bet breakdown from papertrade_data/portfolios (50 bets, 32 markets).
 - **Next:** Joey's answer on B22: min_ask 0.30 by hand, approve p4/p7, market-shrink code idea
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
 - **Git:** master @ f99f53b, 2 uncommitted
-
-## Earlier
 
 ### 2026-09-29 00:07 EDT
 - **State:** Verified live: run 36519949032 (04:04Z) on 44b97f1 succeeded; original.json created 04:04:29Z and bet; new bets carry rules_version; decisions record min_edge; summary.json has auto_tune, rule_changes, ideas_for_joey, original slot y; page shell deployed and identical to the build. Evidence: health Healthy at 04:06Z (7 strategies, 4 bets that cycle incl. original 1); 117 tests pass; curl of summary.json and the page.
@@ -41,10 +48,3 @@ Written: 2026-10-01 00:10 EDT
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
 - **Git:** master @ 41082cd, 6 uncommitted
-
-### 2026-09-27 15:02 EDT
-- **State:** Page back at 1x everywhere (Worker 5536aa80, live checked); main's Headline tag dropped in policy.json, hover blurbs say Jev + Claude. Evidence: 72 tests pass; live page byte-equal to the new build, no zoom rules; tag leaves the page at the next cycle's summary.json.
-- **Next:** Next cycle (~19:04 UTC) regenerates summary.json without the tag; then nothing queued beyond BACKLOG B3, B15, B13
-- **Blocked:** nothing
-- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
-- **Git:** master @ 9b395f9, 4 uncommitted
