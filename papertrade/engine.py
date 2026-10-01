@@ -372,6 +372,15 @@ def last_claude_rate(now: datetime) -> dict | None:
     return dict(rate, unifiedWindows=windows)
 
 
+PROBE_HOURS = 2
+
+
+def probe_due(now: datetime) -> bool:
+    """True when no cycle in the last PROBE_HOURS sent a probe call past a stored busy reading."""
+    cutoff = (now - timedelta(hours=PROBE_HOURS)).strftime(TS)
+    return not any((s.get("claude") or {}).get("probe") and s.get("ts", "") > cutoff for s in read_jsonl(SCANS))
+
+
 def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log, rules_version: int = 1) -> None:
     pf["cash"] = round(pf["cash"] - d["total_cost"], 2)
     pf["open"].append({
@@ -497,6 +506,12 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             forecaster = forecaster or news.DirectForecaster(rc, claude)
             if claude is not None:
                 claude.last_rate = claude.last_rate or last_claude_rate(now)
+                if claude.last_rate and not claude.usage_ok() and probe_due(now):
+                    # The busy reading is from an earlier cycle, maybe another account (Joey swapped the token
+                    # on 2026-10-01 and research stayed off until the old account's week would have reset).
+                    # One call this cycle gets a fresh reading; at most one probe every PROBE_HOURS.
+                    claude.last_rate = None
+                    cl["probe"] = True
         except news.NewsError as e:
             warn(f"! research unavailable this cycle: {e}")
             stats["errors"] += 1

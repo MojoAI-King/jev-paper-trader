@@ -704,23 +704,46 @@ class ResearchPipelineTests(DataDirTest):
         self.assertIn("research unavailable", j["decisions"]["main"]["reasons"][0])
 
     def test_plan_usage_guard_waits_for_the_window_to_reset(self):
+        rc = POLICY["research"]
+        runs = []
+
+        def runner_with(week):
+            def runner(args, env, cwd, timeout):
+                runs.append(args)
+                return 0, stream("[]", week=week), ""
+            return runner
+        busy = {"status": "allowed_warning", "unifiedWindows": {
+            "seven_day": {"utilization": rc["max_week_used"], "resetsAt": (SCAN_NOW + timedelta(hours=10)).timestamp()}}}
+        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-24T23:00:00Z", "claude": {"rate": busy}})
+        # the plan really is full: one probe call gets a fresh (full) reading, and research stops there
+        cc = news.ClaudeCode(rc, runner=runner_with(rc["max_week_used"]))
+        stats = self.run_scan([self.lula(), self.lula("M", event="polymarket:e2")], news.Researcher(rc, cc),
+                              news.DirectForecaster(rc, cc), claude=cc)
+        self.assertEqual((len(runs), stats["claude"]["limited"], stats["claude"]["probe"]), (1, True, True))
+        # half an hour later the stored reading still says full and a probe ran recently: no call at all
+        cc2 = news.ClaudeCode(rc, runner=runner_with(rc["max_week_used"]))
+        self.run_scan([self.lula("N", event="polymarket:e3")], news.Researcher(rc, cc2), news.DirectForecaster(rc, cc2),
+                      claude=cc2, now=SCAN_NOW + timedelta(minutes=30))
+        self.assertEqual(len(runs), 1)
+        # after the weekly window resets, research runs again
+        cc3 = news.ClaudeCode(rc, runner=runner_with(0.3))
+        self.run_scan([self.lula("P", event="polymarket:e4")], news.Researcher(rc, cc3), news.DirectForecaster(rc, cc3),
+                      claude=cc3, now=SCAN_NOW + timedelta(hours=11))
+        self.assertGreater(len(runs), 1)
+
+    def test_a_stale_busy_reading_from_another_account_does_not_block_research(self):
+        rc = POLICY["research"]
         runs = []
 
         def runner(args, env, cwd, timeout):
             runs.append(args)
-            return 0, STREAM, ""
-        rc = POLICY["research"]
-        busy = {"status": "allowed_warning", "unifiedWindows": {
-            "seven_day": {"utilization": rc["max_week_used"], "resetsAt": (SCAN_NOW + timedelta(hours=10)).timestamp()}}}
-        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-24T23:00:00Z", "claude": {"rate": busy}})
+            return 0, stream("[]", week=0.2), ""  # the new token's account has room
+        full = {"unifiedWindows": {"seven_day": {"utilization": 1.0, "resetsAt": (SCAN_NOW + timedelta(days=4)).timestamp()}}}
+        engine.append_jsonl(engine.SCANS, {"ts": "1999-12-24T23:30:00Z", "claude": {"rate": full}})
         cc = news.ClaudeCode(rc, runner=runner)
-        stats = self.run_scan([self.lula()], news.Researcher(rc, cc), news.DirectForecaster(rc, cc), claude=cc)
-        self.assertEqual((runs, stats["claude"]["limited"], stats["funnel"]["judged"]), ([], True, 1))
-        # after the weekly window resets, research runs again
-        cc2 = news.ClaudeCode(rc, runner=runner)
-        self.run_scan([self.lula()], news.Researcher(rc, cc2), news.DirectForecaster(rc, cc2), claude=cc2,
-                      now=SCAN_NOW + timedelta(hours=11))
-        self.assertGreaterEqual(len(runs), 1)
+        self.run_scan([self.lula(), self.lula("M", event="polymarket:e2")], news.Researcher(rc, cc),
+                      news.DirectForecaster(rc, cc), claude=cc)
+        self.assertGreaterEqual(len(runs), 2)  # the probe found room, so research carried on
 
     def test_each_strategy_uses_its_own_probability_and_never_doubles_up(self):
         def transport(url, body, key, timeout):
