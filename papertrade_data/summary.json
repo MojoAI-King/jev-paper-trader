@@ -1,19 +1,19 @@
 {
-  "generated": "2026-10-01T03:35:29Z",
+  "generated": "2026-10-01T04:05:31Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
   "cash": 79918.38,
-  "open_cost": 18564.75,
-  "equity": 98483.13,
-  "realized": -1516.87,
-  "roi_settled": -0.08260977776228674,
+  "open_cost": 16497.25,
+  "equity": 96415.63,
+  "realized": -3584.37,
+  "roi_settled": -0.175451812757809,
   "wins": 4,
-  "settled": 9,
+  "settled": 10,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
-    "polymarket": 10274.44,
+    "polymarket": 8206.94,
     "kalshi": 8290.31
   },
   "curve": [
@@ -68,26 +68,17 @@
       "label": "Washington vs Atlanta First Round series winner: Washington wins"
     },
     {
-      "t": "2026-10-01T03:35:29Z",
-      "equity": 98483.13,
+      "t": "2026-10-01T04:04:22Z",
+      "equity": 96415.63,
+      "label": "Trump renames AI by September 30?"
+    },
+    {
+      "t": "2026-10-01T04:05:31Z",
+      "equity": 96415.63,
       "label": "Now (open bets valued at cost)"
     }
   ],
   "open": [
-    {
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "side": "no",
-      "contracts": 4135,
-      "cost_per": 0.5,
-      "total_cost": 2067.5,
-      "p_side": 0.9,
-      "market_ask": 0.49,
-      "edge": 0.4,
-      "opened": "2026-09-29T13:34:41Z",
-      "close_time": "2026-10-01T03:59:00Z"
-    },
     {
       "question": "0 ships transit Hormuz on any date by September 30?",
       "url": "https://polymarket.com/market/0-ships-transit-hormuz-on-any-date-by-september-30",
@@ -202,6 +193,24 @@
     }
   ],
   "closed": [
+    {
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "side": "no",
+      "contracts": 4135,
+      "cost_per": 0.5,
+      "total_cost": 2067.5,
+      "p_side": 0.9,
+      "market_ask": 0.49,
+      "edge": 0.4,
+      "opened": "2026-09-29T13:34:41Z",
+      "close_time": "2026-10-01T03:59:00Z",
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2067.5,
+      "settled": "2026-10-01T04:04:22Z"
+    },
     {
       "question": "Washington vs Atlanta First Round series winner: Washington wins",
       "url": "https://kalshi.com/markets/kxwnbaseries/market/kxwnbaseries-26wshatlr1",
@@ -367,54 +376,54 @@
   ],
   "calibration": {
     "judged": 408,
-    "resolved": 131,
+    "resolved": 138,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.19018444444444446,
-        "n": 90
+        "brier": 0.19447157894736844,
+        "n": 95
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.26388244274809164,
-        "n": 131
+        "brier": 0.27043985507246376,
+        "n": 138
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.1333769411764706,
-        "n": 34
+        "brier": 0.12748691891891892,
+        "n": 37
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.19826622586206896,
-        "n": 29
+        "brier": 0.18893862709677417,
+        "n": 31
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13446062595419847,
-        "n": 131
+        "brier": 0.13480422644927534,
+        "n": 138
       }
     ]
   },
   "last_scan": {
     "date": "2026-10-01",
-    "judged": 3,
+    "judged": 6,
     "bets": 0,
     "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 1,
+    "fail_edge": 0,
     "sources": {
-      "kalshi": 1,
-      "polymarket": 2
+      "polymarket": 4,
+      "kalshi": 2
     }
   },
   "funnel": {
-    "ts": "2026-10-01T03:34:20Z",
+    "ts": "2026-10-01T04:04:22Z",
     "stages": [
       [
         "Fetched",
@@ -422,11 +431,11 @@
       ],
       [
         "Passed free filters",
-        3
+        6
       ],
       [
         "Judged by Jev",
-        3
+        6
       ],
       [
         "Judged with research",
@@ -441,7 +450,7 @@
         0
       ]
     ],
-    "events": 2,
+    "events": 5,
     "researched_new": 0,
     "research_reused": 1,
     "bets": {
@@ -450,7 +459,7 @@
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0,
       "ch6": 0
@@ -458,8 +467,8 @@
     "claude_calls": 0,
     "claude_limited": true,
     "claude_note": null,
-    "facts_kept": 9,
-    "facts_dropped": 2,
+    "facts_kept": 8,
+    "facts_dropped": 0,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -471,12 +480,12 @@
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 1,
+      "jev_alone_bold": 0,
       "original": 0,
       "ch3": 0,
       "ch6": 0
     },
-    "judged": 3,
+    "judged": 6,
     "with_research": 1
   },
   "strategies": [
@@ -488,7 +497,7 @@
       "badge": null,
       "retired": false,
       "main": true,
-      "equity": 98483.13,
+      "equity": 96415.63,
       "slot": 1,
       "blurb": "Jev reads Claude's research. The main test; the daily review tunes its rules as results come in.",
       "challenger": false,
@@ -497,17 +506,17 @@
       "tuned_at": "2026-09-29T23:35:30Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 96307.38,
-      "unrealized": -2175.75,
-      "change": -1516.87,
-      "realized": -1516.87,
-      "open": 9,
-      "open_cost": 18564.75,
-      "settled": 9,
+      "marked": 94529.33,
+      "unrealized": -1886.3,
+      "change": -3584.37,
+      "realized": -3584.37,
+      "open": 8,
+      "open_cost": 16497.25,
+      "settled": 10,
       "wins": 4,
-      "losses": 5,
+      "losses": 6,
       "won_amt": 8710.77,
-      "lost_amt": -10227.64
+      "lost_amt": -12295.14
     },
     {
       "name": "jev_alone",
@@ -575,7 +584,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 89994.98,
+      "equity": 90651.6,
       "slot": 4,
       "blurb": "Jev + Claude, but it bets even when Jev says it's short on information.",
       "challenger": false,
@@ -586,17 +595,17 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 80887.2,
-      "unrealized": -9107.78,
-      "change": -10005.02,
-      "realized": -10005.02,
-      "open": 30,
-      "open_cost": 42895.13,
-      "settled": 17,
-      "wins": 6,
-      "losses": 11,
-      "won_amt": 8873.89,
-      "lost_amt": -18878.91
+      "marked": 82224.02,
+      "unrealized": -8427.58,
+      "change": -9348.4,
+      "realized": -9348.4,
+      "open": 28,
+      "open_cost": 38859.75,
+      "settled": 19,
+      "wins": 7,
+      "losses": 12,
+      "won_amt": 11548.33,
+      "lost_amt": -20896.73
     },
     {
       "name": "calibrated",
@@ -635,7 +644,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 92447.65,
+      "equity": 90448.15,
       "slot": 6,
       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
       "challenger": false,
@@ -646,17 +655,17 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 87990.1,
-      "unrealized": -4457.55,
-      "change": -7552.35,
-      "realized": -7552.35,
-      "open": 17,
-      "open_cost": 33408.11,
-      "settled": 6,
+      "marked": 87729.39,
+      "unrealized": -2718.76,
+      "change": -9551.85,
+      "realized": -9551.85,
+      "open": 16,
+      "open_cost": 31408.61,
+      "settled": 7,
       "wins": 1,
-      "losses": 5,
+      "losses": 6,
       "won_amt": 2423.36,
-      "lost_amt": -9975.71
+      "lost_amt": -11975.21
     },
     {
       "name": "original",
@@ -666,26 +675,26 @@
       "badge": "Yardstick",
       "retired": false,
       "main": false,
-      "equity": 97136.46,
+      "equity": 95136.46,
       "slot": "y",
-      "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying. Since 2026-09-29, on markets both could bet: main +1,173 on 4 settled bets, this +1,136 on 4.",
+      "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying. Since 2026-09-29, on markets both could bet: main -895 on 5 settled bets, this -864 on 5.",
       "challenger": false,
       "note": null,
       "rules_version": 1,
       "tuned_at": null,
       "frozen": true,
       "gate_overrides": {},
-      "marked": 95700.57,
-      "unrealized": -1435.89,
-      "change": -2863.54,
-      "realized": -2863.54,
-      "open": 7,
-      "open_cost": 14017.45,
-      "settled": 6,
+      "marked": 93980.57,
+      "unrealized": -1155.89,
+      "change": -4863.54,
+      "realized": -4863.54,
+      "open": 6,
+      "open_cost": 12017.45,
+      "settled": 7,
       "wins": 2,
-      "losses": 4,
+      "losses": 5,
       "won_amt": 5159.14,
-      "lost_amt": -8022.68
+      "lost_amt": -10022.68
     },
     {
       "name": "ch3",
@@ -1463,8 +1472,12 @@
           96307.38
         ],
         [
-          "2026-10-01T03:35:29Z",
-          96307.38
+          "2026-10-01T04:04:22Z",
+          94529.33
+        ],
+        [
+          "2026-10-01T04:05:31Z",
+          94529.33
         ]
       ]
     },
@@ -2184,7 +2197,11 @@
           99636.24
         ],
         [
-          "2026-10-01T03:35:29Z",
+          "2026-10-01T04:04:22Z",
+          99636.24
+        ],
+        [
+          "2026-10-01T04:05:31Z",
           99636.24
         ]
       ]
@@ -2905,7 +2922,11 @@
           90693.83
         ],
         [
-          "2026-10-01T03:35:29Z",
+          "2026-10-01T04:04:22Z",
+          90693.83
+        ],
+        [
+          "2026-10-01T04:05:31Z",
           90693.83
         ]
       ]
@@ -3626,8 +3647,12 @@
           80887.2
         ],
         [
-          "2026-10-01T03:35:29Z",
-          80887.2
+          "2026-10-01T04:04:22Z",
+          82224.02
+        ],
+        [
+          "2026-10-01T04:05:31Z",
+          82224.02
         ]
       ]
     },
@@ -4347,7 +4372,11 @@
           98493.48
         ],
         [
-          "2026-10-01T03:35:29Z",
+          "2026-10-01T04:04:22Z",
+          98493.48
+        ],
+        [
+          "2026-10-01T04:05:31Z",
           98493.48
         ]
       ]
@@ -5068,8 +5097,12 @@
           87990.1
         ],
         [
-          "2026-10-01T03:35:29Z",
-          87990.1
+          "2026-10-01T04:04:22Z",
+          87729.39
+        ],
+        [
+          "2026-10-01T04:05:31Z",
+          87729.39
         ]
       ]
     },
@@ -5789,8 +5822,12 @@
           95700.57
         ],
         [
-          "2026-10-01T03:35:29Z",
-          95700.57
+          "2026-10-01T04:04:22Z",
+          93980.57
+        ],
+        [
+          "2026-10-01T04:05:31Z",
+          93980.57
         ]
       ]
     },
@@ -6510,7 +6547,11 @@
           99542.76
         ],
         [
-          "2026-10-01T03:35:29Z",
+          "2026-10-01T04:04:22Z",
+          99542.76
+        ],
+        [
+          "2026-10-01T04:05:31Z",
           99542.76
         ]
       ]
@@ -7231,58 +7272,17 @@
           99588.24
         ],
         [
-          "2026-10-01T03:35:29Z",
+          "2026-10-01T04:04:22Z",
+          99588.24
+        ],
+        [
+          "2026-10-01T04:05:31Z",
           99588.24
         ]
       ]
     }
   ],
   "open_bets": [
-    {
-      "key": "polymarket:4769494",
-      "question": "Trump renames AI by September 30?",
-      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
-      "source": "polymarket",
-      "close_time": "2026-10-01T03:59:00Z",
-      "category": "politics",
-      "price": 0.57,
-      "price_at": "2026-09-29T17:34:33Z",
-      "positions": [
-        {
-          "strategy": "main",
-          "side": "no",
-          "contracts": 4135,
-          "cost_per": 0.5,
-          "total_cost": 2067.5,
-          "p_side": 0.9,
-          "edge": 0.4,
-          "opened": "2026-09-29T13:34:41Z",
-          "value": 1778.05
-        },
-        {
-          "strategy": "jev_alone_bold",
-          "side": "no",
-          "contracts": 2666,
-          "cost_per": 0.75,
-          "total_cost": 1999.5,
-          "p_side": 0.93,
-          "edge": 0.18,
-          "opened": "2026-09-29T00:04:27Z",
-          "value": 1146.38
-        },
-        {
-          "strategy": "original",
-          "side": "no",
-          "contracts": 4000,
-          "cost_per": 0.5,
-          "total_cost": 2000.0,
-          "p_side": 0.9,
-          "edge": 0.4,
-          "opened": "2026-09-29T13:34:41Z",
-          "value": 1720.0
-        }
-      ]
-    },
     {
       "key": "polymarket:3903043",
       "question": "0 ships transit Hormuz on any date by September 30?",
@@ -7464,29 +7464,6 @@
       ]
     },
     {
-      "key": "polymarket:4884203",
-      "question": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
-      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23",
-      "source": "polymarket",
-      "close_time": "2026-10-01T03:59:59.999Z",
-      "category": "world",
-      "price": 0.81,
-      "price_at": "2026-09-29T17:04:36Z",
-      "positions": [
-        {
-          "strategy": "bold",
-          "side": "no",
-          "contracts": 2842,
-          "cost_per": 0.71,
-          "total_cost": 2017.82,
-          "p_side": 0.8,
-          "edge": 0.09,
-          "opened": "2026-09-29T00:04:27Z",
-          "value": 539.98
-        }
-      ]
-    },
-    {
       "key": "polymarket:4052418",
       "question": "Will Bitcoin reach $87,500 in September?",
       "url": "https://polymarket.com/market/will-bitcoin-reach-87pt5k-in-september-2026",
@@ -7575,29 +7552,6 @@
           "edge": 0.26,
           "opened": "2026-09-28T20:05:12Z",
           "value": 0.05
-        }
-      ]
-    },
-    {
-      "key": "polymarket:5037412",
-      "question": "Will Bitcoin reach $85,000 in September?",
-      "url": "https://polymarket.com/market/will-bitcoin-reach-85k-in-september-2026-from-september-27",
-      "source": "polymarket",
-      "close_time": "2026-10-01T04:00:00Z",
-      "category": "crypto",
-      "price": 0.6,
-      "price_at": "2026-09-30T12:34:28Z",
-      "positions": [
-        {
-          "strategy": "bold",
-          "side": "yes",
-          "contracts": 4692,
-          "cost_per": 0.43,
-          "total_cost": 2017.56,
-          "p_side": 0.79,
-          "edge": 0.36,
-          "opened": "2026-09-28T23:04:32Z",
-          "value": 2815.2
         }
       ]
     },
@@ -7972,8 +7926,8 @@
       "source": "polymarket",
       "close_time": "2026-10-03T23:59:00Z",
       "category": "other",
-      "price": 0.107,
-      "price_at": "2026-10-01T02:34:23Z",
+      "price": 0.169,
+      "price_at": "2026-10-01T04:04:22Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -7984,7 +7938,7 @@
           "p_side": 0.33,
           "edge": 0.19,
           "opened": "2026-09-29T05:34:32Z",
-          "value": 1528.49
+          "value": 2414.16
         }
       ]
     },
@@ -8663,6 +8617,86 @@
   ],
   "settled_recent": [
     {
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "side": "no",
+      "total_cost": 2067.5,
+      "cost_per": 0.5,
+      "p_side": 0.9,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2067.5,
+      "opened": "2026-09-29T13:34:41Z",
+      "settled": "2026-10-01T04:04:22Z",
+      "strategy": "main"
+    },
+    {
+      "key": "polymarket:5037412",
+      "question": "Will Bitcoin reach $85,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-85k-in-september-2026-from-september-27",
+      "source": "polymarket",
+      "side": "yes",
+      "total_cost": 2017.56,
+      "cost_per": 0.43,
+      "p_side": 0.79,
+      "outcome": "yes",
+      "payout": 4692.0,
+      "pnl": 2674.44,
+      "opened": "2026-09-28T23:04:32Z",
+      "settled": "2026-10-01T04:04:22Z",
+      "strategy": "bold"
+    },
+    {
+      "key": "polymarket:4884203",
+      "question": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23",
+      "source": "polymarket",
+      "side": "no",
+      "total_cost": 2017.82,
+      "cost_per": 0.71,
+      "p_side": 0.8,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2017.82,
+      "opened": "2026-09-29T00:04:27Z",
+      "settled": "2026-10-01T04:04:22Z",
+      "strategy": "bold"
+    },
+    {
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "side": "no",
+      "total_cost": 1999.5,
+      "cost_per": 0.75,
+      "p_side": 0.93,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -1999.5,
+      "opened": "2026-09-29T00:04:27Z",
+      "settled": "2026-10-01T04:04:22Z",
+      "strategy": "jev_alone_bold"
+    },
+    {
+      "key": "polymarket:4769494",
+      "question": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30",
+      "source": "polymarket",
+      "side": "no",
+      "total_cost": 2000.0,
+      "cost_per": 0.5,
+      "p_side": 0.9,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -2000.0,
+      "opened": "2026-09-29T13:34:41Z",
+      "settled": "2026-10-01T04:04:22Z",
+      "strategy": "original"
+    },
+    {
       "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
       "question": "Boston vs New York Y Wild Card series winner: Boston wins",
       "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
@@ -8901,89 +8935,75 @@
       "opened": "2026-09-29T11:34:38Z",
       "settled": "2026-09-30T18:34:34Z",
       "strategy": "original"
-    },
-    {
-      "key": "kalshi:KXODIMATCH-26SEP300430WIIND-IND",
-      "question": "India wins",
-      "url": "https://kalshi.com/markets/kxodimatch/india-wins/kxodimatch-26sep300430wiind",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 1909.2,
-      "cost_per": 0.1584,
-      "p_side": 0.3,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -1909.2,
-      "opened": "2026-09-30T03:04:19Z",
-      "settled": "2026-09-30T17:04:39Z",
-      "strategy": "bold"
-    },
-    {
-      "key": "kalshi:KXODIMATCH-26SEP300430WIIND-IND",
-      "question": "India wins",
-      "url": "https://kalshi.com/markets/kxodimatch/india-wins/kxodimatch-26sep300430wiind",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 1968.44,
-      "cost_per": 0.1584,
-      "p_side": 0.51,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -1968.44,
-      "opened": "2026-09-30T03:04:19Z",
-      "settled": "2026-09-30T17:04:39Z",
-      "strategy": "jev_alone_bold"
-    },
-    {
-      "key": "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
-      "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
-      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 1999.82,
-      "cost_per": 0.8594,
-      "p_side": 0.97,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -1999.82,
-      "opened": "2026-09-29T17:04:36Z",
-      "settled": "2026-09-30T03:34:19Z",
-      "strategy": "claude_direct"
-    },
-    {
-      "key": "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-      "question": "Boston wins",
-      "url": "https://kalshi.com/markets/kxmlbgame/boston-wins/kxmlbgame-26sep292000bosnyy",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 2017.62,
-      "cost_per": 0.5872,
-      "p_side": 0.74,
-      "outcome": "no",
-      "payout": 3436.0,
-      "pnl": 1418.38,
-      "opened": "2026-09-28T23:04:32Z",
-      "settled": "2026-09-30T03:34:19Z",
-      "strategy": "bold"
-    },
-    {
-      "key": "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
-      "question": "Will Trump say \"Piggy\" before Oct 1, 2026?",
-      "url": "https://kalshi.com/markets/kxtrumpsaynickname/will-trump-say-piggy-before-oct-1-2026/kxtrumpsaynickname-26oct01",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 2008.45,
-      "cost_per": 0.1269,
-      "p_side": 0.81,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -2008.45,
-      "opened": "2026-09-29T19:35:05Z",
-      "settled": "2026-09-30T03:34:19Z",
-      "strategy": "jev_alone_bold"
     }
   ],
   "calls": [
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "key": "polymarket:4868022",
+      "question": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922",
+      "source": "polymarket",
+      "category": "other",
+      "close_time": "2026-10-03T23:59:00Z",
+      "market": 0.169,
+      "forecasts": {
+        "jev_research": 0.34,
+        "jev_plain": 0.23,
+        "claude_direct": null,
+        "jev_calibrated": 0.413
+      },
+      "info": 0.32,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.32 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.024 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.32 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.32 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.32 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.134 < 0.15"
+        }
+      },
+      "facts_total": 8
+    },
     {
       "ts": "2026-10-01T03:34:20Z",
       "key": "kalshi:KXNFLTOTAL-26OCT01PITCLE-39",
@@ -9115,72 +9135,6 @@
         }
       },
       "facts_total": 10
-    },
-    {
-      "ts": "2026-10-01T02:34:23Z",
-      "key": "polymarket:4868022",
-      "question": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
-      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922",
-      "source": "polymarket",
-      "category": "other",
-      "close_time": "2026-10-03T23:59:00Z",
-      "market": 0.107,
-      "forecasts": {
-        "jev_research": 0.36,
-        "jev_plain": 0.22,
-        "claude_direct": null,
-        "jev_calibrated": 0.4504
-      },
-      "info": 0.31,
-      "rules": 0.82,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        }
-      },
-      "facts_total": 8
     },
     {
       "ts": "2026-10-01T02:34:23Z",
@@ -9779,6 +9733,63 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "loss",
+      "strategy": "main",
+      "amount": -2067.5,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "win",
+      "strategy": "bold",
+      "amount": 2674.44,
+      "q": "Will Bitcoin reach $85,000 in September?",
+      "url": "https://polymarket.com/market/will-bitcoin-reach-85k-in-september-2026-from-september-27"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "loss",
+      "strategy": "bold",
+      "amount": -2017.82,
+      "q": "Will WTI Crude Oil (WTI) hit (LOW) $90 in September?",
+      "url": "https://polymarket.com/market/will-wti-dip-to-90-in-september-2026-from-september-23"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "loss",
+      "strategy": "jev_alone_bold",
+      "amount": -1999.5,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "loss",
+      "strategy": "original",
+      "amount": -2000.0,
+      "q": "Trump renames AI by September 30?",
+      "url": "https://polymarket.com/market/trump-renames-ai-by-september-30"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "call",
+      "jev": 0.34,
+      "claude": null,
+      "market": 0.169,
+      "q": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
+      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922"
+    },
+    {
+      "ts": "2026-10-01T04:04:22Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 6,
+      "researched": 1,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-01T03:34:20Z",
       "type": "win",
       "strategy": "bold",
@@ -9846,15 +9857,6 @@
       "judged": 2,
       "researched": 1,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-01T02:34:23Z",
-      "type": "call",
-      "jev": 0.36,
-      "claude": null,
-      "market": 0.107,
-      "q": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
-      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922"
     },
     {
       "ts": "2026-10-01T02:34:23Z",
@@ -10401,55 +10403,10 @@
       "amount": -1999.62,
       "q": "Atlanta wins",
       "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "loss",
-      "strategy": "original",
-      "amount": -2022.91,
-      "q": "Atlanta wins",
-      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26sep301400phiatl"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "intel",
-      "facts": 9,
-      "q": "Bari: Completed Match: Enrico Dalla Valle vs Juan Martin",
-      "url": "https://polymarket.com/market/atp-valle-ma-2026-10-02-completed-match"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 12,
-      "researched": 6,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "China Open: Completed Match: Yue Yuan vs Mirra Andreeva",
-      "url": "https://polymarket.com/market/wta-yuan-andreev-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "intel",
-      "facts": 8,
-      "q": "China Open: Completed Match: Ekaterina Alexandrova vs Aliaksandra Sasnovich",
-      "url": "https://polymarket.com/market/wta-alexand-sasnovi-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 12,
-      "researched": 5,
-      "bets": 0
     }
   ],
   "plan_usage": {
-    "ts": "2026-10-01T03:34:20Z",
+    "ts": "2026-10-01T04:04:22Z",
     "week": 1,
     "week_resets": 1791183600,
     "five_hour": 0
@@ -10458,27 +10415,27 @@
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 131,
+    "reviewed": 138,
     "post_mortems": 13,
     "win_reviews": 9,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 10,
-        "predicted": 0.14,
+        "n": 11,
+        "predicted": 0.143,
         "actual": 0.0
       },
       {
         "range": "20\u201340%",
-        "n": 25,
-        "predicted": 0.29,
-        "actual": 0.28
+        "n": 26,
+        "predicted": 0.288,
+        "actual": 0.308
       },
       {
         "range": "40\u201360%",
-        "n": 37,
+        "n": 40,
         "predicted": 0.491,
-        "actual": 0.811
+        "actual": 0.8
       },
       {
         "range": "60\u201380%",
@@ -10948,9 +10905,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.5641,
-      "b": 0.6858,
-      "n": 90,
+      "a": 1.5267,
+      "b": 0.7059,
+      "n": 95,
       "active": true,
       "need": 30
     },
@@ -10959,18 +10916,18 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 64,
-          "wins": 10,
-          "pnl_per_100": -60.08,
-          "total_per_100": -3845.4
+          "n": 69,
+          "wins": 12,
+          "pnl_per_100": -52.38,
+          "total_per_100": -3614.27
         },
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 22,
+          "n": 24,
           "wins": 3,
-          "pnl_per_100": -77.77,
-          "total_per_100": -1710.84
+          "pnl_per_100": -79.62,
+          "total_per_100": -1910.84
         }
       ],
       "main": [
@@ -10985,10 +10942,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 42,
-          "wins": 13,
-          "pnl_per_100": -33.67,
-          "total_per_100": -1414.27
+          "n": 46,
+          "wins": 15,
+          "pnl_per_100": -30.2,
+          "total_per_100": -1389.03
         },
         {
           "group": "framing",
@@ -11001,10 +10958,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 10,
-          "wins": 2,
-          "pnl_per_100": -70.59,
-          "total_per_100": -705.88
+          "n": 11,
+          "wins": 3,
+          "pnl_per_100": -35.38,
+          "total_per_100": -389.22
         }
       ],
       "claude_direct": [
@@ -11019,10 +10976,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 19,
-          "wins": 5,
-          "pnl_per_100": -41.88,
-          "total_per_100": -795.64
+          "n": 21,
+          "wins": 6,
+          "pnl_per_100": -33.41,
+          "total_per_100": -701.52
         },
         {
           "group": "several",
@@ -11037,10 +10994,10 @@
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 15,
-          "wins": 5,
-          "pnl_per_100": -30.92,
-          "total_per_100": -463.83
+          "n": 16,
+          "wins": 6,
+          "pnl_per_100": -20.7,
+          "total_per_100": -331.27
         },
         {
           "group": "info",
@@ -11067,46 +11024,54 @@
           "total_per_100": -300.0
         },
         {
+          "group": "several",
+          "label": "Stopped by more than one gate",
+          "n": 1,
+          "wins": 1,
+          "pnl_per_100": 316.67,
+          "total_per_100": 316.67
+        },
+        {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 24,
-          "wins": 9,
-          "pnl_per_100": -16.72,
-          "total_per_100": -401.38
+          "n": 27,
+          "wins": 10,
+          "pnl_per_100": -18.84,
+          "total_per_100": -508.71
         }
       ],
       "jev_alone_bold": [
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 5,
+          "n": 6,
           "wins": 1,
-          "pnl_per_100": -55.27,
-          "total_per_100": -276.34
+          "pnl_per_100": -62.72,
+          "total_per_100": -376.34
         },
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 45,
-          "wins": 8,
-          "pnl_per_100": -54.21,
-          "total_per_100": -2439.33
+          "n": 49,
+          "wins": 10,
+          "pnl_per_100": -43.36,
+          "total_per_100": -2124.87
         },
         {
           "group": "rules",
           "label": "Stopped only by the rules gate",
-          "n": 7,
+          "n": 8,
           "wins": 2,
-          "pnl_per_100": -50.72,
-          "total_per_100": -355.07
+          "pnl_per_100": -56.88,
+          "total_per_100": -455.07
         },
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 6,
+          "n": 7,
           "wins": 0,
           "pnl_per_100": -100.0,
-          "total_per_100": -600.0
+          "total_per_100": -700.0
         }
       ],
       "original": [
@@ -11121,10 +11086,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 25,
-          "wins": 8,
-          "pnl_per_100": -29.9,
-          "total_per_100": -747.46
+          "n": 30,
+          "wins": 11,
+          "pnl_per_100": -12.3,
+          "total_per_100": -369.06
         },
         {
           "group": "several",
@@ -11147,10 +11112,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 16,
-          "wins": 6,
-          "pnl_per_100": -24.29,
-          "total_per_100": -388.61
+          "n": 17,
+          "wins": 7,
+          "pnl_per_100": -8.46,
+          "total_per_100": -143.79
         },
         {
           "group": "several",
@@ -11159,6 +11124,16 @@
           "wins": 0,
           "pnl_per_100": -100.0,
           "total_per_100": -100.0
+        }
+      ],
+      "ch3": [
+        {
+          "group": "several",
+          "label": "Stopped by more than one gate",
+          "n": 1,
+          "wins": 1,
+          "pnl_per_100": 194.12,
+          "total_per_100": 194.12
         }
       ]
     },
@@ -11177,25 +11152,25 @@
       },
       {
         "category": "crypto",
-        "n": 21,
-        "jev_plain": 0.2208,
-        "market": 0.0519,
-        "jev_research": 0.1387,
-        "claude_direct": 0.055,
-        "n_jev_plain": 21,
-        "n_market": 21,
-        "n_jev_research": 17,
-        "n_claude_direct": 7
+        "n": 22,
+        "jev_plain": 0.235,
+        "market": 0.0568,
+        "jev_research": 0.1413,
+        "claude_direct": 0.0482,
+        "n_jev_plain": 22,
+        "n_market": 22,
+        "n_jev_research": 18,
+        "n_claude_direct": 8
       },
       {
         "category": "culture",
-        "n": 12,
-        "jev_plain": 0.2462,
-        "market": 0.127,
+        "n": 13,
+        "jev_plain": 0.2317,
+        "market": 0.1185,
         "jev_research": 0.0607,
         "claude_direct": 0.0036,
-        "n_jev_plain": 12,
-        "n_market": 12,
+        "n_jev_plain": 13,
+        "n_market": 13,
         "n_jev_research": 2,
         "n_claude_direct": 1
       },
@@ -11210,23 +11185,35 @@
         "n_market": 12
       },
       {
-        "category": "tech",
-        "n": 3,
-        "jev_research": 0.0625,
-        "jev_plain": 0.5586,
-        "market": 0.0236,
-        "n_jev_research": 1,
-        "n_jev_plain": 3,
-        "n_market": 3
+        "category": "other",
+        "n": 5,
+        "jev_research": 0.0761,
+        "jev_plain": 0.1512,
+        "market": 0.0686,
+        "claude_direct": 0.0626,
+        "n_jev_research": 4,
+        "n_jev_plain": 5,
+        "n_market": 5,
+        "n_claude_direct": 3
       },
       {
-        "category": "other",
+        "category": "tech",
+        "n": 4,
+        "jev_research": 0.0625,
+        "jev_plain": 0.587,
+        "market": 0.1546,
+        "n_jev_research": 1,
+        "n_jev_plain": 4,
+        "n_market": 4
+      },
+      {
+        "category": "politics",
         "n": 3,
-        "jev_research": 0.0225,
-        "jev_plain": 0.1935,
-        "market": 0.1,
-        "claude_direct": 0.0064,
-        "n_jev_research": 2,
+        "jev_research": 0.4326,
+        "jev_plain": 0.8015,
+        "market": 0.1133,
+        "claude_direct": 0.04,
+        "n_jev_research": 3,
         "n_jev_plain": 3,
         "n_market": 3,
         "n_claude_direct": 1
@@ -11244,24 +11231,14 @@
         "n_claude_direct": 2
       },
       {
-        "category": "politics",
+        "category": "world",
         "n": 2,
-        "jev_research": 0.3601,
-        "jev_plain": 0.7699,
-        "market": 0.0776,
-        "claude_direct": 0.04,
-        "n_jev_research": 2,
+        "jev_plain": 0.2509,
+        "market": 0.0202,
+        "jev_research": 0.3364,
         "n_jev_plain": 2,
         "n_market": 2,
-        "n_claude_direct": 1
-      },
-      {
-        "category": "world",
-        "n": 1,
-        "jev_plain": 0.0529,
-        "market": 0.0042,
-        "n_jev_plain": 1,
-        "n_market": 1
+        "n_jev_research": 1
       }
     ],
     "proposals": [
