@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-01T03:05:30Z",
+  "generated": "2026-10-01T03:35:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -68,7 +68,7 @@
       "label": "Washington vs Atlanta First Round series winner: Washington wins"
     },
     {
-      "t": "2026-10-01T03:05:30Z",
+      "t": "2026-10-01T03:35:29Z",
       "equity": 98483.13,
       "label": "Now (open bets valued at cost)"
     }
@@ -366,54 +366,55 @@
     }
   ],
   "calibration": {
-    "judged": 407,
-    "resolved": 126,
+    "judged": 408,
+    "resolved": 131,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.19773176470588238,
-        "n": 85
+        "brier": 0.19018444444444446,
+        "n": 90
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.26334285714285716,
-        "n": 126
+        "brier": 0.26388244274809164,
+        "n": 131
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.13128230303030305,
-        "n": 33
+        "brier": 0.1333769411764706,
+        "n": 34
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.23505079833333334,
-        "n": 24
+        "brier": 0.19826622586206896,
+        "n": 29
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13509319047619048,
-        "n": 126
+        "brier": 0.13446062595419847,
+        "n": 131
       }
     ]
   },
   "last_scan": {
     "date": "2026-10-01",
-    "judged": 2,
+    "judged": 3,
     "bets": 0,
     "fail_info": 1,
     "fail_rules": 0,
-    "fail_edge": 0,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 2
+      "kalshi": 1,
+      "polymarket": 2
     }
   },
   "funnel": {
-    "ts": "2026-10-01T03:04:21Z",
+    "ts": "2026-10-01T03:34:20Z",
     "stages": [
       [
         "Fetched",
@@ -421,11 +422,11 @@
       ],
       [
         "Passed free filters",
-        2
+        3
       ],
       [
         "Judged by Jev",
-        2
+        3
       ],
       [
         "Judged with research",
@@ -449,7 +450,7 @@
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 0,
+      "jev_alone_bold": 1,
       "original": 0,
       "ch3": 0,
       "ch6": 0
@@ -457,8 +458,8 @@
     "claude_calls": 0,
     "claude_limited": true,
     "claude_note": null,
-    "facts_kept": 10,
-    "facts_dropped": 1,
+    "facts_kept": 9,
+    "facts_dropped": 2,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -470,12 +471,12 @@
       "claude_direct": 0,
       "bold": 0,
       "calibrated": 0,
-      "jev_alone_bold": 0,
+      "jev_alone_bold": 1,
       "original": 0,
       "ch3": 0,
       "ch6": 0
     },
-    "judged": 2,
+    "judged": 3,
     "with_research": 1
   },
   "strategies": [
@@ -574,7 +575,7 @@
       "badge": "Challenger",
       "retired": false,
       "main": false,
-      "equity": 89455.92,
+      "equity": 89994.98,
       "slot": 4,
       "blurb": "Jev + Claude, but it bets even when Jev says it's short on information.",
       "challenger": false,
@@ -585,16 +586,16 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 80708.84,
-      "unrealized": -8747.08,
-      "change": -10544.08,
-      "realized": -10544.08,
-      "open": 31,
-      "open_cost": 43728.07,
-      "settled": 16,
-      "wins": 5,
+      "marked": 80887.2,
+      "unrealized": -9107.78,
+      "change": -10005.02,
+      "realized": -10005.02,
+      "open": 30,
+      "open_cost": 42895.13,
+      "settled": 17,
+      "wins": 6,
       "losses": 11,
-      "won_amt": 8334.83,
+      "won_amt": 8873.89,
       "lost_amt": -18878.91
     },
     {
@@ -605,7 +606,7 @@
       "badge": "Learning",
       "retired": false,
       "main": false,
-      "equity": 98000.38,
+      "equity": 99686.06,
       "slot": 5,
       "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
       "challenger": false,
@@ -614,16 +615,16 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 96865.02,
-      "unrealized": -1135.36,
-      "change": -1999.62,
-      "realized": -1999.62,
-      "open": 9,
-      "open_cost": 17918.39,
-      "settled": 1,
-      "wins": 0,
+      "marked": 98493.48,
+      "unrealized": -1192.58,
+      "change": -313.94,
+      "realized": -313.94,
+      "open": 7,
+      "open_cost": 13919.07,
+      "settled": 3,
+      "wins": 2,
       "losses": 1,
-      "won_amt": 0,
+      "won_amt": 1685.68,
       "lost_amt": -1999.62
     },
     {
@@ -645,12 +646,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 88037.1,
-      "unrealized": -4410.55,
+      "marked": 87990.1,
+      "unrealized": -4457.55,
       "change": -7552.35,
       "realized": -7552.35,
-      "open": 16,
-      "open_cost": 31559.64,
+      "open": 17,
+      "open_cost": 33408.11,
       "settled": 6,
       "wins": 1,
       "losses": 5,
@@ -1458,7 +1459,11 @@
           96307.38
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          96307.38
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           96307.38
         ]
       ]
@@ -2175,7 +2180,11 @@
           99636.24
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          99636.24
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           99636.24
         ]
       ]
@@ -2892,7 +2901,11 @@
           90693.83
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          90693.83
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           90693.83
         ]
       ]
@@ -3609,8 +3622,12 @@
           80708.84
         ],
         [
-          "2026-10-01T03:05:30Z",
-          80708.84
+          "2026-10-01T03:34:20Z",
+          80887.2
+        ],
+        [
+          "2026-10-01T03:35:29Z",
+          80887.2
         ]
       ]
     },
@@ -4326,8 +4343,12 @@
           96865.02
         ],
         [
-          "2026-10-01T03:05:30Z",
-          96865.02
+          "2026-10-01T03:34:20Z",
+          98493.48
+        ],
+        [
+          "2026-10-01T03:35:29Z",
+          98493.48
         ]
       ]
     },
@@ -5043,8 +5064,12 @@
           88037.1
         ],
         [
-          "2026-10-01T03:05:30Z",
-          88037.1
+          "2026-10-01T03:34:20Z",
+          87990.1
+        ],
+        [
+          "2026-10-01T03:35:29Z",
+          87990.1
         ]
       ]
     },
@@ -5760,7 +5785,11 @@
           95700.57
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          95700.57
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           95700.57
         ]
       ]
@@ -6477,7 +6506,11 @@
           99542.76
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          99542.76
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           99542.76
         ]
       ]
@@ -7194,36 +7227,17 @@
           99588.24
         ],
         [
-          "2026-10-01T03:05:30Z",
+          "2026-10-01T03:34:20Z",
+          99588.24
+        ],
+        [
+          "2026-10-01T03:35:29Z",
           99588.24
         ]
       ]
     }
   ],
   "open_bets": [
-    {
-      "key": "polymarket:5027599",
-      "question": "Will Miami FC win on 2026-09-30?",
-      "url": "https://polymarket.com/market/uslc-mia-spo-2026-09-30-mia",
-      "source": "polymarket",
-      "close_time": "2026-09-30T23:00:00Z",
-      "category": "sports",
-      "price": 0.595,
-      "price_at": "2026-09-30T07:31:15Z",
-      "positions": [
-        {
-          "strategy": "calibrated",
-          "side": "yes",
-          "contracts": 3278,
-          "cost_per": 0.61,
-          "total_cost": 1999.58,
-          "p_side": 0.7886,
-          "edge": 0.1786,
-          "opened": "2026-09-30T07:31:15Z",
-          "value": 1950.41
-        }
-      ]
-    },
     {
       "key": "polymarket:4769494",
       "question": "Trump renames AI by September 30?",
@@ -7845,6 +7859,29 @@
           "edge": 0.1248,
           "opened": "2026-09-28T23:04:32Z",
           "value": 1377.74
+        }
+      ]
+    },
+    {
+      "key": "polymarket:4828208",
+      "question": "Will Elon Musk post 200-219 tweets from September 25 to October 2, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-25-october-2-2026-200-219",
+      "source": "polymarket",
+      "close_time": "2026-10-02T16:00:00Z",
+      "category": "culture",
+      "price": 0.425,
+      "price_at": "2026-10-01T03:34:20Z",
+      "positions": [
+        {
+          "strategy": "jev_alone_bold",
+          "side": "no",
+          "contracts": 3133,
+          "cost_per": 0.59,
+          "total_cost": 1848.47,
+          "p_side": 0.79,
+          "edge": 0.2,
+          "opened": "2026-10-01T03:34:20Z",
+          "value": 1801.47
         }
       ]
     },
@@ -8601,52 +8638,6 @@
       ]
     },
     {
-      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
-      "question": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
-      "source": "kalshi",
-      "close_time": "2026-10-27T23:00:00Z",
-      "category": "sports",
-      "price": 0.13,
-      "price_at": "2026-10-01T01:34:22Z",
-      "positions": [
-        {
-          "strategy": "bold",
-          "side": "no",
-          "contracts": 1372,
-          "cost_per": 0.6071,
-          "total_cost": 832.94,
-          "p_side": 0.71,
-          "edge": 0.1029,
-          "opened": "2026-09-28T19:05:13Z",
-          "value": 1193.64
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-NYY",
-      "question": "Boston vs New York Y Wild Card series winner: New York Y wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc",
-      "source": "kalshi",
-      "close_time": "2026-10-27T23:00:00Z",
-      "category": "sports",
-      "price": 0.875,
-      "price_at": "2026-10-01T01:34:22Z",
-      "positions": [
-        {
-          "strategy": "calibrated",
-          "side": "yes",
-          "contracts": 2407,
-          "cost_per": 0.8308,
-          "total_cost": 1999.74,
-          "p_side": 0.9295,
-          "edge": 0.0987,
-          "opened": "2026-09-30T09:04:22Z",
-          "value": 2106.12
-        }
-      ]
-    },
-    {
       "key": "kalshi:KXGDP-26OCT30-T4.0",
       "question": "Will **real GDP** increase by more than 4.0% in Q3 2026? (Above 4.0%)",
       "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-4-0-in-q3-2026/kxgdp-26oct30",
@@ -8671,6 +8662,54 @@
     }
   ],
   "settled_recent": [
+    {
+      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-BOS",
+      "question": "Boston vs New York Y Wild Card series winner: Boston wins",
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 832.94,
+      "cost_per": 0.6071,
+      "p_side": 0.71,
+      "outcome": "no",
+      "payout": 1372.0,
+      "pnl": 539.06,
+      "opened": "2026-09-28T19:05:13Z",
+      "settled": "2026-10-01T03:34:20Z",
+      "strategy": "bold"
+    },
+    {
+      "key": "polymarket:5027599",
+      "question": "Will Miami FC win on 2026-09-30?",
+      "url": "https://polymarket.com/market/uslc-mia-spo-2026-09-30-mia",
+      "source": "polymarket",
+      "side": "yes",
+      "total_cost": 1999.58,
+      "cost_per": 0.61,
+      "p_side": 0.7886,
+      "outcome": "yes",
+      "payout": 3278.0,
+      "pnl": 1278.42,
+      "opened": "2026-09-30T07:31:15Z",
+      "settled": "2026-10-01T03:34:20Z",
+      "strategy": "calibrated"
+    },
+    {
+      "key": "kalshi:KXMLBSERIES-26BOSNYYWC-NYY",
+      "question": "Boston vs New York Y Wild Card series winner: New York Y wins",
+      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc",
+      "source": "kalshi",
+      "side": "yes",
+      "total_cost": 1999.74,
+      "cost_per": 0.8308,
+      "p_side": 0.9295,
+      "outcome": "yes",
+      "payout": 2407.0,
+      "pnl": 407.26,
+      "opened": "2026-09-30T09:04:22Z",
+      "settled": "2026-10-01T03:34:20Z",
+      "strategy": "calibrated"
+    },
     {
       "key": "kalshi:KXWNBASERIES-26WSHATLR1-WSH",
       "question": "Washington vs Atlanta First Round series winner: Washington wins",
@@ -8942,57 +8981,75 @@
       "opened": "2026-09-29T19:35:05Z",
       "settled": "2026-09-30T03:34:19Z",
       "strategy": "jev_alone_bold"
-    },
-    {
-      "key": "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-      "question": "Minnesota wins",
-      "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 2067.42,
-      "cost_per": 0.4268,
-      "p_side": 0.76,
-      "outcome": "no",
-      "payout": 4844.0,
-      "pnl": 2776.58,
-      "opened": "2026-09-29T05:04:29Z",
-      "settled": "2026-09-30T03:04:19Z",
-      "strategy": "main"
-    },
-    {
-      "key": "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-      "question": "New York vs Minnesota First Round series winner: Minnesota wins",
-      "url": "https://kalshi.com/markets/kxwnbaseries/new-york-vs-minnesota-first-round-series-winner-minnesota-wi/kxwnbaseries-26nyminr1",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 2017.34,
-      "cost_per": 0.5972,
-      "p_side": 0.69,
-      "outcome": "no",
-      "payout": 3378.0,
-      "pnl": 1360.66,
-      "opened": "2026-09-28T22:04:31Z",
-      "settled": "2026-09-30T03:04:19Z",
-      "strategy": "bold"
-    },
-    {
-      "key": "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-      "question": "Minnesota wins",
-      "url": "https://kalshi.com/markets/kxwnbagame/minnesota-wins/kxwnbagame-26sep29minny",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 1999.98,
-      "cost_per": 0.4268,
-      "p_side": 0.76,
-      "outcome": "no",
-      "payout": 4686.0,
-      "pnl": 2686.02,
-      "opened": "2026-09-29T05:04:29Z",
-      "settled": "2026-09-30T03:04:19Z",
-      "strategy": "original"
     }
   ],
   "calls": [
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "key": "kalshi:KXNFLTOTAL-26OCT01PITCLE-39",
+      "question": "Full Game: over 38.5 points scored? (Over 38.5 points)",
+      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-38-5-points-scored/kxnfltotal-26oct01pitcle",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-04T00:15:00Z",
+      "market": 0.505,
+      "forecasts": {
+        "jev_research": 0.54,
+        "jev_plain": 0.48,
+        "claude_direct": null,
+        "jev_calibrated": 0.7128
+      },
+      "info": 0.37,
+      "rules": 0.88,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.003 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.007 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.003 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.37 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.007 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.003 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.003 < 0.15"
+        }
+      },
+      "facts_total": 9
+    },
     {
       "ts": "2026-10-01T03:04:21Z",
       "key": "kalshi:KXDPWORLDTOUR-ALDLC26-TFLE",
@@ -9718,75 +9775,61 @@
         }
       },
       "facts_total": 11
-    },
-    {
-      "ts": "2026-10-01T01:04:21Z",
-      "key": "kalshi:KXBTCD-26OCT0217-T83499.99",
-      "question": "Bitcoin price on Oct 2, 2026? ($83,500 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217",
-      "source": "kalshi",
-      "category": "crypto",
-      "close_time": "2026-10-02T21:00:00Z",
-      "market": 0.515,
-      "forecasts": {
-        "jev_research": 0.51,
-        "jev_plain": 0.47,
-        "claude_direct": null,
-        "jev_calibrated": 0.6761
-      },
-      "info": 0.19,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.028 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.013 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.028 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.19 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.013 < 0.12"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.028 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.028 < 0.15"
-        }
-      },
-      "facts_total": 11
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "win",
+      "strategy": "bold",
+      "amount": 539.06,
+      "q": "Boston vs New York Y Wild Card series winner: Boston wins",
+      "url": "https://kalshi.com/markets/kxmlbseries/market/kxmlbseries-26bosnyywc"
+    },
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "win",
+      "strategy": "calibrated",
+      "amount": 1278.42,
+      "q": "Will Miami FC win on 2026-09-30?",
+      "url": "https://polymarket.com/market/uslc-mia-spo-2026-09-30-mia"
+    },
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "win",
+      "strategy": "calibrated",
+      "amount": 407.26,
+      "q": "Boston vs New York Y Wild Card series winner: New York Y wins",
+      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc"
+    },
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "bet",
+      "strategy": "jev_alone_bold",
+      "side": "no",
+      "price": 0.59,
+      "amount": 1848.47,
+      "p": 0.79,
+      "q": "Will Elon Musk post 200-219 tweets from September 25 to October 2, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-september-25-october-2-2026-200-219"
+    },
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "call",
+      "jev": 0.54,
+      "claude": null,
+      "market": 0.505,
+      "q": "Full Game: over 38.5 points scored? (Over 38.5 points)",
+      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-38-5-points-scored/kxnfltotal-26oct01pitcle"
+    },
+    {
+      "ts": "2026-10-01T03:34:20Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 3,
+      "researched": 1,
+      "bets": 1
+    },
     {
       "ts": "2026-10-01T03:04:21Z",
       "type": "call",
@@ -10180,15 +10223,6 @@
     },
     {
       "ts": "2026-10-01T00:34:20Z",
-      "type": "call",
-      "jev": 0.27,
-      "claude": null,
-      "market": 0.075,
-      "q": "Will Marina Silva win the second-most votes in the 2026 S\u00e3o Paulo Senate election?",
-      "url": "https://polymarket.com/market/will-marina-silva-win-the-second-most-votes-in-the-2026-sao-paulo-senate-election"
-    },
-    {
-      "ts": "2026-10-01T00:34:20Z",
       "type": "intel",
       "facts": 11,
       "q": "Will Wales vs. Norway end in a draw?",
@@ -10412,51 +10446,10 @@
       "judged": 12,
       "researched": 5,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-30T20:34:25Z",
-      "type": "intel",
-      "facts": 8,
-      "q": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
-      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922"
-    },
-    {
-      "ts": "2026-09-30T20:34:25Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 6,
-      "researched": 1,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "intel",
-      "facts": 15,
-      "q": "Full Game: over 48.5 points scored? (Over 48.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-48-5-points-scored/kxnfltotal-26oct04dalhou"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 18,
-      "researched": 10,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T19:34:35Z",
-      "type": "bet",
-      "strategy": "main",
-      "side": "no",
-      "price": 0.068,
-      "amount": 2051.49,
-      "p": 0.31,
-      "q": "Will Lebanon win on 2026-10-01?",
-      "url": "https://polymarket.com/market/fif-mdv-lib-2026-10-01-lib"
     }
   ],
   "plan_usage": {
-    "ts": "2026-10-01T03:04:21Z",
+    "ts": "2026-10-01T03:34:20Z",
     "week": 1,
     "week_resets": 1791183600,
     "five_hour": 0
@@ -10465,21 +10458,21 @@
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 126,
+    "reviewed": 131,
     "post_mortems": 13,
     "win_reviews": 9,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 9,
-        "predicted": 0.143,
+        "n": 10,
+        "predicted": 0.14,
         "actual": 0.0
       },
       {
         "range": "20\u201340%",
-        "n": 24,
-        "predicted": 0.293,
-        "actual": 0.292
+        "n": 25,
+        "predicted": 0.29,
+        "actual": 0.28
       },
       {
         "range": "40\u201360%",
@@ -10489,14 +10482,14 @@
       },
       {
         "range": "60\u201380%",
-        "n": 14,
-        "predicted": 0.651,
-        "actual": 0.786
+        "n": 16,
+        "predicted": 0.653,
+        "actual": 0.812
       },
       {
         "range": "80\u2013100%",
-        "n": 1,
-        "predicted": 0.81,
+        "n": 2,
+        "predicted": 0.815,
         "actual": 1.0
       }
     ],
@@ -10955,9 +10948,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.5064,
-      "b": 0.6675,
-      "n": 85,
+      "a": 1.5641,
+      "b": 0.6858,
+      "n": 90,
       "active": true,
       "need": 30
     },
@@ -10966,10 +10959,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 61,
+          "n": 64,
           "wins": 10,
-          "pnl_per_100": -58.12,
-          "total_per_100": -3545.4
+          "pnl_per_100": -60.08,
+          "total_per_100": -3845.4
         },
         {
           "group": "several",
@@ -10992,10 +10985,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 39,
-          "wins": 10,
-          "pnl_per_100": -41.6,
-          "total_per_100": -1622.5
+          "n": 42,
+          "wins": 13,
+          "pnl_per_100": -33.67,
+          "total_per_100": -1414.27
         },
         {
           "group": "framing",
@@ -11044,18 +11037,18 @@
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 14,
-          "wins": 4,
-          "pnl_per_100": -37.75,
-          "total_per_100": -528.55
+          "n": 15,
+          "wins": 5,
+          "pnl_per_100": -30.92,
+          "total_per_100": -463.83
         },
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 8,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -800.0
+          "n": 10,
+          "wins": 2,
+          "pnl_per_100": -65.65,
+          "total_per_100": -656.48
         },
         {
           "group": "rules",
@@ -11094,10 +11087,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 42,
+          "n": 45,
           "wins": 8,
-          "pnl_per_100": -50.94,
-          "total_per_100": -2139.33
+          "pnl_per_100": -54.21,
+          "total_per_100": -2439.33
         },
         {
           "group": "rules",
@@ -11128,10 +11121,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 23,
-          "wins": 6,
-          "pnl_per_100": -38.74,
-          "total_per_100": -890.98
+          "n": 25,
+          "wins": 8,
+          "pnl_per_100": -29.9,
+          "total_per_100": -747.46
         },
         {
           "group": "several",
@@ -11146,18 +11139,18 @@
         {
           "group": "bet",
           "label": "Bets placed",
-          "n": 1,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -100.0
+          "n": 3,
+          "wins": 2,
+          "pnl_per_100": -5.23,
+          "total_per_100": -15.7
         },
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 13,
-          "wins": 3,
-          "pnl_per_100": -42.29,
-          "total_per_100": -549.8
+          "n": 16,
+          "wins": 6,
+          "pnl_per_100": -24.29,
+          "total_per_100": -388.61
         },
         {
           "group": "several",
@@ -11172,15 +11165,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 69,
-        "jev_research": 0.201,
-        "jev_plain": 0.2515,
-        "market": 0.1664,
-        "claude_direct": 0.1761,
-        "n_jev_research": 48,
-        "n_jev_plain": 69,
-        "n_market": 69,
-        "n_claude_direct": 21
+        "n": 74,
+        "jev_research": 0.1879,
+        "jev_plain": 0.2533,
+        "market": 0.1632,
+        "claude_direct": 0.1773,
+        "n_jev_research": 53,
+        "n_jev_plain": 74,
+        "n_market": 74,
+        "n_claude_direct": 22
       },
       {
         "category": "crypto",
