@@ -207,4 +207,5 @@ Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes th
 | [2026-09-28-daily-review-tunes-any-strategy-s-rules-5495](docs/decisions/2026-09-28-daily-review-tunes-any-strategy-s-rules-5495.md) | Daily review tunes any strategy's rules; code ideas wait for Joey | accepted | 2026-09-28 |
 | [2026-09-28-more-action-whole-kalshi-window-soonest-21f7](docs/decisions/2026-09-28-more-action-whole-kalshi-window-soonest-21f7.md) | More action: whole Kalshi window soonest first, research paced, early Kalshi results, Jev alone bold | accepted | 2026-09-28 |
 | [2026-09-28-open-bet-cap-50-percent-and-research-60-4998](docs/decisions/2026-09-28-open-bet-cap-50-percent-and-research-60-4998.md) | Open-bet cap 50 percent and research 60 a day | accepted | 2026-09-28 |
+| [2026-10-01-stop-buying-contracts-under-30c-100-mark-4428](docs/decisions/2026-10-01-stop-buying-contracts-under-30c-100-mark-4428.md) | Stop buying contracts under 30c; 100 markets per source | accepted | 2026-10-01 |
 <!-- skilliton:index:decisions:end -->
