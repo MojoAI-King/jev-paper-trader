@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "updated": "2026-09-30T00:08:42Z",
+  "version": 4,
+  "updated": "2026-10-01T00:08:33Z",
   "rules": [
     {
       "id": "R1",
@@ -62,9 +62,12 @@
     {
       "id": "R7",
       "category": "sports",
-      "rule": "For match questions, report the full head-to-head record between the two teams and each side's confirmed suspensions and injuries, citing dated team, federation or reputable news sources for each absence.",
+      "rule": "For match questions, report the current-season head-to-head with its game count, labeling samples under about 10 games as small and noting when sources disagree on the count, plus each side's dated, sourced suspensions, injuries and returns from injury.",
       "evidence": [
-        "polymarket:4581752"
+        "polymarket:4581752",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -106,9 +109,9 @@
       "category": "sports",
       "rule": "Just before a tennis match, check the tournament's latest order of play, draw updates and withdrawal lists for walkovers, late withdrawals or lucky-loser swaps, and report recent full matches each player finished (singles or doubles) as fitness evidence.",
       "evidence": [
-        "polymarket:5083452",
         "polymarket:5023463",
-        "polymarket:5055808"
+        "polymarket:5055808",
+        "polymarket:5083452"
       ],
       "added": "2026-09-30T00:08:42Z"
     },
@@ -120,11 +123,53 @@
         "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
       ],
       "added": "2026-09-30T00:08:42Z"
+    },
+    {
+      "id": "R13",
+      "category": "sports",
+      "rule": "For single MLB games, report both confirmed starters' season ERA and ERA+ and recent starts, each team's season record, late-season form (record and offense since Sept 1) and home field; if it is a bullpen game, note that an opener's few innings carry little weight.",
+      "evidence": [
+        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS"
+      ],
+      "added": "2026-10-01T00:08:33Z"
+    },
+    {
+      "id": "R14",
+      "category": "general",
+      "rule": "Take historical base-rate counts only from a cited source covering the current format (e.g. WNBA best-of-three since 2022); label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
+      "evidence": [
+        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS"
+      ],
+      "added": "2026-10-01T00:08:33Z"
+    },
+    {
+      "id": "R15",
+      "category": "sports",
+      "rule": "For playoff series and games, state the current series score and what the trailing team must still win and where, report margins of earlier games in the series, and note when a team's standing rests mainly on seeding or overall record.",
+      "evidence": [
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN"
+      ],
+      "added": "2026-10-01T00:08:33Z"
     }
   ],
   "reviews_used": [
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
+    "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
+    "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
+    "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+    "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
     "kalshi:KXMLBRFI-26SEP291400PHIATL",
+    "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
+    "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
+    "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+    "kalshi:KXWNBASERIES-26NYMINR1-MIN",
     "polymarket:4581722",
     "polymarket:4581752",
     "polymarket:4581768",

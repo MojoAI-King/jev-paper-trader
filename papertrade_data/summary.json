@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-30T23:36:07Z",
+  "generated": "2026-10-01T00:09:02Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -63,7 +63,7 @@
       "label": "Atlanta wins"
     },
     {
-      "t": "2026-09-30T23:36:07Z",
+      "t": "2026-10-01T00:09:02Z",
       "equity": 100483.07,
       "label": "Now (open bets valued at cost)"
     }
@@ -357,8 +357,8 @@
     }
   ],
   "calibration": {
-    "judged": 402,
-    "resolved": 120,
+    "judged": 404,
+    "resolved": 121,
     "sources": [
       {
         "name": "jev_research",
@@ -369,8 +369,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.26635833333333336,
-        "n": 120
+        "brier": 0.2645942148760331,
+        "n": 121
       },
       {
         "name": "claude_direct",
@@ -387,25 +387,25 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.13506764166666665,
-        "n": 120
+        "brier": 0.13398629752066116,
+        "n": 121
       }
     ]
   },
   "last_scan": {
-    "date": "2026-09-30",
-    "judged": 9,
+    "date": "2026-10-01",
+    "judged": 40,
     "bets": 0,
-    "fail_info": 6,
+    "fail_info": 12,
     "fail_rules": 0,
-    "fail_edge": 2,
+    "fail_edge": 10,
     "sources": {
-      "kalshi": 2,
-      "polymarket": 7
+      "polymarket": 24,
+      "kalshi": 16
     }
   },
   "funnel": {
-    "ts": "2026-09-30T23:34:21Z",
+    "ts": "2026-10-01T00:04:22Z",
     "stages": [
       [
         "Fetched",
@@ -413,15 +413,15 @@
       ],
       [
         "Passed free filters",
-        9
+        120
       ],
       [
         "Judged by Jev",
-        9
+        40
       ],
       [
         "Judged with research",
-        6
+        13
       ],
       [
         "Cleared every gate (main)",
@@ -432,24 +432,25 @@
         0
       ]
     ],
-    "events": 9,
-    "researched_new": 0,
-    "research_reused": 6,
+    "events": 33,
+    "researched_new": 3,
+    "research_reused": 9,
     "bets": {
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
-      "ch3": 0
+      "ch3": 0,
+      "ch6": 0
     },
-    "claude_calls": 0,
+    "claude_calls": 6,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 56,
-    "facts_dropped": 10,
+    "facts_kept": 123,
+    "facts_dropped": 11,
     "by_source": {
       "polymarket": 60,
       "kalshi": 60
@@ -459,14 +460,15 @@
       "main": 0,
       "jev_alone": 0,
       "claude_direct": 0,
-      "bold": 0,
+      "bold": 1,
       "calibrated": 0,
       "jev_alone_bold": 0,
       "original": 0,
-      "ch3": 0
+      "ch3": 0,
+      "ch6": 0
     },
-    "judged": 9,
-    "with_research": 6
+    "judged": 40,
+    "with_research": 13
   },
   "strategies": [
     {
@@ -575,12 +577,12 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 81061.94,
-      "unrealized": -10393.17,
+      "marked": 81073.1,
+      "unrealized": -10382.01,
       "change": -8544.89,
       "realized": -8544.89,
-      "open": 30,
-      "open_cost": 43970.09,
+      "open": 31,
+      "open_cost": 45727.55,
       "settled": 14,
       "wins": 4,
       "losses": 10,
@@ -1424,7 +1426,11 @@
           97091.07
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          97091.07
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           97091.07
         ]
       ]
@@ -2117,7 +2123,11 @@
           99636.24
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          99636.24
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           99636.24
         ]
       ]
@@ -2810,7 +2820,11 @@
           90707.36
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          90707.36
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           90707.36
         ]
       ]
@@ -3503,8 +3517,12 @@
           81061.94
         ],
         [
-          "2026-09-30T23:36:07Z",
-          81061.94
+          "2026-10-01T00:04:22Z",
+          81073.1
+        ],
+        [
+          "2026-10-01T00:09:02Z",
+          81073.1
         ]
       ]
     },
@@ -4196,7 +4214,11 @@
           96617.09
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          96617.09
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           96617.09
         ]
       ]
@@ -4889,7 +4911,11 @@
           89252.38
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          89252.38
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           89252.38
         ]
       ]
@@ -5582,7 +5608,11 @@
           95275.3
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          95275.3
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           95275.3
         ]
       ]
@@ -6275,7 +6305,11 @@
           99550.11
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          99550.11
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           99550.11
         ]
       ]
@@ -6968,7 +7002,11 @@
           100000.0
         ],
         [
-          "2026-09-30T23:36:07Z",
+          "2026-10-01T00:04:22Z",
+          100000.0
+        ],
+        [
+          "2026-10-01T00:09:02Z",
           100000.0
         ]
       ]
@@ -7441,6 +7479,29 @@
       ]
     },
     {
+      "key": "polymarket:4678632",
+      "question": "Will Norway win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-nor",
+      "source": "polymarket",
+      "close_time": "2026-10-01T18:45:00Z",
+      "category": "sports",
+      "price": 0.675,
+      "price_at": "2026-10-01T00:04:22Z",
+      "positions": [
+        {
+          "strategy": "bold",
+          "side": "no",
+          "contracts": 5169,
+          "cost_per": 0.34,
+          "total_cost": 1757.46,
+          "p_side": 0.5,
+          "edge": 0.16,
+          "opened": "2026-10-01T00:04:22Z",
+          "value": 1679.92
+        }
+      ]
+    },
+    {
       "key": "polymarket:4678629",
       "question": "Will Wales vs. Norway end in a draw?",
       "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-draw",
@@ -7574,7 +7635,7 @@
       "close_time": "2026-10-03T18:45:00Z",
       "category": "sports",
       "price": 0.895,
-      "price_at": "2026-09-30T18:34:34Z",
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "bold",
@@ -7767,8 +7828,8 @@
       "source": "polymarket",
       "close_time": "2026-10-05T03:59:00Z",
       "category": "politics",
-      "price": 0.715,
-      "price_at": "2026-09-30T18:34:34Z",
+      "price": 0.685,
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "bold",
@@ -7779,7 +7840,7 @@
           "p_side": 0.47,
           "edge": 0.2,
           "opened": "2026-09-27T15:30:28Z",
-          "value": 2111.0
+          "value": 2333.2
         }
       ]
     },
@@ -8039,7 +8100,7 @@
       "close_time": "2026-10-12T16:30:00Z",
       "category": "sports",
       "price": 0.925,
-      "price_at": "2026-09-30T18:34:34Z",
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -8119,7 +8180,7 @@
       "close_time": "2026-10-18T00:00:00Z",
       "category": "sports",
       "price": 0.0605,
-      "price_at": "2026-09-30T19:04:32Z",
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "bold",
@@ -8164,8 +8225,8 @@
       "source": "kalshi",
       "close_time": "2026-10-18T01:00:00Z",
       "category": "sports",
-      "price": 0.175,
-      "price_at": "2026-09-30T19:04:32Z",
+      "price": 0.165,
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "bold",
@@ -8176,7 +8237,7 @@
           "p_side": 0.36,
           "edge": 0.1597,
           "opened": "2026-09-27T16:32:25Z",
-          "value": 1747.38
+          "value": 1647.53
         }
       ]
     },
@@ -8210,8 +8271,8 @@
       "source": "kalshi",
       "close_time": "2026-10-18T04:00:00Z",
       "category": "sports",
-      "price": 0.068,
-      "price_at": "2026-09-30T18:34:34Z",
+      "price": 0.0665,
+      "price_at": "2026-10-01T00:04:22Z",
       "positions": [
         {
           "strategy": "bold",
@@ -8222,7 +8283,7 @@
           "p_side": 0.19,
           "edge": 0.1001,
           "opened": "2026-09-28T21:35:11Z",
-          "value": 1526.33
+          "value": 1492.66
         }
       ]
     },
@@ -8746,515 +8807,27 @@
   ],
   "calls": [
     {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "polymarket:2757891",
-      "question": "Will Aleksandar Vu\u010di\u0107 be the next Prime Minister of Serbia?",
-      "url": "https://polymarket.com/market/will-aleksandar-vucic-be-the-next-prime-minister-of-serbia-20260629223938643",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-25T23:59:00Z",
-      "market": 0.6525,
-      "forecasts": {
-        "jev_research": 0.11,
-        "jev_plain": 0.07,
-        "claude_direct": null,
-        "jev_calibrated": 0.0818
-      },
-      "info": 0.21,
-      "rules": 0.82,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.21 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.27 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.21 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.21 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "YES/NO answers disagree (gap 0.21 > 0.15)"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.21 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "polymarket:4906127",
-      "question": "US announces end of Iranian blockade by October 15, 2026?",
-      "url": "https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-october-15-2026",
-      "source": "polymarket",
-      "category": "other",
-      "close_time": "2026-10-16T03:59:00Z",
-      "market": 0.155,
-      "forecasts": {
-        "jev_research": 0.08,
-        "jev_plain": 0.14,
-        "claude_direct": null,
-        "jev_calibrated": 0.0501
-      },
-      "info": 0.47,
-      "rules": 0.77,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.000 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.47 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.000 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 11
-    },
-    {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "polymarket:5116362",
-      "question": "Will the highest temperature in Wuhan be 22\u00b0C on October 1?",
-      "url": "https://polymarket.com/market/highest-temperature-in-wuhan-on-october-1-2026-22c",
-      "source": "polymarket",
-      "category": "weather",
-      "close_time": "2026-10-01T12:00:00Z",
-      "market": 0.938,
-      "forecasts": {
-        "jev_research": 0.25,
-        "jev_plain": 0.24,
-        "claude_direct": null,
-        "jev_calibrated": 0.2806
-      },
-      "info": 0.23,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "rules_clear 0.74 < 0.75"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.23 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 3
-    },
-    {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "polymarket:5152205",
-      "question": "China Open: Completed Match: Clara Tauson vs Polina Kudermetova",
-      "url": "https://polymarket.com/market/wta-tauson-kuderme-2026-10-01-completed-match",
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:4678620",
+      "question": "Will Netherlands win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-grc-nld-2026-10-01-nld",
       "source": "polymarket",
       "category": "sports",
-      "close_time": "2026-10-09T03:00:00Z",
-      "market": 0.54,
-      "forecasts": {
-        "jev_research": 0.56,
-        "jev_plain": 0.39,
-        "claude_direct": null,
-        "jev_calibrated": 0.7414
-      },
-      "info": 0.41,
-      "rules": 0.83,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.440 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.310 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.440 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.259 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.310 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.440 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "polymarket:1366008",
-      "question": "Will Luiz In\u00e1cio Lula da Silva win the first round of the 2026 Brazilian presidential election by 5\u201310%?",
-      "url": "https://polymarket.com/market/will-luiz-incio-lula-da-silva-win-the-first-round-of-the-2026-brazilian-presidential-election-by-510-971",
-      "source": "polymarket",
-      "category": "politics",
-      "close_time": "2026-10-05T03:59:00Z",
-      "market": 0.155,
-      "forecasts": {
-        "jev_research": 0.3,
-        "jev_plain": 0.24,
-        "claude_direct": null,
-        "jev_calibrated": 0.3619
-      },
-      "info": 0.13,
-      "rules": 0.87,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.13 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 12
-    },
-    {
-      "ts": "2026-09-30T23:34:21Z",
-      "key": "kalshi:KXDPWORLDTOUR-ALDLC26-MFIT",
-      "question": "Alfred Dunhill Links Championship: Matt Fitzpatrick wins",
-      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-matt-fitzpatrick-wins/kxdpworldtour-aldlc26",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-18T00:00:00Z",
-      "market": 0.094,
-      "forecasts": {
-        "jev_research": 0.21,
-        "jev_plain": 0.27,
-        "claude_direct": null,
-        "jev_calibrated": 0.2178
-      },
-      "info": 0.31,
-      "rules": 0.85,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.15 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.15 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.31 < 0.5)"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 10
-    },
-    {
-      "ts": "2026-09-30T23:04:21Z",
-      "key": "kalshi:KXNFLTOTAL-26OCT01PITCLE-51",
-      "question": "Full Game: over 50.5 points scored? (Over 50.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-50-5-points-scored/kxnfltotal-26oct01pitcle",
-      "source": "kalshi",
-      "category": "sports",
-      "close_time": "2026-10-04T00:15:00Z",
-      "market": 0.18,
-      "forecasts": {
-        "jev_research": 0.2,
-        "jev_plain": 0.4,
-        "claude_direct": 0.09,
-        "jev_calibrated": 0.1901
-      },
-      "info": 0.47,
-      "rules": 0.9,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.011 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.16 < 0.5)"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.08"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.011 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.021 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.16 < 0.2)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.011 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.060 < 0.12"
-        }
-      },
-      "facts_total": 9
-    },
-    {
-      "ts": "2026-09-30T22:34:21Z",
-      "key": "kalshi:KXBTCD-26OCT0217-T83499.99",
-      "question": "Bitcoin price on Oct 2, 2026? ($83,500 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217",
-      "source": "kalshi",
-      "category": "crypto",
-      "close_time": "2026-10-02T21:00:00Z",
-      "market": 0.575,
-      "forecasts": {
-        "jev_research": 0.51,
-        "jev_plain": 0.47,
-        "claude_direct": null,
-        "jev_calibrated": 0.6658
-      },
-      "info": 0.23,
-      "rules": 0.86,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.073 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.059 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.073 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.033 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 11
-    },
-    {
-      "ts": "2026-09-30T22:34:21Z",
-      "key": "polymarket:4720686",
-      "question": "Will Belgium win on 2026-10-02?",
-      "url": "https://polymarket.com/market/unl-bel-tur-2026-10-02-bel",
-      "source": "polymarket",
-      "category": "sports",
-      "close_time": "2026-10-02T18:45:00Z",
-      "market": 0.645,
+      "close_time": "2026-10-01T18:45:00Z",
+      "market": 0.465,
       "forecasts": {
         "jev_research": 0.49,
-        "jev_plain": 0.35,
+        "jev_plain": 0.36,
         "claude_direct": null,
-        "jev_calibrated": 0.6386
+        "jev_calibrated": 0.6536
       },
-      "info": 0.29,
-      "rules": 0.9,
+      "info": 0.35,
+      "rules": 0.88,
       "decisions": {
         "main": {
           "bet": false,
-          "side": "no",
-          "why": "needs recent info (0.29 < 0.5)"
+          "side": "yes",
+          "why": "edge +0.010 < 0.08"
         },
         "jev_alone": {
           "bet": false,
@@ -9268,13 +8841,145 @@
         },
         "bold": {
           "bet": false,
+          "side": "yes",
+          "why": "edge +0.010 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.35 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
           "side": "no",
-          "why": "needs recent info (0.29 < 0.35)"
+          "why": "edge +0.090 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.010 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.010 < 0.15"
+        }
+      },
+      "facts_total": 13
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "kalshi:KXUEFANLGAME-26OCT01WALNOR-NOR",
+      "question": "Norway wins",
+      "url": "https://kalshi.com/markets/kxuefanlgame/norway-wins/kxuefanlgame-26oct01walnor",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-03T18:45:00Z",
+      "market": 0.685,
+      "forecasts": {
+        "jev_research": 0.58,
+        "jev_plain": 0.38,
+        "claude_direct": null,
+        "jev_calibrated": 0.764
+      },
+      "info": 0.33,
+      "rules": 0.8,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.075 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.075 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.049 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.075 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.075 < 0.15"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:4678632",
+      "question": "Will Norway win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-nor",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-01T18:45:00Z",
+      "market": 0.675,
+      "forecasts": {
+        "jev_research": 0.5,
+        "jev_plain": 0.36,
+        "claude_direct": null,
+        "jev_calibrated": 0.6669
+      },
+      "info": 0.47,
+      "rules": 0.88,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.47 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": true,
+          "side": "no",
+          "why": "BET NO x5169 @ 0.340: p 0.50 vs cost 0.340, edge +0.160"
         },
         "calibrated": {
           "bet": false,
           "side": "no",
-          "why": "edge -0.009 < 0.08"
+          "why": "edge -0.007 < 0.08"
         },
         "jev_alone_bold": {
           "bet": false,
@@ -9284,42 +8989,47 @@
         "original": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.29 < 0.5)"
+          "why": "needs recent info (0.47 < 0.5)"
         },
         "ch3": {
           "bet": false,
           "side": null,
           "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.47 < 0.5)"
         }
       },
-      "facts_total": 10
+      "facts_total": 11
     },
     {
-      "ts": "2026-09-30T22:34:21Z",
-      "key": "polymarket:4678627",
-      "question": "Will Wales win on 2026-10-01?",
-      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-wal",
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:4678642",
+      "question": "Will Portugal win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-den-prt-2026-10-01-prt",
       "source": "polymarket",
       "category": "sports",
       "close_time": "2026-10-01T18:45:00Z",
-      "market": 0.135,
+      "market": 0.485,
       "forecasts": {
-        "jev_research": 0.14,
+        "jev_research": 0.47,
         "jev_plain": 0.35,
         "claude_direct": null,
-        "jev_calibrated": 0.1098
+        "jev_calibrated": 0.6261
       },
-      "info": 0.48,
+      "info": 0.36,
       "rules": 0.89,
       "decisions": {
         "main": {
           "bet": false,
-          "side": "yes",
-          "why": "edge -0.010 < 0.08"
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
         },
         "jev_alone": {
           "bet": false,
-          "side": "yes",
+          "side": "no",
           "why": "needs recent info (0.12 < 0.5)"
         },
         "claude_direct": {
@@ -9329,59 +9039,130 @@
         },
         "bold": {
           "bet": false,
-          "side": "yes",
-          "why": "edge -0.010 < 0.08"
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
         },
         "calibrated": {
           "bet": false,
-          "side": "no",
-          "why": "edge +0.010 < 0.08"
+          "side": "yes",
+          "why": "needs recent info (0.36 < 0.5)"
         },
         "jev_alone_bold": {
           "bet": false,
-          "side": "yes",
+          "side": "no",
           "why": "needs recent info (0.12 < 0.2)"
         },
         "original": {
           "bet": false,
-          "side": "yes",
-          "why": "edge -0.010 < 0.08"
+          "side": "no",
+          "why": "edge +0.000 < 0.08"
         },
         "ch3": {
           "bet": false,
           "side": null,
           "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.000 < 0.15"
         }
       },
-      "facts_total": 11
+      "facts_total": 13
     },
     {
-      "ts": "2026-09-30T22:34:21Z",
-      "key": "kalshi:KXNFLGAME-26OCT04MIAMIN-MIA",
-      "question": "Miami wins",
-      "url": "https://kalshi.com/markets/kxnflgame/miami-wins/kxnflgame-26oct04miamin",
-      "source": "kalshi",
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:4753005",
+      "question": "Will Spain win on 2026-10-03?",
+      "url": "https://polymarket.com/market/unl-esp-cze-2026-10-03-esp",
+      "source": "polymarket",
       "category": "sports",
-      "close_time": "2026-10-06T20:05:00Z",
-      "market": 0.165,
+      "close_time": "2026-10-03T18:45:00Z",
+      "market": 0.895,
       "forecasts": {
-        "jev_research": 0.16,
-        "jev_plain": 0.47,
+        "jev_research": 0.64,
+        "jev_plain": 0.38,
         "claude_direct": null,
-        "jev_calibrated": 0.135
+        "jev_calibrated": 0.8251
       },
-      "info": 0.3,
-      "rules": 0.81,
+      "info": 0.48,
+      "rules": 0.86,
       "decisions": {
         "main": {
           "bet": false,
           "side": "no",
-          "why": "edge -0.019 < 0.08"
+          "why": "needs recent info (0.48 < 0.5)"
         },
         "jev_alone": {
           "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.14 < 0.5)"
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.055 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.11 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.48 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.48 < 0.5)"
+        }
+      },
+      "facts_total": 12
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "kalshi:KXNFLGAME-26OCT01PITCLE-PIT",
+      "question": "Pittsburgh wins",
+      "url": "https://kalshi.com/markets/kxnflgame/pittsburgh-wins/kxnflgame-26oct01pitcle",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-04T00:15:00Z",
+      "market": 0.575,
+      "forecasts": {
+        "jev_research": 0.49,
+        "jev_plain": 0.48,
+        "claude_direct": null,
+        "jev_calibrated": 0.6536
+      },
+      "info": 0.3,
+      "rules": 0.8,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.053 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.063 < 0.08"
         },
         "claude_direct": {
           "bet": false,
@@ -9391,94 +9172,596 @@
         "bold": {
           "bet": false,
           "side": "no",
-          "why": "edge -0.019 < 0.08"
+          "why": "edge +0.053 < 0.08"
         },
         "calibrated": {
           "bet": false,
-          "side": "no",
-          "why": "edge +0.006 < 0.08"
+          "side": "yes",
+          "why": "edge +0.046 < 0.08"
         },
         "jev_alone_bold": {
           "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.14 < 0.2)"
+          "side": "no",
+          "why": "edge +0.063 < 0.12"
         },
         "original": {
           "bet": false,
           "side": "no",
-          "why": "edge -0.019 < 0.08"
+          "why": "edge +0.053 < 0.08"
         },
         "ch3": {
           "bet": false,
           "side": null,
           "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.053 < 0.15"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
+      "question": "Cleveland wins",
+      "url": "https://kalshi.com/markets/kxnflgame/cleveland-wins/kxnflgame-26oct01pitcle",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-04T00:15:00Z",
+      "market": 0.425,
+      "forecasts": {
+        "jev_research": 0.47,
+        "jev_plain": 0.41,
+        "claude_direct": null,
+        "jev_calibrated": 0.6261
+      },
+      "info": 0.28,
+      "rules": 0.8,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.017 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.28 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.017 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.15"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:5152211",
+      "question": "China Open: Completed Match: Sara Bejlek vs Maddison Inglis",
+      "url": "https://polymarket.com/market/wta-bejlek-inglis-2026-10-01-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-09T03:00:00Z",
+      "market": 0.76,
+      "forecasts": {
+        "jev_research": 0.68,
+        "jev_plain": 0.47,
+        "claude_direct": 0.96,
+        "jev_calibrated": 0.8602
+      },
+      "info": 0.59,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.170 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.040 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.050 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.170 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.150 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.040 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.170 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.050 < 0.12"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.170 < 0.15"
+        }
+      },
+      "facts_total": 7
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:5152207",
+      "question": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
+      "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-09T03:00:00Z",
+      "market": 0.535,
+      "forecasts": {
+        "jev_research": 0.64,
+        "jev_plain": 0.47,
+        "claude_direct": null,
+        "jev_calibrated": 0.8251
+      },
+      "info": 0.41,
+      "rules": 0.83,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.360 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.400 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.360 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.175 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.400 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.360 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.360 < 0.15"
         }
       },
       "facts_total": 9
     },
     {
-      "ts": "2026-09-30T22:34:21Z",
-      "key": "polymarket:4689888",
-      "question": "Will Cura\u00e7ao win on 2026-10-01?",
-      "url": "https://polymarket.com/market/conl-kor-tri-2026-10-01-kor",
-      "source": "polymarket",
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "kalshi:KXNCAAFGAME-26OCT03FLAMIZZ-FLA",
+      "question": "Florida wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/florida-wins/kxncaafgame-26oct03flamizz",
+      "source": "kalshi",
       "category": "sports",
-      "close_time": "2026-10-01T22:00:00Z",
-      "market": 0.585,
+      "close_time": "2026-10-05T17:00:00Z",
+      "market": 0.675,
       "forecasts": {
-        "jev_research": 0.67,
-        "jev_plain": 0.36,
-        "claude_direct": 0.57,
-        "jev_calibrated": 0.8443
+        "jev_research": 0.65,
+        "jev_plain": 0.43,
+        "claude_direct": null,
+        "jev_calibrated": 0.8343
       },
-      "info": 0.52,
-      "rules": 0.88,
+      "info": 0.22,
+      "rules": 0.77,
       "decisions": {
         "main": {
           "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
+          "side": "no",
+          "why": "edge -0.005 < 0.08"
         },
         "jev_alone": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.13 < 0.5)"
+          "why": "needs recent info (0.16 < 0.5)"
         },
         "claude_direct": {
           "bet": false,
-          "side": "no",
-          "why": "edge +0.000 < 0.08"
+          "side": null,
+          "why": "no probability this cycle"
         },
         "bold": {
           "bet": false,
-          "side": "yes",
-          "why": "edge +0.070 < 0.08"
+          "side": "no",
+          "why": "edge -0.005 < 0.08"
         },
         "calibrated": {
-          "bet": true,
+          "bet": false,
           "side": "yes",
-          "why": "BET YES x3266 @ 0.600: p 0.84 vs cost 0.600, edge +0.244"
+          "why": "needs recent info (0.22 < 0.5)"
         },
         "jev_alone_bold": {
           "bet": false,
           "side": "no",
-          "why": "needs recent info (0.13 < 0.2)"
+          "why": "needs recent info (0.16 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.005 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.005 < 0.15"
+        }
+      },
+      "facts_total": 12
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "kalshi:KXDPWORLDTOUR-ALDLC26-THAT",
+      "question": "Alfred Dunhill Links Championship: Tyrrell Hatton wins",
+      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-tyrrell-hatton-wins/kxdpworldtour-aldlc26",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-18T00:00:00Z",
+      "market": 0.0605,
+      "forecasts": {
+        "jev_research": 0.39,
+        "jev_plain": 0.31,
+        "claude_direct": null,
+        "jev_calibrated": 0.5071
+      },
+      "info": 0.41,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.41 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": null,
+          "why": "already holding this market"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.41 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.2)"
         },
         "original": {
           "bet": false,
           "side": "yes",
-          "why": "edge +0.070 < 0.08"
+          "why": "needs recent info (0.41 < 0.5)"
         },
         "ch3": {
           "bet": false,
-          "side": "no",
-          "why": "edge +0.000 < 0.12"
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.41 < 0.5)"
         }
       },
-      "facts_total": 11
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "key": "polymarket:5152213",
+      "question": "China Open: Completed Match: Linda Fruhvirtova vs Liudmila Samsonova",
+      "url": "https://polymarket.com/market/wta-fruhvir-samsono-2026-10-01-completed-match",
+      "source": "polymarket",
+      "category": "sports",
+      "close_time": "2026-10-09T03:00:00Z",
+      "market": 0.725,
+      "forecasts": {
+        "jev_research": 0.52,
+        "jev_plain": 0.48,
+        "claude_direct": 0.94,
+        "jev_calibrated": 0.6929
+      },
+      "info": 0.39,
+      "rules": 0.84,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.070 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.030 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.060 < 0.08"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.070 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.243 < 0.08"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.030 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.070 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.060 < 0.12"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.070 < 0.15"
+        }
+      },
+      "facts_total": 7
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-01T00:09:02Z",
+      "type": "learn",
+      "text": "Research playbook updated to v4"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "bet",
+      "strategy": "bold",
+      "side": "no",
+      "price": 0.34,
+      "amount": 1757.46,
+      "p": 0.5,
+      "q": "Will Norway win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-nor"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.49,
+      "claude": null,
+      "market": 0.465,
+      "q": "Will Netherlands win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-grc-nld-2026-10-01-nld"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.58,
+      "claude": null,
+      "market": 0.685,
+      "q": "Norway wins",
+      "url": "https://kalshi.com/markets/kxuefanlgame/norway-wins/kxuefanlgame-26oct01walnor"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.5,
+      "claude": null,
+      "market": 0.675,
+      "q": "Will Norway win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-nor"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.47,
+      "claude": null,
+      "market": 0.485,
+      "q": "Will Portugal win on 2026-10-01?",
+      "url": "https://polymarket.com/market/unl-den-prt-2026-10-01-prt"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.64,
+      "claude": null,
+      "market": 0.895,
+      "q": "Will Spain win on 2026-10-03?",
+      "url": "https://polymarket.com/market/unl-esp-cze-2026-10-03-esp"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.49,
+      "claude": null,
+      "market": 0.575,
+      "q": "Pittsburgh wins",
+      "url": "https://kalshi.com/markets/kxnflgame/pittsburgh-wins/kxnflgame-26oct01pitcle"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.47,
+      "claude": null,
+      "market": 0.425,
+      "q": "Cleveland wins",
+      "url": "https://kalshi.com/markets/kxnflgame/cleveland-wins/kxnflgame-26oct01pitcle"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.68,
+      "claude": 0.96,
+      "market": 0.76,
+      "q": "China Open: Completed Match: Sara Bejlek vs Maddison Inglis",
+      "url": "https://polymarket.com/market/wta-bejlek-inglis-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.64,
+      "claude": null,
+      "market": 0.535,
+      "q": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
+      "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.65,
+      "claude": null,
+      "market": 0.675,
+      "q": "Florida wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/florida-wins/kxncaafgame-26oct03flamizz"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.39,
+      "claude": null,
+      "market": 0.0605,
+      "q": "Alfred Dunhill Links Championship: Tyrrell Hatton wins",
+      "url": "https://kalshi.com/markets/kxdpworldtour/alfred-dunhill-links-championship-tyrrell-hatton-wins/kxdpworldtour-aldlc26"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.52,
+      "claude": 0.94,
+      "market": 0.725,
+      "q": "China Open: Completed Match: Linda Fruhvirtova vs Liudmila Samsonova",
+      "url": "https://polymarket.com/market/wta-fruhvir-samsono-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "call",
+      "jev": 0.5,
+      "claude": 0.5,
+      "market": 0.71,
+      "q": "China Open: Completed Match: Viktorija Golubic vs Peyton Stearns",
+      "url": "https://polymarket.com/market/wta-golubic-stearns-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "China Open: Completed Match: Linda Fruhvirtova vs Liudmila Samsonova",
+      "url": "https://polymarket.com/market/wta-fruhvir-samsono-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "China Open: Completed Match: Viktorija Golubic vs Peyton Stearns",
+      "url": "https://polymarket.com/market/wta-golubic-stearns-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "intel",
+      "facts": 10,
+      "q": "China Open: Completed Match: Sara Bejlek vs Maddison Inglis",
+      "url": "https://polymarket.com/market/wta-bejlek-inglis-2026-10-01-completed-match"
+    },
+    {
+      "ts": "2026-10-01T00:04:22Z",
+      "type": "scan",
+      "fetched": 120,
+      "judged": 40,
+      "researched": 13,
+      "bets": 1
+    },
     {
       "ts": "2026-09-30T23:36:06Z",
       "type": "learn",
@@ -9746,42 +10029,6 @@
     {
       "ts": "2026-09-30T21:34:25Z",
       "type": "call",
-      "jev": 0.12,
-      "claude": null,
-      "market": 0.22,
-      "q": "Boston vs New York Y Wild Card series winner: Boston wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-boston-wins/kxmlbseries-26bosnyywc"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "call",
-      "jev": 0.8,
-      "claude": null,
-      "market": 0.785,
-      "q": "Boston vs New York Y Wild Card series winner: New York Y wins",
-      "url": "https://kalshi.com/markets/kxmlbseries/boston-vs-new-york-y-wild-card-series-winner-new-york-y-wins/kxmlbseries-26bosnyywc"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "call",
-      "jev": 0.73,
-      "claude": null,
-      "market": 0.44,
-      "q": "Digger Rotten Tomatoes score? (Above 50)",
-      "url": "https://kalshi.com/markets/kxrt/digger-rotten-tomatoes-score/kxrt-dig"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "call",
-      "jev": 0.38,
-      "claude": null,
-      "market": 0.375,
-      "q": "Tampa Bay wins",
-      "url": "https://kalshi.com/markets/kxnflgame/tampa-bay-wins/kxnflgame-26oct04gbtb"
-    },
-    {
-      "ts": "2026-09-30T21:34:25Z",
-      "type": "call",
       "jev": 0.6,
       "claude": null,
       "market": 0.933,
@@ -9814,51 +10061,6 @@
     },
     {
       "ts": "2026-09-30T21:04:27Z",
-      "type": "call",
-      "jev": 0.63,
-      "claude": null,
-      "market": 0.905,
-      "q": "Spain wins",
-      "url": "https://kalshi.com/markets/kxuefanlgame/spain-wins/kxuefanlgame-26oct03espcze"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "call",
-      "jev": 0.83,
-      "claude": null,
-      "market": 0.9,
-      "q": "Digger Rotten Tomatoes score? (Above 45)",
-      "url": "https://kalshi.com/markets/kxrt/digger-rotten-tomatoes-score/kxrt-dig"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "call",
-      "jev": 0.55,
-      "claude": 0.94,
-      "market": 0.53,
-      "q": "China Open: Completed Match: Yue Yuan vs Mirra Andreeva",
-      "url": "https://polymarket.com/market/wta-yuan-andreev-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "call",
-      "jev": 0.31,
-      "claude": null,
-      "market": 0.405,
-      "q": "Will the price of Bitcoin be above $84,000 on October 1?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-october-1-2026"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
-      "type": "call",
-      "jev": 0.62,
-      "claude": 0.92,
-      "market": 0.74,
-      "q": "China Open: Completed Match: Ekaterina Alexandrova vs Aliaksandra Sasnovich",
-      "url": "https://polymarket.com/market/wta-alexand-sasnovi-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T21:04:27Z",
       "type": "intel",
       "facts": 10,
       "q": "China Open: Completed Match: Yue Yuan vs Mirra Andreeva",
@@ -9881,15 +10083,6 @@
     },
     {
       "ts": "2026-09-30T20:34:25Z",
-      "type": "call",
-      "jev": 0.37,
-      "claude": 0.3,
-      "market": 0.1925,
-      "q": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
-      "url": "https://polymarket.com/market/will-mrbeast-gamings-next-video-get-between-35-and-40-million-views-in-week-1-20260922"
-    },
-    {
-      "ts": "2026-09-30T20:34:25Z",
       "type": "intel",
       "facts": 8,
       "q": "Will MrBeast Gaming's next video get between 35 and 40 million views in week 1?",
@@ -9902,33 +10095,6 @@
       "judged": 6,
       "researched": 1,
       "bets": 0
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
-      "jev": 0.53,
-      "claude": null,
-      "market": 0.805,
-      "q": "Will the price of Bitcoin be above $82,000 on October 2?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-october-2-2026"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
-      "jev": 0.26,
-      "claude": null,
-      "market": 0.195,
-      "q": "Will Wales vs. Norway end in a draw?",
-      "url": "https://polymarket.com/market/unl-wal-nor-2026-10-01-draw"
-    },
-    {
-      "ts": "2026-09-30T20:04:35Z",
-      "type": "call",
-      "jev": 0.57,
-      "claude": 0.44,
-      "market": 0.495,
-      "q": "Full Game: over 48.5 points scored? (Over 48.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-48-5-points-scored/kxnfltotal-26oct04dalhou"
     },
     {
       "ts": "2026-09-30T20:04:35Z",
@@ -10101,69 +10267,19 @@
       "facts": 10,
       "q": "China Open: Completed Match: Jasmine Paolini vs Daria Snigur",
       "url": "https://polymarket.com/market/wta-paolini-snigur-2026-10-01-completed-match"
-    },
-    {
-      "ts": "2026-09-30T18:04:28Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 14,
-      "researched": 2,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T17:34:41Z",
-      "type": "intel",
-      "facts": 12,
-      "q": "Will Austria win on 2026-10-01?",
-      "url": "https://polymarket.com/market/unl-ire-aut-2026-10-01-aut"
-    },
-    {
-      "ts": "2026-09-30T17:34:41Z",
-      "type": "scan",
-      "fetched": 120,
-      "judged": 4,
-      "researched": 2,
-      "bets": 0
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "loss",
-      "strategy": "bold",
-      "amount": -1909.2,
-      "q": "India wins",
-      "url": "https://kalshi.com/markets/kxodimatch/india-wins/kxodimatch-26sep300430wiind"
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "loss",
-      "strategy": "jev_alone_bold",
-      "amount": -1968.44,
-      "q": "India wins",
-      "url": "https://kalshi.com/markets/kxodimatch/india-wins/kxodimatch-26sep300430wiind"
-    },
-    {
-      "ts": "2026-09-30T17:04:39Z",
-      "type": "bet",
-      "strategy": "bold",
-      "side": "yes",
-      "price": 0.4572,
-      "amount": 954.18,
-      "p": 0.83,
-      "q": "Digger Rotten Tomatoes score? (Above 50)",
-      "url": "https://kalshi.com/markets/kxrt/digger-rotten-tomatoes-score/kxrt-dig"
     }
   ],
   "plan_usage": {
-    "ts": "2026-09-30T23:04:21Z",
+    "ts": "2026-10-01T00:04:22Z",
     "week": 0.99,
     "week_resets": 1791183600,
-    "five_hour": 0.01
+    "five_hour": 0.02
   },
-  "research_runs_today": 60,
+  "research_runs_today": 3,
   "research_per_day": 60,
   "cycles_24h": 48,
   "learning": {
-    "reviewed": 120,
+    "reviewed": 121,
     "post_mortems": 13,
     "win_reviews": 8,
     "calibration": [
@@ -10471,8 +10587,8 @@
       }
     ],
     "playbook": {
-      "version": 3,
-      "updated": "2026-09-30T00:08:42Z",
+      "version": 4,
+      "updated": "2026-10-01T00:08:33Z",
       "rules": [
         {
           "id": "R1",
@@ -10513,7 +10629,7 @@
         {
           "id": "R7",
           "category": "sports",
-          "rule": "For match questions, report the full head-to-head record between the two teams and each side's confirmed suspensions and injuries, citing dated team, federation or reputable news sources for each absence.",
+          "rule": "For match questions, report the current-season head-to-head with its game count, labeling samples under about 10 games as small and noting when sources disagree on the count, plus each side's dated, sourced suspensions, injuries and returns from injury.",
           "added": "2026-09-29T00:09:39Z"
         },
         {
@@ -10545,9 +10661,48 @@
           "category": "general",
           "rule": "When a count question resolves on one named data provider, pull that provider's own trailing 2\u20134 week figures and write down its counting method (e.g. AIS-visible only) first; set aside other trackers' figures that count differently.",
           "added": "2026-09-30T00:08:42Z"
+        },
+        {
+          "id": "R13",
+          "category": "sports",
+          "rule": "For single MLB games, report both confirmed starters' season ERA and ERA+ and recent starts, each team's season record, late-season form (record and offense since Sept 1) and home field; if it is a bullpen game, note that an opener's few innings carry little weight.",
+          "added": "2026-10-01T00:08:33Z"
+        },
+        {
+          "id": "R14",
+          "category": "general",
+          "rule": "Take historical base-rate counts only from a cited source covering the current format (e.g. WNBA best-of-three since 2022); label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
+          "added": "2026-10-01T00:08:33Z"
+        },
+        {
+          "id": "R15",
+          "category": "sports",
+          "rule": "For playoff series and games, state the current series score and what the trailing team must still win and where, report margins of earlier games in the series, and note when a team's standing rests mainly on seeding or overall record.",
+          "added": "2026-10-01T00:08:33Z"
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-01T00:08:33Z",
+          "version": 4,
+          "added": [
+            "R13",
+            "R14",
+            "R15"
+          ],
+          "revised": [
+            "R7"
+          ],
+          "retired": [],
+          "changes": [
+            "Sharpened R7: head-to-head should be current-season, with game count, small-sample label and noted source disagreement, plus returns from injury (MLB CWS/HOU reviews, WNBA MIN game).",
+            "Added MLB single-game rule: starter ERA/ERA+, season record, late-season form, home field, and bullpen-game caveat (BOS/NYY worked; SD, CWS/HOU missed these).",
+            "Added general base-rate rule: cite a source for the current format and label memory-based, disputed or tiny-sample counts as unverified (BOS/NYY, WNBA series, SD, CWS).",
+            "Added playoff series rule: series score, what the trailing team needs and where, earlier game margins, and whether a team's standing rests on seeding (WNBA MIN reviews).",
+            "No rules made from the LV/IND WNBA and Trump 'Piggy' reviews because they are marked unlucky."
+          ],
+          "refused": 0
+        },
         {
           "ts": "2026-09-30T00:08:42Z",
           "version": 3,
@@ -10633,10 +10788,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 20,
+          "n": 21,
           "wins": 3,
-          "pnl_per_100": -75.54,
-          "total_per_100": -1510.84
+          "pnl_per_100": -76.71,
+          "total_per_100": -1610.84
         }
       ],
       "main": [
@@ -10920,6 +11075,14 @@
         "n_jev_plain": 2,
         "n_market": 2,
         "n_claude_direct": 1
+      },
+      {
+        "category": "world",
+        "n": 1,
+        "jev_plain": 0.0529,
+        "market": 0.0042,
+        "n_jev_plain": 1,
+        "n_market": 1
       }
     ],
     "proposals": [
