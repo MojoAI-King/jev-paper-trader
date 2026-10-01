@@ -1,34 +1,77 @@
 {
   "strategies": {
     "main": {
-      "version": 2,
-      "since": "2026-09-29T23:35:30Z",
+      "version": 3,
+      "since": "2026-10-01T04:19:34Z",
       "rules": {
         "skip_categories": [
           "crypto"
-        ]
+        ],
+        "min_ask": 0.3
       },
-      "proposal": "p1"
+      "proposal": null
     },
     "bold": {
-      "version": 2,
-      "since": "2026-09-29T23:35:30Z",
+      "version": 3,
+      "since": "2026-10-01T04:19:35Z",
       "rules": {
-        "min_info_sufficient": 0.35
+        "min_info_sufficient": 0.35,
+        "min_ask": 0.3
       },
-      "proposal": "p2"
+      "proposal": null
     },
     "jev_alone_bold": {
-      "version": 2,
-      "since": "2026-09-30T23:35:30Z",
+      "version": 3,
+      "since": "2026-10-01T04:19:36Z",
       "rules": {
         "min_edge": 0.12,
         "skip_categories": [
           "crypto",
           "economy"
-        ]
+        ],
+        "min_ask": 0.3
       },
-      "proposal": "p5"
+      "proposal": null
+    },
+    "jev_alone": {
+      "version": 2,
+      "since": "2026-10-01T04:19:35Z",
+      "rules": {
+        "min_ask": 0.3
+      },
+      "proposal": null
+    },
+    "claude_direct": {
+      "version": 2,
+      "since": "2026-10-01T04:19:35Z",
+      "rules": {
+        "min_ask": 0.3
+      },
+      "proposal": null
+    },
+    "calibrated": {
+      "version": 2,
+      "since": "2026-10-01T04:19:35Z",
+      "rules": {
+        "min_ask": 0.3
+      },
+      "proposal": null
+    },
+    "ch3": {
+      "version": 2,
+      "since": "2026-10-01T04:19:36Z",
+      "rules": {
+        "min_ask": 0.3
+      },
+      "proposal": null
+    },
+    "ch6": {
+      "version": 2,
+      "since": "2026-10-01T04:19:36Z",
+      "rules": {
+        "min_ask": 0.3
+      },
+      "proposal": null
     }
   }
 }
