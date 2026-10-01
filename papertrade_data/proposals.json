@@ -122,6 +122,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p8",
+      "created": "2026-10-01T11:39:35Z",
+      "kind": "code",
+      "title": "Score forecasters on 30c+ markets only",
+      "why": "Since 2026-10-01 every strategy bets only at 30c or more, but the Brier table (market 0.114 vs our best 0.121) mixes in the long shots we no longer touch. We need to know whether any forecaster beats the price where we actually bet, matched market by market.",
+      "judge_by": "The review data gains each source's Brier score next to the market's on the same resolved markets priced 30c or more. Success means Joey can see whether any source scores below the market there, which decides which challenger to start next.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
