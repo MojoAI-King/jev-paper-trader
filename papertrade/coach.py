@@ -146,7 +146,7 @@ class Coach:
                   .replace("{categories}", ", ".join(learn.CATEGORIES)))
         case = {"current_rules": [{k: r[k] for k in ("id", "category", "rule", "evidence")} for r in playbook["rules"]],
                 "new_reviews": [_review_case(r) for r in reviews]}
-        r = self.claude.ask(system, json.dumps(case, ensure_ascii=False, indent=1), web=False, timeout=600)
+        r = self.claude.ask(system, json.dumps(case, ensure_ascii=False, indent=1), web=False, timeout=600, paced=False)
         obj = news._parse_json(r["text"], dict)
         if not obj or not isinstance(obj.get("rules"), list):
             raise news.NewsError("coach reply had no rules list", meta=r["meta"])
@@ -332,7 +332,7 @@ class Retro:
         system = RETRO_PROMPT
         for k, v in limits.items():
             system = system.replace("{" + k + "}", v if isinstance(v, str) else json.dumps(v))
-        r = self.claude.ask(system, json.dumps(numbers, ensure_ascii=False, indent=1), web=False, timeout=600)
+        r = self.claude.ask(system, json.dumps(numbers, ensure_ascii=False, indent=1), web=False, timeout=600, paced=False)
         obj = news._parse_json(r["text"], dict)
         if not obj or not str(obj.get("headline") or "").strip():
             raise news.NewsError("review reply had no headline", meta=r["meta"])

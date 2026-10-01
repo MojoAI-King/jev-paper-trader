@@ -642,11 +642,13 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(r2.calls, [])
 
     def test_research_is_paced_through_the_day_and_soonest_first(self):
-        rc = POLICY["research"]
+        # the mechanism at the 2026-09-28 numbers (60 a day, 6 a cycle): policy.json's numbers change, the pacing doesn't
+        rc = dict(POLICY["research"], max_research_per_day=60, max_research_per_cycle=6)
         self.assertTrue(rc["pace_through_day"])
+        policy = dict(POLICY, research=rc, sources=["polymarket"])
         ms = [dict(self.lula(str(i), event=f"polymarket:e{i}"), close_time=f"2000-01-0{9 - i}T00:00:00Z") for i in range(8)]
         r = FakeResearcher([])
-        self.run_scan(ms, r)  # 00:00 UTC, nothing used yet: only the first hour's share of the day
+        self.run_scan(ms, r, policy=policy)  # 00:00 UTC, nothing used yet: only the first hour's share of the day
         first_hour = -(-rc["max_research_per_day"] * 1 // 24)
         self.assertEqual(len(r.calls), min(first_hour, rc["max_research_per_cycle"]))
         # the events decided soonest were researched first (e7 closes Jan 2, e0 Jan 9)
@@ -655,12 +657,12 @@ class ResearchPipelineTests(DataDirTest):
             engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T11:00:00Z", "event": f"old{i}", "mids": {}})
         r2 = FakeResearcher([])
         more = [self.lula(f"n{i}", event=f"polymarket:n{i}") for i in range(8)]
-        self.run_scan(more, r2, now=SCAN_NOW + timedelta(hours=12))
+        self.run_scan(more, r2, policy=policy, now=SCAN_NOW + timedelta(hours=12))
         self.assertEqual(len(r2.calls), rc["max_research_per_cycle"])
         for i in range(4):  # 3 + 20 + 6 + 4 = 33 used by 12:30; the pace allows 34 (60 x 13.5/24, rounded up)
             engine.append_jsonl(engine.RESEARCH, {"ts": "1999-12-25T12:10:00Z", "event": f"x{i}", "mids": {}})
         r3 = FakeResearcher([])
-        self.run_scan([self.lula(f"m{i}", event=f"polymarket:m{i}") for i in range(8)], r3,
+        self.run_scan([self.lula(f"m{i}", event=f"polymarket:m{i}") for i in range(8)], r3, policy=policy,
                       now=SCAN_NOW + timedelta(hours=12, minutes=30))
         self.assertEqual(len(r3.calls), 1)  # one more, not a whole cycle's worth
 
@@ -951,6 +953,21 @@ class ClaudeCodeTests(unittest.TestCase):
         self.assertFalse(cc.usage_ok())
         cc.last_rate = {"unifiedWindows": {"five_hour": {"utilization": self.CFG["max_five_hour_used"] - 0.01}}}
         self.assertTrue(cc.usage_ok())
+
+    def test_research_keeps_pace_with_the_week_but_the_learning_steps_do_not_wait(self):
+        cc = self.claude([], [])
+        now, day = 1_000_000.0, 86400
+        rate = lambda used, days_left: {"unifiedWindows": {"seven_day": {"utilization": used, "resetsAt": now + days_left * day}}}
+        self.assertEqual(self.CFG["week_pace_margin"], 0.15)
+        cc.last_rate = rate(0.40, 5)  # 2 of 7 days gone (29%): 40% is within 29% + 15%
+        self.assertTrue(cc.usage_ok(now=now))
+        cc.last_rate = rate(0.50, 5)  # more than 15 points ahead of pace: research waits
+        self.assertFalse(cc.usage_ok(now=now))
+        self.assertTrue(cc.usage_ok(paced=False, now=now))  # the daily review and the coach still run
+        cc.last_rate = rate(0.80, 1)  # 6 days gone: 80% is on pace
+        self.assertTrue(cc.usage_ok(now=now))
+        cc.last_rate = rate(0.50, 30)  # a reset time that can't be this week's is not paced against
+        self.assertTrue(cc.usage_ok(now=now))
 
 
 def fresh_pf():
@@ -1254,8 +1271,9 @@ class RetroTests(DataDirTest):
         self.assertEqual(props["No fees"]["status"], "invalid")
         self.assertNotIn(props["Lower edge bar"]["id"], engine.strategies(POLICY))
         self.assertIn("gate_ledger", w.numbers)  # Claude interprets numbers computed in code
-        self.assertFalse(coach.retro(off, writer=w, log=lambda *_: None, now=self.NOW + timedelta(hours=12))["ran"])
-        self.assertTrue(coach.retro(off, writer=FakeRetro([]), log=lambda *_: None, now=self.NOW + timedelta(days=1))["ran"])
+        every = timedelta(days=POLICY["learning"]["retro_every_days"])  # twice a day since 2026-10-01
+        self.assertFalse(coach.retro(off, writer=w, log=lambda *_: None, now=self.NOW + every / 2)["ran"])
+        self.assertTrue(coach.retro(off, writer=FakeRetro([]), log=lambda *_: None, now=self.NOW + every)["ran"])
         # Joey approves: it runs as its own strategy from the next cycle
         pid = props["Lower edge bar"]["id"]
         self.assertIn("running", coach.set_status(pid, "running", off))
@@ -1334,10 +1352,10 @@ class TuningTests(DataDirTest):
         self.assertEqual(c["changed"], {"min_edge": [0.08, 0.05], "max_stake_pct": [0.02, 0.04]})
         self.assertEqual(c["judge_by"], self.TUNE["judge_by"])
         # the next review sees main's new rules, when it may next change, and its record since the change
-        nums = coach.week_numbers(POLICY, self.NOW + timedelta(days=1))
+        nums = coach.week_numbers(POLICY, self.NOW + timedelta(hours=12))
         m = next(x for x in nums["strategies"] if x["name"] == "main")
         self.assertEqual((m["rules_version"], m["rules"]["min_edge"], m["starting_rules"]["min_edge"]), (2, 0.05, 0.08))
-        self.assertEqual(m["can_change_from"], "1999-12-29T00:00:00Z")
+        self.assertEqual(m["can_change_from"], "1999-12-28T00:00:00Z")  # min_days_between_changes: 1
         self.assertEqual(m["since_change"]["bets"], 0)
         self.assertTrue(next(x for x in nums["strategies"] if x["name"] == "original")["frozen"])
         self.assertEqual(nums["recent_rule_changes"][-1]["strategy"], "main")
@@ -1350,9 +1368,9 @@ class TuningTests(DataDirTest):
         self.assertEqual(coach.tune(POLICY, "main", {}, now)[0], "invalid")
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.08}, now), ("skipped", "changes nothing"))
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.06}, now)[0], "applied")  # control
-        st, why = coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(days=1))
+        st, why = coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(hours=12))
         self.assertEqual(st, "skipped")
-        self.assertIn("next change is allowed from 1999-12-29", why)
+        self.assertIn("next change is allowed from 1999-12-28", why)
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(days=2))[0], "applied")
         self.assertEqual(engine.strategies(POLICY)["main"]["rules_version"], 3)
         self.assertEqual(engine.strategies(POLICY)["main"]["tuned"], {"min_edge": 0.07})
@@ -1675,7 +1693,7 @@ class TuningTests(DataDirTest):
 
     def test_the_review_prompt_names_every_limit(self):
         class Claude:
-            def ask(self, system, user, web, timeout):
+            def ask(self, system, user, web, timeout, paced=True):
                 self.system = system
                 return {"text": json.dumps({"headline": "h"}), "meta": {}}
         c = Claude()

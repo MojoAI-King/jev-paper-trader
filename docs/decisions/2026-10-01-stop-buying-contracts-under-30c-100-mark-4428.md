@@ -13,6 +13,15 @@ buying contracts priced under 30c (`min_ask` 0.30, applied by hand with the new 
 logged in `rules_history.jsonl` as by Joey). `markets_per_source` 60 -> 100 (BACKLOG B16). The daily review now
 sees each strategy's settled bets by price paid (`by_price_paid`, code idea p4) and is told why the floor exists.
 
+Same day, Joey: "I just want more volume and more feedback and more improvements constantly." Measured over
+the last 24 hours (766 judgments of 207 markets, 28 bets): the research cap stopped 297 judgments and research
+had stopped entirely (the trader's Claude account reported its week full). So: research 60 -> 150 a day and
+6 -> 10 a cycle, with a weekly pace guard (`research.week_pace_margin` 0.15, `news.ClaudeCode.usage_ok`):
+research waits while the plan's weekly meter is more than 15 points ahead of an even pace through the week
+(BACKLOG B20); the review and the coach are exempt. The review runs twice a day (`retro_every_days` 0.5) and a
+strategy's rules may change once a day (`min_days_between_changes` 1). Test:
+`test_research_keeps_pace_with_the_week_but_the_learning_steps_do_not_wait`.
+
 ## Why
 
 Settled to 2026-10-01: long shots under 30c lost $32.6k of the $35.7k lost across all strategies (21 bets, 1 win,

@@ -134,16 +134,26 @@ class ClaudeCode:
         self.workdir = workdir or tempfile.mkdtemp(prefix="papertrade-claude-")  # outside the repo: no CLAUDE.md
         self.last_rate = None
 
-    def usage_ok(self) -> bool:
-        """False once the plan's windows are fuller than our share allows (research then waits a cycle)."""
+    def usage_ok(self, paced: bool = True, now: float | None = None) -> bool:
+        """False once the plan's windows are fuller than our share allows (research then waits a cycle).
+        paced: also wait while the weekly meter runs more than research.week_pace_margin ahead of an even
+        pace through the week (BACKLOG B20), so heavy research can't fill Joey's week by midweek. The
+        once-a-day learning steps pass paced=False: they are few, and they are how the trader improves."""
         w = (self.last_rate or {}).get("unifiedWindows") or {}
         week = (w.get("seven_day") or {}).get("utilization")
         five = (w.get("five_hour") or {}).get("utilization")
-        return not ((week is not None and week >= self.cfg["max_week_used"]) or
-                    (five is not None and five >= self.cfg["max_five_hour_used"]))
+        if ((week is not None and week >= self.cfg["max_week_used"]) or
+                (five is not None and five >= self.cfg["max_five_hour_used"])):
+            return False
+        margin, resets = self.cfg.get("week_pace_margin"), (w.get("seven_day") or {}).get("resetsAt")
+        if paced and margin is not None and week is not None and resets:
+            left = float(resets) - (now if now is not None else time.time())
+            if 0 < left <= 7 * 86400:  # a reset time outside the coming week can't be paced against
+                return week < (1 - left / (7 * 86400)) + margin
+        return True
 
-    def ask(self, system: str, prompt: str, web: bool, timeout: float | None = None) -> dict:
-        if not self.usage_ok():
+    def ask(self, system: str, prompt: str, web: bool, timeout: float | None = None, paced: bool = True) -> dict:
+        if not self.usage_ok(paced):
             raise NewsError("our share of the Claude plan's usage is used up for now", limited=True)
         args = [CLAUDE_BIN, "-p", prompt, "--system-prompt", system, "--model", self.model,
                 "--effort", self.cfg["effort"], "--permission-mode", "dontAsk", "--setting-sources", "",
