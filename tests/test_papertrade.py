@@ -1623,6 +1623,26 @@ class TuningTests(DataDirTest):
         status = {p["strategy"]["label"]: p["status"] for p in coach.load_proposals()["proposals"]}
         self.assertEqual((status["C"], status["D"]), ("running", "proposed"))
 
+    def test_joey_s_own_change_skips_the_wait_but_never_the_checks(self):
+        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.05}, self.NOW)[0], "applied")
+        soon = self.NOW + timedelta(hours=1)
+        self.assertEqual(coach.tune(POLICY, "main", {"min_ask": 0.3}, soon)[0], "skipped")  # the loop waits
+        self.assertEqual(coach.tune(POLICY, "main", {"min_ask": 0.3}, soon, by="Joey", wait=False)[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "original", {"min_ask": 0.3}, soon, wait=False)[0], "invalid")
+        self.assertEqual(coach.tune(POLICY, "main", {"slippage": 0}, soon, wait=False)[0], "invalid")
+        self.assertEqual(coach.history("main")[-1]["by"], "Joey")
+
+    def test_the_review_sees_results_by_price_paid(self):
+        bet = {"key": "k", "source": "polymarket", "market_id": "1", "question": "Q", "url": "u", "close_time": "x",
+               "side": "yes", "contracts": 10, "total_cost": 5.0, "p_side": 0.6, "market_ask": 0.49, "edge": 0.1,
+               "opened": "1999-12-20T00:00:00Z", "settled": "x"}
+        main = dict(fresh_pf(), closed=[dict(bet, cost_per=0.15, pnl=-5.0), dict(bet, cost_per=0.15, pnl=-5.0),
+                                        dict(bet, cost_per=0.45, pnl=6.0), dict(bet, cost_per=0.8, pnl=1.0)])
+        engine.save_portfolio("main", main)
+        m = next(x for x in coach.week_numbers(POLICY, self.NOW)["strategies"] if x["name"] == "main")
+        self.assertEqual({k: (v["settled"], v["pnl"]) for k, v in m["by_price_paid"].items()},
+                         {"under 30c": (2, -10.0), "30-60c": (1, 6.0), "60c and up": (1, 1.0)})
+
     def test_an_empty_skip_list_clears_a_starting_one(self):
         engine.save_json(engine.PROPOSALS, {"proposals": [{"id": "ch1", "kind": "challenger", "status": "running", "slot": 7,
             "strategy": {"label": "No sports", "probability": "jev_research", "gates": "jev_research",

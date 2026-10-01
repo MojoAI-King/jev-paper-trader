@@ -50,6 +50,7 @@ Rules for honesty:
 - Say how many results a number rests on. Under 30 resolved markets it is mostly noise: you may still experiment, but call it an experiment, not a finding.
 - The market's own price is a strong forecaster. Beating it is the goal; say plainly when we don't.
 - Judge a strategy's current rules by its results since they last changed ("since_change"), not all time.
+- "by_price_paid" splits each strategy's settled bets into long shots (under 30c), coin flips and favourites. On 2026-10-01 long shots had lost 32.6k of the 35.7k lost (1 win in 21), so Joey set every strategy's min_ask to 0.30; lower it only if the numbers say long shots now pay.
 - Whether tuning main pays is read from "yardstick": main against original on the bets both placed since original started.
 - Every proposal says now how we'll know it worked ("judge_by") and after how many resolved markets.
 - Fees, the price screen, research budgets and how results are scored are not yours to change.
@@ -235,6 +236,16 @@ def history(name: str) -> list[dict]:
     return [c for c in engine.read_jsonl(engine.TUNED_LOG) if isinstance(c, dict) and c.get("strategy") == name]
 
 
+PRICE_BANDS = ((0.0, 0.3, "under 30c"), (0.3, 0.6, "30-60c"), (0.6, 1.01, "60c and up"))
+
+
+def by_price(positions: list[dict]) -> dict:
+    """Settled record by the price paid per contract: long shots, coin flips, favourites (code idea p4,
+    approved by Joey 2026-10-01 after long shots under 30c lost 32.6k of 35.7k)."""
+    return {name: _record([p for p in positions if p.get("settled") and lo <= p["cost_per"] < hi])
+            for lo, hi, name in PRICE_BANDS}
+
+
 def _record(positions: list[dict]) -> dict:
     closed = [p for p in positions if p.get("settled")]
     return {"bets": len(positions), "open": len(positions) - len(closed), "settled": len(closed),
@@ -284,7 +295,8 @@ def week_numbers(policy: dict, now: datetime) -> dict:
                 "rules_version": s["rules_version"], "rules_changed": s.get("tuned_at"),
                 "can_change_from": None if n in frozen or not nxt or nxt <= now else nxt.strftime(engine.TS),
                 "equity": round(engine.equity_at_cost(b), 2), "all_time": _record(every),
-                "since_change": _record([p for p in every if p.get("rules_version", 1) == s["rules_version"]])}
+                "since_change": _record([p for p in every if p.get("rules_version", 1) == s["rules_version"]]),
+                "by_price_paid": by_price(every)}
     yard = {name: yardstick(books, name) for name in lc.get("frozen_strategies") or ()
             if name in books and engine.MAIN in books}
     return {
@@ -350,7 +362,7 @@ def tune_problem(policy: dict, strats: dict, name, rules) -> str | None:
 
 
 def tune(policy: dict, name, rules, now: datetime, why: str = "", judge_by: str = "", min_resolved: int = 50,
-         pid: str | None = None, by: str = "the daily review") -> tuple[str, str]:
+         pid: str | None = None, by: str = "the daily review", wait: bool = True) -> tuple[str, str]:
     """Change one strategy's rules. Returns (status, reason): "applied", "invalid" or "skipped".
     Every check is in code: the strategy exists and isn't frozen, every rule is one the loop may set and
     in range (learn.rules_problem), and the strategy's rules didn't change in the last
@@ -363,7 +375,7 @@ def tune(policy: dict, name, rules, now: datetime, why: str = "", judge_by: str 
     rules = {k: _normal(k, v) for k, v in rules.items()}
     cur = strats[name]
     nxt = next_change(policy, cur, name)
-    if nxt and now < nxt:
+    if wait and nxt and now < nxt:  # Joey's own changes (wait=False) don't wait; the loop's always do
         last = nxt - timedelta(days=policy["learning"]["min_days_between_changes"])
         return "skipped", (f"{name}'s rules changed {last:%Y-%m-%d}; the next change is allowed from "
                            f"{nxt.strftime('%Y-%m-%d %H:%M')}Z")

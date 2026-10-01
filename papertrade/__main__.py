@@ -200,6 +200,11 @@ def main(argv=None) -> int:
                        ("reject", "Reject a proposal"), ("retire", "Stop a running challenger (its ledger is kept)")):
         c = sub.add_parser(name, help=text)
         c.add_argument("id")
+    t = sub.add_parser("tune", help="Joey's own rule change for one strategy, logged like the review's (e.g. min_ask=0.3)")
+    t.add_argument("strategy")
+    t.add_argument("rules", nargs="+", help="rule=value; JSON values, e.g. min_ask=0.3 skip_categories='[\"crypto\"]' min_edge=null")
+    t.add_argument("--why", required=True)
+    t.add_argument("--judge-by", default="")
     sub.add_parser("ping", help="Check the Jev API key and connection")
     sub.add_parser("markets", help="Preview live markets from each source (no Jev calls, no bets)")
     sub.add_parser("dashboard", help="Write papertrade_data/dashboard.html: trades, cash, P&L on one page")
@@ -219,6 +224,18 @@ def main(argv=None) -> int:
         return cmd_health(policy)
     if a.cmd == "due":
         return cmd_due(a.minutes)
+    if a.cmd == "tune":
+        import json as _json
+        from datetime import datetime, timezone
+        try:
+            rules = {k: _json.loads(v) for k, v in (r.split("=", 1) for r in a.rules)}
+        except ValueError as e:
+            print(f"Can't read the rules ({e}): write each as rule=value")
+            return 1
+        st, reason = coach.tune(policy, a.strategy, rules, datetime.now(timezone.utc), a.why, a.judge_by,
+                                by="Joey", wait=False)
+        print(f"{st}: {reason}" + ("\nCommit and push papertrade_data/ so the next cycle uses it." if st == "applied" else ""))
+        return 0 if st == "applied" else 1
     if a.cmd in ("approve", "reject", "retire"):
         print(coach.set_status(a.id, {"approve": "running", "reject": "rejected", "retire": "retired"}[a.cmd], policy))
         return 0
