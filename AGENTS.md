@@ -24,7 +24,7 @@ E: a read over 50KB (non-image): refused; read ranges or summarize instead. I: v
 I: `/workflow:review` (changed, could break, tested, security status); run tests; never commit on a failing test without agreement. M: shared branch takes only a passing delivery result; a policy change needs approver signature; local checks aren't a substitute.
 
 ### End of a stretch of work
-I: `/workflow:handoff` at end, pause, or long chat; updates `docs/HANDOFF.md` on `main, master`, else the task record. E: stop hook blocks the first stop after a merge, 15 commits, a day with a commit since last maintain, or handoff 15+ behind. I: then `skilliton maintain --apply`, record decisions/lessons, reconcile status/backlog, write handoff, same after a batch merge.
+I: `/workflow:handoff` at end, pause, or long chat; updates `docs/HANDOFF.md` on `main, master`, else the task record. E: stop hook blocks the first stop after any commit that leaves the handoff behind, on any integration branch, wherever it is checked out. I: then, without asking, `skilliton maintain --apply`, record decisions/lessons, reconcile status/backlog, write handoff and commit it last, after every merge too, so a compaction at any moment loses nothing.
 
 ### Always
 I: say "I don't know" or "not verified" rather than guess; never report a failed/skipped check as success; keep done locally, merged, released, installed, verified separate; never write a secret into any file, commit or message.
