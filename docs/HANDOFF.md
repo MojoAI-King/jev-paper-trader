@@ -4,15 +4,22 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-01 21:50 EDT
+Written: 2026-10-01 22:15 EDT
 
+- **State:** Answered Joey: is Jev doing anything. Jev alone is near a coin flip (Brier 0.225); Jev + research is our best forecaster (0.177, Claude direct 0.198); the market beats all (0.133). Research stays on Opus (Joey worried Sonnet would hurt). Offered the forecaster scoreboard panel on the page (proposal p7, a code change), waiting for Joey. Evidence: scratchpad jevcheck.py and maxedge.py over 205 resolved markets in papertrade_data; tests OK.
+- **Next:** Joey's yes/no on the scoreboard panel (p7); watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
+- **Git:** master @ 99cac63, 3 uncommitted
+
+## Earlier
+
+### 2026-10-01 21:50 EDT
 - **State:** Joey kept the categories (B23 declined, archived). Explained the losses: all 70 settled bets predate the 30c floor; 38 long shots under 30c lost 61.3k of the 62.4k; forecasters expected 38.9 wins, market 21.6, got 18; 36 pre-floor long shots (63k) still open through 2026-10-26; 13 post-floor bets open, none settled. Evidence: portfolio ledgers at 6497235+ (closed and open bets by price paid, claimed edge, opened before/after 2026-10-01T04:19Z); scans.jsonl week meter 0.44 to 0.82, research held by the pace guard since about 14:30Z 2026-10-01.
 - **Next:** Watch the first post-floor bets settle (8 close 2026-10-06) vs original; Joey decides if research may spend the rest of the week (pace guard holds it until the 2026-10-05 08:00Z reset)
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
 - **Git:** master @ 6497235, 4 uncommitted
-
-## Earlier
 
 ### 2026-10-01 21:42 EDT
 - **State:** Joey asked about politics only: data says no (worst category, almost no resolutions). Losses since the floor are all pre-floor bets settling (20 settled: 2 won, -26.7k, 17 under 30c); 13 post-floor bets still open. Proposed B23 (skip politics, culture, economy, world), waiting for Joey. Evidence: settled-bet breakdown by category; flat-$100 simulation on every resolved market with the 30c floor, by category and forecaster.
@@ -41,10 +48,3 @@ Written: 2026-10-01 21:50 EDT
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
 - **Git:** master @ 040fef0, 5 uncommitted
-
-### 2026-09-28 21:22 EDT
-- **State:** More-action change live and verified: 120 markets pass a cycle, 8 bets on the first cycle, main +$3,378 on its first two wins, early Kalshi results and voids working; the 80-market wave cleared (01:03Z judged 13). Evidence: health Healthy at 01:03Z; 88 tests pass; skilliton maintain run.
-- **Next:** After a day: measure bets/day, research use and deferred, then decide B16 (markets_per_source ~100). Joey's open choices: B17 one bet per event, B18 scoring, B19 page additions, B20 weekly Claude guard (week 19% at 01:03Z, much of it this session's analysis)
-- **Blocked:** nothing
-- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
-- **Git:** master @ 6009b40, 2 uncommitted
