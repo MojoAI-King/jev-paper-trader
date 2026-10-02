@@ -133,6 +133,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p9",
+      "created": "2026-10-02T00:06:27Z",
+      "kind": "code",
+      "title": "Shrink forecasts toward the market before computing edge",
+      "why": "The market's Brier (0.123, 201 markets) beats every forecaster, and most of our losses came from bets where we disagreed with it most, such as long shots that went 1 for 21. A strategy option that blends the forecast with the market price (for example 50/50) before the edge check would bet only where a disagreement survives that discount. The forecasters themselves would still never see the price.",
+      "judge_by": "Replay the blended rule on resolved markets that were judged after the code ships, and compare it with the unblended rule on the same markets. It succeeds if settled P&L per $100 is higher and it has fewer losing bets.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

@@ -1,14 +1,15 @@
 {
-  "version": 4,
-  "updated": "2026-10-01T00:08:33Z",
+  "version": 5,
+  "updated": "2026-10-02T00:05:57Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
-      "rule": "For short-window crypto price questions, record a spot price from the exchange and pair named in the resolution rules (e.g. Binance BTC/USDT), taken as close to judgment time as possible, and state its timestamp and age.",
+      "rule": "For short-window crypto price questions, record a spot price from the exchange and pair named in the resolution rules (e.g. Binance BTC/USDT), no more than an hour old at judgment time when the window closes within a day, and state its timestamp and age.",
       "evidence": [
         "polymarket:4797513",
-        "polymarket:5009022"
+        "polymarket:5009022",
+        "polymarket:4797724"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -17,7 +18,9 @@
       "category": "crypto",
       "rule": "For crypto threshold questions, report the percent distance from current spot to the strike, the hours left in the window, and recent realized volatility over a similar span, noting whether the window falls on a usually quieter weekend.",
       "evidence": [
+        "polymarket:4689727",
         "polymarket:4797513",
+        "polymarket:4797726",
         "polymarket:5009022"
       ],
       "added": "2026-09-28T16:35:53Z"
@@ -25,10 +28,11 @@
     {
       "id": "R3",
       "category": "crypto",
-      "rule": "Read the resolution rules to see whether a crypto question needs any touch of the level during the window or a close at a specific candle and time, and measure the current price against that exact test.",
+      "rule": "Read the crypto resolution rules for the exact strike, venue and test (any touch in the window or a close at a set candle), restate that strike at the top of the research, and measure every price fact against it, not against a nearby round number.",
       "evidence": [
         "polymarket:4797513",
-        "polymarket:5009022"
+        "polymarket:5009022",
+        "polymarket:4797724"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -44,11 +48,23 @@
     {
       "id": "R5",
       "category": "crypto",
-      "rule": "For short-horizon crypto questions, search same-day macro and geopolitical news (dollar, bond yields, oil, major policy statements) and report any specific catalyst with timestamps, or state plainly that none was found.",
+      "rule": "For short-horizon crypto questions, search same-day macro and geopolitical news (dollar, bond yields, oil, major policy statements) and report any specific catalyst with timestamps, or state plainly that none was found; label weeks-old news as stale background.",
       "evidence": [
-        "polymarket:4797513"
+        "polymarket:4797513",
+        "polymarket:4689727",
+        "polymarket:4797726"
       ],
       "added": "2026-09-28T16:35:53Z"
+    },
+    {
+      "id": "R16",
+      "category": "crypto",
+      "rule": "Before reporting a past high or low as reaching the strike, confirm it on the resolution venue's own candles (e.g. Binance 1-minute) and that it falls inside the question's window; label any report naming no exchange, or dated before the window opened, as unverified.",
+      "evidence": [
+        "polymarket:4844455",
+        "polymarket:4797726"
+      ],
+      "added": "2026-10-02T00:05:57Z"
     },
     {
       "id": "R6",
@@ -64,10 +80,10 @@
       "category": "sports",
       "rule": "For match questions, report the current-season head-to-head with its game count, labeling samples under about 10 games as small and noting when sources disagree on the count, plus each side's dated, sourced suspensions, injuries and returns from injury.",
       "evidence": [
-        "polymarket:4581752",
-        "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
-        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN"
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+        "polymarket:4581752"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -129,10 +145,10 @@
       "category": "sports",
       "rule": "For single MLB games, report both confirmed starters' season ERA and ERA+ and recent starts, each team's season record, late-season form (record and offense since Sept 1) and home field; if it is a bullpen game, note that an opener's few innings carry little weight.",
       "evidence": [
-        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
-        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS"
+        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -141,10 +157,10 @@
       "category": "general",
       "rule": "Take historical base-rate counts only from a cited source covering the current format (e.g. WNBA best-of-three since 2022); label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
       "evidence": [
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
         "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
-        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS"
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -153,8 +169,8 @@
       "category": "sports",
       "rule": "For playoff series and games, state the current series score and what the trailing team must still win and where, report margins of earlier games in the series, and note when a team's standing rests mainly on seeding or overall record.",
       "evidence": [
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN"
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
@@ -165,16 +181,24 @@
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
     "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+    "kalshi:KXMLBGAME-26SEP301700CWSHOU-CWS",
+    "kalshi:KXMLBGAME-26SEP302200CHCSD-SD",
     "kalshi:KXMLBRFI-26SEP291400PHIATL",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+    "polymarket:4052418",
     "polymarket:4581722",
     "polymarket:4581752",
     "polymarket:4581768",
+    "polymarket:4678632",
+    "polymarket:4689727",
     "polymarket:4797511",
     "polymarket:4797513",
+    "polymarket:4797724",
+    "polymarket:4797726",
+    "polymarket:4844455",
     "polymarket:5009022",
     "polymarket:5023463",
     "polymarket:5055808",
