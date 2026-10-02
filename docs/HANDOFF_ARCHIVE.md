@@ -2,6 +2,13 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-09-28 17:37 EDT
+- **State:** Kalshi links fixed and verified live (21:36Z summary: 0 old-form, 39 new-form; a repaired link opens its event in Chrome); open-bet cap 50% (Bold now 19 open, past the old 30%); research 60/day. Evidence: 73 tests pass; run 21:34Z success; health Healthy; plan week 5%, 5-hour 12%.
+- **Next:** Watch a day of cycles: research should run past 5 AM ET and main/Claude direct should bet more; if research goes unused, BACKLOG B16 (widen markets_per_source); B3, B15, B13 queued
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 81% (resets Mon 3 AM ET)
+- **Git:** master @ 41082cd, 6 uncommitted
+
 ### 2026-09-27 15:02 EDT
 - **State:** Page back at 1x everywhere (Worker 5536aa80, live checked); main's Headline tag dropped in policy.json, hover blurbs say Jev + Claude. Evidence: 72 tests pass; live page byte-equal to the new build, no zoom rules; tag leaves the page at the next cycle's summary.json.
 - **Next:** Next cycle (~19:04 UTC) regenerates summary.json without the tag; then nothing queued beyond BACKLOG B3, B15, B13

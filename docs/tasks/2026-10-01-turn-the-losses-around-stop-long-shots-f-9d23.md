@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-01T05:04:09.242Z
+- **Updated:** 2026-10-02T01:42:55.785Z
 
 ## Request
 
@@ -43,9 +43,16 @@ not yet written
 - **Next:** Check in: bets/wins/losses since 2026-10-01 vs original; what the twice-daily review changed; plan meter vs the pace guard
 - **Git:** master @ a1e13d0, 3 uncommitted
 
+### 2026-10-02T01:42:55.785Z
+
+- **State:** Joey asked about politics only: data says no (worst category, almost no resolutions). Losses since the floor are all pre-floor bets settling (20 settled: 2 won, -26.7k, 17 under 30c); 13 post-floor bets still open. Proposed B23 (skip politics, culture, economy, world), waiting for Joey
+- **Evidence:** settled-bet breakdown by category; flat-$100 simulation on every resolved market with the 30c floor, by category and forecaster
+- **Next:** Joey's yes/no on B23; then python3 -m papertrade tune for each strategy but original and push papertrade_data
+- **Git:** master @ 60c4177, 2 uncommitted
+
 ## Handoff
 
-- **State:** Verified: research back on Joey's current Claude account (run 36816087586 at 04:39Z: 10 new research runs, 22 Claude calls, week 41%, 5-hour 40%); 30c floor, 150 research/day with week pace guard, review twice daily, 100 markets/source all live. Ledger audit clean (9 ledgers add up; 32 settled markets match the exchanges; page equals ledgers). Evidence: 121 tests OK; health run success; audit script output.
-- **Next:** Check in: bets/wins/losses since 2026-10-01 vs original; what the twice-daily review changed; plan meter vs the pace guard
+- **State:** Joey asked about politics only: data says no (worst category, almost no resolutions). Losses since the floor are all pre-floor bets settling (20 settled: 2 won, -26.7k, 17 under 30c); 13 post-floor bets still open. Proposed B23 (skip politics, culture, economy, world), waiting for Joey. Evidence: settled-bet breakdown by category; flat-$100 simulation on every resolved market with the 30c floor, by category and forecaster.
+- **Next:** Joey's yes/no on B23; then python3 -m papertrade tune for each strategy but original and push papertrade_data
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
