@@ -26,4 +26,5 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-09-28-kalshi-lists-markets-latest-closing-firs-640e](lessons/2026-09-28-kalshi-lists-markets-latest-closing-firs-640e.md) | Kalshi lists markets latest-closing first so the top 60 were all 2-4 weeks out | accepted | 2026-09-28 |
 | [2026-09-29-a-retired-strategy-s-losses-would-have-v-d569](lessons/2026-09-29-a-retired-strategy-s-losses-would-have-v-d569.md) | A retired strategy's losses would have vanished from the page | accepted | 2026-09-29 |
 | [2026-09-29-bad-input-tests-passed-on-a-different-gu-191f](lessons/2026-09-29-bad-input-tests-passed-on-a-different-gu-191f.md) | Bad-input tests passed on a different guard than the one named | accepted | 2026-09-29 |
+| [2026-10-01-forecasters-scored-on-different-markets-0308](lessons/2026-10-01-forecasters-scored-on-different-markets-0308.md) | Forecasters scored on different markets rank wrong | accepted | 2026-10-01 |
 <!-- skilliton:index:lessons:end -->
