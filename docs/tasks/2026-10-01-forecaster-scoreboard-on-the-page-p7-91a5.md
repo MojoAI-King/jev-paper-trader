@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-10-01-forecaster-scoreboard-on-the-page-p7-91a5
-- **State:** in-progress
+- **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-02T02:22:41.021Z
+- **Updated:** 2026-10-02T02:36:48.601Z
 
 ## Request
 

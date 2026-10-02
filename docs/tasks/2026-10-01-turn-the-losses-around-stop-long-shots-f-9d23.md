@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-02T02:15:05.796Z
+- **Updated:** 2026-10-02T02:36:48.794Z
 
 ## Request
 
@@ -64,9 +64,16 @@ not yet written
 - **Next:** Joey's yes/no on the scoreboard panel (p7); watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
 - **Git:** master @ 99cac63, 3 uncommitted
 
+### 2026-10-02T02:36:48.794Z
+
+- **State:** Forecasters panel live and verified (task closed): cycle 2026-10-02T02:36Z wrote calibration.paired, 112 markets: market 0.120, Jev + research 0.185, Claude direct 0.196, Jev alone 0.243; live page screenshot shows it filled
+- **Evidence:** summary.json on origin at 3591381; headless screenshot of https://jev-paper-trader.greekgod.workers.dev at 1280px
+- **Next:** Watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
+- **Git:** master @ 3591381, 4 uncommitted
+
 ## Handoff
 
-- **State:** Answered Joey: is Jev doing anything. Jev alone is near a coin flip (Brier 0.225); Jev + research is our best forecaster (0.177, Claude direct 0.198); the market beats all (0.133). Research stays on Opus (Joey worried Sonnet would hurt). Offered the forecaster scoreboard panel on the page (proposal p7, a code change), waiting for Joey. Evidence: scratchpad jevcheck.py and maxedge.py over 205 resolved markets in papertrade_data; tests OK.
-- **Next:** Joey's yes/no on the scoreboard panel (p7); watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
+- **State:** Forecasters panel live and verified (task closed): cycle 2026-10-02T02:36Z wrote calibration.paired, 112 markets: market 0.120, Jev + research 0.185, Claude direct 0.196, Jev alone 0.243; live page screenshot shows it filled. Evidence: summary.json on origin at 3591381; headless screenshot of https://jev-paper-trader.greekgod.workers.dev at 1280px.
+- **Next:** Watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code

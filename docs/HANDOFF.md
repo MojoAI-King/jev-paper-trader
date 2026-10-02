@@ -4,15 +4,22 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-01 22:22 EDT
+Written: 2026-10-01 22:36 EDT
 
+- **State:** Forecasters panel live and verified (task closed): cycle 2026-10-02T02:36Z wrote calibration.paired, 112 markets: market 0.120, Jev + research 0.185, Claude direct 0.196, Jev alone 0.243; live page screenshot shows it filled. Evidence: summary.json on origin at 3591381; headless screenshot of https://jev-paper-trader.greekgod.workers.dev at 1280px.
+- **Next:** Watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
+- **Blocked:** nothing
+- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
+- **Git:** master @ 3591381, 4 uncommitted
+
+## Earlier
+
+### 2026-10-01 22:22 EDT
 - **State:** Forecasters panel built (engine.paired, page panel under the feed, report lines), p7 approved, committed 3a605d0 and pushed; page shell deployed (Worker version 1e638bb3), live HTML equals the build. Not yet verified: the live panel's numbers, which appear once a cycle on the new code writes summary.json. Evidence: 122 offline tests OK incl. test_forecasters_are_scored_head_to_head_on_the_same_markets; screenshots at 1600, 1280 and a true 400px frame; local paired scores on 111 markets: market 0.119, Jev + research 0.184, Claude direct 0.195, Jev alone 0.241.
 - **Next:** Confirm summary.json on origin carries calibration.paired and the live page shows the panel filled; then close the task as verified. Watch the post-floor bets settle (8 close 2026-10-06)
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
 - **Git:** master @ 3a605d0, 6 uncommitted
-
-## Earlier
 
 ### 2026-10-01 22:15 EDT
 - **State:** Answered Joey: is Jev doing anything. Jev alone is near a coin flip (Brier 0.225); Jev + research is our best forecaster (0.177, Claude direct 0.198); the market beats all (0.133). Research stays on Opus (Joey worried Sonnet would hurt). Offered the forecaster scoreboard panel on the page (proposal p7, a code change), waiting for Joey. Evidence: scratchpad jevcheck.py and maxedge.py over 205 resolved markets in papertrade_data; tests OK.
@@ -41,10 +48,3 @@ Written: 2026-10-01 22:22 EDT
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
 - **Git:** master @ a1e13d0, 3 uncommitted
-
-### 2026-10-01 00:10 EDT
-- **State:** Diagnosed losses (read-only): long shots under 30c caused -32.6k of -35.7k settled; options in BACKLOG B22 put to Joey; nothing changed yet. Claude week 100%: daily review and research paused until Mon 3 AM ET. Evidence: health Healthy 04:04Z 2026-10-01; settled-bet breakdown from papertrade_data/portfolios (50 bets, 32 markets).
-- **Next:** Joey's answer on B22: min_ask 0.30 by hand, approve p4/p7, market-shrink code idea
-- **Blocked:** nothing
-- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the dispatch token is a Cloudflare Worker secret and expires within a year; Claude plan week at 27% at 04:06Z on 2026-09-29, much of it this session's review workflows (resets Mon 3 AM ET); never build an unattended job that edits or ships code (Joey, 2026-09-28)
-- **Git:** master @ f99f53b, 2 uncommitted

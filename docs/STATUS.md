@@ -41,7 +41,5 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-| ID | Title | State | Branch | Owner |
-|---|---|---|---|---|
-| [2026-10-01-forecaster-scoreboard-on-the-page-p7-91a5](tasks/2026-10-01-forecaster-scoreboard-on-the-page-p7-91a5.md) | Forecaster scoreboard on the page (p7) | in-progress | master | unassigned |
+No open tasks.
 <!-- skilliton:index:tasks:end -->
