@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-02T03:06:28Z",
+  "generated": "2026-10-02T03:36:07Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -83,7 +83,7 @@
       "label": "Will Lebanon win on 2026-10-01?"
     },
     {
-      "t": "2026-10-02T03:06:28Z",
+      "t": "2026-10-02T03:36:07Z",
       "equity": 92326.87,
       "label": "Now (open bets valued at cost)"
     }
@@ -407,80 +407,80 @@
     }
   ],
   "calibration": {
-    "judged": 643,
-    "resolved": 222,
+    "judged": 645,
+    "resolved": 229,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20433840579710147,
-        "n": 138
+        "brier": 0.20567801418439718,
+        "n": 141
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.23775765765765766,
-        "n": 222
+        "brier": 0.23838471615720525,
+        "n": 229
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.13921368888888888,
-        "n": 45
+        "brier": 0.14119600000000002,
+        "n": 46
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21143128442857143,
-        "n": 70
+        "brier": 0.21029469438356163,
+        "n": 73
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.11889012274774774,
-        "n": 222
+        "brier": 0.12077230240174672,
+        "n": 229
       }
     ],
     "paired": {
-      "n": 112,
+      "n": 114,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.11988614508928572
+          "brier": 0.12159208991228071
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.18543482142857143
+          "brier": 0.18673771929824562
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19608853571428572
+          "brier": 0.19607294736842107
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2428526785714286
+          "brier": 0.2436140350877193
         }
       ]
     }
   },
   "last_scan": {
     "date": "2026-10-02",
-    "judged": 40,
+    "judged": 10,
     "bets": 0,
-    "fail_info": 16,
-    "fail_rules": 0,
-    "fail_edge": 8,
+    "fail_info": 4,
+    "fail_rules": 1,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 20,
-      "polymarket": 20
+      "polymarket": 6,
+      "kalshi": 4
     }
   },
   "funnel": {
-    "ts": "2026-10-02T03:04:37Z",
+    "ts": "2026-10-02T03:34:24Z",
     "stages": [
       [
         "Fetched",
@@ -488,15 +488,15 @@
       ],
       [
         "Passed free filters",
-        44
+        10
       ],
       [
         "Judged by Jev",
-        40
+        10
       ],
       [
         "Judged with research",
-        17
+        4
       ],
       [
         "Cleared every gate (main)",
@@ -507,9 +507,9 @@
         0
       ]
     ],
-    "events": 20,
+    "events": 10,
     "researched_new": 0,
-    "research_reused": 7,
+    "research_reused": 4,
     "bets": {
       "main": 0,
       "jev_alone": 0,
@@ -524,8 +524,8 @@
     "claude_calls": 0,
     "claude_limited": true,
     "claude_note": null,
-    "facts_kept": 53,
-    "facts_dropped": 17,
+    "facts_kept": 30,
+    "facts_dropped": 12,
     "by_source": {
       "polymarket": 100,
       "kalshi": 100
@@ -542,8 +542,8 @@
       "ch3": 0,
       "ch6": 0
     },
-    "judged": 40,
-    "with_research": 17
+    "judged": 10,
+    "with_research": 4
   },
   "strategies": [
     {
@@ -563,8 +563,8 @@
       "tuned_at": "2026-10-01T04:19:34Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 93373.43,
-      "unrealized": 1046.56,
+      "marked": 93142.07,
+      "unrealized": 815.2,
       "change": -7673.13,
       "realized": -7673.13,
       "open": 7,
@@ -621,8 +621,8 @@
       "tuned_at": "2026-10-01T04:19:35Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 88662.29,
-      "unrealized": -1498.04,
+      "marked": 88441.49,
+      "unrealized": -1718.84,
       "change": -9839.67,
       "realized": -9839.67,
       "open": 4,
@@ -652,8 +652,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 82927.1,
-      "unrealized": -1718.72,
+      "marked": 82717.64,
+      "unrealized": -1928.18,
       "change": -15354.18,
       "realized": -15354.18,
       "open": 22,
@@ -681,8 +681,8 @@
       "tuned_at": "2026-10-01T04:19:35Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 97807.74,
-      "unrealized": 775.18,
+      "marked": 97568.51,
+      "unrealized": 535.96,
       "change": -2967.45,
       "realized": -2967.45,
       "open": 5,
@@ -712,8 +712,8 @@
       "gate_overrides": {
         "min_info_sufficient": 0.2
       },
-      "marked": 84536.01,
-      "unrealized": -2055.63,
+      "marked": 84269.7,
+      "unrealized": -2321.94,
       "change": -13408.36,
       "realized": -13408.36,
       "open": 16,
@@ -741,8 +741,8 @@
       "tuned_at": null,
       "frozen": true,
       "gate_overrides": {},
-      "marked": 91467.8,
-      "unrealized": 283.96,
+      "marked": 91239.5,
+      "unrealized": 55.66,
       "change": -8816.16,
       "realized": -8816.16,
       "open": 7,
@@ -770,8 +770,8 @@
       "tuned_at": "2026-10-01T04:19:36Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 98438.69,
-      "unrealized": -561.37,
+      "marked": 98318.69,
+      "unrealized": -681.37,
       "change": -999.94,
       "realized": -999.94,
       "open": 2,
@@ -799,8 +799,8 @@
       "tuned_at": "2026-10-01T04:19:36Z",
       "frozen": false,
       "gate_overrides": {},
-      "marked": 97380.05,
-      "unrealized": -620.0,
+      "marked": 97140.05,
+      "unrealized": -860.0,
       "change": -1999.95,
       "realized": -1999.95,
       "open": 1,
@@ -1721,8 +1721,12 @@
           93373.42
         ],
         [
-          "2026-10-02T03:06:28Z",
-          93373.42
+          "2026-10-02T03:34:24Z",
+          93142.06
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          93142.06
         ]
       ]
     },
@@ -2634,7 +2638,11 @@
           99636.24
         ],
         [
-          "2026-10-02T03:06:28Z",
+          "2026-10-02T03:34:24Z",
+          99636.24
+        ],
+        [
+          "2026-10-02T03:36:07Z",
           99636.24
         ]
       ]
@@ -3547,8 +3555,12 @@
           88662.29
         ],
         [
-          "2026-10-02T03:06:28Z",
-          88662.29
+          "2026-10-02T03:34:24Z",
+          88441.49
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          88441.49
         ]
       ]
     },
@@ -4460,8 +4472,12 @@
           82927.1
         ],
         [
-          "2026-10-02T03:06:28Z",
-          82927.1
+          "2026-10-02T03:34:24Z",
+          82717.64
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          82717.64
         ]
       ]
     },
@@ -5373,8 +5389,12 @@
           97807.73
         ],
         [
-          "2026-10-02T03:06:28Z",
-          97807.73
+          "2026-10-02T03:34:24Z",
+          97568.51
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          97568.51
         ]
       ]
     },
@@ -6286,8 +6306,12 @@
           84536.0
         ],
         [
-          "2026-10-02T03:06:28Z",
-          84536.0
+          "2026-10-02T03:34:24Z",
+          84269.7
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          84269.7
         ]
       ]
     },
@@ -7199,8 +7223,12 @@
           91467.8
         ],
         [
-          "2026-10-02T03:06:28Z",
-          91467.8
+          "2026-10-02T03:34:24Z",
+          91239.5
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          91239.5
         ]
       ]
     },
@@ -8112,8 +8140,12 @@
           98438.69
         ],
         [
-          "2026-10-02T03:06:28Z",
-          98438.69
+          "2026-10-02T03:34:24Z",
+          98318.69
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          98318.69
         ]
       ]
     },
@@ -9025,8 +9057,12 @@
           97380.05
         ],
         [
-          "2026-10-02T03:06:28Z",
-          97380.05
+          "2026-10-02T03:34:24Z",
+          97140.05
+        ],
+        [
+          "2026-10-02T03:36:07Z",
+          97140.05
         ]
       ]
     }
@@ -9197,8 +9233,8 @@
       "source": "polymarket",
       "close_time": "2026-10-02T16:00:00Z",
       "category": "culture",
-      "price": 0.23,
-      "price_at": "2026-10-02T01:04:20Z",
+      "price": 0.315,
+      "price_at": "2026-10-02T03:34:24Z",
       "positions": [
         {
           "strategy": "jev_alone_bold",
@@ -9209,7 +9245,7 @@
           "p_side": 0.79,
           "edge": 0.2,
           "opened": "2026-10-01T03:34:20Z",
-          "value": 2412.41
+          "value": 2146.11
         }
       ]
     },
@@ -9730,8 +9766,8 @@
       "source": "polymarket",
       "close_time": "2026-10-06T03:59:00Z",
       "category": "other",
-      "price": 0.655,
-      "price_at": "2026-10-01T22:34:26Z",
+      "price": 0.715,
+      "price_at": "2026-10-02T03:34:24Z",
       "positions": [
         {
           "strategy": "main",
@@ -9742,7 +9778,7 @@
           "p_side": 0.89,
           "edge": 0.39,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1330.32
+          "value": 1098.96
         },
         {
           "strategy": "claude_direct",
@@ -9753,7 +9789,7 @@
           "p_side": 0.92,
           "edge": 0.42,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1269.6
+          "value": 1048.8
         },
         {
           "strategy": "bold",
@@ -9764,7 +9800,7 @@
           "p_side": 0.89,
           "edge": 0.39,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1204.39
+          "value": 994.94
         },
         {
           "strategy": "calibrated",
@@ -9775,7 +9811,7 @@
           "p_side": 0.9456,
           "edge": 0.4456,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1375.51
+          "value": 1136.3
         },
         {
           "strategy": "original",
@@ -9786,7 +9822,7 @@
           "p_side": 0.89,
           "edge": 0.39,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1312.72
+          "value": 1084.43
         },
         {
           "strategy": "ch3",
@@ -9797,7 +9833,7 @@
           "p_side": 0.92,
           "edge": 0.42,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 690.0
+          "value": 570.0
         },
         {
           "strategy": "ch6",
@@ -9808,7 +9844,7 @@
           "p_side": 0.89,
           "edge": 0.39,
           "opened": "2026-10-01T05:34:30Z",
-          "value": 1380.0
+          "value": 1140.0
         }
       ]
     },
@@ -10516,6 +10552,270 @@
   ],
   "calls": [
     {
+      "ts": "2026-10-02T03:34:24Z",
+      "key": "polymarket:4950492",
+      "question": "Will the price of Bitcoin be above $88,000 on October 2?",
+      "url": "https://polymarket.com/market/bitcoin-above-88k-on-october-2-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-02T16:00:00Z",
+      "market": 0.0505,
+      "forecasts": {
+        "jev_research": 0.21,
+        "jev_plain": 0.39,
+        "claude_direct": null,
+        "jev_calibrated": 0.2301
+      },
+      "info": 0.15,
+      "rules": 0.84,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.07 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.07 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.15 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.147 < 0.15"
+        }
+      },
+      "facts_total": 6
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "key": "kalshi:KXBTCD-26OCT0217-T84499.99",
+      "question": "Bitcoin price on Oct 2, 2026? ($84,500 or above)",
+      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217",
+      "source": "kalshi",
+      "category": "crypto",
+      "close_time": "2026-10-02T21:00:00Z",
+      "market": 0.725,
+      "forecasts": {
+        "jev_research": 0.44,
+        "jev_plain": 0.45,
+        "claude_direct": null,
+        "jev_calibrated": 0.5411
+      },
+      "info": 0.19,
+      "rules": 0.85,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.06 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.06 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.19 < 0.5)"
+        }
+      },
+      "facts_total": 10
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "key": "kalshi:KXNASDAQ100U-26OCT02H1600-T30749.99",
+      "question": "Will the Nasdaq-100 be above 30749.99 at the end of Oct 2, 2026 at 4pm EDT? (30,750 or above)",
+      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30749-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600",
+      "source": "kalshi",
+      "category": "economy",
+      "close_time": "2026-10-02T20:00:00Z",
+      "market": 0.385,
+      "forecasts": {
+        "jev_research": 0.45,
+        "jev_plain": 0.43,
+        "claude_direct": null,
+        "jev_calibrated": 0.5538
+      },
+      "info": 0.28,
+      "rules": 0.74,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.033 < 0.08"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.08"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.033 < 0.08"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "rules_clear 0.74 < 0.75"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.013 < 0.12"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.033 < 0.08"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge +0.033 < 0.15"
+        }
+      },
+      "facts_total": 7
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "key": "polymarket:4950464",
+      "question": "Will the price of Ethereum be above $2,700 on October 2?",
+      "url": "https://polymarket.com/market/ethereum-above-2700-on-october-2-2026",
+      "source": "polymarket",
+      "category": "crypto",
+      "close_time": "2026-10-02T16:00:00Z",
+      "market": 0.67,
+      "forecasts": {
+        "jev_research": 0.46,
+        "jev_plain": 0.36,
+        "claude_direct": null,
+        "jev_calibrated": 0.5664
+      },
+      "info": 0.16,
+      "rules": 0.84,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.5)"
+        },
+        "jev_alone": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.5)"
+        },
+        "jev_alone_bold": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.07 < 0.2)"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.5)"
+        },
+        "ch3": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch6": {
+          "bet": false,
+          "side": "no",
+          "why": "needs recent info (0.16 < 0.5)"
+        }
+      },
+      "facts_total": 7
+    },
+    {
       "ts": "2026-10-02T03:04:37Z",
       "key": "kalshi:KXNFLTOTAL-26OCT04NYJCHI-58",
       "question": "Full Game: over 57.5 points scored? (Over 57.5 points)",
@@ -11042,273 +11342,61 @@
         }
       },
       "facts_total": 7
-    },
-    {
-      "ts": "2026-10-02T03:04:37Z",
-      "key": "kalshi:KXNASDAQ100U-26OCT02H1600-T30839.99",
-      "question": "Will the Nasdaq-100 be above 30839.99 at the end of Oct 2, 2026 at 4pm EDT? (30,840 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30839-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-10-02T20:00:00Z",
-      "market": 0.34,
-      "forecasts": {
-        "jev_research": 0.42,
-        "jev_plain": 0.43,
-        "claude_direct": null,
-        "jev_calibrated": 0.5102
-      },
-      "info": 0.19,
-      "rules": 0.77,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.003 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.013 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.003 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.19 < 0.5)"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.013 < 0.12"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.003 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.003 < 0.15"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-10-02T03:04:37Z",
-      "key": "kalshi:KXNASDAQ100U-26OCT02H1600-T30819.99",
-      "question": "Will the Nasdaq-100 be above 30819.99 at the end of Oct 2, 2026 at 4pm EDT? (30,820 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30819-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-10-02T20:00:00Z",
-      "market": 0.365,
-      "forecasts": {
-        "jev_research": 0.42,
-        "jev_plain": 0.44,
-        "claude_direct": null,
-        "jev_calibrated": 0.5102
-      },
-      "info": 0.18,
-      "rules": 0.77,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.007 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.063 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.007 < 0.12"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.15"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-10-02T03:04:37Z",
-      "key": "kalshi:KXNASDAQ100U-26OCT02H1600-T30789.99",
-      "question": "Will the Nasdaq-100 be above 30789.99 at the end of Oct 2, 2026 at 4pm EDT? (30,790 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30789-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-10-02T20:00:00Z",
-      "market": 0.4,
-      "forecasts": {
-        "jev_research": 0.45,
-        "jev_plain": 0.44,
-        "claude_direct": null,
-        "jev_calibrated": 0.5493
-      },
-      "info": 0.18,
-      "rules": 0.79,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.037 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.072 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.037 < 0.12"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge -0.027 < 0.15"
-        }
-      },
-      "facts_total": 4
-    },
-    {
-      "ts": "2026-10-02T03:04:37Z",
-      "key": "kalshi:KXNASDAQ100U-26OCT02H1600-T30749.99",
-      "question": "Will the Nasdaq-100 be above 30749.99 at the end of Oct 2, 2026 at 4pm EDT? (30,750 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30749-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600",
-      "source": "kalshi",
-      "category": "economy",
-      "close_time": "2026-10-02T20:00:00Z",
-      "market": 0.445,
-      "forecasts": {
-        "jev_research": 0.44,
-        "jev_plain": 0.42,
-        "claude_direct": null,
-        "jev_calibrated": 0.5364
-      },
-      "info": 0.18,
-      "rules": 0.75,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.057 < 0.08"
-        },
-        "jev_alone": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.037 < 0.08"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.057 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.029 < 0.08"
-        },
-        "jev_alone_bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.037 < 0.12"
-        },
-        "original": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.057 < 0.08"
-        },
-        "ch3": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch6": {
-          "bet": false,
-          "side": "no",
-          "why": "edge -0.057 < 0.15"
-        }
-      },
-      "facts_total": 4
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-02T03:35:49Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Atlanta wins",
+      "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26oct011400phiatl"
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "type": "call",
+      "jev": 0.21,
+      "claude": null,
+      "market": 0.0505,
+      "q": "Will the price of Bitcoin be above $88,000 on October 2?",
+      "url": "https://polymarket.com/market/bitcoin-above-88k-on-october-2-2026"
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "type": "call",
+      "jev": 0.44,
+      "claude": null,
+      "market": 0.725,
+      "q": "Bitcoin price on Oct 2, 2026? ($84,500 or above)",
+      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217"
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "type": "call",
+      "jev": 0.45,
+      "claude": null,
+      "market": 0.385,
+      "q": "Will the Nasdaq-100 be above 30749.99 at the end of Oct 2, 2026 at 4pm EDT? (30,750 or above)",
+      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30749-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600"
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "type": "call",
+      "jev": 0.46,
+      "claude": null,
+      "market": 0.67,
+      "q": "Will the price of Ethereum be above $2,700 on October 2?",
+      "url": "https://polymarket.com/market/ethereum-above-2700-on-october-2-2026"
+    },
+    {
+      "ts": "2026-10-02T03:34:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 10,
+      "researched": 4,
+      "bets": 0
+    },
     {
       "ts": "2026-10-02T03:06:15Z",
       "type": "review",
@@ -11419,15 +11507,6 @@
     {
       "ts": "2026-10-02T03:04:37Z",
       "type": "call",
-      "jev": 0.44,
-      "claude": null,
-      "market": 0.445,
-      "q": "Will the Nasdaq-100 be above 30749.99 at the end of Oct 2, 2026 at 4pm EDT? (30,750 or above)",
-      "url": "https://kalshi.com/markets/kxnasdaq100u/will-the-nasdaq-100-be-above-30749-99-at-the-end-of-oct-2-20/kxnasdaq100u-26oct02h1600"
-    },
-    {
-      "ts": "2026-10-02T03:04:37Z",
-      "type": "call",
       "jev": 0.49,
       "claude": null,
       "market": 0.53,
@@ -11525,15 +11604,6 @@
     {
       "ts": "2026-10-02T02:34:22Z",
       "type": "call",
-      "jev": 0.45,
-      "claude": null,
-      "market": 0.615,
-      "q": "Bitcoin price on Oct 2, 2026? ($84,500 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-2-2026/kxbtcd-26oct0217"
-    },
-    {
-      "ts": "2026-10-02T02:34:22Z",
-      "type": "call",
       "jev": 0.53,
       "claude": null,
       "market": 0.215,
@@ -11578,15 +11648,6 @@
     },
     {
       "ts": "2026-10-02T02:34:22Z",
-      "type": "call",
-      "jev": 0.44,
-      "claude": null,
-      "market": 0.585,
-      "q": "Will the price of Ethereum be above $2,700 on October 2?",
-      "url": "https://polymarket.com/market/ethereum-above-2700-on-october-2-2026"
-    },
-    {
-      "ts": "2026-10-02T02:34:22Z",
       "type": "scan",
       "fetched": 200,
       "judged": 23,
@@ -11608,15 +11669,6 @@
       "amount": 1306.4,
       "q": "Will Cura\u00e7ao win on 2026-10-01?",
       "url": "https://polymarket.com/market/conl-kor-tri-2026-10-01-kor"
-    },
-    {
-      "ts": "2026-10-02T02:04:23Z",
-      "type": "call",
-      "jev": 0.6,
-      "claude": null,
-      "market": 0.84,
-      "q": "Full Game: over 31.5 points scored? (Over 31.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-31-5-points-scored/kxnfltotal-26oct04arinyg"
     },
     {
       "ts": "2026-10-02T02:04:23Z",
@@ -11955,35 +12007,20 @@
       "facts": 9,
       "q": "Will Google (GOOGL) finish week of September 28 above $345?",
       "url": "https://polymarket.com/market/googl-above-345-on-october-2-2026"
-    },
-    {
-      "ts": "2026-10-01T16:04:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 27,
-      "researched": 7,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-01T15:34:35Z",
-      "type": "intel",
-      "facts": 10,
-      "q": "Columbus: Completed Match: Abedallah Shelbayh vs Daniil Ostapenkov",
-      "url": "https://polymarket.com/market/atp-shelbay-ostapen-2026-09-30-completed-match"
     }
   ],
   "plan_usage": {
-    "ts": "2026-10-02T03:04:37Z",
+    "ts": "2026-10-02T03:34:24Z",
     "week": 0.82,
     "week_resets": 1791187200,
-    "five_hour": 0.4
+    "five_hour": null
   },
   "research_runs_today": 1,
   "research_per_day": 150,
   "cycles_24h": 49,
   "learning": {
-    "reviewed": 222,
-    "post_mortems": 20,
+    "reviewed": 229,
+    "post_mortems": 21,
     "win_reviews": 12,
     "calibration": [
       {
@@ -11994,15 +12031,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 44,
-        "predicted": 0.289,
-        "actual": 0.318
+        "n": 45,
+        "predicted": 0.291,
+        "actual": 0.333
       },
       {
         "range": "40\u201360%",
-        "n": 52,
-        "predicted": 0.487,
-        "actual": 0.712
+        "n": 54,
+        "predicted": 0.49,
+        "actual": 0.722
       },
       {
         "range": "60\u201380%",
@@ -12018,7 +12055,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 12,
+      "overconfident": 13,
       "unlucky": 5,
       "missing_info": 1,
       "stale_info": 1,
@@ -12030,6 +12067,26 @@
       "research_found_it": 4
     },
     "recent": [
+      {
+        "question": "Atlanta wins",
+        "url": "https://kalshi.com/markets/kxmlbgame/atlanta-wins/kxmlbgame-26oct011400phiatl",
+        "outcome": "yes",
+        "category": "sports",
+        "p": 0.37,
+        "market": 0.505,
+        "ts": "2026-10-02T03:35:49Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "Atlanta beat Philadelphia 6-2 at home in the winner-take-all Game 3 to win the Wild Card Series. Nola and Wheeler, who pitched together, gave up five runs on two home runs.",
+        "what_we_missed": "Philadelphia's 10-4 postseason record against Atlanta and its 1-3 record in elimination games are small samples from past seasons. They did not justify putting Atlanta 13 points below a market that had it at about 50%. The evidence that actually bears on this game favored Atlanta: home field, a 94-68 record against 88-74, a 9-4 head-to-head record this season, and a 66-43 run edge.",
+        "what_worked": "",
+        "lesson": "In a single playoff game where the market is near 50/50, do not move far from it on postseason history between the franchises or other narrative stats. Weight current-season team strength and home field more heavily.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Limit how much small-sample historical or narrative base rates (franchise playoff records, all-time head-to-head) can move the forecast away from a liquid market price, for example to 5 points at most, unless current-season evidence points the same way."
+        }
+      },
       {
         "question": "Darnell Washington: 1+ touchdowns",
         "url": "https://kalshi.com/markets/kxnfltd/darnell-washington-1-touchdowns/kxnfltd-26oct01pitcle",
@@ -12130,28 +12187,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "When a barrier market expires within 48 hours, compute a volatility-based touch probability. Block any forecast that is more than 3x that figure, or 15 points away from the market price, unless there is a specific dated catalyst."
-        }
-      },
-      {
-        "question": "Will Ethereum reach $2,800 in September?",
-        "url": "https://polymarket.com/market/will-ethereum-reach-2800-in-september-2026-from-september-22",
-        "outcome": "no",
-        "category": "crypto",
-        "p": 0.41,
-        "market": 0.054,
-        "ts": "2026-10-01T04:36:24Z",
-        "bets": {
-          "bold": -0.19
-        },
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "On September 30, ETH traded around $2,670\u2013$2,735, and Binance ETH/USDT never printed a 1-minute high of $2,800 or more before the deadline, so the market resolved NO. The forecaster judged with about 10 hours left, when ETH was about 3\u20134% below the target. The market was pricing YES at 5.4%.",
-        "what_we_missed": "The forecast was 0.41, apparently because it gave weight to an unverified 24/7 Wall St. report of a $2,807 high on September 21. That report named no exchange or pair. If Binance had actually reached $2,800 after the market opened, the market would already have been settled near 100%, not trading at 5.4%. Either the report used a different price source, or the spike came before the market opened. That left only a 3\u20134% rally in under a day, which is unlikely.",
-        "what_worked": "",
-        "lesson": "If a reported hit would already have settled a touch market but the market is still trading near 0, assume it didn't count on the resolution source and price only the remaining time and distance to the target.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "For touch-price markets, check any reported touch against the market price: if it trades below 10%, ignore the unverified touch. Then cap the probability using a volatility estimate of the chance of covering the remaining distance in the time left."
         }
       }
     ],
@@ -12501,9 +12536,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.2663,
-      "b": 0.4701,
-      "n": 138,
+      "a": 1.2774,
+      "b": 0.5099,
+      "n": 141,
       "active": true,
       "need": 30
     },
@@ -12512,10 +12547,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 106,
+          "n": 108,
           "wins": 22,
-          "pnl_per_100": -46.57,
-          "total_per_100": -4936.33
+          "pnl_per_100": -47.56,
+          "total_per_100": -5136.33
         },
         {
           "group": "several",
@@ -12538,10 +12573,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 63,
-          "wins": 18,
-          "pnl_per_100": -40.64,
-          "total_per_100": -2560.6
+          "n": 65,
+          "wins": 19,
+          "pnl_per_100": -39.85,
+          "total_per_100": -2590.3
         },
         {
           "group": "framing",
@@ -12554,10 +12589,10 @@
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 22,
-          "wins": 7,
-          "pnl_per_100": 28.98,
-          "total_per_100": 637.58
+          "n": 23,
+          "wins": 8,
+          "pnl_per_100": 31.46,
+          "total_per_100": 723.63
         }
       ],
       "claude_direct": [
@@ -12598,10 +12633,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 22,
+          "n": 23,
           "wins": 3,
-          "pnl_per_100": -76.3,
-          "total_per_100": -1678.54
+          "pnl_per_100": -77.33,
+          "total_per_100": -1778.54
         },
         {
           "group": "rules",
@@ -12614,10 +12649,10 @@
         {
           "group": "framing",
           "label": "Stopped only by the YES/NO check",
-          "n": 3,
-          "wins": 0,
-          "pnl_per_100": -100.0,
-          "total_per_100": -300.0
+          "n": 4,
+          "wins": 1,
+          "pnl_per_100": -53.49,
+          "total_per_100": -213.95
         },
         {
           "group": "several",
@@ -12630,10 +12665,10 @@
         {
           "group": "room",
           "label": "No room to bet (open-bet limit, cash, or a stake under one contract)",
-          "n": 32,
-          "wins": 12,
-          "pnl_per_100": -19.12,
-          "total_per_100": -611.85
+          "n": 33,
+          "wins": 13,
+          "pnl_per_100": -16.41,
+          "total_per_100": -541.55
         }
       ],
       "jev_alone_bold": [
@@ -12648,10 +12683,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 82,
+          "n": 84,
           "wins": 18,
-          "pnl_per_100": -40.1,
-          "total_per_100": -3288.4
+          "pnl_per_100": -41.53,
+          "total_per_100": -3488.4
         },
         {
           "group": "rules",
@@ -12682,18 +12717,18 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 52,
-          "wins": 16,
-          "pnl_per_100": -19.78,
-          "total_per_100": -1028.66
+          "n": 54,
+          "wins": 17,
+          "pnl_per_100": -19.6,
+          "total_per_100": -1058.36
         },
         {
           "group": "several",
           "label": "Stopped by more than one gate",
-          "n": 7,
-          "wins": 2,
-          "pnl_per_100": 81.82,
-          "total_per_100": 572.73
+          "n": 8,
+          "wins": 3,
+          "pnl_per_100": 82.35,
+          "total_per_100": 658.77
         }
       ],
       "calibrated": [
@@ -12708,10 +12743,10 @@
         {
           "group": "info",
           "label": "Stopped only by the info gate",
-          "n": 37,
-          "wins": 10,
-          "pnl_per_100": -42.07,
-          "total_per_100": -1556.47
+          "n": 40,
+          "wins": 13,
+          "pnl_per_100": -32.48,
+          "total_per_100": -1299.08
         },
         {
           "group": "several",
@@ -12778,15 +12813,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 101,
-        "jev_research": 0.1962,
-        "jev_plain": 0.25,
-        "market": 0.1741,
-        "claude_direct": 0.1929,
-        "n_jev_research": 72,
-        "n_jev_plain": 101,
-        "n_market": 101,
-        "n_claude_direct": 27
+        "n": 107,
+        "jev_research": 0.1991,
+        "jev_plain": 0.2509,
+        "market": 0.1739,
+        "claude_direct": 0.1943,
+        "n_jev_research": 75,
+        "n_jev_plain": 107,
+        "n_market": 107,
+        "n_claude_direct": 28
       },
       {
         "category": "crypto",
@@ -12802,13 +12837,13 @@
       },
       {
         "category": "other",
-        "n": 22,
-        "jev_plain": 0.1177,
-        "market": 0.0374,
+        "n": 23,
+        "jev_plain": 0.1218,
+        "market": 0.046,
         "jev_research": 0.0761,
         "claude_direct": 0.0626,
-        "n_jev_plain": 22,
-        "n_market": 22,
+        "n_jev_plain": 23,
+        "n_market": 23,
         "n_jev_research": 4,
         "n_claude_direct": 3
       },
@@ -12982,7 +13017,7 @@
     ],
     "suggested_areas": {
       "gates": 18,
-      "research": 12,
+      "research": 13,
       "questions": 1
     },
     "retro": {
