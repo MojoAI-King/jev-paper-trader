@@ -119,6 +119,10 @@ in `.github/workflows/trade.yml` and stay off until the `TRADING_ENABLED` reposi
 - **Brier score** for each forecaster (Jev with research, Jev alone, Claude direct) and the market: the number that matters. Lower is better. It's measured on
   every judged market that resolved, not just the ones bet on. If Jev's score isn't lower than the market's, the
   "edge" is noise. Don't trust either number until about **50 or more** markets have resolved.
+  Each forecaster covers different markets, so those scores don't compare head to head. The **head to head**
+  lines (and the page's **Forecasters** panel) score all four on the same resolved markets: per market, the
+  latest look where all four gave a forecast. The page shows it as "% better than a coin flip"
+  (1 − Brier / 0.25); hovering a row shows the Brier score.
 
 ## Files
 

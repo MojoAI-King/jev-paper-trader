@@ -43,15 +43,16 @@ a:hover { color: var(--cyan-2); }
 .top { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap; padding: 4px 2px; }
 #p-strat { grid-column: 1; grid-row: 2; }
 #p-equity { grid-column: 2; grid-row: 2; }
-#p-feed { grid-column: 3; grid-row: 2 / 4; }
+#p-feed { grid-column: 3; grid-row: 2; }
 #p-risk { grid-column: 1; grid-row: 3; }
 #p-open { grid-column: 2; grid-row: 3; }
+#p-score { grid-column: 3; grid-row: 3; }  /* under the feed */
 .bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap;
           font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .example { grid-column: 1 / -1; background: var(--warning); color: #111; padding: 6px 12px; font-weight: 700; letter-spacing: 0.06em; }
 @media (max-width: 1150px) {
   .hud { height: auto; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
-  #p-strat, #p-equity, #p-feed, #p-risk, #p-open { grid-column: 1; grid-row: auto; }
+  #p-strat, #p-equity, #p-feed, #p-risk, #p-open, #p-score { grid-column: 1; grid-row: auto; }
   #p-equity { height: 380px; } #p-feed { height: 460px; } #p-open { height: 250px; }
 }
 
@@ -74,7 +75,7 @@ a:hover { color: var(--cyan-2); }
   .blink { animation: blink 1.6s steps(2, start) infinite; }
   .intro .panel { animation: boot 520ms cubic-bezier(.2, .7, .2, 1) both; }
   .intro #p-strat { animation-delay: 60ms; } .intro #p-equity { animation-delay: 140ms; } .intro #p-feed { animation-delay: 220ms; }
-  .intro #p-risk { animation-delay: 300ms; } .intro #p-open { animation-delay: 380ms; }
+  .intro #p-risk { animation-delay: 300ms; } .intro #p-open { animation-delay: 380ms; } .intro #p-score { animation-delay: 440ms; }
 }
 @keyframes blink { to { visibility: hidden; } }
 @keyframes boot { from { opacity: 0; transform: translateY(8px); clip-path: inset(0 0 100% 0); } to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); } }
@@ -149,6 +150,15 @@ a:hover { color: var(--cyan-2); }
 .kv span { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 10px; }
 .kv b { font-weight: 500; font-variant-numeric: tabular-nums; }
 
+/* forecasters: the same resolved markets, scored head to head */
+.score { display: grid; gap: 7px; flex: 1; min-height: 0; align-content: start; }
+.sc { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 8px; font-size: 11.5px; }
+.sc b { font-weight: 500; font-variant-numeric: tabular-nums; }
+.sc .bar { grid-column: 1 / -1; height: 4px; background: rgba(54, 226, 255, 0.1); border-radius: 2px; overflow: hidden; }
+.sc .bar i { display: block; height: 100%; background: var(--cyan-dim); border-radius: 2px; }
+.sc.top .bar i { background: var(--cyan); }
+.score .note { font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+
 /* open positions */
 .cards { display: flex; gap: 10px; overflow-x: auto; overflow-y: hidden; flex: 1; min-height: 0; padding-bottom: 4px; scrollbar-color: var(--line-2) transparent; }
 .card { flex: 0 0 218px; border: 1px solid var(--line); background: var(--panel-2); padding: 10px; display: grid; grid-template-rows: auto 1fr auto; gap: 7px; min-height: 0; }
@@ -209,6 +219,7 @@ a:hover { color: var(--cyan-2); }
   <section class="panel" id="p-feed" aria-labelledby="h-feed"><div class="ph" id="h-feed"><span><i class="blink"></i> <b>Live feed</b></span><span class="r" id="feed-r"></span></div><div class="feed" id="feed" aria-live="polite"></div></section>
   <section class="panel" id="p-risk" aria-labelledby="h-risk"><div class="ph" id="h-risk"><span><b>Exposure</b></span><span class="r" id="risk-r"></span></div><div class="risk" id="risk"></div></section>
   <section class="panel" id="p-open" aria-labelledby="h-open"><div class="ph" id="h-open"><span><b>Open positions</b></span><span class="r" id="open-r"></span></div><div class="cards" id="cards"></div></section>
+  <section class="panel" id="p-score" aria-labelledby="h-score"><div class="ph" id="h-score"><span><b>Forecasters</b></span><span class="r" id="score-r"></span></div><div class="score" id="score"></div></section>
   <footer class="bottom" id="bottom"></footer>
 </div>
 <div class="overlay" id="verify" hidden role="dialog" aria-modal="true" aria-labelledby="v-h"><div class="modal" id="modal"></div></div>
@@ -366,6 +377,21 @@ function render(data, { update = false } = {}) {
   risk.append(g, h("div", { class: "kv" }, kv("Open bets", String(openN)), kv("Bets today", String(betsToday)), kv("Settled", settled ? `${wins}W · ${settled - wins}L` : "0"),
     kv("Scans · 24h", String(D.cycles_24h ?? "—")), kv("Research today", `${D.research_runs_today ?? 0}/${D.research_per_day ?? "—"}`), kv("Claude week", u && u.week != null ? pct(u.week) : "—")));
   $("risk-r").textContent = `of ${usd0.format(start)}`;
+
+  // ---------- forecasters: who calls the finished markets best, all on the same markets ----------
+  const score = $("score"); score.textContent = "";
+  const pr = (D.calibration || {}).paired || { n: 0, sources: [] };
+  $("score-r").textContent = pr.n ? `${pr.n} markets` : "";
+  if (!pr.n) score.append(h("div", { class: "note", text: "Appears once markets that all four forecast have finished." }));
+  else {
+    const ranked = pr.sources.filter(x => x.brier != null).sort((a, b) => a.brier - b.brier);
+    ranked.forEach((x, i) => {
+      const skill = Math.max(0, 1 - x.brier / 0.25);  // 0 = no better than a coin flip, 1 = perfect
+      score.append(h("div", { class: "sc" + (i === 0 ? " top" : ""), title: `${x.label}: Brier score ${x.brier.toFixed(3)} on the same ${pr.n} finished markets (0 is perfect, 0.25 is a coin flip)` },
+        h("span", { text: x.label }), h("b", { text: pct(skill) }), h("div", { class: "bar" }, h("i", { style: `width:${(skill * 100).toFixed(1)}%` }))));
+    });
+    score.append(h("div", { class: "note", text: "% better than a coin flip, all on the same finished markets" }));
+  }
 
   // ---------- open positions ----------
   const cards = $("cards"); cards.textContent = "";

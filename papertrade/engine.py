@@ -780,7 +780,26 @@ def calibration(judgments: list[dict], resolved: dict) -> dict:
     for name, label in SOURCES:
         pairs = [(p, y) for j, y in done if (p := _prob(j, name)) is not None]
         sources.append({"name": name, "label": label, "brier": brier(pairs), "n": len(pairs)})
-    return {"judged": len(latest), "resolved": len(done), "sources": sources}
+    return {"judged": len(latest), "resolved": len(done), "sources": sources, "paired": paired(judgments, resolved)}
+
+
+PAIRED = ("market", "jev_research", "claude_direct", "jev_plain")
+
+
+def paired(judgments: list[dict], resolved: dict) -> dict:
+    """Each source in PAIRED scored on the same resolved markets: per market, the latest look (current
+    question set) where all of them gave a forecast. The per-source scores above each use whatever markets
+    that source happened to cover, so they can't be compared head to head (proposal p7, Joey 2026-10-02)."""
+    looks = {}
+    for j in judgments:
+        if (j.get("question_set") == QUESTION_SET_VERSION and j["key"] in resolved
+                and all(_prob(j, s) is not None for s in PAIRED)):
+            looks[j["key"]] = j
+    labels = dict(SOURCES)
+    sources = [{"name": s, "label": labels[s],
+                "brier": brier([(_prob(j, s), 1.0 if resolved[k] == "yes" else 0.0) for k, j in looks.items()])}
+               for s in PAIRED]
+    return {"n": len(looks), "sources": sources}
 
 
 def report(policy: dict) -> str:
@@ -820,6 +839,11 @@ def report(policy: dict) -> str:
                                     "The market is still the better forecaster; edges are likely noise."))
         if cal["resolved"] < 50:
             lines.append(f"  (only {cal['resolved']} resolved markets; treat as noise until ~50+)")
+        pr = cal["paired"]
+        if pr["n"]:
+            lines.append(f"Head to head, the same {pr['n']} resolved markets:")
+            for s in sorted(pr["sources"], key=lambda s: s["brier"]):
+                lines.append(f"  {s['label']:<16} {s['brier']:.4f}")
     else:
         lines.append("No judged markets have resolved yet. Run `settle` after markets close.")
 

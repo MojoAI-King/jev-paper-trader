@@ -1057,6 +1057,32 @@ class DashboardTests(DataDirTest):
         ls = dashboard.last_scan(POLICY, [old] * 32 + [new] * 29)
         self.assertEqual(ls["judged"], 29)
 
+    def test_forecasters_are_scored_head_to_head_on_the_same_markets(self):
+        def look(key, ts, plain=0.5, rich=0.7, direct=0.8, mid=0.6, qs=review.QUESTION_SET_VERSION):
+            ans = lambda p: {"p_yes": {"noul": p}} if p is not None else None
+            return {"key": key, "ts": ts, "question_set": qs, "market": {"mid": mid},
+                    "answers_no_news": ans(plain), "answers": ans(rich),
+                    "claude_direct": {"p_yes": direct} if direct is not None else None}
+        js = [look("a", "1", plain=0.1),          # superseded by a's later look
+              look("a", "2"),                     # a: all four, latest -> counted
+              look("b", "1", direct=None),        # b: Claude never forecast it -> b left out for everyone
+              look("c", "1", mid=0.9, qs="papertrade-v1"),  # old wording -> left out
+              look("d", "1")]                     # d: not resolved -> left out
+        res = {"a": "yes", "b": "no", "c": "yes"}
+        pr = engine.paired(js, res)
+        self.assertEqual(pr["n"], 1)
+        got = {s["name"]: round(s["brier"], 4) for s in pr["sources"]}
+        self.assertEqual(got, {"jev_plain": 0.25, "jev_research": 0.09, "claude_direct": 0.04, "market": 0.16})
+        cal = engine.calibration(js, res)  # what the page and the daily review read
+        self.assertEqual(cal["paired"], pr)
+        # the per-source scores still cover each source's own markets (b counts for Jev alone there)
+        self.assertEqual(next(x for x in cal["sources"] if x["name"] == "jev_plain")["n"], 2)
+        s = dashboard.summarize(POLICY, books(self.pf()), [], {}, "2026-09-27T00:00:00Z")
+        self.assertEqual(s["calibration"]["paired"], {"n": 0, "sources": [{"name": n, "label": l, "brier": None}
+                         for n, l in (("market", "Market price"), ("jev_research", "Jev + research"),
+                                      ("claude_direct", "Claude direct"), ("jev_plain", "Jev alone"))]})
+        self.assertIn('id="p-score"', dashboard.build_html(s))
+
     def test_plan_usage_comes_from_the_latest_report(self):
         rate = {"unifiedWindows": {"seven_day": {"utilization": 0.4, "resetsAt": 1}, "five_hour": {"utilization": 0.2}}}
         u = dashboard.plan_usage([{"ts": "a", "claude": {"rate": rate}}, {"ts": "b", "kind": "review"}])
