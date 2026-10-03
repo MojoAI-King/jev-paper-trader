@@ -1,6 +1,6 @@
 {
-  "version": 5,
-  "updated": "2026-10-02T00:05:57Z",
+  "version": 6,
+  "updated": "2026-10-03T00:07:21Z",
   "rules": [
     {
       "id": "R1",
@@ -8,8 +8,8 @@
       "rule": "For short-window crypto price questions, record a spot price from the exchange and pair named in the resolution rules (e.g. Binance BTC/USDT), no more than an hour old at judgment time when the window closes within a day, and state its timestamp and age.",
       "evidence": [
         "polymarket:4797513",
-        "polymarket:5009022",
-        "polymarket:4797724"
+        "polymarket:4797724",
+        "polymarket:5009022"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -31,8 +31,8 @@
       "rule": "Read the crypto resolution rules for the exact strike, venue and test (any touch in the window or a close at a set candle), restate that strike at the top of the research, and measure every price fact against it, not against a nearby round number.",
       "evidence": [
         "polymarket:4797513",
-        "polymarket:5009022",
-        "polymarket:4797724"
+        "polymarket:4797724",
+        "polymarket:5009022"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -50,8 +50,8 @@
       "category": "crypto",
       "rule": "For short-horizon crypto questions, search same-day macro and geopolitical news (dollar, bond yields, oil, major policy statements) and report any specific catalyst with timestamps, or state plainly that none was found; label weeks-old news as stale background.",
       "evidence": [
-        "polymarket:4797513",
         "polymarket:4689727",
+        "polymarket:4797513",
         "polymarket:4797726"
       ],
       "added": "2026-09-28T16:35:53Z"
@@ -61,8 +61,8 @@
       "category": "crypto",
       "rule": "Before reporting a past high or low as reaching the strike, confirm it on the resolution venue's own candles (e.g. Binance 1-minute) and that it falls inside the question's window; label any report naming no exchange, or dated before the window opened, as unverified.",
       "evidence": [
-        "polymarket:4844455",
-        "polymarket:4797726"
+        "polymarket:4797726",
+        "polymarket:4844455"
       ],
       "added": "2026-10-02T00:05:57Z"
     },
@@ -71,19 +71,21 @@
       "category": "sports",
       "rule": "For single-match win questions, read the resolution rules to confirm whether only a win in regulation time counts, and state plainly that a draw would resolve No.",
       "evidence": [
-        "polymarket:4581752"
+        "polymarket:4581752",
+        "polymarket:4689888"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
     {
       "id": "R7",
       "category": "sports",
-      "rule": "For match questions, report the current-season head-to-head with its game count, labeling samples under about 10 games as small and noting when sources disagree on the count, plus each side's dated, sourced suspensions, injuries and returns from injury.",
+      "rule": "For match questions, report the current-season head-to-head with its game count (under about 10 games is small; note source disagreements) and each side's dated, sourced absences and returns; when injury sources disagree, check the confirmed matchday squad or lineup.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-        "polymarket:4581752"
+        "polymarket:4581752",
+        "polymarket:4689888"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -132,6 +134,15 @@
       "added": "2026-09-30T00:08:42Z"
     },
     {
+      "id": "R17",
+      "category": "sports",
+      "rule": "For player-prop questions, confirm every fact names the exact player in the question and discard facts about teammates; report that player's role, usage near the goal line or red zone, and how the opponent defends his position.",
+      "evidence": [
+        "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1"
+      ],
+      "added": "2026-10-03T00:07:21Z"
+    },
+    {
       "id": "R12",
       "category": "general",
       "rule": "When a count question resolves on one named data provider, pull that provider's own trailing 2\u20134 week figures and write down its counting method (e.g. AIS-visible only) first; set aside other trackers' figures that count differently.",
@@ -167,16 +178,19 @@
     {
       "id": "R15",
       "category": "sports",
-      "rule": "For playoff series and games, state the current series score and what the trailing team must still win and where, report margins of earlier games in the series, and note when a team's standing rests mainly on seeding or overall record.",
+      "rule": "For playoff series and games, give the series score, what the trailing team still needs and where, earlier games' margins, current-season records and head-to-head, and whether standing rests on seeding; label past seasons' playoff records as small-sample background.",
       "evidence": [
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
   ],
   "reviews_used": [
+    "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
+    "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
@@ -184,6 +198,10 @@
     "kalshi:KXMLBGAME-26SEP301700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP302200CHCSD-SD",
     "kalshi:KXMLBRFI-26SEP291400PHIATL",
+    "kalshi:KXNCAAFGAME-26OCT01UNTTLSA-UNT",
+    "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
+    "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
+    "kalshi:KXTESTMATCH-26SEP290000AUS-AINA-TIE",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
@@ -194,10 +212,12 @@
     "polymarket:4581768",
     "polymarket:4678632",
     "polymarket:4689727",
+    "polymarket:4689888",
     "polymarket:4797511",
     "polymarket:4797513",
     "polymarket:4797724",
     "polymarket:4797726",
+    "polymarket:4828208",
     "polymarket:4844455",
     "polymarket:5009022",
     "polymarket:5023463",
