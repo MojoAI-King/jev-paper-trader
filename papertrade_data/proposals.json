@@ -144,6 +144,28 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p10",
+      "created": "2026-10-03T00:36:51Z",
+      "kind": "code",
+      "title": "Gate ledger and price breakdown for 30c+ markets only",
+      "why": "The gate ledger mixes in long shots, which lost 1 in 42 before the floor. That makes every 'stopped by the info gate' number look worse than it would under today's rules: calibrated's info-stopped markets show \u2212$7.1 per $100 (66) and main's \u2212$24.6 (78). We can't sensibly tune the info gates until the ledger shows only markets the 30c floor would let through.",
+      "judge_by": "The next reviews show a 30c+ gate ledger and a by_price_paid split for each strategy's since_change bets. It is worth having if it changes or confirms an info-gate decision once there is enough data.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p11",
+      "created": "2026-10-03T00:36:51Z",
+      "kind": "code",
+      "title": "Pooled tally of bets placed under the floor",
+      "why": "Each strategy has 0\u20131 settled bets since 2026-10-01, so the floor's '30 settled bets' test will take weeks per strategy. Pooling every strategy's 30c+ bets placed since the floor, measured against original's long shots over the same period, would answer whether the floor pays much sooner.",
+      "judge_by": "The review reports pooled P&L per $100 on 30c+ bets since 2026-10-01 alongside original's under-30c bets. The floor is confirmed if the pooled result beats original's long shots.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
