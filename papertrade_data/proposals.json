@@ -95,8 +95,8 @@
       "why": "Bets main actually placed have lost $15 per $100 (7 settled), and Jev + research trails the market badly in crypto and economy. This tests whether requiring a 15% edge, and dropping both categories, turns research-driven bets profitable. It can run now, while main is locked until tomorrow.",
       "judge_by": "P&L per $100 staked is at or above zero, and above original's on the markets both bet over the same period.",
       "min_resolved": 20,
-      "status": "running",
-      "status_reason": "started automatically within the allowed bounds",
+      "status": "retired",
+      "status_reason": "retired by the daily review 2026-10-03: ch6 has settled 2 bets, lost both, and is down $4.0k. Its idea is to bet only where Jev disagrees with the market by 15+ points, but the market out-forecasts Jev + research (0.150 vs 0.201 Brier over ",
       "strategy": {
         "label": "Jev + research, picky",
         "probability": "jev_research",
@@ -110,7 +110,8 @@
         }
       },
       "started": "2026-09-30T23:35:30Z",
-      "slot": 8
+      "slot": 8,
+      "retired": "2026-10-03T13:06:05Z"
     },
     {
       "id": "p7",
@@ -166,6 +167,56 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p12",
+      "created": "2026-10-03T13:06:05Z",
+      "kind": "retire",
+      "title": "Retire ch6 (picky Jev + research)",
+      "why": "ch6 has settled 2 bets, lost both, and is down $4.0k. Its idea is to bet only where Jev disagrees with the market by 15+ points, but the market out-forecasts Jev + research (0.150 vs 0.201 Brier over 191 shared markets). Two results are noise, so this is a judgment call: the slot is better spent on a different hypothesis.",
+      "judge_by": "No later check: its 3 open bets settle and are recorded, and the slot goes to the challenger below.",
+      "min_resolved": 0,
+      "status": "applied",
+      "status_reason": "ch6 retired; its open bets still settle and its record stays on the page",
+      "strategy": "ch6"
+    },
+    {
+      "id": "ch13",
+      "created": "2026-10-03T13:06:05Z",
+      "kind": "challenger",
+      "title": "Calibrated, favourites only",
+      "why": "Across strategies, bets on favourites (60c and up) have gone 12 wins to 6 losses. The calibrated forecaster went 5 for 5 there (+$3.6k), and main 2 for 2 (+$1.4k). This tests whether calibrated Jev makes money when it only backs prices of 55c and above. It is an experiment on tiny numbers.",
+      "judge_by": "P&L per $100 staked is positive, and better than the calibrated strategy's over the same period.",
+      "min_resolved": 30,
+      "status": "running",
+      "status_reason": "started automatically within the allowed bounds",
+      "strategy": {
+        "label": "Calibrated, favourites only",
+        "probability": "jev_calibrated",
+        "gates": "jev_research",
+        "rules": {
+          "min_ask": 0.55
+        }
+      },
+      "started": "2026-10-03T13:06:05Z",
+      "slot": 8
+    },
+    {
+      "id": "p14",
+      "created": "2026-10-03T13:06:05Z",
+      "kind": "tune",
+      "title": "Bold skips crypto, like main",
+      "why": "In crypto, Jev + research scores 0.151 against the market's 0.087 over 56 resolved markets. Bold is down $20.3k, the worst of any strategy, on 33 settled. Skipping crypto leaves bold differing from main only in its info gate (0.35 vs 0.5), which makes it a clean test of that gate.",
+      "judge_by": "On bets opened after this change, bold's P&L per $100 staked beats its current all-time -$22 per $100, and is within $10 per $100 of main's over the same period.",
+      "min_resolved": 30,
+      "status": "applied",
+      "status_reason": "bold rules v4: skips none \u2192 crypto",
+      "strategy": "bold",
+      "rules": {
+        "skip_categories": [
+          "crypto"
+        ]
+      }
     }
   ]
 }
