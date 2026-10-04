@@ -40,8 +40,8 @@
       "why": "Claude is our best forecaster (Brier 0.132 on 24) yet lost all 3 of its settled bets. The places where it disagrees with the market by only 8% are probably where the market is right. This challenger demands a 12% edge, skips crypto, and bets half as much per bet.",
       "judge_by": "Positive P&L, and more P&L per $100 staked than claude_direct over the same period.",
       "min_resolved": 20,
-      "status": "running",
-      "status_reason": "started automatically within the allowed bounds",
+      "status": "retired",
+      "status_reason": "retired by the daily review 2026-10-04: ch3 has placed 5 bets in 5 days and lost all 3 settled (-$60 per $100). At that pace it would take months to reach 30 results. It differs from claude_direct only by a higher edge bar and a smaller sta",
       "strategy": {
         "label": "Claude direct, strict",
         "probability": "claude_direct",
@@ -55,7 +55,8 @@
         }
       },
       "started": "2026-09-29T23:35:30Z",
-      "slot": 7
+      "slot": 7,
+      "retired": "2026-10-04T13:38:13Z"
     },
     {
       "id": "p4",
@@ -217,6 +218,62 @@
           "crypto"
         ]
       }
+    },
+    {
+      "id": "p15",
+      "created": "2026-10-04T13:38:13Z",
+      "kind": "retire",
+      "title": "Retire ch3 (Claude direct, strict)",
+      "why": "ch3 has placed 5 bets in 5 days and lost all 3 settled (-$60 per $100). At that pace it would take months to reach 30 results. It differs from claude_direct only by a higher edge bar and a smaller stake, so the slot is better spent on a sharper question.",
+      "judge_by": "Success means the replacement challenger places more bets per day than ch3's 1 per day, so its results arrive faster.",
+      "min_resolved": 10,
+      "status": "applied",
+      "status_reason": "ch3 retired; its open bets still settle and its record stays on the page",
+      "strategy": "ch3"
+    },
+    {
+      "id": "ch16",
+      "created": "2026-10-04T13:38:13Z",
+      "kind": "challenger",
+      "title": "Claude direct, sports only",
+      "why": "In sports, Claude direct scores 0.151 Brier on 67 markets against the market's 0.176 across all 232 sports markets. This is the only category where any of our sources looks better than the price. The two scores cover different sets of markets, so the comparison is suggestive only. Two-thirds of Claude's forecasts are sports, so this isolates its best area without starving the strategy of bets.",
+      "judge_by": "Success means P&L per $100 staked is at least 0 and beats claude_direct's 30c+ bets over the same period. If it is below -$20 per $100 after 30 settled bets, retire it.",
+      "min_resolved": 30,
+      "status": "running",
+      "status_reason": "started automatically within the allowed bounds",
+      "strategy": {
+        "label": "Claude direct, sports only",
+        "probability": "claude_direct",
+        "gates": "jev_research",
+        "rules": {
+          "min_edge": 0.08,
+          "min_ask": 0.3,
+          "max_stake_pct": 0.02,
+          "skip_categories": [
+            "crypto",
+            "weather",
+            "economy",
+            "culture",
+            "politics",
+            "world",
+            "tech",
+            "other"
+          ]
+        }
+      },
+      "started": "2026-10-04T13:38:13Z",
+      "slot": 7
+    },
+    {
+      "id": "p17",
+      "created": "2026-10-04T13:38:13Z",
+      "kind": "code",
+      "title": "Claimed edge vs realised return",
+      "why": "Every source is worse than the market, yet each bet claims at least 8c of edge. Bucketing settled 30c+ bets by claimed edge (8-12c, 12-20c, 20c+) and showing win rate and P&L per $100 would show whether big claimed edges are real edges or big errors. That would tell us whether to raise or lower min_edge.",
+      "judge_by": "Success means Joey approves the table and it reports per-bucket P&L for each strategy. We then use it to set min_edge.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
