@@ -1,6 +1,6 @@
 {
-  "version": 6,
-  "updated": "2026-10-03T00:07:21Z",
+  "version": 7,
+  "updated": "2026-10-04T00:08:06Z",
   "rules": [
     {
       "id": "R1",
@@ -143,15 +143,6 @@
       "added": "2026-10-03T00:07:21Z"
     },
     {
-      "id": "R12",
-      "category": "general",
-      "rule": "When a count question resolves on one named data provider, pull that provider's own trailing 2\u20134 week figures and write down its counting method (e.g. AIS-visible only) first; set aside other trackers' figures that count differently.",
-      "evidence": [
-        "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
-      ],
-      "added": "2026-09-30T00:08:42Z"
-    },
-    {
       "id": "R13",
       "category": "sports",
       "rule": "For single MLB games, report both confirmed starters' season ERA and ERA+ and recent starts, each team's season record, late-season form (record and offense since Sept 1) and home field; if it is a bullpen game, note that an opener's few innings carry little weight.",
@@ -164,31 +155,72 @@
       "added": "2026-10-01T00:08:33Z"
     },
     {
-      "id": "R14",
-      "category": "general",
-      "rule": "Take historical base-rate counts only from a cited source covering the current format (e.g. WNBA best-of-three since 2022); label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
+      "id": "R15",
+      "category": "sports",
+      "rule": "For playoff series and games, give the series score, what the trailing team still needs and where, earlier games' margins, current-season records and head-to-head, and whether standing rests on seeding; label past seasons' playoff records as small-sample background.",
       "evidence": [
-        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
-        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+        "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
     {
-      "id": "R15",
+      "id": "R18",
       "category": "sports",
-      "rule": "For playoff series and games, give the series score, what the trailing team still needs and where, earlier games' margins, current-season records and head-to-head, and whether standing rests on seeding; label past seasons' playoff records as small-sample background.",
+      "rule": "For in-round golf leader questions, pull the live hole-by-hole leaderboard and, for the named player and everyone within about 3 shots, report score, holes left and tee wave, plus the field's scoring average and how the rules settle a tie for the lead.",
       "evidence": [
-        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+        "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
+        "kalshi:KXPGAR2LEAD-BAOUC26-KROY"
+      ],
+      "added": "2026-10-04T00:08:06Z"
+    },
+    {
+      "id": "R19",
+      "category": "culture",
+      "rule": "For 'next video' view questions, record when the question opened, check the channel's live upload list for any video posted since then, treat it as the resolving video, and report its upload timestamp, hours elapsed in the 168-hour window and current views.",
+      "evidence": [
+        "polymarket:4868020",
+        "polymarket:4868021"
+      ],
+      "added": "2026-10-04T00:08:06Z"
+    },
+    {
+      "id": "R20",
+      "category": "culture",
+      "rule": "For view-count bracket questions, build reference figures only from first-168-hour counts of the channel's recent comparable uploads; label cumulative or lifetime totals, figures with unclear snapshot dates, and months-old uploads as not the resolution metric.",
+      "evidence": [
+        "polymarket:4868020",
+        "polymarket:4868022"
+      ],
+      "added": "2026-10-04T00:08:06Z"
+    },
+    {
+      "id": "R12",
+      "category": "general",
+      "rule": "When a count question resolves on one named data provider, pull that provider's own trailing 2\u20134 week figures and write down its counting method (e.g. AIS-visible only) first; set aside other trackers' figures that count differently.",
+      "evidence": [
+        "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
+      ],
+      "added": "2026-09-30T00:08:42Z"
+    },
+    {
+      "id": "R14",
+      "category": "general",
+      "rule": "Take historical base-rate counts and series streaks only from a cited source covering the current format and running through the latest meeting; label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
+      "evidence": [
+        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
+        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
         "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-        "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL"
+        "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
   ],
   "reviews_used": [
     "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
+    "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
     "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
@@ -199,8 +231,15 @@
     "kalshi:KXMLBGAME-26SEP302200CHCSD-SD",
     "kalshi:KXMLBRFI-26SEP291400PHIATL",
     "kalshi:KXNCAAFGAME-26OCT01UNTTLSA-UNT",
+    "kalshi:KXNCAAFGAME-26OCT02PITTVT-PITT",
+    "kalshi:KXNCAAFGAME-26OCT02PITTVT-VT",
+    "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
+    "kalshi:KXPGAR2LEAD-BAOUC26-ASMO",
+    "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
+    "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
+    "kalshi:KXPGAR2LEAD-BAOUC26-SFIS",
     "kalshi:KXTESTMATCH-26SEP290000AUS-AINA-TIE",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
@@ -219,6 +258,9 @@
     "polymarket:4797726",
     "polymarket:4828208",
     "polymarket:4844455",
+    "polymarket:4868020",
+    "polymarket:4868021",
+    "polymarket:4868022",
     "polymarket:5009022",
     "polymarket:5023463",
     "polymarket:5055808",
