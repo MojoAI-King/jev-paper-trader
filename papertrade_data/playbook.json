@@ -1,6 +1,6 @@
 {
-  "version": 7,
-  "updated": "2026-10-04T00:08:06Z",
+  "version": 8,
+  "updated": "2026-10-05T00:11:07Z",
   "rules": [
     {
       "id": "R1",
@@ -37,13 +37,15 @@
       "added": "2026-09-28T16:35:53Z"
     },
     {
-      "id": "R4",
+      "id": "R16",
       "category": "crypto",
-      "rule": "Do not treat earlier-week touches of a level or prior days' closes as evidence about the current window; identify what drove those moves (e.g. a weekday bond-yield spike) and check whether that driver is still active now.",
+      "rule": "Confirm any past high or low reported as reaching the strike on the resolution venue's own candles and inside the question's window, labeling others unverified; treat earlier-week moves as background unless their driver (e.g. a bond-yield spike) is still active.",
       "evidence": [
+        "polymarket:4797726",
+        "polymarket:4844455",
         "polymarket:5009022"
       ],
-      "added": "2026-09-28T16:35:53Z"
+      "added": "2026-10-02T00:05:57Z"
     },
     {
       "id": "R5",
@@ -57,22 +59,13 @@
       "added": "2026-09-28T16:35:53Z"
     },
     {
-      "id": "R16",
-      "category": "crypto",
-      "rule": "Before reporting a past high or low as reaching the strike, confirm it on the resolution venue's own candles (e.g. Binance 1-minute) and that it falls inside the question's window; label any report naming no exchange, or dated before the window opened, as unverified.",
-      "evidence": [
-        "polymarket:4797726",
-        "polymarket:4844455"
-      ],
-      "added": "2026-10-02T00:05:57Z"
-    },
-    {
       "id": "R6",
       "category": "sports",
-      "rule": "For single-match win questions, read the resolution rules to confirm whether only a win in regulation time counts, and state plainly that a draw would resolve No.",
+      "rule": "For single-match win questions, confirm in the rules whether only a regulation-time win counts and state that a draw resolves No; check the actual venue, since a listed home side may play at a neutral ground, and report each side's results in this competition.",
       "evidence": [
         "polymarket:4581752",
-        "polymarket:4689888"
+        "polymarket:4689888",
+        "polymarket:4762522"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -125,22 +118,34 @@
     {
       "id": "R11",
       "category": "sports",
-      "rule": "Just before a tennis match, check the tournament's latest order of play, draw updates and withdrawal lists for walkovers, late withdrawals or lucky-loser swaps, and report recent full matches each player finished (singles or doubles) as fitness evidence.",
+      "rule": "Once a tennis match's start time has passed, check results sites (Tennis Explorer, ITF, tour site) for w/o or ret. markers first; before it, check the latest order of play and withdrawal lists, and report recent full matches each player finished.",
       "evidence": [
         "polymarket:5023463",
         "polymarket:5055808",
-        "polymarket:5083452"
+        "polymarket:5083452",
+        "polymarket:4981247"
       ],
       "added": "2026-09-30T00:08:42Z"
     },
     {
       "id": "R17",
       "category": "sports",
-      "rule": "For player-prop questions, confirm every fact names the exact player in the question and discard facts about teammates; report that player's role, usage near the goal line or red zone, and how the opponent defends his position.",
+      "rule": "For player touchdown props, use only facts on the named player; split rushing from receiving or passing TDs, report his share of team carries or targets inside the 5, his multi-season games-with-a-TD rate, and the team's run-pass split; label a few-game streak as small sample.",
       "evidence": [
-        "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1"
+        "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
+        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
+        "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1"
       ],
       "added": "2026-10-03T00:07:21Z"
+    },
+    {
+      "id": "R21",
+      "category": "sports",
+      "rule": "For single MMA fights, report each fighter's age, recent opponents and how those fights ended, and dated weigh-in or weight-cut news; label win streaks and common-opponent comparisons as weak evidence.",
+      "evidence": [
+        "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE"
+      ],
+      "added": "2026-10-05T00:11:07Z"
     },
     {
       "id": "R13",
@@ -170,8 +175,8 @@
       "category": "sports",
       "rule": "For in-round golf leader questions, pull the live hole-by-hole leaderboard and, for the named player and everyone within about 3 shots, report score, holes left and tee wave, plus the field's scoring average and how the rules settle a tie for the lead.",
       "evidence": [
-        "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
-        "kalshi:KXPGAR2LEAD-BAOUC26-KROY"
+        "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
+        "kalshi:KXPGAR2LEAD-BAOUC26-KSTR"
       ],
       "added": "2026-10-04T00:08:06Z"
     },
@@ -212,8 +217,8 @@
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
         "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-        "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST"
+        "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
@@ -236,12 +241,17 @@
     "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
+    "kalshi:KXNFLTD-26OCT04KCLV-LVBBOWERS89-1",
+    "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
+    "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
+    "kalshi:KXNFLTOTAL-26OCT04KCLV-56",
     "kalshi:KXPGAR2LEAD-BAOUC26-ASMO",
     "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
     "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
     "kalshi:KXPGAR2LEAD-BAOUC26-SFIS",
     "kalshi:KXTESTMATCH-26SEP290000AUS-AINA-TIE",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
+    "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
@@ -252,6 +262,8 @@
     "polymarket:4678632",
     "polymarket:4689727",
     "polymarket:4689888",
+    "polymarket:4762522",
+    "polymarket:4768020",
     "polymarket:4797511",
     "polymarket:4797513",
     "polymarket:4797724",
@@ -261,6 +273,7 @@
     "polymarket:4868020",
     "polymarket:4868021",
     "polymarket:4868022",
+    "polymarket:4981247",
     "polymarket:5009022",
     "polymarket:5023463",
     "polymarket:5055808",
@@ -268,5 +281,7 @@
     "polymarket:5083452",
     "polymarket:5083454"
   ],
-  "retired_ids": []
+  "retired_ids": [
+    "R4"
+  ]
 }
