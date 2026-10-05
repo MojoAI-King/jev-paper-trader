@@ -274,6 +274,36 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p18",
+      "created": "2026-10-05T01:39:40Z",
+      "kind": "tune",
+      "title": "Claude direct demands a bigger edge",
+      "why": "Claude direct's forecasts trail the market (paired Brier 0.182 vs 0.153 on 357 markets), so its 8c 'edges' are probably mostly error. Its bets lose $68 per $100 (9 settled). This is an experiment; ch3 tried a pickier Claude direct and was retired, but it did that without the 30c floor.",
+      "judge_by": "On bets opened after this change, P&L per $100 staked beats claude_direct's all-time -$51 per $100 and is no worse than main's over the same period.",
+      "min_resolved": 15,
+      "status": "applied",
+      "status_reason": "claude_direct rules v3: edge bar 8% \u2192 12%",
+      "strategy": "claude_direct",
+      "rules": {
+        "min_edge": 0.12
+      }
+    },
+    {
+      "id": "p19",
+      "created": "2026-10-05T01:39:40Z",
+      "kind": "tune",
+      "title": "Jev alone, bold stops buying favourites",
+      "why": "Jev alone, bold has lost all 3 of its bets at 60c and up (-$6.0k), while its 30-60c bets are +$914 on 6. Jev alone is the weakest forecaster (Brier 0.235), and paying 60c+ leaves little room for its error. This rests on only 3 bets, so it is an experiment.",
+      "judge_by": "On bets opened after this change, P&L per $100 staked beats its since-floor -$4.9 per $100 and its all-time -$43 per $100.",
+      "min_resolved": 15,
+      "status": "applied",
+      "status_reason": "jev_alone_bold rules v4: highest price none \u2192 60\u00a2",
+      "strategy": "jev_alone_bold",
+      "rules": {
+        "max_ask": 0.6
+      }
     }
   ]
 }
