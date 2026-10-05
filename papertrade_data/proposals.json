@@ -304,6 +304,17 @@
       "rules": {
         "max_ask": 0.6
       }
+    },
+    {
+      "id": "p20",
+      "created": "2026-10-05T13:40:00Z",
+      "kind": "code",
+      "title": "Calibrated vs main on the same markets",
+      "why": "Calibrated's profit (+$3.4k on 9 settled since the floor) contrasts with its Brier of 0.210, slightly worse than raw Jev + research at 0.2065. So its edge may come from which bets it picks and how it sizes them, or it may be luck. A paired comparison would show whether the calibration itself earns money before anyone considers moving main onto it.",
+      "judge_by": "Report calibrated's and main's P&L per $100 on markets both bet, and on markets only one bet, since 2026-10-01. If calibrated is ahead by more than $10 per $100 on the shared markets after 30 resolved, consider giving main the calibrated forecasts.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
