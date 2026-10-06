@@ -1,11 +1,11 @@
 {
-  "version": 8,
-  "updated": "2026-10-05T00:11:07Z",
+  "version": 9,
+  "updated": "2026-10-06T00:09:05Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
-      "rule": "For short-window crypto price questions, record a spot price from the exchange and pair named in the resolution rules (e.g. Binance BTC/USDT), no more than an hour old at judgment time when the window closes within a day, and state its timestamp and age.",
+      "rule": "Read crypto rules for the exact strike, venue/pair (e.g. Binance BTC/USDT) and test (any touch or a close at a set candle), restate the strike up top, measure each price fact against it, and record a timestamped spot from that venue under an hour old for same-day windows.",
       "evidence": [
         "polymarket:4797513",
         "polymarket:4797724",
@@ -16,47 +16,27 @@
     {
       "id": "R2",
       "category": "crypto",
-      "rule": "For crypto threshold questions, report the percent distance from current spot to the strike, the hours left in the window, and recent realized volatility over a similar span, noting whether the window falls on a usually quieter weekend.",
+      "rule": "For crypto threshold questions, report percent distance from spot to strike, hours left, realized volatility over a similar span, any weekend in the window, and timestamped same-day macro catalysts (yields, dollar, oil, jobs data), or state that none was found.",
       "evidence": [
         "polymarket:4689727",
         "polymarket:4797513",
         "polymarket:4797726",
-        "polymarket:5009022"
-      ],
-      "added": "2026-09-28T16:35:53Z"
-    },
-    {
-      "id": "R3",
-      "category": "crypto",
-      "rule": "Read the crypto resolution rules for the exact strike, venue and test (any touch in the window or a close at a set candle), restate that strike at the top of the research, and measure every price fact against it, not against a nearby round number.",
-      "evidence": [
-        "polymarket:4797513",
-        "polymarket:4797724",
-        "polymarket:5009022"
+        "polymarket:5009022",
+        "polymarket:5208385"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
     {
       "id": "R16",
       "category": "crypto",
-      "rule": "Confirm any past high or low reported as reaching the strike on the resolution venue's own candles and inside the question's window, labeling others unverified; treat earlier-week moves as background unless their driver (e.g. a bond-yield spike) is still active.",
+      "rule": "When judged mid-window, first check whether the strike was already reached inside the window: cite dated reports of the high and its margin past the strike, confirm on the resolution venue's candles where possible, and treat earlier-week moves as background.",
       "evidence": [
         "polymarket:4797726",
         "polymarket:4844455",
-        "polymarket:5009022"
+        "polymarket:5009022",
+        "polymarket:5208385"
       ],
       "added": "2026-10-02T00:05:57Z"
-    },
-    {
-      "id": "R5",
-      "category": "crypto",
-      "rule": "For short-horizon crypto questions, search same-day macro and geopolitical news (dollar, bond yields, oil, major policy statements) and report any specific catalyst with timestamps, or state plainly that none was found; label weeks-old news as stale background.",
-      "evidence": [
-        "polymarket:4689727",
-        "polymarket:4797513",
-        "polymarket:4797726"
-      ],
-      "added": "2026-09-28T16:35:53Z"
     },
     {
       "id": "R6",
@@ -94,19 +74,7 @@
     {
       "id": "R9",
       "category": "sports",
-      "rule": "For tennis 'completed match' questions, read which endings count as not completed (retirement, walkover), and report the historical share of matches finished through normal play at that tour level (WTA 125, ATP Challenger) as the starting reference.",
-      "evidence": [
-        "polymarket:5023463",
-        "polymarket:5055808",
-        "polymarket:5070112",
-        "polymarket:5083454"
-      ],
-      "added": "2026-09-30T00:08:42Z"
-    },
-    {
-      "id": "R10",
-      "category": "sports",
-      "rule": "For tennis completion questions, report as risk evidence only specific, dated news from the past week: an injury, a withdrawal, or a retirement at this event; label old retirements, back-to-back events or qualifying load, and a result not yet posted as weak context.",
+      "rule": "For tennis completion questions, read which endings count as not completed, report the tour level's historical share of matches finished normally, and count as risk only dated past-week injury, withdrawal or retirement news, labeling older or workload concerns weak.",
       "evidence": [
         "polymarket:5023463",
         "polymarket:5055808",
@@ -120,10 +88,10 @@
       "category": "sports",
       "rule": "Once a tennis match's start time has passed, check results sites (Tennis Explorer, ITF, tour site) for w/o or ret. markers first; before it, check the latest order of play and withdrawal lists, and report recent full matches each player finished.",
       "evidence": [
+        "polymarket:4981247",
         "polymarket:5023463",
         "polymarket:5055808",
-        "polymarket:5083452",
-        "polymarket:4981247"
+        "polymarket:5083452"
       ],
       "added": "2026-09-30T00:08:42Z"
     },
@@ -133,8 +101,8 @@
       "rule": "For player touchdown props, use only facts on the named player; split rushing from receiving or passing TDs, report his share of team carries or targets inside the 5, his multi-season games-with-a-TD rate, and the team's run-pass split; label a few-game streak as small sample.",
       "evidence": [
         "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
-        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
-        "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1"
+        "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
+        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1"
       ],
       "added": "2026-10-03T00:07:21Z"
     },
@@ -181,12 +149,22 @@
       "added": "2026-10-04T00:08:06Z"
     },
     {
+      "id": "R22",
+      "category": "sports",
+      "rule": "For golf tournament winner questions, report the player's world ranking, pro starts and wins, the field's strength and size, and his prior-week schedule (e.g. a team event); label team-event results and a single pro win as weak evidence of dominance.",
+      "evidence": [
+        "kalshi:KXPGATOUR-BAOUC26-JKOI"
+      ],
+      "added": "2026-10-06T00:09:05Z"
+    },
+    {
       "id": "R19",
       "category": "culture",
-      "rule": "For 'next video' view questions, record when the question opened, check the channel's live upload list for any video posted since then, treat it as the resolving video, and report its upload timestamp, hours elapsed in the 168-hour window and current views.",
+      "rule": "For video view questions, record when the question opened, check the channel's upload list and news for any video posted since then, and report its upload time, hours elapsed in the window, current views and any reported view milestones or pace.",
       "evidence": [
         "polymarket:4868020",
-        "polymarket:4868021"
+        "polymarket:4868021",
+        "polymarket:5286105"
       ],
       "added": "2026-10-04T00:08:06Z"
     },
@@ -199,6 +177,15 @@
         "polymarket:4868022"
       ],
       "added": "2026-10-04T00:08:06Z"
+    },
+    {
+      "id": "R23",
+      "category": "culture",
+      "rule": "For Rotten Tomatoes score questions, read the year-specific film page named in the rules, record the score, review count and dated earlier readings showing drift, and count how many negative reviews would move it past the strike before the check time.",
+      "evidence": [
+        "kalshi:KXRT-DIG-50"
+      ],
+      "added": "2026-10-06T00:09:05Z"
     },
     {
       "id": "R12",
@@ -241,6 +228,7 @@
     "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
+    "kalshi:KXNFLTD-26OCT04KCLV-KCRRICE4-1",
     "kalshi:KXNFLTD-26OCT04KCLV-LVBBOWERS89-1",
     "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
     "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
@@ -249,6 +237,9 @@
     "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
     "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
     "kalshi:KXPGAR2LEAD-BAOUC26-SFIS",
+    "kalshi:KXPGATOUR-BAOUC26-ASMO",
+    "kalshi:KXPGATOUR-BAOUC26-JKOI",
+    "kalshi:KXRT-DIG-50",
     "kalshi:KXTESTMATCH-26SEP290000AUS-AINA-TIE",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
     "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
@@ -279,9 +270,16 @@
     "polymarket:5055808",
     "polymarket:5070112",
     "polymarket:5083452",
-    "polymarket:5083454"
+    "polymarket:5083454",
+    "polymarket:5178226",
+    "polymarket:5178227",
+    "polymarket:5208385",
+    "polymarket:5286105"
   ],
   "retired_ids": [
-    "R4"
+    "R10",
+    "R3",
+    "R4",
+    "R5"
   ]
 }
