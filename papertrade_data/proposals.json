@@ -315,6 +315,32 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p21",
+      "created": "2026-10-07T02:38:40Z",
+      "kind": "tune",
+      "title": "Sports-only Claude gets more bets",
+      "why": "Sports is the only category where any forecaster beats the market (Claude 0.158 vs market 0.176, on 131 markets), yet ch16 has placed 1 bet in about 2.5 days. The 4 markets stopped only by Jev's info gate would have paid +$77 per $100. Jev's own information rating may say little about Claude's forecast. This is an experiment on tiny numbers.",
+      "judge_by": "On bets opened after this change, ch16's P&L per $100 staked is positive and ahead of claude_direct's over the same period.",
+      "min_resolved": 15,
+      "status": "applied",
+      "status_reason": "ch16 rules v2: info bar 0.5 \u2192 0.2",
+      "strategy": "ch16",
+      "rules": {
+        "min_info_sufficient": 0.2
+      }
+    },
+    {
+      "id": "p22",
+      "created": "2026-10-07T02:38:40Z",
+      "kind": "code",
+      "title": "Price breakdown since each strategy's last rule change",
+      "why": "by_price_paid is all-time, so pre-floor long shots dominate it: about $100k of losses on 73 bets. That hides whether 30-60c and 60c+ bets pay under the current rules. Bold's -$5.5k and calibrated's +$5.0k in favourites can't be dated to a rule version.",
+      "judge_by": "The review shows since-change wins and P&L per price bucket for every strategy, and the next favourites or max_ask decision cites it.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
