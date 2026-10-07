@@ -1,6 +1,9 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "skillgate-baseline-2",
+  "catalogVersion": "skillgate-baseline-3",
+  "supersedes": [
+    "skillgate-baseline-2"
+  ],
   "description": "Partial original practice summaries related to NIST SSDF 1.1 tasks and OWASP ASVS 5.0.0 requirements. Related references are not equivalence or compliance claims. Applicability requires project review. Sources and verification: docs/security-catalog-sources.md in the Skilliton repository.",
   "controls": [
     {
@@ -397,6 +400,63 @@
       "expectedEvidence": [
         "The list of policy paths (delivery checks, CI workflows, code owners) and the rule that requires their separate review",
         "Review or signature records for recent changes to those paths by someone other than their author"
+      ]
+    },
+    {
+      "id": "SG-AGENT-BOUNDARY",
+      "title": "Stop agents at the repository's hard limits, and prove each stop with a test that tries it",
+      "maxAgeDays": 90,
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PS.1.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PO.3.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "OWASP ASVS",
+          "version": "5.0.0",
+          "reference": "v5.0.0-13.3.1",
+          "url": "https://github.com/OWASP/ASVS/releases/tag/v5.0.0_release",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The list of guardrail rules that refuse a force push to a protected branch, a commit or push that skips the repository's hooks, and a commit holding a secret-shaped value",
+        "A gate record for the current tree in which the guardrails tests, which attempt each refused action and expect the refusal, all passed"
+      ]
+    },
+    {
+      "id": "SG-MODEL-CHANGE-EVAL",
+      "title": "Merge a model change only with evaluation results for that exact change",
+      "maxAgeDays": 90,
+      "mappings": [
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PO.4.1",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        },
+        {
+          "framework": "NIST SSDF",
+          "version": "1.1",
+          "reference": "PW.8.2",
+          "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
+          "relationship": "related"
+        }
+      ],
+      "expectedEvidence": [
+        "The model identifiers the product uses, the evaluation checks a change to any of them must pass, and where that rule is written",
+        "For each merged model change, a gate record for its tree in which those evaluation checks passed"
       ]
     }
   ]
