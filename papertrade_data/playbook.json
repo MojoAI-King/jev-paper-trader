@@ -1,6 +1,6 @@
 {
-  "version": 9,
-  "updated": "2026-10-06T00:09:05Z",
+  "version": 10,
+  "updated": "2026-10-07T00:11:51Z",
   "rules": [
     {
       "id": "R1",
@@ -98,11 +98,12 @@
     {
       "id": "R17",
       "category": "sports",
-      "rule": "For player touchdown props, use only facts on the named player; split rushing from receiving or passing TDs, report his share of team carries or targets inside the 5, his multi-season games-with-a-TD rate, and the team's run-pass split; label a few-game streak as small sample.",
+      "rule": "For NFL player props, use only the named player's facts: for TDs, rushing vs receiving, share of carries or targets inside the 5, multi-season TD-game rate; for yardage, current-season attempts per game, games past the line, opponent's rank against it, backfield injuries.",
       "evidence": [
         "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
         "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
-        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1"
+        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
+        "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250"
       ],
       "added": "2026-10-03T00:07:21Z"
     },
@@ -160,11 +161,12 @@
     {
       "id": "R19",
       "category": "culture",
-      "rule": "For video view questions, record when the question opened, check the channel's upload list and news for any video posted since then, and report its upload time, hours elapsed in the window, current views and any reported view milestones or pace.",
+      "rule": "For video view questions, record when the question opened and check the channel's upload list for any video posted since; if one is live, report its upload time, hours elapsed, current views and climb rate before any historical base rates, plus sequel or promotion context.",
       "evidence": [
         "polymarket:4868020",
         "polymarket:4868021",
-        "polymarket:5286105"
+        "polymarket:5286105",
+        "polymarket:5105601"
       ],
       "added": "2026-10-04T00:08:06Z"
     },
@@ -186,6 +188,15 @@
         "kalshi:KXRT-DIG-50"
       ],
       "added": "2026-10-06T00:09:05Z"
+    },
+    {
+      "id": "R24",
+      "category": "politics",
+      "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
+      "evidence": [
+        "polymarket:3662876"
+      ],
+      "added": "2026-10-07T00:11:51Z"
     },
     {
       "id": "R12",
@@ -215,6 +226,8 @@
     "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
     "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
+    "kalshi:KXMLBGAME-26OCT051700CWSCLE-CWS",
+    "kalshi:KXMLBGAME-26OCT052000NYYTB-NYY",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
@@ -227,6 +240,8 @@
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-VT",
     "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
+    "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250",
+    "kalshi:KXNFLRSHYDS-26OCT05ATLNO-ATLBROBINSON15-50",
     "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
     "kalshi:KXNFLTD-26OCT04KCLV-KCRRICE4-1",
     "kalshi:KXNFLTD-26OCT04KCLV-LVBBOWERS89-1",
@@ -246,6 +261,7 @@
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+    "polymarket:3662876",
     "polymarket:4052418",
     "polymarket:4581722",
     "polymarket:4581752",
@@ -271,6 +287,7 @@
     "polymarket:5070112",
     "polymarket:5083452",
     "polymarket:5083454",
+    "polymarket:5105601",
     "polymarket:5178226",
     "polymarket:5178227",
     "polymarket:5208385",
