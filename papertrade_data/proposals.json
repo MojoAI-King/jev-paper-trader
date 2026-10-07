@@ -341,6 +341,21 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p23",
+      "created": "2026-10-07T14:42:41Z",
+      "kind": "tune",
+      "title": "Main demands a bigger edge",
+      "why": "Jev + research trails the market by about 0.06 Brier on 559 paired markets, so many of its 8c 'edges' are probably forecast error. Main loses about $26 per $100 since the floor (11 settled) and trails original per dollar on the yardstick (-$32 vs -$22 per $100). Requiring 12c, as claude_direct now does, tests whether fewer, stronger-conviction bets lose less. This is an experiment on small numbers.",
+      "judge_by": "On bets opened after this change, main's P&L per $100 staked on the yardstick (shared markets) is better than original's over the same period, and better than main's since-floor -$26 per $100. If main places fewer than 10 bets in a week, revert to 0.08.",
+      "min_resolved": 20,
+      "status": "applied",
+      "status_reason": "main rules v4: edge bar 8% \u2192 12%",
+      "strategy": "main",
+      "rules": {
+        "min_edge": 0.12
+      }
     }
   ]
 }
