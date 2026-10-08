@@ -371,6 +371,17 @@
       "rules": {
         "min_info_sufficient": 0.35
       }
+    },
+    {
+      "id": "p25",
+      "created": "2026-10-08T15:09:09Z",
+      "kind": "code",
+      "title": "Report settled stake separately from open stake",
+      "why": "Most of our judge_by tests use 'P&L per $100 staked since the change', but the reported stake includes open bets. Bold has 14 of 41 bets open and ch16 has 8 of 10, so the per-$100 figures look better than they are. Splitting settled stake from open stake would let us judge p14, p18, p19, p21, p23 and p24 honestly.",
+      "judge_by": "all_time, since_change and yardstick each report a settled_staked field, and the next review can compute P&L per $100 on settled bets only for every strategy.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
