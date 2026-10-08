@@ -356,6 +356,21 @@
       "rules": {
         "min_edge": 0.12
       }
+    },
+    {
+      "id": "p24",
+      "created": "2026-10-08T03:05:34Z",
+      "kind": "tune",
+      "title": "Favourites-only challenger loosens its info gate",
+      "why": "ch13 has placed only 5 bets in about 4.5 days. The 30 markets it skipped only because of Jev's info gate would have returned +$4.15 per $100 (19 wins), the only gate-blocked group in the ledger with a meaningful count that shows a profit. Lowering the gate from 0.5 to 0.35, bold's setting, should give it more bets at 55c and up. This is an experiment on noisy numbers.",
+      "judge_by": "On bets opened after this change, ch13 places at least 2 bets a day, and its P&L per $100 staked is positive and no worse than calibrated's over the same period.",
+      "min_resolved": 15,
+      "status": "applied",
+      "status_reason": "ch13 rules v2: info bar 0.5 \u2192 0.35",
+      "strategy": "ch13",
+      "rules": {
+        "min_info_sufficient": 0.35
+      }
     }
   ]
 }
