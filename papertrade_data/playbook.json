@@ -1,6 +1,6 @@
 {
-  "version": 10,
-  "updated": "2026-10-07T00:11:51Z",
+  "version": 11,
+  "updated": "2026-10-08T00:08:38Z",
   "rules": [
     {
       "id": "R1",
@@ -16,13 +16,14 @@
     {
       "id": "R2",
       "category": "crypto",
-      "rule": "For crypto threshold questions, report percent distance from spot to strike, hours left, realized volatility over a similar span, any weekend in the window, and timestamped same-day macro catalysts (yields, dollar, oil, jobs data), or state that none was found.",
+      "rule": "For crypto threshold questions, report percent distance to strike, hours left, how many of the last 14 days the venue traded through that level, realized volatility, any weekend, and timestamped same-day catalysts (yields, dollar, ETF flows, jobs data) or state none found.",
       "evidence": [
         "polymarket:4689727",
         "polymarket:4797513",
         "polymarket:4797726",
         "polymarket:5009022",
-        "polymarket:5208385"
+        "polymarket:5208385",
+        "polymarket:5362505"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -72,25 +73,24 @@
       "added": "2026-09-29T00:09:39Z"
     },
     {
+      "id": "R25",
+      "category": "sports",
+      "rule": "For match goal-total questions, report each team's recent comparable match totals with dates, note whether opponents in any blowout were weakened or missing starters, and compare that with the upcoming opponent's squad strength.",
+      "evidence": [
+        "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6"
+      ],
+      "added": "2026-10-08T00:08:38Z"
+    },
+    {
       "id": "R9",
       "category": "sports",
-      "rule": "For tennis completion questions, read which endings count as not completed, report the tour level's historical share of matches finished normally, and count as risk only dated past-week injury, withdrawal or retirement news, labeling older or workload concerns weak.",
+      "rule": "For tennis completion questions, read which endings count, report the tour level's normal-finish share and each player's recent full matches, weigh only past-week injury or withdrawal news, and after start time check Tennis Explorer or ITF for w/o or ret. first.",
       "evidence": [
         "polymarket:5023463",
         "polymarket:5055808",
         "polymarket:5070112",
-        "polymarket:5083454"
-      ],
-      "added": "2026-09-30T00:08:42Z"
-    },
-    {
-      "id": "R11",
-      "category": "sports",
-      "rule": "Once a tennis match's start time has passed, check results sites (Tennis Explorer, ITF, tour site) for w/o or ret. markers first; before it, check the latest order of play and withdrawal lists, and report recent full matches each player finished.",
-      "evidence": [
+        "polymarket:5083454",
         "polymarket:4981247",
-        "polymarket:5023463",
-        "polymarket:5055808",
         "polymarket:5083452"
       ],
       "added": "2026-09-30T00:08:42Z"
@@ -100,10 +100,10 @@
       "category": "sports",
       "rule": "For NFL player props, use only the named player's facts: for TDs, rushing vs receiving, share of carries or targets inside the 5, multi-season TD-game rate; for yardage, current-season attempts per game, games past the line, opponent's rank against it, backfield injuries.",
       "evidence": [
+        "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250",
         "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
         "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
-        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
-        "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250"
+        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1"
       ],
       "added": "2026-10-03T00:07:21Z"
     },
@@ -165,8 +165,8 @@
       "evidence": [
         "polymarket:4868020",
         "polymarket:4868021",
-        "polymarket:5286105",
-        "polymarket:5105601"
+        "polymarket:5105601",
+        "polymarket:5286105"
       ],
       "added": "2026-10-04T00:08:06Z"
     },
@@ -190,6 +190,16 @@
       "added": "2026-10-06T00:09:05Z"
     },
     {
+      "id": "R26",
+      "category": "culture",
+      "rule": "For reality-show elimination questions, confirm every fact names the asked contestant and their own pro partner, and report couples left, eliminations per episode, live shows in the window, and every couple's judges' scores and bottom-three history.",
+      "evidence": [
+        "kalshi:KXDWTSELIMINATION-26OCT07-CMIL",
+        "kalshi:KXDWTSELIMINATION-26OCT07-JOLS"
+      ],
+      "added": "2026-10-08T00:08:38Z"
+    },
+    {
       "id": "R24",
       "category": "politics",
       "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
@@ -199,24 +209,16 @@
       "added": "2026-10-07T00:11:51Z"
     },
     {
-      "id": "R12",
-      "category": "general",
-      "rule": "When a count question resolves on one named data provider, pull that provider's own trailing 2\u20134 week figures and write down its counting method (e.g. AIS-visible only) first; set aside other trackers' figures that count differently.",
-      "evidence": [
-        "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
-      ],
-      "added": "2026-09-30T00:08:42Z"
-    },
-    {
       "id": "R14",
       "category": "general",
-      "rule": "Take historical base-rate counts and series streaks only from a cited source covering the current format and running through the latest meeting; label any count recalled from memory, disputed between sources, or built on about a dozen cases as unverified.",
+      "rule": "Take counts and base rates from a cited source covering the current format to the latest event, using the resolution's named provider and its counting method first (e.g. its trailing 2\u20134 weeks); label recalled, disputed or roughly dozen-case counts as unverified.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
         "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
         "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
@@ -224,10 +226,15 @@
   "reviews_used": [
     "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
     "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
+    "kalshi:KXCONCACAFNLGAME-26OCT06ANTARU-ANT",
+    "kalshi:KXDWTSELIMINATION-26OCT07-CMIL",
+    "kalshi:KXDWTSELIMINATION-26OCT07-JOLS",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
+    "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
     "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
     "kalshi:KXMLBGAME-26OCT051700CWSCLE-CWS",
     "kalshi:KXMLBGAME-26OCT052000NYYTB-NYY",
+    "kalshi:KXMLBGAME-26OCT061800LADATL-LAD",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
@@ -285,16 +292,20 @@
     "polymarket:5023463",
     "polymarket:5055808",
     "polymarket:5070112",
+    "polymarket:5073572",
     "polymarket:5083452",
     "polymarket:5083454",
     "polymarket:5105601",
     "polymarket:5178226",
     "polymarket:5178227",
     "polymarket:5208385",
-    "polymarket:5286105"
+    "polymarket:5286105",
+    "polymarket:5362505"
   ],
   "retired_ids": [
     "R10",
+    "R11",
+    "R12",
     "R3",
     "R4",
     "R5"
