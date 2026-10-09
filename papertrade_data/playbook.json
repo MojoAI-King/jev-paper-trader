@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updated": "2026-10-08T00:08:38Z",
+  "version": 12,
+  "updated": "2026-10-09T00:10:10Z",
   "rules": [
     {
       "id": "R1",
@@ -42,24 +42,26 @@
     {
       "id": "R6",
       "category": "sports",
-      "rule": "For single-match win questions, confirm in the rules whether only a regulation-time win counts and state that a draw resolves No; check the actual venue, since a listed home side may play at a neutral ground, and report each side's results in this competition.",
+      "rule": "For single-match win questions, confirm whether only a regulation-time win counts and that a draw resolves No; check the actual venue, and report each side's dated results in this competition, current winless or losing runs, and any recent coach change.",
       "evidence": [
         "polymarket:4581752",
         "polymarket:4689888",
-        "polymarket:4762522"
+        "polymarket:4762522",
+        "polymarket:4911446"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
     {
       "id": "R7",
       "category": "sports",
-      "rule": "For match questions, report the current-season head-to-head with its game count (under about 10 games is small; note source disagreements) and each side's dated, sourced absences and returns; when injury sources disagree, check the confirmed matchday squad or lineup.",
+      "rule": "For match questions, report the current-season head-to-head with game count (under about 10 is small) and each side's dated absences, suspensions and returns; when sources disagree, settle it from the confirmed squad or lineup before citing it.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "polymarket:4581752",
-        "polymarket:4689888"
+        "polymarket:4689888",
+        "polymarket:4911446"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -86,12 +88,12 @@
       "category": "sports",
       "rule": "For tennis completion questions, read which endings count, report the tour level's normal-finish share and each player's recent full matches, weigh only past-week injury or withdrawal news, and after start time check Tennis Explorer or ITF for w/o or ret. first.",
       "evidence": [
+        "polymarket:4981247",
         "polymarket:5023463",
         "polymarket:5055808",
         "polymarket:5070112",
-        "polymarket:5083454",
-        "polymarket:4981247",
-        "polymarket:5083452"
+        "polymarket:5083452",
+        "polymarket:5083454"
       ],
       "added": "2026-09-30T00:08:42Z"
     },
@@ -119,23 +121,27 @@
     {
       "id": "R13",
       "category": "sports",
-      "rule": "For single MLB games, report both confirmed starters' season ERA and ERA+ and recent starts, each team's season record, late-season form (record and offense since Sept 1) and home field; if it is a bullpen game, note that an opener's few innings carry little weight.",
+      "rule": "For single MLB games, report confirmed starters' ERA, ERA+ and recent starts, each bullpen's unavailable arms (injury, leave, short rest), season and road records, and form since Sept 1; label old-roster franchise streaks and series-level rates as not single-game evidence.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD"
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
+        "kalshi:KXMLBGAME-26OCT072200MILSD-SD",
+        "kalshi:KXMLBGAME-26OCT072200MILSD-MIL"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
     {
       "id": "R15",
       "category": "sports",
-      "rule": "For playoff series and games, give the series score, what the trailing team still needs and where, earlier games' margins, current-season records and head-to-head, and whether standing rests on seeding; label past seasons' playoff records as small-sample background.",
+      "rule": "For playoff series, first get the live or final score of any game started before the judgment time, then report the series score, wins the trailer needs and where, the cited comeback rate for that deficit, game margins and season records; past seasons' playoffs are background.",
       "evidence": [
         "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
+        "kalshi:KXMLBSERIES-26NYYTBALDS-NYY"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -213,12 +219,12 @@
       "category": "general",
       "rule": "Take counts and base rates from a cited source covering the current format to the latest event, using the resolution's named provider and its counting method first (e.g. its trailing 2\u20134 weeks); label recalled, disputed or roughly dozen-case counts as unverified.",
       "evidence": [
+        "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
         "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
         "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-        "kalshi:KXHORMUZWEEKLY-26SEP27-T30"
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     }
@@ -235,6 +241,10 @@
     "kalshi:KXMLBGAME-26OCT051700CWSCLE-CWS",
     "kalshi:KXMLBGAME-26OCT052000NYYTB-NYY",
     "kalshi:KXMLBGAME-26OCT061800LADATL-LAD",
+    "kalshi:KXMLBGAME-26OCT071800LADATL-ATL",
+    "kalshi:KXMLBGAME-26OCT072000TBNYY-TB",
+    "kalshi:KXMLBGAME-26OCT072200MILSD-MIL",
+    "kalshi:KXMLBGAME-26OCT072200MILSD-SD",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
@@ -242,6 +252,8 @@
     "kalshi:KXMLBGAME-26SEP301700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP302200CHCSD-SD",
     "kalshi:KXMLBRFI-26SEP291400PHIATL",
+    "kalshi:KXMLBSERIES-26NYYTBALDS-NYY",
+    "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
     "kalshi:KXNCAAFGAME-26OCT01UNTTLSA-UNT",
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-PITT",
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-VT",
@@ -268,6 +280,7 @@
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+    "polymarket:3662130",
     "polymarket:3662876",
     "polymarket:4052418",
     "polymarket:4581722",
@@ -287,6 +300,7 @@
     "polymarket:4868020",
     "polymarket:4868021",
     "polymarket:4868022",
+    "polymarket:4911446",
     "polymarket:4981247",
     "polymarket:5009022",
     "polymarket:5023463",
