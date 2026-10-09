@@ -1,0 +1,35 @@
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 03 for the Jev paper trader: "Markets that keep trading after the answer is known". This is a research-only session, one of several running at the same time in this folder.
+
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/03-stale-markets.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
+
+The brief (also at docs/research/briefs/03-stale-markets.md):
+
+## Question
+
+How often do Kalshi and Polymarket markets keep trading below 95–99¢ after their outcome is effectively decided (a game has ended, a number is out, a speech has happened), for how long, and can a small bot find and buy them safely?
+
+## What we already know
+
+- Jev answers an "already decided?" question on every market. With research it rated 11 of 939 finished markets above 0.6, and on those the market's favourite was right as often as Jev.
+- Our cycle runs every 30 minutes, so anything that settles within minutes is out of reach.
+- Some Polymarket sports markets stay open well after the game starts.
+
+## Find out
+
+- Documented resolution-lag edges on these venues: which market types, the typical price once decided, how long it lasts, and how fast other bots are.
+- The risks: disputed resolutions (Polymarket's UMA process), rule details (overtime, postponements, which source is official), Kalshi's early-close rules.
+- Fast, free ways to learn an outcome (league and score APIs, government release feeds, transcripts) and their delays.
+- Whether a 30-minute cycle can ever catch these, or what cadence it would need.
+
+## Leave out
+
+Gaps across venues (brief 02); sportsbook odds (09).
+
+## Deliverable
+
+Write `docs/research/03-stale-markets.md` in the report format from `docs/research/README.md`, and include
+the market types worth watching, the signal that shows each one is decided, and the cadence needed.

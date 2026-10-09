@@ -13,7 +13,8 @@ what to change.
 ## What the data says (measured 2026-10-09 on every finished market)
 
 All numbers come from `papertrade_data/` at the 2026-10-09T20:38Z cycle. Accuracy uses each market's first
-look (the earliest moment we could have bet) and the Brier score (0 is perfect, 0.25 is a coin flip).
+look (the earliest moment we could have bet) and the Brier score (0 is perfect, 0.25 is a coin flip). Every ± is
+one standard error.
 
 1. **The market is a better forecaster than any of ours, and by a clear margin.** On the 327 finished markets
    with a real two-sided price (spread 10¢ or less) where all three forecast, the market's Brier is 0.172.
@@ -35,9 +36,12 @@ look (the earliest moment we could have bet) and the Brier score (0 is perfect, 
 5. **Favourites vs long shots, in our own data.** Always buying the market's favourite at the ask on all
    1,133 finished markets: −2.8% ± 1.7%, about the cost of trading. Always buying the underdog: −31.9% ± 4.6%.
 6. **Things that looked like fixes but aren't:**
-   - *Blending each forecast with the market price* (fitted out of sample). It shows our forecasts carry a
-     little information the price doesn't: weight 0.52 for Claude direct, 0.33 for Jev + research, 0.16 for
-     Jev alone, against 1.35 for the market. Betting the blend at the ask still loses 13–21%.
+   - *Blending each forecast with the market price.* Fitted on every finished market, it seemed to show our
+     forecasts carrying a little information the price doesn't (weights 0.16 to 0.52). That came from the
+     markets with fake prices. On the ~1,000 with a real price, every forecaster's weight is indistinguishable
+     from zero (Claude direct −0.05, range −0.42 to 0.31; Jev + research 0.03; Jev alone −0.30), and the
+     market's own weight is 1.12 (0.98 to 1.28), so the price is calibrated as it stands. Research report 05
+     flagged the old numbers; the refit is in `docs/research/CHECKS.md`. Betting the blend at the ask lost 13–21%.
    - *Waiting for a better price with resting orders.* Filling at the mid looked like +4% to +14%. A fill only
      counts if a later snapshot shows the price coming down to us, and with that rule results got worse
      (−16% to −31%), because orders fill when news turns against the bet.

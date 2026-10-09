@@ -1,11 +1,12 @@
-# Research brief 05: Combining our forecast with the market price
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 05 for the Jev paper trader: "Combining our forecast with the market price". This is a research-only session, one of several running at the same time in this folder.
 
-Kind: Reference. One of 14 narrow research briefs for the trader's rebuild (BACKLOG B24), each run as its own
-Claude Code session in a VS Code tab. To start it, type in a new tab:
-`Run research brief 05: read docs/research/briefs/05-blend-with-market.md and follow it.`
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/05-blend-with-market.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
 
-Before you start, read `docs/research/README.md` (rules for sessions running side by side, evidence standards, the
-report format) and the "What the data says" section of `docs/REBUILD_SCOPE.md`.
+The brief (also at docs/research/briefs/05-blend-with-market.md):
 
 ## Question
 

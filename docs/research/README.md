@@ -8,7 +8,8 @@ reports against our own data and writes the rebuild plan; every code change in i
 
 ## How to start one
 
-Open a new Claude Code tab in this VS Code window and type one line, for example:
+The paste-ready prompt for each brief is in `docs/research/prompts/NN.txt` (the rules for parallel sessions plus
+the brief). Paste one into a new Claude Code tab. The short form also works:
 
     Run research brief 01: read docs/research/briefs/01-favourite-longshot.md and follow it.
 
@@ -16,13 +17,13 @@ Open a new Claude Code tab in this VS Code window and type one line, for example
 
 | # | Question | Wave | Report |
 |---|---|---|---|
-| 01 | How mispriced are cheap and expensive contracts? | 1 | pending |
+| 01 | How mispriced are cheap and expensive contracts? | 1 | [done](01-favourite-longshot.md), checked in [CHECKS.md](CHECKS.md) |
 | 02 | Prices that don't add up | 2 | pending |
 | 03 | Markets that keep trading after the answer is known | 2 | pending |
 | 04 | What makes an AI forecaster more accurate | 2 | pending |
-| 05 | Combining our forecast with the market price | 1 | pending |
+| 05 | Combining our forecast with the market price | 1 | [done](05-blend-with-market.md), checked in [CHECKS.md](CHECKS.md) |
 | 06 | Pricing crypto, oil, gold and stock-index thresholds | 1 | pending |
-| 07 | Pricing daily weather markets from forecast models | 1 | pending |
+| 07 | Pricing daily weather markets from forecast models | 1 | [done](07-weather-markets.md), checked in [CHECKS.md](CHECKS.md) |
 | 08 | Pricing economic-data and Fed markets | 2 | pending |
 | 09 | Sports prices against the sharp sportsbooks | 1 | pending |
 | 10 | What trading actually costs on each venue | 1 | pending |

@@ -1,0 +1,35 @@
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 09 for the Jev paper trader: "Sports prices against the sharp sportsbooks". This is a research-only session, one of several running at the same time in this folder.
+
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/09-sports-vs-sharp-books.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
+
+The brief (also at docs/research/briefs/09-sports-vs-sharp-books.md):
+
+## Question
+
+Do Kalshi and Polymarket sports prices lag or differ from sharp sportsbook prices by enough to profit after fees, and exactly how would a small bot run that strategy?
+
+## What we already know
+
+- Sports are 606 of our 1,133 finished markets. On the 205 real-priced sports markets that Claude forecast, its own forecast was slightly worse than the market (Brier +0.011 ± 0.005). Always buying the favourite at the ask lost 1.6% ± 2.6% (606 markets).
+- Many Polymarket sports markets are illiquid, for example tennis "Completed Match" markets with asks of 97¢ and 92¢ and no bids.
+
+## Find out
+
+- How prediction-market sports prices compare with sharp books (Pinnacle, Circa, exchanges such as Betfair): documented gaps by league and market type, and timing (opening vs closing, after news).
+- Removing the bookmaker's margin (multiplicative, power and Shin methods) and which works best.
+- Odds data: The Odds API (tiers, which bookmakers including sharp ones, limits, cost), free alternatives, and delays.
+- Closing-line value as the measure of skill in sports betting, and how to compute it here.
+- Fees on sports markets (Kalshi's curve), whether the gaps survive them, and which markets to avoid.
+
+## Leave out
+
+Markets still trading after games end (brief 03); fees in general (10).
+
+## Deliverable
+
+Write `docs/research/09-sports-vs-sharp-books.md` in the report format from `docs/research/README.md`, and include
+a step-by-step strategy with entry rules, the data source and its cost, the expected edge with evidence, and a backtest plan.

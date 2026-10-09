@@ -1,0 +1,35 @@
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 13 for the Jev paper trader: "Telling skill from luck quickly". This is a research-only session, one of several running at the same time in this folder.
+
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/13-judging-skill.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
+
+The brief (also at docs/research/briefs/13-judging-skill.md):
+
+## Question
+
+How can we tell, as early and reliably as possible, whether a strategy or forecaster has real skill, without fooling ourselves when we test many variants on the same history?
+
+## What we already know
+
+- Small samples misled us twice: "Jev + research is the best forecaster" on 112 markets and "19 of 24 test bets won", both reversed at 600+ markets.
+- About a dozen strategy variants run at once, and every new idea is tested on one history of about 1,100 finished markets.
+- Today we judge by realized profit and loss, and by Brier score against the market on the same markets.
+
+## Find out
+
+- Closing-line value (did the price move our way after we bet) for prediction markets: how to measure it, how much sooner it reveals skill than profit and loss, and its pitfalls.
+- Brier decomposition (reliability and resolution) and calibration plots on small samples.
+- Power: how many bets or markets it takes to detect a 2%, 5% or 10% return edge at typical prices, and a Brier gap of 0.005–0.02 against the market.
+- Multiple testing and overfitting: the deflated Sharpe ratio, false-discovery control, walk-forward and holdout designs, pre-registration.
+
+## Leave out
+
+Sizing (brief 12).
+
+## Deliverable
+
+Write `docs/research/13-judging-skill.md` in the report format from `docs/research/README.md`, and include
+an evaluation checklist, the formulas, and the minimum sample size for each kind of decision.

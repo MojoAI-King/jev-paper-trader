@@ -1,0 +1,35 @@
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 11 for the Jev paper trader: "Simulating fills honestly". This is a research-only session, one of several running at the same time in this folder.
+
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/11-paper-fill-simulation.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
+
+The brief (also at docs/research/briefs/11-paper-fill-simulation.md):
+
+## Question
+
+How should a paper trader simulate order fills (market and limit orders, and bets bigger than the top of the book) so its results match what real trading would get, given what the public APIs provide?
+
+## What we already know
+
+- Today every bet fills completely at the best ask plus 1¢, however little is offered there (BACKLOG B15).
+- We store the best asks about every 30 minutes, with no depth or trade history.
+- Our test: resting orders at the mid, counted as filled only when a later snapshot's ask reached our price, did worse than buying at the ask (−16% to −31%, against about −13%), because orders fill when the news turns against them.
+
+## Find out
+
+- What Kalshi's and Polymarket's public APIs offer: order-book depth, trade history, rate limits, and whether historical data can be downloaded.
+- Standard practice for backtesting limit orders: queue position, fill-probability models, adverse selection, latency.
+- How to size a bet against the displayed depth, and a slippage model for walking the book.
+- Whether storing depth or trades each cycle is worth it, and what it would cost in storage.
+
+## Leave out
+
+Fees (brief 10); sizing policy (12).
+
+## Deliverable
+
+Write `docs/research/11-paper-fill-simulation.md` in the report format from `docs/research/README.md`, and include
+a fill model to implement (rules and formulas) with every assumption spelled out.

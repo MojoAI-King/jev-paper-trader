@@ -1,0 +1,35 @@
+Use the deep-research skill (anthropic-skills:deep-research) to answer research brief 04 for the Jev paper trader: "What makes an AI forecaster more accurate". This is a research-only session, one of several running at the same time in this folder.
+
+Rules:
+- First read docs/research/README.md (evidence standards and report format) and the "What the data says" section of docs/REBUILD_SCOPE.md.
+- Write exactly one file: docs/research/04-ai-forecasting-techniques.md. Don't create, edit or delete anything else in the repo; scratch work goes in your scratchpad directory.
+- Don't commit, push or run skilliton commands; the main session commits your report. If a hook asks for a checkpoint, handoff, maintenance or dispatch, say in one line that this is a research-only session whose report the main session records, then carry on (or finish, if the report is written).
+- Never run the trader's cycle, scan, settle, review or publish. Don't analyze papertrade_data/ yourself; describe the test you want instead. Never open .env, and don't call the Jev API.
+
+The brief (also at docs/research/briefs/04-ai-forecasting-techniques.md):
+
+## Question
+
+Which techniques measurably improve an LLM's accuracy on real-world forecasting questions, by how much, and which fit a system that forecasts about 200 markets every 30 minutes on a fixed subscription?
+
+## What we already know
+
+- On 327 finished markets with a real price, Claude direct (Claude's own probability after its research) scores a Brier of 0.207, the market 0.172, Jev with the same research 0.215, and Jev alone 0.245.
+- Overconfidence: on bets placed since the 30¢ floor, our forecasts expected 99.8 wins, the market's prices implied 65.7, and 62 came in.
+- A big miss: 81–93% that WTI oil would hit $95 in September, against a market price of 7¢.
+- Research today: Claude gathers facts by web search (screened so no prices leak in), up to about 150 runs a day.
+
+## Find out
+
+- What benchmarks and studies show as of 2026 (for example ForecastBench, the retrieval-augmented system of Halawi et al. 2024, Metaculus's AI benchmark tournaments, ensembles of models compared with human crowds, superforecaster comparisons), and how far the best systems are from crowds and liquid markets.
+- Measured gains from each technique: retrieval quality and recency, breaking a question into parts, base rates and reference classes, ensembles of samples or models (median vs mean), extremizing, calibration on resolved questions (Platt or isotonic), longer reasoning.
+- Known failure modes and their fixes: overconfidence, anchoring on recent news, misreading resolution rules and deadlines, questions about numbers crossing thresholds.
+
+## Leave out
+
+Combining a forecast with the market price (brief 05); Jev specifics (14); model-based pricing of numeric markets (06–08).
+
+## Deliverable
+
+Write `docs/research/04-ai-forecasting-techniques.md` in the report format from `docs/research/README.md`, and include
+a ranked list of techniques with the expected Brier gain, the cost per forecast, and the strength of the evidence.
