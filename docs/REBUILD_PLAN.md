@@ -60,8 +60,8 @@ forward test written down before its results come in. It bets more than probes o
   "reach $X" markets are options. Price them from the live price and option volatility (Deribit is free), with
   Jev reading each market's rules (threshold, direction, deadline, which price settles it). Expected: about as
   accurate as the market, much better than our AI on these markets, and rarely a bet that beats costs.
-- **C. Calibrate Claude direct on its own track record (04).** Cheap, with no extra Claude calls. It improves
-  accuracy a little and cuts the overconfident bets. It doesn't create an edge by itself.
+- **C. Calibrate Claude direct on its own track record (04).** Tested on 2026-10-09 and dropped: fitted on older
+  markets, it made newer forecasts slightly worse for every forecaster (`docs/research/CHECKS.md`).
 - **D. Make linked forecasts consistent (02, B3).** Probabilities on mutually exclusive outcomes add up to 1,
   and ladders fall as the threshold rises. Small.
 - **E. New jobs for Jev (14).** Reading market rules for the math pricers, checking whether research facts show

@@ -153,3 +153,17 @@ written (21:58–22:09Z) before that commit and hasn't changed since, so the com
     first-option bias, and score levels "weak in numerical calibration".
   - Our "will it resolve YES by the deadline?" question leans on every one of them.
 
+## 04, test T2: calibrating our forecasters on their own record (run 2026-10-09)
+
+A Platt map, z = a·logit(p) + b, fitted on the older half of each forecaster's finished markets with a real
+price and scored on the newer half (the fit's prior was negligible, so it is close to a plain fit):
+
+| Forecaster | Test markets | Map | Brier raw → calibrated |
+|---|---|---|---|
+| Claude direct | 281 | a 0.81, b +0.10 | 0.2079 → 0.2088 |
+| Jev + research | 422 | a 1.07, b +0.14 | 0.2186 → 0.2229 |
+| Jev alone | 513 | a 0.66, b −0.04 | 0.2278 → 0.2289 |
+
+The market scored 0.1785–0.1845 on the same test markets. Calibration doesn't carry over from older to newer
+markets here, so plan item 2C (B29) is dropped.
+
