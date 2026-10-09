@@ -1,0 +1,33 @@
+# Research brief 14: Using Jev for what it's built for
+
+Kind: Reference. One of 14 narrow research briefs for the trader's rebuild (BACKLOG B24), each run as its own
+Claude Code session in a VS Code tab. To start it, type in a new tab:
+`Run research brief 14: read docs/research/briefs/14-jev-harness.md and follow it.`
+
+Before you start, read `docs/research/README.md` (rules for sessions running side by side, evidence standards, the
+report format) and the "What the data says" section of `docs/REBUILD_SCOPE.md`.
+
+## Question
+
+What is TypeSafe's System One model (Jev) designed to do well, and which jobs in a trading pipeline should it have, instead of or besides forecasting world events?
+
+## What we already know
+
+- Today `papertrade/judge.py` asks Jev five questions per market (will it resolve YES; the same question framed as NO; are the rules clear; is the information sufficient; is it already decided) about a state holding the question, the rules, the close time and, for "Jev + research", screened research facts.
+- Results: Jev alone scores like a coin flip (Brier 0.249 on 646 markets). Given Claude's research, it does worse than Claude reading the same research (0.213 vs 0.184 on the same 646). Its "already decided" answer rarely fires and adds nothing over the market.
+- Changing question wording requires bumping `QUESTION_SET_VERSION` (see `CLAUDE.md`).
+
+## Find out
+
+- From TypeSafe's own documentation (https://docs.typesafe.ai/llms.txt, and the TypeSafe skill if your session has it): what System One is built and tuned for (judgments over a given state, such as routing, ranking, extraction and verification), its question types, how its probabilities are meant to be read, any calibration claims, ensembling, versions and limits.
+- Candidate jobs for Jev in our pipeline, each with a question design (type, instructions, criteria) and a test on our history. For example: checking that a market resolves the way we think (rules, edge cases, deadlines), verifying Claude's research facts, choosing which markets deserve research, catching inconsistent linked markets, ranking candidate bets.
+- Whether our current wording (one big forecasting question) misuses it, and what TypeSafe recommends instead.
+
+## Leave out
+
+General AI forecasting (brief 04); combining with the price (05). Don't call the Jev API in this session; the main session runs any tests.
+
+## Deliverable
+
+Write `docs/research/14-jev-harness.md` in the report format from `docs/research/README.md`, and include
+a recommended set of Jev questions with their state shape, and a test plan for each.

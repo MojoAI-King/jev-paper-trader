@@ -9,9 +9,12 @@ Kind: Living. Decision entry.
 ## Decision
 
 Joey, 2026-10-09: stop treating rule tuning as the way to profit, and rebuild the trader from deep research.
-Claude measured the state on every finished market and wrote five self-contained research briefs
-(`docs/REBUILD_SCOPE.md`, published as a page with copy buttons). Joey runs them in claude.ai Research tabs; Claude
-does the sixth (how to harness Jev) in a session, then writes a plan. Every code change in the plan waits for Joey's
+Claude measured the state on every finished market and wrote research briefs. The first draft had five broad
+briefs for claude.ai Research tabs. Joey revised it the same day: "make sure their focus is narrow... If we need to
+do multiple research runs, we can do them", run as Claude Code sessions in separate VS Code tabs, all at once. So
+there are fourteen narrow briefs in `docs/research/briefs/`, including how to harness Jev. Each session writes one
+report into `docs/research/` under rules that keep parallel sessions from colliding (`docs/research/README.md`).
+The main session commits the reports, checks them against our data, and writes the plan. Every code change in the plan waits for Joey's
 yes, as before. The trader keeps running meanwhile, so the history every new idea is tested on keeps growing.
 
 ## Why
@@ -32,7 +35,8 @@ decide which bets to place, but they can't make a forecaster that is worse than 
   reached them, did worse (−16% to −31%).
 - **Pausing the trader.** Its price snapshots and forecasts on markets that finish are the backtest set for every
   new idea; fake money is all it loses.
-- **Claude running the deep research itself.** Offered; Joey chose to run it in his own tabs.
+- **Five broad briefs in claude.ai Research tabs.** The first draft; Joey asked for narrow ones, run as Claude Code tabs
+  that can read the repo and write their reports straight into it.
 
 ## Risk
 

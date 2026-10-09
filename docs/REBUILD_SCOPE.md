@@ -1,7 +1,7 @@
 # Rebuild scope: what the data says, and the research briefs
 
 Kind: Living. Written 2026-10-09, after about two weeks live. Owner: Joey. Next step: Joey runs the research
-briefs below; the results come back here and become the plan (each code change waits for Joey's OK).
+briefs in `docs/research/`; the results come back here and become the plan (each code change waits for Joey's OK).
 
 ## Why this exists
 
@@ -76,139 +76,26 @@ Volume is 20 to 35 bets a day across all strategies. Research runs about 150 a d
   signal.
 - **Fewer, genuinely different strategies.** Most of today's strategies are variations on one signal.
 
-## The research briefs
+## The research
 
-Each brief stands alone: paste one per tab into a deep research mode (claude.ai Research). Ask for links,
-dates and sample sizes. Paste each report back into a session here; they get saved under `docs/research/`.
-The same briefs, with a copy button each, are on a page private to Joey:
-https://claude.ai/artifact/2USu1tPk31NdbK2p1vj5ta (built from the text between the `briefs` markers below).
+Joey, 2026-10-09: make each research run narrow, and run as many as it takes. The first draft's five broad briefs
+became fourteen narrow ones in `docs/research/briefs/`, each run by its own Claude Code session in a VS Code tab,
+all at once. Each session writes its report into `docs/research/`. The run sheet, the rules for sessions running
+side by side, and the report format are in `docs/research/README.md`. The same list, with a copy button for each
+tab's one-line prompt, is on a page private to Joey: https://claude.ai/artifact/2USu1tPk31NdbK2p1vj5ta.
 
-The same context goes at the top of every brief.
-
-<!-- briefs:start -->
-### Shared context (included in each brief)
-
-> CONTEXT. I run a paper-trading experiment (fake money, real markets) on Kalshi and Polymarket binary
-> markets. Several strategies each hold a fake $100,000. Every 30 minutes an automated cycle fetches about 200
-> open markets (100 per venue), forecasts P(YES) for each, and buys the side whose forecast beats the ask
-> price after fees, sized by fractional Kelly. Forecasters: "Jev" (a typed-judgment model from TypeSafe that
-> returns probabilities for questions about a state you give it), "Jev + research" (Jev reading
-> facts Claude gathers with web search, screened so no prices leak in), and "Claude direct" (Claude's own
-> probability from the same research). Today the forecasters never see the market price (an experimental
-> choice; you may recommend changing it, but say why). After about two weeks and 1,133 resolved markets: on
-> 327 markets with a real two-sided price (spread ≤10¢), every forecaster is less accurate than the market's
-> mid price (Brier: market 0.172; Claude direct worse by 0.035 ± 0.009; Jev + research worse by 0.043;
-> Jev alone worse by 0.073, about a coin flip). Settled bets lost 29% of stake overall (−46% before we stopped
-> buying contracts under 30¢, −13% after). Buying at the ask costs about 8.4% per bet (spread ~3.8%, fees and
-> slippage ~4.6%). Long shots under 30¢ lost almost every time; bets against the market favourite lost most;
-> always buying the favourite at the ask lost only 2.8% ± 1.7% (n = 1,133). Constraints: fake money only;
-> data must come from free or cheap public APIs; LLM work runs on a fixed subscription (about 150 research
-> runs a day). We have a history of every market we looked at with price snapshots about every 30 minutes,
-> our forecasts, and the outcomes, so any idea can be backtested.
-
-### Brief 1: Where the real edges are
-
-> QUESTION. Where do persistent edges exist in Kalshi and Polymarket binary markets today (prefer 2024–2026
-> evidence), and which can a small automated system capture after fees?
->
-> Cover: (1) the favourite–long-shot bias in prediction markets: size by price bucket, venue and category, and
-> maker vs taker returns (for example academic studies of Kalshi trade data); (2) which market types are least
-> efficient (sports, crypto price thresholds, weather, economic releases, politics, "mention" and culture
-> markets) and why; (3) timing effects: early vs late in a market's life, reaction to news, and resolution lag
-> (outcome effectively known while the market still trades); (4) structural gaps: the same event priced
-> differently on Kalshi and Polymarket, multi-outcome events whose prices don't sum to 100%, related markets
-> that contradict each other; (5) what profitable traders and bots on these venues actually do (documented, not
-> hype) and realistic edge sizes after fees.
->
-> DELIVERABLE. A ranked list of 5–10 edges. For each: the mechanism; the evidence with links, dates and sample
-> sizes; expected return after fees; capacity; data needed; how to detect it automatically; and a simple test
-> we could run on our own history of resolved markets with ~30-minute price snapshots. Mark anything
-> anecdotal.
-
-### Brief 2: LLM forecasting that actually works
-
-> QUESTION. What does the best current evidence say about using LLMs to forecast real-world events well enough
-> to trade, and how should an LLM's forecast be combined with the market price?
->
-> Cover: benchmarks and studies (for example ForecastBench, retrieval-augmented forecasting systems, AI
-> forecasting tournaments such as Metaculus's AI benchmark series, comparisons with superforecasters); which
-> techniques measurably improve accuracy (retrieval quality, question decomposition, base rates, ensembling
-> several models or samples, extremizing, calibration on resolved questions, using the market as a prior);
-> known failure modes (overconfidence, anchoring on news, misreading resolution rules, date confusion, numeric
-> thresholds); how to tell whether a forecaster adds information beyond the market; and any evidence of LLMs
-> beating liquid markets. Our data point: fitting logit(p) = a + b·logit(market) + c·logit(model) out of sample
-> gave b ≈ 1.35 and c ≈ 0.52 for Claude direct, 0.33 for Jev + research, 0.16 for Jev alone, yet bets on the
-> blend still lost after paying the spread.
->
-> DELIVERABLE. A concrete forecasting pipeline for our setup, step by step; the expected accuracy gain of each
-> step with sources; what to stop doing; and how to validate each step on resolved markets.
-
-### Brief 3: Pricing numeric markets with models, not guesses
-
-> QUESTION. How should we price prediction markets whose outcome is a number crossing a threshold, using
-> models and free data instead of an LLM's judgment?
->
-> Market types we see: crypto ("Will Bitcoin reach $X by [date]", "BTC above $X at 5pm"), commodities and
-> indices (WTI oil, S&P 500, gold), daily weather ("highest temperature in [city] on [date]" in 1–2 degree
-> bins, rain), and economic releases (CPI, unemployment, payrolls, Fed decisions). Example failure: our LLM
-> gave 81–93% that WTI crude would hit $95 in September while the market priced it at 7¢; it didn't.
->
-> For each type: the right model (for example touch/barrier probability vs close-above probability from
-> implied or realized volatility; ensemble weather forecasts and their error by lead time; nowcasts and
-> consensus for economic data); free or cheap data sources with API details and limits (exchange price APIs,
-> crypto options implied volatility, NWS/NOAA, Open-Meteo ensembles, the Cleveland Fed inflation nowcast, and
-> so on); evidence on how these models compare with prediction-market prices; and pitfalls (the exact
-> resolution source and weather station, time zones, rounding, settlement times).
->
-> DELIVERABLE. Per market type: a formula or algorithm, the data sources, a backtest plan, and an honest
-> estimate of whether the market is usually already efficient there.
-
-### Brief 4: Sports against the sharp books
-
-> QUESTION. Can a small automated system profit on Kalshi and Polymarket sports markets by comparing them with
-> sharp sportsbook prices, and how exactly?
->
-> Our data: on 205 real-priced sports markets Claude's own forecast was slightly worse than the market (Brier
-> +0.011 ± 0.005); always buying the favourite at the ask lost 1.6% ± 2.6% (n = 606). Many Polymarket sports
-> markets are illiquid (tennis "Completed Match" markets with asks of 97¢ and 92¢ and no bids).
->
-> Cover: how prediction-market sports prices compare with sharp books (Pinnacle, Circa, betting exchanges):
-> documented gaps, timing (opening vs closing), leagues and market types where they lag; sources for consensus
-> and sharp odds (for example The Odds API tiers, free alternatives) and how to remove the bookmaker margin;
-> closing-line value as the measure of skill; which markets to avoid; timing of injury and lineup news; and
-> whether edges survive Kalshi's fee curve.
->
-> DELIVERABLE. A step-by-step strategy with entry rules, data sources and their costs, expected edge with
-> evidence, and a test plan using our price snapshots.
-
-### Brief 5: Costs, execution, sizing and judging skill
-
-> QUESTION. For a paper-trading system on Kalshi and Polymarket, what are the correct current costs, and the
-> best practice for execution, bet sizing, risk limits, and telling quickly whether a strategy has real skill?
->
-> Cover: (1) current fee schedules: Kalshi taker and maker fees by market type (the formula and its rounding),
-> and Polymarket fees by market type, with dates and links; (2) execution: taker vs maker, and how to simulate
-> limit-order fills honestly in a paper trader that only has ~30-minute snapshots of the best asks (our test:
-> resting orders at the mid, counted as filled only when a later snapshot's ask reached our price, did worse
-> than buying at the ask, because of adverse selection); (3) sizing: Kelly under estimation error, shrinkage,
-> per-bet and per-event caps, correlated bets (the same underlying at several thresholds, across strategies),
-> drawdown rules; (4) evaluation: closing-line value, Brier decomposition (reliability and resolution), paired
-> tests against the market, the sample sizes needed to detect a 2–5% edge, multiple-testing and overfitting
-> risk when testing many variants on one history, and walk-forward backtests.
->
-> DELIVERABLE. A checklist and the exact formulas to put in code, with sources.
-<!-- briefs:end -->
-
-### Brief 6: Harnessing Jev (done here, not in a tab)
-
-Claude does this one in a session, with the TypeSafe docs (docs.typesafe.ai) and the code: what System One is
-designed for, which typed questions suit a trading pipeline (rules reading, fact checks, triage, ranking), and
-a test of each on the finished-market history.
+- **Where an edge could come from:** 01 favourite and long-shot pricing, 02 prices that don't add up (across venues
+  and within an event), 03 markets still trading after the answer is known.
+- **Better forecasts:** 04 what makes an AI forecaster more accurate, 05 combining a forecast with the market price,
+  14 using Jev for the jobs it's built for.
+- **Pricing with models instead of guesses:** 06 crypto, oil, gold and index thresholds, 07 daily weather, 08
+  economic data and Fed decisions, 09 sports against the sharp sportsbooks.
+- **Costs and judging:** 10 fees and liquidity, 11 honest fill simulation, 12 bet sizing, 13 telling skill from luck.
 
 ## After the research
 
-1. Joey pastes each report into a session; Claude saves it under `docs/research/` and checks its claims
-   against our data where possible.
+1. Each research session writes its report into `docs/research/`; the main session commits them and checks
+   their claims against our data where possible.
 2. Claude writes the game plan: a short list of strategies to build, each pre-registered in
    `docs/EXPERIMENTS.md` with the backtest it must pass first, and the code changes each needs. Joey approves
    or rejects each code change.
