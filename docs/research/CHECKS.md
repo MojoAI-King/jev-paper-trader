@@ -77,3 +77,34 @@ standard error.
 - **Its recommendation stands as a proposal:** keep AI forecasters off single temperature bins. Weather markets are
   not worth targeting unless a structural test (same-day truncation, hourly-vs-official gap, long-shot bins) shows
   an edge.
+
+## 06 Pricing crypto, oil, gold and stock-index thresholds (checked 2026-10-09)
+
+- **Source spot-checked.** Portnaya (arXiv 2606.19517, June 2026) exists. Its abstract matches the report: a mean
+  gap of 5.6 points on the main contract, 6.3 pooled, about 11 against Deribit, a half-life of about 4 hours, and
+  arbitrage "profitable after conservative transaction costs" with only marginal precision.
+- **Its WTI explanation fits the market we bet** (one of its "not verified" items). Our big WTI loss was
+  polymarket:5083130, "Will WTI Crude Oil (WTI) hit (HIGH) $95 in September?":
+  - its rules pay only if "at any point after market creation" a Pyth 1-minute candle of the *active month of ICE
+    WTI futures* reaches the price, not spot oil;
+  - main, `original` and the self-calibrating strategy bought YES at 7¢ on 09-30 at 81–93%, and bold bought at
+    28¢ on 09-29;
+  - that matches the report's price history for the re-listed market (22.5¢ at 09-29 12Z, 2.5–3.2¢ on 09-30).
+- **These markets don't have their own category.** Our text matcher files oil, gold and index markets under
+  "world" (201 judgments) and "economy" (162). So `skip_categories` can't single them out; only "crypto" can be
+  skipped as a group.
+- **They aren't where the current losses come from.** No crypto, oil or index threshold bet placed since the 30¢
+  floor has settled (every strategy but `original`). The losses since the floor are:
+
+  | Category | Bets | Return |
+  |---|---|---|
+  | Sports | 58 | −13% |
+  | Other | 36 | −22% |
+  | Weather | 18 | +18% (noise) |
+
+  The floor, and main's crypto skip, already keep these markets out.
+- **Consequence.** Its main recommendation, computing these probabilities with an option-style model, goes into
+  the plan as a new source of information, to be tested under report 05's encompassing gate. It needs no urgent
+  fix. For the same reason, weather (report 07) gets no category skip now: it made money on its 18 bets since the
+  floor, too few to mean anything either way.
+

@@ -125,7 +125,8 @@ in `.github/workflows/trade.yml` and stay off until the `TRADING_ENABLED` reposi
   "edge" is noise. Don't trust either number until about **50 or more** markets have resolved.
   Each forecaster covers different markets, so those scores don't compare head to head. The **head to head**
   lines (and the page's **Forecasters** panel) score all four on the same resolved markets: per market, the
-  latest look where all four gave a forecast. The page shows it as "% better than a coin flip"
+  latest look where all four gave a forecast and the market had a real price (spread 10¢ or less; markets without
+  one are left out and counted). The page shows it as "% better than a coin flip"
   (1 − Brier / 0.25); hovering a row shows the Brier score.
 
 ## Files

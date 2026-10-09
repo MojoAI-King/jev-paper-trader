@@ -22,7 +22,7 @@ the brief). Paste one into a new Claude Code tab. The short form also works:
 | 03 | Markets that keep trading after the answer is known | 2 | pending |
 | 04 | What makes an AI forecaster more accurate | 2 | pending |
 | 05 | Combining our forecast with the market price | 1 | [done](05-blend-with-market.md), checked in [CHECKS.md](CHECKS.md) |
-| 06 | Pricing crypto, oil, gold and stock-index thresholds | 1 | pending |
+| 06 | Pricing crypto, oil, gold and stock-index thresholds | 1 | [done](06-price-threshold-markets.md), checked in [CHECKS.md](CHECKS.md) |
 | 07 | Pricing daily weather markets from forecast models | 1 | [done](07-weather-markets.md), checked in [CHECKS.md](CHECKS.md) |
 | 08 | Pricing economic-data and Fed markets | 2 | pending |
 | 09 | Sports prices against the sharp sportsbooks | 1 | pending |

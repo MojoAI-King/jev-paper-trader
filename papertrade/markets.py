@@ -80,6 +80,15 @@ def _iso(dt: datetime) -> str:
 
 # ---------- Polymarket ----------
 
+def _poly_fee_rate(m: dict) -> float | None:
+    """The market's own taker fee rate (fee per share = rate x p x (1 - p), docs.polymarket.com/trading/fees),
+    from its `feeSchedule`. 0 when `feesEnabled` is false; None when the market says nothing."""
+    if m.get("feesEnabled") is False:
+        return 0.0
+    rate = _f((m.get("feeSchedule") or {}).get("rate"))
+    return rate if m.get("feesEnabled") and rate is not None and rate >= 0 else None
+
+
 def normalize_polymarket(m: dict) -> dict | None:
     try:
         outcomes = json.loads(m.get("outcomes") or "[]")
@@ -107,6 +116,7 @@ def normalize_polymarket(m: dict) -> dict | None:
         "mid": round(prices[0], 4),
         "volume": _f(m.get("volumeNum"), 0.0),
         "url": f"https://polymarket.com/market/{m.get('slug', '')}",
+        "fee_rate": _poly_fee_rate(m),
     }
 
 

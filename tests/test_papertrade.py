@@ -25,9 +25,38 @@ def ans(p, clear=0.9, info=0.8, p_no=None):
             "rules_clear": {"noul": clear}, "info_sufficient": {"noul": info}, "already_decided": {"noul": 0.1}}
 
 
-def market(src="polymarket", mid="1", yes_ask=0.40, no_ask=0.62, m=0.39, close="2099-01-01T00:00:00Z"):
+def market(src="polymarket", mid="1", yes_ask=0.40, no_ask=0.62, m=0.39, close="2099-01-01T00:00:00Z", fee_rate=0.0):
+    # fee-free by default, so the arithmetic in tests about other things stays edge = p - ask - slippage;
+    # FeeTests covers the fees themselves
     return {"source": src, "market_id": mid, "question": f"Q{mid}", "rules": "r", "close_time": close,
-            "yes_ask": yes_ask, "no_ask": no_ask, "mid": m, "volume": 50000, "url": "u"}
+            "yes_ask": yes_ask, "no_ask": no_ask, "mid": m, "volume": 50000, "url": "u", "fee_rate": fee_rate}
+
+
+class FeeTests(unittest.TestCase):
+    def test_each_polymarket_market_pays_its_own_published_rate(self):
+        fee = lambda src, p, m=None: engine.fee_per_contract(src, p, POLICY, m)
+        self.assertAlmostEqual(fee("polymarket", 0.5, {"fee_rate": 0.04}), 0.01)     # politics: 0.04 x 0.5 x 0.5
+        self.assertAlmostEqual(fee("polymarket", 0.9, {"fee_rate": 0.07}), 0.0063)   # crypto, cheap near the ends
+        self.assertEqual(fee("polymarket", 0.5, {"fee_rate": 0.0}), 0.0)              # fee-free (geopolitics)
+        self.assertAlmostEqual(fee("polymarket", 0.5, {"fee_rate": None}), 0.0125)   # unpublished: the default 0.05
+        self.assertAlmostEqual(fee("polymarket", 0.5), 0.0125)                       # an old saved market, no field
+        self.assertAlmostEqual(fee("kalshi", 0.5, {"fee_rate": 0.0}), 0.0175)        # Kalshi ignores it: 0.07 x p x (1-p)
+
+    def test_the_rate_comes_from_the_markets_fee_schedule(self):
+        base = {"id": 1, "question": "Q?", "outcomes": '["Yes","No"]', "outcomePrices": '["0.5","0.5"]'}
+        on = dict(base, feesEnabled=True, feeType="crypto_fees", feeSchedule={"exponent": 1, "rate": 0.07, "takerOnly": True})
+        self.assertEqual(mk.normalize_polymarket(on)["fee_rate"], 0.07)
+        self.assertEqual(mk.normalize_polymarket(dict(base, feesEnabled=False, feeType=None))["fee_rate"], 0.0)
+        self.assertIsNone(mk.normalize_polymarket(base)["fee_rate"])                       # says nothing
+        self.assertIsNone(mk.normalize_polymarket(dict(on, feeSchedule={"rate": "x"}))["fee_rate"])
+        self.assertIsNone(mk.normalize_polymarket(dict(on, feeSchedule={"rate": -1}))["fee_rate"])
+
+    def test_the_fee_is_in_the_bet_decision(self):
+        pol = json.loads(json.dumps(POLICY)); pol["gates"]["min_edge"] = 0.05
+        # p 0.47 against a 40c ask plus 1c slippage: a 6c edge when fee-free, 4.3c after a 0.07 rate (0.0168)
+        self.assertTrue(engine.decide(market(fee_rate=0.0), ans(0.47), pol, 100000, 0, 100000)["bet"])
+        self.assertFalse(engine.decide(market(fee_rate=0.07), ans(0.47), pol, 100000, 0, 100000)["bet"])
+        self.assertFalse(engine.decide(market(fee_rate=None), ans(0.47), pol, 100000, 0, 100000)["bet"])  # default 0.05
 
 
 class NormalizeTests(unittest.TestCase):
@@ -1058,27 +1087,29 @@ class DashboardTests(DataDirTest):
         self.assertEqual(ls["judged"], 29)
 
     def test_forecasters_are_scored_head_to_head_on_the_same_markets(self):
-        def look(key, ts, plain=0.5, rich=0.7, direct=0.8, mid=0.6, qs=review.QUESTION_SET_VERSION):
+        def look(key, ts, plain=0.5, rich=0.7, direct=0.8, mid=0.6, qs=review.QUESTION_SET_VERSION, asks=(0.61, 0.41)):
             ans = lambda p: {"p_yes": {"noul": p}} if p is not None else None
-            return {"key": key, "ts": ts, "question_set": qs, "market": {"mid": mid},
+            return {"key": key, "ts": ts, "question_set": qs, "market": {"mid": mid, "yes_ask": asks[0], "no_ask": asks[1]},
                     "answers_no_news": ans(plain), "answers": ans(rich),
                     "claude_direct": {"p_yes": direct} if direct is not None else None}
         js = [look("a", "1", plain=0.1),          # superseded by a's later look
               look("a", "2"),                     # a: all four, latest -> counted
               look("b", "1", direct=None),        # b: Claude never forecast it -> b left out for everyone
               look("c", "1", mid=0.9, qs="papertrade-v1"),  # old wording -> left out
-              look("d", "1")]                     # d: not resolved -> left out
-        res = {"a": "yes", "b": "no", "c": "yes"}
+              look("d", "1"),                     # d: not resolved -> left out
+              look("e", "1", asks=(0.99, 0.92)),  # e: no bids, a fake mid -> left out, and counted as such
+              look("f", "1", asks=(0.99, 0.92)), look("f", "2")]  # f: its latest real-priced look counts
+        res = {"a": "yes", "b": "no", "c": "yes", "e": "yes", "f": "yes"}
         pr = engine.paired(js, res)
-        self.assertEqual(pr["n"], 1)
-        got = {s["name"]: round(s["brier"], 4) for s in pr["sources"]}
+        self.assertEqual((pr["n"], pr["left_out"]), (2, 1))
+        got = {s["name"]: round(s["brier"], 4) for s in pr["sources"]}  # a and f score the same: 4 identical looks
         self.assertEqual(got, {"jev_plain": 0.25, "jev_research": 0.09, "claude_direct": 0.04, "market": 0.16})
         cal = engine.calibration(js, res)  # what the page and the daily review read
         self.assertEqual(cal["paired"], pr)
-        # the per-source scores still cover each source's own markets (b counts for Jev alone there)
-        self.assertEqual(next(x for x in cal["sources"] if x["name"] == "jev_plain")["n"], 2)
+        # the per-source scores still cover each source's own markets, wide spreads included (a, b, e, f for Jev alone)
+        self.assertEqual(next(x for x in cal["sources"] if x["name"] == "jev_plain")["n"], 4)
         s = dashboard.summarize(POLICY, books(self.pf()), [], {}, "2026-09-27T00:00:00Z")
-        self.assertEqual(s["calibration"]["paired"], {"n": 0, "sources": [{"name": n, "label": l, "brier": None}
+        self.assertEqual(s["calibration"]["paired"], {"n": 0, "left_out": 0, "sources": [{"name": n, "label": l, "brier": None}
                          for n, l in (("market", "Market price"), ("jev_research", "Jev + research"),
                                       ("claude_direct", "Claude direct"), ("jev_plain", "Jev alone"))]})
         self.assertIn('id="p-score"', dashboard.build_html(s))
@@ -1365,7 +1396,7 @@ class TuningTests(DataDirTest):
                 {"min_edge": None}, {"min_rules_clear": 0.0, "min_info_sufficient": 1.0, "max_framing_gap": 1.0}]
         for r in good:  # the control: each check below fails for its own reason, not because nothing passes
             self.assertIsNone(learn.rules_problem(r, POLICY), r)
-        bad = [{"fees": 0}, {"slippage": 0.0}, {"kalshi_taker_coef": 0}, {"polymarket_per_contract": 0},
+        bad = [{"fees": 0}, {"slippage": 0.0}, {"kalshi_taker_coef": 0}, {"polymarket_default_rate": 0},
                {"max_research_per_day": 500}, {"probability": "claude_direct"}, {"gates": "jev_plain"},
                {"starting_bankroll": 1e9}, {"_min_edge": 0.0}, {"MIN_EDGE": 0.1}, {" min_edge": 0.1},
                {"min_edge": True}, {"min_edge": "0.1"}, {"min_edge": float("nan")}, {"min_edge": float("inf")},

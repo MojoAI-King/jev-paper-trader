@@ -205,11 +205,17 @@ def equity_at_cost(pf: dict) -> float:
 
 # ---------------- decision logic (pure) ----------------
 
-def fee_per_contract(source: str, price: float, policy: dict) -> float:
+def fee_per_contract(source: str, price: float, policy: dict, market: dict | None = None) -> float:
+    """The taker fee per contract at `price`. Kalshi: 0.07 x p x (1 - p). Polymarket: the market's own
+    published rate x p x (1 - p) (`fee_rate`, read from its feeSchedule); a market that doesn't publish one,
+    such as one saved before 2026-10-09, pays the usual rate (`fees.polymarket_default_rate`)."""
     f = policy["fees"]
     if source == "kalshi":
         return f["kalshi_taker_coef"] * price * (1 - price)
-    return f["polymarket_per_contract"]
+    rate = (market or {}).get("fee_rate")
+    if rate is None:
+        rate = f["polymarket_default_rate"]
+    return rate * price * (1 - price)
 
 
 def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: float,
@@ -222,7 +228,7 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
 
     sides = []
     for side, q, ask in (("yes", p, market["yes_ask"]), ("no", 1 - p, market["no_ask"])):
-        cost = ask + fee_per_contract(market["source"], ask, policy) + policy["fees"]["slippage"]
+        cost = ask + fee_per_contract(market["source"], ask, policy, market) + policy["fees"]["slippage"]
         sides.append({"side": side, "q": q, "ask": ask, "cost": round(cost, 4),
                       "edge": round(q - cost, 4)})
     best = max(sides, key=lambda x: x["edge"])
@@ -784,22 +790,35 @@ def calibration(judgments: list[dict], resolved: dict) -> dict:
 
 
 PAIRED = ("market", "jev_research", "claude_direct", "jev_plain")
+# A look counts only if the market had a real two-sided price: yes ask + no ask - 1 at most this. Where nobody
+# bids, the mid is a number nobody can trade at, not the market's forecast, and it made the market look bad
+# (BACKLOG B25; docs/research/CHECKS.md).
+PAIRED_MAX_SPREAD = 0.10
+
+
+def real_price(m: dict) -> bool:
+    ya, na = m.get("yes_ask"), m.get("no_ask")
+    return ya is not None and na is not None and ya + na - 1 <= PAIRED_MAX_SPREAD
 
 
 def paired(judgments: list[dict], resolved: dict) -> dict:
     """Each source in PAIRED scored on the same resolved markets: per market, the latest look (current
-    question set) where all of them gave a forecast. The per-source scores above each use whatever markets
-    that source happened to cover, so they can't be compared head to head (proposal p7, Joey 2026-10-02)."""
-    looks = {}
+    question set) where all of them gave a forecast and the market had a real price. The per-source scores
+    above each use whatever markets that source happened to cover, so they can't be compared head to head
+    (proposal p7, Joey 2026-10-02). `left_out` counts markets whose every such look lacked a real price."""
+    looks, wide = {}, set()
     for j in judgments:
         if (j.get("question_set") == QUESTION_SET_VERSION and j["key"] in resolved
                 and all(_prob(j, s) is not None for s in PAIRED)):
-            looks[j["key"]] = j
+            if real_price(j["market"]):
+                looks[j["key"]] = j
+            else:
+                wide.add(j["key"])
     labels = dict(SOURCES)
     sources = [{"name": s, "label": labels[s],
                 "brier": brier([(_prob(j, s), 1.0 if resolved[k] == "yes" else 0.0) for k, j in looks.items()])}
                for s in PAIRED]
-    return {"n": len(looks), "sources": sources}
+    return {"n": len(looks), "left_out": len(wide - looks.keys()), "sources": sources}
 
 
 def report(policy: dict) -> str:
@@ -841,7 +860,8 @@ def report(policy: dict) -> str:
             lines.append(f"  (only {cal['resolved']} resolved markets; treat as noise until ~50+)")
         pr = cal["paired"]
         if pr["n"]:
-            lines.append(f"Head to head, the same {pr['n']} resolved markets:")
+            lines.append(f"Head to head, the same {pr['n']} resolved markets with a real price "
+                         f"({pr['left_out']} without one left out):")
             for s in sorted(pr["sources"], key=lambda s: s["brier"]):
                 lines.append(f"  {s['label']:<16} {s['brier']:.4f}")
     else:

@@ -387,10 +387,10 @@ function render(data, { update = false } = {}) {
     const ranked = pr.sources.filter(x => x.brier != null).sort((a, b) => a.brier - b.brier);
     ranked.forEach((x, i) => {
       const skill = Math.max(0, 1 - x.brier / 0.25);  // 0 = no better than a coin flip, 1 = perfect
-      score.append(h("div", { class: "sc" + (i === 0 ? " top" : ""), title: `${x.label}: Brier score ${x.brier.toFixed(3)} on the same ${pr.n} finished markets (0 is perfect, 0.25 is a coin flip)` },
+      score.append(h("div", { class: "sc" + (i === 0 ? " top" : ""), title: `${x.label}: Brier score ${x.brier.toFixed(3)} on the same ${pr.n} finished markets with a real price, spread 10¢ or less (0 is perfect, 0.25 is a coin flip)` },
         h("span", { text: x.label }), h("b", { text: pct(skill) }), h("div", { class: "bar" }, h("i", { style: `width:${(skill * 100).toFixed(1)}%` }))));
     });
-    score.append(h("div", { class: "note", text: "% better than a coin flip, all on the same finished markets" }));
+    score.append(h("div", { class: "note", text: "% better than a coin flip, all on the same finished markets with a real price" + (pr.left_out ? ` (${pr.left_out} without one left out)` : "") }));
   }
 
   // ---------- open positions ----------

@@ -43,5 +43,6 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
+| [2026-10-09-fixes-from-research-feedback-real-polyma-6946](tasks/2026-10-09-fixes-from-research-feedback-real-polyma-6946.md) | Fixes from research feedback: real Polymarket fees, real-price scoring, weather | in-progress | master | unassigned |
 | [2026-10-09-rebuild-research-fourteen-narrow-briefs-96f9](tasks/2026-10-09-rebuild-research-fourteen-narrow-briefs-96f9.md) | Rebuild research: fourteen narrow briefs and their reports | in-progress | master | unassigned |
 <!-- skilliton:index:tasks:end -->
