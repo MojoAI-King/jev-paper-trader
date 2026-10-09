@@ -44,7 +44,8 @@ You are one of several research sessions running at the same time in this same f
 - Don't commit, push, pull or switch branches, and don't run `skilliton` commands. The main session commits every
   report.
 - If a hook asks for a checkpoint, handoff, maintenance or dispatch, answer in one line that this is a
-  research-only session whose report the main session records, and stop.
+  research-only session whose report the main session records. Then carry on with the research, or finish if
+  your report is already written.
 - Never run the trader's `cycle`, `scan`, `settle`, `review` or `publish`. Read any file you like to understand
   how the trader works (`papertrade/`, `policy.json`, `docs/`), but don't analyze `papertrade_data/` yourself:
   describe the test you want instead. The main session runs those tests, so the reports don't come back with
