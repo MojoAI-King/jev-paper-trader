@@ -27,4 +27,6 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-09-29-a-retired-strategy-s-losses-would-have-v-d569](lessons/2026-09-29-a-retired-strategy-s-losses-would-have-v-d569.md) | A retired strategy's losses would have vanished from the page | accepted | 2026-09-29 |
 | [2026-09-29-bad-input-tests-passed-on-a-different-gu-191f](lessons/2026-09-29-bad-input-tests-passed-on-a-different-gu-191f.md) | Bad-input tests passed on a different guard than the one named | accepted | 2026-09-29 |
 | [2026-10-01-forecasters-scored-on-different-markets-0308](lessons/2026-10-01-forecasters-scored-on-different-markets-0308.md) | Forecasters scored on different markets rank wrong | accepted | 2026-10-01 |
+| [2026-10-09-a-mid-price-on-a-market-with-no-bids-fak-f0e4](lessons/2026-10-09-a-mid-price-on-a-market-with-no-bids-fak-f0e4.md) | A mid price on a market with no bids faked an edge | accepted | 2026-10-09 |
+| [2026-10-09-fills-at-the-mid-made-resting-orders-loo-700b](lessons/2026-10-09-fills-at-the-mid-made-resting-orders-loo-700b.md) | Fills at the mid made resting orders look profitable | accepted | 2026-10-09 |
 <!-- skilliton:index:lessons:end -->

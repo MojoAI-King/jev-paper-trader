@@ -10,6 +10,10 @@ and whether the forecasts beat the market's own price (Brier score). The full pl
 pre-registered success and stop criteria, is in `PLAN.md`; the reasoning behind each choice is in
 `DECISIONS.md`.
 
+**Where it stands (2026-10-09):** after about two weeks, every forecaster is less accurate than the market's
+own price, and the strategies are losing. The measured diagnosis and the research behind the rebuild are in
+`docs/REBUILD_SCOPE.md`.
+
 ## Quick start
 
 1. Open this folder in VS Code.
