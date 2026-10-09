@@ -18,19 +18,19 @@ the brief). Paste one into a new Claude Code tab. The short form also works:
 | # | Question | Wave | Report |
 |---|---|---|---|
 | 01 | How mispriced are cheap and expensive contracts? | 1 | [done](01-favourite-longshot.md), checked in [CHECKS.md](CHECKS.md) |
-| 02 | Prices that don't add up | 2 | pending |
-| 03 | Markets that keep trading after the answer is known | 2 | pending |
-| 04 | What makes an AI forecaster more accurate | 2 | pending |
+| 02 | Prices that don't add up | 2 | [done](02-prices-that-dont-add-up.md), checked in [CHECKS.md](CHECKS.md) |
+| 03 | Markets that keep trading after the answer is known | 2 | [done](03-stale-markets.md), checked in [CHECKS.md](CHECKS.md) |
+| 04 | What makes an AI forecaster more accurate | 2 | [done](04-ai-forecasting-techniques.md), checked in [CHECKS.md](CHECKS.md) |
 | 05 | Combining our forecast with the market price | 1 | [done](05-blend-with-market.md), checked in [CHECKS.md](CHECKS.md) |
 | 06 | Pricing crypto, oil, gold and stock-index thresholds | 1 | [done](06-price-threshold-markets.md), checked in [CHECKS.md](CHECKS.md) |
 | 07 | Pricing daily weather markets from forecast models | 1 | [done](07-weather-markets.md), checked in [CHECKS.md](CHECKS.md) |
-| 08 | Pricing economic-data and Fed markets | 2 | pending |
-| 09 | Sports prices against the sharp sportsbooks | 1 | pending |
-| 10 | What trading actually costs on each venue | 1 | pending |
-| 11 | Simulating fills honestly | 2 | pending |
-| 12 | Bet sizing when our probabilities are uncertain | 2 | pending |
-| 13 | Telling skill from luck quickly | 2 | pending |
-| 14 | Using Jev for what it's built for | 1 | pending |
+| 08 | Pricing economic-data and Fed markets | 2 | [done](08-economic-release-markets.md), checked in [CHECKS.md](CHECKS.md) |
+| 09 | Sports prices against the sharp sportsbooks | 1 | [done](09-sports-vs-sharp-books.md), checked in [CHECKS.md](CHECKS.md) |
+| 10 | What trading actually costs on each venue | 1 | [done](10-fees-and-liquidity.md), checked in [CHECKS.md](CHECKS.md) |
+| 11 | Simulating fills honestly | 2 | [done](11-paper-fill-simulation.md), checked in [CHECKS.md](CHECKS.md) |
+| 12 | Bet sizing when our probabilities are uncertain | 2 | [done](12-bet-sizing.md), checked in [CHECKS.md](CHECKS.md) |
+| 13 | Telling skill from luck quickly | 2 | [done](13-judging-skill.md), checked in [CHECKS.md](CHECKS.md) |
+| 14 | Using Jev for what it's built for | 1 | [done](14-jev-harness.md), checked in [CHECKS.md](CHECKS.md) |
 
 Wave 1 (01, 05, 06, 07, 09, 10, 14) are the seven that most decide the plan. The briefs don't depend on each other, so any order works.
 All fourteen at once use a lot of Joey's Claude plan, the same plan the trader's own research runs on. If tabs stop

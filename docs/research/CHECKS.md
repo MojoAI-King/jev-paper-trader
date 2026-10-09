@@ -108,3 +108,48 @@ standard error.
   fix. For the same reason, weather (report 07) gets no category skip now: it made money on its 18 bets since the
   floor, too few to mean anything either way.
 
+## 02, 03, 04, 08, 09, 10, 11, 12, 13, 14 (checked 2026-10-09)
+
+All ten were committed by accident in 8905d49, which staged the whole `docs/` folder. Each file had last been
+written (21:58–22:09Z) before that commit and hasn't changed since, so the committed text is final. Lesson:
+`docs/lessons/2026-10-09-staging-a-folder-swept-up-other-sessions-work.md`.
+
+- **02 Prices that don't add up.** No source check. Its verdict needs none: gaps last seconds, our snapshots are
+  30 minutes apart, and we can't fill two legs. Arbitrage is out. Event coherence (BACKLOG B3) is a small,
+  cheap fix.
+- **03 Stale markets.** No source check. It finds no measurement either way, and its mechanism (Kalshi closes
+  early, Polymarket winners drift to ~99.9¢) fits our own data: Jev's "already decided" signal fired on 11 of 939
+  markets with no edge. Don't build it.
+- **04 AI forecasting techniques.** Its gap figures agree with report 05's sources: the AIA Forecaster trails the
+  market by 0.015 (0.1258 against 0.1106). Ours trails by 0.035–0.073 on real-priced markets. Its cheapest win,
+  calibrating Claude direct on our own resolved forecasts, is untested on our data.
+- **08 Economic data.** Source spot-checked: "Kalshi and the Rise of Macro Markets" (Diercks, Katz and Wright,
+  FEDS 2026-010) exists (title page read). Its CPI and Fed numbers weren't re-read. Our own sample is 6 markets.
+- **09 Sports against the sharp books.**
+  - The Odds API's pricing page confirms START 20K at $30 a month and Pinnacle's coverage. The page doesn't
+    show that one call also returns Kalshi and Polymarket prices: not verified.
+  - Our data agrees that Claude adds nothing on real-priced sports markets (+0.011 ± 0.005 Brier).
+- **10 Fees and liquidity.** Kalshi's API, read today:
+  - KXMLBGAME has `fee_multiplier` 0.5 (`quadratic_with_maker_fees`); KXNFLGAME has 1.
+  - So MLB games cost half the fee our model charges. Fixing it is part of phase 1 of the plan.
+- **11 Fill simulation.** No source check. Its direction (resting orders fill on adverse moves) agrees with our
+  −16% to −31% test.
+- **12 Bet sizing.** Its λ, the share of a forecast's distance from the price that comes true, measured on
+  first looks with a real price (95% event-clustered ranges):
+
+  | Forecaster | Markets | λ |
+  |---|---|---|
+  | Claude direct | 330 | −0.05 [−0.25, +0.18] |
+  | Jev + research | 608 | −0.03 [−0.17, +0.10] |
+  | Jev alone | 1,006 | −0.06 [−0.14, +0.01] |
+
+  All are about zero, so by its rule every Kelly stake we place over-bets.
+- **13 Judging skill.** `rules_history.jsonl` holds 18 rule changes in about 11 days. The median rules version
+  with settled bets was judged on 8 of them. The report's "tuning on noise" holds.
+- **14 Jev's harness.** TypeSafe's documentation (llms.txt and model-jaggedness/jev-1.13.md, read today):
+  - System One is for routing, ranking, extraction, verification, classification and moderation; forecasting
+    isn't mentioned.
+  - jev-1.13's documented weak spots: dates read as text, "Jev is not a calculator", multi-hop indirection,
+    first-option bias, and score levels "weak in numerical calibration".
+  - Our "will it resolve YES by the deadline?" question leans on every one of them.
+
