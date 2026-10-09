@@ -41,7 +41,5 @@ Read `docs/HANDOFF.md` for the next step and `docs/BACKLOG.md` for outstanding w
 <!-- skilliton:index:tasks:start -->
 Open tasks in `docs/tasks/` (every state except done-local, merged, released, verified and abandoned), sorted by ID. `skilliton index` writes this list from the task records; edit the task records, not the list.
 
-| ID | Title | State | Branch | Owner |
-|---|---|---|---|---|
-| [2026-10-09-rebuild-phase-1-size-by-measured-skill-o-ffa3](tasks/2026-10-09-rebuild-phase-1-size-by-measured-skill-o-ffa3.md) | Rebuild phase 1: size by measured skill, one stake per event, real Kalshi fees, slower review | in-progress | master | unassigned |
+No open tasks.
 <!-- skilliton:index:tasks:end -->

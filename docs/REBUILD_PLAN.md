@@ -96,4 +96,8 @@ forward test written down before its results come in. It bets more than probes o
     calibration minimum at 300;
   - probes marked in the page's feed.
 
-  131 offline tests. Live check: see the handoff.
+  131 offline tests. Verified live:
+  - the 23:09Z cycle ran green on 04b8c2a, computed λ (0 for all four forecasters) and recorded Kalshi fee
+    multipliers;
+  - the first bet afterwards was a probe: bold, $175.20 at 23:35Z, 0.25% of its equity, λ 0;
+  - `original` hadn't bet yet when this was written; its unchanged sizing is covered by the tests.
