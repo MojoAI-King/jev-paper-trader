@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-09 17:16 EDT
+Written: 2026-10-09 17:17 EDT
 
+- **State:** Fourteen narrow research briefs ready; Joey asked for one paste-ready prompt at a time and runs each as its own Claude Code tab with the deep-research skill on Opus 5.5 high. Order given: 01, 05, 06, 07, 09, 10, 14, then 02, 03, 04, 08, 11, 12, 13. Prompts are built from the brief files (scratchpad paste.py). No reports yet. Evidence: briefs committed; README rule fixed so a tab carries on after declining a hook reminder.
+- **Next:** Hand Joey the next prompt when he asks; when tabs finish, commit the reports, mark them in the run sheet, check claims against papertrade_data, write the plan
+- **Blocked:** nothing
+- **Watch out:** Research tabs share this checkout: never git add -A or commit their half-written reports mid-run; they must not run cycle/scan/settle/review or skilliton; all of them draw on Joey's Claude plan (week 47%, resets Mon 2026-10-12 08:00Z)
+- **Git:** master @ 87b85c3, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-09 21:17 UTC)
+
+## Earlier
+
+### 2026-10-09 17:16 EDT
 - **State:** Fourteen narrow research briefs ready in docs/research/briefs/ (run sheet docs/research/README.md; page https://claude.ai/artifact/2USu1tPk31NdbK2p1vj5ta). Joey runs each as its own Claude Code tab, all at once; each tab writes only docs/research/NN-<slug>.md and does not commit. No reports yet. Evidence: briefs committed at 8d23ab7; 122 offline tests OK; run-sheet page checked once by screenshot.
 - **Next:** When the tabs finish: commit the reports, mark them done in the run sheet, check each report's claims against papertrade_data, then write the plan (strategies, backtests to pass, code changes for Joey to approve)
 - **Blocked:** nothing
 - **Watch out:** Research tabs share this checkout: never git add -A or commit their half-written reports mid-run; they must not run cycle/scan/settle/review or skilliton; all of them draw on Joey's Claude plan (week 47%, resets Mon 2026-10-12 08:00Z)
 - **Git:** master @ 8d23ab7, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-09 21:16 UTC)
-
-## Earlier
 
 ### 2026-10-09 17:02 EDT
 - **State:** Rebuild scoped (B24): every forecaster is less accurate than the market on 327 real-priced finished markets (Claude direct +0.035, Jev+research +0.043, Jev alone +0.073 Brier); trading costs ~8.4% a bet; blend and resting-order fixes tested and rejected. Five research briefs in docs/REBUILD_SCOPE.md, published at https://claude.ai/artifact/2USu1tPk31NdbK2p1vj5ta (private to Joey). Trader unchanged and running. Evidence: backtests on 1,133 finished markets at the 2026-10-09T20:38Z cycle (scratchpad bt.py); 122 offline tests OK; page screenshot checked once before the last edit; copy buttons not tried in the live viewer.
@@ -43,10 +51,3 @@ Written: 2026-10-09 17:16 EDT
 - **Blocked:** nothing
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
 - **Git:** master @ 99cac63, 3 uncommitted
-
-### 2026-10-01 21:50 EDT
-- **State:** Joey kept the categories (B23 declined, archived). Explained the losses: all 70 settled bets predate the 30c floor; 38 long shots under 30c lost 61.3k of the 62.4k; forecasters expected 38.9 wins, market 21.6, got 18; 36 pre-floor long shots (63k) still open through 2026-10-26; 13 post-floor bets open, none settled. Evidence: portfolio ledgers at 6497235+ (closed and open bets by price paid, claimed edge, opened before/after 2026-10-01T04:19Z); scans.jsonl week meter 0.44 to 0.82, research held by the pace guard since about 14:30Z 2026-10-01.
-- **Next:** Watch the first post-floor bets settle (8 close 2026-10-06) vs original; Joey decides if research may spend the rest of the week (pace guard holds it until the 2026-10-05 08:00Z reset)
-- **Blocked:** nothing
-- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
-- **Git:** master @ 6497235, 4 uncommitted
