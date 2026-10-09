@@ -382,6 +382,29 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p26",
+      "created": "2026-10-09T15:38:55Z",
+      "kind": "tune",
+      "title": "Claude direct sticks to sports and culture",
+      "why": "Claude trails the market badly outside sports: politics 0.255 vs 0.117 (13 markets), weather 0.208 vs 0.072 (19), other 0.138 vs 0.099 (19), crypto 0.134 vs 0.110 (37). It beats the market in sports (0.161 vs 0.177, 146 markets) and probably in culture (0.040 vs 0.089, but only 5 markets). Since its edge rose to 12c it has settled only 2 bets, so this is an experiment. It also sets up a comparison with ch16: a strict sports Claude (12c edge, info gate 0.5) against a loose one (8c edge, info gate 0.2).",
+      "judge_by": "On bets opened after this change, Claude direct's P&L per $100 staked is positive and beats its all-time -$55 per $100. We also compare it with ch16's over the same period to see whether the strict or the loose sports setup earns more per $100.",
+      "min_resolved": 20,
+      "status": "applied",
+      "status_reason": "claude_direct rules v4: skips none \u2192 crypto, economy, other, politics, tech, weather, world",
+      "strategy": "claude_direct",
+      "rules": {
+        "skip_categories": [
+          "crypto",
+          "economy",
+          "other",
+          "politics",
+          "tech",
+          "weather",
+          "world"
+        ]
+      }
     }
   ]
 }

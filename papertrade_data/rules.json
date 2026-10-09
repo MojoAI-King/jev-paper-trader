@@ -47,13 +47,22 @@
       "proposal": null
     },
     "claude_direct": {
-      "version": 3,
-      "since": "2026-10-05T01:39:40Z",
+      "version": 4,
+      "since": "2026-10-09T15:38:55Z",
       "rules": {
         "min_ask": 0.3,
-        "min_edge": 0.12
+        "min_edge": 0.12,
+        "skip_categories": [
+          "crypto",
+          "economy",
+          "other",
+          "politics",
+          "tech",
+          "weather",
+          "world"
+        ]
       },
-      "proposal": "p18"
+      "proposal": "p26"
     },
     "calibrated": {
       "version": 2,
