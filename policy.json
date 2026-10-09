@@ -69,7 +69,8 @@
     "max_win_reviews_per_day": 3,
     "win_margin": 0.25,
     "_win_margin": "A resolved market gets a 'why were we right' review when main won money, or Jev with research beat the market's error by at least this much",
-    "calibration_min_resolved": 30,
+    "calibration_min_resolved": 300,
+    "_calibration_min_resolved": "Was 30 until 2026-10-09; report 13 (docs/research/13-judging-skill.md) found a map fitted on tens of markets is noise",
     "calibration_prior": 5,
     "_calibration_prior": "How strongly the calibration map is pulled toward 'Jev is already calibrated', so a handful of results can't swing it",
     "coach_min_new_reviews": 3,
@@ -81,16 +82,16 @@
     "_retro": "The review runs daily (was weekly until 2026-09-28) once 10 markets have been reviewed, and files at most 4 proposals: rule changes, challengers, retiring a challenger, code ideas for Joey",
     "auto_tune": true,
     "_auto_tune": "Joey, 2026-09-28: a proposed rule change to any strategy but a frozen one applies by itself. With this off it waits for `approve`",
-    "min_days_between_changes": 1,
-    "_min_days_between_changes": "A strategy's rules change at most once every 2 days, so each version has some results before the next",
+    "min_days_between_changes": 7,
+    "_min_days_between_changes": "A strategy's rules change at most once every 7 days (1 from 2026-09-28; 7 since 2026-10-09, docs/REBUILD_PLAN.md phase 1). Report 13 found 18 changes in 11 days, each version judged on a median of 8 settled bets: tuning on noise",
     "frozen_strategies": ["original"],
     "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
     "max_running_challengers": 2,
     "bounds": {"min_edge": [0.0, 0.5], "min_rules_clear": [0.0, 1.0], "min_info_sufficient": [0.0, 1.0], "max_framing_gap": [0.0, 1.0],
-               "kelly_fraction": [0.05, 1.0], "max_stake_pct": [0.005, 1.0], "max_total_exposure_pct": [0.05, 1.0],
+               "kelly_fraction": [0.05, 0.5], "max_stake_pct": [0.005, 0.03], "max_total_exposure_pct": [0.05, 0.5],
                "min_ask": [0.01, 0.99], "max_ask": [0.01, 0.99]},
-    "_bounds": "The rules the loop may set (learn.RULES, plus skip_categories) and their ranges: each rule's whole sensible range (Joey: 'whatever bet size', 'the limit is open'). min_edge stays at 0 or more, so no bet is placed that its own forecast says loses money; sizing keeps a small floor, so a change can't quietly stop a strategy betting (to stop one, raise its edge bar). Fees, slippage, the price screen and research budgets are not rules and can't be changed by the loop"
+    "_bounds": "The rules the loop may set (learn.RULES, plus skip_categories) and their ranges. From 2026-09-28 each rule's whole sensible range (Joey: 'whatever bet size', 'the limit is open'); since 2026-10-09 (docs/REBUILD_PLAN.md phase 1, Joey's blessing to carry out the plan) sizing is capped at kelly 0.5, 3% a bet and 50% open, from report 12 (docs/research/12-bet-sizing.md): above those a -30% drawdown becomes likely even with a real edge. min_edge stays at 0 or more, so no bet is placed that its own forecast says loses money; sizing keeps a small floor, so a change can't quietly stop a strategy betting (to stop one, raise its edge bar). Fees, slippage, the price screen and research budgets are not rules and can't be changed by the loop"
   },
 
   "site": {
@@ -138,6 +139,14 @@
     "polymarket_default_rate": 0.05,
     "_polymarket": "Polymarket takers pay rate x p x (1 - p) per share, the rate set per market (crypto 0.07; sports, economics, culture, weather 0.05; politics, finance, tech, mentions 0.04; geopolitics 0; docs.polymarket.com/trading/fees, read 2026-10-09). Each market's own rate comes from its feeSchedule; one that doesn't publish a rate pays the default. Before 2026-10-09 the trader charged 0 here (BACKLOG B26)",
     "slippage": 0.01
+  },
+
+  "skill": {
+    "_readme": "docs/REBUILD_PLAN.md phase 1 (2026-10-09, after the research in docs/research/). Every strategy but the frozen yardstick sizes its bets by its forecaster's measured edge over the market price, lambda (engine.skill), from finished markets with a real price. While lambda is 0 (every forecaster on 2026-10-09) a strategy places probe bets: probe_stake_pct of equity, at most max_probes_per_day a day. Once lambda is positive on min_markets markets, Kelly on the forecast shrunk toward the market, scaled down as equity nears drawdown_floor of its peak. All open bets in one event share one max_stake_pct budget. Not a rule the daily review may tune",
+    "min_markets": 300,
+    "probe_stake_pct": 0.0025,
+    "max_probes_per_day": 5,
+    "drawdown_floor": 0.7
   },
 
   "max_jev_calls_per_scan": 80

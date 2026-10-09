@@ -42,6 +42,29 @@ class FeeTests(unittest.TestCase):
         self.assertAlmostEqual(fee("polymarket", 0.5), 0.0125)                       # an old saved market, no field
         self.assertAlmostEqual(fee("kalshi", 0.5, {"fee_rate": 0.0}), 0.0175)        # Kalshi ignores it: 0.07 x p x (1-p)
 
+    def test_kalshi_charges_each_series_published_multiplier(self):
+        fee = lambda m: engine.fee_per_contract("kalshi", 0.5, POLICY, m)
+        self.assertAlmostEqual(fee({"fee_multiplier": 0.5}), 0.00875)  # MLB games: half the 0.07 rate
+        self.assertEqual(fee({"fee_multiplier": 0.0}), 0.0)             # a free series
+        self.assertAlmostEqual(fee({"fee_multiplier": None}), 0.0175)  # unknown: the full rate
+        self.assertAlmostEqual(fee({}), 0.0175)                         # saved before 2026-10-09
+        mk._SERIES_FEE.clear()
+        calls = []
+        def get(url, params=None, timeout=20):
+            calls.append(url)
+            if url.endswith("/KXMLBGAME"):
+                return {"series": {"fee_type": "quadratic_with_maker_fees", "fee_multiplier": 0.5}}
+            raise RuntimeError("down")
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            self.assertEqual(mk.kalshi_fee_multiplier("KXMLBGAME"), 0.5)
+            self.assertEqual(mk.kalshi_fee_multiplier("KXMLBGAME"), 0.5)   # cached: one call
+            self.assertIsNone(mk.kalshi_fee_multiplier("KXBROKEN"))      # a failed lookup pays the full rate
+            ms = [{"source": "kalshi", "event": "kalshi:KXMLBGAME-26OCT10NYYBOS"}, {"source": "polymarket", "event": "p:1"}]
+            mk.add_kalshi_fees(ms)                                       # the scan's step, for judged markets
+        self.assertEqual((ms[0]["fee_multiplier"], "fee_multiplier" in ms[1]), (0.5, False))
+        self.assertEqual(len(calls), 2)                                  # still cached: no third call
+        mk._SERIES_FEE.clear()
+
     def test_the_rate_comes_from_the_markets_fee_schedule(self):
         base = {"id": 1, "question": "Q?", "outcomes": '["Yes","No"]', "outcomePrices": '["0.5","0.5"]'}
         on = dict(base, feesEnabled=True, feeType="crypto_fees", feeSchedule={"exponent": 1, "rate": 0.07, "takerOnly": True})
@@ -57,6 +80,94 @@ class FeeTests(unittest.TestCase):
         self.assertTrue(engine.decide(market(fee_rate=0.0), ans(0.47), pol, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(fee_rate=0.07), ans(0.47), pol, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(fee_rate=None), ans(0.47), pol, 100000, 0, 100000)["bet"])  # default 0.05
+
+
+class SkillSizingTests(unittest.TestCase):
+    """docs/REBUILD_PLAN.md phase 1: bets are sized by each forecaster's measured edge over the market (lambda)."""
+
+    def judged(self, n, informative, spread=(0.51, 0.51), source="claude_direct", seed=1):
+        """n resolved markets at mid 0.5; an informative forecaster leans toward the outcome, the other is noise."""
+        rnd, js, res = random.Random(seed), [], {}
+        for i in range(n):
+            y = rnd.random() < 0.5
+            q = (0.7 if y else 0.3) if informative else rnd.choice([0.3, 0.7])
+            j = {"key": f"m{i}", "ts": "1", "question_set": review.QUESTION_SET_VERSION,
+                 "market": {"mid": 0.5, "yes_ask": spread[0], "no_ask": spread[1], "event": f"e{i}"},
+                 "answers_no_news": {"p_yes": {"noul": 0.5}}}
+            if source == "claude_direct":
+                j["claude_direct"] = {"p_yes": q}
+            js.append(j); res[f"m{i}"] = "yes" if y else "no"
+        return js, res
+
+    def test_lambda_is_measured_only_where_it_is_real(self):
+        js, res = self.judged(400, informative=True)
+        sk = engine.skill(js, res)["claude_direct"]
+        self.assertEqual(sk["n"], 400)
+        self.assertGreater(sk["lambda"], 0.8)       # 0.2 of every 0.2 the forecast leans comes true
+        self.assertLessEqual(sk["lambda"], 1.0)
+        noise = engine.skill(*self.judged(400, informative=False))["claude_direct"]
+        self.assertEqual(noise["lambda"], 0.0)       # no edge: raw about 0, shrunk or floored to 0
+        few = engine.skill(*self.judged(299, informative=True))["claude_direct"]
+        self.assertEqual((few["n"], few["lambda"]), (299, 0.0))  # under 300 markets: not measured yet
+        wide = engine.skill(*self.judged(400, informative=True, spread=(0.99, 0.92)))["claude_direct"]
+        self.assertEqual((wide["n"], wide["lambda"]), (0, 0.0))  # fake mids never count
+        self.assertEqual(engine.skill(js, {})["claude_direct"]["n"], 0)  # unresolved never count
+
+    def sized(self, lam=0.0, event_cost=0.0, probes=0, peak=100000.0):
+        return {"lambda": lam, "event_cost": event_cost, "probes_today": probes, "peak": peak}
+
+    def test_no_measured_edge_means_a_small_probe_not_a_kelly_bet(self):
+        d = engine.decide(market(), ans(0.6), POLICY, 100000, 0, 100000, self.sized())
+        self.assertTrue(d["bet"] and d["probe"])
+        self.assertEqual(d["sizing"], "probe")
+        self.assertAlmostEqual(d["total_cost"], 250, delta=1)  # 0.25% of equity, not the 2% Kelly cap
+        self.assertTrue(d["reasons"][-1].startswith("PROBE YES"))
+        capped = engine.decide(market(), ans(0.6), POLICY, 100000, 0, 100000, self.sized(probes=5))
+        self.assertFalse(capped["bet"])
+        self.assertIn("probe limit reached", capped["reasons"][-1])
+        old = engine.decide(market(), ans(0.6), POLICY, 100000, 0, 100000)  # the frozen yardstick's sizing
+        self.assertAlmostEqual(old["total_cost"], 2000, delta=1)
+
+    def test_a_measured_edge_bets_kelly_on_the_forecast_shrunk_toward_the_market(self):
+        d = engine.decide(market(yes_ask=0.40, no_ask=0.62, m=0.39), ans(0.6), POLICY, 100000, 0, 100000,
+                          self.sized(lam=0.5))
+        self.assertEqual((d["sizing"], d["probe"]), ("kelly", False))
+        self.assertAlmostEqual(d["q_shrunk"], 0.495)  # 0.39 + 0.5 x (0.60 - 0.39)
+        self.assertAlmostEqual(d["kelly"], (0.495 - 0.41) / 0.59, places=3)
+        self.assertAlmostEqual(d["total_cost"], min(0.25 * d["kelly"] * 100000, 2000), delta=1)  # quarter-Kelly, capped at 2%
+        self.assertAlmostEqual(d["total_cost"], 2000, delta=1)
+        # clears the 8c edge bar raw, but shrunk by a small lambda (0.39 + 0.05 x 0.21 = 0.40) it no longer beats
+        # the 0.41 cost: a probe, not a Kelly bet
+        lean = engine.decide(market(), ans(0.6), POLICY, 100000, 0, 100000, self.sized(lam=0.05))
+        self.assertEqual((lean["sizing"], lean["probe"]), ("probe", True))
+        # equity 20% below its peak: the cushion (equity - 0.7 x peak) / 0.3 leaves a third of the stake
+        down = engine.decide(market(), ans(0.6), POLICY, 80000, 0, 80000, self.sized(lam=0.5, peak=100000))
+        self.assertAlmostEqual(down["total_cost"], 0.25 * down["kelly"] * (80000 - 70000) / 0.3, delta=1)
+        out = engine.decide(market(), ans(0.6), POLICY, 70000, 0, 70000, self.sized(lam=0.5, peak=100000))
+        self.assertFalse(out["bet"])
+        self.assertIn("drawdown cushion used up", out["reasons"][-1])
+
+    def test_one_stake_budget_per_event_and_a_real_price_required(self):
+        full = engine.decide(market(), ans(0.6), POLICY, 100000, 2000, 100000, self.sized(event_cost=2000))
+        self.assertFalse(full["bet"])
+        self.assertIn("this event already has a full stake", full["reasons"][-1])
+        part = engine.decide(market(), ans(0.6), POLICY, 100000, 1900, 100000, self.sized(event_cost=1900))
+        self.assertAlmostEqual(part["total_cost"], 100, delta=1)  # only what's left of the event's 2%
+        wide = engine.decide(market(yes_ask=0.97, no_ask=0.92, m=0.53), ans(0.99), POLICY, 100000, 0, 100000, self.sized())
+        self.assertFalse(wide["bet"] or wide["cleared_gates"])
+        self.assertIn("no real price", wide["reasons"][-1])
+
+    def test_the_book_supplies_peak_event_cost_and_todays_probes(self):
+        pf = fresh_pf()
+        pf["open"] = [{"key": "polymarket:a", "total_cost": 300, "event": "polymarket:E", "opened": "2000-01-01T01:00:00Z",
+                       "probe": True},
+                      {"key": "polymarket:b", "total_cost": 200, "opened": "1999-12-31T01:00:00Z"}]  # saved before events
+        pf["closed"] = [{"key": "polymarket:c", "total_cost": 100, "probe": True, "opened": "2000-01-01T00:30:00Z"}]
+        pf["cash"] = 100000 - 500
+        m = dict(market(), event="polymarket:E")
+        sz = engine.skill_sizing(pf, m, 0.0, "2000-01-01T05:00:00Z", {"polymarket:b": "polymarket:E"})
+        self.assertEqual((sz["event_cost"], sz["probes_today"], sz["lambda"]), (500, 2, 0.0))
+        self.assertEqual(pf["peak_equity"], 100000)
 
 
 class NormalizeTests(unittest.TestCase):
@@ -816,7 +927,8 @@ class ResearchPipelineTests(DataDirTest):
     def test_calibrated_strategy_waits_then_bets_with_the_learned_map(self):
         def transport(url, body, key, timeout):
             return {"model": "jev-test", "answers": ans(0.80 if "recent_facts" in body["state"] else 0.5)}
-        self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]), transport=transport)
+        pol = dict(POLICY, sources=["polymarket"], learning=dict(POLICY["learning"], calibration_min_resolved=40))
+        self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]), transport=transport, policy=pol)
         j = engine.read_jsonl(engine.JUDGMENTS)[-1]
         self.assertIsNone(j["jev_calibrated"])
         self.assertIn("still learning", j["decisions"]["calibrated"]["reasons"][0])
@@ -824,7 +936,7 @@ class ResearchPipelineTests(DataDirTest):
         for i in range(40):
             engine.append_jsonl(engine.REVIEWS, {"key": f"k{i}", "ts": "1999-12-01T00:00:00Z",
                                                  "probs": {"jev_research": 0.8}, "outcome": "yes" if i % 2 else "no"})
-        self.run_scan([self.lula("M")], FakeResearcher([fact(CLEAN[1])]), transport=transport)
+        self.run_scan([self.lula("M")], FakeResearcher([fact(CLEAN[1])]), transport=transport, policy=pol)
         j = engine.read_jsonl(engine.JUDGMENTS)[-1]
         self.assertLess(j["jev_calibrated"], 0.75)  # pulled from 0.80 toward what actually happened
         self.assertGreater(j["jev_calibrated"], 0.5)  # but the prior keeps 40 results from erasing Jev's view
@@ -847,26 +959,32 @@ class ResearchPipelineTests(DataDirTest):
         book = engine.load_json(engine.PROPOSALS, {})
         book["proposals"].append({"id": "ch5", "kind": "challenger", "status": "running", "title": "t",  # sizing is allowed
                                   "strategy": {"label": "Big", "probability": "jev_research", "gates": "jev_research",
-                                               "rules": {"max_stake_pct": 0.5, "kelly_fraction": 1.0}}})
+                                               "rules": {"max_stake_pct": 0.03, "kelly_fraction": 0.5}}})
         engine.save_json(engine.PROPOSALS, book)
         names = set(engine.strategies(POLICY))
         self.assertTrue({"ch1", "ch5"} <= names)
         self.assertFalse(names & {"ch2", "ch3", "ch4"})
-        self.assertEqual(engine.strategy_policy(POLICY, engine.strategies(POLICY)["ch5"])["sizing"]["max_stake_pct"], 0.5)
+        self.assertEqual(engine.strategy_policy(POLICY, engine.strategies(POLICY)["ch5"])["sizing"]["max_stake_pct"], 0.03)
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
         self.assertIn("ch1", engine.read_jsonl(engine.JUDGMENTS)[0]["decisions"])
         self.assertTrue(engine.portfolio_path("ch1").exists())
 
     def test_each_bet_records_the_rules_version_it_was_placed_under(self):
         now = datetime(1999, 12, 20, tzinfo=timezone.utc)
-        self.assertEqual(coach.tune(POLICY, "main", {"max_stake_pct": 0.04}, now, why="w")[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "main", {"max_stake_pct": 0.03}, now, why="w")[0], "applied")
 
         def transport(url, body, key, timeout):
             return {"model": "jev-test", "answers": ans(0.75)}
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]), transport=transport)
         main, orig = engine.load_portfolio(POLICY, "main")["open"][0], engine.load_portfolio(POLICY, "original")["open"][0]
         self.assertEqual((main["rules_version"], orig["rules_version"]), (2, 1))
-        self.assertAlmostEqual(main["total_cost"], 2 * orig["total_cost"], delta=1.0)  # 4% cap vs the original 2%
+        # no forecaster has a measured edge, so main places a probe (0.25% of equity); the frozen yardstick keeps
+        # the old Kelly sizing, capped at 2%
+        self.assertEqual((main["sizing"], main["probe"], main["lambda"]), ("probe", True, 0.0))
+        self.assertAlmostEqual(main["total_cost"], 250, delta=1.0)
+        self.assertEqual((orig["sizing"], orig["probe"]), ("kelly (old rules)", False))
+        self.assertAlmostEqual(orig["total_cost"], 2000, delta=1.0)
+        self.assertEqual(main["event"], orig["event"])
 
     def test_scan_logs_its_funnel(self):
         self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[1])]))
@@ -1379,7 +1497,7 @@ class RetroTests(DataDirTest):
 class TuningTests(DataDirTest):
     """The daily review may change any strategy's rules by itself (Joey, 2026-09-28), inside checks made in code."""
     NOW = datetime(1999, 12, 27, tzinfo=timezone.utc)
-    TUNE = {"kind": "tune", "strategy": "main", "rules": {"min_edge": 0.05, "max_stake_pct": 0.04}, "title": "Looser main",
+    TUNE = {"kind": "tune", "strategy": "main", "rules": {"min_edge": 0.05, "max_stake_pct": 0.03}, "title": "Looser main",
             "why": "w", "judge_by": "P&L vs original after 30 settled", "min_resolved": 30}
 
     def setUp(self):
@@ -1391,7 +1509,7 @@ class TuningTests(DataDirTest):
         return coach.retro(policy, writer=FakeRetro(proposals), log=lambda *_: None, now=self.NOW + timedelta(days=days))
 
     def test_only_the_rules_the_loop_owns_pass_and_every_bad_spelling_is_refused(self):
-        good = [{"min_edge": 0}, {"min_edge": 0.5}, {"kelly_fraction": 1}, {"max_stake_pct": 1.0, "max_total_exposure_pct": 1.0},
+        good = [{"min_edge": 0}, {"min_edge": 0.5}, {"kelly_fraction": 0.5}, {"max_stake_pct": 0.03, "max_total_exposure_pct": 0.5},
                 {"skip_categories": ["crypto", "weather"]}, {"skip_categories": []}, {"min_ask": 0.1, "max_ask": 0.9},
                 {"min_edge": None}, {"min_rules_clear": 0.0, "min_info_sufficient": 1.0, "max_framing_gap": 1.0}]
         for r in good:  # the control: each check below fails for its own reason, not because nothing passes
@@ -1402,6 +1520,7 @@ class TuningTests(DataDirTest):
                {"min_edge": True}, {"min_edge": "0.1"}, {"min_edge": float("nan")}, {"min_edge": float("inf")},
                {"min_edge": -0.01}, {"min_edge": 0.51}, {"kelly_fraction": 1.5}, {"max_stake_pct": -0.1},
                {"max_total_exposure_pct": 1.01}, {"min_ask": 0}, {"max_ask": 1.0}, {"min_ask": 0.6, "max_ask": 0.4},
+               {"kelly_fraction": 0.51}, {"max_stake_pct": 0.031}, {"max_total_exposure_pct": 0.51},  # the 2026-10-09 caps
                {"skip_categories": "crypto"}, {"skip_categories": ["astrology"]}, {"skip_categories": [1]},
                {"min_edge": [0.1]}, {"min_edge": {"v": 0.1}}]
         for r in bad:
@@ -1414,28 +1533,28 @@ class TuningTests(DataDirTest):
         self.assertEqual((r["ran"], r["tuned"]), (True, ["main"]))
         p = coach.load_proposals()["proposals"][-1]
         self.assertEqual((p["kind"], p["status"]), ("tune", "applied"))
-        self.assertIn("main rules v2: edge bar 8% → 5%; max bet 2% → 4%", p["status_reason"])
+        self.assertIn("main rules v2: edge bar 8% → 5%; max bet 2% → 3%", p["status_reason"])
         s = engine.strategies(POLICY)
         self.assertEqual((s["main"]["rules_version"], s["main"]["tuned"]), (2, self.TUNE["rules"]))
         main, orig = engine.strategy_policy(POLICY, s["main"]), engine.strategy_policy(POLICY, s["original"])
-        self.assertEqual((main["gates"]["min_edge"], main["sizing"]["max_stake_pct"]), (0.05, 0.04))
+        self.assertEqual((main["gates"]["min_edge"], main["sizing"]["max_stake_pct"]), (0.05, 0.03))
         self.assertIs(orig, POLICY)  # the yardstick is untouched
         self.assertEqual(main["fees"], POLICY["fees"])
         # an edge of 0.06: tuned main bets, the original rules don't
         self.assertTrue(engine.decide(market(), ans(0.47), main, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(), ans(0.47), orig, 100000, 0, 100000)["bet"])
-        # a big edge: main's bet is capped at 4% of equity instead of 2%
+        # a big edge: main's bet is capped at 3% of equity instead of 2%
         big, small = (engine.decide(market(), ans(0.6), pol, 100000, 0, 100000) for pol in (main, orig))
-        self.assertEqual((round(big["total_cost"], -1), round(small["total_cost"], -1)), (4000, 2000))
+        self.assertEqual((round(big["total_cost"], -1), round(small["total_cost"], -1)), (3000, 2000))
         c = engine.read_jsonl(engine.TUNED_LOG)[-1]
         self.assertEqual((c["strategy"], c["version"], c["by"]), ("main", 2, "the daily review"))
-        self.assertEqual(c["changed"], {"min_edge": [0.08, 0.05], "max_stake_pct": [0.02, 0.04]})
+        self.assertEqual(c["changed"], {"min_edge": [0.08, 0.05], "max_stake_pct": [0.02, 0.03]})
         self.assertEqual(c["judge_by"], self.TUNE["judge_by"])
         # the next review sees main's new rules, when it may next change, and its record since the change
         nums = coach.week_numbers(POLICY, self.NOW + timedelta(hours=12))
         m = next(x for x in nums["strategies"] if x["name"] == "main")
         self.assertEqual((m["rules_version"], m["rules"]["min_edge"], m["starting_rules"]["min_edge"]), (2, 0.05, 0.08))
-        self.assertEqual(m["can_change_from"], "1999-12-28T00:00:00Z")  # min_days_between_changes: 1
+        self.assertEqual(m["can_change_from"], "2000-01-03T00:00:00Z")  # min_days_between_changes: 7
         self.assertEqual(m["since_change"]["bets"], 0)
         self.assertTrue(next(x for x in nums["strategies"] if x["name"] == "original")["frozen"])
         self.assertEqual(nums["recent_rule_changes"][-1]["strategy"], "main")
@@ -1450,13 +1569,14 @@ class TuningTests(DataDirTest):
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.06}, now)[0], "applied")  # control
         st, why = coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(hours=12))
         self.assertEqual(st, "skipped")
-        self.assertIn("next change is allowed from 1999-12-28", why)
-        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(days=2))[0], "applied")
+        self.assertIn("next change is allowed from 2000-01-03", why)
+        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(days=6))[0], "skipped")
+        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.07}, now + timedelta(days=8))[0], "applied")
         self.assertEqual(engine.strategies(POLICY)["main"]["rules_version"], 3)
         self.assertEqual(engine.strategies(POLICY)["main"]["tuned"], {"min_edge": 0.07})
         # null puts a rule back to the strategy's own starting value: Bold's info bar returns to 0.2, not 0.5
         self.assertEqual(coach.tune(POLICY, "bold", {"min_info_sufficient": 0.4}, now)[0], "applied")
-        self.assertEqual(coach.tune(POLICY, "bold", {"min_info_sufficient": None}, now + timedelta(days=2))[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "bold", {"min_info_sufficient": None}, now + timedelta(days=8))[0], "applied")
         bold = engine.strategies(POLICY)["bold"]
         self.assertEqual(engine.strategy_policy(POLICY, bold)["gates"]["min_info_sufficient"], 0.2)
         self.assertEqual(bold["rules_version"], 3)
@@ -1505,14 +1625,14 @@ class TuningTests(DataDirTest):
                          {"Add a sportsbook source": "approved", "Second idea": "rejected"})  # the page shows the decision
 
     def test_the_page_shows_each_change_and_main_s_tuned_limits(self):
-        self.retro([dict(self.TUNE, rules={"max_total_exposure_pct": 0.8, "max_stake_pct": 0.05})])
+        self.retro([dict(self.TUNE, rules={"max_total_exposure_pct": 0.4, "max_stake_pct": 0.03})])
         s = dashboard.summarize(POLICY, books(fresh_pf()), [], {}, "2000-01-01T00:00:00Z")
-        self.assertEqual((s["exposure_cap_pct"], s["max_stake_pct"]), (0.8, 0.05))
+        self.assertEqual((s["exposure_cap_pct"], s["max_stake_pct"]), (0.4, 0.03))
         row = next(r for r in s["strategies"] if r["name"] == "main")
         self.assertEqual((row["rules_version"], row["tuned_at"]), (2, "1999-12-27T00:00:00Z"))
         self.assertTrue(next(r for r in s["strategies"] if r["name"] == "original")["frozen"])
         t = next(e for e in s["feed"] if e["type"] == "tune")
-        self.assertEqual((t["strategy"], t["version"], t["text"]), ("main", 2, "max bet 2% → 5%; open-bet limit 50% → 80%"))
+        self.assertEqual((t["strategy"], t["version"], t["text"]), ("main", 2, "max bet 2% → 3%; open-bet limit 50% → 40%"))
         self.assertEqual(s["learning"]["rule_changes"][0]["strategy"], "main")
 
     def test_a_retired_challenger_stops_betting_but_its_open_bets_still_settle(self):
@@ -1565,18 +1685,18 @@ class TuningTests(DataDirTest):
         self.assertEqual(coach.tune(POLICY, "main", {"skip_categories": []}, self.NOW), ("skipped", "changes nothing"))
         self.assertEqual(coach.tune(POLICY, "jev_alone", {"skip_categories": ["sports", "crypto"]}, self.NOW)[0], "applied")
         self.assertEqual(engine.strategies(POLICY)["jev_alone"]["tuned"], {"skip_categories": ["crypto", "sports"]})
-        later = self.NOW + timedelta(days=3)
+        later = self.NOW + timedelta(days=8)
         self.assertEqual(coach.tune(POLICY, "jev_alone", {"skip_categories": ["crypto", "sports", "crypto"]}, later),
                          ("skipped", "changes nothing"))
 
     def test_undoing_a_change_by_hand_never_reuses_a_version_or_skips_the_wait(self):
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.05}, self.NOW)[0], "applied")
-        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.06}, self.NOW + timedelta(days=3))[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.06}, self.NOW + timedelta(days=8))[0], "applied")
         engine.save_json(engine.TUNED, {"strategies": {}})  # the documented undo: main's entry removed
         self.assertEqual(engine.strategies(POLICY)["main"]["rules_version"], 1)
-        st, why = coach.tune(POLICY, "main", {"min_edge": 0.03}, self.NOW + timedelta(days=3, hours=12))
+        st, why = coach.tune(POLICY, "main", {"min_edge": 0.03}, self.NOW + timedelta(days=8, hours=12))
         self.assertEqual(st, "skipped")  # the wait runs from the last logged change
-        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.03}, self.NOW + timedelta(days=5))[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.03}, self.NOW + timedelta(days=16))[0], "applied")
         self.assertEqual([c["version"] for c in coach.history("main")], [2, 3, 4])
 
     def test_the_review_judges_current_rules_on_their_own_bets_and_main_against_the_yardstick(self):
@@ -1637,7 +1757,7 @@ class TuningTests(DataDirTest):
         engine.save_json(engine.PROPOSALS, {"proposals": [{"id": "ch1", "kind": "challenger", "status": "running",
             "strategy": {"label": "Dear", "probability": "jev_research", "gates": "jev_research", "rules": {"min_ask": 0.6}}}]})
         self.assertEqual(coach.tune(POLICY, "ch1", {"max_ask": 0.8}, self.NOW)[0], "applied")  # control
-        self.assertEqual(coach.tune(POLICY, "ch1", {"max_ask": 0.4}, self.NOW + timedelta(days=2)),
+        self.assertEqual(coach.tune(POLICY, "ch1", {"max_ask": 0.4}, self.NOW + timedelta(days=8)),
                          ("invalid", "min_ask 0.6 is above max_ask 0.4"))
         engine.save_json(engine.TUNED, {"strategies": {"ch1": {"version": 3, "rules": {"max_ask": 0.4}}}})
         self.assertEqual(engine.strategies(POLICY)["ch1"]["rules_version"], 1)  # a hand edit that contradicts is ignored
@@ -1750,7 +1870,7 @@ class TuningTests(DataDirTest):
         self.assertFalse(engine.decide(game, ans(0.6), pol(), 100000, 0, 100000)["bet"])
         self.assertEqual(coach.tune(POLICY, "ch1", {"skip_categories": []}, self.NOW)[0], "applied")
         self.assertTrue(engine.decide(game, ans(0.6), pol(), 100000, 0, 100000)["bet"])
-        self.assertEqual(coach.tune(POLICY, "ch1", {"skip_categories": None}, self.NOW + timedelta(days=2))[0], "applied")
+        self.assertEqual(coach.tune(POLICY, "ch1", {"skip_categories": None}, self.NOW + timedelta(days=8))[0], "applied")
         self.assertFalse(engine.decide(game, ans(0.6), pol(), 100000, 0, 100000)["bet"])  # null: the starting list again
 
     def test_the_last_scan_counts_what_that_scan_decided_not_today_s_bars(self):
@@ -1780,7 +1900,7 @@ class TuningTests(DataDirTest):
         coach.Retro(POLICY["research"], claude=c).write({}, coach.limits(POLICY))
         for k in ("{bounds}", "{categories}", "{frozen}", "{max_proposals}", "{max_challengers}"):
             self.assertNotIn(k, c.system)
-        for word in ('"max_total_exposure_pct": [0.05, 1.0]', "original", '"crypto"', "at most 4 changes", "At most 2 run",
+        for word in ('"max_total_exposure_pct": [0.05, 0.5]', "original", '"crypto"', "at most 4 changes", "At most 2 run",
                      '"yardstick"'):
             self.assertIn(word, c.system)
 

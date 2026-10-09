@@ -86,4 +86,14 @@ forward test written down before its results come in. It bets more than probes o
 
 ## Done
 
-Filled in as work lands, with commits and evidence.
+- **2026-10-09, fixes from the first reports:** real Polymarket fees per market (B26) and scores only where the
+  price is real (B25). Commit c5f54c2, verified live at the 22:09Z cycle.
+- **2026-10-09, phase 1** (decision 2026-10-09-size-bets-by-measured-skill-one-stake-pe-d725):
+  - sizing by measured skill, with probe bets while λ is 0;
+  - one stake budget per event, and a real price required;
+  - Kalshi's per-series fee multiplier;
+  - the review changes a rule at most every 7 days, with Kelly capped at 0.5, 3% a bet and 50% open, and the
+    calibration minimum at 300;
+  - probes marked in the page's feed.
+
+  131 offline tests. Live check: see the handoff.

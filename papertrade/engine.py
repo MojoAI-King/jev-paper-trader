@@ -16,6 +16,7 @@ from __future__ import annotations
 import gzip
 import json
 import math
+import random
 import time
 from datetime import datetime, timedelta, timezone
 from itertools import zip_longest
@@ -206,12 +207,14 @@ def equity_at_cost(pf: dict) -> float:
 # ---------------- decision logic (pure) ----------------
 
 def fee_per_contract(source: str, price: float, policy: dict, market: dict | None = None) -> float:
-    """The taker fee per contract at `price`. Kalshi: 0.07 x p x (1 - p). Polymarket: the market's own
+    """The taker fee per contract at `price`. Kalshi: 0.07 x the series' fee multiplier x p x (1 - p) (a
+    market saved without one pays the full rate). Polymarket: the market's own
     published rate x p x (1 - p) (`fee_rate`, read from its feeSchedule); a market that doesn't publish one,
     such as one saved before 2026-10-09, pays the usual rate (`fees.polymarket_default_rate`)."""
     f = policy["fees"]
     if source == "kalshi":
-        return f["kalshi_taker_coef"] * price * (1 - price)
+        mult = (market or {}).get("fee_multiplier")  # the series' published multiplier (MLB games 0.5, a few 0)
+        return f["kalshi_taker_coef"] * (1.0 if mult is None else mult) * price * (1 - price)
     rate = (market or {}).get("fee_rate")
     if rate is None:
         rate = f["polymarket_default_rate"]
@@ -219,7 +222,11 @@ def fee_per_contract(source: str, price: float, policy: dict, market: dict | Non
 
 
 def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: float,
-           cash: float) -> dict:
+           cash: float, sizing: dict | None = None) -> dict:
+    """Gates, then the stake. `sizing` (from skill_sizing) sizes by the forecaster's measured skill: Kelly on a
+    forecast shrunk toward the market by its λ, or a small probe stake while λ is 0, with one stake budget per
+    event (docs/REBUILD_PLAN.md phase 1). None keeps the sizing used before 2026-10-09, which the frozen
+    yardstick `original` still bets with."""
     g, s = policy["gates"], policy["sizing"]
     p = float(answers["p_yes"]["noul"])
     rules_clear = float(answers["rules_clear"]["noul"])
@@ -256,9 +263,13 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
         out["framing_gap"] = round(gap, 4)
         if gap > g["max_framing_gap"]:
             reasons.append(f"YES/NO answers disagree (gap {gap:.2f} > {g['max_framing_gap']})")
+    if sizing is not None and not real_price(market):
+        reasons.append(f"no real price (spread {market['yes_ask'] + market['no_ask'] - 1:.2f} > {PAIRED_MAX_SPREAD})")
     if reasons:
         return out
     out["cleared_gates"] = True
+    if sizing is not None:
+        return _size_by_skill(out, market, policy, equity, open_cost, cash, sizing)
 
     c = best["cost"]
     kelly = (best["q"] - c) / (1 - c) if c < 1 else 0.0
@@ -274,6 +285,55 @@ def decide(market: dict, answers: dict, policy: dict, equity: float, open_cost: 
     reasons.append(f"BET {best['side'].upper()} x{contracts} @ {c:.3f}: p {best['q']:.2f} "
                    f"vs cost {c:.3f}, edge {best['edge']:+.3f}")
     return out
+
+
+def _size_by_skill(out: dict, market: dict, policy: dict, equity: float, open_cost: float, cash: float,
+                   sizing: dict) -> dict:
+    """Report 12 (docs/research/12-bet-sizing.md). The forecast is shrunk toward the market's mid by the
+    forecaster's measured λ: q_s = m + λ(q − m). Kelly on q_s, scaled down as equity nears 70% of its peak.
+    While λ is 0 (no measured edge, which is every forecaster on 2026-10-09) or Kelly on q_s is not positive, a
+    probe stake instead: small, at most `skill.max_probes_per_day` a day, so the page keeps trading and real
+    costs keep being measured. All open bets in one event share one `max_stake_pct` budget."""
+    s, k, reasons = policy["sizing"], policy["skill"], out["reasons"]
+    c, q = out["cost"], out["q"]
+    m = market["mid"] if out["side"] == "yes" else 1 - market["mid"]
+    lam = sizing["lambda"]
+    q_s = m + lam * (q - m)
+    kelly = (q_s - c) / (1 - c) if c < 1 else 0.0
+    out.update(**{"lambda": lam, "q_shrunk": round(q_s, 4)})
+    group_room = max(0.0, s["max_stake_pct"] * equity - sizing["event_cost"])
+    room = max(0.0, s["max_total_exposure_pct"] * equity - open_cost)
+    if lam > 0 and kelly > 0:
+        floor = k["drawdown_floor"]
+        cushion = max(0.0, equity - floor * sizing["peak"]) / (1 - floor)
+        stake, mode = min(s["kelly_fraction"] * kelly * cushion, s["max_stake_pct"] * equity, group_room, room, cash), "kelly"
+    else:
+        if sizing["probes_today"] >= k["max_probes_per_day"]:
+            reasons.append(f"probe limit reached ({k['max_probes_per_day']} today; no measured edge yet)")
+            return out
+        stake, mode = min(k["probe_stake_pct"] * equity, group_room, room, cash), "probe"
+    contracts = math.floor(stake / c) if c > 0 else 0
+    if contracts < 1:
+        reasons.append("no room: " + ("this event already has a full stake" if group_room < c else
+                                      "open-bet limit reached" if room < c else "out of cash" if cash < c
+                                      else "drawdown cushion used up" if mode == "kelly" else "stake under one contract"))
+        return out
+    out.update(bet=True, contracts=contracts, total_cost=round(contracts * c, 2), kelly=round(kelly, 4),
+               sizing=mode, probe=mode == "probe")
+    reasons.append(f"{'PROBE' if mode == 'probe' else 'BET'} {out['side'].upper()} x{contracts} @ {c:.3f}: p {q:.2f} "
+                   f"(shrunk {q_s:.2f}, lambda {lam:.2f}) vs cost {c:.3f}, edge {out['edge']:+.3f}")
+    return out
+
+
+def skill_sizing(pf: dict, m: dict, lam: float, stamp: str, event_of: dict) -> dict:
+    """What `_size_by_skill` needs from a strategy's book: its peak equity (kept on the book), the cost already
+    open in this market's event, and how many probes it placed today."""
+    eq = equity_at_cost(pf)
+    pf["peak_equity"] = round(max(pf.get("peak_equity", pf["starting_bankroll"]), eq), 2)
+    ev = m.get("event")
+    return {"lambda": lam, "peak": pf["peak_equity"],
+            "event_cost": sum(x["total_cost"] for x in pf["open"] if ev and (x.get("event") or event_of.get(x["key"])) == ev),
+            "probes_today": sum(1 for x in pf["open"] + pf["closed"] if x.get("probe") and x["opened"][:10] == stamp[:10])}
 
 
 def strategy_answers(strategy: dict, signals: dict) -> dict | None:
@@ -396,9 +456,11 @@ def _bet(name: str, pf: dict, m: dict, d: dict, stamp: str, log, rules_version: 
         "total_cost": d["total_cost"], "p_side": round(d["q"], 4),
         "market_ask": d["ask"], "edge": d["edge"], "opened": stamp,
         "question_set": QUESTION_SET_VERSION, "rules_version": rules_version,
+        "event": m.get("event"), "sizing": d.get("sizing") or "kelly (old rules)",
+        "probe": bool(d.get("probe")), "lambda": d.get("lambda"),
     })
     save_portfolio(name, pf)  # saved per bet, so an interrupted run can't lose one
-    log(f"+ [{name}] {d['side'].upper():3} ${d['total_cost']:>8,.2f}  edge {d['edge']:+.2f}  "
+    log(f"+ [{name}] {'probe ' if d.get('probe') else ''}{d['side'].upper():3} ${d['total_cost']:>8,.2f}  edge {d['edge']:+.2f}  "
         f"[{m['source']}] {m['question'][:60]}")
 
 
@@ -428,6 +490,14 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     cl = {"calls": 0, "limited": False, "rate": None, "api_equivalent_usd": 0.0, "note": None}
     stats = {"funnel": funnel, "claude": cl, "errors": 0, "facts_kept": 0, "facts_dropped": 0, "deferred": 0,
              "problems": []}
+    # each forecaster's measured skill sizes the bets (docs/REBUILD_PLAN.md phase 1); the frozen yardstick keeps
+    # the old sizing
+    judged_before = read_jsonl(JUDGMENTS)
+    skills = skill(judged_before, load_json(RESOLUTIONS, {}), policy["skill"]["min_markets"])
+    event_of = {j["key"]: j["event"] for j in judged_before if j.get("event")}
+    del judged_before
+    stats["skill"] = skills
+    frozen = set(policy["learning"].get("frozen_strategies") or ())
 
     def warn(msg: str) -> None:  # printed, and kept with the scan so the health check and the page can show it
         stats["problems"].append(msg[2:302])
@@ -460,6 +530,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     funnel["passed_filters"] = len(candidates)
     todo = candidates[: policy["max_jev_calls_per_scan"] // 2]  # up to two Jev calls per market
     stats["deferred"] = len(candidates) - len(todo)
+    mk.add_kalshi_fees(todo)  # each series' published fee multiplier, for the markets about to be judged
 
     # 3. Jev without research, for every market: this is also the "Jev alone" strategy
     plain = {}
@@ -617,7 +688,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                     decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
                     continue
                 open_cost = sum(x["total_cost"] for x in pf["open"])
-                d = decide(m, answers, spolicy[name], equity_at_cost(pf), open_cost, pf["cash"])
+                sz = None if name in frozen else skill_sizing(
+                    pf, m, skills.get(strat["probability"], {}).get("lambda", 0.0), stamp, event_of)
+                d = decide(m, answers, spolicy[name], equity_at_cost(pf), open_cost, pf["cash"], sz)
                 decisions[name] = d
                 funnel["cleared_gates"][name] += int(d["cleared_gates"])
                 if d["bet"]:
@@ -819,6 +892,47 @@ def paired(judgments: list[dict], resolved: dict) -> dict:
                 "brier": brier([(_prob(j, s), 1.0 if resolved[k] == "yes" else 0.0) for k, j in looks.items()])}
                for s in PAIRED]
     return {"n": len(looks), "left_out": len(wide - looks.keys()), "sources": sources}
+
+
+SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated")
+
+
+def skill(judgments: list[dict], resolved: dict, min_markets: int = 300, boot: int = 200) -> dict:
+    """Each forecaster's measured edge over the market price, λ (report 12, docs/REBUILD_PLAN.md phase 1).
+
+    For each source, on resolved markets at its first look that carries the source's forecast and a real price
+    (current question set): λ̂ = Σ(y − m)(q − m) / Σ(q − m)², the share of the forecast's distance from the
+    mid that came true. It is shrunk for noise, λ = λ̂·λ̂² / (λ̂² + se²) capped at 1, with se from a bootstrap
+    that resamples whole events (markets in one event resolve together). λ is 0 below `min_markets` or when
+    λ̂ ≤ 0. On 2026-10-09 every source measured about 0 (docs/research/CHECKS.md)."""
+    first: dict[str, dict] = {s: {} for s in SKILL_SOURCES}
+    for j in judgments:
+        k = j.get("key")
+        if j.get("question_set") != QUESTION_SET_VERSION or k not in resolved or resolved[k] not in ("yes", "no"):
+            continue
+        m = j.get("market") or {}
+        if m.get("mid") is None or not real_price(m):
+            continue
+        for s in SKILL_SOURCES:
+            if k not in first[s] and (q := _prob(j, s)) is not None:
+                first[s][k] = (1.0 if resolved[k] == "yes" else 0.0, float(m["mid"]), q, m.get("event") or k)
+    out = {}
+    for s in SKILL_SOURCES:
+        rows = list(first[s].values())
+        lam_of = lambda rs: (sum((y - m) * (q - m) for y, m, q, _ in rs) / den
+                             if (den := sum((q - m) ** 2 for _, m, q, _ in rs)) > 0 else 0.0)
+        raw, se = (lam_of(rows) if rows else 0.0), 0.0
+        if len(rows) >= min_markets and raw > 0:
+            groups: dict = {}
+            for r in rows:
+                groups.setdefault(r[3], []).append(r)
+            keys, rnd = list(groups), random.Random(7)
+            draws = [lam_of([r for g in (rnd.choice(keys) for _ in keys) for r in groups[g]]) for _ in range(boot)]
+            mean = sum(draws) / len(draws)
+            se = (sum((d - mean) ** 2 for d in draws) / (len(draws) - 1)) ** 0.5
+        lam = min(1.0, raw * raw * raw / (raw * raw + se * se)) if len(rows) >= min_markets and raw > 0 else 0.0
+        out[s] = {"lambda": round(lam, 4), "raw": round(raw, 4), "se": round(se, 4), "n": len(rows)}
+    return out
 
 
 def report(policy: dict) -> str:

@@ -281,7 +281,8 @@ def feed(books: dict, judgments: list[dict], scans: list[dict], research: list[d
     for name, b in books.items():
         for p in b["open"] + b["closed"]:
             ev.append({"ts": p["opened"], "type": "bet", "strategy": name, "side": p["side"], "price": p["cost_per"],
-                       "amount": p["total_cost"], "p": p["p_side"], "q": p["question"], "url": p["url"], "o": 3})
+                       "amount": p["total_cost"], "p": p["p_side"], "q": p["question"], "url": p["url"], "o": 3,
+                       "probe": bool(p.get("probe"))})
             if p.get("settled"):
                 ev.append({"ts": p["settled"], "type": "win" if p["pnl"] > 0 else "loss", "strategy": name,
                            "amount": p["pnl"], "q": p["question"], "url": p["url"], "o": 4})

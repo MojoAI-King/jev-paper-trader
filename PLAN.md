@@ -90,7 +90,10 @@ Full design: `docs/LEARNING.md`.
   the daily review tune betting rules, so every bet records its rules version and `original` bets on
   main's starting rules unchanged. Tuning changes which bets are placed, never the forecasts, so the
   Brier criteria below are unaffected; the return criteria apply to main as tuned, reported beside
-  `original`.
+  `original`. On 2026-10-09 the research in `docs/research/` answered the plan's question on 1,133 finished
+  markets: on markets with a real price, no forecaster beats the market or adds information to it. Sizing then
+  changed for every strategy but `original` (`docs/REBUILD_PLAN.md` phase 1): probe bets while a forecaster's
+  measured edge is 0. Return results before and after 2026-10-09 are reported separately.
 - Every input is logged: exact facts given to Jev, their sources, what each call cost.
 - Fills are priced at the ask plus 1¢.
 

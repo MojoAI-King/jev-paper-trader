@@ -464,7 +464,7 @@ function feedLine(e, col, label) {
   const q = t => link(e.url, String(t || "").length > 70 ? String(t).slice(0, 68) + "…" : String(t || ""), "q");
   let k = e.type.toUpperCase();
   switch (e.type) {
-    case "bet": x.append(h("b", { style: `color:${col(e.strategy)}`, text: label(e.strategy).toUpperCase() }), document.createTextNode(` ${e.side.toUpperCase()} @ ${cents(e.price)} · ${usd0.format(e.amount)} `), q(e.q)); break;
+    case "bet": x.append(h("b", { style: `color:${col(e.strategy)}`, text: label(e.strategy).toUpperCase() }), document.createTextNode(` ${e.probe ? "probe " : ""}${e.side.toUpperCase()} @ ${cents(e.price)} · ${usd0.format(e.amount)} `), q(e.q)); if (e.probe) x.title = "A probe: a small bet (0.25% of the bankroll) while this forecaster has no measured edge over the market price"; break;
     case "win": x.append(h("b", { class: "up", text: signed(e.amount) }), document.createTextNode(` ${label(e.strategy)} · `), q(e.q)); break;
     case "loss": x.append(h("b", { class: "down", text: signed(e.amount) }), document.createTextNode(` ${label(e.strategy)} · `), q(e.q)); break;
     case "scan": x.append(document.createTextNode(`${e.fetched} markets → ${e.judged} judged → ${e.researched} researched → `), h("b", { text: `${e.bets} bet${e.bets === 1 ? "" : "s"}` })); break;

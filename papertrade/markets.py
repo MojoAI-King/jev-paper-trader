@@ -215,6 +215,23 @@ def fix_url(url: str | None) -> str | None:
     return kalshi_url(old.group(1)) if old else url
 
 
+_SERIES_FEE: dict[str, float | None] = {}
+
+
+def kalshi_fee_multiplier(series: str) -> float | None:
+    """Kalshi's published fee multiplier for one series (`GET /series/{ticker}`, `fee_multiplier`): most
+    series 1, MLB games 0.5, some long-dated series 0 (docs/research/10-fees-and-liquidity.md, checked
+    2026-10-09). Cached for the run. None when the lookup fails, so the full rate applies. Per-event fee
+    overrides (`/events/fee_changes`) are not applied."""
+    if series not in _SERIES_FEE:
+        try:
+            v = _f((_get(f"{KALSHI}/series/{series}").get("series") or {}).get("fee_multiplier"))
+        except Exception:
+            v = None
+        _SERIES_FEE[series] = v if v is not None and v >= 0 else None
+    return _SERIES_FEE[series]
+
+
 def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> list[dict]:
     """The `limit` highest-volume markets `keep` accepts, from the whole window.
 
@@ -261,6 +278,18 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
         raise RuntimeError(error)
     out.sort(key=lambda m: m["volume"], reverse=True)
     return out[:limit]
+
+
+def add_kalshi_fees(ms: list[dict]) -> None:
+    """Sets `fee_multiplier` on each Kalshi market from its series (KXMLBGAME-26OCT10NYYBOS -> KXMLBGAME).
+    Called by the scan for the markets it is about to judge only, so a run looks up a handful of series."""
+    for m in ms:
+        if m.get("source") != "kalshi":
+            continue
+        series = str(m.get("event") or "").split(":", 1)[-1].split("-")[0]
+        if series and series not in _SERIES_FEE:
+            _sleep(0.2)  # small /series reads, paced politely
+        m["fee_multiplier"] = kalshi_fee_multiplier(series) if series else None
 
 
 def check_kalshi(tickers: list[str]) -> dict:

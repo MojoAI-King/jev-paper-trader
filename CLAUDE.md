@@ -23,7 +23,10 @@
 - **The learning loop** (`docs/LEARNING.md`, `papertrade/learn.py`, `papertrade/coach.py`) improves the
   research playbook and the calibration map by itself, and (Joey, 2026-09-28) the daily review may change
   **any strategy's betting rules by itself**, main included: gates, bet size, open-bet limit, market
-  filters, within `learning.bounds` (`learn.rules_problem`, checked in code and again on every load). It
+  filters, within `learning.bounds` (`learn.rules_problem`, checked in code and again on every load). Since
+  2026-10-09 (`docs/REBUILD_PLAN.md` phase 1) the bounds cap sizing (Kelly 0.5, 3% a bet, 50% open), a rule
+  changes at most every 7 days, and every strategy but `original` sizes bets by its forecaster's measured skill
+  (`engine.skill`; small probe bets while it is 0, one stake budget per event). It
   starts and retires challengers. It can never change code, fees, the price screen, research budgets,
   market data, settlement, or `original` (the frozen yardstick; `test_main_starts_from_its_pre_registered_gates_and_only_original_stays_on_them`).
   **Code changes need Joey:** the loop files them as ideas (kind `code`) and he approves or rejects each;

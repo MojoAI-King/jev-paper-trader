@@ -4,6 +4,11 @@ Kind: Living. Every strategy that trades a fake bankroll, what it tests, and how
 Written when the strategy starts, before its results come in. A test
 (`ExperimentsRegistryTests`) fails if a strategy in `policy.json` has no row here.
 
+**2026-10-09, sizing changed for every strategy but `original`** (`docs/REBUILD_PLAN.md` phase 1). Each now
+sizes by its forecaster's measured edge over the market price: probe bets of 0.25% of equity (at most 5 a
+day) while that edge measures 0, which on 2026-10-09 is every forecaster, and one stake budget per event.
+Results from this date are under the new sizing; compare them with `original`, which keeps the old sizing.
+
 | Strategy | Started | What it changes vs main | The question it answers | Judged by |
 | --- | --- | --- | --- | --- |
 | `main` | 2026-09-27 | (the headline: Jev + Claude research; pre-registered gates until 2026-09-28, then tuned by the daily review) | Can Jev with research grow $100k by more than luck? | PLAN.md's pre-registered criteria for the forecasts; for the tuning, main vs `original` |

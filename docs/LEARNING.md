@@ -99,8 +99,10 @@ be), `max_total_exposure_pct` (the open-bet limit), `min_ask`/`max_ask` (the pri
 `skip_categories`. Checked in code, never trusted to the prompt (`coach.tune`, `learn.rules_problem`):
 the strategy exists and isn't frozen; every rule is one of those, a real number (not text, not true/false,
 not NaN, not too large) inside `learning.bounds`, where the sizing rules keep a small floor so a change
-can't quietly stop a strategy betting; a challenger can't take another strategy's name; and the
-strategy's rules didn't change in the last `learning.min_days_between_changes` (2) days (counted from
+can't quietly stop a strategy betting, and (since 2026-10-09) a ceiling: Kelly fraction 0.5, 3% a bet, 50%
+open; a challenger can't take another strategy's name; and the
+strategy's rules didn't change in the last `learning.min_days_between_changes` (7 days since 2026-10-09; it
+was 1) (counted from
 `rules_history.jsonl`, so a hand undo doesn't reset it), so each version gets some results. Version
 numbers never repeat (the next one follows the highest in the history), and a change that bets the same
 way (the same categories in another order) is not a new version. `null` puts a rule back
@@ -108,6 +110,15 @@ to that strategy's starting value. The change lands in `papertrade_data/rules.js
 only what differs from the start) and `rules_history.jsonl`, and `engine.strategies` re-checks the file
 on every load, so a hand edit past the bounds or to `original` is ignored, not traded on. With
 `auto_tune` off, a change waits for `python3 -m papertrade approve <id>`.
+
+**Sizing by measured skill (since 2026-10-09, `docs/REBUILD_PLAN.md` phase 1; not a loop rule).** Every
+strategy but the frozen yardstick sizes its bets by its forecaster's measured edge over the market price,
+`engine.skill`: λ, the share of a forecast's distance from the mid that came true, on finished markets with a
+real price, shrunk for noise and 0 below 300 markets. While λ is 0 (every forecaster on 2026-10-09) a strategy
+places probe bets (`skill.probe_stake_pct`, 0.25%; at most `skill.max_probes_per_day`, 5). With λ positive, it
+bets Kelly on the forecast shrunk toward the price, scaled down as equity nears 70% of its peak. All open bets in
+one event share one `max_stake_pct` budget. The review sees λ in its numbers ("skill") and knows sizing changes do
+nothing while λ is 0.
 
 **8. Challengers (automatic).** A proposal of kind `challenger` is a new strategy on its own fake
 $100k: a probability source, a gate source and any rules as above (`learn.challenger_problem`,
