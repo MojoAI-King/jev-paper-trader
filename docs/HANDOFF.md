@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-09 17:53 EDT
+Written: 2026-10-09 18:09 EDT
 
+- **State:** B25 and B26 done and verified live: page matched build at 21:53Z; cycle 22:09Z published paired n 562, left_out 101; new Polymarket judgments carry fee_rate (0.04, 0.05). No bet since the fix yet, so a fee-charged bet isn't seen live (FeeTests cover it). Archived both. Evidence: background check output (page cmp, origin summary.json, judgments tail); 125 offline tests OK.
+- **Next:** Check research reports as Joey calls them done (09, 10, 14, 02, 03, 04, 08, 11, 12, 13 via the helper tab), then write the rebuild plan
+- **Blocked:** nothing
+- **Watch out:** Research tabs share this checkout: add report files by name; past Polymarket bets keep their old zero-fee cost (not rewritten)
+- **Git:** master @ e4bae17, 14 uncommitted
+- **CI:** master green on GitHub (read 2026-10-09 22:09 UTC)
+
+## Earlier
+
+### 2026-10-09 17:53 EDT
 - **State:** B26 (each Polymarket market pays its own published taker fee; 0.05 default) and B25 (head-to-head scores only on real-priced markets, left-out count shown) committed at c5f54c2, pushed, page deployed (Worker 996e8d0c). Live check pending: edge cache still served the old page at 21:53Z; the next cycle must write paired.left_out and fee_rate. Reports 01, 05, 06, 07 in and checked; no category skips (losses since the floor are sports and other, not weather or price thresholds). Evidence: 125 offline tests OK (FeeTests, updated paired test); live paired preview 562 markets, 101 left out; Polymarket API feeSchedule seen live (politics 0.04, geopolitics off).
 - **Next:** Confirm the live page and the 22:04Z cycle (paired.left_out in summary.json, fee_rate on new Polymarket judgments), then archive B25 and B26 and close the task; keep checking reports as Joey calls them done
 - **Blocked:** nothing
 - **Watch out:** Research tabs share this checkout: add report files by name; past Polymarket bets keep their old zero-fee cost (not rewritten)
 - **Git:** master @ c5f54c2, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-09 21:53 UTC)
-
-## Earlier
 
 ### 2026-10-09 17:45 EDT
 - **State:** Reports 01, 05, 07 in and checked (docs/research/CHECKS.md): on real-priced markets the price is about calibrated and none of our forecasters adds information; cheap contracts lose ~60%, favourites break even; weather markets are hard to beat. 06 running; 09, 10, 14, 02, 03, 04, 08, 11, 12, 13 handed out by a dispatcher tab from docs/research/prompts/. New: B26 (Polymarket taker fees, trader charges 0). Evidence: event-clustered bootstrap refits on 1,006 real-priced first looks; price-bucket returns by venue; WebFetch of AIA (2511.07678), Kim (2602.21229), Crosier (2609.23969), docs.polymarket.com/trading/fees and Kalshi KXHIGHNY rules; 122 tests OK.
@@ -46,10 +54,3 @@ Written: 2026-10-09 17:53 EDT
 - **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; never build an unattended job that edits or ships code; quote n and ± with every number (small samples misled us twice)
 - **Git:** master @ d5ffd6a, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-09 21:02 UTC)
-
-### 2026-10-01 22:36 EDT
-- **State:** Forecasters panel live and verified (task closed): cycle 2026-10-02T02:36Z wrote calibration.paired, 112 markets: market 0.120, Jev + research 0.185, Claude direct 0.196, Jev alone 0.243; live page screenshot shows it filled. Evidence: summary.json on origin at 3591381; headless screenshot of https://jev-paper-trader.greekgod.workers.dev at 1280px.
-- **Next:** Watch the post-floor bets settle (8 close 2026-10-06) vs original; research resumes after the 2026-10-05 08:00Z week reset
-- **Blocked:** nothing
-- **Watch out:** Never set ANTHROPIC_API_KEY; GitHub is the only ledger writer; the week meter rose 68 to 82% while the trader made 0-1 calls, so other use on that account is filling it (not verified); never build an unattended job that edits or ships code
-- **Git:** master @ 3591381, 4 uncommitted
