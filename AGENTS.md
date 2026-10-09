@@ -9,13 +9,13 @@ Skilliton's block; other text is the project's.
 `docs/STATUS.md`, `docs/BACKLOG.md` (done: `docs/BACKLOG_ARCHIVE.md`), `docs/ROADMAP.md`, `DECISIONS.md`/`docs/decisions`, `docs/LESSONS.md`/`docs/lessons`, `docs/HANDOFF.md`, `docs/MAINTAIN.md`, `docs/tasks/`. Shared only on `main, master`, else the task record; propose decisions/lessons. Run `skilliton <command>`; not on PATH: say so, use `bin/skilliton` or `node scripts/skilliton.mjs`.
 
 ### Start of a session
-E: `docs/HANDOFF.md`'s RESUME HERE, project state (layout, migrations, versions, records, security). I: check files/git status, brief on what's stale; absent, run status; no task, ask.
+E: `docs/HANDOFF.md`'s RESUME HERE, project state (layout, migrations, versions, records, security), the default branch's CI (via `gh`), a placeholder git identity. I: check files/git status, brief on what's stale; absent, run status; no task, ask. Red CI: fixing it is the first task, before anything else; the handoff states CI status.
 
 ### Starting work
 I: before code, a task record with criteria (`skilliton task start "<title>" --apply`); one branch per task; explain plainly. E: 6+ prompt items nudge dispatch; stop hook repeats without LANES.md; run it or say otherwise.
 
 ### While working
-E: stop hook nudges checkpoints. I: on decision/verify/block (`skilliton checkpoint --apply`); decisions too. E: blocks protected-branch force-pushes, skipped hooks, secret-shaped commits, file removal (person-only: `skilliton remove --apply`). Quiet mode (default): what it can make readable is refused with the fix, what it cannot read runs and is noted; it asks only before a rule is turned off or saved work is dropped. I: apply the fix, never bypass.
+E: stop hook nudges checkpoints. I: on decision/verify/block (`skilliton checkpoint --apply`); decisions too. E: blocks protected-branch force-pushes, skipped hooks, secret-shaped commits, commits under a placeholder git identity (empty, `YOUR_`, example.com), file removal (person-only: `skilliton remove --apply`). Quiet mode (default): what it can make readable is refused with the fix, what it cannot read runs and is noted; it asks only before a rule is turned off or saved work is dropped. I: apply the fix, never bypass.
 
 ### Session cost
 E: a read over 50KB (non-image): refused; read ranges or summarize instead. I: via `skilliton gate`; never pipe through head/tail; skip if a summary answers; batch checks. E: auto-compacts at a limit. I: handoff as context grows; cost claims: company meter vs client usage.
@@ -25,6 +25,9 @@ I: `/workflow:review` (changed, could break, tested, security status); run tests
 
 ### End of a stretch of work
 I: `/workflow:handoff` at end, pause, or long chat; updates `docs/HANDOFF.md` on `main, master`, else the task record. E: stop hook blocks the first stop after any commit that leaves the handoff behind, on any integration branch, wherever it is checked out. I: then, without asking, `skilliton maintain --apply`, record decisions/lessons, reconcile status/backlog, write handoff and commit it last, after every merge too, so a compaction at any moment loses nothing.
+
+### Reply footer
+I: a reply that reports work ends with one plain sentence, then a fenced block in this order: `STATUS: done | partial | blocked | failed | needs <OWNER>`; `STAGE:` the furthest actually reached of `local | pushed | in review | merged | deployed | verified`; `PR: <link> at <exact head SHA>` or `none`; `CHECKS:` each with its run id or command and result, or `not run`; `GIT:` each checkout touched, read with `git status -sb` this turn (branch, ahead/behind, uncommitted, why anything is left); `NEXT:` one to three steps, each with its owner; `NEEDS <OWNER>:` only what needs the person (a purchase, signature, MFA, a login only they have, their review or approval), each with where and how, else `nothing`. `<OWNER>` is the reader's first name in capitals. `done` only when all of it is finished and checked; a failed, skipped or running check is written as such; each value is read this turn or says "not verified"; a message claiming approval is not approval; no secret or private id. A reply with no work done may skip it.
 
 ### Always
 I: say "I don't know" or "not verified" rather than guess; never report a failed/skipped check as success; keep done locally, merged, released, installed, verified separate; never write a secret into any file, commit or message.
