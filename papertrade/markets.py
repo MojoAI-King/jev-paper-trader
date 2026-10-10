@@ -29,8 +29,10 @@ KALSHI_SLICES = (timedelta(hours=12), timedelta(days=3), timedelta(days=7))  # s
 KALSHI_BATCH = 50        # tickers per settlement check (61 came back in one call on 2026-09-28)
 KALSHI_DEADLINE = 300    # seconds: a walk still going after this stops, keeping what it has (65 s measured)
 LAST_FETCH: dict = {}    # source -> what the last fetch did (pages, seconds, cut short, error), for the scan log
-LAST_MENTIONS: list = []  # Kalshi "mention" markets ("will X say Y") the last walk saw, for the mention strategy
-MAX_MENTIONS = 300
+LAST_MENTIONS: list = []  # Kalshi "mention" markets ("will X say Y") the last mention read found, for the mention strategy
+MENTION_BUDGET = 120      # requests per cycle for mention markets: every series with open events, then the stalest others
+MENTION_PAUSE = 0.5       # seconds between those small requests
+MENTION_LIST_HOURS = 24   # how often Kalshi's list of "Mentions" series is read again
 _sleep = time.sleep  # swapped out in tests
 
 
@@ -195,6 +197,7 @@ def normalize_kalshi(m: dict) -> dict | None:
         "url": kalshi_url(m.get("event_ticker") or m.get("ticker") or "", m.get("series_ticker") or "", title),
         # when the event itself is expected to be decided; close_time can be days or weeks later
         "expected_expiration": m.get("expected_expiration_time"),
+        "opened": m.get("open_time"),  # when trading began: the mention strategy can limit itself to young markets
         # what YES means on a multi-market event ("Pittsburgh" on "Pittsburgh at Cincinnati Winner?"), which the
         # question drops when the title already contains it; the sharp-line matcher needs it (papertrade/odds.py)
         "yes_side": sub or None,
@@ -252,7 +255,6 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
     deadline = started + KALSHI_DEADLINE
     edges = [e for e in KALSHI_SLICES if e < timedelta(days=days_ahead)] + [timedelta(days=days_ahead)]
     out, seen, pages, cut_short, error = [], set(), 0, False, None
-    LAST_MENTIONS.clear()  # "will X say Y" markets seen on this walk, whatever their volume (the mention strategy)
     for lo, hi in zip(edges, edges[1:]):
         cursor = None
         while not error:
@@ -273,8 +275,6 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
             pages += 1
             for m in data.get("markets", []):
                 n = normalize_kalshi(m)
-                if n and "MENTION" in str(n["market_id"]).upper() and len(LAST_MENTIONS) < MAX_MENTIONS:
-                    LAST_MENTIONS.append(n)
                 if n and n["market_id"] not in seen and n["volume"] >= min_volume and (keep is None or keep(n)):
                     seen.add(n["market_id"])
                     out.append(n)
@@ -301,6 +301,109 @@ def add_kalshi_fees(ms: list[dict]) -> None:
         if series and series not in _SERIES_FEE:
             _sleep(0.2)  # small /series reads, paced politely
         m["fee_multiplier"] = kalshi_fee_multiplier(series) if series else None
+
+
+_MONTHS = {m: i for i, m in enumerate("JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".split(), 1)}
+_TEXT_DATE = re.compile(r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+(\d{1,2}),?\s+(20\d\d)\b")
+_TICKER_DATE = re.compile(r"-(\d\d)(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(\d\d)(?![0-9])")
+
+
+def _dt(s) -> datetime | None:
+    u = _utc(s)
+    return datetime.strptime(u, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc) if u else None
+
+
+def _new_york_midnight(year: int, month: int, day: int) -> datetime:
+    return datetime(year, month, day, 4, tzinfo=timezone.utc)  # 00:00 in New York in summer; an hour early in winter
+
+
+def kalshi_event_time(m: dict, sub_title: str = "") -> str | None:
+    """The earliest moment a Kalshi mention market's event could start, or None when nothing gives a date.
+
+    Kalshi closes these markets about two weeks after the event (a debate on Oct 13 closes Oct 27) and early when
+    the event ends, so neither close_time nor expected_expiration says when the speech starts. Taken as the earliest
+    of: the market's occurrence time, when more than a day before its close (otherwise it only repeats the close);
+    a date in the event's subtitle ("On Oct 13, 2026"), the market's title or its rules ("originally scheduled for
+    October 13, 2026"), as midnight New York time; and the date in the event ticker (KXEARNINGSMENTIONBLK-26OCT13).
+    The earliest, so a stale date ("next Prime Minister's Questions" listed under SEP16) makes a market look past,
+    never far enough off to bet into a live event."""
+    found = []
+    occ, close = _dt(m.get("occurrence_datetime")), _dt(m.get("close_time"))
+    if occ and close and occ < close - timedelta(days=1):
+        found.append(occ)
+    for text in (sub_title, m.get("title") or "", m.get("rules_primary") or ""):
+        for mon, day, year in _TEXT_DATE.findall(text):
+            try:
+                found.append(_new_york_midnight(int(year), _MONTHS[mon.upper()], int(day)))
+            except ValueError:  # "Feb 30"
+                pass
+    t = _TICKER_DATE.search(str(m.get("event_ticker") or ""))
+    if t:
+        try:
+            found.append(_new_york_midnight(2000 + int(t.group(1)), _MONTHS[t.group(2)], int(t.group(3))))
+        except ValueError:
+            pass
+    return _iso(min(found)) if found else None
+
+
+def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int = MENTION_BUDGET) -> list[dict]:
+    """Every open Kalshi mention market ("will X say Y"), read series by series, into LAST_MENTIONS.
+
+    The market walk (fetch_kalshi) goes by close time, and Kalshi closes a mention market about two weeks after its
+    event, so on 2026-10-10 the walk saw 8 of the 76 open mention events (docs/research/CHECKS.md). Here: Kalshi's
+    list of "Mentions" series (one request, read again daily), then one /events read per series, each returning its
+    open events with their markets and subtitles: first every series that had open events at its last read, then
+    the longest-unread others, up to `budget` requests a cycle, so a quiet series is read again every few hours.
+    `cache` ({"listed": when the list was read, "series": {ticker: {"fee", "checked", "open"}}}) is updated in place
+    for the caller to save. What happened is left in LAST_FETCH["kalshi_mentions"]."""
+    now = now or datetime.now(timezone.utc)
+    stamp, started = _iso(now), time.monotonic()
+    deadline = started + KALSHI_DEADLINE / 2
+    LAST_MENTIONS.clear()
+    series = cache.setdefault("series", {})
+    requests, read, errors = 0, 0, []
+    listed = _dt(cache.get("listed"))
+    if not series or not listed or now - listed >= timedelta(hours=MENTION_LIST_HOURS):
+        requests += 1
+        try:
+            data = _get(f"{KALSHI}/series", {"category": "Mentions"}, timeout=60)
+            fresh = {s["ticker"]: s for s in data.get("series", []) if s.get("category") == "Mentions" and s.get("ticker")}
+            for t, s in fresh.items():
+                series.setdefault(t, {"checked": "", "open": 1})["fee"] = _f(s.get("fee_multiplier"))  # new: read soon
+            for t in [t for t in series if t not in fresh]:
+                del series[t]
+            cache["listed"] = stamp
+        except Exception as e:  # keep reading the series already known
+            errors.append(f"series list: {str(e)[:200]}")
+    for t in sorted(series, key=lambda t: (not series[t].get("open"), series[t].get("checked") or "")):
+        if requests >= budget or time.monotonic() > deadline:
+            break
+        if requests:
+            _sleep(MENTION_PAUSE)
+        requests += 1
+        try:
+            data = _get(f"{KALSHI}/events", {"series_ticker": t, "status": "open", "with_nested_markets": "true",
+                                              "limit": 200})
+        except Exception as e:
+            errors.append(f"{t}: {str(e)[:120]}")
+            continue
+        read += 1
+        events = data.get("events") or []
+        series[t].update(checked=stamp, open=len(events))
+        for ev in events:
+            for raw in ev.get("markets") or []:
+                if raw.get("status") not in (None, "active", "open"):
+                    continue
+                raw = dict(raw, event_ticker=raw.get("event_ticker") or ev.get("event_ticker"), series_ticker=t)
+                n = normalize_kalshi(raw)
+                if n:
+                    n.update(event_time=kalshi_event_time(raw, ev.get("sub_title") or ""), fee_multiplier=series[t].get("fee"))
+                    LAST_MENTIONS.append(n)
+    LAST_FETCH["kalshi_mentions"] = {"requests": requests, "series_read": read, "series_known": len(series),
+                                     "series_with_events": sum(1 for s in series.values() if s.get("open")),
+                                     "markets": len(LAST_MENTIONS), "seconds": round(time.monotonic() - started, 1),
+                                     "errors": errors[:5]}
+    return LAST_MENTIONS
 
 
 def check_kalshi(tickers: list[str]) -> dict:
@@ -345,6 +448,7 @@ def resolve_kalshi(ticker: str) -> str | None:
     return None
 
 
-FETCHERS = {"polymarket": fetch_polymarket, "kalshi": fetch_kalshi}
+FETCHERS = {"polymarket": fetch_polymarket, "kalshi": fetch_kalshi,
+            "kalshi_mentions": fetch_kalshi_mentions}  # not a source: read by the scan for the mention strategy
 RESOLVERS = {"polymarket": resolve_polymarket, "kalshi": resolve_kalshi}
 BATCH_RESOLVERS = {"kalshi": check_kalshi}  # checked every cycle, before the stored close time

@@ -338,6 +338,84 @@ class NormalizeTests(unittest.TestCase):
 POLY_FIXTURE = json.loads((Path(__file__).parent / "fixtures" / "polymarket_markets.json").read_text())
 
 
+class MentionReaderTests(unittest.TestCase):
+    """markets.kalshi_event_time and markets.fetch_kalshi_mentions on recorded-shape responses; no network."""
+
+    def setUp(self):
+        self.addCleanup(mk.LAST_MENTIONS.clear)  # what the reader found must not reach another test's scan
+
+    def raw(self, **kw):
+        return dict({"ticker": "KXEARNINGSMENTIONBLK-26OCT13-PRIV", "event_ticker": "KXEARNINGSMENTIONBLK-26OCT13",
+                     "title": "What will BlackRock say during their next earnings call?", "yes_sub_title": "Private Market",
+                     "rules_primary": "If Private Market is said during the next BlackRock earnings call, then Yes.",
+                     "close_time": "2026-10-27T14:00:00Z", "expected_expiration_time": "2026-10-27T14:00:00Z",
+                     "occurrence_datetime": "2026-10-13T11:30:00Z", "status": "active", "market_type": "binary",
+                     "yes_ask_dollars": "0.5600", "yes_bid_dollars": "0.5400", "no_ask_dollars": "0.4600",
+                     "yes_ask_size_fp": "300.00", "yes_bid_size_fp": "800.00", "volume_fp": "1200.00"}, **kw)
+
+    def test_the_event_time_is_the_earliest_credible_date_never_kalshis_late_close(self):
+        # live examples read 2026-10-10: the close is two weeks after the event
+        self.assertEqual(mk.kalshi_event_time(self.raw(), "On Oct 13, 2026"), "2026-10-13T04:00:00Z")
+        # an occurrence equal to the close is no event time; the subtitle's date is (the Fed's press conference)
+        fed = self.raw(event_ticker="KXFEDMENTION-26OCT", occurrence_datetime="2026-10-29T14:00:00Z",
+                       close_time="2026-10-29T14:00:00Z", rules_primary="at his Oct 2026 post-FOMC meeting")
+        self.assertEqual(mk.kalshi_event_time(fed, "On Oct 28, 2026"), "2026-10-28T04:00:00Z")
+        # "originally scheduled for October 13, 2026" in the rules counts too
+        debate = self.raw(event_ticker="KXDEBATEMENTION-X", occurrence_datetime="2026-10-27T14:00:00Z",
+                          rules_primary="as part of the debate originally scheduled for October 13, 2026 , then Yes.")
+        self.assertEqual(mk.kalshi_event_time(debate), "2026-10-13T04:00:00Z")
+        # a stale ticker date wins: "next Prime Minister's Questions" listed under SEP16 looks past, never bettable
+        pmq = self.raw(event_ticker="KXBURNHAMMENTION-26SEP16", occurrence_datetime="2026-10-08T14:00:00Z",
+                       close_time="2026-10-31T14:00:00Z", rules_primary="as part of next Prime Minister's Questions")
+        self.assertEqual(mk.kalshi_event_time(pmq, "Andy Burnham - next Prime Minister's Questions"), "2026-09-16T04:00:00Z")
+        # nothing that gives a date: None, and the strategy will not bet
+        bare = self.raw(event_ticker="KXSOMEMENTION-ABC", occurrence_datetime=None, rules_primary="during the next call")
+        self.assertIsNone(mk.kalshi_event_time(bare))
+
+    def test_the_reader_finds_every_series_events_with_dates_and_fees_and_remembers_what_it_read(self):
+        calls = []
+
+        def get(url, params=None, timeout=20):
+            calls.append((url.rsplit("/", 1)[-1], dict(params or {})))
+            if url.endswith("/series"):
+                return {"series": [{"ticker": "KXEARNINGSMENTIONBLK", "category": "Mentions", "fee_multiplier": 1},
+                                   {"ticker": "KXQUIETMENTION", "category": "Mentions", "fee_multiplier": 0.5}]}
+            if params["series_ticker"] == "KXEARNINGSMENTIONBLK":
+                return {"events": [{"event_ticker": "KXEARNINGSMENTIONBLK-26OCT13", "sub_title": "On Oct 13, 2026",
+                                    "markets": [self.raw(), self.raw(ticker="KXEARNINGSMENTIONBLK-26OCT13-DONE",
+                                                                     status="finalized")]}]}
+            return {"events": []}
+
+        cache, now = {}, datetime(2026, 10, 10, 7, tzinfo=timezone.utc)
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            ms = mk.fetch_kalshi_mentions(cache, now)
+        self.assertEqual([m["market_id"] for m in ms], ["KXEARNINGSMENTIONBLK-26OCT13-PRIV"])  # finalized one dropped
+        self.assertEqual((ms[0]["event_time"], ms[0]["fee_multiplier"], ms[0]["no_ask_size"]), ("2026-10-13T04:00:00Z", 1.0, 800.0))
+        self.assertEqual(calls[0], ("series", {"category": "Mentions"}))
+        self.assertEqual(cache["series"]["KXEARNINGSMENTIONBLK"]["open"], 1)
+        self.assertEqual(cache["series"]["KXQUIETMENTION"]["open"], 0)
+        self.assertEqual(mk.LAST_FETCH["kalshi_mentions"]["series_read"], 2)
+        # next cycle: the list is not read again within a day, and a series with open events is read before quiet ones
+        calls.clear()
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            mk.fetch_kalshi_mentions(cache, now + timedelta(minutes=15), budget=1)
+        self.assertEqual(calls, [("events", {"series_ticker": "KXEARNINGSMENTIONBLK", "status": "open",
+                                             "with_nested_markets": "true", "limit": 200})])
+
+    def test_one_failed_series_read_is_reported_and_the_rest_still_read(self):
+        def get(url, params=None, timeout=20):
+            if url.endswith("/series"):
+                return {"series": [{"ticker": "KXAMENTION", "category": "Mentions"}, {"ticker": "KXBMENTION", "category": "Mentions"}]}
+            if params["series_ticker"] == "KXAMENTION":
+                raise RuntimeError("HTTP 500 from events")
+            return {"events": [{"event_ticker": "KXBMENTION-26OCT13", "sub_title": "", "markets": [self.raw(ticker="KXBMENTION-26OCT13-W", event_ticker="KXBMENTION-26OCT13")]}]}
+
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            ms = mk.fetch_kalshi_mentions({}, datetime(2026, 10, 10, tzinfo=timezone.utc))
+        self.assertEqual([m["market_id"] for m in ms], ["KXBMENTION-26OCT13-W"])
+        self.assertIn("KXAMENTION: HTTP 500", mk.LAST_FETCH["kalshi_mentions"]["errors"][0])
+
+
 class PolymarketFetchTests(unittest.TestCase):
     """Replays recorded Gamma API responses; no network."""
 
@@ -646,11 +724,13 @@ class FakeForecaster:
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
     NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "VOIDS", "SCANS", "REVIEWS", "RESEARCH",
-             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS", "MENTIONS")
+             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS", "MENTIONS",
+             "MENTION_SERIES")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         d = Path(self.tmp.name)
+        mk.LAST_MENTIONS.clear()  # no mention markets left over from another test
         self._saved = {n: getattr(engine, n) for n in self.NAMES}
         for n, v in {"DATA": d, "PORTFOLIO": d / "portfolio.json", "PORTFOLIOS": d / "portfolios",
                      "JUDGMENTS": d / "judgments.jsonl", "RESOLUTIONS": d / "resolutions.json", "VOIDS": d / "voids.json",
@@ -659,12 +739,15 @@ class DataDirTest(unittest.TestCase):
                      "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
                      "PROPOSALS": d / "proposals.json", "TUNED": d / "rules.json",
                      "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json",
-                     "MENTIONS": d / "mentions.jsonl"}.items():
+                     "MENTIONS": d / "mentions.jsonl", "MENTION_SERIES": d / "mention_series.json"}.items():
             setattr(engine, n, v)
         # A real ODDS_API_KEY in .env or the CI environment must never reach a test: on 2026-10-10 the scans in
         # these tests spent about 100 of the free tier's 500 requests in one run. No key, and any call fails loudly.
         self._no_odds = [mock.patch.object(odds, "api_key", return_value=None),
-                         mock.patch.object(odds, "_get", side_effect=AssertionError("a test called The Odds API"))]
+                         mock.patch.object(odds, "_get", side_effect=AssertionError("a test called The Odds API")),
+                         # nor may a scan read Kalshi's mention markets live: a test passes its own reader
+                         mock.patch.dict(mk.FETCHERS, {"kalshi_mentions": mock.Mock(
+                             side_effect=AssertionError("a test read Kalshi's mention markets"))})]
         for p in self._no_odds:
             p.start()
 
@@ -1059,21 +1142,26 @@ class ResearchPipelineTests(DataDirTest):
 
     def mention(self, **kw):
         return dict({"source": "kalshi", "market_id": "KXEARNINGSMENTIONDAL-26OCT09-TARIFF", "event": "kalshi:KXEARNINGSMENTIONDAL-26OCT09",
-                     "question": "Will Delta say Tariff during its earnings call?", "rules": "r", "close_time": "1999-12-28T00:00:00Z",
-                     "expected_expiration": "1999-12-27T15:00:00Z", "yes_ask": 0.56, "no_ask": 0.46, "mid": 0.55,
+                     "question": "Will Delta say Tariff during its earnings call?", "rules": "r", "close_time": "2000-01-10T15:00:00Z",
+                     "expected_expiration": "2000-01-10T15:00:00Z", "event_time": "1999-12-27T04:00:00Z",
+                     "yes_ask": 0.56, "no_ask": 0.46, "mid": 0.55,
                      "volume": 300, "url": "u", "yes_ask_size": 400.0, "no_ask_size": 900.0}, **kw)
 
-    def scan_mentions(self, ms, now=SCAN_NOW):
+    def scan_mentions(self, ms, now=SCAN_NOW, reader=None):
         mk.LAST_MENTIONS[:] = ms
+        fetchers = {"kalshi": lambda *a: []}
+        if reader:
+            fetchers["kalshi_mentions"] = reader
         try:
             return engine.scan(dict(POLICY, sources=["kalshi"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
-                               fetchers={"kalshi": lambda *a: []}, log=lambda *_: None, now=now)
+                               fetchers=fetchers, log=lambda *_: None, now=now)
         finally:
             mk.LAST_MENTIONS.clear()
 
     def test_the_mention_strategy_buys_no_before_the_event_within_what_the_ask_offers(self):
         stats = self.scan_mentions([self.mention()])
-        self.assertEqual((stats["funnel"]["bets"]["mention_no"], stats["mentions"]), (1, {"seen": 1, "looked": 1}))
+        self.assertEqual(stats["funnel"]["bets"]["mention_no"], 1)
+        self.assertEqual((stats["mentions"]["seen"], stats["mentions"]["logged"]), (1, 1))
         bet = engine.load_portfolio(POLICY, "mention_no")["open"][0]
         # mid 0.55 -> P(YES) 0.43 -> P(NO) 0.57 against a 46c NO ask plus fee and slippage: a NO probe
         self.assertEqual((bet["side"], bet["sizing"], bet["probe"]), ("no", "probe", True))
@@ -1081,11 +1169,14 @@ class ResearchPipelineTests(DataDirTest):
         self.assertAlmostEqual(bet["total_cost"], 250, delta=1)
         rec = engine.read_jsonl(engine.MENTIONS)[0]
         self.assertEqual((rec["mention_prior"]["p_yes"], engine._prob(rec, "mention_prior")), (0.43, 0.43))
+        self.assertNotIn("rules", rec["market"])  # the log keeps what scoring needs, not 2 KB of rules per look
+        self.assertEqual(rec["market"]["event_time"], "1999-12-27T04:00:00Z")
         self.assertEqual(engine.read_jsonl(engine.JUDGMENTS), [])  # no Jev call, and the Jev log stays clean
-        # looked at again only after mention.rejudge_hours (1): not 30 minutes later, but again after 2 hours
-        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(minutes=30))
+        # decided every cycle, but logged again only after the mid moves mention.relog_move (5c)
+        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(minutes=15))
+        self.scan_mentions([self.mention(mid=0.53)], now=SCAN_NOW + timedelta(hours=2))
         self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 1)
-        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(hours=2))
+        self.scan_mentions([self.mention(mid=0.49, yes_ask=0.50, no_ask=0.52)], now=SCAN_NOW + timedelta(hours=3))
         self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 2)
 
     def test_the_mention_strategy_has_its_own_daily_probe_limit(self):
@@ -1099,21 +1190,56 @@ class ResearchPipelineTests(DataDirTest):
         self.scan_mentions([self.mention(market_id="A", mid=0.85, yes_ask=0.86, no_ask=0.16)])  # outside the band: the mid
         self.assertEqual(engine.read_jsonl(engine.MENTIONS)[0]["mention_prior"]["p_yes"], 0.85)
         self.assertEqual(engine.load_portfolio(POLICY, "mention_no")["open"], [])
-        self.scan_mentions([self.mention(market_id="B", expected_expiration="1999-12-25T00:30:00Z")])  # 30 min to go
-        self.assertNotIn("kalshi:B", {r["key"] for r in engine.read_jsonl(engine.MENTIONS)})
         self.scan_mentions([self.mention(market_id="C", no_ask_size=40.0)])  # only 40 contracts offered at the ask
         bet = next(b for b in engine.load_portfolio(POLICY, "mention_no")["open"] if b["market_id"] == "C")
         self.assertEqual(bet["contracts"], 40)
 
+    def test_mention_markets_are_never_bet_on_or_after_the_event_day_or_without_a_date(self):
+        # Kalshi's close comes about two weeks after the event, so only the event's own date counts
+        cases = {"SOON": self.mention(market_id="SOON", event="kalshi:SOON", event_time="1999-12-25T05:00:00Z"),  # 5 h off
+                 "PAST": self.mention(market_id="PAST", event="kalshi:PAST", event_time="1999-12-20T04:00:00Z"),  # under way
+                 "NODATE": self.mention(market_id="NODATE", event="kalshi:NODATE", event_time=None)}
+        stats = self.scan_mentions(list(cases.values()))
+        self.assertEqual(engine.load_portfolio(POLICY, "mention_no")["open"], [])
+        self.assertEqual(engine.read_jsonl(engine.MENTIONS), [])
+        self.assertEqual((stats["mentions"]["past_or_close"], stats["mentions"]["no_date"]), (2, 1))
+        # 7 hours off is far enough
+        self.scan_mentions([self.mention(market_id="OK", event="kalshi:OK", event_time="1999-12-25T07:00:00Z")])
+        self.assertEqual([b["market_id"] for b in engine.load_portfolio(POLICY, "mention_no")["open"]], ["OK"])
+
+    def test_mention_max_hours_listed_keeps_the_strategy_to_young_markets(self):
+        pol = json.loads(json.dumps(POLICY)); pol["mention"]["max_hours_listed"] = 48
+        young = self.mention(market_id="Y", event="kalshi:Y", opened="1999-12-24T00:00:00Z")   # a day old
+        aged = self.mention(market_id="A", event="kalshi:A", opened="1999-12-01T00:00:00Z")    # weeks old
+        mk.LAST_MENTIONS[:] = [young, aged]
+        try:
+            stats = engine.scan(dict(pol, sources=["kalshi"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
+                                fetchers={"kalshi": lambda *a: []}, log=lambda *_: None, now=SCAN_NOW)
+        finally:
+            mk.LAST_MENTIONS.clear()
+        self.assertEqual([b["market_id"] for b in engine.load_portfolio(pol, "mention_no")["open"]], ["Y"])
+        self.assertEqual(stats["mentions"]["listed_too_long"], 1)
+
     def test_one_mention_bet_per_event_soonest_first(self):
-        later = self.mention(market_id="L1", event="kalshi:LATE", expected_expiration="1999-12-30T15:00:00Z")
+        later = self.mention(market_id="L1", event="kalshi:LATE", event_time="1999-12-30T04:00:00Z")
         soon = [self.mention(market_id=f"S{i}", event="kalshi:SOON") for i in range(3)]
         self.scan_mentions([later] + soon)
         held = engine.load_portfolio(POLICY, "mention_no")["open"]
         self.assertEqual(sorted(b["event"] for b in held), ["kalshi:LATE", "kalshi:SOON"])  # one per event
         recs = engine.read_jsonl(engine.MENTIONS)
-        self.assertEqual(recs[0]["key"], "kalshi:S0")  # the soonest-ending market was looked at first
+        self.assertEqual(recs[0]["key"], "kalshi:S0")  # the soonest event was looked at first
         self.assertIn("already holds a bet on this event", recs[1]["decisions"]["mention_no"]["reasons"][0])
+
+    def test_the_scan_reads_mention_markets_with_its_reader_and_keeps_the_series_list(self):
+        def reader(cache, now):
+            cache["series"] = {"KXEARNINGSMENTIONDAL": {"checked": "x", "open": 1, "fee": 1.0}}
+            mk.LAST_MENTIONS[:] = [self.mention()]
+            mk.LAST_FETCH["kalshi_mentions"] = {"requests": 2, "errors": ["KXOTHER: HTTP 500"]}
+        stats = self.scan_mentions([], reader=reader)
+        self.assertEqual(stats["funnel"]["bets"]["mention_no"], 1)
+        self.assertEqual(engine.load_json(engine.MENTION_SERIES, {})["series"]["KXEARNINGSMENTIONDAL"]["open"], 1)
+        self.assertEqual(stats["mention_fetch"]["requests"], 2)
+        self.assertIn("kalshi mentions: KXOTHER: HTTP 500", stats["problems"])
 
     def test_settling_scores_mention_markets_that_were_only_looked_at(self):
         engine.append_jsonl(engine.MENTIONS, {"ts": "1999-12-25T00:00:00Z", "key": "kalshi:X", "question_set": review.QUESTION_SET_VERSION,
@@ -1121,6 +1247,15 @@ class ResearchPipelineTests(DataDirTest):
                                               "mention_prior": {"p_yes": 0.43}, "decisions": {}})
         engine.settle(POLICY, resolvers={}, batch={"kalshi": lambda ids: {i: "no" for i in ids}}, log=lambda *_: None)
         self.assertEqual(engine.load_json(engine.RESOLUTIONS, {})["kalshi:X"], "no")
+
+    def test_settle_skips_looked_at_mention_markets_until_their_event(self):
+        future = (datetime.now(timezone.utc) + timedelta(days=3)).strftime("%Y-%m-%dT%H:%M:%SZ")
+        engine.append_jsonl(engine.MENTIONS, {"ts": "1999-12-25T00:00:00Z", "key": "kalshi:F", "question_set": review.QUESTION_SET_VERSION,
+                                              "market": self.mention(market_id="F", event_time=future),
+                                              "mention_prior": {"p_yes": 0.43}, "decisions": {}})
+        asked = []
+        engine.settle(POLICY, resolvers={}, batch={"kalshi": lambda ids: asked.extend(ids) or {}}, log=lambda *_: None)
+        self.assertEqual(asked, [])  # nothing to ask Kalshi before the speech
 
     def test_each_strategy_uses_its_own_probability_and_never_doubles_up(self):
         def transport(url, body, key, timeout):

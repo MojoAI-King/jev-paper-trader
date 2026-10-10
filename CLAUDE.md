@@ -14,7 +14,9 @@
   only to that strategy's decision and the scoring, never into a Jev or Claude state
   (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`). The same goes for `mention_no`
   (2026-10-10): its probability is the market's own mid less a measured YES bias (`engine.mention_prior`), never a
-  forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`.
+  forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`. It reads every open mention
+  market series by series (`markets.fetch_kalshi_mentions`) and times bets by the event's own date
+  (`markets.kalshi_event_time`), never by Kalshi's close, which comes about two weeks after the event.
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.
 - Any change to question wording in `papertrade/judge.py` requires bumping `QUESTION_SET_VERSION`,
   because calibration data from old wording doesn't carry over.

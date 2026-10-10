@@ -1,6 +1,6 @@
 # Operations runbook
 
-Kind: Living. Updated 2026-09-27. How the live system runs, how to check it, and what to do when
+Kind: Living. Updated 2026-10-10. How the live system runs, how to check it, and what to do when
 something breaks. For the design see PLAN.md; for the learning loop, docs/LEARNING.md.
 
 ## What runs where
@@ -57,6 +57,7 @@ In a Claude session, the `trading-health` skill does this and explains the resul
 | --- | --- |
 | `health`: no scheduled run succeeded, only manual starts | Expected while GitHub's scheduler skips slots; the Cloudflare trigger's runs show as manual starts (`workflow_dispatch`). If the last cycle is over an hour old, check that `GITHUB_DISPATCH_TOKEN` is set and not expired, and start one by hand: `gh workflow run trade.yml --repo MojoAI-King/jev-paper-trader`. |
 | A source fetched 0 markets, problem `HTTP 429` | The market API rate-limited GitHub's shared runner. Kalshi is read in 1,000-market pages, 1 second apart, soonest-closing slice first (about 35 requests and a minute a cycle since 2026-09-28), and each request retries up to 5 times over about 45 seconds (`markets._get`). A failure mid-walk keeps what was fetched and logs a problem (`fetch stopped after N pages`); only a failure on the first page drops the source. One bad cycle is fine; repeated ones need a look. |
+| `kalshi mentions: ...` in a scan's problems | The mention reader (`markets.fetch_kalshi_mentions`, since 2026-10-10) reads Kalshi's "Mentions" series one at a time: the series list once a day, then every series with open events and the longest-unread others, up to 120 small requests a cycle, 0.5 seconds apart (about 90 seconds). A failed series is read again next cycle and the rest still count. Many failures in a row mean Kalshi is rate-limiting: raise `MENTION_PAUSE` or lower `MENTION_BUDGET`. What it has read is in `papertrade_data/mention_series.json`; deleting it starts the sweep afresh (about 4 cycles to read every series). |
 | `Claude plan busy` / research paused | The 5-hour window passed 70%, or the plan's weekly limit is reached. Research resumes by itself when the window resets. Jev alone keeps trading. |
 | Research refuses to run: API key set | Someone set `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN`. Remove it from the environment or the repo secrets; it would switch to paid API billing. |
 | Claude calls fail with an auth error | `CLAUDE_CODE_OAUTH_TOKEN` expired (it lasts about a year from 2026-09-27). Joey runs `claude setup-token` and replaces the repo secret. |

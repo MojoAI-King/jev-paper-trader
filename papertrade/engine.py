@@ -48,6 +48,7 @@ PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; appr
 TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
 ODDS = DATA / "odds.json"  # the sharp sportsbook lines, refreshed within the quota (papertrade/odds.py)
 MENTIONS = DATA / "mentions.jsonl"  # each look at a Kalshi mention market by the mention strategy (no Jev answers)
+MENTION_SERIES = DATA / "mention_series.json"  # Kalshi's "Mentions" series and when each was last read (markets.fetch_kalshi_mentions)
 TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
@@ -476,7 +477,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     client = client or JevClient(model=policy["model"])
     now = now or datetime.now(timezone.utc)
     started = _clock()
-    for path in (JUDGMENTS, RESEARCH):
+    for path in (JUDGMENTS, RESEARCH, MENTIONS):
         rotate_log(path, policy.get("storage", {}).get("rotate_logs_mb", 20))
     today, stamp = now.strftime("%Y-%m-%d"), now.strftime(TS)  # one clock for filtering and logging
     mf, rc, strats = policy["market_filters"], policy["research"], strategies(policy)
@@ -733,6 +734,19 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 "decision": decisions.get(MAIN), "decisions": decisions,
                 "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
             })
+    if any(s["probability"] == "mention_prior" for s in strats.values()) and fetchers.get("kalshi_mentions"):
+        mcache = load_json(MENTION_SERIES, {})
+        mk.LAST_FETCH.pop("kalshi_mentions", None)
+        try:
+            fetchers["kalshi_mentions"](mcache, now)
+        except Exception as e:  # the other strategies' bets are already placed; the mention strategy sits this one out
+            warn(f"! kalshi mentions: could not read them ({e})")
+            mk.LAST_MENTIONS.clear()
+        save_json(MENTION_SERIES, mcache)
+        mfetch = mk.LAST_FETCH.get("kalshi_mentions") or {}
+        for err in mfetch.get("errors") or []:
+            warn(f"! kalshi mentions: {err}")
+        stats["mention_fetch"] = mfetch
     _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log)
     for name, pf in books.items():
         save_portfolio(name, pf)
@@ -755,25 +769,37 @@ def mention_prior(m: dict, cfg: dict) -> float:
 
 def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log) -> None:
     """Kalshi mention markets for the strategies whose probability is `mention_prior`. They need no Jev or Claude:
-    the walk in markets.fetch_kalshi collects them whatever their volume; each is looked at once per
-    `rejudge_after_hours` (or after a price move) and logged to mentions.jsonl, which settle and the skill
-    measure read. A bet never buys more contracts than the order book offers at the ask."""
+    markets.fetch_kalshi_mentions reads every open one each cycle, and each is decided every cycle, soonest event
+    first, until its event is `hours_before_event` away. The event's own date decides that
+    (markets.kalshi_event_time), never Kalshi's close, which comes about two weeks after the event; a market with no
+    date is never bet. A market is logged to mentions.jsonl (which settle and the skill measure read) when first
+    seen, when bet, and after its mid moves `relog_move` since its last entry, without its rules text, so the log
+    grows by what changed rather than by every look. A bet never buys more contracts than the ask offers."""
     names = {n: s for n, s in strats.items() if s["probability"] == "mention_prior"}
     if not names or not mk.LAST_MENTIONS:
         return
-    cfg, mf = policy["mention"], policy["market_filters"]
-    seen, cutoff = last_judged(MENTIONS), (now - timedelta(hours=cfg["rejudge_hours"])).strftime(TS)
+    cfg = policy["mention"]
+    seen = last_judged(MENTIONS)
     pace = dict(policy["skill"], max_probes_per_day=cfg["max_probes_per_day"])  # its own probe limit
-    looked = 0
-    # soonest-ending first, so the probes go where results come back soonest
-    soonest_first = sorted(mk.LAST_MENTIONS, key=lambda x: x.get("expected_expiration") or x.get("close_time") or "9")
-    for raw in soonest_first[: cfg["max_per_scan"]]:
+    cut = now + timedelta(hours=cfg["hours_before_event"])
+    logged = past = undated = aged = 0
+    # soonest event first, so the probes go where results come back soonest
+    order = sorted(mk.LAST_MENTIONS, key=lambda x: (x.get("event_time") or "9", x.get("close_time") or "9"))
+    for raw in order:
         m = dict(raw, category="mention")
-        if m.get("mid") is None or not due(m, seen, cutoff, mf["rejudge_on_price_move"], names):
+        if m.get("mid") is None:
             continue
-        if (_when(m.get("expected_expiration")) or _when(m.get("close_time")) or now) <= now + timedelta(hours=cfg["min_hours_before"]):
-            continue  # the speech may already be under way: only ever before the event
-        looked += 1
+        when = _when(m.get("event_time"))
+        if when is None:
+            undated += 1
+            continue  # nothing says when the event is: it may be under way, so never a bet
+        if when <= cut:
+            past += 1
+            continue  # under way, over, or too close: only ever well before the event
+        opened = _when(m.get("opened"))
+        if cfg.get("max_hours_listed") and opened and now - opened > timedelta(hours=cfg["max_hours_listed"]):
+            aged += 1
+            continue  # listed too long ago: the edge was measured on early purchases (docs/research/CHECKS.md)
         p = mention_prior(m, cfg)
         signals = {"p_yes": {"noul": p}, "rules_clear": {"noul": 1.0}, "info_sufficient": {"noul": 1.0}}
         decisions = {}
@@ -798,13 +824,20 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
                         d["bet"] = False
                 d["ask_size"] = size
             decisions[name] = d
-            funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
             if d["bet"]:
                 _bet(name, pf, m, d, stamp, log, strat["rules_version"])
                 funnel["bets"][name] += 1
-        append_jsonl(MENTIONS, {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
-                                "market": m, "mention_prior": {"p_yes": p}, "decisions": decisions})
-    stats["mentions"] = {"seen": len(mk.LAST_MENTIONS), "looked": looked}
+        last = seen.get(key(m))
+        moved = last is not None and last[1] is not None and abs(float(m["mid"]) - float(last[1])) >= cfg["relog_move"]
+        if last is None or moved or any(d.get("bet") for d in decisions.values()):
+            logged += 1
+            for name, d in decisions.items():
+                funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
+            append_jsonl(MENTIONS, {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
+                                    "market": {k: v for k, v in m.items() if k != "rules"},
+                                    "mention_prior": {"p_yes": p}, "decisions": decisions})
+    stats["mentions"] = {"seen": len(mk.LAST_MENTIONS), "events": len({x.get("event") for x in mk.LAST_MENTIONS}),
+                         "logged": logged, "past_or_close": past, "no_date": undated, "listed_too_long": aged}
 
 
 def _record_scan(stats: dict, stamp: str) -> None:
@@ -828,8 +861,11 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
     for pf in books.values():
         for p in pf["open"]:
             closes[p["key"]] = p["close_time"]
+    held, event_times = set(closes), {}
     for j in read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS):  # every market looked at gets its result, bet or not
         closes.setdefault(j["key"], j["market"]["close_time"])
+        if j["market"].get("event_time"):
+            event_times[j["key"]] = j["market"]["event_time"]
         starts = _when(j["market"].get("starts"))
         if starts:  # a match: check a few hours after it starts, not a week later at the listed close
             after = (starts + timedelta(hours=policy["market_filters"].get("check_hours_after_start", 3))).strftime(TS)
@@ -837,6 +873,8 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
 
     stats = {"checked": 0, "resolved": 0, "voided": 0, "settled_bets": 0, "by_strategy": {}}
     pending = sorted(set(closes) - set(resolved) - set(voids))
+    # a mention market can't be decided before its event: one only looked at is checked from its event's date on
+    pending = [k for k in pending if k in held or not (_when(event_times.get(k)) or now) > now]
     for src, check in batch.items():
         ids = [k.split(":", 1)[1] for k in pending if k.startswith(src + ":")]
         if not ids:
