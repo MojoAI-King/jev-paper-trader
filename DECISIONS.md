@@ -213,4 +213,5 @@ Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes th
 | [2026-10-09-rebuild-the-trader-from-research-not-mor-1649](docs/decisions/2026-10-09-rebuild-the-trader-from-research-not-mor-1649.md) | Rebuild the trader from research, not more tuning | accepted | 2026-10-09 |
 | [2026-10-09-sharp-line-strategy-from-pinnacle-prices-4cc3](docs/decisions/2026-10-09-sharp-line-strategy-from-pinnacle-prices-4cc3.md) | Sharp-line strategy from Pinnacle prices; Jev alone retired | accepted | 2026-10-09 |
 | [2026-10-09-size-bets-by-measured-skill-one-stake-pe-d725](docs/decisions/2026-10-09-size-bets-by-measured-skill-one-stake-pe-d725.md) | Size bets by measured skill; one stake per event; real Kalshi fees; slower, capped review | accepted | 2026-10-09 |
+| [2026-10-10-mention-markets-no-side-strategy-37e6](docs/decisions/2026-10-10-mention-markets-no-side-strategy-37e6.md) | Mention markets NO side strategy | accepted | 2026-10-10 |
 <!-- skilliton:index:decisions:end -->

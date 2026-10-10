@@ -47,6 +47,7 @@ RETROS = DATA / "retros.jsonl"  # the daily reviews (weekly until 2026-09-28)
 PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; approved challengers run from here
 TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
 ODDS = DATA / "odds.json"  # the sharp sportsbook lines, refreshed within the quota (papertrade/odds.py)
+MENTIONS = DATA / "mentions.jsonl"  # each look at a Kalshi mention market by the mention strategy (no Jev answers)
 TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
@@ -393,10 +394,10 @@ def soonest(m: dict) -> datetime:
 
 # ---------------- scan: the funnel ----------------
 
-def last_judged() -> dict:
+def last_judged(path: Path | None = None) -> dict:
     """key -> (time of the latest judgment, the market's mid price then, the strategies that decided on it)."""
     out = {}
-    for j in read_jsonl(JUDGMENTS):
+    for j in read_jsonl(path or JUDGMENTS):
         out[j["key"]] = (j.get("ts", ""), j.get("market", {}).get("mid"), frozenset(j.get("decisions") or ()))
     return out
 
@@ -495,7 +496,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
              "problems": []}
     # each forecaster's measured skill sizes the bets (docs/REBUILD_PLAN.md phase 1); the frozen yardstick keeps
     # the old sizing
-    judged_before = read_jsonl(JUDGMENTS)
+    judged_before = read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS)
     skills = skill(judged_before, load_json(RESOLUTIONS, {}), policy["skill"]["min_markets"])
     event_of = {j["key"]: j["event"] for j in judged_before if j.get("event")}
     del judged_before
@@ -732,6 +733,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 "decision": decisions.get(MAIN), "decisions": decisions,
                 "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
             })
+    _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log)
     for name, pf in books.items():
         save_portfolio(name, pf)
     if claude is not None and claude.last_rate:
@@ -740,6 +742,62 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     cl["api_equivalent_usd"] = round(cl["api_equivalent_usd"], 4)
     _record_scan(stats, stamp)
     return stats
+
+
+def mention_prior(m: dict, cfg: dict) -> float:
+    """P(YES) for a Kalshi mention market ("will X say Y"): the mid, less `yes_bias` inside the `band` of mids.
+    On 639 settled mention markets (2026-10-10, docs/research/CHECKS.md), NO bought at 30-70c at the first real
+    taker price won 61.7% against the 49.3% its price implied, +21% after fees (95% range +6% to +36%), the YES
+    optimism Bartlett & O'Hara (2026) report on 35,000+. Outside the band, the mid: no claimed edge."""
+    lo, hi = cfg["band"]
+    return round(m["mid"] - cfg["yes_bias"], 4) if lo <= m["mid"] <= hi else m["mid"]
+
+
+def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log) -> None:
+    """Kalshi mention markets for the strategies whose probability is `mention_prior`. They need no Jev or Claude:
+    the walk in markets.fetch_kalshi collects them whatever their volume; each is looked at once per
+    `rejudge_after_hours` (or after a price move) and logged to mentions.jsonl, which settle and the skill
+    measure read. A bet never buys more contracts than the order book offers at the ask."""
+    names = {n: s for n, s in strats.items() if s["probability"] == "mention_prior"}
+    if not names or not mk.LAST_MENTIONS:
+        return
+    cfg, mf = policy["mention"], policy["market_filters"]
+    seen, cutoff = last_judged(MENTIONS), (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
+    looked = 0
+    for raw in mk.LAST_MENTIONS[: cfg["max_per_scan"]]:
+        m = dict(raw, category="mention")
+        if m.get("mid") is None or not due(m, seen, cutoff, mf["rejudge_on_price_move"], names):
+            continue
+        if (_when(m.get("expected_expiration")) or _when(m.get("close_time")) or now) <= now + timedelta(hours=cfg["min_hours_before"]):
+            continue  # the speech may already be under way: only ever before the event
+        looked += 1
+        p = mention_prior(m, cfg)
+        signals = {"p_yes": {"noul": p}, "rules_clear": {"noul": 1.0}, "info_sufficient": {"noul": 1.0}}
+        decisions = {}
+        for name, strat in names.items():
+            pf = books[name]
+            if key(m) in {x["key"] for x in pf["open"]}:
+                decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
+                continue
+            open_cost = sum(x["total_cost"] for x in pf["open"])
+            sz = skill_sizing(pf, m, skills.get("mention_prior", {}).get("lambda", 0.0), stamp, event_of)
+            d = decide(m, signals, spolicy[name], equity_at_cost(pf), open_cost, pf["cash"], sz)
+            if d["bet"]:
+                size = m.get(f"{d['side']}_ask_size")
+                if size is not None and d["contracts"] > size:  # only what is on offer at that price
+                    d.update(contracts=math.floor(size), total_cost=round(math.floor(size) * d["cost"], 2))
+                    d["reasons"].append(f"capped at the {math.floor(size)} contracts offered at the ask")
+                    if d["contracts"] < 1:
+                        d["bet"] = False
+                d["ask_size"] = size
+            decisions[name] = d
+            funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
+            if d["bet"]:
+                _bet(name, pf, m, d, stamp, log, strat["rules_version"])
+                funnel["bets"][name] += 1
+        append_jsonl(MENTIONS, {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
+                                "market": m, "mention_prior": {"p_yes": p}, "decisions": decisions})
+    stats["mentions"] = {"seen": len(mk.LAST_MENTIONS), "looked": looked}
 
 
 def _record_scan(stats: dict, stamp: str) -> None:
@@ -763,7 +821,7 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
     for pf in books.values():
         for p in pf["open"]:
             closes[p["key"]] = p["close_time"]
-    for j in read_jsonl(JUDGMENTS):
+    for j in read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS):  # every market looked at gets its result, bet or not
         closes.setdefault(j["key"], j["market"]["close_time"])
         starts = _when(j["market"].get("starts"))
         if starts:  # a match: check a few hours after it starts, not a week later at the listed close
@@ -866,6 +924,9 @@ def _prob(j: dict, source: str):
     if source == "sharp":
         c = j.get("sharp")
         return float(c["p_yes"]) if c else None
+    if source == "mention_prior":
+        c = j.get("mention_prior")
+        return float(c["p_yes"]) if c else None
     return float(j["market"]["mid"])
 
 
@@ -918,7 +979,7 @@ def paired(judgments: list[dict], resolved: dict) -> dict:
     return {"n": len(looks), "left_out": len(wide - looks.keys()), "sources": sources}
 
 
-SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated", "sharp")
+SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated", "sharp", "mention_prior")
 
 
 def skill(judgments: list[dict], resolved: dict, min_markets: int = 300, boot: int = 200) -> dict:

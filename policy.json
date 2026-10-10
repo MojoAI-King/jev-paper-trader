@@ -116,9 +116,11 @@
     "calibrated": {"label": "Jev + research, self-calibrating", "short": "Self-calibrating", "desc": "corrected by past results", "badge": "Learning", "probability": "jev_calibrated", "gates": "jev_research",
                    "blurb": "Jev + Claude, with Jev's numbers corrected by what past results taught it. Starts after 30 results.",
                    "_why": "Main's gates, but the probability is corrected by a map learned from every resolved market (learn.calibration_map). Waits until learning.calibration_min_resolved markets have resolved"},
-    "jev_alone_bold": {"label": "Jev alone, bold", "short": "Jev alone, bold", "desc": "no research, bets when unsure", "badge": "Challenger", "probability": "jev_plain", "gates": "jev_plain",
+    "jev_alone_bold": {"label": "Jev alone, bold", "short": "Jev alone, bold", "desc": "no research, bets when unsure (retired)", "badge": "Challenger", "probability": "jev_plain", "gates": "jev_plain",
                        "gate_overrides": {"min_info_sufficient": 0.2},
-                       "blurb": "Jev with no research and Bold's lower info bar. Next to Bold it asks: does research pay when betting boldly?",
+                       "retired": true,
+                       "_retired": "2026-10-10: its forecaster (Jev alone) scores like a coin flip on 1,006 markets with a real price (0.247) and adds nothing to the price (weight -0.30, range -0.63 to 0.07). Its colour went to the mention strategy; its ledger still settles",
+                       "blurb": "Jev with no research and Bold's lower info bar. Retired 2026-10-10: its forecaster scores like a coin flip. Its record stays here and its open bets still settle.",
                        "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"},
     "original": {"label": "Jev + research, original rules", "short": "Original rules", "desc": "main's starting rules, never tuned", "badge": "Yardstick", "probability": "jev_research", "gates": "jev_research",
                  "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying.",
@@ -128,7 +130,21 @@
               "gate_overrides": {"min_edge": 0.03},
               "rules": {"min_ask": 0.2, "max_ask": 0.85},
               "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against.",
-              "_why": "docs/REBUILD_PLAN.md phase 2A, research report 09 (2026-10-10, Joey: 'do what you need to fix this'). The fair price comes from The Odds API (papertrade/odds.py, ODDS_API_KEY); it never reaches Jev or Claude. Sized like every strategy by measured skill: probes until its edge over the venue price shows on 300+ markets"}
+              "_why": "docs/REBUILD_PLAN.md phase 2A, research report 09 (2026-10-10, Joey: 'do what you need to fix this'). The fair price comes from The Odds API (papertrade/odds.py, ODDS_API_KEY); it never reaches Jev or Claude. Sized like every strategy by measured skill: probes until its edge over the venue price shows on 300+ markets"},
+    "mention_no": {"label": "Mention markets, NO side", "short": "Mention NO", "desc": "bets against YES optimism in 'will X say Y'", "badge": "New", "probability": "mention_prior", "gates": "mention_prior",
+                   "slot": 6,
+                   "gate_overrides": {"min_edge": 0.03},
+                   "rules": {"min_ask": 0.3, "max_ask": 0.7},
+                   "blurb": "No AI forecast: in Kalshi markets on whether someone will say a word (earnings calls, interviews), it buys NO at 30-70c before the event. On 639 settled ones, NO there won 62% against the 49% its price implied: +21% after fees.",
+                   "_why": "Research report 15 (Bartlett & O'Hara 2026: YES at 50c settled YES about 40% across 35,000+ Kalshi mention markets), replicated on 639 settled Kalshi mention markets on 2026-10-10 at the first real taker price before the event: NO at 30-70c +21.0% after the taker fee, 95% range +6.1% to +35.5% over 55 events (docs/research/CHECKS.md). Found on history, so it must now pass a forward test (docs/EXPERIMENTS.md). Sized by measured skill: probes until its edge shows on 300+ markets; never more contracts than the ask offers"}
+  },
+
+  "mention": {
+    "_readme": "The mention strategy's prior (engine.mention_prior): inside the band of YES mids, P(YES) = mid - yes_bias, from the 2026-10-10 replication (NO at 30-70c won 61.7% vs 49.3% implied; YES at 50-90c lost 14-22%). Markets are those markets.fetch_kalshi's walk sees with MENTION in the ticker, looked at once per market_filters.rejudge_after_hours and only more than min_hours_before their expected end",
+    "band": [0.3, 0.7],
+    "yes_bias": 0.12,
+    "min_hours_before": 1,
+    "max_per_scan": 150
   },
 
   "sharp": {

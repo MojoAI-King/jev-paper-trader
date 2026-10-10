@@ -313,6 +313,12 @@ class NormalizeTests(unittest.TestCase):
         b = mk.normalize_kalshi({"ticker": "T", "title": "t", "yes_ask": 45, "no_ask": 57, "yes_bid": 43, "volume": 900})
         self.assertEqual((a["yes_ask"], a["no_ask"], a["mid"]), (b["yes_ask"], b["no_ask"], b["mid"]))
         self.assertEqual(a["mid"], 0.44)
+        # the size on offer at each ask; buying NO fills against YES bids, so the NO ask's size is the YES bid's
+        c = mk.normalize_kalshi({"ticker": "T", "title": "Philadelphia wins", "yes_sub_title": "Philadelphia",
+                                 "yes_ask_dollars": "0.23", "no_ask_dollars": "0.79", "yes_bid_dollars": "0.21",
+                                 "yes_ask_size_fp": "14.00", "yes_bid_size_fp": "2.00", "volume_fp": "900"})
+        self.assertEqual((c["yes_ask_size"], c["no_ask_size"], c["yes_side"]), (14.0, 2.0, "Philadelphia"))
+        self.assertEqual((b["yes_ask_size"], b["no_ask_size"]), (None, None))  # not given: no cap
 
     def test_kalshi_skips_parlays(self):
         self.assertIsNone(mk.normalize_kalshi({"ticker": "KXMVEFOO", "yes_ask": 40, "no_ask": 62}))
@@ -640,7 +646,7 @@ class FakeForecaster:
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
     NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "VOIDS", "SCANS", "REVIEWS", "RESEARCH",
-             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS")
+             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS", "MENTIONS")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -652,7 +658,8 @@ class DataDirTest(unittest.TestCase):
                      "SUMMARY": d / "summary.json", "SITE": d / "site", "PLAYBOOK": d / "playbook.json",
                      "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
                      "PROPOSALS": d / "proposals.json", "TUNED": d / "rules.json",
-                     "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json"}.items():
+                     "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json",
+                     "MENTIONS": d / "mentions.jsonl"}.items():
             setattr(engine, n, v)
         # A real ODDS_API_KEY in .env or the CI environment must never reach a test: on 2026-10-10 the scans in
         # these tests spent about 100 of the free tier's 500 requests in one run. No key, and any call fails loudly.
@@ -691,7 +698,7 @@ class EndToEndTests(DataDirTest):
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
         self.assertEqual(stats["funnel"]["bets"], {"main": 2, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                                   "jev_alone_bold": 0, "original": 2, "sharp": 0})  # the yardstick bets as main started
+                                                   "original": 2, "sharp": 0, "mention_no": 0})  # the yardstick bets as main started
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -703,7 +710,7 @@ class EndToEndTests(DataDirTest):
                           log=lambda *_: None)
         # settling covers every ledger, the retired Jev alone's too
         self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                            "jev_alone_bold": 0, "original": 2, "sharp": 0})
+                                            "jev_alone_bold": 0, "original": 2, "sharp": 0, "mention_no": 0})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -1050,16 +1057,62 @@ class ResearchPipelineTests(DataDirTest):
         self.assertNotIn("Steelers", sent)   # nor anything else from the odds feed
         self.assertTrue(engine.ODDS.exists())  # kept for the next cycle
 
+    def mention(self, **kw):
+        return dict({"source": "kalshi", "market_id": "KXEARNINGSMENTIONDAL-26OCT09-TARIFF", "event": "kalshi:KXEARNINGSMENTIONDAL-26OCT09",
+                     "question": "Will Delta say Tariff during its earnings call?", "rules": "r", "close_time": "1999-12-28T00:00:00Z",
+                     "expected_expiration": "1999-12-27T15:00:00Z", "yes_ask": 0.56, "no_ask": 0.46, "mid": 0.55,
+                     "volume": 300, "url": "u", "yes_ask_size": 400.0, "no_ask_size": 900.0}, **kw)
+
+    def scan_mentions(self, ms, now=SCAN_NOW):
+        mk.LAST_MENTIONS[:] = ms
+        try:
+            return engine.scan(dict(POLICY, sources=["kalshi"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
+                               fetchers={"kalshi": lambda *a: []}, log=lambda *_: None, now=now)
+        finally:
+            mk.LAST_MENTIONS.clear()
+
+    def test_the_mention_strategy_buys_no_before_the_event_within_what_the_ask_offers(self):
+        stats = self.scan_mentions([self.mention()])
+        self.assertEqual((stats["funnel"]["bets"]["mention_no"], stats["mentions"]), (1, {"seen": 1, "looked": 1}))
+        bet = engine.load_portfolio(POLICY, "mention_no")["open"][0]
+        # mid 0.55 -> P(YES) 0.43 -> P(NO) 0.57 against a 46c NO ask plus fee and slippage: a NO probe
+        self.assertEqual((bet["side"], bet["sizing"], bet["probe"]), ("no", "probe", True))
+        self.assertAlmostEqual(bet["p_side"], 0.57)
+        self.assertAlmostEqual(bet["total_cost"], 250, delta=1)
+        rec = engine.read_jsonl(engine.MENTIONS)[0]
+        self.assertEqual((rec["mention_prior"]["p_yes"], engine._prob(rec, "mention_prior")), (0.43, 0.43))
+        self.assertEqual(engine.read_jsonl(engine.JUDGMENTS), [])  # no Jev call, and the Jev log stays clean
+        # looked at again only after rejudge_after_hours: the same market an hour later isn't logged twice
+        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(hours=1))
+        self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 1)
+
+    def test_mention_markets_outside_the_band_near_the_event_or_thin_get_no_full_bet(self):
+        self.scan_mentions([self.mention(market_id="A", mid=0.85, yes_ask=0.86, no_ask=0.16)])  # outside the band: the mid
+        self.assertEqual(engine.read_jsonl(engine.MENTIONS)[0]["mention_prior"]["p_yes"], 0.85)
+        self.assertEqual(engine.load_portfolio(POLICY, "mention_no")["open"], [])
+        self.scan_mentions([self.mention(market_id="B", expected_expiration="1999-12-25T00:30:00Z")])  # 30 min to go
+        self.assertNotIn("kalshi:B", {r["key"] for r in engine.read_jsonl(engine.MENTIONS)})
+        self.scan_mentions([self.mention(market_id="C", no_ask_size=40.0)])  # only 40 contracts offered at the ask
+        bet = next(b for b in engine.load_portfolio(POLICY, "mention_no")["open"] if b["market_id"] == "C")
+        self.assertEqual(bet["contracts"], 40)
+
+    def test_settling_scores_mention_markets_that_were_only_looked_at(self):
+        engine.append_jsonl(engine.MENTIONS, {"ts": "1999-12-25T00:00:00Z", "key": "kalshi:X", "question_set": review.QUESTION_SET_VERSION,
+                                              "market": dict(self.mention(market_id="X"), close_time="1999-12-26T00:00:00Z"),
+                                              "mention_prior": {"p_yes": 0.43}, "decisions": {}})
+        engine.settle(POLICY, resolvers={}, batch={"kalshi": lambda ids: {i: "no" for i in ids}}, log=lambda *_: None)
+        self.assertEqual(engine.load_json(engine.RESOLUTIONS, {})["kalshi:X"], "no")
+
     def test_each_strategy_uses_its_own_probability_and_never_doubles_up(self):
         def transport(url, body, key, timeout):
             return {"model": "jev-test", "answers": ans(0.70 if "recent_facts" in body["state"] else 0.60)}
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
         self.assertEqual(stats["funnel"]["bets"], {"main": 1, "claude_direct": 0, "bold": 1, "calibrated": 0,
-                                                   "jev_alone_bold": 1, "original": 1, "sharp": 0})
+                                                   "original": 1, "sharp": 0, "mention_no": 0})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
-        self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone_bold"]["p_yes"]), (0.70, 0.60))
-        self.assertNotIn("jev_alone", j["decisions"])  # retired: it no longer bets
+        self.assertEqual((j["decisions"]["main"]["p_yes"], j["answers_no_news"]["p_yes"]["noul"]), (0.70, 0.60))
+        self.assertFalse({"jev_alone", "jev_alone_bold"} & set(j["decisions"]))  # retired: they no longer bet
         self.assertIn("ODDS_API_KEY", j["decisions"]["sharp"]["reasons"][0])  # no key in tests: says what it waits for
         # two days later the market is judged again for data, but no strategy adds to a position it holds
         stats2 = self.run_scan([self.lula()], FakeResearcher([]), fc, transport=transport, now=SCAN_NOW + timedelta(days=2))
@@ -1752,12 +1805,12 @@ class TuningTests(DataDirTest):
         engine.save_json(engine.TUNED, {"strategies": {
             "original": {"version": 2, "rules": {"min_edge": 0.0}},           # the frozen yardstick
             "main": {"version": 2, "rules": {"slippage": 0.0}},               # not a rule the loop owns
-            "jev_alone_bold": {"version": True, "rules": {"min_edge": 0.05}},  # a bool is not a version
+            "sharp": {"version": True, "rules": {"min_edge": 0.05}},          # a bool is not a version
             "claude_direct": {"version": 2, "rules": {"min_edge": None}},     # stored values are never null
             "calibrated": {"version": 2, "rules": {"min_ask": 0.9, "max_ask": 0.2}},
             "bold": {"version": 2, "rules": {"min_edge": 0.05}, "since": "1999-12-01T00:00:00Z"}}})  # the control
         s = engine.strategies(POLICY)
-        for name in ("original", "main", "jev_alone_bold", "claude_direct", "calibrated"):
+        for name in ("original", "main", "sharp", "claude_direct", "calibrated"):
             self.assertEqual((s[name]["rules_version"], s[name].get("tuned")), (1, None), name)
         self.assertEqual((s["bold"]["rules_version"], s["bold"]["tuned"]), (2, {"min_edge": 0.05}))
         engine.save_json(engine.TUNED, {"strategies": ["not", "a", "dict"]})
@@ -1844,18 +1897,19 @@ class TuningTests(DataDirTest):
         r = self.retro([dict(self.TUNE, rules={"min_edge": 10 ** 400}), dict(self.TUNE, strategy="bold")])
         self.assertEqual((r["ran"], r["tuned"]), (True, ["bold"]))
         with mock.patch.object(coach, "tune", side_effect=KeyError("boom")):
-            r = self.retro([dict(self.TUNE, strategy="jev_alone_bold")], days=1)
+            r = self.retro([dict(self.TUNE, strategy="calibrated")], days=1)
         self.assertTrue(r["ran"])
         self.assertEqual(coach.load_proposals()["proposals"][-1]["status_reason"], "could not be read: KeyError")
 
     def test_a_change_that_bets_the_same_way_is_not_a_new_version(self):
         self.assertEqual(coach.tune(POLICY, "main", {"skip_categories": []}, self.NOW), ("skipped", "changes nothing"))
-        self.assertEqual(coach.tune(POLICY, "jev_alone_bold", {"skip_categories": ["sports", "crypto"]}, self.NOW)[0], "applied")
-        self.assertEqual(engine.strategies(POLICY)["jev_alone_bold"]["tuned"], {"skip_categories": ["crypto", "sports"]})
+        self.assertEqual(coach.tune(POLICY, "calibrated", {"skip_categories": ["sports", "crypto"]}, self.NOW)[0], "applied")
+        self.assertEqual(engine.strategies(POLICY)["calibrated"]["tuned"], {"skip_categories": ["crypto", "sports"]})
         later = self.NOW + timedelta(days=8)
-        self.assertEqual(coach.tune(POLICY, "jev_alone_bold", {"skip_categories": ["crypto", "sports", "crypto"]}, later),
+        self.assertEqual(coach.tune(POLICY, "calibrated", {"skip_categories": ["crypto", "sports", "crypto"]}, later),
                          ("skipped", "changes nothing"))
-        self.assertEqual(coach.tune(POLICY, "jev_alone", {"min_edge": 0.1}, later)[0], "invalid")  # retired: not tuned
+        for retired in ("jev_alone", "jev_alone_bold"):
+            self.assertEqual(coach.tune(POLICY, retired, {"min_edge": 0.1}, later)[0], "invalid")  # retired: not tuned
 
     def test_undoing_a_change_by_hand_never_reuses_a_version_or_skips_the_wait(self):
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.05}, self.NOW)[0], "applied")

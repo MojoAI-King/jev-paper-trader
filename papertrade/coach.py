@@ -306,7 +306,7 @@ def week_numbers(policy: dict, now: datetime) -> dict:
         "recent_rule_changes": [{k: c.get(k) for k in ("ts", "strategy", "version", "changed", "why", "judge_by")}
                                 for c in engine.read_jsonl(engine.TUNED_LOG)[-10:]],
         "brier_all_time": engine.calibration(judgments, resolved),
-        "skill": engine.skill(judgments, resolved, policy["skill"]["min_markets"]),
+        "skill": engine.skill(judgments + engine.read_jsonl(engine.MENTIONS), resolved, policy["skill"]["min_markets"]),
         "by_category": learn.category_scores(judgments, resolved, engine._prob),
         "gate_ledger": learn.gate_ledger(policy, judgments, resolved, starting_policies(policy, strats)),
         "calibration_map": learn.calibration_map(reviews, policy["learning"]),

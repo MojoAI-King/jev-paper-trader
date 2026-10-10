@@ -69,6 +69,16 @@ forward test written down before its results come in. It bets more than probes o
   a market already decided, and labelling how two markets relate. Each job is measured on about 200 hand-checked
   cases before anything acts on it. Jev's own forecast is kept only as a logged yardstick.
 
+- **F. Fading YES in Kalshi mention markets (report 15). Built 2026-10-10: the `mention_no` strategy.** In "will X
+  say Y" markets, YES at 50¢ settles YES only about 40% of the time (published). On 639 settled Kalshi mention
+  markets we checked from public data, NO at 30–70¢, bought at the first real price before the event, returned
+  **+21% after fees (95% range +6% to +36%)**. It's the first edge here to clear costs on real data. Forward test
+  first: probe bets until 300 markets confirm it. Supply depends on Kalshi listing mention markets (under a CFTC
+  review).
+- **G. Being the maker instead of the taker (reports 01, 11, 15).** Tested honestly on Kalshi trade records: it
+  saves 4–5 points against buying at the ask but only reaches break-even on its own. It's a cost saver for a
+  strategy that already has an edge, not a strategy.
+
 ## What we won't build, and why
 
 - **Arbitrage across venues or within an event:** gaps last seconds, and it needs real accounts (02).

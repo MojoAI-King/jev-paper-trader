@@ -12,7 +12,9 @@
   to keep more facts without Joey's OK. The `sharp` strategy (2026-10-10) is not a forecaster: its probability
   *is* a price, Pinnacle's line from The Odds API (`papertrade/odds.py`, `ODDS_API_KEY`, never printed). It goes
   only to that strategy's decision and the scoring, never into a Jev or Claude state
-  (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`).
+  (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`). The same goes for `mention_no`
+  (2026-10-10): its probability is the market's own mid less a measured YES bias (`engine.mention_prior`), never a
+  forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`.
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.
 - Any change to question wording in `papertrade/judge.py` requires bumping `QUESTION_SET_VERSION`,
   because calibration data from old wording doesn't carry over.

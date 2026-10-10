@@ -210,7 +210,43 @@ favourite buyers. AI agents trading every 15–45 minutes lost 16–31% on Kalsh
     | NO | 1,001 | −7.6% [−13.7, −0.3] | −2.1% [−11.3, +7.5] (450) |
 
     That is the YES-optimism pattern the literature describes; NO still doesn't clearly beat costs here.
-- **Its main lead,** buying NO in Kalshi mention markets (YES at 50¢ won about 40% across 35,000+ markets, gross of
-  fees), is being tested on Kalshi's public settled-market and trade data (scratchpad `mention_test.py`). Results
-  will be added here.
+- **Its main lead held on fresh data (run 2026-10-10, scratchpad `mention_test.py`).** Method: the 90 most
+  recently updated Kalshi "Mentions" series, their settled markets with volume of 200 or more, and in each the
+  first real taker purchase of each side within the first quarter of the market's life (at most 48 hours, so
+  before the event). Kalshi's taker fee at the series' multiplier; the 95% ranges resample whole events. That gave
+  639 markets in 55 events.
+
+  | Side and price paid | Purchases | Won | Price implied | Return after fee |
+  |---|---|---|---|---|
+  | NO 30–50¢ | 122 | 50.8% | 41.3% | +19.4% [−6.6, +42.3] |
+  | NO 50–70¢ | 118 | 72.9% | 57.6% | **+22.6% [+7.5, +38.3]** |
+  | **NO 30–70¢** | **240** | **61.7%** | **49.3%** | **+21.0% [+6.1, +35.5]** |
+  | NO 70–90¢ | 71 | 78.9% | 80.2% | −3.0% [−14.8, +8.0] |
+  | YES 50–70¢ | 136 | 48.5% | 59.9% | −21.8% [−37.9, −4.3] |
+  | YES 70–90¢ | 182 | 68.1% | 77.9% | −13.7% [−22.6, −4.1] |
+
+  This is the first edge in this project to clear costs on real data, and it matches the published finding.
+  Limits: it was found on history (so it must pass a forward test), 55 events is few, and early order books can be
+  thin. Mention markets are under a CFTC review. Built as the `mention_no` strategy (decision
+  2026-10-10-mention-markets-no-side-strategy-37e6).
+
+## The honest maker test (run 2026-10-10, scratchpad `maker_test.py`)
+
+Reports 01, 11 and 15 say the money flows from takers to makers. Our earlier resting-order test counted a fill
+whenever a later snapshot's ask reached our price, which is too harsh. This one uses Kalshi's public trade
+records, on 628 finished Kalshi markets with a real price and a favourite at 50–95¢:
+- a bid on the favourite side one cent above the best bid, so first in the queue;
+- filled only when real trades sold into it, enough to cover a $250 order;
+- Kalshi's maker fee charged on every fill (0.0175·p·(1−p)).
+
+| Order life | Filled | Maker return | Same markets at the ask | Win rate, filled vs never filled |
+|---|---|---|---|---|
+| Never cancelled, 50–95¢ | 549/628 (87%) | −2.8% [−9.1, +3.5] | −7.3% [−13.2, −1.2] | 68% vs 97% |
+| Never cancelled, 70–95¢ | 247/295 | +0.4% [−5.1, +6.2] | −3.0% [−8.3, +2.7] | 84% vs 100% |
+| Cancelled after 6 h, 50–95¢ | 215/628 (34%) | −1.3% [−10.3, +6.8] | −5.7% [−14.2, +1.8] | 71% vs 71% |
+| Cancelled after 6 h, 70–95¢ | 120/295 | +0.5% [−9.4, +7.2] | −3.1% [−12.5, +3.5] | 84% vs 89% |
+
+Making instead of taking saves about 4–5 points, the spread plus the fee gap. A slow maker still only breaks even,
+and the never-cancelled orders show adverse selection plainly: the orders that never filled would have won 97%.
+Not built as a strategy. It may later lower the cost of a strategy that has an edge (for example `mention_no`).
 

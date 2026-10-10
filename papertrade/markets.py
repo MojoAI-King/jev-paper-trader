@@ -29,6 +29,8 @@ KALSHI_SLICES = (timedelta(hours=12), timedelta(days=3), timedelta(days=7))  # s
 KALSHI_BATCH = 50        # tickers per settlement check (61 came back in one call on 2026-09-28)
 KALSHI_DEADLINE = 300    # seconds: a walk still going after this stops, keeping what it has (65 s measured)
 LAST_FETCH: dict = {}    # source -> what the last fetch did (pages, seconds, cut short, error), for the scan log
+LAST_MENTIONS: list = []  # Kalshi "mention" markets ("will X say Y") the last walk saw, for the mention strategy
+MAX_MENTIONS = 300
 _sleep = time.sleep  # swapped out in tests
 
 
@@ -196,6 +198,9 @@ def normalize_kalshi(m: dict) -> dict | None:
         # what YES means on a multi-market event ("Pittsburgh" on "Pittsburgh at Cincinnati Winner?"), which the
         # question drops when the title already contains it; the sharp-line matcher needs it (papertrade/odds.py)
         "yes_side": sub or None,
+        # contracts on offer at the best ask. Buying NO fills against YES bids, so the NO ask's size is the YES bid's.
+        "yes_ask_size": _f(m.get("yes_ask_size_fp")),
+        "no_ask_size": _f(m.get("yes_bid_size_fp")),
     }
 
 
@@ -247,6 +252,7 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
     deadline = started + KALSHI_DEADLINE
     edges = [e for e in KALSHI_SLICES if e < timedelta(days=days_ahead)] + [timedelta(days=days_ahead)]
     out, seen, pages, cut_short, error = [], set(), 0, False, None
+    LAST_MENTIONS.clear()  # "will X say Y" markets seen on this walk, whatever their volume (the mention strategy)
     for lo, hi in zip(edges, edges[1:]):
         cursor = None
         while not error:
@@ -267,6 +273,8 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
             pages += 1
             for m in data.get("markets", []):
                 n = normalize_kalshi(m)
+                if n and "MENTION" in str(n["market_id"]).upper() and len(LAST_MENTIONS) < MAX_MENTIONS:
+                    LAST_MENTIONS.append(n)
                 if n and n["market_id"] not in seen and n["volume"] >= min_volume and (keep is None or keep(n)):
                     seen.add(n["market_id"])
                     out.append(n)
