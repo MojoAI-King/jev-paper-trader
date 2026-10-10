@@ -1096,6 +1096,16 @@ class ResearchPipelineTests(DataDirTest):
         bet = next(b for b in engine.load_portfolio(POLICY, "mention_no")["open"] if b["market_id"] == "C")
         self.assertEqual(bet["contracts"], 40)
 
+    def test_one_mention_bet_per_event_soonest_first(self):
+        later = self.mention(market_id="L1", event="kalshi:LATE", expected_expiration="1999-12-30T15:00:00Z")
+        soon = [self.mention(market_id=f"S{i}", event="kalshi:SOON") for i in range(3)]
+        self.scan_mentions([later] + soon)
+        held = engine.load_portfolio(POLICY, "mention_no")["open"]
+        self.assertEqual(sorted(b["event"] for b in held), ["kalshi:LATE", "kalshi:SOON"])  # one per event
+        recs = engine.read_jsonl(engine.MENTIONS)
+        self.assertEqual(recs[0]["key"], "kalshi:S0")  # the soonest-ending market was looked at first
+        self.assertIn("already holds a bet on this event", recs[1]["decisions"]["mention_no"]["reasons"][0])
+
     def test_settling_scores_mention_markets_that_were_only_looked_at(self):
         engine.append_jsonl(engine.MENTIONS, {"ts": "1999-12-25T00:00:00Z", "key": "kalshi:X", "question_set": review.QUESTION_SET_VERSION,
                                               "market": dict(self.mention(market_id="X"), close_time="1999-12-26T00:00:00Z"),

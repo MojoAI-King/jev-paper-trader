@@ -27,7 +27,12 @@ winner":
    - The scan's `_mention_pass` looks at each one once per `rejudge_after_hours`, needing no Jev or Claude call, and
      logs each look to `papertrade_data/mentions.jsonl`.
    - `settle` and the skill measure read that log, so markets that were only looked at still get scored.
-3. **`jev_alone_bold` retired**, as `jev_alone` was: its forecaster scores like a coin flip and adds nothing to the
+3. **One bet per event, soonest first** (added after the first live run). At 06:05Z on 2026-10-10 the pass saw 168
+   mention markets and placed its 5 daily probes, all on one event (Jensen Huang's GTC Berlin keynote, which
+   resolves 2026-11-05). Those five are one bet, since the same speech decides them all, and they are slow to
+   resolve. The pass now takes at most one bet per event per strategy and looks at the soonest-ending markets first.
+   The probes were capped at 100–222 contracts ($47–90), the size the asks offered.
+4. **`jev_alone_bold` retired**, as `jev_alone` was: its forecaster scores like a coin flip and adds nothing to the
    price. Its ledger still settles, and its colour slot (6) went to `mention_no`.
 
 ## Why
@@ -80,3 +85,4 @@ only a log. `jev_alone_bold` returns by removing its `retired` flag.
 - The retired `jev_alone_bold` no longer bets or is tuned (updated tests).
 - 141 offline tests pass.
 - The replication and the maker test are in `docs/research/CHECKS.md`.
+- `test_one_mention_bet_per_event_soonest_first`. 142 offline tests pass after the change.

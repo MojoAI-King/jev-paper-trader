@@ -764,7 +764,9 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
     cfg, mf = policy["mention"], policy["market_filters"]
     seen, cutoff = last_judged(MENTIONS), (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
     looked = 0
-    for raw in mk.LAST_MENTIONS[: cfg["max_per_scan"]]:
+    # soonest-ending first, so the probes go where results come back soonest
+    soonest_first = sorted(mk.LAST_MENTIONS, key=lambda x: x.get("expected_expiration") or x.get("close_time") or "9")
+    for raw in soonest_first[: cfg["max_per_scan"]]:
         m = dict(raw, category="mention")
         if m.get("mid") is None or not due(m, seen, cutoff, mf["rejudge_on_price_move"], names):
             continue
@@ -778,6 +780,10 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
             pf = books[name]
             if key(m) in {x["key"] for x in pf["open"]}:
                 decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
+                continue
+            if m.get("event") and any(x.get("event") == m["event"] for x in pf["open"]):
+                # every word in one speech is decided by the same speech: one bet per event, not five
+                decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holds a bet on this event"]}
                 continue
             open_cost = sum(x["total_cost"] for x in pf["open"])
             sz = skill_sizing(pf, m, skills.get("mention_prior", {}).get("lambda", 0.0), stamp, event_of)
