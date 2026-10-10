@@ -31,6 +31,7 @@ the brief). Paste one into a new Claude Code tab. The short form also works:
 | 12 | Bet sizing when our probabilities are uncertain | 2 | [done](12-bet-sizing.md), checked in [CHECKS.md](CHECKS.md) |
 | 13 | Telling skill from luck quickly | 2 | [done](13-judging-skill.md), checked in [CHECKS.md](CHECKS.md) |
 | 14 | Using Jev for what it's built for | 1 | [done](14-jev-harness.md), checked in [CHECKS.md](CHECKS.md) |
+| 15 | Who makes the money (asked by Joey, run by an agent from the main session) | — | [done](15-who-makes-the-money.md), checked in [CHECKS.md](CHECKS.md) |
 
 Wave 1 (01, 05, 06, 07, 09, 10, 14) are the seven that most decide the plan. The briefs don't depend on each other, so any order works.
 All fourteen at once use a lot of Joey's Claude plan, the same plan the trader's own research runs on. If tabs stop

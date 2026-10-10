@@ -187,3 +187,30 @@ The over-7-days slice matches the published finding that prices sit too close to
 01, F8), but 72 markets can't confirm it. Re-run it once 300 or more long-dated markets judged after 2026-10-10 have
 finished. The trader's `market_filters.max_price` of 0.95 keeps it out of the 95–99¢ band.
 
+## 15 Who makes the money (checked 2026-10-10)
+
+Written by a research agent from this session (six parallel researchers plus a writer). The agent checked seven
+load-bearing sources itself: the Akey et al. CEPR paper, Becker's 72-million-trade study, two arbitrage papers,
+Prediction Arena, Polymarket's rebate page, and Théo's figures. All matched. Its headline: about four wallets ever
+made $10M+ on Polymarket. The money flows from takers to makers and from YES and long-shot buyers to NO and
+favourite buyers. AI agents trading every 15–45 minutes lost 16–31% on Kalshi.
+
+- **Corrections it found in earlier reports:**
+  - Report 10 called the 2026-07-10 Polymarket sports fee rise (0.03 → 0.05) refuted. Polymarket's changelog has it,
+    along with a cut in the sports maker rebate from 25% to 15%.
+  - Report 02's "about 16 seconds" leaves out 58.7% of observed gaps, which lasted the whole sampled hour. Nobody has
+    shown those longer gaps pay after fees.
+- **Its test T1 on our data (run 2026-10-10).**
+  - Our history holds no Kalshi mention markets: the trader loads only the 100 highest-volume markets per venue.
+  - Buying at the ask with real fees plus 1¢, first look, on every real-priced finished market:
+
+    | Side | Purchases | Return | Priced 30–70¢ |
+    |---|---|---|---|
+    | YES | 1,022 | −20.8% [−28.4, −13.1] | −12.1% [−20.5, −3.9] (453) |
+    | NO | 1,001 | −7.6% [−13.7, −0.3] | −2.1% [−11.3, +7.5] (450) |
+
+    That is the YES-optimism pattern the literature describes; NO still doesn't clearly beat costs here.
+- **Its main lead,** buying NO in Kalshi mention markets (YES at 50¢ won about 40% across 35,000+ markets, gross of
+  fees), is being tested on Kalshi's public settled-market and trade data (scratchpad `mention_test.py`). Results
+  will be added here.
+
