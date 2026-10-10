@@ -43,6 +43,6 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
+| [2026-10-10-edge-scan-every-kalshi-market-family-for-2725](tasks/2026-10-10-edge-scan-every-kalshi-market-family-for-2725.md) | Edge scan: every Kalshi market family for steady mispricing (B33) | in-progress | master | unassigned |
 | [2026-10-10-mention-no-strategy-live-forward-test-aaec](tasks/2026-10-10-mention-no-strategy-live-forward-test-aaec.md) | Mention NO strategy: live forward test | in-progress | master | unassigned |
-| [2026-10-10-mention-strategy-every-event-buy-only-be-3436](tasks/2026-10-10-mention-strategy-every-event-buy-only-be-3436.md) | Mention strategy: every event, buy only before the event, more data (B32) | in-progress | master | unassigned |
 <!-- skilliton:index:tasks:end -->

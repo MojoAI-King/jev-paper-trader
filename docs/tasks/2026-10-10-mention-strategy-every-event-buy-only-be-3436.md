@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-10-10-mention-strategy-every-event-buy-only-be-3436
-- **State:** in-progress
+- **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-10T21:55:18.586Z
+- **Updated:** 2026-10-10T23:07:09.000Z
 
 ## Request
 

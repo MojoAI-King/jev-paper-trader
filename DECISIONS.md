@@ -216,4 +216,5 @@ Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes th
 | [2026-10-10-mention-markets-no-side-strategy-37e6](docs/decisions/2026-10-10-mention-markets-no-side-strategy-37e6.md) | Mention markets NO side strategy | accepted | 2026-10-10 |
 | [2026-10-10-mention-strategy-reads-every-event-and-t-0a22](docs/decisions/2026-10-10-mention-strategy-reads-every-event-and-t-0a22.md) | Mention strategy reads every event and times bets by the event date | accepted | 2026-10-10 |
 | [2026-10-10-mention-strategy-skips-earnings-call-and-3533](docs/decisions/2026-10-10-mention-strategy-skips-earnings-call-and-3533.md) | Mention strategy skips earnings-call and Trump series | accepted | 2026-10-10 |
+| [2026-10-10-paid-tools-and-data-yes-real-money-only-6f1a](docs/decisions/2026-10-10-paid-tools-and-data-yes-real-money-only-6f1a.md) | Paid tools and data yes, real money only after a strategy is proven | accepted | 2026-10-10 |
 <!-- skilliton:index:decisions:end -->
