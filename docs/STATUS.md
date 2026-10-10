@@ -43,5 +43,5 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
-| [2026-10-09-sharp-line-strategy-plan-2a-and-the-rese-8e55](tasks/2026-10-09-sharp-line-strategy-plan-2a-and-the-rese-8e55.md) | Sharp-line strategy (plan 2A) and the research on who makes the money | in-progress | master | unassigned |
+| [2026-10-10-mention-no-strategy-live-forward-test-aaec](tasks/2026-10-10-mention-no-strategy-live-forward-test-aaec.md) | Mention NO strategy: live forward test | in-progress | master | unassigned |
 <!-- skilliton:index:tasks:end -->
