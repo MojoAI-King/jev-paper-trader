@@ -14,8 +14,9 @@ Part of B32, on Joey's "ok yes ... get more and more data collected":
    (`mention.exclude_series`; `markets.fetch_kalshi_mentions(skip=...)` and `engine._mention_pass`).
 2. `mention.yes_bias` is 0.10 (was 0.12): the measured gap between how often NO wins and the price paid in the kept
    series, about 9–10 points, plus the cent or so between the price paid and the mid.
-3. The 5 open bets on earnings-call series (BLK, JNJ, JPM, WFC, BAC) are left out of the forward test's keep-or-kill
-   count and reported on their own, decided before any of them settled (`docs/EXPERIMENTS.md`).
+3. All 20 open bets on earnings-call series are left out of the forward test's keep-or-kill count and reported on
+   their own, decided before any of them settled (`docs/EXPERIMENTS.md`): 5 placed by 18:35Z, and 15 more at 18:50Z,
+   in the one cycle between the daily limit rising to 30 and this rule going live (first run 38079351634, 19:19Z).
 
 ## Why
 
