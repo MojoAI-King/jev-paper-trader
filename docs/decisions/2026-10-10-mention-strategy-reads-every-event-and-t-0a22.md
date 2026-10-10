@@ -64,5 +64,11 @@ nothing). The guard and logging are settings in `policy.json` (`mention`). Old l
   Fed's Oct 28 press conference closes Oct 29 with an expected expiration of Nov 12.
 - Read-only dry run of the new reader (half the series before its time cap): 667 markets in 41 events, every one
   with a date, 46 past or within 6 hours, 36 events with a NO edge of 3¢ or more.
+- Read-only run over every series (no time cap): 455 requests in 325 seconds, 1,188 markets in 75 of the 76 open
+  events, 67 events with a NO edge of 3¢ or more.
+- First live cycle on the new code (run 38076336614, 18:35Z, success): 120 requests in 67 seconds, no errors; 338
+  markets in 19 events from the first 119 series; 215 first looks logged (about 1.2 KB each, half the old size);
+  16 markets held back as past or too close, none for want of a date; 4 NO probes on the Oct 13–14 bank earnings
+  calls, which reached the 15-a-day limit.
 - Offline tests: 150 pass (new: event-time cases, the reader on recorded-shape responses, a failed series read,
   the guard, lean logging, the settle skip, the young-market limit).

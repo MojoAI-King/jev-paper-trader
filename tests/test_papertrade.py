@@ -1180,11 +1180,11 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 2)
 
     def test_the_mention_strategy_has_its_own_daily_probe_limit(self):
-        many = [self.mention(market_id=f"E{i}", event=f"kalshi:EV{i}") for i in range(17)]  # 17 separate events
+        many = [self.mention(market_id=f"E{i}", event=f"kalshi:EV{i}") for i in range(32)]  # 32 separate events
         stats = self.scan_mentions(many)
-        self.assertEqual(stats["funnel"]["bets"]["mention_no"], 15)  # mention.max_probes_per_day, not skill's 5
+        self.assertEqual(stats["funnel"]["bets"]["mention_no"], 30)  # mention.max_probes_per_day, not skill's 5
         last = engine.read_jsonl(engine.MENTIONS)[-1]["decisions"]["mention_no"]["reasons"][-1]
-        self.assertIn("probe limit reached (15 today", last)
+        self.assertIn("probe limit reached (30 today", last)
 
     def test_mention_markets_outside_the_band_near_the_event_or_thin_get_no_full_bet(self):
         self.scan_mentions([self.mention(market_id="A", mid=0.85, yes_ask=0.86, no_ask=0.16)])  # outside the band: the mid

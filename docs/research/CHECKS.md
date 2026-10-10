@@ -250,3 +250,18 @@ Making instead of taking saves about 4–5 points, the spread plus the fee gap. 
 and the never-cancelled orders show adverse selection plainly: the orders that never filled would have won 97%.
 Not built as a strategy. It may later lower the cost of a strategy that has an edge (for example `mention_no`).
 
+
+## Mention markets: coverage and timing (run 2026-10-10, B32)
+
+- **The live strategy saw a tenth of the market.** Kalshi's public API on 2026-10-10: 454 "Mentions" series, 76 open
+  mention events (1,274 markets; 459 priced 30–70¢ in 74 events), and 43–52 mention events settled in each of the
+  last four weeks. The trader's mention pass saw 168 markets in 8 events: the price walk orders markets by close
+  time, and Kalshi closes a mention market about two weeks after its event, so most sat past the 60-page limit.
+- **Kalshi's close is not the event.** The debate on Oct 13 closes Oct 27; NVIDIA's Oct 21 event closes Nov 5; the
+  Fed's Oct 28 press conference closes Oct 29 with an expected expiration of Nov 12. Markets close early when the
+  event ends. The event's date is in the market's occurrence time (sometimes), the event's subtitle ("On Oct 13,
+  2026"), the rules ("originally scheduled for October 13, 2026") or the ticker (`-26OCT13`).
+- **The new reader** (`markets.fetch_kalshi_mentions`, one /events read per series), run once over every series,
+  read-only: 455 requests in 325 seconds, 1,188 markets in 75 of the 76 events (the rest had no quotes), every
+  market with a date, 86 past or within 6 hours, 419 priced 30–70¢ with good timing, and 67 events with a NO edge of
+  3¢ or more after fees. Before it, 8 events were in view.
