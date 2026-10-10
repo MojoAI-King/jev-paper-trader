@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-10 00:43 EDT
+- **State:** Sharp line verified live: cycle 2026-10-10T04:35Z refreshed 4 sports (110 games) for 4 requests (282 left, tests spend none); 5 of 40 judged markets matched a Pinnacle line; all 5 correctly passed (Kalshi 1-2.5c worse than fair after fees). Background: maker test on Kalshi trade prints (150+ markets fetched), research report 15. Evidence: scans.jsonl 04:35:11Z sharp {games 110, matched 5, quota_left 282}; judgments' sharp decisions 'edge -0.02 < 0.03'; gh run 04:34:44Z success.
+- **Next:** Read the maker-test result and report 15; recommend the next build to Joey
+- **Blocked:** nothing
+- **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
+- **Git:** master @ 23a6329, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-10 04:43 UTC)
+
 ### 2026-10-10 00:27 EDT
 - **State:** Maintenance run. Sharp line live with Joey's key (286 free requests left, tests can't spend them). Favourites test recorded in docs/research/CHECKS.md (break-even overall; >7 days +8.3% on 72, a lead to re-run). Background: maker test on Kalshi trade prints, research report 15, next-cycle check. Evidence: 138 offline tests OK; maintenance recorded.
 - **Next:** Read the maker-test result and report 15; confirm the next cycle's sharp stats; recommend the next build to Joey

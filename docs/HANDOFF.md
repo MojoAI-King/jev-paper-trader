@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-10 02:40 EDT
+Written: 2026-10-10 02:56 EDT
 
+- **State:** 15-minute schedule verified: the first :49 run (38032277618) passed and committed a cycle at 06:53Z. Found two mention-strategy problems (B32): it sees 8 of the 76 open Kalshi mention events (about 48 settle a week), and its hour-before guard counts from Kalshi's formal close, about 14-15 days after the event, so it could buy during or after an event. No such bet yet. Evidence: run 38032277618 success; scan 2026-10-10T06:50:17Z; Kalshi public API sweep of 454 Mentions series (scratchpad mention_rate.py); close times read for 6 series.
+- **Next:** Joey decides B32: (1) policy stopgap mention.min_hours_before 384; (2) history test at the live timing; (3) code to read mention events directly
+- **Blocked:** B32 waits for Joey's OK
+- **Watch out:** Stage by explicit path; tests must never reach The Odds API or write real mentions.jsonl; Kalshi mention tickers' dates can be stale ('originally scheduled', 'next PMQs')
+- **Git:** master @ ef6456f, 3 uncommitted
+- **CI:** master green on GitHub (read 2026-10-10 06:56 UTC)
+
+## Earlier
+
+### 2026-10-10 02:40 EDT
 - **State:** Maintenance done (4983d0e): B31 records the 15-minute pace; the secrets scan's 20 high-confidence matches checked by hand (URL slugs, 'list bearer' in a news snippet, env-variable names; no secret values). The 06:34Z cycle (run 38031423601) ran the new code at dd0dbbc and passed: mention pass saw 168, looked 23, one new NO probe (KXDEBATEMENTION-26OCT13-FILI); sharp saw 110 games, none inside the 8-hour kickoff window. The first :49 slot (06:49Z) is the next check. Evidence: run 38031423601 success; scan 2026-10-10T06:35:13Z stats; 143 offline tests OK.
 - **Next:** Confirm the 06:49Z run starts and passes (watcher in the session); then the mention forward test runs on its own (keep/kill after 150 settled bets)
 - **Blocked:** nothing
 - **Watch out:** Stage by explicit path; tests must never reach The Odds API or write real mentions.jsonl (DataDirTest); the Kalshi walk hitting its 60-page limit is expected (far-dated markets left out)
 - **Git:** master @ 79f0957, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-10 06:40 UTC)
-
-## Earlier
 
 ### 2026-10-10 02:33 EDT
 - **State:** Faster pace pushed (af1725f) and deployed (Worker bbd8c036): Cloudflare trigger every 15 min (:04/:19/:34/:49), due gate 12 min, page clock updated; mention markets re-looked hourly, mention_no up to 15 probes/day (one per event, soonest first). Millisecond trading ruled out (paper can't simulate it; needs co-located servers and real accounts). Waiting to see the first :19/:49 dispatch. Evidence: 143 offline tests OK; wrangler deploy of triggers succeeded.
@@ -46,11 +54,3 @@ Written: 2026-10-10 02:40 EDT
 - **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
 - **Git:** master @ 8bc1051, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-10 05:06 UTC)
-
-### 2026-10-10 00:43 EDT
-- **State:** Sharp line verified live: cycle 2026-10-10T04:35Z refreshed 4 sports (110 games) for 4 requests (282 left, tests spend none); 5 of 40 judged markets matched a Pinnacle line; all 5 correctly passed (Kalshi 1-2.5c worse than fair after fees). Background: maker test on Kalshi trade prints (150+ markets fetched), research report 15. Evidence: scans.jsonl 04:35:11Z sharp {games 110, matched 5, quota_left 282}; judgments' sharp decisions 'edge -0.02 < 0.03'; gh run 04:34:44Z success.
-- **Next:** Read the maker-test result and report 15; recommend the next build to Joey
-- **Blocked:** nothing
-- **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
-- **Git:** master @ 23a6329, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-10 04:43 UTC)
