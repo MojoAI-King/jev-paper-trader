@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-10 00:43 EDT
+Written: 2026-10-10 01:06 EDT
 
+- **State:** Research report 15 in and checked (who makes the money: ~4 wallets ever made 10M+; takers->makers and YES->NO flows; AI agents at our cadence lost 16-31% on Kalshi). T1 on our data: YES at the ask -20.8%, NO -7.6% (30-70c: YES -12.1%, NO -2.1%); no mention markets in our history. Running in background: the maker test on Kalshi trade prints and the mention-market NO test on Kalshi public data. Sharp line live (no qualifying gaps yet). Evidence: CHECKS.md section 15; T1 script output; scans 04:35Z sharp stats.
+- **Next:** Read the maker and mention test results; if the mention NO bias survives fees on fresh data, propose a 'mention NO' strategy (code; Joey said do what's needed) with a forward test
+- **Blocked:** nothing
+- **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
+- **Git:** master @ 8bc1051, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-10 05:06 UTC)
+
+## Earlier
+
+### 2026-10-10 00:43 EDT
 - **State:** Sharp line verified live: cycle 2026-10-10T04:35Z refreshed 4 sports (110 games) for 4 requests (282 left, tests spend none); 5 of 40 judged markets matched a Pinnacle line; all 5 correctly passed (Kalshi 1-2.5c worse than fair after fees). Background: maker test on Kalshi trade prints (150+ markets fetched), research report 15. Evidence: scans.jsonl 04:35:11Z sharp {games 110, matched 5, quota_left 282}; judgments' sharp decisions 'edge -0.02 < 0.03'; gh run 04:34:44Z success.
 - **Next:** Read the maker-test result and report 15; recommend the next build to Joey
 - **Blocked:** nothing
 - **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
 - **Git:** master @ 23a6329, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-10 04:43 UTC)
-
-## Earlier
 
 ### 2026-10-10 00:27 EDT
 - **State:** Maintenance run. Sharp line live with Joey's key (286 free requests left, tests can't spend them). Favourites test recorded in docs/research/CHECKS.md (break-even overall; >7 days +8.3% on 72, a lead to re-run). Background: maker test on Kalshi trade prints, research report 15, next-cycle check. Evidence: 138 offline tests OK; maintenance recorded.
@@ -46,11 +54,3 @@ Written: 2026-10-10 00:43 EDT
 - **Watch out:** Stage files by explicit path only (research tabs may still be open); never run cycle/scan locally; original must keep the old sizing (yardstick)
 - **Git:** master @ e6b2e8f, 5 uncommitted
 - **CI:** master green on GitHub (read 2026-10-09 23:40 UTC)
-
-### 2026-10-09 19:11 EDT
-- **State:** Phase 1 live: cycle 2026-10-09T23:09Z ran green on 04b8c2a; skill computed in the scan (lambda 0 for all four sources: raw -0.06/-0.03/-0.02/-0.03 on 1,025/843/562/774 markets); Kalshi judgments carry fee_multiplier. No bet in that cycle, so a probe bet isn't seen yet; a background check is waiting for the first one. Research task closed (14 of 14 reports checked). Evidence: gh run 2026-10-09T23:04:45Z success; scans.jsonl 23:05Z skill field; judgments since 23:00Z.
-- **Next:** Confirm the first new bet is a probe (original at the old size), then summarize for Joey when he's back
-- **Blocked:** nothing
-- **Watch out:** Stage files by explicit path only (research tabs may still be open); never run cycle/scan locally; original must keep the old sizing (yardstick)
-- **Git:** master @ ee51a75, 6 uncommitted
-- **CI:** master green on GitHub (read 2026-10-09 23:11 UTC)
