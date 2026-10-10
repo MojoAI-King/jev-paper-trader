@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-09 18:49 EDT
+- **State:** Rebuild phase 1 shipped at 04b8c2a under Joey's blessing (he is away for Shabbat): every strategy but original sizes by measured skill (lambda ~0 for all, so 0.25% probe bets, max 5/day), one stake per event, real price required, Kalshi per-series fee multipliers, review changes at most every 7 days within caps (Kelly 0.5, 3%/bet, 50% open), calibration needs 300. Page deployed (Worker ee378ff7). Live check pending on the 23:04Z cycle. All 14 research reports checked; plan in docs/REBUILD_PLAN.md. Evidence: 131 offline tests OK (SkillSizingTests, Kalshi multiplier test, tuning tests moved to the new limits).
+- **Next:** Confirm the 23:04Z cycle: workflow green, scans carry skill, new bets probe for all but original, Kalshi judgments carry fee_multiplier; then report to Joey when he is back. Phase 2 waits: B27 needs his $30 decision; B28-B30 next
+- **Blocked:** nothing
+- **Watch out:** Stage files by explicit path only (research tabs may still be open); never run cycle/scan locally; original must keep the old sizing (yardstick)
+- **Git:** master @ 04b8c2a, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-09 22:49 UTC)
+
 ### 2026-10-09 18:09 EDT
 - **State:** B25 and B26 done and verified live: page matched build at 21:53Z; cycle 22:09Z published paired n 562, left_out 101; new Polymarket judgments carry fee_rate (0.04, 0.05). No bet since the fix yet, so a fee-charged bet isn't seen live (FeeTests cover it). Archived both. Evidence: background check output (page cmp, origin summary.json, judgments tail); 125 offline tests OK.
 - **Next:** Check research reports as Joey calls them done (09, 10, 14, 02, 03, 04, 08, 11, 12, 13 via the helper tab), then write the rebuild plan

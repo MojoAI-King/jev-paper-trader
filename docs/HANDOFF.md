@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-10 00:26 EDT
+Written: 2026-10-10 00:27 EDT
 
+- **State:** Maintenance run. Sharp line live with Joey's key (286 free requests left, tests can't spend them). Favourites test recorded in docs/research/CHECKS.md (break-even overall; >7 days +8.3% on 72, a lead to re-run). Background: maker test on Kalshi trade prints, research report 15, next-cycle check. Evidence: 138 offline tests OK; maintenance recorded.
+- **Next:** Read the maker-test result and report 15; confirm the next cycle's sharp stats; recommend the next build to Joey
+- **Blocked:** nothing
+- **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
+- **Git:** master @ 114cc25, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-10 04:27 UTC)
+
+## Earlier
+
+### 2026-10-10 00:26 EDT
 - **State:** Joey set ODDS_API_KEY (secret + .env); odds-check OK (all 4 sports in season). Kalshi's game titles changed to one team; matcher reads both teams from the rules (dddfeac); live dry run matched 24 Kalshi game markets, none 3c+ under Pinnacle's fair price. A test run spent ~210 of the 500 free requests via the real key; tests now can't call the API (lesson 43ba), refresh 8h, 286 left. Running in background: maker test on Kalshi trade prints, research report 15, next-cycle check. Evidence: 138 offline tests OK in 8.6s with no network; odds-check quota 286; dry-run output in the session.
 - **Next:** Read the maker-test result and report 15; confirm the next cycle uses the key (stats.sharp) without spending more than ~4 requests; tell Joey what the math says next
 - **Blocked:** nothing
 - **Watch out:** Never let a test reach The Odds API (DataDirTest guards it); keep staging by explicit path
 - **Git:** master @ 64c524b, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-10 04:26 UTC)
-
-## Earlier
 
 ### 2026-10-09 23:54 EDT
 - **State:** Sharp-line strategy built and pushed (b6900cb): papertrade/odds.py (Pinnacle de-vig, matching to our Kalshi/Polymarket game markets, quota-aware cache), strategy 'sharp' with probes via skill sizing, odds-check command; Jev alone retired (ledger still settles). Waiting for Joey's free The Odds API key (gh secret set ODDS_API_KEY + .env). Research report 15 (who makes the money) running in a background agent. Evidence: 138 offline tests OK incl. OddsTests and the full-scan sharp test; odds-check without a key prints the setup steps.
@@ -46,11 +54,3 @@ Written: 2026-10-10 00:26 EDT
 - **Watch out:** Stage files by explicit path only (research tabs may still be open); never run cycle/scan locally; original must keep the old sizing (yardstick)
 - **Git:** master @ 7bd74c0, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-09 22:50 UTC)
-
-### 2026-10-09 18:49 EDT
-- **State:** Rebuild phase 1 shipped at 04b8c2a under Joey's blessing (he is away for Shabbat): every strategy but original sizes by measured skill (lambda ~0 for all, so 0.25% probe bets, max 5/day), one stake per event, real price required, Kalshi per-series fee multipliers, review changes at most every 7 days within caps (Kelly 0.5, 3%/bet, 50% open), calibration needs 300. Page deployed (Worker ee378ff7). Live check pending on the 23:04Z cycle. All 14 research reports checked; plan in docs/REBUILD_PLAN.md. Evidence: 131 offline tests OK (SkillSizingTests, Kalshi multiplier test, tuning tests moved to the new limits).
-- **Next:** Confirm the 23:04Z cycle: workflow green, scans carry skill, new bets probe for all but original, Kalshi judgments carry fee_multiplier; then report to Joey when he is back. Phase 2 waits: B27 needs his $30 decision; B28-B30 next
-- **Blocked:** nothing
-- **Watch out:** Stage files by explicit path only (research tabs may still be open); never run cycle/scan locally; original must keep the old sizing (yardstick)
-- **Git:** master @ 04b8c2a, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-09 22:49 UTC)
