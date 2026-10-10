@@ -161,9 +161,12 @@ def match(events: list[dict], markets: list[dict], cfg: dict, now: datetime) -> 
     out, window = {}, timedelta(hours=cfg["kickoff_window_hours"])
     priced = [(ev, f) for ev in events if (f := fair(ev, cfg, now)) and _when(ev.get("commence"))]
     for m in markets:
-        text = f"{m.get('question') or ''}"
-        if _NOT_H2H.search(text) or m.get("source") not in ("kalshi", "polymarket"):
-            continue
+        question = m.get("question") or ""
+        if _NOT_H2H.search(question) or m.get("source") not in ("kalshi", "polymarket"):
+            continue  # spreads, totals and props, judged on the question alone (rules text mentions points too)
+        # Kalshi's game titles name one team ("Philadelphia wins", since October 2026); its rules name both
+        # ("If Philadelphia wins the PHI Eagles vs JAC Jaguars Pro Football game ...")
+        text = f"{question} {(m.get('rules') or '')[:600]}"
         found = []
         for ev, f in priced:
             start = _when(ev["commence"])
@@ -176,12 +179,12 @@ def match(events: list[dict], markets: list[dict], cfg: dict, now: datetime) -> 
                     continue
                 outcome = _outcome_for(m.get("yes_side") or "", ev)
             else:
-                begins, day = _when(m.get("starts")), _DATE.search(text)
+                begins, day = _when(m.get("starts")), _DATE.search(question)
                 on_time = (begins and abs(begins - start) <= window) or (day and day.group(1) in (
                     start.strftime("%Y-%m-%d"), (start - timedelta(hours=12)).strftime("%Y-%m-%d")))
                 if not (any(teams) and on_time):
                     continue
-                outcome = _outcome_for(text, ev)
+                outcome = _outcome_for(question, ev)
             if outcome and outcome in f["probs"]:
                 found.append((ev, f, outcome))
         if len(found) == 1:

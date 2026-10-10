@@ -133,6 +133,13 @@ class OddsTests(unittest.TestCase):
         self.assertAlmostEqual(rec["p_yes"], odds.fair(game(), self.CFG, NOW_ODDS)["probs"]["Pittsburgh Steelers"], places=4)
         cin = odds.match([game()], [kalshi_game(market_id="X-CIN", yes_side="Cincinnati")], self.CFG, NOW_ODDS)
         self.assertEqual(cin["kalshi:X-CIN"]["outcome"], "Cincinnati Bengals")
+        # Kalshi's titles since October 2026 name one team; both teams are in the rules
+        now_style = kalshi_game(market_id="X-NEW", question="Pittsburgh wins", rules=(
+            "If Pittsburgh wins the PIT Steelers vs CIN Bengals Pro Football game originally scheduled for "
+            "Jan 1, 2000, then the market resolves to Yes."))
+        self.assertEqual(odds.match([game()], [now_style], self.CFG, NOW_ODDS)["kalshi:X-NEW"]["outcome"], "Pittsburgh Steelers")
+        spread = dict(now_style, market_id="X-SPR", question="Pittsburgh wins by over 2.5 points")
+        self.assertEqual(odds.match([game()], [spread], self.CFG, NOW_ODDS), {})  # the rules don't rescue a spread
 
     def test_anything_unclear_is_left_out(self):
         m = lambda **kw: odds.match([game()], [kalshi_game(**kw)], self.CFG, NOW_ODDS)
@@ -647,8 +654,16 @@ class DataDirTest(unittest.TestCase):
                      "PROPOSALS": d / "proposals.json", "TUNED": d / "rules.json",
                      "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json"}.items():
             setattr(engine, n, v)
+        # A real ODDS_API_KEY in .env or the CI environment must never reach a test: on 2026-10-10 the scans in
+        # these tests spent about 100 of the free tier's 500 requests in one run. No key, and any call fails loudly.
+        self._no_odds = [mock.patch.object(odds, "api_key", return_value=None),
+                         mock.patch.object(odds, "_get", side_effect=AssertionError("a test called The Odds API"))]
+        for p in self._no_odds:
+            p.start()
 
     def tearDown(self):
+        for p in self._no_odds:
+            p.stop()
         for n, v in self._saved.items():
             setattr(engine, n, v)
         self.tmp.cleanup()

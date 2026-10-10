@@ -132,9 +132,9 @@
   },
 
   "sharp": {
-    "_readme": "The sharp-line strategy's data (papertrade/odds.py). The Odds API returns Pinnacle's and the venues' head-to-head prices per game; each listed sport is refreshed at most every refresh_minutes and not once the quota left falls to reserve. A line older than max_line_age_minutes, or with a margin above max_margin, is not used. A Kalshi game market matches when it names both teams and is decided within kickoff_window_hours of the start; a Polymarket market when it names one team and starts within that window or carries the game's date. Set for The Odds API's free tier (500 requests a month: 4 sports x 4 a day); with a paid plan, lower refresh_minutes",
+    "_readme": "The sharp-line strategy's data (papertrade/odds.py). The Odds API returns Pinnacle's and the venues' head-to-head prices per game; each listed sport is refreshed at most every refresh_minutes and not once the quota left falls to reserve. A line older than max_line_age_minutes, or with a margin above max_margin, is not used. A Kalshi game market matches when it names both teams and is decided within kickoff_window_hours of the start; a Polymarket market when it names one team and starts within that window or carries the game's date. Set for The Odds API's free tier: 4 sports x 3 a day is about 12 requests a day, inside the 391 left on 2026-10-10 after a test run spent about 100 by mistake (tests can no longer call it). With a paid plan, lower refresh_minutes",
     "sports": ["americanfootball_nfl", "americanfootball_ncaaf", "baseball_mlb", "icehockey_nhl"],
-    "refresh_minutes": 360,
+    "refresh_minutes": 480,
     "reserve": 25,
     "max_line_age_minutes": 45,
     "max_margin": 0.06,
