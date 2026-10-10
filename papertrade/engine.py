@@ -738,7 +738,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         mcache = load_json(MENTION_SERIES, {})
         mk.LAST_FETCH.pop("kalshi_mentions", None)
         try:
-            fetchers["kalshi_mentions"](mcache, now)
+            fetchers["kalshi_mentions"](mcache, now, skip=tuple(policy["mention"].get("exclude_series") or ()))
         except Exception as e:  # the other strategies' bets are already placed; the mention strategy sits this one out
             warn(f"! kalshi mentions: could not read them ({e})")
             mk.LAST_MENTIONS.clear()
@@ -782,13 +782,17 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
     seen = last_judged(MENTIONS)
     pace = dict(policy["skill"], max_probes_per_day=cfg["max_probes_per_day"])  # its own probe limit
     cut = now + timedelta(hours=cfg["hours_before_event"])
-    logged = past = undated = aged = 0
+    logged = past = undated = aged = excluded = 0
     # soonest event first, so the probes go where results come back soonest
     order = sorted(mk.LAST_MENTIONS, key=lambda x: (x.get("event_time") or "9", x.get("close_time") or "9"))
     for raw in order:
         m = dict(raw, category="mention")
         if m.get("mid") is None:
             continue
+        series = str(m.get("event") or "").split(":", 1)[-1].split("-")[0].upper()
+        if any(x.upper() in series for x in cfg.get("exclude_series") or ()):
+            excluded += 1
+            continue  # no edge there on 7,929 settled markets (docs/research/CHECKS.md)
         when = _when(m.get("event_time"))
         if when is None:
             undated += 1
@@ -837,7 +841,7 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
                                     "market": {k: v for k, v in m.items() if k != "rules"},
                                     "mention_prior": {"p_yes": p}, "decisions": decisions})
     stats["mentions"] = {"seen": len(mk.LAST_MENTIONS), "events": len({x.get("event") for x in mk.LAST_MENTIONS}),
-                         "logged": logged, "past_or_close": past, "no_date": undated, "listed_too_long": aged}
+                         "logged": logged, "past_or_close": past, "no_date": undated, "listed_too_long": aged, "excluded_series": excluded}
 
 
 def _record_scan(stats: dict, stamp: str) -> None:

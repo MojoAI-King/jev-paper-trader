@@ -142,7 +142,9 @@
   "mention": {
     "_readme": "The mention strategy's prior (engine.mention_prior): inside the band of YES mids, P(YES) = mid - yes_bias, from the 2026-10-10 replication (NO at 30-70c won 61.7% vs 49.3% implied; YES at 50-90c lost 14-22%). Markets: every open Kalshi mention market, read series by series each cycle (markets.fetch_kalshi_mentions); each is decided every cycle until its event is hours_before_event away, by the event's own date (markets.kalshi_event_time), never Kalshi's close, which comes about two weeks after the event. A market with no date is never bet. It is logged when first seen, when bet, and after its mid moves relog_move. max_hours_listed (null: no limit) keeps it to markets listed within that many hours, if purchases late in a market's life turn out not to pay",
     "band": [0.3, 0.7],
-    "yes_bias": 0.12,
+    "yes_bias": 0.10,
+    "exclude_series": ["EARNINGS", "TRUMP"],
+    "_evidence": "2026-10-10 timing test over every Mentions series (docs/research/CHECKS.md, docs/research/scripts/mention_timing.py): 7,929 settled markets. NO at 30-70c outside earnings-call and Trump series won 57.6-59.1% against 48.7-49.5% paid (+8.9 to +9.7 points; +15 to +18% after fees in both the older and newer half). Inside them +0.5 to +2.5 points, under the costs, so those series are not read. yes_bias 0.10 is that gap against the mid (the price paid sits about a cent above it); it was 0.12 from the first 639-market test",
     "hours_before_event": 6,
     "relog_move": 0.05,
     "max_hours_listed": null,

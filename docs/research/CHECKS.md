@@ -265,3 +265,31 @@ Not built as a strategy. It may later lower the cost of a strategy that has an e
   read-only: 455 requests in 325 seconds, 1,188 markets in 75 of the 76 events (the rest had no quotes), every
   market with a date, 86 past or within 6 hours, 419 priced 30–70¢ with good timing, and 67 events with a NO edge of
   3¢ or more after fees. Before it, 8 events were in view.
+- **Timing and kind, on every Mentions series** (`docs/research/scripts/mention_timing.py`, run 2026-10-10; raw data
+  in the gitignored `research_data/`): 7,929 settled markets with volume of 200 or more closed within 400 days, 9,193
+  requests. NO bought at 30–70¢ at a real taker price, after the taker fee; 95% ranges resample whole events. The event
+  start E is the earliest of the occurrence time, a date in the subtitle or rules, the ticker date and the last trade.
+
+  | Rule | Purchases | Events | NO won vs price | Return after fee |
+  |---|---|---|---|---|
+  | first NO purchase within 48 h of listing (the earlier test's rule) | 2,176 | 358 | 55.8% vs 49.2% | **+9.8% [+4.1, +15.1]** |
+  | first NO purchase at 30–70¢ at least 6 h before E (the live rule) | 2,845 | 327 | 52.4% vs 48.4% | +4.5% [−1.4, +9.8] |
+  | first purchase 7+ days before E | 361 | 62 | 55.4% vs 48.0% | +12.1% [−4.4, +30.7] |
+  | 3–7 days before | 645 | 114 | 49.1% vs 49.4% | −5.5% [−15.0, +3.9] |
+  | 1–3 days before | 1,158 | 208 | 53.4% vs 49.1% | +5.3% [−2.5, +13.2] |
+  | 6–24 hours before | 1,544 | 299 | 54.9% vs 49.9% | +6.5% [−0.0, +12.9] |
+  | 0–6 hours before | 2,327 | 394 | 52.6% vs 49.9% | +2.5% [−2.4, +7.7] |
+  | after E (during or after the event) | 1,726 | 261 | 51.9% vs 49.5% | +1.3% [−4.9, +7.3] |
+
+  - The edge is about half the first test's +21%, and it is not spread evenly. By kind of series, live rule:
+    earnings calls −1.1% [−10.6, +8.7] (83 events), Trump −4.9% [−14.5, +4.4] (64), everything else +17.3%
+    [+7.9, +26.5] (173): politicians other than Trump (Vance, Mamdani, Sanders, Khanna, Carney), Sunday and news shows
+    (Meet the Press, Face the Nation, Fox News Sunday, World News), press briefings.
+  - **It holds in both halves of history** (split at events on 2026-09-09). Outside earnings and Trump: first-48-hours
+    rule +15.5% [+4.6, +26.0] older and +17.8% [+8.5, +27.0] newer; live rule +16.5% [+4.3, +29.7] and +15.3%
+    [+2.2, +29.0]. Inside them, neither half clears zero. NO there won 57.6–59.1% against 48.7–49.5% paid
+    (+8.9 to +9.7 points); in earnings and Trump series +0.5 to +2.5 points, under the ~2.8¢ of fee and slippage.
+  - Read: earnings calls and Trump draw the professional money and are priced well; the smaller political and TV
+    mention markets keep the YES optimism. Built: `mention.exclude_series` (EARNINGS, TRUMP), `yes_bias` 0.10
+    (decision 2026-10-10-mention-strategy-skips-earnings-call-and-3533). Within the kept series, buying late paid about
+    as well as buying early, so the young-market limit (`mention.max_hours_listed`) stays off.

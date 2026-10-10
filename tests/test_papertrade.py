@@ -395,6 +395,12 @@ class MentionReaderTests(unittest.TestCase):
         self.assertEqual(cache["series"]["KXEARNINGSMENTIONBLK"]["open"], 1)
         self.assertEqual(cache["series"]["KXQUIETMENTION"]["open"], 0)
         self.assertEqual(mk.LAST_FETCH["kalshi_mentions"]["series_read"], 2)
+        # a skipped series is never read
+        calls.clear()
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            mk.fetch_kalshi_mentions({}, now, skip=("EARNINGS",))
+        self.assertNotIn("KXEARNINGSMENTIONBLK", [c[1].get("series_ticker") for c in calls])
+        self.assertEqual(mk.LAST_FETCH["kalshi_mentions"]["series_skipped"], 1)
         # next cycle: the list is not read again within a day, and a series with open events is read before quiet ones
         calls.clear()
         with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
@@ -1141,8 +1147,8 @@ class ResearchPipelineTests(DataDirTest):
         self.assertTrue(engine.ODDS.exists())  # kept for the next cycle
 
     def mention(self, **kw):
-        return dict({"source": "kalshi", "market_id": "KXEARNINGSMENTIONDAL-26OCT09-TARIFF", "event": "kalshi:KXEARNINGSMENTIONDAL-26OCT09",
-                     "question": "Will Delta say Tariff during its earnings call?", "rules": "r", "close_time": "2000-01-10T15:00:00Z",
+        return dict({"source": "kalshi", "market_id": "KXVANCEMENTION-26OCT09-TARIFF", "event": "kalshi:KXVANCEMENTION-26OCT09",
+                     "question": "Will JD Vance say Tariff during his interview?", "rules": "r", "close_time": "2000-01-10T15:00:00Z",
                      "expected_expiration": "2000-01-10T15:00:00Z", "event_time": "1999-12-27T04:00:00Z",
                      "yes_ask": 0.56, "no_ask": 0.46, "mid": 0.55,
                      "volume": 300, "url": "u", "yes_ask_size": 400.0, "no_ask_size": 900.0}, **kw)
@@ -1163,12 +1169,12 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(stats["funnel"]["bets"]["mention_no"], 1)
         self.assertEqual((stats["mentions"]["seen"], stats["mentions"]["logged"]), (1, 1))
         bet = engine.load_portfolio(POLICY, "mention_no")["open"][0]
-        # mid 0.55 -> P(YES) 0.43 -> P(NO) 0.57 against a 46c NO ask plus fee and slippage: a NO probe
+        # mid 0.55 -> P(YES) 0.45 (yes_bias 0.10) -> P(NO) 0.55 against a 46c NO ask plus fee and slippage: a NO probe
         self.assertEqual((bet["side"], bet["sizing"], bet["probe"]), ("no", "probe", True))
-        self.assertAlmostEqual(bet["p_side"], 0.57)
+        self.assertAlmostEqual(bet["p_side"], 0.55)
         self.assertAlmostEqual(bet["total_cost"], 250, delta=1)
         rec = engine.read_jsonl(engine.MENTIONS)[0]
-        self.assertEqual((rec["mention_prior"]["p_yes"], engine._prob(rec, "mention_prior")), (0.43, 0.43))
+        self.assertEqual((rec["mention_prior"]["p_yes"], engine._prob(rec, "mention_prior")), (0.45, 0.45))
         self.assertNotIn("rules", rec["market"])  # the log keeps what scoring needs, not 2 KB of rules per look
         self.assertEqual(rec["market"]["event_time"], "1999-12-27T04:00:00Z")
         self.assertEqual(engine.read_jsonl(engine.JUDGMENTS), [])  # no Jev call, and the Jev log stays clean
@@ -1220,6 +1226,15 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual([b["market_id"] for b in engine.load_portfolio(pol, "mention_no")["open"]], ["Y"])
         self.assertEqual(stats["mentions"]["listed_too_long"], 1)
 
+    def test_earnings_call_and_trump_mention_series_are_left_alone(self):
+        # no edge there on 7,929 settled markets (+0.5 to +2.5 points, under the costs): policy mention.exclude_series
+        skip = [self.mention(market_id="KXEARNINGSMENTIONDAL-26OCT09-T", event="kalshi:KXEARNINGSMENTIONDAL-26OCT09"),
+                self.mention(market_id="KXTRUMPMENTION-26OCT09-T", event="kalshi:KXTRUMPMENTION-26OCT09")]
+        stats = self.scan_mentions(skip + [self.mention()])
+        self.assertEqual([b["market_id"] for b in engine.load_portfolio(POLICY, "mention_no")["open"]], ["KXVANCEMENTION-26OCT09-TARIFF"])
+        self.assertEqual(stats["mentions"]["excluded_series"], 2)
+        self.assertEqual([r["key"] for r in engine.read_jsonl(engine.MENTIONS)], ["kalshi:KXVANCEMENTION-26OCT09-TARIFF"])
+
     def test_one_mention_bet_per_event_soonest_first(self):
         later = self.mention(market_id="L1", event="kalshi:LATE", event_time="1999-12-30T04:00:00Z")
         soon = [self.mention(market_id=f"S{i}", event="kalshi:SOON") for i in range(3)]
@@ -1231,13 +1246,14 @@ class ResearchPipelineTests(DataDirTest):
         self.assertIn("already holds a bet on this event", recs[1]["decisions"]["mention_no"]["reasons"][0])
 
     def test_the_scan_reads_mention_markets_with_its_reader_and_keeps_the_series_list(self):
-        def reader(cache, now):
-            cache["series"] = {"KXEARNINGSMENTIONDAL": {"checked": "x", "open": 1, "fee": 1.0}}
+        def reader(cache, now, skip=()):
+            self.assertEqual(skip, ("EARNINGS", "TRUMP"))  # policy mention.exclude_series: those series are not read
+            cache["series"] = {"KXVANCEMENTION": {"checked": "x", "open": 1, "fee": 1.0}}
             mk.LAST_MENTIONS[:] = [self.mention()]
             mk.LAST_FETCH["kalshi_mentions"] = {"requests": 2, "errors": ["KXOTHER: HTTP 500"]}
         stats = self.scan_mentions([], reader=reader)
         self.assertEqual(stats["funnel"]["bets"]["mention_no"], 1)
-        self.assertEqual(engine.load_json(engine.MENTION_SERIES, {})["series"]["KXEARNINGSMENTIONDAL"]["open"], 1)
+        self.assertEqual(engine.load_json(engine.MENTION_SERIES, {})["series"]["KXVANCEMENTION"]["open"], 1)
         self.assertEqual(stats["mention_fetch"]["requests"], 2)
         self.assertIn("kalshi mentions: KXOTHER: HTTP 500", stats["problems"])
 

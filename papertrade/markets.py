@@ -346,7 +346,7 @@ def kalshi_event_time(m: dict, sub_title: str = "") -> str | None:
     return _iso(min(found)) if found else None
 
 
-def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int = MENTION_BUDGET) -> list[dict]:
+def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int = MENTION_BUDGET, skip=()) -> list[dict]:
     """Every open Kalshi mention market ("will X say Y"), read series by series, into LAST_MENTIONS.
 
     The market walk (fetch_kalshi) goes by close time, and Kalshi closes a mention market about two weeks after its
@@ -355,7 +355,8 @@ def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int 
     open events with their markets and subtitles: first every series that had open events at its last read, then
     the longest-unread others, up to `budget` requests a cycle, so a quiet series is read again every few hours.
     `cache` ({"listed": when the list was read, "series": {ticker: {"fee", "checked", "open"}}}) is updated in place
-    for the caller to save. What happened is left in LAST_FETCH["kalshi_mentions"]."""
+    for the caller to save. Series whose ticker contains any of `skip` are not read. What happened is left in
+    LAST_FETCH["kalshi_mentions"]."""
     now = now or datetime.now(timezone.utc)
     stamp, started = _iso(now), time.monotonic()
     deadline = started + KALSHI_DEADLINE / 2
@@ -375,7 +376,8 @@ def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int 
             cache["listed"] = stamp
         except Exception as e:  # keep reading the series already known
             errors.append(f"series list: {str(e)[:200]}")
-    for t in sorted(series, key=lambda t: (not series[t].get("open"), series[t].get("checked") or "")):
+    wanted = [t for t in series if not any(x.upper() in t.upper() for x in skip)]
+    for t in sorted(wanted, key=lambda t: (not series[t].get("open"), series[t].get("checked") or "")):
         if requests >= budget or time.monotonic() > deadline:
             break
         if requests:
@@ -400,6 +402,7 @@ def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int 
                     n.update(event_time=kalshi_event_time(raw, ev.get("sub_title") or ""), fee_multiplier=series[t].get("fee"))
                     LAST_MENTIONS.append(n)
     LAST_FETCH["kalshi_mentions"] = {"requests": requests, "series_read": read, "series_known": len(series),
+                                     "series_skipped": len(series) - len(wanted),
                                      "series_with_events": sum(1 for s in series.values() if s.get("open")),
                                      "markets": len(LAST_MENTIONS), "seconds": round(time.monotonic() - started, 1),
                                      "errors": errors[:5]}
