@@ -51,11 +51,12 @@ Each candidate is a new source of information. It is tested on the finished-mark
 forward test written down before its results come in. It bets more than probes only if it beats the market
 (report 05's encompassing test plus report 13's forward test).
 
-- **A. Sports against the sharp sportsbooks (report 09).** Buy only when a Kalshi or Polymarket price is at
-  least 3¢ cheaper, after fees, than Pinnacle's price with the bookmaker's margin removed. Scored by
-  closing-line value. **Needs Joey:** The Odds API at $30 a month (START 20K plan, confirmed on their pricing
-  page). Expected result: zero or a small edge, but it's the most promising untested idea, and a month of data
-  settles it.
+- **A. Sports against the sharp sportsbooks (report 09). Built 2026-10-10: the `sharp` strategy,
+  `papertrade/odds.py`.** It buys only when a Kalshi or Polymarket price is at least 3¢ cheaper, after fees, than
+  Pinnacle's price with the bookmaker's margin removed, and is scored by closing-line value. **Waiting for Joey:**
+  a free key from The Odds API, set as the `ODDS_API_KEY` secret and in `.env`. The free tier fits 4 sports at 4
+  checks a day; the $30 plan (START 20K) comes only if the test looks promising. Expected result: zero or a small
+  edge, but it's the most promising untested idea, and a month of data settles it.
 - **B. Math pricing for price-threshold markets (06, 14).** Bitcoin, ETH, oil, gold and index "above $X" and
   "reach $X" markets are options. Price them from the live price and option volatility (Deribit is free), with
   Jev reading each market's rules (threshold, direction, deadline, which price settles it). Expected: about as

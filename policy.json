@@ -103,8 +103,10 @@
     "_readme": "Each strategy trades its own fake $100k on the same markets. They differ in the probability source and in their rules: these are the starting rules (gate_overrides), and the daily review tunes any strategy's rules from there (papertrade_data/rules.json), except 'original'. main is the headline.",
     "main": {"label": "Jev + Claude research", "short": "Jev + Claude", "desc": "Jev reads Claude's research", "probability": "jev_research", "gates": "jev_research",
              "blurb": "Jev reads Claude's research. The main test; the daily review tunes its rules as results come in."},
-    "jev_alone": {"label": "Jev alone", "short": "Jev alone", "desc": "Jev with no research", "probability": "jev_plain", "gates": "jev_plain",
-                  "blurb": "Jev with no research at all. The baseline: does research help?"},
+    "jev_alone": {"label": "Jev alone", "short": "Jev alone", "desc": "Jev with no research (retired)", "probability": "jev_plain", "gates": "jev_plain",
+                  "retired": true,
+                  "blurb": "Jev with no research at all. Retired 2026-10-10: on 1,006 finished markets it scored like a coin flip, and it placed one bet in two weeks. Its record stays here and its open bet still settles.",
+                  "_retired": "docs/REBUILD_PLAN.md and research report 14: Jev isn't built for world forecasting; 'does research help Jev?' is answered by the Forecasters panel. Its colour went to the sharp-line strategy. engine.strategies leaves a retired strategy out of betting; all_books still settles its ledger"},
     "claude_direct": {"label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
                       "blurb": "Claude reads the same research and makes its own call. Does Jev add anything?"},
     "bold": {"label": "Jev + research, bold", "short": "Bold", "desc": "also bets when Jev is unsure", "badge": "Challenger", "probability": "jev_research", "gates": "jev_research",
@@ -120,7 +122,23 @@
                        "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"},
     "original": {"label": "Jev + research, original rules", "short": "Original rules", "desc": "main's starting rules, never tuned", "badge": "Yardstick", "probability": "jev_research", "gates": "jev_research",
                  "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying.",
-                 "_why": "Joey let the daily review tune any strategy's rules (2026-09-28). This copy of main's starting rules is frozen (learning.frozen_strategies), so the tuning is judged against leaving the rules alone"}
+                 "_why": "Joey let the daily review tune any strategy's rules (2026-09-28). This copy of main's starting rules is frozen (learning.frozen_strategies), so the tuning is judged against leaving the rules alone"},
+    "sharp": {"label": "Sharp line (Pinnacle)", "short": "Sharp line", "desc": "buys below the sharp sportsbook price", "badge": "New", "probability": "sharp", "gates": "sharp",
+              "slot": 2,
+              "gate_overrides": {"min_edge": 0.03},
+              "rules": {"min_ask": 0.2, "max_ask": 0.85},
+              "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against.",
+              "_why": "docs/REBUILD_PLAN.md phase 2A, research report 09 (2026-10-10, Joey: 'do what you need to fix this'). The fair price comes from The Odds API (papertrade/odds.py, ODDS_API_KEY); it never reaches Jev or Claude. Sized like every strategy by measured skill: probes until its edge over the venue price shows on 300+ markets"}
+  },
+
+  "sharp": {
+    "_readme": "The sharp-line strategy's data (papertrade/odds.py). The Odds API returns Pinnacle's and the venues' head-to-head prices per game; each listed sport is refreshed at most every refresh_minutes and not once the quota left falls to reserve. A line older than max_line_age_minutes, or with a margin above max_margin, is not used. A Kalshi game market matches when it names both teams and is decided within kickoff_window_hours of the start; a Polymarket market when it names one team and starts within that window or carries the game's date. Set for The Odds API's free tier (500 requests a month: 4 sports x 4 a day); with a paid plan, lower refresh_minutes",
+    "sports": ["americanfootball_nfl", "americanfootball_ncaaf", "baseball_mlb", "icehockey_nhl"],
+    "refresh_minutes": 360,
+    "reserve": 25,
+    "max_line_age_minutes": 45,
+    "max_margin": 0.06,
+    "kickoff_window_hours": 8
   },
 
   "storage": {

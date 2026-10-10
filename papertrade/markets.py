@@ -193,6 +193,9 @@ def normalize_kalshi(m: dict) -> dict | None:
         "url": kalshi_url(m.get("event_ticker") or m.get("ticker") or "", m.get("series_ticker") or "", title),
         # when the event itself is expected to be decided; close_time can be days or weeks later
         "expected_expiration": m.get("expected_expiration_time"),
+        # what YES means on a multi-market event ("Pittsburgh" on "Pittsburgh at Cincinnati Winner?"), which the
+        # question drops when the title already contains it; the sharp-line matcher needs it (papertrade/odds.py)
+        "yes_side": sub or None,
     }
 
 

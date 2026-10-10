@@ -9,7 +9,10 @@
 - No forecaster (Jev or Claude direct) may see market prices, directly or through research. The price
   screen is `news.screen_facts()`, kept in code on purpose. Tests: `test_scan_settle_report`,
   `test_price_never_reaches_jev_or_claude_through_research`, `ScreenFactsTests`. Never loosen the screen
-  to keep more facts without Joey's OK.
+  to keep more facts without Joey's OK. The `sharp` strategy (2026-10-10) is not a forecaster: its probability
+  *is* a price, Pinnacle's line from The Odds API (`papertrade/odds.py`, `ODDS_API_KEY`, never printed). It goes
+  only to that strategy's decision and the scoring, never into a Jev or Claude state
+  (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`).
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.
 - Any change to question wording in `papertrade/judge.py` requires bumping `QUESTION_SET_VERSION`,
   because calibration data from old wording doesn't carry over.

@@ -126,7 +126,7 @@ def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: d
             taken.add(slot)
         else:
             i = order.index(name)
-            slot = i + 1 if i < SLOTS else None
+            slot = strat.get("slot") or (i + 1 if i < SLOTS else None)
         blurb = strat.get("blurb") or strat.get("_why") or ""
         if name in frozen and engine.MAIN in books:  # the fair comparison (coach.yardstick), not main's head start
             y = coach.yardstick(books, name)

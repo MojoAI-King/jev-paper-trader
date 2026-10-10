@@ -15,6 +15,7 @@ import random
 from papertrade import coach, dashboard, jev_client, learn, news, review
 from papertrade import engine
 from papertrade import markets as mk
+from papertrade import odds
 
 POLICY = engine.load_policy()
 
@@ -80,6 +81,124 @@ class FeeTests(unittest.TestCase):
         self.assertTrue(engine.decide(market(fee_rate=0.0), ans(0.47), pol, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(fee_rate=0.07), ans(0.47), pol, 100000, 0, 100000)["bet"])
         self.assertFalse(engine.decide(market(fee_rate=None), ans(0.47), pol, 100000, 0, 100000)["bet"])  # default 0.05
+
+
+NOW_ODDS = datetime(1999, 12, 25, tzinfo=timezone.utc)
+
+
+def game(prices=None, last_update="1999-12-24T23:50:00Z", commence="2000-01-01T23:00:00Z", book="pinnacle"):
+    """One NFL game as papertrade/odds.py keeps it (odds.compact): Pittsburgh at Cincinnati."""
+    prices = prices or {"Pittsburgh Steelers": 2.0, "Cincinnati Bengals": 1.85}
+    return {"id": "g1", "sport": "americanfootball_nfl", "commence": commence, "home": "Cincinnati Bengals",
+            "away": "Pittsburgh Steelers", "books": {book: {"last_update": last_update, "prices": prices},
+                                                     "kalshi": {"last_update": last_update, "prices": {"Pittsburgh Steelers": 2.3}}}}
+
+
+def kalshi_game(**kw):
+    return dict({"source": "kalshi", "market_id": "KXNFLGAME-26OCT11PITCIN-PIT", "event": "kalshi:KXNFLGAME-26OCT11PITCIN",
+                 "question": "Pittsburgh at Cincinnati Winner?", "rules": "r", "close_time": "2000-01-15T00:00:00Z",
+                 "expected_expiration": "2000-01-02T03:00:00Z", "yes_side": "Pittsburgh", "yes_ask": 0.40,
+                 "no_ask": 0.62, "mid": 0.39, "volume": 50000, "url": "u"}, **kw)
+
+
+class OddsTests(unittest.TestCase):
+    """The sharp-line strategy's data: Pinnacle's price without its margin, matched to our game markets."""
+    CFG = {"sports": ["americanfootball_nfl"], "refresh_minutes": 360, "reserve": 25, "max_line_age_minutes": 45,
+           "max_margin": 0.06, "kickoff_window_hours": 8}
+
+    def test_the_margin_comes_out_and_the_favourite_stays_the_favourite(self):
+        p = odds.devig_power([1.9, 1.9])
+        self.assertAlmostEqual(p[0], 0.5)
+        self.assertAlmostEqual(sum(p), 1.0)
+        p = odds.devig_power([1.5, 2.8])
+        self.assertAlmostEqual(sum(p), 1.0, places=6)
+        self.assertGreater(p[0], 1 / 1.5 / (1 / 1.5 + 1 / 2.8))  # power method: the favourite keeps a bit more
+        self.assertIsNone(odds.devig_power([1.9]))
+        self.assertIsNone(odds.devig_power([1.9, None]))
+        self.assertIsNone(odds.devig_power([1.9, 1.0]))
+
+    def test_only_a_fresh_sharp_line_with_a_small_margin_counts(self):
+        f = odds.fair(game(), self.CFG, NOW_ODDS)
+        self.assertEqual((f["book"], f["age_min"]), ("pinnacle", 10.0))
+        self.assertAlmostEqual(sum(f["probs"].values()), 1.0, places=6)
+        self.assertIsNone(odds.fair(game(last_update="1999-12-24T22:00:00Z"), self.CFG, NOW_ODDS))   # 2 hours old
+        self.assertIsNone(odds.fair(game(prices={"Pittsburgh Steelers": 1.7, "Cincinnati Bengals": 1.7}), self.CFG, NOW_ODDS))
+        self.assertIsNone(odds.fair(game(book="draftkings"), self.CFG, NOW_ODDS))  # a soft book is never the reference
+        self.assertEqual(odds.fair(game(book="betfair_ex_eu"), self.CFG, NOW_ODDS)["book"], "betfair_ex_eu")
+
+    def test_a_kalshi_game_market_matches_its_game_and_side(self):
+        got = odds.match([game()], [kalshi_game()], self.CFG, NOW_ODDS)
+        rec = got["kalshi:KXNFLGAME-26OCT11PITCIN-PIT"]
+        self.assertEqual((rec["outcome"], rec["book"], rec["sport"]), ("Pittsburgh Steelers", "pinnacle", "americanfootball_nfl"))
+        self.assertAlmostEqual(rec["p_yes"], odds.fair(game(), self.CFG, NOW_ODDS)["probs"]["Pittsburgh Steelers"], places=4)
+        cin = odds.match([game()], [kalshi_game(market_id="X-CIN", yes_side="Cincinnati")], self.CFG, NOW_ODDS)
+        self.assertEqual(cin["kalshi:X-CIN"]["outcome"], "Cincinnati Bengals")
+
+    def test_anything_unclear_is_left_out(self):
+        m = lambda **kw: odds.match([game()], [kalshi_game(**kw)], self.CFG, NOW_ODDS)
+        self.assertEqual(m(question="Pittsburgh wins by over 2.5 points"), {})            # a spread, not who wins
+        self.assertEqual(m(question="Pittsburgh at Cincinnati: total points over 44.5?"), {})
+        self.assertEqual(m(expected_expiration="2000-01-05T03:00:00Z"), {})              # decided days after the game
+        self.assertEqual(m(question="Pittsburgh at Baltimore Winner?"), {})              # another game
+        self.assertEqual(m(yes_side="Somebody"), {})                                    # can't tell which side YES is
+        self.assertEqual(odds.match([game(commence="1999-12-24T23:00:00Z")], [kalshi_game()], self.CFG, NOW_ODDS), {})  # started
+        twin = dict(game(), id="g2")
+        self.assertEqual(odds.match([game(), twin], [kalshi_game()], self.CFG, NOW_ODDS), {})  # two games fit: no guess
+
+    def test_a_polymarket_team_market_matches_on_the_date(self):
+        poly = {"source": "polymarket", "market_id": "77", "event": "polymarket:9", "question": "Will Pittsburgh win on 2000-01-01?",
+                "rules": "r", "close_time": "2000-01-08T00:00:00Z", "starts": None, "yes_ask": 0.4, "no_ask": 0.62, "mid": 0.39}
+        got = odds.match([game()], [poly], self.CFG, NOW_ODDS)
+        self.assertEqual(got["polymarket:77"]["outcome"], "Pittsburgh Steelers")
+        self.assertEqual(odds.match([game()], [dict(poly, question="Will Pittsburgh win on 2000-01-09?")], self.CFG, NOW_ODDS), {})
+
+    def test_the_cache_refreshes_within_the_quota_and_errors_never_show_the_key(self):
+        calls = []
+
+        class Reply(io.BytesIO):
+            def __init__(self, body, left):
+                super().__init__(json.dumps(body).encode())
+                self.headers = {"x-requests-remaining": str(left), "x-requests-used": "1", "x-requests-last": "1"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        left = {"n": 30}
+
+        def opener(req, timeout):
+            calls.append(req.full_url)
+            if "/sports?" in req.full_url:
+                return Reply([{"key": "americanfootball_nfl", "active": True}, {"key": "baseball_mlb", "active": False}], left["n"])
+            return Reply([{"id": "g1", "sport_key": "americanfootball_nfl", "commence_time": "2000-01-01T23:00:00Z",
+                           "home_team": "Cincinnati Bengals", "away_team": "Pittsburgh Steelers",
+                           "bookmakers": [{"key": "pinnacle", "last_update": "1999-12-24T23:59:00Z", "markets": [
+                               {"key": "h2h", "outcomes": [{"name": "Cincinnati Bengals", "price": 1.85},
+                                                           {"name": "Pittsburgh Steelers", "price": 2.0}]}]}]}], 29)
+        cfg = dict(self.CFG, sports=["americanfootball_nfl", "baseball_mlb"])
+        odds.LAST.clear()
+        cache = odds.load_events(cfg, "SECRETKEY", {}, NOW_ODDS, opener=opener, warn=lambda *_: None)
+        self.assertEqual(list(cache), ["americanfootball_nfl"])  # the out-of-season sport isn't fetched
+        self.assertEqual(cache["americanfootball_nfl"]["events"][0]["books"]["pinnacle"]["prices"]["Pittsburgh Steelers"], 2.0)
+        self.assertEqual(odds.LAST["remaining"], "29")
+        n = len(calls)
+        odds.load_events(cfg, "SECRETKEY", cache, NOW_ODDS + timedelta(hours=1), opener=opener, warn=lambda *_: None)
+        self.assertEqual(len(calls), n + 1)  # only the free sports list: the line is under 6 hours old
+        warned, n = [], len(calls)
+        left["n"] = 20  # the quota left is at or below the reserve (25): keep what we have
+        kept = odds.load_events(cfg, "SECRETKEY", {}, NOW_ODDS, opener=opener, warn=warned.append)
+        self.assertIn("quota down to 20", warned[-1])
+        self.assertEqual((kept, len(calls)), ({}, n + 1))  # only the free sports list was called
+
+        def broken(req, timeout):
+            raise urllib.error.HTTPError(req.full_url, 401, "Unauthorized", {}, None)
+        with self.assertRaises(odds.OddsError) as e:
+            odds.fetch_odds("americanfootball_nfl", "SECRETKEY", opener=broken)
+        self.assertNotIn("SECRETKEY", str(e.exception))
+        self.assertIn("HTTP 401", str(e.exception))
+        odds.LAST.clear()
 
 
 class SkillSizingTests(unittest.TestCase):
@@ -514,7 +633,7 @@ class FakeForecaster:
 class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
     NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "VOIDS", "SCANS", "REVIEWS", "RESEARCH",
-             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG")
+             "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -526,7 +645,7 @@ class DataDirTest(unittest.TestCase):
                      "SUMMARY": d / "summary.json", "SITE": d / "site", "PLAYBOOK": d / "playbook.json",
                      "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
                      "PROPOSALS": d / "proposals.json", "TUNED": d / "rules.json",
-                     "TUNED_LOG": d / "rules_history.jsonl"}.items():
+                     "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json"}.items():
             setattr(engine, n, v)
 
     def tearDown(self):
@@ -556,8 +675,8 @@ class EndToEndTests(DataDirTest):
         stats = engine.scan(policy, researcher=FakeResearcher([fact("A clean fact.")]),
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
-        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                                   "jev_alone_bold": 0, "original": 2})  # the yardstick bets as main started
+        self.assertEqual(stats["funnel"]["bets"], {"main": 2, "claude_direct": 1, "bold": 2, "calibrated": 0,
+                                                   "jev_alone_bold": 0, "original": 2, "sharp": 0})  # the yardstick bets as main started
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -567,8 +686,9 @@ class EndToEndTests(DataDirTest):
 
         s = engine.settle(policy, resolvers={"polymarket": lambda mid: "yes" if mid in "12" else None},
                           log=lambda *_: None)
+        # settling covers every ledger, the retired Jev alone's too
         self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                            "jev_alone_bold": 0, "original": 2})
+                                            "jev_alone_bold": 0, "original": 2, "sharp": 0})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -885,15 +1005,47 @@ class ResearchPipelineTests(DataDirTest):
                       news.DirectForecaster(rc, cc), claude=cc)
         self.assertGreaterEqual(len(runs), 2)  # the probe found room, so research carried on
 
+    def test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev(self):
+        mk._SERIES_FEE["KXNFLGAME"] = 1.0  # the series' fee multiplier, known: no network in tests
+        states = []
+
+        def transport(url, body, key, timeout):
+            states.append(body["state"])
+            return {"model": "jev-test", "answers": ans(0.5)}
+        cache = {"americanfootball_nfl": {"fetched": "1999-12-24T23:55:00Z", "events": [game()]}}
+        try:
+            with mock.patch.object(odds, "api_key", return_value="k"), \
+                    mock.patch.object(odds, "load_events", return_value=cache):
+                stats = engine.scan(dict(POLICY, sources=["kalshi"]), client=JevClient(transport=transport),
+                                    fetchers={"kalshi": lambda *a: [kalshi_game()]}, log=lambda *_: None, now=SCAN_NOW,
+                                    researcher=FakeResearcher([fact(CLEAN[1])]))
+        finally:
+            mk._SERIES_FEE.pop("KXNFLGAME", None)
+        self.assertEqual((stats["sharp"]["matched"], stats["funnel"]["bets"]["sharp"]), (1, 1))
+        bet = engine.load_portfolio(POLICY, "sharp")["open"][0]
+        self.assertEqual((bet["sizing"], bet["probe"], bet["side"], bet["event"]),
+                         ("probe", True, "yes", "kalshi:KXNFLGAME-26OCT11PITCIN"))  # no measured edge yet: a probe
+        self.assertAlmostEqual(bet["total_cost"], 250, delta=1)
+        j = engine.read_jsonl(engine.JUDGMENTS)[-1]
+        p = j["sharp"]["p_yes"]
+        self.assertEqual((j["sharp"]["outcome"], j["decisions"]["sharp"]["p_yes"]), ("Pittsburgh Steelers", p))
+        self.assertEqual(engine._prob(j, "sharp"), p)  # scored and measured like any forecaster
+        sent = json.dumps(states)
+        self.assertNotIn(str(p), sent)       # Pinnacle's price never goes to Jev
+        self.assertNotIn("Steelers", sent)   # nor anything else from the odds feed
+        self.assertTrue(engine.ODDS.exists())  # kept for the next cycle
+
     def test_each_strategy_uses_its_own_probability_and_never_doubles_up(self):
         def transport(url, body, key, timeout):
             return {"model": "jev-test", "answers": ans(0.70 if "recent_facts" in body["state"] else 0.60)}
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
-        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "jev_alone": 1, "claude_direct": 0, "bold": 1, "calibrated": 0,
-                                                   "jev_alone_bold": 1, "original": 1})
+        self.assertEqual(stats["funnel"]["bets"], {"main": 1, "claude_direct": 0, "bold": 1, "calibrated": 0,
+                                                   "jev_alone_bold": 1, "original": 1, "sharp": 0})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
-        self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone"]["p_yes"]), (0.70, 0.60))
+        self.assertEqual((j["decisions"]["main"]["p_yes"], j["decisions"]["jev_alone_bold"]["p_yes"]), (0.70, 0.60))
+        self.assertNotIn("jev_alone", j["decisions"])  # retired: it no longer bets
+        self.assertIn("ODDS_API_KEY", j["decisions"]["sharp"]["reasons"][0])  # no key in tests: says what it waits for
         # two days later the market is judged again for data, but no strategy adds to a position it holds
         stats2 = self.run_scan([self.lula()], FakeResearcher([]), fc, transport=transport, now=SCAN_NOW + timedelta(days=2))
         self.assertEqual(stats2["funnel"]["judged"], 1)
@@ -1585,12 +1737,12 @@ class TuningTests(DataDirTest):
         engine.save_json(engine.TUNED, {"strategies": {
             "original": {"version": 2, "rules": {"min_edge": 0.0}},           # the frozen yardstick
             "main": {"version": 2, "rules": {"slippage": 0.0}},               # not a rule the loop owns
-            "jev_alone": {"version": True, "rules": {"min_edge": 0.05}},      # a bool is not a version
+            "jev_alone_bold": {"version": True, "rules": {"min_edge": 0.05}},  # a bool is not a version
             "claude_direct": {"version": 2, "rules": {"min_edge": None}},     # stored values are never null
             "calibrated": {"version": 2, "rules": {"min_ask": 0.9, "max_ask": 0.2}},
             "bold": {"version": 2, "rules": {"min_edge": 0.05}, "since": "1999-12-01T00:00:00Z"}}})  # the control
         s = engine.strategies(POLICY)
-        for name in ("original", "main", "jev_alone", "claude_direct", "calibrated"):
+        for name in ("original", "main", "jev_alone_bold", "claude_direct", "calibrated"):
             self.assertEqual((s[name]["rules_version"], s[name].get("tuned")), (1, None), name)
         self.assertEqual((s["bold"]["rules_version"], s["bold"]["tuned"]), (2, {"min_edge": 0.05}))
         engine.save_json(engine.TUNED, {"strategies": ["not", "a", "dict"]})
@@ -1677,17 +1829,18 @@ class TuningTests(DataDirTest):
         r = self.retro([dict(self.TUNE, rules={"min_edge": 10 ** 400}), dict(self.TUNE, strategy="bold")])
         self.assertEqual((r["ran"], r["tuned"]), (True, ["bold"]))
         with mock.patch.object(coach, "tune", side_effect=KeyError("boom")):
-            r = self.retro([dict(self.TUNE, strategy="jev_alone")], days=1)
+            r = self.retro([dict(self.TUNE, strategy="jev_alone_bold")], days=1)
         self.assertTrue(r["ran"])
         self.assertEqual(coach.load_proposals()["proposals"][-1]["status_reason"], "could not be read: KeyError")
 
     def test_a_change_that_bets_the_same_way_is_not_a_new_version(self):
         self.assertEqual(coach.tune(POLICY, "main", {"skip_categories": []}, self.NOW), ("skipped", "changes nothing"))
-        self.assertEqual(coach.tune(POLICY, "jev_alone", {"skip_categories": ["sports", "crypto"]}, self.NOW)[0], "applied")
-        self.assertEqual(engine.strategies(POLICY)["jev_alone"]["tuned"], {"skip_categories": ["crypto", "sports"]})
+        self.assertEqual(coach.tune(POLICY, "jev_alone_bold", {"skip_categories": ["sports", "crypto"]}, self.NOW)[0], "applied")
+        self.assertEqual(engine.strategies(POLICY)["jev_alone_bold"]["tuned"], {"skip_categories": ["crypto", "sports"]})
         later = self.NOW + timedelta(days=8)
-        self.assertEqual(coach.tune(POLICY, "jev_alone", {"skip_categories": ["crypto", "sports", "crypto"]}, later),
+        self.assertEqual(coach.tune(POLICY, "jev_alone_bold", {"skip_categories": ["crypto", "sports", "crypto"]}, later),
                          ("skipped", "changes nothing"))
+        self.assertEqual(coach.tune(POLICY, "jev_alone", {"min_edge": 0.1}, later)[0], "invalid")  # retired: not tuned
 
     def test_undoing_a_change_by_hand_never_reuses_a_version_or_skips_the_wait(self):
         self.assertEqual(coach.tune(POLICY, "main", {"min_edge": 0.05}, self.NOW)[0], "applied")

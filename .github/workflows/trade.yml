@@ -6,7 +6,7 @@
 # API billing, and the code refuses to run research if it is set.
 #
 # Off until the repository variable TRADING_ENABLED is set to "true".
-# Secrets needed: TYPESAFE_AI_API_KEY, CLAUDE_CODE_OAUTH_TOKEN.
+# Secrets needed: TYPESAFE_AI_API_KEY, CLAUDE_CODE_OAUTH_TOKEN. Optional: ODDS_API_KEY (the sharp-line strategy).
 # Once this is on, don't also run cycles on a laptop: two writers to the ledgers will conflict.
 name: Trading cycle
 
@@ -66,6 +66,7 @@ jobs:
         env:
           TYPESAFE_AI_API_KEY: ${{ secrets.TYPESAFE_AI_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: python3 -m unittest discover -s tests -t . && python3 -m papertrade cycle
 
       - name: Commit the ledgers (the audit trail the page reads)

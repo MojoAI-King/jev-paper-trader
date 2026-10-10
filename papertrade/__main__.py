@@ -27,6 +27,43 @@ def cmd_ping(policy) -> int:
     return 0
 
 
+def cmd_odds_check(policy) -> int:
+    """Read-only: is the ODDS_API_KEY set and working, which sports are in season, and what one sport's reply holds
+    (games, which books priced them, a sample fair price). Uses one request of the quota; writes nothing."""
+    from . import odds
+    key, cfg = odds.api_key(), policy["sharp"]
+    if not key:
+        print("ODDS_API_KEY isn't set. Get a free key at the-odds-api.com, then run (and paste it at the prompt):\n"
+              "  gh secret set ODDS_API_KEY --repo MojoAI-King/jev-paper-trader\n"
+              "and add ODDS_API_KEY=<key> to .env in the repo folder.")
+        return 1
+    try:
+        live = odds.active_sports(key)
+    except odds.OddsError as e:
+        print(f"The Odds API: FAILED  {e}")
+        return 1
+    wanted = [s for s in cfg["sports"] if s in live]
+    print(f"The Odds API: OK. In season from policy.json's list: {', '.join(wanted) or 'none'} "
+          f"(not in season: {', '.join(s for s in cfg['sports'] if s not in live) or 'none'})")
+    if not wanted:
+        return 0
+    try:
+        events = odds.compact(odds.fetch_odds(wanted[0], key))
+    except odds.OddsError as e:
+        print(f"  {wanted[0]}: FAILED  {e}")
+        return 1
+    now = datetime.now(timezone.utc)
+    books = {b: sum(1 for ev in events if b in ev["books"]) for b in odds.BOOKS}
+    priced = [(ev, f) for ev in events if (f := odds.fair(ev, cfg, now))]
+    print(f"  {wanted[0]}: {len(events)} games; priced by " + ", ".join(f"{b} {n}" for b, n in books.items())
+          + f"; {len(priced)} with a fresh sharp line")
+    for ev, f in priced[:3]:
+        print(f"    {ev['away']} at {ev['home']} ({ev['commence']}): " + ", ".join(
+            f"{n} {p:.3f}" for n, p in f["probs"].items()) + f"  [{f['book']}, margin {f['margin']:.3f}, {f['age_min']:.0f} min old]")
+    print(f"  Quota left: {odds.LAST.get('remaining')} (used {odds.LAST.get('used')})")
+    return 0
+
+
 def cmd_markets(policy) -> int:
     """Show what the market feeds return, without calling Jev or betting."""
     mf, ok = policy["market_filters"], 0
@@ -206,6 +243,7 @@ def main(argv=None) -> int:
     t.add_argument("--why", required=True)
     t.add_argument("--judge-by", default="")
     sub.add_parser("ping", help="Check the Jev API key and connection")
+    sub.add_parser("odds-check", help="Check the ODDS_API_KEY and what The Odds API returns (uses 1 request; writes nothing)")
     sub.add_parser("markets", help="Preview live markets from each source (no Jev calls, no bets)")
     sub.add_parser("dashboard", help="Write papertrade_data/dashboard.html: trades, cash, P&L on one page")
     pb = sub.add_parser("publish", help="Build site/ (the public page shell; data comes from GitHub)")
@@ -218,6 +256,8 @@ def main(argv=None) -> int:
 
     if a.cmd == "ping":
         return cmd_ping(policy)
+    if a.cmd == "odds-check":
+        return cmd_odds_check(policy)
     if a.cmd == "learn":
         return cmd_learn(policy)
     if a.cmd == "health":

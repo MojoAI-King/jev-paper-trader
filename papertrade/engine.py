@@ -27,6 +27,7 @@ from .jev_client import PROJECT_ROOT, JevClient, JevError
 from . import learn
 from . import markets as mk
 from . import news
+from . import odds
 from .judge import QUESTION_SET_VERSION, QUESTIONS, build_state
 
 POLICY_PATH = PROJECT_ROOT / "policy.json"
@@ -45,6 +46,7 @@ PLAYBOOK_LOG = DATA / "playbook_history.jsonl"  # every change to the playbook, 
 RETROS = DATA / "retros.jsonl"  # the daily reviews (weekly until 2026-09-28)
 PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; approved challengers run from here
 TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
+ODDS = DATA / "odds.json"  # the sharp sportsbook lines, refreshed within the quota (papertrade/odds.py)
 TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
 MAIN = "main"
@@ -70,7 +72,8 @@ def strategies(policy: dict, retired: bool = False) -> dict:
     on every load, so a hand edit past the bounds, or to the frozen yardstick, is ignored, not traded on.
     retired=True adds the challengers that were retired (marked retired=True): they no longer bet, but
     their ledgers still settle and the page still shows their record."""
-    out = {k: dict(v, rules_version=1) for k, v in policy["strategies"].items() if not k.startswith("_")}
+    out = {k: dict(v, rules_version=1) for k, v in policy["strategies"].items()
+           if not k.startswith("_") and (retired or not v.get("retired"))}  # a retired one keeps its record
     props = load_json(PROPOSALS, {"proposals": []})["proposals"]
     for p in props:
         if (p.get("status") == "running" and p.get("strategy") and p["id"] not in out
@@ -531,6 +534,18 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     todo = candidates[: policy["max_jev_calls_per_scan"] // 2]  # up to two Jev calls per market
     stats["deferred"] = len(candidates) - len(todo)
     mk.add_kalshi_fees(todo)  # each series' published fee multiplier, for the markets about to be judged
+    sharp = {}  # market key -> Pinnacle's fair price for that outcome (papertrade/odds.py); never shown to a forecaster
+    if any(s["probability"] == "sharp" for s in strats.values()):
+        okey = odds.api_key()
+        if okey:
+            cache = odds.load_events(policy["sharp"], okey, load_json(ODDS, {}), now, warn=warn)
+            save_json(ODDS, cache)
+            sharp = odds.match(odds.all_events(cache), todo, policy["sharp"], now)
+            stats["sharp"] = {"games": len(odds.all_events(cache)), "matched": len(sharp),
+                              "quota_left": odds.LAST.get("remaining")}
+            waiting["sharp"] = "no sharp line matched this market"
+        else:
+            waiting["sharp"] = "waiting for an ODDS_API_KEY (The Odds API) to be set"
 
     # 3. Jev without research, for every market: this is also the "Jev alone" strategy
     plain = {}
@@ -672,15 +687,20 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             funnel["with_research"] += int(rich is not None)
             calibrated = (learn.apply_map(cmap, float(rich["answers"]["p_yes"]["noul"]))
                           if rich and cmap["active"] else None)
+            line = sharp.get(key(m))
             signals = {"jev_plain": p["answers"], "jev_research": rich["answers"] if rich else None,
                        "claude_direct": {"p_yes": {"noul": direct["p_yes"]}} if direct else None,
-                       "jev_calibrated": {"p_yes": {"noul": calibrated}} if calibrated is not None else None}
+                       "jev_calibrated": {"p_yes": {"noul": calibrated}} if calibrated is not None else None,
+                       # a price-based forecast: the rules are a game's result and the line is the information
+                       "sharp": {"p_yes": {"noul": line["p_yes"]}, "rules_clear": {"noul": 1.0},
+                                 "info_sufficient": {"noul": 1.0}} if line else None}
             decisions = {}
             for name, strat in strats.items():
                 pf = books[name]
                 answers = strategy_answers(strat, signals)
                 if answers is None:
-                    why = why_not.get(ek) if rich is None else waiting.get(strat["probability"])
+                    why = (waiting.get("sharp") if strat["probability"] == "sharp" else
+                           why_not.get(ek) if rich is None else waiting.get(strat["probability"]))
                     decisions[name] = {"bet": False, "cleared_gates": False,
                                        "reasons": [why or "no probability this cycle"]}
                     continue
@@ -707,6 +727,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 "answers": rich["answers"] if rich else None, "answers_no_news": p["answers"],
                 "claude_direct": {"p_yes": direct["p_yes"], **direct["meta"]} if direct else None,
                 "jev_calibrated": calibrated,
+                "sharp": line,
                 "calibration_map": {k: cmap[k] for k in ("a", "b", "n")} if calibrated is not None else None,
                 "decision": decisions.get(MAIN), "decisions": decisions,
                 "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
@@ -842,6 +863,9 @@ def _prob(j: dict, source: str):
     if source == "jev_calibrated":
         c = j.get("jev_calibrated")
         return float(c) if c is not None else None
+    if source == "sharp":
+        c = j.get("sharp")
+        return float(c["p_yes"]) if c else None
     return float(j["market"]["mid"])
 
 
@@ -894,7 +918,7 @@ def paired(judgments: list[dict], resolved: dict) -> dict:
     return {"n": len(looks), "left_out": len(wide - looks.keys()), "sources": sources}
 
 
-SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated")
+SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated", "sharp")
 
 
 def skill(judgments: list[dict], resolved: dict, min_markets: int = 300, boot: int = 200) -> dict:
