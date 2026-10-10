@@ -405,6 +405,36 @@
           "world"
         ]
       }
+    },
+    {
+      "id": "p27",
+      "created": "2026-10-10T03:41:22Z",
+      "kind": "tune",
+      "title": "Calibrated skips crypto, politics and economy",
+      "why": "Jev + research trails the market most in crypto (0.168 vs 0.104 on 152 markets), politics (0.260 vs 0.117 on 45) and economy (0.232 vs 0.103 on 42). Main and bold already skip crypto, but calibrated, the best-performing Jev strategy (-$2.7k on 17 settled since the price floor), does not.",
+      "judge_by": "On bets opened after this change, calibrated's settled P&L per $100 staked beats its since-floor figure of about -$6 per $100. That figure includes open stake, so it is approximate. It should also be no worse than main's over the same period.",
+      "min_resolved": 20,
+      "status": "applied",
+      "status_reason": "calibrated rules v3: skips none \u2192 crypto, economy, politics",
+      "strategy": "calibrated",
+      "rules": {
+        "skip_categories": [
+          "crypto",
+          "politics",
+          "economy"
+        ]
+      }
+    },
+    {
+      "id": "p28",
+      "created": "2026-10-10T03:41:22Z",
+      "kind": "code",
+      "title": "Measure skill per category as well as per source",
+      "why": "Claude's pooled edge over the market is negative (-0.020 on 564 markets), which keeps ch16 on probe bets forever, even though Claude beats the market in sports (0.167 vs 0.178 on 152). Measuring lambda for each source and category pair, with the same 300-market threshold, would let a real pocket of skill size up without loosening the rule anywhere else.",
+      "judge_by": "If Joey approves, the review shows lambda for each source and category pair. We then check whether Claude in sports reaches a positive lambda on 300 or more markets, and whether ch16's P&L per $100 stays positive once it sizes by Kelly.",
+      "min_resolved": 300,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
