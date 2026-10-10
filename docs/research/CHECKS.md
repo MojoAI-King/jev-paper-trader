@@ -167,3 +167,23 @@ price and scored on the newer half (the fit's prior was negligible, so it is clo
 The market scored 0.1785–0.1845 on the same test markets. Calibration doesn't carry over from older to newer
 markets here, so plan item 2C (B29) is dropped.
 
+## Favourites as a small-edge strategy (run 2026-10-10, for Joey's "it's a formula" question)
+
+The favourite bought at the ask with real fees plus 1¢, at the first look, on 1,026 finished markets with a real
+price (95% ranges resample whole events):
+
+| Slice | Markets | Return |
+|---|---|---|
+| All | 1,026 | −2.8% [−6.7, +0.9] |
+| 50–70¢ | 423 | −6.0% |
+| 70–85¢ | 224 | −3.1% |
+| 85–95¢ | 279 | +0.6% [−3.0, +3.7] |
+| 95–99¢ | 100 | +2.2% [−0.8, +3.4] |
+| Under 1 day left | 451 | −0.8% |
+| 1–7 days left | 503 | −6.2% [−11.5, −1.5] |
+| Over 7 days left | 72 | +8.3% [−4.3, +21.5] |
+
+The over-7-days slice matches the published finding that prices sit too close to 50% far from resolution (report
+01, F8), but 72 markets can't confirm it. Re-run it once 300 or more long-dated markets judged after 2026-10-10 have
+finished. The trader's `market_filters.max_price` of 0.95 keeps it out of the 95–99¢ band.
+
