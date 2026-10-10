@@ -8,9 +8,10 @@
     "directory": "./site",
     "binding": "ASSETS"
   },
-  // Ask GitHub for a trading cycle twice an hour (UTC minutes; the workflow skips one if a cycle ran < 25 min ago)
+  // Ask GitHub for a trading cycle every 15 minutes (UTC minutes; the workflow skips one if a cycle ran < 12 min ago).
+  // Twice an hour until 2026-10-10, when Joey asked to check more often (docs/REBUILD_PLAN.md)
   "triggers": {
-    "crons": ["4,34 * * * *"]
+    "crons": ["4,19,34,49 * * * *"]
   },
   "observability": { "enabled": true }
 }

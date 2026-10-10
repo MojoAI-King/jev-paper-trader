@@ -7,7 +7,7 @@ something breaks. For the design see PLAN.md; for the learning loop, docs/LEARNI
 
 | Piece | Where | Schedule |
 | --- | --- | --- |
-| Trading cycle: settle, scan, review, coach, the daily review (tunes rules), summary | GitHub Actions, `.github/workflows/trade.yml`, repo MojoAI-King/jev-paper-trader | about every 30 minutes (see "What starts a cycle") |
+| Trading cycle: settle, scan, review, coach, the daily review (tunes rules), summary | GitHub Actions, `.github/workflows/trade.yml`, repo MojoAI-King/jev-paper-trader | about every 15 minutes since 2026-10-10 (see "What starts a cycle") |
 | Jev (TypeSafe) | `TYPESAFE_AI_API_KEY` repo secret | every cycle |
 | Claude (research, Claude direct, reviews, coach, the daily review) | Claude Code signed in with `CLAUDE_CODE_OAUTH_TOKEN` (Joey's Max plan) | rationed by `policy.json` research and learning settings |
 | Ledgers | `papertrade_data/`, committed by `papertrade-bot` each cycle | every cycle |
@@ -18,12 +18,15 @@ something breaks. For the design see PLAN.md; for the learning loop, docs/LEARNI
 GitHub's own scheduler skipped every slot for this repo on 2026-09-27 (one :05 slot fired, 45 minutes
 late, before trading was on). So there are two starters, and a gate:
 
-1. **Cloudflare cron trigger (the dependable one):** `worker/index.js`, at :04 and :34 UTC-minutes, calls
+1. **Cloudflare cron trigger (the dependable one):** `worker/index.js`, at :04, :19, :34 and :49 UTC-minutes
+   (every 15 minutes since 2026-10-10; :04 and :34 before; `wrangler.jsonc`), calls
    GitHub's `workflow_dispatch` API with `force: false`. It needs the Worker secret
    `GITHUB_DISPATCH_TOKEN` (below); without it the trigger logs "not set" and does nothing.
 2. **GitHub's schedule (backup):** `8,23,38,53 * * * *` in the workflow.
-3. **The gate:** the workflow's first step, `python3 -m papertrade due --minutes 25`, skips the run if a
-   cycle ran in the last 25 minutes. A hand start (`gh workflow run`, default `force: true`) always runs.
+3. **The gate:** the workflow's first step, `python3 -m papertrade due --minutes 12`, skips the run if a
+   cycle ran in the last 12 minutes (25 before 2026-10-10). A hand start (`gh workflow run`, default
+   `force: true`) always runs. Faster cycles don't raise Claude use (research has its own daily cap) or Odds API
+   use (`sharp.refresh_minutes`); Jev calls and ledger commits double.
 
 **Setting the trigger's token (Joey, once a year):** on github.com, Settings > Developer settings >
 Personal access tokens > Fine-grained tokens > Generate new token. Resource owner MojoAI-King; Repository

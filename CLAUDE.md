@@ -21,7 +21,7 @@
 - Tune behavior in `policy.json`, not in code. Keep hard limits (stake caps, exposure caps) in code-enforced policy.
 - Run the offline tests before and after changes: `python3 -m unittest discover -s tests -t .`
 - For Jev/TypeSafe API details, use the TypeSafe skill and the live docs at https://docs.typesafe.ai/llms.txt.
-- **It's live.** GitHub Actions runs a cycle hourly and is the only writer of `papertrade_data/`. Never
+- **It's live.** GitHub Actions runs a cycle about every 15 minutes and is the only writer of `papertrade_data/`. Never
   run `cycle`, `scan`, `settle` or `review` locally while it's on; read-only commands (`health`, `learn`,
   `report`, `markets`) are fine. Runbook: `docs/OPERATIONS.md`. Start a session with the
   `trading-health` skill (`.claude/skills/`) when the question is "is it working".

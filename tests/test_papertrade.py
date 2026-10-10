@@ -1082,9 +1082,18 @@ class ResearchPipelineTests(DataDirTest):
         rec = engine.read_jsonl(engine.MENTIONS)[0]
         self.assertEqual((rec["mention_prior"]["p_yes"], engine._prob(rec, "mention_prior")), (0.43, 0.43))
         self.assertEqual(engine.read_jsonl(engine.JUDGMENTS), [])  # no Jev call, and the Jev log stays clean
-        # looked at again only after rejudge_after_hours: the same market an hour later isn't logged twice
-        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(hours=1))
+        # looked at again only after mention.rejudge_hours (1): not 30 minutes later, but again after 2 hours
+        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(minutes=30))
         self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 1)
+        self.scan_mentions([self.mention()], now=SCAN_NOW + timedelta(hours=2))
+        self.assertEqual(len(engine.read_jsonl(engine.MENTIONS)), 2)
+
+    def test_the_mention_strategy_has_its_own_daily_probe_limit(self):
+        many = [self.mention(market_id=f"E{i}", event=f"kalshi:EV{i}") for i in range(17)]  # 17 separate events
+        stats = self.scan_mentions(many)
+        self.assertEqual(stats["funnel"]["bets"]["mention_no"], 15)  # mention.max_probes_per_day, not skill's 5
+        last = engine.read_jsonl(engine.MENTIONS)[-1]["decisions"]["mention_no"]["reasons"][-1]
+        self.assertIn("probe limit reached (15 today", last)
 
     def test_mention_markets_outside_the_band_near_the_event_or_thin_get_no_full_bet(self):
         self.scan_mentions([self.mention(market_id="A", mid=0.85, yes_ask=0.86, no_ask=0.16)])  # outside the band: the mid

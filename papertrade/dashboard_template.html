@@ -229,7 +229,7 @@ a:hover { color: var(--cyan-2); }
 const TZ = "America/New_York";  // shown as ET; the browser switches between EST and EDT
 const NS = "http://www.w3.org/2000/svg";
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const SLOTS = [8, 23, 38, 53], GAP_MIN = 25;  // the workflow's schedule and its minimum gap between cycles
+const SLOTS = [4, 19, 34, 49], GAP_MIN = 12;  // the Cloudflare trigger's minutes (wrangler.jsonc) and the minimum gap between cycles
 let D = null, seenFeed = null, prevVals = {};
 
 const $ = id => document.getElementById(id);

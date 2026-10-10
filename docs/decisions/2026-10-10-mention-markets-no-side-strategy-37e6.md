@@ -32,7 +32,16 @@ winner":
    resolves 2026-11-05). Those five are one bet, since the same speech decides them all, and they are slow to
    resolve. The pass now takes at most one bet per event per strategy and looks at the soonest-ending markets first.
    The probes were capped at 100–222 contracts ($47–90), the size the asks offered.
-4. **`jev_alone_bold` retired**, as `jev_alone` was: its forecaster scores like a coin flip and adds nothing to the
+4. **A faster pace** (2026-10-10, Joey: "then why not check more often ... if that will enhance our chance of
+   winning do it"):
+   - Cycles run every 15 minutes instead of 30: the Cloudflare trigger is now :04, :19, :34 and :49, and the
+     workflow's `due` gate is 12 minutes.
+   - Mention markets are looked at again every hour instead of 6 (`mention.rejudge_hours`).
+   - `mention_no` may place 15 probes a day instead of 5 (`mention.max_probes_per_day`), still one per event.
+   - Claude research keeps its daily cap and the odds feed keeps its quota pace, so neither grows.
+   - Millisecond trading was ruled out: it can't be simulated honestly on paper, it needs always-on co-located
+     servers and real accounts, the venues delay fast takers, and incumbents hold the speed edge (report 15).
+5. **`jev_alone_bold` retired**, as `jev_alone` was: its forecaster scores like a coin flip and adds nothing to the
    price. Its ledger still settles, and its colour slot (6) went to `mention_no`.
 
 ## Why
@@ -86,3 +95,4 @@ only a log. `jev_alone_bold` returns by removing its `retired` flag.
 - 141 offline tests pass.
 - The replication and the maker test are in `docs/research/CHECKS.md`.
 - `test_one_mention_bet_per_event_soonest_first`. 142 offline tests pass after the change.
+- `test_the_mention_strategy_has_its_own_daily_probe_limit` (15, not skill's 5). 143 offline tests pass.

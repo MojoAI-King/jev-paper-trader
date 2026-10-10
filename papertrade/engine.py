@@ -762,7 +762,8 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
     if not names or not mk.LAST_MENTIONS:
         return
     cfg, mf = policy["mention"], policy["market_filters"]
-    seen, cutoff = last_judged(MENTIONS), (now - timedelta(hours=mf["rejudge_after_hours"])).strftime(TS)
+    seen, cutoff = last_judged(MENTIONS), (now - timedelta(hours=cfg["rejudge_hours"])).strftime(TS)
+    pace = dict(policy["skill"], max_probes_per_day=cfg["max_probes_per_day"])  # its own probe limit
     looked = 0
     # soonest-ending first, so the probes go where results come back soonest
     soonest_first = sorted(mk.LAST_MENTIONS, key=lambda x: x.get("expected_expiration") or x.get("close_time") or "9")
@@ -787,7 +788,7 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
                 continue
             open_cost = sum(x["total_cost"] for x in pf["open"])
             sz = skill_sizing(pf, m, skills.get("mention_prior", {}).get("lambda", 0.0), stamp, event_of)
-            d = decide(m, signals, spolicy[name], equity_at_cost(pf), open_cost, pf["cash"], sz)
+            d = decide(m, signals, dict(spolicy[name], skill=pace), equity_at_cost(pf), open_cost, pf["cash"], sz)
             if d["bet"]:
                 size = m.get(f"{d['side']}_ask_size")
                 if size is not None and d["contracts"] > size:  # only what is on offer at that price
