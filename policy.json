@@ -135,8 +135,8 @@
                    "slot": 6,
                    "gate_overrides": {"min_edge": 0.03},
                    "rules": {"min_ask": 0.3, "max_ask": 0.7},
-                   "blurb": "No AI forecast: in Kalshi markets on whether someone will say a word (earnings calls, interviews), it buys NO at 30-70c before the event. On 639 settled ones, NO there won 62% against the 49% its price implied: +21% after fees.",
-                   "_why": "Research report 15 (Bartlett & O'Hara 2026: YES at 50c settled YES about 40% across 35,000+ Kalshi mention markets), replicated on 639 settled Kalshi mention markets on 2026-10-10 at the first real taker price before the event: NO at 30-70c +21.0% after the taker fee, 95% range +6.1% to +35.5% over 55 events (docs/research/CHECKS.md). Found on history, so it must now pass a forward test (docs/EXPERIMENTS.md). Sized by measured skill: probes until its edge shows on 300+ markets; never more contracts than the ask offers"}
+                   "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped: no edge there). On 7,929 settled markets, NO in the series it keeps won 58% against the 49% its price implied: about +16% after fees.",
+                   "_why": "Research report 15 (Bartlett & O'Hara 2026: YES at 50c settled YES about 40% across 35,000+ Kalshi mention markets), replicated on 639 settled Kalshi mention markets on 2026-10-10 (+21.0% after fees), then re-tested the same day on every Mentions series, 7,929 settled markets (docs/research/CHECKS.md): +9.8% bought in the first 48 hours across all series, and outside earnings-call and Trump series +15% to +18% in both halves of history; inside those, no edge, so they are skipped (mention.exclude_series). Found on history, so it must now pass a forward test (docs/EXPERIMENTS.md). Sized by measured skill: probes until its edge shows on 300+ markets; never more contracts than the ask offers"}
   },
 
   "mention": {

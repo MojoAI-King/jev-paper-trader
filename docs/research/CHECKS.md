@@ -293,3 +293,9 @@ Not built as a strategy. It may later lower the cost of a strategy that has an e
     mention markets keep the YES optimism. Built: `mention.exclude_series` (EARNINGS, TRUMP), `yes_bias` 0.10
     (decision 2026-10-10-mention-strategy-skips-earnings-call-and-3533). Within the kept series, buying late paid about
     as well as buying early, so the young-market limit (`mention.max_hours_listed`) stays off.
+- **Resting bids don't beat taking the ask here** (`docs/research/scripts/mention_maker.py`, cached data, run
+  2026-10-10). In the kept series (261 series, 1,183 markets with a live-rule purchase, 180 events): taking the ask
+  +15.8% [+6.2, +25.1]. A NO bid 1, 2 or 4¢ under that price, left until 6 hours before the event and filled only when
+  a real trade sold into it (maker fee 0.0175·p(1−p)): filled 75%, 73%, 69% of the time; return +12.3% [+2.0, +23.0],
+  +13.3% [+1.0, +25.7], +16.6% [+4.4, +29.8]. Adverse selection is plain: NO won 52–53% when the bid filled and 71% when
+  it didn't. Not built; the strategy keeps taking the ask.
