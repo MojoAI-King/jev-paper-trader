@@ -30,4 +30,5 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-10-09-a-mid-price-on-a-market-with-no-bids-fak-f0e4](lessons/2026-10-09-a-mid-price-on-a-market-with-no-bids-fak-f0e4.md) | A mid price on a market with no bids faked an edge | accepted | 2026-10-09 |
 | [2026-10-09-fills-at-the-mid-made-resting-orders-loo-700b](lessons/2026-10-09-fills-at-the-mid-made-resting-orders-loo-700b.md) | Fills at the mid made resting orders look profitable | accepted | 2026-10-09 |
 | [2026-10-09-staging-a-folder-swept-up-other-sessions-551b](lessons/2026-10-09-staging-a-folder-swept-up-other-sessions-551b.md) | Staging a folder swept up other sessions' work | accepted | 2026-10-09 |
+| [2026-10-10-a-real-api-key-in-env-turned-the-tests-i-43ba](lessons/2026-10-10-a-real-api-key-in-env-turned-the-tests-i-43ba.md) | A real API key in .env turned the tests into live calls | accepted | 2026-10-10 |
 <!-- skilliton:index:lessons:end -->

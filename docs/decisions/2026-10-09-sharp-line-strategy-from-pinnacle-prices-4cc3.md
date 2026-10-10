@@ -17,15 +17,17 @@ serious winner." This builds plan item 2A (`docs/REBUILD_PLAN.md`, research repo
    - It buys a Kalshi or Polymarket side priced 20–85¢ that sits at least 3¢ below that line after fees.
    - It is sized like every strategy by measured skill (`engine.skill`, source `sharp`): probes until its edge
      over the venue price shows on 300+ markets.
-2. **Matching.** A Kalshi game market matches a game when it names both teams and is decided within 8 hours of the
-   start; its YES team is the new `yes_side` field. A Polymarket market matches when it names one team and starts
+2. **Matching.** A Kalshi game market matches a game when its question and rules name both teams (since October
+   2026 the title names one, "Philadelphia wins"; the rules name both) and it is decided within 8 hours of the start;
+   its YES team is the new `yes_side` field. Spreads and totals are screened on the question alone. A Polymarket market matches when it names one team and starts
    near the game or carries its date. Spread, total and prop markets, games already started, and anything that fits
    two games are left out.
 3. **Data and quota.**
    - The key is `ODDS_API_KEY`, from the environment or `.env`, passed to the cycle as a GitHub secret. Error
      messages never carry it.
-   - Lines are cached in `papertrade_data/odds.json`. Each listed sport is refreshed at most every 6 hours, and not
-     once the quota left reaches 25: 4 sports × 4 a day fits the free tier's 500 requests a month.
+   - Lines are cached in `papertrade_data/odds.json`. Each listed sport is refreshed at most every 8 hours (6 at
+     first; slowed on 2026-10-10 after a test run spent about 210 requests by mistake, lesson
+     2026-10-10-a-real-api-key-in-env-turned-the-tests-i-43ba), and not once the quota left reaches 25.
    - A line over 45 minutes old, or with a margin over 6%, isn't used.
    - Without the key, the strategy shows "waiting for an ODDS_API_KEY" and never bets.
    - `python3 -m papertrade odds-check` tests the key (one request; writes nothing).
@@ -82,3 +84,6 @@ stop betting on Jev's own forecast); it held the colour slot the new strategy ne
   game gets a $250 probe; the judgment carries the line; nothing from the odds feed appears in what Jev is sent.
 - The retired `jev_alone` no longer bets, isn't tuned, and still settles (updated pipeline and tuning tests).
 - 138 offline tests pass.
+- A read-only dry run on live data (2026-10-10, before any bet): 94 games with lines; 24 of the 100 loaded Kalshi
+  markets matched a game; none was 3¢ or more under Pinnacle's fair price after fees (best −1¢, most about −2¢,
+  about Kalshi's fee). Polymarket's US game markets aren't Yes/No, so the trader doesn't load them.
