@@ -435,6 +435,41 @@
       "min_resolved": 300,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p29",
+      "created": "2026-10-10T15:53:58Z",
+      "kind": "tune",
+      "title": "Bold bets on sports only",
+      "why": "Jev + research trails the market least in sports (0.205 vs 0.178 on 539 markets) and far more elsewhere: politics 0.260 vs 0.117, economy 0.232 vs 0.103, other 0.232 vs 0.103, weather 0.219 vs 0.085. Bold's info-gate test has told us little: markets stopped only by that gate lose about the same as bets placed (-$31 vs -$31 per $100 on 167 and 62), so bold's slot is better spent testing whether Jev + research can earn in its best category. This is an experiment.",
+      "judge_by": "On bets opened after this change, bold's settled P&L per $100 staked beats its v4 figure of about -$9 per $100 and beats main's over the same period. If bold places fewer than 1 bet a day, restore its previous categories.",
+      "min_resolved": 30,
+      "status": "applied",
+      "status_reason": "bold rules v5: skips crypto \u2192 crypto, culture, economy, other, politics, tech, weather, world",
+      "strategy": "bold",
+      "rules": {
+        "skip_categories": [
+          "crypto",
+          "culture",
+          "economy",
+          "other",
+          "politics",
+          "tech",
+          "weather",
+          "world"
+        ]
+      }
+    },
+    {
+      "id": "p30",
+      "created": "2026-10-10T15:53:58Z",
+      "kind": "code",
+      "title": "Find out why Sharp line has never bet",
+      "why": "The Sharp (Pinnacle) strategy shows 0 bets, 0 open and n=0 in the skill table, while every other source has hundreds of judged markets. Either its price feed never matches our markets or its 3c edge and 20-85c price band filter out everything. Without bets we can't learn whether a sharp bookmaker line beats the prediction-market price.",
+      "judge_by": "A short diagnostic report showing, per cycle, how many markets got a Sharp probability and which gate stopped each one. Then either Sharp places probe bets or we know why it can't.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
