@@ -1,6 +1,6 @@
 {
-  "version": 12,
-  "updated": "2026-10-09T00:10:10Z",
+  "version": 13,
+  "updated": "2026-10-10T00:11:41Z",
   "rules": [
     {
       "id": "R1",
@@ -77,9 +77,10 @@
     {
       "id": "R25",
       "category": "sports",
-      "rule": "For match goal-total questions, report each team's recent comparable match totals with dates, note whether opponents in any blowout were weakened or missing starters, and compare that with the upcoming opponent's squad strength.",
+      "rule": "For game-total questions (goals or points), report both teams' recent game totals with dates, label a 3\u20134 game streak as a small sample, note weakened opponents in any blowout, and report each side's starting QB or key starter changes and defensive ranking.",
       "evidence": [
-        "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6"
+        "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
+        "kalshi:KXNFLTOTAL-26OCT08TBDAL-48"
       ],
       "added": "2026-10-08T00:08:38Z"
     },
@@ -100,12 +101,14 @@
     {
       "id": "R17",
       "category": "sports",
-      "rule": "For NFL player props, use only the named player's facts: for TDs, rushing vs receiving, share of carries or targets inside the 5, multi-season TD-game rate; for yardage, current-season attempts per game, games past the line, opponent's rank against it, backfield injuries.",
+      "rule": "For NFL player props, research the named player, never team D/ST rates: for TDs, his TDs per game this and last season, red-zone carries or targets and target share; for yardage, attempts per game and games past the line; plus the opponent's rank and injured defenders.",
       "evidence": [
         "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250",
         "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
         "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
-        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1"
+        "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
+        "kalshi:KXNFLTD-26OCT08TBDAL-DALJWILLIAMS33-1",
+        "kalshi:KXNFLTD-26OCT08TBDAL-DALGPICKENS3-1"
       ],
       "added": "2026-10-03T00:07:21Z"
     },
@@ -123,12 +126,12 @@
       "category": "sports",
       "rule": "For single MLB games, report confirmed starters' ERA, ERA+ and recent starts, each bullpen's unavailable arms (injury, leave, short rest), season and road records, and form since Sept 1; label old-roster franchise streaks and series-level rates as not single-game evidence.",
       "evidence": [
+        "kalshi:KXMLBGAME-26OCT072200MILSD-MIL",
+        "kalshi:KXMLBGAME-26OCT072200MILSD-SD",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
-        "kalshi:KXMLBGAME-26OCT072200MILSD-SD",
-        "kalshi:KXMLBGAME-26OCT072200MILSD-MIL"
+        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -138,10 +141,10 @@
       "rule": "For playoff series, first get the live or final score of any game started before the judgment time, then report the series score, wins the trailer needs and where, the cited comeback rate for that deficit, game margins and season records; past seasons' playoffs are background.",
       "evidence": [
         "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
-        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+        "kalshi:KXMLBSERIES-26NYYTBALDS-NYY",
         "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
-        "kalshi:KXMLBSERIES-26NYYTBALDS-NYY"
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -167,22 +170,13 @@
     {
       "id": "R19",
       "category": "culture",
-      "rule": "For video view questions, record when the question opened and check the channel's upload list for any video posted since; if one is live, report its upload time, hours elapsed, current views and climb rate before any historical base rates, plus sequel or promotion context.",
+      "rule": "For video view questions, check the channel's uploads since the question opened and report any new video's upload time, hours elapsed, views and climb rate first; build references only from first-168-hour counts of recent comparable uploads, not lifetime or undated totals.",
       "evidence": [
         "polymarket:4868020",
         "polymarket:4868021",
+        "polymarket:4868022",
         "polymarket:5105601",
         "polymarket:5286105"
-      ],
-      "added": "2026-10-04T00:08:06Z"
-    },
-    {
-      "id": "R20",
-      "category": "culture",
-      "rule": "For view-count bracket questions, build reference figures only from first-168-hour counts of the channel's recent comparable uploads; label cumulative or lifetime totals, figures with unclear snapshot dates, and months-old uploads as not the resolution metric.",
-      "evidence": [
-        "polymarket:4868020",
-        "polymarket:4868022"
       ],
       "added": "2026-10-04T00:08:06Z"
     },
@@ -258,15 +252,22 @@
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-PITT",
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-VT",
     "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
+    "kalshi:KXNCAAFGAME-26OCT10FAMUALST-ALST",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
+    "kalshi:KXNFLGAME-26OCT08TBDAL-DAL",
+    "kalshi:KXNFLGAME-26OCT08TBDAL-TB",
     "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250",
     "kalshi:KXNFLRSHYDS-26OCT05ATLNO-ATLBROBINSON15-50",
+    "kalshi:KXNFLSPREAD-26OCT08TBDAL-DAL10",
     "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
     "kalshi:KXNFLTD-26OCT04KCLV-KCRRICE4-1",
     "kalshi:KXNFLTD-26OCT04KCLV-LVBBOWERS89-1",
     "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
     "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
+    "kalshi:KXNFLTD-26OCT08TBDAL-DALGPICKENS3-1",
+    "kalshi:KXNFLTD-26OCT08TBDAL-DALJWILLIAMS33-1",
     "kalshi:KXNFLTOTAL-26OCT04KCLV-56",
+    "kalshi:KXNFLTOTAL-26OCT08TBDAL-48",
     "kalshi:KXPGAR2LEAD-BAOUC26-ASMO",
     "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
     "kalshi:KXPGAR2LEAD-BAOUC26-KSTR",
@@ -312,6 +313,7 @@
     "polymarket:5105601",
     "polymarket:5178226",
     "polymarket:5178227",
+    "polymarket:5207000",
     "polymarket:5208385",
     "polymarket:5286105",
     "polymarket:5362505"
@@ -320,6 +322,7 @@
     "R10",
     "R11",
     "R12",
+    "R20",
     "R3",
     "R4",
     "R5"
