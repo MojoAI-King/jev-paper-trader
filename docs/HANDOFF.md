@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 13:52 EDT
+Written: 2026-10-11 14:02 EDT
 
+- **State:** Forward tests locked (1fad555): learning.locked_strategies sharp, mention_no; run 38162056755 clean. Follow-the-first-trade test (wf_629049c4-764) still running. Evidence: 155 offline tests OK; run 38162056755 success.
+- **Next:** Read wf_629049c4-764 results; record in CHECKS.md; propose a forward test to Joey only if a rule survives the review
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take on its own clock
+- **Git:** master @ 1fad555, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 18:02 UTC)
+
+## Earlier
+
+### 2026-10-11 13:52 EDT
 - **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764). Evidence: wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK.
 - **Next:** Read wf_629049c4-764 (follow-first-trade); record in CHECKS.md; if a rule survives, propose a forward test to Joey (code change)
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take on its own clock, never at trade prints whose timing is part of the selection
 - **Git:** master @ 17b920a, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 17:52 UTC)
-
-## Earlier
 
 ### 2026-10-11 13:09 EDT
 - **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running. Evidence: 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no.
@@ -46,11 +54,3 @@ Written: 2026-10-11 13:52 EDT
 - **Watch out:** First-trade scan rows: research_data/first_trade_rows.jsonl; local .env still has the old free Odds API key
 - **Git:** master @ 4499823, 4 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 14:57 UTC)
-
-### 2026-10-11 10:26 EDT
-- **State:** Paid Odds API plan live: GitHub secret updated 14:16Z, quota 19,996 after run 38146719378; sharp lines refresh every 15 min (8ec89f6). Sharp matched 0 of 68 games because it only sees the up-to-40 markets due a Jev look; a dedicated sharp pass is proposed and waits for Joey's OK. Mention forward test running. Evidence: run 38146719378 success (sharp quota_left 19996, matched 0); 151 offline tests OK; skilliton maintain --apply.
-- **Next:** On Joey's yes: build a sharp pass over every fetched game market each cycle (tests first), push, confirm matches in the next cycle
-- **Blocked:** sharp pass waits for Joey's yes
-- **Watch out:** Local .env still has the old free Odds API key; only GitHub has the paid one
-- **Git:** master @ 51a829a, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 14:26 UTC)
