@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 10:26 EDT
+Written: 2026-10-11 10:57 EDT
 
+- **State:** Sharp pass live (5504147): run 38148752927 matched 6 games (was 0), all decided outside Jev, prices within ~1c of Pinnacle so no bets. Matcher bug fixed (4499823): a touchdown prop had been priced with a team moneyline; that bet is left out of the sharp evaluation. Jev measured: Brier 0.247 alone, 0.217 with research, vs the market's 0.160 on 657 real-priced markets; skill beyond price negative for every forecaster. First-trade scan across all categories running (docs/research/scripts/first_trade_scan.py). Evidence: 152 offline tests OK; run 38148752927 success (sharp matched 6, decided_outside_jev 6); engine.skill and engine.paired read-only.
+- **Next:** When the first-trade scan finishes: --summarize, check leads adversarially, record in CHECKS.md; Joey decides whether Jev keeps picking bets
+- **Blocked:** nothing
+- **Watch out:** First-trade scan rows: research_data/first_trade_rows.jsonl; local .env still has the old free Odds API key
+- **Git:** master @ 4499823, 4 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 14:57 UTC)
+
+## Earlier
+
+### 2026-10-11 10:26 EDT
 - **State:** Paid Odds API plan live: GitHub secret updated 14:16Z, quota 19,996 after run 38146719378; sharp lines refresh every 15 min (8ec89f6). Sharp matched 0 of 68 games because it only sees the up-to-40 markets due a Jev look; a dedicated sharp pass is proposed and waits for Joey's OK. Mention forward test running. Evidence: run 38146719378 success (sharp quota_left 19996, matched 0); 151 offline tests OK; skilliton maintain --apply.
 - **Next:** On Joey's yes: build a sharp pass over every fetched game market each cycle (tests first), push, confirm matches in the next cycle
 - **Blocked:** sharp pass waits for Joey's yes
 - **Watch out:** Local .env still has the old free Odds API key; only GitHub has the paid one
 - **Git:** master @ 51a829a, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 14:26 UTC)
-
-## Earlier
 
 ### 2026-10-11 04:04 EDT
 - **State:** Maintenance recorded. Retired strategies off the page and totals (b2225c1). Paid Odds API key pending (sent to a mistyped email; Joey contacting team@the-odds-api.com). Mention forward test running. Evidence: skilliton maintain --apply; secrets scan 21 known false positives; 151 offline tests OK.
@@ -46,11 +54,3 @@ Written: 2026-10-11 10:26 EDT
 - **Watch out:** v1 scan rows are look-ahead biased; weather occurrence_datetime is 14:00Z the morning after the measured day; hurricane occurrence times are written after the fact
 - **Git:** master @ 16ae616, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 03:55 UTC)
-
-### 2026-10-10 21:16 EDT
-- **State:** Edge scan v1 done (20,747 markets): all 10 leads were a look-ahead artifact (markets chosen by final volume pick the winners; the clock was anchored to outcome-dependent closes); the unbiased subset (7,494, mostly sports games) has no cut above zero. v2 (7abb0c6) picks without hindsight and decides 24/72 h before the scheduled occurrence time; running in the background since ~01:40Z (about 3 h). Evidence: v1 summary and the complete-event check (sports YES 2-15c: +46.4% all vs -47.0% unbiased); occurrence identical across markets in 29,297 of 29,482 events; v2 smoke test 33 rows.
-- **Next:** When v2 finishes: python3 -I docs/research/scripts/edge_scan.py --summarize; put each lead through an adversarial check (look-ahead and selection, quote quality and capacity, fresh-data replication, mechanism); record in docs/research/CHECKS.md
-- **Blocked:** nothing
-- **Watch out:** v1 rows (research_data/edge_scan_rows.jsonl) are look-ahead biased: never use them for leads; v2 rows are research_data/edge_scan_rows_v2.jsonl
-- **Git:** master @ 7abb0c6, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 01:16 UTC)
