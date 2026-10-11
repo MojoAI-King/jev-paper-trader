@@ -6,6 +6,7 @@ Keep each item's ID, outcome, closure date and evidence.
 
 | ID | Outcome | Closed | Evidence |
 |---|---|---|---|
+| B33 | Search every Kalshi market family for steady mispricing | 2026-10-11 | Done, no new edge: run 1 (20,747 markets) was a look-ahead artifact (volume-picked winners); run 2 (19,960, no hindsight) gave 1 lead in 57 cuts, refuted out of sample (weather YES 50–70¢: −0.6% on 694 buys Aug–Oct). The mention edge survived without final-volume selection and sits in brand-new markets. docs/research/CHECKS.md; lesson 2026-10-10-choosing-markets-by-final-volume-faked-e-4ed2; workflow wf_b31c17a4-a6a. |
 | B32 | Mention strategy sees every event and buys only before it | 2026-10-10 | Verified live: c39256d (reader, event-date guard, lean log), acb7144 (30 a day), ddf5f59 (earnings and Trump series skipped, yes_bias 0.10); runs 38076336614 and 38079351634 success; 75 of 76 open events in a full read-only pass; decisions 2026-10-10-mention-strategy-reads-every-event-and-t-0a22 and -skips-earnings-call-and-3533. The forward test continues as B31. |
 | B8 | Check the dashboard at phone width | 2026-09-27 | Superseded: the first redesign passed a 390px iframe check; the mission-control page that replaced it (d66e71e) keeps phone tuning as B13, by Joey's choice. |
 | B10 | An outside trigger in case GitHub's scheduler skips | 2026-09-27 | Built and deployed: Cloudflare cron trigger in `worker/index.js` (d66e71e, Worker version 4c6ee8a0). Turning it on is B1 (the token). |

@@ -3,10 +3,10 @@
 Kind: Living. Task record.
 
 - **ID:** 2026-10-10-edge-scan-every-kalshi-market-family-for-2725
-- **State:** in-progress
+- **State:** done-local
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-11T01:16:26.531Z
+- **Updated:** 2026-10-11T03:54:55.124Z
 
 ## Request
 
@@ -44,9 +44,16 @@ not yet written
 - **Next:** When v2 finishes: python3 -I docs/research/scripts/edge_scan.py --summarize; put each lead through an adversarial check (look-ahead and selection, quote quality and capacity, fresh-data replication, mechanism); record in docs/research/CHECKS.md
 - **Git:** master @ 7abb0c6, 2 uncommitted
 
+### 2026-10-11T03:13:13.614Z
+
+- **State:** Edge scan v2 (no hindsight) complete: 19,960 markets in 1,373 series; 1 lead in 57 cuts (weather YES at 50-70c, 24 h before occurrence: +29.0% [+8.7, +44.0], 52 events, both halves positive; ~1 expected by chance). Adversarial workflow wf_b31c17a4-a6a running: lookahead, replication, quotes, mechanism lenses on the lead, plus a recheck of the mention finding without final-volume selection.
+- **Evidence:** edge_scan.py --summarize on research_data/edge_scan_rows_v2.jsonl (19,960 rows)
+- **Next:** Read the workflow verdicts, record results in docs/research/CHECKS.md, report to Joey
+- **Git:** master @ a0071b8, 2 uncommitted
+
 ## Handoff
 
-- **State:** Edge scan v1 done (20,747 markets): all 10 leads were a look-ahead artifact (markets chosen by final volume pick the winners; the clock was anchored to outcome-dependent closes); the unbiased subset (7,494, mostly sports games) has no cut above zero. v2 (7abb0c6) picks without hindsight and decides 24/72 h before the scheduled occurrence time; running in the background since ~01:40Z (about 3 h). Evidence: v1 summary and the complete-event check (sports YES 2-15c: +46.4% all vs -47.0% unbiased); occurrence identical across markets in 29,297 of 29,482 events; v2 smoke test 33 rows.
-- **Next:** When v2 finishes: python3 -I docs/research/scripts/edge_scan.py --summarize; put each lead through an adversarial check (look-ahead and selection, quote quality and capacity, fresh-data replication, mechanism); record in docs/research/CHECKS.md
+- **State:** Edge scan v2 (no hindsight) complete: 19,960 markets in 1,373 series; 1 lead in 57 cuts (weather YES at 50-70c, 24 h before occurrence: +29.0% [+8.7, +44.0], 52 events, both halves positive; ~1 expected by chance). Adversarial workflow wf_b31c17a4-a6a running: lookahead, replication, quotes, mechanism lenses on the lead, plus a recheck of the mention finding without final-volume selection. Evidence: edge_scan.py --summarize on research_data/edge_scan_rows_v2.jsonl (19,960 rows).
+- **Next:** Read the workflow verdicts, record results in docs/research/CHECKS.md, report to Joey
 - **Blocked:** nothing
 - **Watch out:** v1 rows (research_data/edge_scan_rows.jsonl) are look-ahead biased: never use them for leads; v2 rows are research_data/edge_scan_rows_v2.jsonl

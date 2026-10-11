@@ -327,3 +327,23 @@ buying YES at the ask and NO at one minus the bid after the series' taker fee, 9
 - **Second run (running):** markets chosen without looking at anything after the bet (every market of a small event, a
   random sample seeded by the event in a big one), decision points 24 and 72 hours before the scheduled time, markets
   already closed by then skipped, liquidity judged only from trading before the decision.
+- **Second run: one lead, and it was luck.** 19,960 markets in 1,373 series, chosen without hindsight. Long shots lost
+  everywhere (YES at 2–15¢: sports −45%, weather −70%, politics −89%). 1 lead in 57 cuts tested (about 1 expected by
+  chance): weather YES at 50–70¢, 24 h before the scheduled time, +29.0% [+8.7, +44.0], 52 events. An adversarial
+  check (workflow wf_b31c17a4-a6a, four independent lenses, 2026-10-11) refuted it:
+  - **Concentration:** taking the latest 20 settled markets per series put every temperature market on Oct 5–9, so
+    its "both halves" check compared adjacent days of one weather pattern.
+  - **Out of sample it is zero:** the same rule on Aug 3–Oct 5, every market: −0.6% [−6.4, +5.7] (694 buys); Apr–Oct
+    excluding the lead's days: +0.0% [−5.3, +5.8] (872 buys, 856 events; YES won 60% at an average ask of 58¢). Its own
+    week reproduces (+20% to +23%): a real streak, not a lasting mispricing.
+  - **Timing and hindsight:** for temperature markets `occurrence_datetime` is 14:00Z the morning after the measured
+    day, so "24 h before" is 10 am ET on the day itself; the one hurricane market's occurrence time is written after the
+    storm reaches the category (hindsight). Quotes were real (median spread 1¢); capacity about $15–60 per market.
+  - Lesson for the next scan: sample each series across months, not its latest 20 markets.
+- **The mention edge survives without final-volume selection** (same workflow). Kept series, live rule: with no volume
+  filter, identical (+15.8% [+6.5, +25.3], 1,183 buys, 180 events; no live-rule purchase came from a market under 200).
+  Requiring 50+ contracts traded before the purchase: +13.7% [+3.9, +23.9], older half +7.8% [−4.1, +21.1], newer
+  +17.6% [+3.2, +31.8]. **The edge sits in brand-new markets:** when the purchase was the market's first trade, +35.9%
+  [+25.9, +45.8] (463 buys, both halves); when anything had traded first, +2.8% [−7.7, +14.1]. So capacity is small, and
+  the forward test should be read in two parts: bets at a market with no prior volume and the rest (the logged
+  `market.volume` at each look says which, so no code change is needed to split it).
