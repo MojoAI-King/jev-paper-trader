@@ -23,7 +23,7 @@ REAL_POLICY = engine.load_policy()
 # claude_direct and the challengers, so these tests run on a copy with them switched back on. Tests of the live
 # configuration use REAL_POLICY (RetiredJevTests).
 POLICY = json.loads(json.dumps(REAL_POLICY))
-for _name in ("main", "bold", "calibrated"):
+for _name in ("main", "bold", "calibrated", "claude_direct"):
     POLICY["strategies"][_name]["retired"] = False
 POLICY["learning"]["retired_probabilities"] = []  # the challenger machinery is tested with Jev challengers too
 
@@ -2376,25 +2376,26 @@ class SchedulerGateTests(DataDirTest):
 
 
 class RetiredJevTests(DataDirTest):
-    """The live policy (2026-10-11): Jev no longer picks bets; its ledgers are kept and the page still builds."""
+    """The live policy (2026-10-11): neither Jev nor Claude picks bets; their ledgers are kept and the page still builds."""
 
     def test_jev_strategies_are_retired_and_the_rest_still_trade(self):
         live = {n for n in engine.strategies(REAL_POLICY)}
-        self.assertFalse({"main", "bold", "calibrated", "jev_alone", "jev_alone_bold"} & live)
-        self.assertTrue({"original", "claude_direct", "sharp", "mention_no"} <= live)
+        self.assertFalse({"main", "bold", "calibrated", "jev_alone", "jev_alone_bold", "claude_direct"} & live)
+        self.assertTrue({"original", "sharp", "mention_no"} <= live)
         self.assertEqual(REAL_POLICY["learning"]["frozen_strategies"], ["original"])  # the yardstick stays
         stats = engine.scan(dict(REAL_POLICY, sources=["polymarket"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.7)}),
                             fetchers={"polymarket": lambda *a: [market()]}, log=lambda *_: None, now=SCAN_NOW,
                             researcher=FakeResearcher([fact(CLEAN[0])]), forecaster=FakeForecaster({}))
-        self.assertFalse({"main", "bold", "calibrated"} & set(stats["funnel"]["bets"]))
+        self.assertFalse({"main", "bold", "calibrated", "claude_direct"} & set(stats["funnel"]["bets"]))
         s = dashboard.current_summary(REAL_POLICY)  # main retired: the summary must still build
-        self.assertFalse({"main", "bold", "calibrated"} & {r["name"] for r in s["strategies"]})
+        self.assertFalse({"main", "bold", "calibrated", "claude_direct"} & {r["name"] for r in s["strategies"]})
 
-    def test_the_loop_cannot_start_a_challenger_that_picks_with_jev(self):
-        jev = {"label": "Jev again", "probability": "jev_research", "gates": "jev_research"}
-        self.assertIn("no longer picks bets", learn.challenger_problem(jev, REAL_POLICY))
+    def test_the_loop_cannot_start_a_challenger_that_picks_with_jev_or_claude(self):
+        for source in ("jev_research", "jev_plain", "jev_calibrated", "claude_direct"):
+            cfg = {"label": f"{source} again", "probability": source, "gates": "jev_research"}
+            self.assertIn("no longer picks bets", learn.challenger_problem(cfg, REAL_POLICY))
         claude = {"label": "Claude, picky", "probability": "claude_direct", "gates": "jev_research"}
-        self.assertIsNone(learn.challenger_problem(claude, REAL_POLICY))  # Jev as a gate is still allowed
+        self.assertIsNone(learn.challenger_problem(claude, POLICY))  # the machinery itself still works when allowed
 
 
 class ExperimentsRegistryTests(unittest.TestCase):

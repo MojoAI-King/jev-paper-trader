@@ -17,7 +17,8 @@ Joey, 2026-10-11 ("yyeess", to retiring the strategies that pick with Jev):
    a challenger that picks with Jev (`learn.challenger_problem`, checked when proposed and on every load). Jev may still
    be a gate (rules clear, enough information).
 3. `original` stays as the frozen yardstick. `ch16` picks with Claude, not Jev (it was wrongly listed as a Jev
-   strategy in the question to Joey), so it keeps running until he decides; so does `claude_direct`.
+   strategy in the question to Joey), so it kept running until he decided; so did `claude_direct`. He retired both
+   later the same day: decision 2026-10-11-claude-stops-picking-bets-too-8552.
 4. Code that assumed `main` is active now reads its ledger safely (`dashboard.summarize`, `dashboard.last_scan`,
    `engine.report`). The offline tests keep a copy of the policy with the Jev strategies on, because the machinery
    they test still serves the remaining strategies; `RetiredJevTests` checks the live policy.

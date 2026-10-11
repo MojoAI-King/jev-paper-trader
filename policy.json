@@ -87,8 +87,8 @@
     "frozen_strategies": ["original"],
     "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
-    "retired_probabilities": ["jev_plain", "jev_research", "jev_calibrated"],
-    "_retired_probabilities": "2026-10-11, Joey: Jev stops picking bets (its forecasts scored worse than the market price on 657 real-priced markets). No challenger may use these as its probability; Jev may still serve as a gate",
+    "retired_probabilities": ["jev_plain", "jev_research", "jev_calibrated", "claude_direct"],
+    "_retired_probabilities": "2026-10-11, Joey: Jev, then Claude, stop picking bets (their forecasts scored worse than the market price on 657 real-priced markets). No challenger may use these as its probability, so the loop starts no forecaster challenger; Jev may still serve as a gate",
     "max_running_challengers": 2,
     "bounds": {"min_edge": [0.0, 0.5], "min_rules_clear": [0.0, 1.0], "min_info_sufficient": [0.0, 1.0], "max_framing_gap": [0.0, 1.0],
                "kelly_fraction": [0.05, 0.5], "max_stake_pct": [0.005, 0.03], "max_total_exposure_pct": [0.05, 0.5],
@@ -111,7 +111,9 @@
                   "retired": true,
                   "blurb": "Jev with no research at all. Retired 2026-10-10: on 1,006 finished markets it scored like a coin flip, and it placed one bet in two weeks. Its record stays here and its open bet still settles.",
                   "_retired": "docs/REBUILD_PLAN.md and research report 14: Jev isn't built for world forecasting; 'does research help Jev?' is answered by the Forecasters panel. Its colour went to the sharp-line strategy. engine.strategies leaves a retired strategy out of betting; all_books still settles its ledger"},
-    "claude_direct": {"label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
+    "claude_direct": {
+      "retired": true,
+      "_retired": "2026-10-11, Joey: Claude stops picking bets too. On 657 markets with a real price Claude direct scored a Brier of 0.200 against the market price's 0.160, and its measured skill beyond the price was negative (-0.014). The ledger is kept and its open bets still settle","label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
                       "blurb": "Claude reads the same research and makes its own call. Does Jev add anything?"},
     "bold": {
       "retired": true,
