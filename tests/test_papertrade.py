@@ -151,6 +151,12 @@ class OddsTests(unittest.TestCase):
         self.assertEqual(odds.match([game(commence="1999-12-24T23:00:00Z")], [kalshi_game()], self.CFG, NOW_ODDS), {})  # started
         twin = dict(game(), id="g2")
         self.assertEqual(odds.match([game(), twin], [kalshi_game()], self.CFG, NOW_ODDS), {})  # two games fit: no guess
+        # a player prop in a non-game series never takes a game line, whatever words it shares (2026-10-10 live: the
+        # Washington Commanders' moneyline priced "Mike Washington Jr.: 1+ touchdowns")
+        prop = kalshi_game(market_id="KXNFLTD-26OCT11PITCIN-PWASHINGTON-1", event="kalshi:KXNFLTD-26OCT11PITCIN",
+                           question="Pittsburgh Steelers: 1+ touchdowns", yes_side="Pittsburgh",
+                           rules="If Pittsburgh scores 1+ touchdowns in the PIT Steelers vs CIN Bengals game, then Yes.")
+        self.assertEqual(odds.match([game()], [prop], self.CFG, NOW_ODDS), {})
 
     def test_a_polymarket_team_market_matches_on_the_date(self):
         poly = {"source": "polymarket", "market_id": "77", "event": "polymarket:9", "question": "Will Pittsburgh win on 2000-01-01?",

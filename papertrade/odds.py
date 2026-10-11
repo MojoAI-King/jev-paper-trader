@@ -164,6 +164,11 @@ def match(events: list[dict], markets: list[dict], cfg: dict, now: datetime) -> 
         question = m.get("question") or ""
         if _NOT_H2H.search(question) or m.get("source") not in ("kalshi", "polymarket"):
             continue  # spreads, totals and props, judged on the question alone (rules text mentions points too)
+        series = str(m.get("event") or m.get("market_id") or "").split(":", 1)[-1].split("-")[0].upper()
+        if m["source"] == "kalshi" and not series.endswith("GAME"):
+            # only game-winner series (KXNFLGAME, KXMLBGAME...): on 2026-10-10 a touchdown prop, "Mike Washington Jr.:
+            # 1+ touchdowns" (KXNFLTD), was priced with the Washington Commanders' moneyline through the shared word
+            continue
         # Kalshi's game titles name one team ("Philadelphia wins", since October 2026); its rules name both
         # ("If Philadelphia wins the PHI Eagles vs JAC Jaguars Pro Football game ...")
         text = f"{question} {(m.get('rules') or '')[:600]}"
