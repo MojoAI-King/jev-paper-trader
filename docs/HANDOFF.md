@@ -6,14 +6,22 @@ Kind: Living.
 
 Written: 2026-10-11 04:04 EDT
 
+- **State:** Maintenance recorded. Retired strategies off the page and totals (b2225c1). Paid Odds API key pending (sent to a mistyped email; Joey contacting team@the-odds-api.com). Mention forward test running. Evidence: skilliton maintain --apply; secrets scan 21 known false positives; 151 offline tests OK.
+- **Next:** When the new key is installed: odds-check for about 20,000 quota, then sharp.refresh_minutes 15; early mention read in 2-3 weeks
+- **Blocked:** paid Odds API key waiting on The Odds API support
+- **Watch out:** Do not lower sharp.refresh_minutes before the paid key is live
+- **Git:** master @ b783afd, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 08:04 UTC)
+
+## Earlier
+
+### 2026-10-11 04:04 EDT
 - **State:** Retired strategies removed from the page and its totals (b2225c1): 9 active shown, total about $799k of $900k; jev_alone, jev_alone_bold, ch3, ch6 left out, ledgers kept. Joey bought The Odds API 20K plan but the key went to a mistyped email; he is asking team@the-odds-api.com to revoke and reissue. The trader stays on the free key (269 left) until then. Evidence: 151 offline tests OK; read-only current_summary preview; odds-check quota 269 (free plan still on the .env key).
 - **Next:** When Joey installs the new key (.env and gh secret ODDS_API_KEY): run odds-check, confirm about 20,000 quota, set sharp.refresh_minutes to 15; check the page after the next cycle
 - **Blocked:** paid Odds API key waiting on The Odds API support
 - **Watch out:** Do not lower sharp.refresh_minutes before the paid key is live: 4 sports every 15 min is about 384 requests a day
 - **Git:** master @ b2225c1, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 08:04 UTC)
-
-## Earlier
 
 ### 2026-10-10 23:56 EDT
 - **State:** Maintenance recorded. Edge scan closed with no new edge (weather lead refuted out of sample); mention edge confirmed without hindsight and concentrated in brand-new markets. Mention forward test running. Evidence: skilliton maintain --apply; secrets scan 21 matches, all known false positives; 151 offline tests OK.
@@ -46,11 +54,3 @@ Written: 2026-10-11 04:04 EDT
 - **Watch out:** The scan runs on this Mac (research_data/ is gitignored); a rerun skips markets already scored. With 15-minute cycles the bot alone makes ~4 commits an hour, so Skilliton's 15-commit maintenance nudge comes every few hours
 - **Git:** master @ 7925c69, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-10 23:07 UTC)
-
-### 2026-10-10 17:55 EDT
-- **State:** B32 verified live: run 38079351634 (19:19Z, f2a9568) and the cycles after it read 120 kept series in 63-72 s with no errors, skip 193 earnings/Trump series, see 179 markets in 9 kept events; the 30-a-day limit was used up on Oct 10 (resets 00:00Z). 20 earnings-call bets placed before the rule (15 at 18:50Z) are pre-registered as left out of the keep-or-kill count. Joey: 'skin in the game' = paid tools and data, no real money until proven (memory saved). Evidence: run 38079351634 success; scans 21:05Z, 21:20Z, 21:33Z (mention_fetch errors 0, series_skipped 193); 151 offline tests OK; The Odds API pricing page read 2026-10-10 (20K credits /mo).
-- **Next:** Joey decides on The Odds API 20K plan ($30/mo) for a fair test of the sharp strategy; if bought, set sharp.refresh_minutes to 15. Mention forward test runs itself; early read with docs/research/scripts/mention_forward.py in 2-3 weeks
-- **Blocked:** nothing
-- **Watch out:** Stage by explicit path; record files are edited with the Edit tool, not overwritten from the shell; tests never reach Kalshi or The Odds API live; earnings-call bets placed before 19:19Z on 2026-10-10 do not count toward keep-or-kill
-- **Git:** master @ d954b29, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-10 21:55 UTC)
