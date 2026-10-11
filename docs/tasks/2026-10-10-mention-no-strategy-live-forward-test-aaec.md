@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-11T16:46:44.045Z
+- **Updated:** 2026-10-11T17:09:16.348Z
 
 ## Request
 
@@ -113,9 +113,16 @@ not yet written
 - **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
 - **Git:** master @ b690134, 2 uncommitted
 
+### 2026-10-11T17:09:16.348Z
+
+- **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running.
+- **Evidence:** 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no
+- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
+- **Git:** master @ fc6d170, 2 uncommitted
+
 ## Handoff
 
-- **State:** Maintenance recorded (b690134). Jev retired as a picker and live (run 38156043216 clean). Workflow wf_79340bda-9e0 verifying the Economics first-trade lead and the mention listing-quote rule; results pending. Evidence: 154 offline tests OK; skilliton maintain --apply; secrets scan 21 known false positives.
+- **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running. Evidence: 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no.
 - **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
 - **Blocked:** nothing
-- **Watch out:** Trade-conditioned first-trade results can come from the first trader's own choice
+- **Watch out:** The daily review can still tune mention_no's rules mid forward test; worth a guard (ask Joey)

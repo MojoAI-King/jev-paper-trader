@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-11 04:04 EDT
+- **State:** Retired strategies removed from the page and its totals (b2225c1): 9 active shown, total about $799k of $900k; jev_alone, jev_alone_bold, ch3, ch6 left out, ledgers kept. Joey bought The Odds API 20K plan but the key went to a mistyped email; he is asking team@the-odds-api.com to revoke and reissue. The trader stays on the free key (269 left) until then. Evidence: 151 offline tests OK; read-only current_summary preview; odds-check quota 269 (free plan still on the .env key).
+- **Next:** When Joey installs the new key (.env and gh secret ODDS_API_KEY): run odds-check, confirm about 20,000 quota, set sharp.refresh_minutes to 15; check the page after the next cycle
+- **Blocked:** paid Odds API key waiting on The Odds API support
+- **Watch out:** Do not lower sharp.refresh_minutes before the paid key is live: 4 sports every 15 min is about 384 requests a day
+- **Git:** master @ b2225c1, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 08:04 UTC)
+
 ### 2026-10-10 23:56 EDT
 - **State:** Maintenance recorded. Edge scan closed with no new edge (weather lead refuted out of sample); mention edge confirmed without hindsight and concentrated in brand-new markets. Mention forward test running. Evidence: skilliton maintain --apply; secrets scan 21 matches, all known false positives; 151 offline tests OK.
 - **Next:** Mention forward test runs itself; early read in 2-3 weeks with docs/research/scripts/mention_forward.py, split by market.volume at the look
