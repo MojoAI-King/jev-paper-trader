@@ -88,6 +88,7 @@ def strategies(policy: dict, retired: bool = False) -> dict:
                     and p.get("started") and p["id"] not in out and learn.challenger_problem(p["strategy"], policy) is None):
                 out[p["id"]] = dict(p["strategy"], challenger=True, retired=True, rules_version=1)
     frozen = set(policy["learning"].get("frozen_strategies") or ())
+    frozen |= set(policy["learning"].get("locked_strategies") or ())  # locked during a forward test: starting rules only
     tuned = load_json(TUNED, {}).get("strategies")
     for name, t in (tuned.items() if isinstance(tuned, dict) else ()):
         if name not in out or name in frozen or not isinstance(t, dict) or out[name].get("retired"):

@@ -41,7 +41,7 @@ RETRO_PROMPT = """You run the daily review of a paper-trading experiment: foreca
 Your job is to make the strategies make more money by experimenting. The money is fake, so trying things is cheap and is the point; every change is logged and shown to the people watching. Write an honest review a curious friend could read, then propose at most {max_proposals} changes.
 
 What you may do:
-- "tune": change any strategy's rules, main included. The rules and their allowed ranges: {bounds}. The gates: min_edge is how far the forecast must beat the price paid, after fees; min_rules_clear and min_info_sufficient are Jev's own 0-1 ratings of how clear the rules are and whether it has the information it needs; max_framing_gap is how far Jev's YES and NO answers may disagree. Sizing, as fractions of the strategy's bankroll (0.02 = 2%): kelly_fraction is the share of the Kelly stake bet, max_stake_pct caps one bet (and all open bets in one event together), max_total_exposure_pct caps all open bets together. Since 2026-10-09 every strategy but the yardstick sizes by its forecaster's measured edge over the market price ("skill": lambda per probability source, from finished markets with a real price). While a source's lambda is 0, its strategies place only small probe bets (0.25% of the bankroll, at most 5 a day) whatever kelly_fraction says; Kelly sizing on the forecast shrunk toward the price starts once lambda is positive on 300+ markets. So a sizing change does nothing until then: improve the gates and filters instead. "skip_categories" is a list drawn from {categories}; "min_ask" and "max_ask" bound the price paid for a contract. null puts a rule back to that strategy's starting value. You can't tune {frozen} (the yardstick the tuning is judged against), or a strategy whose "can_change_from" is still in the future.
+- "tune": change any strategy's rules, main included. The rules and their allowed ranges: {bounds}. The gates: min_edge is how far the forecast must beat the price paid, after fees; min_rules_clear and min_info_sufficient are Jev's own 0-1 ratings of how clear the rules are and whether it has the information it needs; max_framing_gap is how far Jev's YES and NO answers may disagree. Sizing, as fractions of the strategy's bankroll (0.02 = 2%): kelly_fraction is the share of the Kelly stake bet, max_stake_pct caps one bet (and all open bets in one event together), max_total_exposure_pct caps all open bets together. Since 2026-10-09 every strategy but the yardstick sizes by its forecaster's measured edge over the market price ("skill": lambda per probability source, from finished markets with a real price). While a source's lambda is 0, its strategies place only small probe bets (0.25% of the bankroll, at most 5 a day) whatever kelly_fraction says; Kelly sizing on the forecast shrunk toward the price starts once lambda is positive on 300+ markets. So a sizing change does nothing until then: improve the gates and filters instead. "skip_categories" is a list drawn from {categories}; "min_ask" and "max_ask" bound the price paid for a contract. null puts a rule back to that strategy's starting value. You can't tune {frozen} (the yardstick the tuning is judged against), a strategy marked "locked" (its forward test is running), or a strategy whose "can_change_from" is still in the future.
 - "challenger": start a new strategy on its own fake $100,000: a probability source ("jev_research", "jev_plain", "claude_direct" or "jev_calibrated"), a gate source ("jev_research" or "jev_plain"), and any rules as above. At most {max_challengers} run at a time.
 - "retire": stop a running challenger that isn't earning its place, to free its slot.
 - "code": an idea that needs a code change. You can't change code; Joey reads these and approves or rejects them.
@@ -284,16 +284,17 @@ def week_numbers(policy: dict, now: datetime) -> dict:
     scans = [s for s in engine.read_jsonl(engine.SCANS) if "funnel" in s and s["ts"] >= since]
     week_reviews = [r for r in reviews if r["ts"] >= since]
     frozen = set(lc.get("frozen_strategies") or ())
+    locked = set(lc.get("locked_strategies") or ())
 
     def row(n: str, s: dict) -> dict:
         b, nxt = books[n], next_change(policy, s, n)
         every = b["open"] + b["closed"]
         return {"name": n, "label": s["label"], "probability": s["probability"], "gates": s["gates"],
-                "challenger": bool(s.get("challenger")), "frozen": n in frozen,
+                "challenger": bool(s.get("challenger")), "frozen": n in frozen, "locked": n in locked,
                 "rules": effective_rules(spol[n]),
                 "starting_rules": effective_rules(engine.strategy_policy(policy, dict(s, tuned={}))),
                 "rules_version": s["rules_version"], "rules_changed": s.get("tuned_at"),
-                "can_change_from": None if n in frozen or not nxt or nxt <= now else nxt.strftime(engine.TS),
+                "can_change_from": None if n in frozen or n in locked or not nxt or nxt <= now else nxt.strftime(engine.TS),
                 "equity": round(engine.equity_at_cost(b), 2), "all_time": _record(every),
                 "since_change": _record([p for p in every if p.get("rules_version", 1) == s["rules_version"]]),
                 "by_price_paid": by_price(every)}
@@ -357,6 +358,8 @@ def tune_problem(policy: dict, strats: dict, name, rules) -> str | None:
         return f"no strategy named {str(name)[:40]!r}"
     if name in (policy["learning"].get("frozen_strategies") or ()):
         return f"{name} is the fixed yardstick and never changes"
+    if name in (policy["learning"].get("locked_strategies") or ()):
+        return f"{name} is locked while its forward test runs (learning.locked_strategies; Joey, 2026-10-11)"
     if not isinstance(rules, dict) or not rules:
         return "no rules given"
     return learn.rules_problem(rules, policy)

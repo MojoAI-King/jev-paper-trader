@@ -85,6 +85,8 @@
     "min_days_between_changes": 7,
     "_min_days_between_changes": "A strategy's rules change at most once every 7 days (1 from 2026-09-28; 7 since 2026-10-09, docs/REBUILD_PLAN.md phase 1). Report 13 found 18 changes in 11 days, each version judged on a median of 8 settled bets: tuning on noise",
     "frozen_strategies": ["original"],
+    "locked_strategies": ["sharp", "mention_no"],
+    "_locked_strategies": "2026-10-11, Joey: the daily review may not change these strategies' rules while their pre-registered forward tests run (docs/EXPERIMENTS.md), so their results answer one question. Unlike the frozen yardstick they keep skill-based sizing; remove a name to unlock it",
     "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
     "retired_probabilities": ["jev_plain", "jev_research", "jev_calibrated", "claude_direct"],

@@ -40,7 +40,7 @@
   2026-10-09 (`docs/REBUILD_PLAN.md` phase 1) the bounds cap sizing (Kelly 0.5, 3% a bet, 50% open), a rule
   changes at most every 7 days, and every strategy but `original` sizes bets by its forecaster's measured skill
   (`engine.skill`; small probe bets while it is 0, one stake budget per event). It
-  starts and retires challengers. It can never change code, fees, the price screen, research budgets,
+  starts and retires challengers. Since 2026-10-11 it may not change `learning.locked_strategies` (`sharp`, `mention_no`) while their forward tests run. It can never change code, fees, the price screen, research budgets,
   market data, settlement, or `original` (the frozen yardstick; `test_main_starts_from_its_pre_registered_gates_and_only_original_stays_on_them`).
   **Code changes need Joey:** the loop files them as ideas (kind `code`) and he approves or rejects each;
   the same goes for code changes you think of yourself, so ask him before starting one. Don't build an

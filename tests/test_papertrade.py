@@ -2390,6 +2390,18 @@ class RetiredJevTests(DataDirTest):
         s = dashboard.current_summary(REAL_POLICY)  # main retired: the summary must still build
         self.assertFalse({"main", "bold", "calibrated", "claude_direct"} & {r["name"] for r in s["strategies"]})
 
+    def test_strategies_in_a_forward_test_are_locked_against_the_review(self):
+        self.assertEqual(REAL_POLICY["learning"]["locked_strategies"], ["sharp", "mention_no"])
+        now = datetime(2026, 10, 11, tzinfo=timezone.utc)
+        for name in ("sharp", "mention_no"):
+            status, reason = coach.tune(REAL_POLICY, name, {"min_edge": 0.06}, now)
+            self.assertEqual(status, "invalid")
+            self.assertIn("locked while its forward test runs", reason)
+        # a tuned entry written by hand is ignored on load: the strategy keeps its starting rules
+        engine.save_json(engine.TUNED, {"strategies": {"mention_no": {"rules": {"min_edge": 0.09}, "version": 2,
+                                                                       "at": "2026-10-11T00:00:00Z"}}})
+        self.assertEqual(engine.strategies(REAL_POLICY)["mention_no"]["rules_version"], 1)
+
     def test_the_loop_cannot_start_a_challenger_that_picks_with_jev_or_claude(self):
         for source in ("jev_research", "jev_plain", "jev_calibrated", "claude_direct"):
             cfg = {"label": f"{source} again", "probability": source, "gates": "jev_research"}

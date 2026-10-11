@@ -4,6 +4,8 @@ Kind: Living. Every strategy that trades a fake bankroll, what it tests, and how
 Written when the strategy starts, before its results come in. A test
 (`ExperimentsRegistryTests`) fails if a strategy in `policy.json` has no row here.
 
+**2026-10-11, forward tests locked** (Joey): `learning.locked_strategies` keeps the daily review from changing the rules of `sharp` and `mention_no` while their forward tests run (`coach.tune_problem`; a tuned entry for them is ignored on load), so each result answers one question. They keep skill-based sizing.
+
 **2026-10-11, Jev stops picking bets** (Joey). `main`, `bold` and `calibrated` are retired, and the running challenger `ch13` ("Calibrated, favourites only", probability `jev_calibrated`) was retired by hand the same day; `learning.retired_probabilities` stops the loop from starting another strategy that picks with Jev (Jev may still serve as a gate). `original` stays as the frozen yardstick. Later the same day Joey retired the Claude pickers too: `claude_direct`, and `ch16` ("Claude direct, sports only") by hand; `claude_direct` joins `learning.retired_probabilities`, so the loop can start no forecaster challenger. What still bets: `sharp` (the sportsbook line), `mention_no` (the measured YES bias) and `original` (the frozen yardstick).
 
 **2026-10-09, sizing changed for every strategy but `original`** (`docs/REBUILD_PLAN.md` phase 1). Each now
