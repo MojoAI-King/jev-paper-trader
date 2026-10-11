@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 10:57 EDT
+Written: 2026-10-11 12:45 EDT
 
+- **State:** Jev retired as a picker (6632112): main, bold, calibrated, ch13 retired; learning.retired_probabilities blocks new Jev challengers; run 38156043216 clean. First-trade scan done (27,294 markets): 4 leads in 107 cuts, all Economics NO 50-85c (first trade +37.0% at 50-70c, 44 events); adversarial workflow wf_79340bda-9e0 running, including a listing-quote test of the mention 'be first in' idea. Evidence: 154 offline tests OK; run 38156043216 success (no Jev bets; sharp matched 3); first_trade_scan.py --summarize.
+- **Next:** Read the workflow verdicts; record the first-trade results in docs/research/CHECKS.md; decide (with evidence) whether mention bets should be limited to untraded markets; ch16 and claude_direct await Joey
+- **Blocked:** nothing
+- **Watch out:** Trade-conditioned 'first trade' results can come from the first trader's own choice; only a listing-quote test shows what we get by trading first
+- **Git:** master @ 84ca766, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 16:45 UTC)
+
+## Earlier
+
+### 2026-10-11 10:57 EDT
 - **State:** Sharp pass live (5504147): run 38148752927 matched 6 games (was 0), all decided outside Jev, prices within ~1c of Pinnacle so no bets. Matcher bug fixed (4499823): a touchdown prop had been priced with a team moneyline; that bet is left out of the sharp evaluation. Jev measured: Brier 0.247 alone, 0.217 with research, vs the market's 0.160 on 657 real-priced markets; skill beyond price negative for every forecaster. First-trade scan across all categories running (docs/research/scripts/first_trade_scan.py). Evidence: 152 offline tests OK; run 38148752927 success (sharp matched 6, decided_outside_jev 6); engine.skill and engine.paired read-only.
 - **Next:** When the first-trade scan finishes: --summarize, check leads adversarially, record in CHECKS.md; Joey decides whether Jev keeps picking bets
 - **Blocked:** nothing
 - **Watch out:** First-trade scan rows: research_data/first_trade_rows.jsonl; local .env still has the old free Odds API key
 - **Git:** master @ 4499823, 4 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 14:57 UTC)
-
-## Earlier
 
 ### 2026-10-11 10:26 EDT
 - **State:** Paid Odds API plan live: GitHub secret updated 14:16Z, quota 19,996 after run 38146719378; sharp lines refresh every 15 min (8ec89f6). Sharp matched 0 of 68 games because it only sees the up-to-40 markets due a Jev look; a dedicated sharp pass is proposed and waits for Joey's OK. Mention forward test running. Evidence: run 38146719378 success (sharp quota_left 19996, matched 0); 151 offline tests OK; skilliton maintain --apply.
@@ -46,11 +54,3 @@ Written: 2026-10-11 10:57 EDT
 - **Watch out:** Stage by explicit path; write record files and commit them in separate commands (guardrail)
 - **Git:** master @ e28ce47, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 03:56 UTC)
-
-### 2026-10-10 23:55 EDT
-- **State:** Edge scan (B33) closed: no new edge. Run 2 (19,960 markets, no hindsight) had 1 lead in 57 cuts; adversarial workflow wf_b31c17a4-a6a refuted it out of sample (weather YES 50-70c: -0.6% on 694 buys Aug-Oct; +0.0% on 872 Apr-Oct). Mention edge survives without final-volume selection (+15.8% unchanged; +13.7% needing 50+ contracts traded first) and sits in brand-new markets (+35.9% when the bet is the first trade, +2.8% otherwise). Mention forward test continues. Evidence: edge_scan.py --summarize on 19,960 rows; workflow wf_b31c17a4-a6a (4 lenses + mention recheck, 6 agents, 0 errors); 151 offline tests OK.
-- **Next:** Let the mention forward test run; at the early read (2-3 weeks) split results by market.volume at the look (0 = brand-new market) using docs/research/scripts/mention_forward.py; any next scan samples series across months
-- **Blocked:** nothing
-- **Watch out:** v1 scan rows are look-ahead biased; weather occurrence_datetime is 14:00Z the morning after the measured day; hurricane occurrence times are written after the fact
-- **Git:** master @ 16ae616, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 03:55 UTC)
