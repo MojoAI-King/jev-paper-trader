@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-11T08:39:18Z",
+  "generated": "2026-10-11T08:55:32Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-11T08:39:18Z",
+      "t": "2026-10-11T08:55:32Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -830,7 +830,7 @@
     }
   ],
   "calibration": {
-    "judged": 2014,
+    "judged": 2016,
     "resolved": 1310,
     "sources": [
       {
@@ -893,18 +893,18 @@
   },
   "last_scan": {
     "date": "2026-10-11",
-    "judged": 12,
+    "judged": 4,
     "bets": 0,
-    "fail_info": 6,
-    "fail_rules": 2,
-    "fail_edge": 5,
+    "fail_info": 3,
+    "fail_rules": 1,
+    "fail_edge": 1,
     "sources": {
-      "kalshi": 7,
-      "polymarket": 5
+      "kalshi": 3,
+      "polymarket": 1
     }
   },
   "funnel": {
-    "ts": "2026-10-11T08:35:16Z",
+    "ts": "2026-10-11T08:50:09Z",
     "stages": [
       [
         "Fetched",
@@ -912,15 +912,15 @@
       ],
       [
         "Passed free filters",
-        12
+        4
       ],
       [
         "Judged by Jev",
-        12
+        4
       ],
       [
         "Judged with research",
-        7
+        3
       ],
       [
         "Cleared every gate (main)",
@@ -931,9 +931,9 @@
         0
       ]
     ],
-    "events": 10,
-    "researched_new": 1,
-    "research_reused": 5,
+    "events": 3,
+    "researched_new": 2,
+    "research_reused": 0,
     "bets": {
       "main": 0,
       "claude_direct": 0,
@@ -945,11 +945,11 @@
       "ch13": 0,
       "ch16": 0
     },
-    "claude_calls": 2,
+    "claude_calls": 5,
     "claude_limited": false,
     "claude_note": null,
-    "facts_kept": 54,
-    "facts_dropped": 12,
+    "facts_kept": 19,
+    "facts_dropped": 2,
     "by_source": {
       "polymarket": 100,
       "kalshi": 100
@@ -966,8 +966,8 @@
       "ch13": 0,
       "ch16": 0
     },
-    "judged": 12,
-    "with_research": 7
+    "judged": 4,
+    "with_research": 3
   },
   "strategies": [
     {
@@ -2447,7 +2447,7 @@
           78261.88
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           78261.88
         ]
       ]
@@ -3660,7 +3660,7 @@
           85180.86
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           85180.86
         ]
       ]
@@ -4873,7 +4873,7 @@
           64858.04
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           64858.04
         ]
       ]
@@ -6086,7 +6086,7 @@
           84186.32
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           84186.32
         ]
       ]
@@ -7299,7 +7299,7 @@
           89620.06
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           89620.06
         ]
       ]
@@ -8512,7 +8512,7 @@
           99973.17
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           99973.17
         ]
       ]
@@ -9725,7 +9725,7 @@
           100000.0
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           100000.0
         ]
       ]
@@ -10938,7 +10938,7 @@
           95395.46
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           95395.46
         ]
       ]
@@ -12151,7 +12151,7 @@
           101508.62
         ],
         [
-          "2026-10-11T08:39:18Z",
+          "2026-10-11T08:55:32Z",
           101508.62
         ]
       ]
@@ -14582,6 +14582,204 @@
   ],
   "calls": [
     {
+      "ts": "2026-10-11T08:50:09Z",
+      "key": "kalshi:KXTESTMATCH-26OCT090330AUSSA-TIE",
+      "question": "Draw/Tie wins",
+      "url": "https://kalshi.com/markets/kxtestmatch/draw-tie-wins/kxtestmatch-26oct090330aussa",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-16T07:30:00Z",
+      "market": 0.39,
+      "forecasts": {
+        "jev_research": 0.25,
+        "jev_plain": 0.32,
+        "claude_direct": 0.17,
+        "jev_calibrated": 0.2621
+      },
+      "info": 0.28,
+      "rules": 0.73,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "no",
+          "why": "edge +0.103 < 0.12"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "bold": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "original": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "sharp": {
+          "bet": false,
+          "side": null,
+          "why": "no sharp line matched this market"
+        },
+        "mention_no": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch13": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        },
+        "ch16": {
+          "bet": false,
+          "side": "no",
+          "why": "rules_clear 0.73 < 0.75"
+        }
+      },
+      "facts_total": 8
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "key": "kalshi:KXNASCARRACE-BANOA26-WIBY",
+      "question": "Cup Series: William Byron wins",
+      "url": "https://kalshi.com/markets/kxnascarrace/cup-series-william-byron-wins/kxnascarrace-banoa26",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-19T01:00:00Z",
+      "market": 0.05,
+      "forecasts": {
+        "jev_research": 0.2,
+        "jev_plain": 0.31,
+        "claude_direct": 0.05,
+        "jev_calibrated": 0.2066
+      },
+      "info": 0.33,
+      "rules": 0.87,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.33 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.023 < 0.12"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.33 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.33 < 0.5)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.33 < 0.5)"
+        },
+        "sharp": {
+          "bet": false,
+          "side": null,
+          "why": "no sharp line matched this market"
+        },
+        "mention_no": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch13": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.33 < 0.35)"
+        },
+        "ch16": {
+          "bet": false,
+          "side": "no",
+          "why": "edge -0.023 < 0.08"
+        }
+      },
+      "facts_total": 11
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "key": "kalshi:KXNASCARRACE-BANOA26-TYRE",
+      "question": "Cup Series: Tyler Reddick wins",
+      "url": "https://kalshi.com/markets/kxnascarrace/cup-series-tyler-reddick-wins/kxnascarrace-banoa26",
+      "source": "kalshi",
+      "category": "sports",
+      "close_time": "2026-10-19T01:00:00Z",
+      "market": 0.095,
+      "forecasts": {
+        "jev_research": 0.27,
+        "jev_plain": 0.29,
+        "claude_direct": 0.11,
+        "jev_calibrated": 0.2844
+      },
+      "info": 0.25,
+      "rules": 0.86,
+      "decisions": {
+        "main": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.25 < 0.5)"
+        },
+        "claude_direct": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.006 < 0.12"
+        },
+        "bold": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.25 < 0.35)"
+        },
+        "calibrated": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.25 < 0.5)"
+        },
+        "original": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.25 < 0.5)"
+        },
+        "sharp": {
+          "bet": false,
+          "side": null,
+          "why": "no sharp line matched this market"
+        },
+        "mention_no": {
+          "bet": false,
+          "side": null,
+          "why": "no probability this cycle"
+        },
+        "ch13": {
+          "bet": false,
+          "side": "yes",
+          "why": "needs recent info (0.25 < 0.35)"
+        },
+        "ch16": {
+          "bet": false,
+          "side": "yes",
+          "why": "edge -0.006 < 0.08"
+        }
+      },
+      "facts_total": 11
+    },
+    {
       "ts": "2026-10-11T08:35:16Z",
       "key": "polymarket:682706",
       "question": "Will Naftali Bennett be the next Prime Minister of Israel?",
@@ -15174,207 +15372,58 @@
         }
       },
       "facts_total": 11
-    },
-    {
-      "ts": "2026-10-11T08:20:13Z",
-      "key": "polymarket:5444790",
-      "question": "Will Riyadh airport be closed by October 31?",
-      "url": "https://polymarket.com/market/riyadh-airport-closed-by-october-31-2026",
-      "source": "polymarket",
-      "category": "other",
-      "close_time": "2026-11-01T03:59:00Z",
-      "market": 0.56,
-      "forecasts": {
-        "jev_research": 0.76,
-        "jev_plain": 0.12,
-        "claude_direct": 0.7,
-        "jev_calibrated": 0.8016
-      },
-      "info": 0.24,
-      "rules": 0.83,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.100 < 0.12"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.040 < 0.12"
-        },
-        "bold": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.24 < 0.35)"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.24 < 0.5)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.24 < 0.5)"
-        },
-        "sharp": {
-          "bet": false,
-          "side": null,
-          "why": "no sharp line matched this market"
-        },
-        "mention_no": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch13": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.24 < 0.35)"
-        },
-        "ch16": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.040 < 0.08"
-        }
-      },
-      "facts_total": 11
-    },
-    {
-      "ts": "2026-10-11T08:05:17Z",
-      "key": "kalshi:KXRT-SENS-70",
-      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 70)",
-      "url": "https://kalshi.com/markets/kxrt/sense-and-sensibility-rotten-tomatoes-score/kxrt-sens",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-19T14:00:00Z",
-      "market": 0.895,
-      "forecasts": {
-        "jev_research": 0.8,
-        "jev_plain": 0.67,
-        "claude_direct": null,
-        "jev_calibrated": 0.8387
-      },
-      "info": 0.58,
-      "rules": 0.78,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.073 < 0.12"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.073 < 0.08"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.034 < 0.08"
-        },
-        "original": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "sharp": {
-          "bet": false,
-          "side": null,
-          "why": "no sharp line matched this market"
-        },
-        "mention_no": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch13": {
-          "bet": false,
-          "side": "no",
-          "why": "edge +0.034 < 0.08"
-        },
-        "ch16": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 9
-    },
-    {
-      "ts": "2026-10-11T08:05:17Z",
-      "key": "kalshi:KXRT-SENS-75",
-      "question": "Sense and Sensibility Rotten Tomatoes score? (Above 75)",
-      "url": "https://kalshi.com/markets/kxrt/sense-and-sensibility-rotten-tomatoes-score/kxrt-sens",
-      "source": "kalshi",
-      "category": "culture",
-      "close_time": "2026-10-19T14:00:00Z",
-      "market": 0.61,
-      "forecasts": {
-        "jev_research": 0.69,
-        "jev_plain": 0.6,
-        "claude_direct": null,
-        "jev_calibrated": 0.7342
-      },
-      "info": 0.47,
-      "rules": 0.84,
-      "decisions": {
-        "main": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.043 < 0.12"
-        },
-        "claude_direct": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "bold": {
-          "bet": false,
-          "side": null,
-          "why": "already holding this market"
-        },
-        "calibrated": {
-          "bet": false,
-          "side": "yes",
-          "why": "needs recent info (0.47 < 0.5)"
-        },
-        "original": {
-          "bet": false,
-          "side": "yes",
-          "why": "edge +0.043 < 0.08"
-        },
-        "sharp": {
-          "bet": false,
-          "side": null,
-          "why": "no sharp line matched this market"
-        },
-        "mention_no": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        },
-        "ch13": {
-          "bet": true,
-          "side": "yes",
-          "why": "PROBE YES x384 @ 0.646: p 0.73 (shrunk 0.61, lambda 0.00) vs cost 0.646, edge +0.088"
-        },
-        "ch16": {
-          "bet": false,
-          "side": null,
-          "why": "no probability this cycle"
-        }
-      },
-      "facts_total": 9
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "call",
+      "jev": 0.25,
+      "claude": 0.17,
+      "market": 0.39,
+      "q": "Draw/Tie wins",
+      "url": "https://kalshi.com/markets/kxtestmatch/draw-tie-wins/kxtestmatch-26oct090330aussa"
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "call",
+      "jev": 0.2,
+      "claude": 0.05,
+      "market": 0.05,
+      "q": "Cup Series: William Byron wins",
+      "url": "https://kalshi.com/markets/kxnascarrace/cup-series-william-byron-wins/kxnascarrace-banoa26"
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "call",
+      "jev": 0.27,
+      "claude": 0.11,
+      "market": 0.095,
+      "q": "Cup Series: Tyler Reddick wins",
+      "url": "https://kalshi.com/markets/kxnascarrace/cup-series-tyler-reddick-wins/kxnascarrace-banoa26"
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "intel",
+      "facts": 12,
+      "q": "Cup Series: William Byron wins",
+      "url": "https://kalshi.com/markets/kxnascarrace/cup-series-william-byron-wins/kxnascarrace-banoa26"
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "intel",
+      "facts": 9,
+      "q": "Draw/Tie wins",
+      "url": "https://kalshi.com/markets/kxtestmatch/draw-tie-wins/kxtestmatch-26oct090330aussa"
+    },
+    {
+      "ts": "2026-10-11T08:50:09Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 4,
+      "researched": 3,
+      "bets": 0
+    },
     {
       "ts": "2026-10-11T08:35:16Z",
       "type": "call",
@@ -15654,33 +15703,6 @@
       "judged": 40,
       "researched": 15,
       "bets": 1
-    },
-    {
-      "ts": "2026-10-11T07:50:17Z",
-      "type": "call",
-      "jev": 0.23,
-      "claude": null,
-      "market": 0.2245,
-      "q": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379"
-    },
-    {
-      "ts": "2026-10-11T07:50:17Z",
-      "type": "call",
-      "jev": 0.43,
-      "claude": null,
-      "market": 0.495,
-      "q": "Los Angeles D wins",
-      "url": "https://kalshi.com/markets/kxmlbgame/los-angeles-d-wins/kxmlbgame-26oct112000ladmil"
-    },
-    {
-      "ts": "2026-10-11T07:50:17Z",
-      "type": "call",
-      "jev": 0.38,
-      "claude": null,
-      "market": 0.155,
-      "q": "Roschon Johnson: 1+ touchdowns",
-      "url": "https://kalshi.com/markets/kxnfltd/roschon-johnson-1-touchdowns/kxnfltd-26oct11chigb"
     },
     {
       "ts": "2026-10-11T07:50:17Z",
@@ -15997,37 +16019,15 @@
       "facts": 12,
       "q": "CHI Bears wins by over 1.5 points?",
       "url": "https://kalshi.com/markets/kxnflspread/chi-bears-wins-by-over-1-5-points/kxnflspread-26oct11chigb"
-    },
-    {
-      "ts": "2026-10-11T04:35:13Z",
-      "type": "intel",
-      "facts": 11,
-      "q": "Full Game: over 37.5 points scored? (Over 37.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-37-5-points-scored/kxnfltotal-26oct11houten"
-    },
-    {
-      "ts": "2026-10-11T04:35:13Z",
-      "type": "intel",
-      "facts": 12,
-      "q": "Bitcoin price on Oct 16, 2026? ($80,000 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617"
-    },
-    {
-      "ts": "2026-10-11T04:35:13Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 10,
-      "researched": 5,
-      "bets": 0
     }
   ],
   "plan_usage": {
-    "ts": "2026-10-11T08:35:16Z",
-    "week": 0.85,
+    "ts": "2026-10-11T08:50:09Z",
+    "week": 0.86,
     "week_resets": 1791792000,
-    "five_hour": 0.38
+    "five_hour": 0.42
   },
-  "research_runs_today": 60,
+  "research_runs_today": 62,
   "research_per_day": 150,
   "cycles_24h": 95,
   "learning": {
