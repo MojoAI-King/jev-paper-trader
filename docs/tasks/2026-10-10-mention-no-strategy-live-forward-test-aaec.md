@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-11T17:09:16.348Z
+- **Updated:** 2026-10-11T17:52:47.636Z
 
 ## Request
 
@@ -120,9 +120,16 @@ not yet written
 - **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
 - **Git:** master @ fc6d170, 2 uncommitted
 
+### 2026-10-11T17:52:47.636Z
+
+- **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764).
+- **Evidence:** wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK
+- **Next:** Read wf_629049c4-764 (follow-first-trade); record in CHECKS.md; if a rule survives, propose a forward test to Joey (code change)
+- **Git:** master @ 17b920a, 2 uncommitted
+
 ## Handoff
 
-- **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running. Evidence: 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no.
-- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
+- **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764). Evidence: wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK.
+- **Next:** Read wf_629049c4-764 (follow-first-trade); record in CHECKS.md; if a rule survives, propose a forward test to Joey (code change)
 - **Blocked:** nothing
-- **Watch out:** The daily review can still tune mention_no's rules mid forward test; worth a guard (ask Joey)
+- **Watch out:** Score backtests at quotes the strategy could take on its own clock, never at trade prints whose timing is part of the selection

@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 13:09 EDT
+Written: 2026-10-11 13:52 EDT
 
+- **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764). Evidence: wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK.
+- **Next:** Read wf_629049c4-764 (follow-first-trade); record in CHECKS.md; if a rule survives, propose a forward test to Joey (code change)
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take on its own clock, never at trade prints whose timing is part of the selection
+- **Git:** master @ 17b920a, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 17:52 UTC)
+
+## Earlier
+
+### 2026-10-11 13:09 EDT
 - **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running. Evidence: 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no.
 - **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
 - **Blocked:** nothing
 - **Watch out:** The daily review can still tune mention_no's rules mid forward test; worth a guard (ask Joey)
 - **Git:** master @ fc6d170, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 17:09 UTC)
-
-## Earlier
 
 ### 2026-10-11 12:46 EDT
 - **State:** Maintenance recorded (b690134). Jev retired as a picker and live (run 38156043216 clean). Workflow wf_79340bda-9e0 verifying the Economics first-trade lead and the mention listing-quote rule; results pending. Evidence: 154 offline tests OK; skilliton maintain --apply; secrets scan 21 known false positives.
@@ -46,11 +54,3 @@ Written: 2026-10-11 13:09 EDT
 - **Watch out:** Local .env still has the old free Odds API key; only GitHub has the paid one
 - **Git:** master @ 51a829a, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 14:26 UTC)
-
-### 2026-10-11 04:04 EDT
-- **State:** Maintenance recorded. Retired strategies off the page and totals (b2225c1). Paid Odds API key pending (sent to a mistyped email; Joey contacting team@the-odds-api.com). Mention forward test running. Evidence: skilliton maintain --apply; secrets scan 21 known false positives; 151 offline tests OK.
-- **Next:** When the new key is installed: odds-check for about 20,000 quota, then sharp.refresh_minutes 15; early mention read in 2-3 weeks
-- **Blocked:** paid Odds API key waiting on The Odds API support
-- **Watch out:** Do not lower sharp.refresh_minutes before the paid key is live
-- **Git:** master @ b783afd, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 08:04 UTC)
