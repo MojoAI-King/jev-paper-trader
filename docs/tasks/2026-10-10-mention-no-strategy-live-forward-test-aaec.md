@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-11T16:45:54.043Z
+- **Updated:** 2026-10-11T16:46:44.045Z
 
 ## Request
 
@@ -106,9 +106,16 @@ not yet written
 - **Next:** Read the workflow verdicts; record the first-trade results in docs/research/CHECKS.md; decide (with evidence) whether mention bets should be limited to untraded markets; ch16 and claude_direct await Joey
 - **Git:** master @ 84ca766, 2 uncommitted
 
+### 2026-10-11T16:46:44.045Z
+
+- **State:** Maintenance recorded (b690134). Jev retired as a picker and live (run 38156043216 clean). Workflow wf_79340bda-9e0 verifying the Economics first-trade lead and the mention listing-quote rule; results pending.
+- **Evidence:** 154 offline tests OK; skilliton maintain --apply; secrets scan 21 known false positives
+- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
+- **Git:** master @ b690134, 2 uncommitted
+
 ## Handoff
 
-- **State:** Jev retired as a picker (6632112): main, bold, calibrated, ch13 retired; learning.retired_probabilities blocks new Jev challengers; run 38156043216 clean. First-trade scan done (27,294 markets): 4 leads in 107 cuts, all Economics NO 50-85c (first trade +37.0% at 50-70c, 44 events); adversarial workflow wf_79340bda-9e0 running, including a listing-quote test of the mention 'be first in' idea. Evidence: 154 offline tests OK; run 38156043216 success (no Jev bets; sharp matched 3); first_trade_scan.py --summarize.
-- **Next:** Read the workflow verdicts; record the first-trade results in docs/research/CHECKS.md; decide (with evidence) whether mention bets should be limited to untraded markets; ch16 and claude_direct await Joey
+- **State:** Maintenance recorded (b690134). Jev retired as a picker and live (run 38156043216 clean). Workflow wf_79340bda-9e0 verifying the Economics first-trade lead and the mention listing-quote rule; results pending. Evidence: 154 offline tests OK; skilliton maintain --apply; secrets scan 21 known false positives.
+- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
 - **Blocked:** nothing
-- **Watch out:** Trade-conditioned 'first trade' results can come from the first trader's own choice; only a listing-quote test shows what we get by trading first
+- **Watch out:** Trade-conditioned first-trade results can come from the first trader's own choice
