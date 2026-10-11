@@ -731,7 +731,7 @@ class DataDirTest(unittest.TestCase):
     """Points every engine path at a temp folder so tests never touch real data."""
     NAMES = ("DATA", "PORTFOLIO", "PORTFOLIOS", "JUDGMENTS", "RESOLUTIONS", "VOIDS", "SCANS", "REVIEWS", "RESEARCH",
              "SUMMARY", "SITE", "PLAYBOOK", "PLAYBOOK_LOG", "RETROS", "PROPOSALS", "TUNED", "TUNED_LOG", "ODDS", "MENTIONS",
-             "MENTION_SERIES")
+             "MENTION_SERIES", "SHARP_LOG")
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -745,7 +745,8 @@ class DataDirTest(unittest.TestCase):
                      "PLAYBOOK_LOG": d / "playbook_history.jsonl", "RETROS": d / "retros.jsonl",
                      "PROPOSALS": d / "proposals.json", "TUNED": d / "rules.json",
                      "TUNED_LOG": d / "rules_history.jsonl", "ODDS": d / "odds.json",
-                     "MENTIONS": d / "mentions.jsonl", "MENTION_SERIES": d / "mention_series.json"}.items():
+                     "MENTIONS": d / "mentions.jsonl", "MENTION_SERIES": d / "mention_series.json",
+                     "SHARP_LOG": d / "sharp.jsonl"}.items():
             setattr(engine, n, v)
         # A real ODDS_API_KEY in .env or the CI environment must never reach a test: on 2026-10-10 the scans in
         # these tests spent about 100 of the free tier's 500 requests in one run. No key, and any call fails loudly.
@@ -1145,6 +1146,45 @@ class ResearchPipelineTests(DataDirTest):
         self.assertNotIn(str(p), sent)       # Pinnacle's price never goes to Jev
         self.assertNotIn("Steelers", sent)   # nor anything else from the odds feed
         self.assertTrue(engine.ODDS.exists())  # kept for the next cycle
+
+    def test_the_sharp_line_prices_games_no_jev_look_covers_this_cycle(self):
+        # 2026-10-11 live: 68 priced games, 0 matched, because only markets due a Jev look were compared with the line
+        mk._SERIES_FEE["KXNFLGAME"] = 1.0
+        states = []
+
+        def transport(url, body, key, timeout):
+            states.append(body["state"])
+            return {"model": "jev-test", "answers": ans(0.5)}
+        scan = lambda now, okey: engine.scan(dict(POLICY, sources=["kalshi"]), client=JevClient(transport=transport),
+                                             fetchers={"kalshi": lambda *a: [kalshi_game()]}, log=lambda *_: None,
+                                             now=now, researcher=FakeResearcher([]))
+        cache = {"americanfootball_nfl": {"fetched": "1999-12-25T00:55:00Z",
+                                          "events": [game(last_update="1999-12-25T00:50:00Z")]}}  # fresh an hour on
+        try:
+            with mock.patch.object(odds, "api_key", return_value=None):
+                scan(SCAN_NOW, None)  # Jev judges the game; no line yet, so no sharp bet
+            calls = len(states)
+            with mock.patch.object(odds, "api_key", return_value="k"), \
+                    mock.patch.object(odds, "load_events", return_value=cache):
+                stats = scan(SCAN_NOW + timedelta(hours=1), "k")  # not due a Jev look again for 6 hours
+        finally:
+            mk._SERIES_FEE.pop("KXNFLGAME", None)
+        self.assertEqual(len(states), calls)  # no Jev call for it the second time
+        self.assertEqual((stats["sharp"]["matched"], stats["sharp"]["decided_outside_jev"], stats["funnel"]["bets"]["sharp"]),
+                         (1, 1, 1))
+        rec = engine.read_jsonl(engine.SHARP_LOG)[-1]
+        self.assertEqual((rec["key"], rec["decisions"]["sharp"]["bet"]), ("kalshi:KXNFLGAME-26OCT11PITCIN-PIT", True))
+        self.assertNotIn("rules", rec["market"])
+        self.assertEqual(engine._prob(rec, "sharp"), rec["sharp"]["p_yes"])  # scored like any look
+        self.assertNotIn(str(rec["sharp"]["p_yes"]), json.dumps(states))  # the line never reached Jev
+        # a cycle later, nothing moved: decided again (already holding) but not logged again
+        with mock.patch.object(odds, "api_key", return_value="k"), mock.patch.object(odds, "load_events", return_value=cache):
+            mk._SERIES_FEE["KXNFLGAME"] = 1.0
+            try:
+                scan(SCAN_NOW + timedelta(hours=1, minutes=15), "k")
+            finally:
+                mk._SERIES_FEE.pop("KXNFLGAME", None)
+        self.assertEqual(len(engine.read_jsonl(engine.SHARP_LOG)), 1)
 
     def mention(self, **kw):
         return dict({"source": "kalshi", "market_id": "KXVANCEMENTION-26OCT09-TARIFF", "event": "kalshi:KXVANCEMENTION-26OCT09",

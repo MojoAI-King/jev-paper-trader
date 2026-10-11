@@ -48,6 +48,7 @@ PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; appr
 TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
 ODDS = DATA / "odds.json"  # the sharp sportsbook lines, refreshed within the quota (papertrade/odds.py)
 MENTIONS = DATA / "mentions.jsonl"  # each look at a Kalshi mention market by the mention strategy (no Jev answers)
+SHARP_LOG = DATA / "sharp.jsonl"  # the sharp strategy's looks at markets no Jev look covered that cycle (_sharp_pass)
 MENTION_SERIES = DATA / "mention_series.json"  # Kalshi's "Mentions" series and when each was last read (markets.fetch_kalshi_mentions)
 TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
 SITE = PROJECT_ROOT / "site"  # the public page shell: built by `publish`, deployed to Cloudflare
@@ -477,7 +478,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     client = client or JevClient(model=policy["model"])
     now = now or datetime.now(timezone.utc)
     started = _clock()
-    for path in (JUDGMENTS, RESEARCH, MENTIONS):
+    for path in (JUDGMENTS, RESEARCH, MENTIONS, SHARP_LOG):
         rotate_log(path, policy.get("storage", {}).get("rotate_logs_mb", 20))
     today, stamp = now.strftime("%Y-%m-%d"), now.strftime(TS)  # one clock for filtering and logging
     mf, rc, strats = policy["market_filters"], policy["research"], strategies(policy)
@@ -497,7 +498,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
              "problems": []}
     # each forecaster's measured skill sizes the bets (docs/REBUILD_PLAN.md phase 1); the frozen yardstick keeps
     # the old sizing
-    judged_before = read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS)
+    judged_before = read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS) + read_jsonl(SHARP_LOG)
     skills = skill(judged_before, load_json(RESOLUTIONS, {}), policy["skill"]["min_markets"])
     event_of = {j["key"]: j["event"] for j in judged_before if j.get("event")}
     del judged_before
@@ -509,7 +510,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         log(msg)
 
     # 1-2. fetch, then the free filters; only markets due for a look
-    per_source = []
+    per_source, fetched_ok = [], []
     keep = lambda m: passes_free_filters(m, mf, now) is None  # the free filters, before the top-N cut
     for src in policy["sources"]:
         mk.LAST_FETCH.pop(src, None)
@@ -528,8 +529,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 warn(f"! {src}: fetch hit its page limit after {fetch['pages']} pages; far-dated markets left out")
         funnel["fetched"] += len(ms)
         funnel.setdefault("by_source", {})[src] = len(ms)
-        per_source.append([m for m in ms if due(m, seen, cutoff, mf["rejudge_on_price_move"], strats)
-                           and passes_free_filters(m, mf, now) is None])
+        ok = [m for m in ms if passes_free_filters(m, mf, now) is None]
+        fetched_ok += ok  # every market the sharp line may price this cycle (_sharp_pass), due a Jev look or not
+        per_source.append([m for m in ok if due(m, seen, cutoff, mf["rejudge_on_price_move"], strats)])
     candidates = [dict(m, category=learn.category(m)) for m in _interleave(per_source)]
     candidates.sort(key=lambda m: seen.get(key(m), ("",))[0])  # never judged first, then judged longest ago
     funnel["passed_filters"] = len(candidates)
@@ -542,7 +544,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         if okey:
             cache = odds.load_events(policy["sharp"], okey, load_json(ODDS, {}), now, warn=warn)
             save_json(ODDS, cache)
-            sharp = odds.match(odds.all_events(cache), todo, policy["sharp"], now)
+            # every fetched market, not only the up-to-40 due a Jev look (which matched 0 of 68 games on 2026-10-11)
+            sharp = odds.match(odds.all_events(cache), [dict(m, category=learn.category(m)) for m in fetched_ok],
+                               policy["sharp"], now)
             stats["sharp"] = {"games": len(odds.all_events(cache)), "matched": len(sharp),
                               "quota_left": odds.LAST.get("remaining")}
             waiting["sharp"] = "no sharp line matched this market"
@@ -734,6 +738,8 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
                 "decision": decisions.get(MAIN), "decisions": decisions,
                 "latency_ms": rich["latency_ms"] if rich else None, "latency_ms_no_news": p["latency_ms"],
             })
+    _sharp_pass(sharp, fetched_ok, {key(m) for m in todo}, strats, spolicy, books, skills, event_of, stamp, policy,
+                funnel, stats, log)
     if any(s["probability"] == "mention_prior" for s in strats.values()) and fetchers.get("kalshi_mentions"):
         mcache = load_json(MENTION_SERIES, {})
         mk.LAST_FETCH.pop("kalshi_mentions", None)
@@ -756,6 +762,56 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     cl["api_equivalent_usd"] = round(cl["api_equivalent_usd"], 4)
     _record_scan(stats, stamp)
     return stats
+
+
+def _sharp_pass(sharp, fetched, judged, strats, spolicy, books, skills, event_of, stamp, policy, funnel, stats, log) -> None:
+    """The sharp strategies on every fetched market a fresh sharp line priced this cycle that no Jev look covered
+    (those are decided in the main loop). No Jev or Claude call: the line is the probability, and it goes nowhere
+    near a forecaster. A look is logged to SHARP_LOG when first seen, when bet, or after the market's mid or the line
+    moved `sharp.relog_move`, without its rules text; settle and the skill measure read that log."""
+    names = {n: s for n, s in strats.items() if s["probability"] == "sharp"}
+    todo = [m for m in fetched if key(m) in sharp and key(m) not in judged]
+    if not names or not todo:
+        return
+    mk.add_kalshi_fees(todo)
+    seen, move = last_judged(SHARP_LOG), policy["sharp"].get("relog_move", 0.03)
+    last_line = {}
+    for r in read_jsonl(SHARP_LOG):
+        last_line[r["key"]] = (r.get("sharp") or {}).get("p_yes")
+    logged = 0
+    for raw in todo:
+        m = dict(raw, category=learn.category(raw))
+        line = sharp[key(m)]
+        signals = {"sharp": {"p_yes": {"noul": line["p_yes"]}, "rules_clear": {"noul": 1.0},
+                             "info_sufficient": {"noul": 1.0}}}
+        decisions = {}
+        for name, strat in names.items():
+            pf = books[name]
+            answers = strategy_answers(strat, signals)
+            if answers is None:
+                continue
+            if key(m) in {x["key"] for x in pf["open"]}:
+                decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
+                continue
+            sz = skill_sizing(pf, m, skills.get("sharp", {}).get("lambda", 0.0), stamp, event_of)
+            d = decide(m, answers, spolicy[name], equity_at_cost(pf), sum(x["total_cost"] for x in pf["open"]),
+                       pf["cash"], sz)
+            decisions[name] = d
+            if d["bet"]:
+                _bet(name, pf, m, d, stamp, log, strat["rules_version"])
+                funnel["bets"][name] += 1
+        last = seen.get(key(m))
+        moved = last is not None and (
+            (last[1] is not None and abs(float(m["mid"]) - float(last[1])) >= move)
+            or (last_line.get(key(m)) is not None and abs(line["p_yes"] - last_line[key(m)]) >= move))
+        if last is None or moved or any(d.get("bet") for d in decisions.values()):
+            logged += 1
+            for name, d in decisions.items():
+                funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
+            append_jsonl(SHARP_LOG, {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
+                                     "market": {k: v for k, v in m.items() if k != "rules"}, "sharp": line,
+                                     "decisions": decisions})
+    stats.setdefault("sharp", {}).update(decided_outside_jev=len(todo), logged=logged)
 
 
 def mention_prior(m: dict, cfg: dict) -> float:
@@ -866,7 +922,7 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
         for p in pf["open"]:
             closes[p["key"]] = p["close_time"]
     held, event_times = set(closes), {}
-    for j in read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS):  # every market looked at gets its result, bet or not
+    for j in read_jsonl(JUDGMENTS) + read_jsonl(MENTIONS) + read_jsonl(SHARP_LOG):  # every market looked at gets its result
         closes.setdefault(j["key"], j["market"]["close_time"])
         if j["market"].get("event_time"):
             event_times[j["key"]] = j["market"]["event_time"]

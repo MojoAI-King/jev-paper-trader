@@ -12,7 +12,9 @@
   to keep more facts without Joey's OK. The `sharp` strategy (2026-10-10) is not a forecaster: its probability
   *is* a price, Pinnacle's line from The Odds API (`papertrade/odds.py`, `ODDS_API_KEY`, never printed). It goes
   only to that strategy's decision and the scoring, never into a Jev or Claude state
-  (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`). The same goes for `mention_no`
+  (`test_the_sharp_line_bets_a_matched_game_and_the_line_never_reaches_jev`). Since 2026-10-11 it is decided every
+  cycle on every fetched market its line prices (`engine._sharp_pass`, looks in `papertrade_data/sharp.jsonl`), not only
+  on markets due a Jev look (`test_the_sharp_line_prices_games_no_jev_look_covers_this_cycle`). The same goes for `mention_no`
   (2026-10-10): its probability is the market's own mid less a measured YES bias (`engine.mention_prior`), never a
   forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`. It reads every open mention
   market series by series (`markets.fetch_kalshi_mentions`) and times bets by the event's own date
