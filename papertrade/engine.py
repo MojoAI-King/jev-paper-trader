@@ -1126,7 +1126,7 @@ def skill(judgments: list[dict], resolved: dict, min_markets: int = 300, boot: i
 
 
 def report(policy: dict) -> str:
-    books = load_books(policy)
+    books = all_books(policy)  # main's ledger stays readable after its retirement (2026-10-11)
     pf = books[MAIN]
     start = pf["starting_bankroll"]
     open_cost = sum(p["total_cost"] for p in pf["open"])

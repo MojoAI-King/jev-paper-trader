@@ -298,6 +298,8 @@ def challenger_problem(cfg: dict, policy: dict) -> str | None:
         return f"the label {label!r} is another strategy's name"
     if cfg.get("probability") not in SIGNALS or cfg.get("gates") not in ("jev_research", "jev_plain"):
         return "unknown probability or gate source"
+    if cfg.get("probability") in (policy["learning"].get("retired_probabilities") or ()):
+        return f"{cfg['probability']} no longer picks bets (learning.retired_probabilities; Joey, 2026-10-11)"
     over, rules = cfg.get("gate_overrides") or {}, cfg.get("rules") or {}
     if not isinstance(over, dict) or set(over) - set(GATE_RULES):
         return "gate_overrides may name only gates"

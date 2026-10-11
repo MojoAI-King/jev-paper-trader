@@ -32,7 +32,7 @@ def last_scan(policy: dict, judgments: list[dict]) -> dict | None:
     latest = max(j["ts"] for j in pool)  # every judgment in one scan shares that scan's timestamp
     js = [j for j in pool if j["ts"] == latest]
     day = latest[:10]
-    g = engine.strategy_policy(policy, engine.strategies(policy)[engine.MAIN])["gates"]  # main's, as tuned
+    g = engine.strategy_policy(policy, engine.strategies(policy, retired=True)[engine.MAIN])["gates"]  # main's, as tuned
     ds = [j.get("decision") or {} for j in js]
     scored = [d for d in ds if "info_sufficient" in d]  # e.g. "already holding" decisions carry no gate scores
 
@@ -349,7 +349,7 @@ def learning_state(policy: dict, reviews: list[dict], judgments: list[dict], res
 
 def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, generated_at: str,
               scans: list[dict] | None = None, reviews: list[dict] | None = None, example: bool = False) -> dict:
-    pf = books[engine.MAIN]
+    pf = books.get(engine.MAIN) or engine.load_portfolio(policy, engine.MAIN)  # main retired 2026-10-11: never a crash
     start = float(pf["starting_bankroll"])
     open_cost = round(sum(p["total_cost"] for p in pf["open"]), 2)
     equity = round(pf["cash"] + open_cost, 2)
@@ -371,7 +371,7 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         by_source[p["source"]] += p["total_cost"]
     keep_open = ("question", "url", "source", "side", "contracts", "cost_per", "total_cost", "p_side",
                  "market_ask", "edge", "opened", "close_time")
-    main_policy = engine.strategy_policy(policy, engine.strategies(policy)[engine.MAIN])
+    main_policy = engine.strategy_policy(policy, engine.strategies(policy, retired=True)[engine.MAIN])  # main retired 2026-10-11
     # Joey, 2026-10-11: retired strategies leave the page and its totals. Their ledgers stay in papertrade_data/
     # and still settle; only what the page shows (rows, total, race, open bets, feed) leaves them out.
     rows = [r for r in strategy_rows(policy, books, prices, cmap) if not r["retired"]]

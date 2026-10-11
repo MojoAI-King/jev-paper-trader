@@ -19,6 +19,10 @@
   forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`. It reads every open mention
   market series by series (`markets.fetch_kalshi_mentions`) and times bets by the event's own date
   (`markets.kalshi_event_time`), never by Kalshi's close, which comes about two weeks after the event.
+- **Jev no longer picks bets** (Joey, 2026-10-11): `main`, `bold` and `calibrated` are retired, and
+  `learning.retired_probabilities` stops the loop from starting a strategy that picks with Jev. Jev still runs as a gate and
+  for `original`, the frozen yardstick. Tests run the machinery on a copy of the policy with them on (`POLICY` in the tests);
+  `RetiredJevTests` checks the live one (`REAL_POLICY`).
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.
 - Any change to question wording in `papertrade/judge.py` requires bumping `QUESTION_SET_VERSION`,
   because calibration data from old wording doesn't carry over.
