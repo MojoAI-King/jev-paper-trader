@@ -2,9 +2,13 @@
 (docs/research/CHECKS.md), tried everywhere. Kalshi public data only, no account.
 
 Phase 1: the series trading now (open events, paged: about 80 requests), then each one's most recent settled markets
-closed within --days (one request per series). Phase 2: up to --per-series markets per series, at most --per-event
-per event, volume of --min-volume or more: the hourly candles for the week before each market's close (one request
-each; Kalshi moves close_time to the real close when a market closes early). At 24 and 72 hours before the close,
+closed within --days (one request per series). Phase 2: up to --per-series markets per series, chosen without
+looking at anything after the bet (every market of an event with --per-event or fewer, else a random sample seeded by
+the event): the hourly candles for the week before each market's scheduled time (one
+request each). The decision points are 24 and 72 hours before that scheduled time (`occurrence_datetime`, the same for
+every market of an event in 99.4% of events, so set in advance; events where it differs are skipped), never before the
+close, which Kalshi moves to the moment an early-resolving market settles; a market already closed at a decision point
+is skipped there. At each point,
 where the quote is real (bid above 0, ask under 1, spread 10c or less), it scores buying YES at the ask and NO at one
 minus the bid, after Kalshi's taker fee at the series' multiplier. Rows are appended to
 research_data/edge_scan_rows.jsonl as they come, so --summarize can read a partial run, and a rerun skips what is done.
@@ -24,7 +28,7 @@ from itertools import zip_longest
 API = "https://api.elections.kalshi.com/trade-api/v2"
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 CACHE = os.path.join(ROOT, "research_data", "kalshi")
-ROWS = os.path.join(ROOT, "research_data", "edge_scan_rows.jsonl")
+ROWS = os.path.join(ROOT, "research_data", "edge_scan_rows_v2.jsonl")  # v1 (volume-picked, look-ahead) kept for the record
 BANDS = ((0.02, 0.15), (0.15, 0.30), (0.30, 0.50), (0.50, 0.70), (0.70, 0.85), (0.85, 0.98))
 requests = 0
 
@@ -115,30 +119,42 @@ def collect(a):
         for m in d.get("markets", []):
             if (m.get("result") or "").lower() not in ("yes", "no") or not m.get("close_time"):
                 continue
-            if float(m.get("volume_fp") or m.get("volume") or 0) < a.min_volume or ts(m["close_time"]) < since:
-                continue
-            if str(m.get("ticker", "")).upper().startswith("KXMVE"):
+            if ts(m["close_time"]) < since or str(m.get("ticker", "")).upper().startswith("KXMVE"):
                 continue
             by_event[m.get("event_ticker") or m["ticker"]].append(m)
         picked = []
+        # Never choose by anything measured after the bet. Final volume leaks the outcome (in a many-outcome event the
+        # winner draws the trading), which faked every lead in the first run. Small events: every market; big ones: a
+        # random sample seeded by the event ticker. Liquidity is judged later from trading before the decision only.
         for ev, ms in sorted(by_event.items(), key=lambda kv: max(x["close_time"] for x in kv[1]), reverse=True):
-            ms.sort(key=lambda x: float(x.get("volume_fp") or x.get("volume") or 0), reverse=True)
-            picked += ms[: a.per_event]
+            occs = {m.get("occurrence_datetime") for m in ms}
+            if len(occs) != 1 or None in occs:
+                continue  # no single scheduled time set in advance (0.6% of events): the decision time can't be fixed
+            ms.sort(key=lambda x: x["ticker"])
+            rnd = random.Random(int(hashlib.sha1(ev.encode()).hexdigest()[:8], 16))
+            chosen = ms if len(ms) <= a.per_event else rnd.sample(ms, a.per_event)
+            picked += [dict(m, _event_size=len(ms)) for m in chosen]
             if len(picked) >= a.per_series:
                 break
         for m in picked[: a.per_series]:
             if m["ticker"] in done:
                 continue
-            close = ts(m["close_time"])
+            close, occ = ts(m["close_time"]), ts(m["occurrence_datetime"])
+            if close <= occ - timedelta(hours=24):
+                continue  # closed before the first decision point: nobody could have bet it then (an early resolution)
             c = get(f"/series/{t}/markets/{m['ticker']}/candlesticks",
-                    {"start_ts": int((close - timedelta(days=7)).timestamp()), "end_ts": int(close.timestamp()),
+                    {"start_ts": int((occ - timedelta(days=8)).timestamp()), "end_ts": int((occ - timedelta(hours=24)).timestamp()),
                      "period_interval": 60})
             candles += 1
             cs = (c or {}).get("candlesticks") or []
             row = {"ticker": m["ticker"], "series": t, "category": s.get("category"), "event": m.get("event_ticker"),
-                   "close": m["close_time"], "result": m["result"].lower(), "mult": mult, "at": {}}
+                   "close": m["close_time"], "occurrence": m["occurrence_datetime"], "result": m["result"].lower(),
+                   "mult": mult, "at": {}, "event_size": m["_event_size"], "opened": m.get("open_time")}
             for h in (24, 72):
-                before = [x for x in cs if x["end_period_ts"] <= int((close - timedelta(hours=h)).timestamp())]
+                decide_at = occ - timedelta(hours=h)  # fixed in advance by the scheduled time, never by the close
+                if close <= decide_at:
+                    continue
+                before = [x for x in cs if x["end_period_ts"] <= int(decide_at.timestamp())]
                 if not before:
                     continue
                 q = before[-1]
@@ -151,7 +167,8 @@ def collect(a):
                     continue
                 won_yes = row["result"] == "yes"
                 no = 1 - bid
-                row["at"][str(h)] = {"bid": bid, "ask": ask,
+                pre = sum(float(x.get("volume_fp") or 0) for x in before)  # traded in the days before the decision
+                row["at"][str(h)] = {"bid": bid, "ask": ask, "pre_volume": round(pre, 2),
                                      "r_yes": (1 / (ask + fee(ask, mult)) - 1) if won_yes else -1.0,
                                      "r_no": (1 / (no + fee(no, mult)) - 1) if not won_yes else -1.0}
             out.write(json.dumps(row) + "\n")
@@ -175,12 +192,14 @@ def ci(rows, n=500):
     return sum(r for _, r in rows) / len(rows), ms[int(0.025 * n)], ms[int(0.975 * n) - 1], len(ks)
 
 
-def summarize(min_events=30):
+def summarize(min_events=30, min_pre_volume=20):
     rows = [json.loads(l) for l in open(ROWS) if l.strip()]
     print(f"markets scored: {len(rows)} in {len({r['series'] for r in rows})} series")
     cuts = collections.defaultdict(list)  # (level, name, side, band, h) -> [(event, close, return)]
     for r in rows:
         for h, q in r["at"].items():
+            if q.get("pre_volume", 1) < min_pre_volume:
+                continue
             for side in ("yes", "no"):
                 price = q["ask"] if side == "yes" else 1 - q["bid"]
                 band = next((b for b in BANDS if b[0] <= price < b[1]), None)
@@ -208,7 +227,9 @@ def summarize(min_events=30):
     print("\nBy category, 24 hours before close (return after taker fees; 95% range resamples events):")
     for r in sorted(table, key=lambda r: (str(r[0][1]), r[0][2], r[0][3])):
         print("  " + fmt(r))
-    print(f"\nLeads (range above zero, both halves above zero, {min_events}+ events): {len(leads)}")
+    tested = sum(1 for k, v in cuts.items() if len({e for e, _, _ in v}) >= min_events)
+    print(f"\nLeads (range above zero, both halves above zero, {min_events}+ events): {len(leads)} of {tested} cuts tested; "
+          f"a cut with no edge passes about 1-2% of the time, so about {tested * 0.015:.0f} leads are expected by chance alone")
     for r in sorted(leads, key=lambda r: -r[3])[:60]:
         print("  " + fmt(r))
 
@@ -217,8 +238,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=120)
     ap.add_argument("--per-series", type=int, default=20)
-    ap.add_argument("--per-event", type=int, default=3)
-    ap.add_argument("--min-volume", type=float, default=100)
+    ap.add_argument("--per-event", type=int, default=4)
     ap.add_argument("--max-candles", type=int, default=30000)
     ap.add_argument("--limit-series", type=int, default=0)
     ap.add_argument("--summarize", action="store_true")

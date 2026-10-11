@@ -299,3 +299,31 @@ Not built as a strategy. It may later lower the cost of a strategy that has an e
   a real trade sold into it (maker fee 0.0175·p(1−p)): filled 75%, 73%, 69% of the time; return +12.3% [+2.0, +23.0],
   +13.3% [+1.0, +25.7], +16.6% [+4.4, +29.8]. Adverse selection is plain: NO won 52–53% when the bid filled and 71% when
   it didn't. Not built; the strategy keeps taking the ask.
+
+## The edge scan (B33): every Kalshi market family (2026-10-10/11)
+
+`docs/research/scripts/edge_scan.py`: the ~4,550 active non-mention series, real bid and ask from hourly candles,
+buying YES at the ask and NO at one minus the bid after the series' taker fee, 95% ranges that resample events.
+
+- **First run: all ten leads were a selection artifact.** 20,747 markets in 1,626 series. Every lead was a cheap long
+  shot (2–30¢) "paying" +13% to +458%, against the well-documented long-shot bias. Cause: within each event the scan
+  took the three markets with the most total volume, and total volume includes trading after the news, so it picks the
+  outcome that won (in a many-bracket weather or price event the winning bracket draws the trading). In the events where
+  every market was taken (no choice, so no bias) the same cuts reversed:
+
+  | Sports, 24 h before close | All taken | Events with every market taken | Volume-picked only |
+  |---|---|---|---|
+  | YES at 2–15¢ | +46.4% | **−47.0%** [−68, −22] (388 events) | +92.5% |
+  | NO at 2–15¢ | +101.3% | **−54.3%** [−90, −7] (66) | +164.4% |
+  | YES at 15–30¢ | +12.9% | **−7.0%** [−17, +4] (908) | +35.2% |
+  | NO at 15–30¢ | +34.1% | −2.3% [−28, +23] (208) | +60.0% |
+
+  In the unbiased subset (7,494 markets, 95% two-sided sports games) no cut cleared zero: long shots lost about 47%,
+  every other band −9% to +2% after fees, as the literature says.
+- **A second trap found on the way:** Kalshi moves `close_time` to the moment an early-resolving market settles, so
+  "24 hours before the close" can sit a day before a surprise nobody knew was coming. `occurrence_datetime` is the
+  same for every market of an event in 29,297 of 29,482 multi-market events, so it is set in advance; a third of
+  Financials and Entertainment markets closed more than a day before theirs.
+- **Second run (running):** markets chosen without looking at anything after the bet (every market of a small event, a
+  random sample seeded by the event in a big one), decision points 24 and 72 hours before the scheduled time, markets
+  already closed by then skipped, liquidity judged only from trading before the decision.
