@@ -372,6 +372,10 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
     keep_open = ("question", "url", "source", "side", "contracts", "cost_per", "total_cost", "p_side",
                  "market_ask", "edge", "opened", "close_time")
     main_policy = engine.strategy_policy(policy, engine.strategies(policy)[engine.MAIN])
+    # Joey, 2026-10-11: retired strategies leave the page and its totals. Their ledgers stay in papertrade_data/
+    # and still settle; only what the page shows (rows, total, race, open bets, feed) leaves them out.
+    rows = [r for r in strategy_rows(policy, books, prices, cmap) if not r["retired"]]
+    shown = {name: b for name, b in books.items() if name in {r["name"] for r in rows}}
     return _fix_links({
         "generated": generated_at, "example": example, "question_set": engine.QUESTION_SET_VERSION,
         "start": start, "cash": round(pf["cash"], 2), "open_cost": open_cost, "equity": equity,
@@ -386,12 +390,12 @@ def summarize(policy: dict, books: dict, judgments: list[dict], resolved: dict, 
         "calibration": engine.calibration(judgments, resolved),
         "last_scan": last_scan(policy, judgments),
         "funnel": funnel(scans or []),
-        "strategies": strategy_rows(policy, books, prices, cmap),
-        "race": race(books, judgments, generated_at),
-        "open_bets": open_bets(books, prices, judgments),
-        "settled_recent": recent_settled(books),
+        "strategies": rows,
+        "race": race(shown, judgments, generated_at),
+        "open_bets": open_bets(shown, prices, judgments),
+        "settled_recent": recent_settled(shown),
         "calls": calls(judgments),
-        "feed": feed(books, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or [],
+        "feed": feed(shown, judgments, scans or [], engine.read_jsonl(engine.RESEARCH), reviews or [],
                      changes=engine.read_jsonl(engine.TUNED_LOG), proposals=coach.load_proposals()["proposals"]),
         "plan_usage": plan_usage(scans or []),
         "research_runs_today": sum(1 for r in engine.read_jsonl(engine.RESEARCH) if str(r.get("ts", "")).startswith(generated_at[:10])),

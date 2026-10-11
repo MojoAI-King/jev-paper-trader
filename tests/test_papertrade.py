@@ -2173,7 +2173,7 @@ class TuningTests(DataDirTest):
         for bad in ("ch3", "ch1", "main"):  # running, already retired, not a challenger
             self.assertEqual(coach._retire(coach.load_proposals(), bad if bad != "ch3" else "nope", "t", "w")[0], "invalid")
 
-    def test_a_retired_challenger_keeps_its_record_on_the_page(self):
+    def test_a_retired_challenger_leaves_the_page_but_keeps_its_ledger(self):
         engine.save_json(engine.PROPOSALS, {"proposals": [{"id": "ch1", "kind": "challenger", "status": "running",
             "started": "1999-12-01T00:00:00Z", "slot": 7,
             "strategy": {"label": "Loser", "probability": "jev_research", "gates": "jev_research"}}]})
@@ -2188,11 +2188,15 @@ class TuningTests(DataDirTest):
         ch1 = coach.load_proposals()["proposals"][0]
         self.assertEqual((ch1["status"], ch1["retired"]), ("retired", "1999-12-27T00:00:00Z"))
         self.assertNotIn("ch1", engine.strategies(POLICY))  # it no longer bets
+        # Joey, 2026-10-11: retired strategies leave the page and its totals; the ledger stays and still settles
         s = dashboard.current_summary(POLICY)
-        row = next(r for r in s["strategies"] if r["name"] == "ch1")
+        self.assertNotIn("ch1", [r["name"] for r in s["strategies"]])
+        self.assertNotIn(("loss", "ch1"), [(e["type"], e.get("strategy")) for e in s["feed"]])
+        self.assertNotIn("ch1", [x.get("name") for x in s["race"]])
+        self.assertEqual(engine.load_portfolio(POLICY, "ch1")["closed"][0]["pnl"], -40.0)
+        self.assertIn("Challenger retired: Loser", [e.get("text") for e in s["feed"]])  # the event itself is news
+        row = next(r for r in dashboard.strategy_rows(POLICY, engine.all_books(POLICY)) if r["name"] == "ch1")
         self.assertEqual((row["badge"], row["slot"], row["realized"], row["losses"]), ("Retired", 0, -40.0, 1))
-        self.assertIn(("loss", "ch1"), [(e["type"], e.get("strategy")) for e in s["feed"]])
-        self.assertIn("Challenger retired: Loser", [e.get("text") for e in s["feed"]])
         self.assertIn("is retired", coach.set_status("ch1", "retired", POLICY, now=self.NOW))
 
     def test_joey_s_approve_and_reject_keep_challengers_honest(self):
@@ -2279,9 +2283,12 @@ class TuningTests(DataDirTest):
             "market_id": "z", "question": "Qz", "url": "u", "close_time": "x", "side": "yes", "contracts": 10, "cost_per": 0.5,
             "total_cost": 1000.0, "p_side": 0.6, "market_ask": 0.49, "edge": 0.1, "opened": "1999-12-01T00:00:00Z",
             "outcome": "no", "payout": 0.0, "pnl": -1000.0, "settled": "1999-12-02T00:00:00Z"}]))
-        rows = {r["name"]: r for r in dashboard.current_summary(POLICY)["strategies"]}
+        rows = {r["name"]: r for r in dashboard.strategy_rows(POLICY, engine.all_books(POLICY))}
         self.assertEqual(rows["ch1"]["slot"], 7)
         self.assertEqual((rows["gone"]["badge"], rows["gone"]["slot"], rows["gone"]["realized"]), ("Stopped", 0, -1000.0))
+        shown = {r["name"] for r in dashboard.current_summary(POLICY)["strategies"]}
+        self.assertIn("ch1", shown)
+        self.assertNotIn("gone", shown)  # a ledger with no strategy counts as retired: off the page and the total
 
     def test_the_review_prompt_names_every_limit(self):
         class Claude:
