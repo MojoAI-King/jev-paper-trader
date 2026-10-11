@@ -347,3 +347,39 @@ buying YES at the ask and NO at one minus the bid after the series' taker fee, 9
   [+25.9, +45.8] (463 buys, both halves); when anything had traded first, +2.8% [−7.7, +14.1]. So capacity is small, and
   the forward test should be read in two parts: bets at a market with no prior volume and the rest (the logged
   `market.volume` at each look says which, so no code change is needed to split it).
+
+## First trades and the trade-print trap (B33 follow-up, 2026-10-11)
+
+`docs/research/scripts/first_trade_scan.py`: the first real taker purchase of each side within 48 hours of listing (and
+12+ hours before the scheduled time) in 27,294 markets across 1,373 non-mention series. 4 leads in 107 cuts (about
+1.5 expected by chance with the grid's overlap), all one family: Economics NO at 50–85¢, strongest when the purchase
+was the market's first trade (+37.0% [+16.6, +56.0], 44 events). An adversarial check (workflow wf_79340bda-9e0, five
+lenses) found:
+
+- **It is gas, in a falling week.** 100 of its 162 purchases are AAA gas "above $X" ladders, every daily one settled
+  Sep 29–Oct 10 (one 200-market listing page holds about 12 days of a 17-strike ladder) while pump prices fell; without
+  gas, +3.6% [−13.2, +20.7]. State prices move together: resampled by week, all four ranges include zero.
+- **What a strategy that trades first would get:** NO at 50–85¢ at the quoted price just after listing, every market,
+  1,192 purchases in 494 Economics events the scan never saw: −2.7% [−8.8, +3.3]; on gas it tracks the price trend
+  (−1.7% while prices rose, +12.8% while they fell).
+- **The first buyer is informed.** "The first trade was a NO purchase" held out of sample (+27.5% [+18.8, +34.9], 194
+  buys, Aug 5–Sep 28, including a rising month), and the first taker's side predicted the day's gas move. Buying at the
+  quote in exactly those markets earns about the same, so the edge is knowing which markets they picked.
+
+**The same trap reaches the mention strategy.** Its +15.8% (and the +35.9% "first trade" split) score real NO taker
+trades, and when someone chooses to buy NO carries information. Tested at quoted prices, as the live strategy trades:
+
+| Rule (kept mention series, NO at 30–70¢, after fees) | Buys | Events | Return |
+|---|---|---|---|
+| live gates on hourly quotes over each market's life, traded or not | 779 | 112 | **+0.5% [−10.2, +11.3]** |
+| first untraded one-minute quote after listing ("be first in") | 293 | 68 | −11.5% [−28.0, +5.6] |
+| quote held at 72 / 48 / 24 / 12 / 6 h before the event | | | −5.9 / −9.6 / −4.5 / −2.0 / −5.6% |
+| first NO taker trade (the old method) | 1,183 | 180 | +15.8% [+6.5, +25.3] |
+
+In the same markets at the same listing price, buying NO made +46.6% where the first trade turned out to be a NO buy
+and −33.0% where it was a YES buy; a strategy that trades first gets both. **So expect the live mention strategy to be
+about break-even, not +16%.** Its pre-registered forward test (quoted asks, its own bets) stands and will decide.
+
+A possible real edge sits in the same data, as a new hypothesis only: following an informed first trade (buying after
+a market's first trade was a NO purchase) still paid in state gas ladders out of sample, at entry prices taken from the
+next trade print, which needs re-testing at quoted prices before anything is built.

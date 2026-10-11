@@ -33,4 +33,5 @@ Lesson entries in `docs/lessons/`, sorted by ID. `skilliton index` writes this l
 | [2026-10-10-a-first-edge-measured-on-639-markets-was-7008](lessons/2026-10-10-a-first-edge-measured-on-639-markets-was-7008.md) | A first edge measured on 639 markets was half as big on 7,929 | accepted | 2026-10-10 |
 | [2026-10-10-a-real-api-key-in-env-turned-the-tests-i-43ba](lessons/2026-10-10-a-real-api-key-in-env-turned-the-tests-i-43ba.md) | A real API key in .env turned the tests into live calls | accepted | 2026-10-10 |
 | [2026-10-10-choosing-markets-by-final-volume-faked-e-4ed2](lessons/2026-10-10-choosing-markets-by-final-volume-faked-e-4ed2.md) | Choosing markets by final volume faked every lead in a market scan | accepted | 2026-10-10 |
+| [2026-10-11-scoring-real-taker-trades-credited-us-wi-3639](lessons/2026-10-11-scoring-real-taker-trades-credited-us-wi-3639.md) | Scoring real taker trades credited us with other traders' information | accepted | 2026-10-11 |
 <!-- skilliton:index:lessons:end -->
