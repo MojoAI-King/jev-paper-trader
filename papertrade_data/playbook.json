@@ -1,6 +1,6 @@
 {
-  "version": 13,
-  "updated": "2026-10-10T00:11:41Z",
+  "version": 14,
+  "updated": "2026-10-11T00:10:50Z",
   "rules": [
     {
       "id": "R1",
@@ -40,28 +40,19 @@
       "added": "2026-10-02T00:05:57Z"
     },
     {
-      "id": "R6",
-      "category": "sports",
-      "rule": "For single-match win questions, confirm whether only a regulation-time win counts and that a draw resolves No; check the actual venue, and report each side's dated results in this competition, current winless or losing runs, and any recent coach change.",
-      "evidence": [
-        "polymarket:4581752",
-        "polymarket:4689888",
-        "polymarket:4762522",
-        "polymarket:4911446"
-      ],
-      "added": "2026-09-29T00:09:39Z"
-    },
-    {
       "id": "R7",
       "category": "sports",
-      "rule": "For match questions, report the current-season head-to-head with game count (under about 10 is small) and each side's dated absences, suspensions and returns; when sources disagree, settle it from the confirmed squad or lineup before citing it.",
+      "rule": "For match questions, report both sides' dated absences and returns from the latest press conferences, the stand-in and the absent player's actual recent output, settled from confirmed lineups; label all-time series and head-to-heads under about 10 games as weak.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "polymarket:4581752",
         "polymarket:4689888",
-        "polymarket:4911446"
+        "polymarket:4911446",
+        "polymarket:5009102",
+        "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
+        "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -107,8 +98,8 @@
         "kalshi:KXNFLTD-26OCT01PITCLE-PITDWASHINGTON80-1",
         "kalshi:KXNFLTD-26OCT04LACSEA-SEAJSMITHNJIGBA11-1",
         "kalshi:KXNFLTD-26OCT04NEBUF-BUFJALLEN17-1",
-        "kalshi:KXNFLTD-26OCT08TBDAL-DALJWILLIAMS33-1",
-        "kalshi:KXNFLTD-26OCT08TBDAL-DALGPICKENS3-1"
+        "kalshi:KXNFLTD-26OCT08TBDAL-DALGPICKENS3-1",
+        "kalshi:KXNFLTD-26OCT08TBDAL-DALJWILLIAMS33-1"
       ],
       "added": "2026-10-03T00:07:21Z"
     },
@@ -179,6 +170,15 @@
         "polymarket:5286105"
       ],
       "added": "2026-10-04T00:08:06Z"
+    },
+    {
+      "id": "R27",
+      "category": "culture",
+      "rule": "For live-streamed challenge questions near the deadline, get the current attempt's status from the past 12 hours (stream VODs, streamers' socials, fan trackers): milestones reached, gear, deaths or resets, plus the participants' own past completions and times.",
+      "evidence": [
+        "polymarket:5309160"
+      ],
+      "added": "2026-10-11T00:10:50Z"
     },
     {
       "id": "R23",
@@ -252,7 +252,10 @@
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-PITT",
     "kalshi:KXNCAAFGAME-26OCT02PITTVT-VT",
     "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
+    "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
+    "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU",
     "kalshi:KXNCAAFGAME-26OCT10FAMUALST-ALST",
+    "kalshi:KXNCAAFSPREAD-26OCT09ISUBYU-BYU11",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLGAME-26OCT08TBDAL-DAL",
     "kalshi:KXNFLGAME-26OCT08TBDAL-TB",
@@ -304,6 +307,9 @@
     "polymarket:4911446",
     "polymarket:4981247",
     "polymarket:5009022",
+    "polymarket:5009082",
+    "polymarket:5009102",
+    "polymarket:5009117",
     "polymarket:5023463",
     "polymarket:5055808",
     "polymarket:5070112",
@@ -316,7 +322,9 @@
     "polymarket:5207000",
     "polymarket:5208385",
     "polymarket:5286105",
-    "polymarket:5362505"
+    "polymarket:5309160",
+    "polymarket:5362505",
+    "polymarket:5423683"
   ],
   "retired_ids": [
     "R10",
@@ -325,6 +333,7 @@
     "R20",
     "R3",
     "R4",
-    "R5"
+    "R5",
+    "R6"
   ]
 }
