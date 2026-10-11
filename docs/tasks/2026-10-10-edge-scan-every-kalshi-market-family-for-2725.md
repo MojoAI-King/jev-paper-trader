@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-10T23:31:07.293Z
+- **Updated:** 2026-10-11T01:16:26.531Z
 
 ## Request
 
@@ -37,9 +37,16 @@ not yet written
 - **Next:** When the scan finishes (about 02:00Z): summarize, enrich rows with scheduled-vs-early close, run the adversarial verification of leads, record results in docs/research/CHECKS.md
 - **Git:** master @ 313dff6, 2 uncommitted
 
+### 2026-10-11T01:16:26.531Z
+
+- **State:** Edge scan v1 done (20,747 markets): all 10 leads were a look-ahead artifact (markets chosen by final volume pick the winners; the clock was anchored to outcome-dependent closes); the unbiased subset (7,494, mostly sports games) has no cut above zero. v2 (7abb0c6) picks without hindsight and decides 24/72 h before the scheduled occurrence time; running in the background since ~01:40Z (about 3 h).
+- **Evidence:** v1 summary and the complete-event check (sports YES 2-15c: +46.4% all vs -47.0% unbiased); occurrence identical across markets in 29,297 of 29,482 events; v2 smoke test 33 rows
+- **Next:** When v2 finishes: python3 -I docs/research/scripts/edge_scan.py --summarize; put each lead through an adversarial check (look-ahead and selection, quote quality and capacity, fresh-data replication, mechanism); record in docs/research/CHECKS.md
+- **Git:** master @ 7abb0c6, 2 uncommitted
+
 ## Handoff
 
-- **State:** Edge scan running (4354 markets scored). Analysis plan fixed before results: separate markets that closed early because their event happened (a price 24 h before an unscheduled close is look-ahead) from scheduled-event markets, using expiration and expected-expiration times from the cached listings; then put each surviving lead through an adversarial check (look-ahead, quote quality, deeper resampling, capacity) before anything is built. Evidence: scan progress read from research_data/edge_scan_rows.jsonl; no trader code changed since 151 offline tests passed.
-- **Next:** When the scan finishes (about 02:00Z): summarize, enrich rows with scheduled-vs-early close, run the adversarial verification of leads, record results in docs/research/CHECKS.md
+- **State:** Edge scan v1 done (20,747 markets): all 10 leads were a look-ahead artifact (markets chosen by final volume pick the winners; the clock was anchored to outcome-dependent closes); the unbiased subset (7,494, mostly sports games) has no cut above zero. v2 (7abb0c6) picks without hindsight and decides 24/72 h before the scheduled occurrence time; running in the background since ~01:40Z (about 3 h). Evidence: v1 summary and the complete-event check (sports YES 2-15c: +46.4% all vs -47.0% unbiased); occurrence identical across markets in 29,297 of 29,482 events; v2 smoke test 33 rows.
+- **Next:** When v2 finishes: python3 -I docs/research/scripts/edge_scan.py --summarize; put each lead through an adversarial check (look-ahead and selection, quote quality and capacity, fresh-data replication, mechanism); record in docs/research/CHECKS.md
 - **Blocked:** nothing
-- **Watch out:** The scan runs on this Mac (research_data/ is gitignored); a rerun skips markets already scored. With 15-minute cycles the bot alone makes ~4 commits an hour, so Skilliton's 15-commit maintenance nudge comes every few hours
+- **Watch out:** v1 rows (research_data/edge_scan_rows.jsonl) are look-ahead biased: never use them for leads; v2 rows are research_data/edge_scan_rows_v2.jsonl
