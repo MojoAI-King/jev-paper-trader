@@ -470,6 +470,28 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p31",
+      "created": "2026-10-11T03:55:01Z",
+      "kind": "code",
+      "title": "Sanity-check the skill estimate before it drives sizing",
+      "why": "Every source shows a standard error of exactly 0.0. Sharp line shows raw skill 23.593 on just 7 markets, while the others sit around -0.03, so the scale looks wrong. If lambda turns positive with a bad error estimate or a bad scale, Kelly sizing could bet far too much.",
+      "judge_by": "The next report shows non-zero standard errors for every source with n > 0, and Sharp's raw skill on the same scale as the others (well under 1). Joey confirms how lambda handles small samples.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p32",
+      "created": "2026-10-11T03:55:01Z",
+      "kind": "code",
+      "title": "Yardstick split since main's last rule change",
+      "why": "Main's 12c-edge test (p23) is to be judged on yardstick P&L for bets opened after 2026-10-07. The report only gives the yardstick since 2026-09-29: main -$17.4k on 24 settled, original -$15.9k on 37. Those figures mix old rules with new.",
+      "judge_by": "The report shows main vs original on shared markets opened since main's current rules took effect, with settled counts. That lets us judge p23 on 2026-10-14, when main can change again.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
