@@ -492,6 +492,32 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p33",
+      "created": "2026-10-11T15:55:14Z",
+      "kind": "tune",
+      "title": "Sharp line asks for a 2c edge instead of 3c",
+      "why": "Sharp has placed 1 bet ever under a 3c-after-fees edge requirement, so we are learning nothing about whether Pinnacle's line beats these prices. A de-vigged sharp line is a strong forecaster, and a 2c edge is a reasonable experiment while sizing is probe-only anyway. If the real cause is a matching or data bug (p30), this change will do nothing, and that itself tells us something.",
+      "judge_by": "Within 3 days sharp places at least 1 bet a day. If it doesn't, the bottleneck is coverage, not the edge requirement, and this should be reverted. After enough settle, its settled P&L per $100 staked is zero or better.",
+      "min_resolved": 30,
+      "status": "applied",
+      "status_reason": "sharp rules v2: edge bar 3% \u2192 2%",
+      "strategy": "sharp",
+      "rules": {
+        "min_edge": 0.02
+      }
+    },
+    {
+      "id": "p34",
+      "created": "2026-10-11T15:55:14Z",
+      "kind": "code",
+      "title": "Point Claude direct's forecasts at sports first",
+      "why": "Claude direct is the only source that beats the market in any category (sports, 0.169 vs 0.177), but it has forecast only 174 of 717 resolved sports markets. Meanwhile claude_direct placed 1 bet since its last change and ch16 places about 1 a day. Within the existing budget, giving sports markets priority for Claude direct forecasts should give both strategies more bets where the edge actually exists.",
+      "judge_by": "Over the week after it ships, the share of resolved sports markets with a Claude direct forecast rises well above today's 24%, ch16 and claude_direct place more bets per day, and Claude's sports Brier stays below the market's.",
+      "min_resolved": 100,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
