@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T23:37:46Z",
+  "generated": "2026-10-12T23:52:34Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-12T23:37:46Z",
+      "t": "2026-10-12T23:52:34Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T23:35:25Z",
+    "ts": "2026-10-12T23:50:21Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-12T23:37:46Z",
+          "2026-10-12T23:52:34Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-12T23:37:46Z",
+          "2026-10-12T23:52:34Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-12T23:37:46Z",
+          "2026-10-12T23:52:34Z",
           100000.0
         ]
       ]
@@ -4502,6 +4502,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T23:50:21Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T23:35:25Z",
       "type": "scan",
       "fetched": 200,
@@ -5111,13 +5119,6 @@
       "text": "Check that sharp's 2c edge change was actually applied",
       "status": "proposed",
       "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks "
-    },
-    {
-      "ts": "2026-10-12T08:12:58Z",
-      "type": "idea",
-      "text": "Make by_price_paid count open bets consistently",
-      "status": "proposed",
-      "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies."
     }
   ],
   "plan_usage": {
