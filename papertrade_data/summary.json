@@ -1,19 +1,19 @@
 {
-  "generated": "2026-10-12T22:37:20Z",
+  "generated": "2026-10-12T22:52:44Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
-  "cash": 74899.24,
-  "open_cost": 2361.74,
-  "equity": 77260.98,
-  "realized": -22739.02,
-  "roi_settled": -0.3664804530499612,
-  "wins": 11,
-  "settled": 34,
+  "cash": 75788.24,
+  "open_cost": 1957.65,
+  "equity": 77745.89,
+  "realized": -22254.11,
+  "roi_settled": -0.3563445069270987,
+  "wins": 13,
+  "settled": 36,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
-    "polymarket": 2159.71,
+    "polymarket": 1755.62,
     "kalshi": 202.03
   },
   "curve": [
@@ -193,40 +193,22 @@
       "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
     },
     {
-      "t": "2026-10-12T22:37:20Z",
-      "equity": 77260.98,
+      "t": "2026-10-12T22:50:29Z",
+      "equity": 77588.79,
+      "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be between 5m and 7m?"
+    },
+    {
+      "t": "2026-10-12T22:50:29Z",
+      "equity": 77745.89,
+      "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
+    },
+    {
+      "t": "2026-10-12T22:52:44Z",
+      "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
   ],
   "open": [
-    {
-      "question": "Will \"The Social Reckoning\" Opening Weekend Box Office be between 5m and 7m?",
-      "url": "https://polymarket.com/market/will-the-social-reckoning-opening-weekend-box-office-be-between-5m-and-7m",
-      "source": "polymarket",
-      "side": "yes",
-      "contracts": 530,
-      "cost_per": 0.3815,
-      "total_cost": 202.19,
-      "p_side": 0.56,
-      "market_ask": 0.36,
-      "edge": 0.1785,
-      "opened": "2026-10-10T17:20:13Z",
-      "close_time": "2026-10-11T12:00:00Z"
-    },
-    {
-      "question": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?",
-      "url": "https://polymarket.com/market/will-the-social-reckoning-opening-weekend-box-office-be-less-than-5m",
-      "source": "polymarket",
-      "side": "no",
-      "contracts": 359,
-      "cost_per": 0.5624,
-      "total_cost": 201.9,
-      "p_side": 0.84,
-      "market_ask": 0.54,
-      "edge": 0.2776,
-      "opened": "2026-10-10T22:50:09Z",
-      "close_time": "2026-10-11T12:00:00Z"
-    },
     {
       "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
       "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
@@ -257,6 +239,42 @@
     }
   ],
   "closed": [
+    {
+      "question": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?",
+      "url": "https://polymarket.com/market/will-the-social-reckoning-opening-weekend-box-office-be-less-than-5m",
+      "source": "polymarket",
+      "side": "no",
+      "contracts": 359,
+      "cost_per": 0.5624,
+      "total_cost": 201.9,
+      "p_side": 0.84,
+      "market_ask": 0.54,
+      "edge": 0.2776,
+      "opened": "2026-10-10T22:50:09Z",
+      "close_time": "2026-10-11T12:00:00Z",
+      "outcome": "no",
+      "payout": 359.0,
+      "pnl": 157.1,
+      "settled": "2026-10-12T22:50:29Z"
+    },
+    {
+      "question": "Will \"The Social Reckoning\" Opening Weekend Box Office be between 5m and 7m?",
+      "url": "https://polymarket.com/market/will-the-social-reckoning-opening-weekend-box-office-be-between-5m-and-7m",
+      "source": "polymarket",
+      "side": "yes",
+      "contracts": 530,
+      "cost_per": 0.3815,
+      "total_cost": 202.19,
+      "p_side": 0.56,
+      "market_ask": 0.36,
+      "edge": 0.1785,
+      "opened": "2026-10-10T17:20:13Z",
+      "close_time": "2026-10-11T12:00:00Z",
+      "outcome": "yes",
+      "payout": 530.0,
+      "pnl": 327.81,
+      "settled": "2026-10-12T22:50:29Z"
+    },
     {
       "question": "The Social Reckoning Rotten Tomatoes score? (Above 60)",
       "url": "https://kalshi.com/markets/kxrt/the-social-reckoning-rotten-tomatoes-score/kxrt-soc",
@@ -872,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1559,
+    "resolved": 1561,
     "sources": [
       {
         "name": "jev_research",
@@ -883,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2290384862091084,
-        "n": 1559
+        "brier": 0.22908456117873158,
+        "n": 1561
       },
       {
         "name": "claude_direct",
@@ -901,33 +919,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14501536337395765,
-        "n": 1559
+        "brier": 0.14493547501601536,
+        "n": 1561
       }
     ],
     "paired": {
-      "n": 776,
+      "n": 778,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1630669201030928
+          "brier": 0.16320363753213368
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.219127706185567
+          "brier": 0.21879280205655527
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20261649484536082
+          "brier": 0.2022529562982005
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24567371134020619
+          "brier": 0.24572724935732648
         }
       ]
     }
@@ -944,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T22:35:18Z",
+    "ts": "2026-10-12T22:50:29Z",
     "stages": [
       [
         "Fetched",
@@ -1813,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-12T22:37:20Z",
+          "2026-10-12T22:52:44Z",
           99750.45
         ]
       ]
@@ -2538,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-12T22:37:20Z",
+          "2026-10-12T22:52:44Z",
           100000.0
         ]
       ]
@@ -3263,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-12T22:37:20Z",
+          "2026-10-12T22:52:44Z",
           100000.0
         ]
       ]
@@ -4484,6 +4502,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T22:50:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T22:35:18Z",
       "type": "scan",
       "fetched": 200,
@@ -5086,14 +5112,6 @@
       "ts": "2026-10-12T07:50:08Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T07:50:08Z",
-      "type": "scan",
-      "fetched": 181,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5106,7 +5124,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1559,
+    "reviewed": 1561,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
@@ -5692,13 +5710,13 @@
       },
       {
         "category": "culture",
-        "n": 97,
-        "jev_plain": 0.198,
-        "market": 0.0685,
+        "n": 99,
+        "jev_plain": 0.1993,
+        "market": 0.0688,
         "jev_research": 0.1459,
         "claude_direct": 0.0551,
-        "n_jev_plain": 97,
-        "n_market": 97,
+        "n_jev_plain": 99,
+        "n_market": 99,
         "n_jev_research": 32,
         "n_claude_direct": 8
       },
