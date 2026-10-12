@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T13:37:57Z",
+  "generated": "2026-10-12T13:53:04Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -183,7 +183,7 @@
       "label": "Will average **gas prices** be above $4.3600? (Above 4.3600)"
     },
     {
-      "t": "2026-10-12T13:37:57Z",
+      "t": "2026-10-12T13:53:04Z",
       "equity": 79110.34,
       "label": "Now (open bets valued at cost)"
     }
@@ -854,7 +854,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1508,
+    "resolved": 1511,
     "sources": [
       {
         "name": "jev_research",
@@ -865,8 +865,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22821511936339525,
-        "n": 1508
+        "brier": 0.22827677035076108,
+        "n": 1511
       },
       {
         "name": "claude_direct",
@@ -883,8 +883,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14608744827586206,
-        "n": 1508
+        "brier": 0.1463009410986102,
+        "n": 1511
       }
     ],
     "paired": {
@@ -926,7 +926,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T13:35:26Z",
+    "ts": "2026-10-12T13:50:34Z",
     "stages": [
       [
         "Fetched",
@@ -1795,7 +1795,7 @@
           99750.45
         ],
         [
-          "2026-10-12T13:37:57Z",
+          "2026-10-12T13:53:04Z",
           99750.45
         ]
       ]
@@ -2520,7 +2520,7 @@
           100000.0
         ],
         [
-          "2026-10-12T13:37:57Z",
+          "2026-10-12T13:53:04Z",
           100000.0
         ]
       ]
@@ -3245,7 +3245,7 @@
           100000.0
         ],
         [
-          "2026-10-12T13:37:57Z",
+          "2026-10-12T13:53:04Z",
           100000.0
         ]
       ]
@@ -4443,6 +4443,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T13:50:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T13:35:26Z",
       "type": "scan",
       "fetched": 200,
@@ -4984,15 +4992,6 @@
       "market": 0.405,
       "q": "Will the Los Angeles Dodgers win the 2026 World Series?",
       "url": "https://polymarket.com/market/will-the-los-angeles-dodgers-win-the-2026-world-series"
-    },
-    {
-      "ts": "2026-10-12T02:05:09Z",
-      "type": "call",
-      "jev": 0.19,
-      "claude": null,
-      "market": 0.272,
-      "q": "Will the Milwaukee Brewers win the 2026 World Series?",
-      "url": "https://polymarket.com/market/will-the-milwaukee-brewers-win-the-2026-world-series"
     }
   ],
   "plan_usage": {
@@ -5005,7 +5004,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1508,
+    "reviewed": 1511,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5611,14 +5610,14 @@
       },
       {
         "category": "politics",
-        "n": 59,
+        "n": 62,
         "jev_research": 0.2596,
-        "jev_plain": 0.332,
-        "market": 0.1153,
+        "jev_plain": 0.3285,
+        "market": 0.122,
         "claude_direct": 0.2551,
         "n_jev_research": 45,
-        "n_jev_plain": 59,
-        "n_market": 59,
+        "n_jev_plain": 62,
+        "n_market": 62,
         "n_claude_direct": 13
       },
       {
