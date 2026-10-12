@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T05:43:04Z",
+  "generated": "2026-10-12T05:58:08Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T05:43:04Z",
+      "t": "2026-10-12T05:58:08Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T05:35:08Z",
+    "ts": "2026-10-12T05:50:08Z",
     "stages": [
       [
         "Fetched",
-        176
+        178
       ],
       [
         "Passed free filters",
-        176
+        178
       ],
       [
         "Judged by Jev",
@@ -959,7 +959,7 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 76
+      "kalshi": 78
     },
     "problems": [
       "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline_exceeded\",\"message\":\"context deadline exceeded\"}}); kept what it had"
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T05:43:04Z",
+          "2026-10-12T05:58:08Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T05:43:04Z",
+          "2026-10-12T05:58:08Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T05:43:04Z",
+          "2026-10-12T05:58:08Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T05:50:08Z",
+      "type": "problem",
+      "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
+    },
+    {
+      "ts": "2026-10-12T05:50:08Z",
+      "type": "scan",
+      "fetched": 178,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T05:35:08Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
@@ -5027,22 +5040,6 @@
       "fetched": 200,
       "judged": 5,
       "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T22:35:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 15,
-      "researched": 5,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T22:20:12Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 12,
-      "researched": 5,
       "bets": 0
     }
   ],
