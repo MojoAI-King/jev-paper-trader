@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T02:23:14Z",
+  "generated": "2026-10-12T02:41:36Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T02:23:14Z",
+      "t": "2026-10-12T02:41:36Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T02:20:07Z",
+    "ts": "2026-10-12T02:35:08Z",
     "stages": [
       [
         "Fetched",
-        154
+        200
       ],
       [
         "Passed free filters",
-        154
+        200
       ],
       [
         "Judged by Jev",
@@ -959,10 +959,10 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 54
+      "kalshi": 100
     },
     "problems": [
-      "kalshi: fetch stopped after 5 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline_exceeded\",\"message\":\"context deadline exceeded\"}}); kept what it had"
+      "kalshi: fetch hit its page limit after 58 pages; far-dated markets left out"
     ],
     "cleared_gates": {
       "sharp": 0,
@@ -1045,7 +1045,7 @@
       "main": false,
       "equity": 100000.0,
       "slot": 3,
-      "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within 90 minutes. On 2,306 past markets that paid about +18% after fees at the 15-minute mark (62 events), and following a first YES lost.",
+      "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within an hour. In 108 past buys over 62 events that paid about +18% after fees at the 15-minute mark (range -0% to +35%); following a first YES lost.",
       "challenger": false,
       "note": null,
       "rules_version": 1,
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T02:23:14Z",
+          "2026-10-12T02:41:36Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T02:23:14Z",
+          "2026-10-12T02:41:36Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T02:23:14Z",
+          "2026-10-12T02:41:36Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T02:35:08Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 58 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T02:35:08Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T02:20:07Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 5 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
@@ -5061,22 +5074,6 @@
       "ts": "2026-10-11T16:52:53Z",
       "type": "learn",
       "text": "Challenger retired: Claude direct, sports only"
-    },
-    {
-      "ts": "2026-10-11T16:50:08Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 10,
-      "researched": 3,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T16:35:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 7,
-      "researched": 3,
-      "bets": 0
     }
   ],
   "plan_usage": {
