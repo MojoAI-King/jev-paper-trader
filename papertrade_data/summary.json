@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T05:58:08Z",
+  "generated": "2026-10-12T06:11:51Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T05:58:08Z",
+      "t": "2026-10-12T06:11:51Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T05:50:08Z",
+    "ts": "2026-10-12T06:05:07Z",
     "stages": [
       [
         "Fetched",
-        178
+        180
       ],
       [
         "Passed free filters",
-        178
+        180
       ],
       [
         "Judged by Jev",
@@ -959,10 +959,10 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 78
+      "kalshi": 80
     },
     "problems": [
-      "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline_exceeded\",\"message\":\"context deadline exceeded\"}}); kept what it had"
+      "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
     ],
     "cleared_gates": {
       "sharp": 0,
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T05:58:08Z",
+          "2026-10-12T06:11:51Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T05:58:08Z",
+          "2026-10-12T06:11:51Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T05:58:08Z",
+          "2026-10-12T06:11:51Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T06:05:07Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T06:05:07Z",
+      "type": "scan",
+      "fetched": 180,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T05:50:08Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
@@ -5025,22 +5038,6 @@
       "market": 0.535,
       "q": "Bitcoin price on Oct 16, 2026? ($83,500 or above)",
       "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617"
-    },
-    {
-      "ts": "2026-10-11T23:05:10Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 6,
-      "researched": 2,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T22:50:08Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 5,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
