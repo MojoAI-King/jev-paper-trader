@@ -1,20 +1,20 @@
 {
-  "generated": "2026-10-12T14:37:49Z",
+  "generated": "2026-10-12T14:53:58Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
   "cash": 74899.24,
-  "open_cost": 4211.1,
-  "equity": 79110.34,
-  "realized": -20889.66,
-  "roi_settled": -0.347017807668936,
+  "open_cost": 4013.03,
+  "equity": 78912.27,
+  "realized": -21087.73,
+  "roi_settled": -0.3491592865919495,
   "wins": 11,
-  "settled": 32,
+  "settled": 33,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
     "polymarket": 2159.71,
-    "kalshi": 2051.39
+    "kalshi": 1853.32
   },
   "curve": [
     {
@@ -183,8 +183,13 @@
       "label": "Will average **gas prices** be above $4.3600? (Above 4.3600)"
     },
     {
-      "t": "2026-10-12T14:37:49Z",
-      "equity": 79110.34,
+      "t": "2026-10-12T14:50:23Z",
+      "equity": 78912.27,
+      "label": "Will it rain in Los Angeles on Oct 11, 2026?"
+    },
+    {
+      "t": "2026-10-12T14:53:58Z",
+      "equity": 78912.27,
       "label": "Now (open bets valued at cost)"
     }
   ],
@@ -216,20 +221,6 @@
       "edge": 0.2776,
       "opened": "2026-10-10T22:50:09Z",
       "close_time": "2026-10-11T12:00:00Z"
-    },
-    {
-      "question": "Will it rain in Los Angeles on Oct 11, 2026?",
-      "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-los-angeles-on-oct-11-2026/kxrain-26oct11",
-      "source": "kalshi",
-      "side": "no",
-      "contracts": 316,
-      "cost_per": 0.6268,
-      "total_cost": 198.07,
-      "p_side": 0.83,
-      "market_ask": 0.6,
-      "edge": 0.2032,
-      "opened": "2026-10-11T12:20:19Z",
-      "close_time": "2026-10-12T08:00:00Z"
     },
     {
       "question": "The Social Reckoning Rotten Tomatoes score? (Above 60)",
@@ -275,6 +266,24 @@
     }
   ],
   "closed": [
+    {
+      "question": "Will it rain in Los Angeles on Oct 11, 2026?",
+      "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-los-angeles-on-oct-11-2026/kxrain-26oct11",
+      "source": "kalshi",
+      "side": "no",
+      "contracts": 316,
+      "cost_per": 0.6268,
+      "total_cost": 198.07,
+      "p_side": 0.83,
+      "market_ask": 0.6,
+      "edge": 0.2032,
+      "opened": "2026-10-11T12:20:19Z",
+      "close_time": "2026-10-12T08:00:00Z",
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -198.07,
+      "settled": "2026-10-12T14:50:23Z"
+    },
     {
       "question": "Will average **gas prices** be above $4.3600? (Above 4.3600)",
       "url": "https://kalshi.com/markets/kxaaagasw/will-average-gas-prices-be-above-4-3600/kxaaagasw-26oct12",
@@ -854,19 +863,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1514,
+    "resolved": 1525,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.2083516624040921,
-        "n": 1173
+        "brier": 0.2097871186440678,
+        "n": 1180
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22822734478203435,
-        "n": 1514
+        "brier": 0.22920649180327868,
+        "n": 1525
       },
       {
         "name": "claude_direct",
@@ -877,39 +886,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2105232135818182,
-        "n": 1100
+        "brier": 0.21194463419150858,
+        "n": 1107
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1469263355350066,
-        "n": 1514
+        "brier": 0.14637009639344262,
+        "n": 1525
       }
     ],
     "paired": {
-      "n": 761,
+      "n": 766,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16413394218134034
+          "brier": 0.16447451697127938
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2193911957950066
+          "brier": 0.21987650130548303
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20318883048620237
+          "brier": 0.20366579634464754
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24515374507227333
+          "brier": 0.24585522193211487
         }
       ]
     }
@@ -926,7 +935,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T14:35:24Z",
+    "ts": "2026-10-12T14:50:23Z",
     "stages": [
       [
         "Fetched",
@@ -1795,7 +1804,7 @@
           99750.45
         ],
         [
-          "2026-10-12T14:37:49Z",
+          "2026-10-12T14:53:58Z",
           99750.45
         ]
       ]
@@ -2520,7 +2529,7 @@
           100000.0
         ],
         [
-          "2026-10-12T14:37:49Z",
+          "2026-10-12T14:53:58Z",
           100000.0
         ]
       ]
@@ -3245,7 +3254,7 @@
           100000.0
         ],
         [
-          "2026-10-12T14:37:49Z",
+          "2026-10-12T14:53:58Z",
           100000.0
         ]
       ]
@@ -4443,6 +4452,54 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T14:53:46Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "research_error",
+      "q": "DeepSeek market share this week? (Above 22.6%)",
+      "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12"
+    },
+    {
+      "ts": "2026-10-12T14:53:30Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "research_error",
+      "q": "DeepSeek market share this week? (Above 22.4%)",
+      "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12"
+    },
+    {
+      "ts": "2026-10-12T14:53:13Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "DeepSeek market share this week? (Above 22.9%)",
+      "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12"
+    },
+    {
+      "ts": "2026-10-12T14:52:57Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "OpenAI market share this week? (Above 17.8%)",
+      "url": "https://kalshi.com/markets/kxopenshare/openai-market-share-this-week/kxopenshare-26oct12"
+    },
+    {
+      "ts": "2026-10-12T14:52:41Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "DeepSeek market share this week? (Above 23.4%)",
+      "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12"
+    },
+    {
+      "ts": "2026-10-12T14:50:23Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T14:35:24Z",
       "type": "scan",
       "fetched": 200,
@@ -4955,45 +5012,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-12T03:05:11Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 55 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T03:05:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T02:50:10Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 57 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T02:50:10Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T02:35:08Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 58 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T02:35:08Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5006,8 +5024,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1514,
-    "post_mortems": 68,
+    "reviewed": 1525,
+    "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
       {
@@ -5018,15 +5036,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 412,
+        "n": 418,
         "predicted": 0.298,
-        "actual": 0.272
+        "actual": 0.28
       },
       {
         "range": "40\u201360%",
-        "n": 413,
+        "n": 414,
         "predicted": 0.49,
-        "actual": 0.535
+        "actual": 0.536
       },
       {
         "range": "60\u201380%",
@@ -5044,9 +5062,9 @@
     "root_causes": {
       "overconfident": 26,
       "unlucky": 26,
-      "missing_info": 5,
+      "missing_info": 8,
       "stale_info": 6,
-      "research_error": 3,
+      "research_error": 5,
       "misread_rules": 2
     },
     "credits": {
@@ -5055,6 +5073,106 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "DeepSeek market share this week? (Above 22.6%)",
+        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.27,
+        "market": 0.915,
+        "ts": "2026-10-12T14:53:46Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "research_error",
+        "what_happened": "DeepSeek ended above 22.6% on OpenRouter's author market-share chart for the week of Oct 5, so the question resolved YES. The market priced this at 91.5%, but our forecasts were only 27\u201332%. DeepSeek's V4.1 Flash had been the top single model on OpenRouter for weeks, and its token volume was still growing.",
+        "what_we_missed": "OpenRouter's market-share chart counts tokens. On that measure DeepSeek was around 34\u201335%, far above the threshold. We leaned on 'request-based' figures (21.8% and 24.4%) that came from unverified sources, and we also used the wrong threshold (23.4% instead of 22.6%). Both errors pushed the forecast down, even though the market was strongly pointing the other way.",
+        "what_worked": "",
+        "lesson": "Before forecasting a leaderboard-share market, check which measure the resolution source actually uses (for example, by opening OpenRouter's rankings page), and use the threshold exactly as written in the question. If the market sits above 90% and we disagree, find out why it's that high.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Block any forecast that disagrees with a market priced above 85% or below 15% by more than 40 points unless the research desk has confirmed the resolution metric and the threshold directly from the resolution source."
+        }
+      },
+      {
+        "question": "DeepSeek market share this week? (Above 22.4%)",
+        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.26,
+        "market": 0.95,
+        "ts": "2026-10-12T14:53:30Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "research_error",
+        "what_happened": "OpenRouter's author chart is token-based, and DeepSeek's token share was around 34\u201335% because of strong V4.1 Flash usage. That put it well above 22.4% for the week of Oct 5, and the market resolved YES, as the 95% market price had implied.",
+        "what_we_missed": "The research brief gave the threshold as 23.4% when the rules say 22.4%. It also treated the request-based figures (24.4% and 21.8%) as possibly being what the resolution chart uses. OpenRouter's author market-share chart measures tokens, and every token-based data point that week showed DeepSeek near 34\u201335%. Those errors made the forecaster give a large weight to a false downside, and it ended up at 0.26 against a 0.95 market.",
+        "what_worked": "",
+        "lesson": "Before forecasting, check the threshold against the rules text, and confirm which metric the resolution chart uses (OpenRouter's market share is token-based). When a liquid market sits at 95% and we come out near 25%, treat that as a sign our research has an error.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Add a check that compares the threshold in the research brief with the resolution rules, and record that OpenRouter's author market share is measured in tokens, so request-based figures from blogs are not used as resolution proxies."
+        }
+      },
+      {
+        "question": "DeepSeek market share this week? (Above 22.9%)",
+        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.31,
+        "market": 0.88,
+        "ts": "2026-10-12T14:53:13Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "DeepSeek's share of OpenRouter text requests for the week of Oct 5, 2026 came in above 22.9%, so the market resolved YES. That fits the trend: DeepSeek led at 21.8% the week before, and its top model, V4.1 Flash, grew another +51% in tokens week over week. The market was already at 0.88 by Oct 10, partway through the week.",
+        "what_we_missed": "The OpenRouter chart for the week in progress was live and showed the running share, and the 0.88 price almost certainly reflected it. We couldn't render that chart, so we fell back on the previous week's 21.8% and treated 22.9% as a hurdle above it. We also gave too little weight to the +51% token surge for DeepSeek's lead model and to September readings of 23\u201324% of requests.",
+        "what_worked": "",
+        "lesson": "If a weekly-share market is judged mid-week and you can't read the live chart, but the market is priced far from your estimate, assume traders can see the partial-week value and move strongly toward the market price.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Add a dependable way to read OpenRouter's market-share-by-author chart for the current week, such as a headless browser or the underlying data endpoint. If that fails, make it a gate rule that a forecast more than 40 points from the market price on a mid-week share question gets capped or flagged."
+        }
+      },
+      {
+        "question": "OpenAI market share this week? (Above 17.8%)",
+        "url": "https://kalshi.com/markets/kxopenshare/openai-market-share-this-week/kxopenshare-26oct12",
+        "outcome": "yes",
+        "category": "tech",
+        "p": 0.22,
+        "market": 0.885,
+        "ts": "2026-10-12T14:52:57Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "OpenAI finished above 17.8% on OpenRouter's author market-share chart for the week of Oct 5, 2026, so the market resolved YES. When we judged, four days of that week's data were already in and the market price was 88.5%, which suggests the chart showed OpenAI well above the threshold.",
+        "what_we_missed": "We never read the actual partial-week author-share values, even though the page had data through Oct 9. Instead we leaned on weaker substitutes: one day of top-12-model token shares (OpenAI about 8%), loose per-model token counts, and an unclear requests-vs-tokens basis. None of these measures what the resolution chart measures, and they pushed us to 22% against an 88.5% market.",
+        "what_worked": "",
+        "lesson": "If the resolving chart's current partial-week values can't be read, don't bet hard against a market that is pricing late in the week; a high price usually means traders can see the chart, so either fetch it some other way or move toward the market.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "For OpenRouter share markets, block any forecast more than 30 points from a market priced above 80% or below 20% unless the forecaster has the actual current author-share values from the resolving chart (rendered page, API, or screenshot), not substitute metrics like top-N model tokens."
+        }
+      },
+      {
+        "question": "DeepSeek market share this week? (Above 23.4%)",
+        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.24,
+        "market": 0.91,
+        "ts": "2026-10-12T14:52:41Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "OpenRouter's request share for DeepSeek in the week of Oct 5\u201311, 2026 finished above 23.4%, so the market resolved YES. This fits the market's 91% price on Oct 10, when the rankings page already had week-to-date data through Oct 9.",
+        "what_we_missed": "The forecaster leaned on last week's final figure of 21.8% and ignored the live week-to-date share on OpenRouter's rankings page. That share was most likely already above 23.4%, and with 5 of 7 days counted it nearly settled the outcome. There were other signs: DeepSeek V4.1 Flash was #1 in daily tokens on Oct 9, its tokens grew 56% the week before, and share had been 24.4% two weeks earlier. A 91% market price this late in the week was a strong sign that traders could see the current data.",
+        "what_worked": "",
+        "lesson": "For weekly share markets judged late in the week, read the current week's partial value on the source chart first. Last week's final number should be a fallback, and a big gap from a near-certain market price late in the week means you have probably missed live data.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For OpenRouter or Kalshi weekly-share questions, require research to fetch the rankings page directly and record the current week's partial share for the named author, and flag any forecast that differs from the market price by more than 40 points without that number."
+        }
+      },
       {
         "question": "Kentucky wins",
         "url": "https://kalshi.com/markets/kxncaafgame/kentucky-wins/kxncaafgame-26oct10lsuuk",
@@ -5073,114 +5191,6 @@
         "suggested_change": {
           "area": "none",
           "change": "No process change is needed. The forecast leaned the right way relative to the market, and the outcome came down to a late-game coin flip."
-        }
-      },
-      {
-        "question": "UNLV wins",
-        "url": "https://kalshi.com/markets/kxncaafgame/unlv-wins/kxncaafgame-26oct10ndsuunlv",
-        "outcome": "yes",
-        "category": "sports",
-        "p": 0.37,
-        "market": 0.445,
-        "ts": "2026-10-11T02:56:20Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "UNLV beat previously unbeaten North Dakota State 13-7 at Allegiant Stadium on Oct 10, 2026. UNLV's defense shut out the Bison in the second half. NDSU QB Nathan Hayes threw three interceptions, one returned for a touchdown, and coach Tim Polasek's fourth-down tries at the UNLV 4-yard line and at NDSU's own 18 both failed.",
-        "what_we_missed": "Nothing that could have been known beforehand decided this game. The result came down to turnovers and failed fourth downs in a low-scoring game. Our forecasts (0.37\u20130.41) were a little below the market's 0.445, and the market had better credited UNLV's home field and NDSU's first year in FBS.",
-        "what_worked": "",
-        "lesson": "When a FCS-to-FBS newcomer is unbeaten against a weak schedule and plays an FBS home team, don't move further from the market than it already is, because the newcomer's record may overstate its strength.",
-        "suggested_change": {
-          "area": "none",
-          "change": "No process change is needed. This was a close game, and the less likely result happened because of turnovers."
-        }
-      },
-      {
-        "question": "North Dakota St. wins",
-        "url": "https://kalshi.com/markets/kxncaafgame/north-dakota-st-wins/kxncaafgame-26oct10ndsuunlv",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.58,
-        "market": 0.555,
-        "ts": "2026-10-11T02:56:04Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "UNLV won 13-7 at home at Allegiant Stadium. NDSU's defense held up, but its offense scored only one touchdown, in the second quarter, and was shut out in the second half. That ended the Bison's 5-0 start.",
-        "what_we_missed": "Nothing decisive. The 0.58 forecast was slightly above the market's 0.555, likely because of NDSU's 5-0 record and No. 1 scoring defense. It didn't fully weigh that NDSU was a road team in its first FBS season with an offense that hadn't been tested by FBS defenses, or that NDSU's only game against a solid opponent was a close 38-32 win over Air Force.",
-        "what_worked": "",
-        "lesson": "For a near-coin-flip road game, stay close to the market price unless you have specific new information. A strong record built mostly against weak or FCS opponents doesn't justify moving above the market.",
-        "suggested_change": {
-          "area": "none",
-          "change": "The forecast was well calibrated and near the market price. A 42% outcome happening is normal variance, so no process change is needed."
-        }
-      },
-      {
-        "question": "North Dakota St. wins by over 3.5 points",
-        "url": "https://kalshi.com/markets/kxncaafspread/north-dakota-st-wins-by-over-3-5-points/kxncaafspread-26oct10ndsuunlv",
-        "outcome": "no",
-        "category": "other",
-        "p": 0.68,
-        "market": 0.425,
-        "ts": "2026-10-11T02:55:42Z",
-        "bets": {
-          "main": -1618.52,
-          "bold": -171.0,
-          "calibrated": -1817.08,
-          "original": -1562.68
-        },
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "UNLV beat North Dakota State 13-7 at Allegiant Stadium. The Bison scored only in the second quarter and were shut out in the second half, so the bet on NDSU winning by more than 3.5 points lost.",
-        "what_we_missed": "Before kickoff, the market and the models all called this close to a coin flip: ESPN FPI gave UNLV a 51.9% chance to win, Dimers projected NDSU 25-23, and the market priced NDSU covering at 42.5%. The research leaned on NDSU's 5-0 record and +23 average margin, which mostly came against weak opponents, and gave little weight to the fact that this was a first-year FBS team playing a road game against a decent home FBS opponent.",
-        "what_worked": "",
-        "lesson": "If the market price and public models such as FPI agree on a near pick'em, don't move 25 points away from them because of a team's raw win-loss record and average margin unless you have specific information they lack.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For sports spread markets, always pull the betting line and at least one public model (FPI, SP+ or Dimers), and cap how far the forecast can stray from that consensus unless there is concrete news to justify it."
-        }
-      },
-      {
-        "question": "Will IK Oddevold win on 2026-10-10?",
-        "url": "https://polymarket.com/market/swe2-odd-nou-2026-10-10-odd",
-        "outcome": "yes",
-        "category": "sports",
-        "p": 0.37,
-        "market": 0.555,
-        "ts": "2026-10-11T00:55:05Z",
-        "bets": {
-          "bold": -0.46,
-          "ch16": -2020.32
-        },
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "Oddevold won the home game against Nordic United in regular time, so the market resolved YES. I couldn't find the score or a match report. Every source my search turned up was a preview.",
-        "what_we_missed": "The market put Oddevold at 55.5%, and prediction sites gave them about 60%. The forecaster's 37% went well below that because of Oddevold's high draw rate and modest home form. It gave too little weight to Nordic United's poor defending (12 goals conceded in their last five games, including three home defeats). The two sides were level on points, and that kind of evidence doesn't justify an 18-point gap from the market.",
-        "what_worked": "",
-        "lesson": "If your own statistics are mixed and point both ways, don't move more than about 10 points away from a liquid market price unless you have specific news the market lacks, such as injuries or lineups.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Require a named, specific piece of information before placing a bet against the market when the forecast is more than 10 points from the market price on a low-information league match."
-        }
-      },
-      {
-        "question": "Will the highest temperature in Wellington be 20\u00b0C on October 10?",
-        "url": "https://polymarket.com/market/highest-temperature-in-wellington-on-october-10-2026-20c",
-        "outcome": "yes",
-        "category": "weather",
-        "p": 0.19,
-        "market": 0.2,
-        "ts": "2026-10-10T12:11:50Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "The question resolved YES: NZWN's highest reading on 10 Oct 2026 was 20\u00b0C, 2\u20133\u00b0C above the 17\u201318\u00b0C that consumer forecast sites were giving. I couldn't find a news or observation record explaining why it ran warm.",
-        "what_we_missed": "Our evidence was two consumer forecast snippets (17\u00b0C and 18\u00b0C) plus a few years of October climate figures. We had no MetService or model ensemble spread, and nothing on how warm the northerly flow might get. Even so, 0.19 matched the market's 0.20, so the information we had did not point clearly to 20\u00b0C.",
-        "what_worked": "",
-        "lesson": "Under northerly flow, Wellington Airport highs often come in several degrees above the point forecasts on consumer sites. Build a \u00b12\u20133\u00b0C error spread around the forecast high rather than putting most of the probability on the forecast value and the bracket either side of it.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For Wellington temperature markets, pull MetService's official forecast and model ensemble spreads, and check past forecast error for the airport station under the expected wind direction, instead of relying on aggregator snippets."
         }
       }
     ],
@@ -5543,9 +5553,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0866,
-      "b": 0.1328,
-      "n": 1173,
+      "a": 1.0676,
+      "b": 0.142,
+      "n": 1180,
       "active": true,
       "need": 300
     },
@@ -5588,14 +5598,14 @@
       },
       {
         "category": "other",
-        "n": 187,
-        "jev_plain": 0.204,
-        "market": 0.1357,
-        "jev_research": 0.2441,
+        "n": 192,
+        "jev_plain": 0.209,
+        "market": 0.1324,
+        "jev_research": 0.2543,
         "claude_direct": 0.1922,
-        "n_jev_plain": 187,
-        "n_market": 187,
-        "n_jev_research": 110,
+        "n_jev_plain": 192,
+        "n_market": 192,
+        "n_jev_research": 114,
         "n_claude_direct": 35
       },
       {
@@ -5634,15 +5644,27 @@
       },
       {
         "category": "weather",
-        "n": 50,
-        "jev_plain": 0.2496,
-        "market": 0.124,
+        "n": 51,
+        "jev_plain": 0.2567,
+        "market": 0.1349,
         "jev_research": 0.2206,
         "claude_direct": 0.2392,
-        "n_jev_plain": 50,
-        "n_market": 50,
+        "n_jev_plain": 51,
+        "n_market": 51,
         "n_jev_research": 42,
         "n_claude_direct": 28
+      },
+      {
+        "category": "tech",
+        "n": 23,
+        "jev_research": 0.3957,
+        "jev_plain": 0.2501,
+        "market": 0.0434,
+        "claude_direct": 0.49,
+        "n_jev_research": 8,
+        "n_jev_plain": 23,
+        "n_market": 23,
+        "n_claude_direct": 1
       },
       {
         "category": "world",
@@ -5653,18 +5675,6 @@
         "n_jev_plain": 19,
         "n_market": 19,
         "n_jev_research": 5
-      },
-      {
-        "category": "tech",
-        "n": 18,
-        "jev_research": 0.4295,
-        "jev_plain": 0.2406,
-        "market": 0.0528,
-        "claude_direct": 0.49,
-        "n_jev_research": 5,
-        "n_jev_plain": 18,
-        "n_market": 18,
-        "n_claude_direct": 1
       }
     ],
     "proposals": [
@@ -6077,8 +6087,8 @@
       }
     ],
     "suggested_areas": {
-      "gates": 49,
-      "research": 45,
+      "gates": 51,
+      "research": 48,
       "questions": 2
     },
     "retro": {
