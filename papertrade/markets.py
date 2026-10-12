@@ -23,6 +23,7 @@ MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry
 POLY_PAGE = 100
 RETRIES = 5      # tries per request on "too many requests" (429) or a server error (5xx): waits 3+6+12+24s
 KALSHI_PAGE = 1000       # Kalshi's largest page (about 2 MB)
+KALSHI_MIN_PAGE = 125    # smallest page tried when Kalshi times out on a big one (HTTP 504)
 KALSHI_PAGE_PAUSE = 1.0  # seconds between Kalshi pages: GitHub's shared runners hit its rate limit (429)
 KALSHI_MAX_PAGES = 60    # all slices together; the whole 30-day window was about 32 pages on 2026-09-28
 KALSHI_SLICES = (timedelta(hours=12), timedelta(days=3), timedelta(days=7))  # slice edges, soonest first
@@ -255,24 +256,32 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
     deadline = started + KALSHI_DEADLINE
     edges = [e for e in KALSHI_SLICES if e < timedelta(days=days_ahead)] + [timedelta(days=days_ahead)]
     out, seen, pages, cut_short, error = [], set(), 0, False, None
+    page_size, shrunk, units = KALSHI_PAGE, 0, 0.0
     for lo, hi in zip(edges, edges[1:]):
         cursor = None
         while not error:
-            if pages >= KALSHI_MAX_PAGES or time.monotonic() > deadline:
+            if units >= KALSHI_MAX_PAGES or time.monotonic() > deadline:  # the cap counts full pages' worth
                 cut_short = True
                 break
             if pages:
                 _sleep(KALSHI_PAGE_PAUSE)
-            params = {"status": "open", "limit": KALSHI_PAGE, "mve_filter": "exclude",
+            params = {"status": "open", "limit": page_size, "mve_filter": "exclude",
                       "min_close_ts": int((now + lo).timestamp()), "max_close_ts": int((now + hi).timestamp())}
             if cursor:
                 params["cursor"] = cursor
             try:
                 data = _get(f"{KALSHI}/markets", params)
-            except Exception as e:  # after _get's own retries: keep what the earlier pages found
-                error = str(e)
+            except Exception as e:  # after _get's own retries
+                if "HTTP 504" in str(e) and page_size > KALSHI_MIN_PAGE:
+                    # Kalshi's "context deadline exceeded": a big page timed out on its side (every cycle stopped at
+                    # page 5 on 2026-10-12); the same page, smaller, usually comes back
+                    page_size = max(KALSHI_MIN_PAGE, page_size // 2)
+                    shrunk += 1
+                    continue
+                error = str(e)  # keep what the earlier pages found
                 break
             pages += 1
+            units += page_size / KALSHI_PAGE
             for m in data.get("markets", []):
                 n = normalize_kalshi(m)
                 if n and n["market_id"] not in seen and n["volume"] >= min_volume and (keep is None or keep(n)):
@@ -284,7 +293,8 @@ def fetch_kalshi(days_ahead: int, min_volume: float, limit: int, keep=None) -> l
         if error or cut_short:
             break
     LAST_FETCH["kalshi"] = {"pages": pages, "seconds": round(time.monotonic() - started, 1),
-                            "cut_short": cut_short, "error": error, "passing": len(out)}
+                            "cut_short": cut_short, "error": error, "passing": len(out), "page_size": page_size,
+                            "shrunk": shrunk}
     if error and not out:
         raise RuntimeError(error)
     out.sort(key=lambda m: m["volume"], reverse=True)

@@ -462,6 +462,22 @@ class FirstTradeReaderTests(unittest.TestCase):
             self.assertEqual(mk.kalshi_first_trade("T", None, max_pages=3), {"unknown": True})
 
 
+class KalshiWalkTimeoutTests(unittest.TestCase):
+    def test_a_timed_out_big_page_is_retried_smaller_and_the_walk_carries_on(self):
+        sizes = []
+
+        def get(url, params=None, timeout=20):
+            sizes.append(params["limit"])
+            if params["limit"] > 250:
+                raise RuntimeError("HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: deadline")
+            return {"markets": [], "cursor": ""}
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            mk.fetch_kalshi(30, 0, 10)
+        self.assertEqual(sizes[:3], [1000, 500, 250])  # halved until Kalshi answers
+        self.assertIsNone(mk.LAST_FETCH["kalshi"]["error"])
+        self.assertGreaterEqual(mk.LAST_FETCH["kalshi"]["shrunk"], 2)
+
+
 class PolymarketFetchTests(unittest.TestCase):
     """Replays recorded Gamma API responses; no network."""
 
