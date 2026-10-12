@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T03:41:33Z",
+  "generated": "2026-10-12T03:56:35Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T03:41:33Z",
+      "t": "2026-10-12T03:56:35Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T03:35:11Z",
+    "ts": "2026-10-12T03:50:08Z",
     "stages": [
       [
         "Fetched",
-        200
+        159
       ],
       [
         "Passed free filters",
-        200
+        159
       ],
       [
         "Judged by Jev",
@@ -959,10 +959,10 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 100
+      "kalshi": 59
     },
     "problems": [
-      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+      "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
     ],
     "cleared_gates": {
       "sharp": 0,
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T03:41:33Z",
+          "2026-10-12T03:56:35Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:41:33Z",
+          "2026-10-12T03:56:35Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:41:33Z",
+          "2026-10-12T03:56:35Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T03:50:08Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T03:50:08Z",
+      "type": "scan",
+      "fetched": 159,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T03:35:11Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5051,22 +5064,6 @@
       "fetched": 200,
       "judged": 8,
       "researched": 3,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T18:50:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 17,
-      "researched": 6,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T18:35:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 9,
-      "researched": 4,
       "bets": 0
     }
   ],
