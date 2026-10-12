@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T03:11:31Z",
+  "generated": "2026-10-12T03:22:44Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T03:11:31Z",
+      "t": "2026-10-12T03:22:44Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -845,62 +845,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1468,
+    "resolved": 1471,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20805078947368422,
-        "n": 1140
+        "brier": 0.2080405949256343,
+        "n": 1143
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22921777929155315,
-        "n": 1468
+        "brier": 0.22923827328348062,
+        "n": 1471
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.18024456097560976,
-        "n": 328
+        "brier": 0.1801830273556231,
+        "n": 329
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20999748963448922,
-        "n": 1067
+        "brier": 0.2099939433084112,
+        "n": 1070
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14662882476158037,
-        "n": 1468
+        "brier": 0.1468099182528892,
+        "n": 1471
       }
     ],
     "paired": {
-      "n": 738,
+      "n": 740,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16323132520325204
+          "brier": 0.16341347027027026
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21914810298102982
+          "brier": 0.2190793243243243
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20235867208672087
+          "brier": 0.2023264864864865
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24657926829268295
+          "brier": 0.2465227027027027
         }
       ]
     }
@@ -917,7 +917,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T03:05:11Z",
+    "ts": "2026-10-12T03:20:08Z",
     "stages": [
       [
         "Fetched",
@@ -961,9 +961,7 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [
-      "kalshi: fetch hit its page limit after 55 pages; far-dated markets left out"
-    ],
+    "problems": [],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1788,7 +1786,7 @@
           99750.45
         ],
         [
-          "2026-10-12T03:11:31Z",
+          "2026-10-12T03:22:44Z",
           99750.45
         ]
       ]
@@ -2513,7 +2511,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:11:31Z",
+          "2026-10-12T03:22:44Z",
           100000.0
         ]
       ]
@@ -3238,7 +3236,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:11:31Z",
+          "2026-10-12T03:22:44Z",
           100000.0
         ]
       ]
@@ -4436,6 +4434,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T03:20:08Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T03:05:11Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 55 pages; far-dated markets left out"
@@ -5063,14 +5069,6 @@
       "judged": 9,
       "researched": 3,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-11T17:50:41Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 22,
-      "researched": 2,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5083,7 +5081,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1468,
+    "reviewed": 1471,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5101,9 +5099,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 400,
+        "n": 403,
         "predicted": 0.49,
-        "actual": 0.535
+        "actual": 0.533
       },
       {
         "range": "60\u201380%",
@@ -5626,9 +5624,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.1062,
-      "b": 0.1556,
-      "n": 1140,
+      "a": 1.1072,
+      "b": 0.1541,
+      "n": 1143,
       "active": true,
       "need": 300
     },
@@ -5647,15 +5645,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 828,
+        "n": 831,
         "jev_research": 0.2043,
-        "jev_plain": 0.2277,
-        "market": 0.1768,
-        "claude_direct": 0.1764,
-        "n_jev_research": 707,
-        "n_jev_plain": 828,
-        "n_market": 828,
-        "n_claude_direct": 199
+        "jev_plain": 0.2278,
+        "market": 0.177,
+        "claude_direct": 0.1763,
+        "n_jev_research": 710,
+        "n_jev_plain": 831,
+        "n_market": 831,
+        "n_claude_direct": 200
       },
       {
         "category": "crypto",
