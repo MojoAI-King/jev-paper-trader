@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 22:42 EDT
+Written: 2026-10-12 01:02 EDT
 
+- **State:** Session closed by Joey. Live: sharp (paid odds, own pass, Kalshi walk fixed), mention_no and mention_follow (both pre-registered and locked); all forecaster strategies and original retired; no Jev or research calls. Maintenance recorded. Evidence: 161 offline tests OK; run 38196326048 success; skilliton maintain --apply.
+- **Next:** Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; Kalshi sometimes times out (walk shrinks pages); post-mortems and the daily review still use Claude
+- **Git:** master @ 8d775c5, 0 tracked uncommitted, 2 untracked
+- **CI:** master green on GitHub (read 2026-10-12 05:02 UTC)
+
+## Earlier
+
+### 2026-10-11 22:42 EDT
 - **State:** Live on Joey's standing permission (2026-10-12): original retired; mention_follow built, hardened after an adversarial review (wf_d1c03f32-477), pre-registered and locked; no Jev or research calls when nothing uses them (jev_used false, judged 0); Kalshi 504 fix (15286af): run 38196326048 read 58 pages with no error (was 5), sharp matched 7 games. Follow research rerun with full-precision ordering: +18.1% at 15 min holds. Evidence: 161 offline tests OK; runs 38195337805 and 38196326048 success; read-only live walk 32 pages no error; kalshi_first_trade live check on 3 markets.
 - **Next:** Let sharp, mention_no and mention_follow run; early read on the mention strategies in 2-3 weeks (mention_forward.py); next research: follow-first-trade in other families (gas ladders) at quoted prices
 - **Blocked:** nothing
 - **Watch out:** Kalshi answers slowly at times: the walk now shrinks pages on 504 and stops at its 300 s budget; post-mortems and the daily review still use Claude
 - **Git:** master @ 6677104, 0 tracked uncommitted, 2 untracked
 - **CI:** master green on GitHub (read 2026-10-12 02:42 UTC)
-
-## Earlier
 
 ### 2026-10-11 21:04 EDT
 - **State:** Follow-first-trade tested at quoted prices (7b455a6; the workflow attempt hit the plan's session limit, redone as a script): following a NO first trade in new mention markets +18.1% [-1.3, +35.1] at 15 min (108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min); following YES -4% to -25%; placebo NO about 0. Proposed to Joey: a new paper strategy mention_follow (code change). Live: 27 cycles since 18:05Z, one transient Kalshi 504; the touchdown-prop sharp bet settled -249.55 (excluded); mention_no 32 open. Evidence: follow_first_trade.py --summarize on 2,306 markets; 155 offline tests OK.
@@ -46,11 +54,3 @@ Written: 2026-10-11 22:42 EDT
 - **Watch out:** The daily review can still tune mention_no's rules mid forward test; worth a guard (ask Joey)
 - **Git:** master @ fc6d170, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 17:09 UTC)
-
-### 2026-10-11 12:46 EDT
-- **State:** Maintenance recorded (b690134). Jev retired as a picker and live (run 38156043216 clean). Workflow wf_79340bda-9e0 verifying the Economics first-trade lead and the mention listing-quote rule; results pending. Evidence: 154 offline tests OK; skilliton maintain --apply; secrets scan 21 known false positives.
-- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
-- **Blocked:** nothing
-- **Watch out:** Trade-conditioned first-trade results can come from the first trader's own choice
-- **Git:** master @ b690134, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 16:46 UTC)
