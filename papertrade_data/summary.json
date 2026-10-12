@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T20:08:01Z",
+  "generated": "2026-10-12T20:23:31Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -193,7 +193,7 @@
       "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
     },
     {
-      "t": "2026-10-12T20:08:01Z",
+      "t": "2026-10-12T20:23:31Z",
       "equity": 77260.98,
       "label": "Now (open bets valued at cost)"
     }
@@ -944,7 +944,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T20:05:24Z",
+    "ts": "2026-10-12T20:20:27Z",
     "stages": [
       [
         "Fetched",
@@ -1813,7 +1813,7 @@
           99750.45
         ],
         [
-          "2026-10-12T20:08:01Z",
+          "2026-10-12T20:23:31Z",
           99750.45
         ]
       ]
@@ -2538,7 +2538,7 @@
           100000.0
         ],
         [
-          "2026-10-12T20:08:01Z",
+          "2026-10-12T20:23:31Z",
           100000.0
         ]
       ]
@@ -3263,7 +3263,7 @@
           100000.0
         ],
         [
-          "2026-10-12T20:08:01Z",
+          "2026-10-12T20:23:31Z",
           100000.0
         ]
       ]
@@ -4461,6 +4461,33 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T20:23:27Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-12T20:23:04Z",
+      "type": "idea",
+      "text": "Alert when a cycle judges nothing",
+      "status": "proposed",
+      "why": "48 cycles in 12 hours judged 0 markets with 0 research while 45 markets resolved, so the forecasting pipeline seems stalled or starved of new markets. A stall like this silently freezes every Jev and Claude strategy."
+    },
+    {
+      "ts": "2026-10-12T20:23:04Z",
+      "type": "idea",
+      "text": "Explain sharp's skill estimate of -1.56",
+      "status": "proposed",
+      "why": "A raw skill of -1.5581 on 29 markets is far outside the range of the other sources (-0.01 to -0.02). It points to a matching or units bug in how Pinnacle's line is paired with Kalshi prices, probably the same cause as sharp's near-zero bet count (p30). This is narrower than p31's general sanity chec"
+    },
+    {
+      "ts": "2026-10-12T20:20:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T20:05:24Z",
       "type": "scan",
       "fetched": 200,
@@ -5022,32 +5049,6 @@
       "ts": "2026-10-12T06:35:06Z",
       "type": "scan",
       "fetched": 181,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T06:20:13Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T06:20:13Z",
-      "type": "scan",
-      "fetched": 180,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T06:05:07Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T06:05:07Z",
-      "type": "scan",
-      "fetched": 180,
       "judged": 0,
       "researched": 0,
       "bets": 0
@@ -5718,6 +5719,28 @@
     ],
     "proposals": [
       {
+        "id": "p39",
+        "kind": "code",
+        "title": "Explain sharp's skill estimate of -1.56",
+        "why": "A raw skill of -1.5581 on 29 markets is far outside the range of the other sources (-0.01 to -0.02). It points to a matching or units bug in how Pinnacle's line is paired with Kalshi prices, probably the same cause as sharp's near-zero bet count (p30). This is narrower than p31's general sanity check and should be fixed before sharp's forward test is read.",
+        "judge_by": "After the fix, sharp's raw skill on the same markets lies between -0.1 and +0.1. A spot check of 5 of its 29 markets shows the sharp probability and the market price refer to the same outcome.",
+        "min_resolved": 29,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-12T20:23:04Z"
+      },
+      {
+        "id": "p38",
+        "kind": "code",
+        "title": "Alert when a cycle judges nothing",
+        "why": "48 cycles in 12 hours judged 0 markets with 0 research while 45 markets resolved, so the forecasting pipeline seems stalled or starved of new markets. A stall like this silently freezes every Jev and Claude strategy.",
+        "judge_by": "Joey finds the cause of the 0-judged half-day. Then any run of 6 or more consecutive cycles with 0 judged markets raises a flag in the next review. In the next full review, judged is above 0 and Jev and Claude strategies place bets again.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-12T20:23:04Z"
+      },
+      {
         "id": "p37",
         "kind": "code",
         "title": "Make by_price_paid count open bets consistently",
@@ -6131,17 +6154,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-12T08:12:58Z",
-      "headline": "A quiet, data-poor half day: this report shows only three locked strategies, one settled bet (a $250 loss), and no main or yardstick numbers, while every forecaster still trails the market price, so this review proposes fixes to the report rather than rule changes.",
+      "ts": "2026-10-12T20:23:04Z",
+      "headline": "A quiet, half-blind half-day: the review again shows only three locked strategies (no main, original or challengers), nothing was judged in 48 cycles, and no forecaster beats the market overall, so there is nothing to tune and two pipeline checks to ask for.",
       "went_well": [
-        "Mention markets, NO side opened 32 bets ($1,739 staked, under 2% of its bankroll). None have settled yet, so the mention idea will soon get its first real results.",
-        "Among our forecasters, Claude direct is the closest to the market: 0.203 vs the market's 0.164 on 760 paired markets, against Jev + research's 0.220. In sports it roughly matches the market (0.176 vs 0.178 on 200 markets), which is a tie, not an edge.",
-        "Probe-only sizing is doing its job: with every lambda at 0, losses stay small while the forecasts are tested."
+        "Mention markets, NO side opened its first 32 bets ($1,739 staked, all still open), so this strategy is finally producing data. None have settled, so there is no result yet.",
+        "In sports, Claude direct now roughly matches the market: Brier 0.176 vs 0.178 on 200 markets. Lower is better, so this is a tie rather than an edge. It is still the only category with a usable count where any forecaster draws level.",
+        "The scoring base keeps growing: 1,548 resolved markets, 773 of them paired across all forecasters, so category-level comparisons now rest on real numbers."
       ],
       "went_badly": [
-        "Nobody beats the market price. All-time Brier is 0.146 for the market (1,503 markets) against 0.178 for Claude direct (335) and 0.209 for Jev + research (1,171). Every source's raw skill is negative, so no strategy will size up soon.",
-        "The data doesn't add up. The 2026-10-11 log says sharp's min_edge went from 3c to 2c (version 2), but sharp still shows version 1, 3c, no change date, and 'locked'. Mention_no shows 32 bets all time but 0 in every price bucket. Main, original and the other Jev strategies are missing entirely, and th",
-        "Sharp has still placed only 1 bet ever, a loss of $249.55, and its skill reads -1.63 on 28 markets, an implausible value next to the others (-0.015 to -0.025). Mention_follow has placed 0 bets. One settled bet tells us nothing."
+        "Nothing new was forecast this half-day. Across 48 cycles, 0 markets were judged, 0 had research and no Jev or Claude strategy placed a bet. Meanwhile 45 markets resolved. Main, original, the yardstick and every challenger are still missing from this review (already raised as p35), so we can't judge ",
+        "Every forecaster still trails the market. Paired Brier on 773 markets: market 0.163, Claude 0.203, Jev + research 0.219, Jev alone 0.246. Every source's skill lambda is 0, so all sizing stays probe-only.",
+        "Sharp line looks broken, not unlucky. It still shows min_edge 0.03 and rules version 1, even though the change log records v2 at 0.02 (p36). Its skill raw is -1.56 on 29 markets, which is not a plausible measured edge. It has 1 bet ever (-$250), and is now locked."
       ]
     },
     "auto_start": true,
@@ -6578,6 +6601,20 @@
         "title": "Make by_price_paid count open bets consistently",
         "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies.",
         "created": "2026-10-12T08:12:58Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p38",
+        "title": "Alert when a cycle judges nothing",
+        "why": "48 cycles in 12 hours judged 0 markets with 0 research while 45 markets resolved, so the forecasting pipeline seems stalled or starved of new markets. A stall like this silently freezes every Jev and Claude strategy.",
+        "created": "2026-10-12T20:23:04Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p39",
+        "title": "Explain sharp's skill estimate of -1.56",
+        "why": "A raw skill of -1.5581 on 29 markets is far outside the range of the other sources (-0.01 to -0.02). It points to a matching or units bug in how Pinnacle's line is paired with Kalshi prices, probably the same cause as sharp's near-zero bet count (p30). This is narrower than p31's general sanity check and should be fixed before sharp's forward test is read.",
+        "created": "2026-10-12T20:23:04Z",
         "status": "proposed"
       }
     ]

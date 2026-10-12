@@ -553,6 +553,28 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p38",
+      "created": "2026-10-12T20:23:04Z",
+      "kind": "code",
+      "title": "Alert when a cycle judges nothing",
+      "why": "48 cycles in 12 hours judged 0 markets with 0 research while 45 markets resolved, so the forecasting pipeline seems stalled or starved of new markets. A stall like this silently freezes every Jev and Claude strategy.",
+      "judge_by": "Joey finds the cause of the 0-judged half-day. Then any run of 6 or more consecutive cycles with 0 judged markets raises a flag in the next review. In the next full review, judged is above 0 and Jev and Claude strategies place bets again.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p39",
+      "created": "2026-10-12T20:23:04Z",
+      "kind": "code",
+      "title": "Explain sharp's skill estimate of -1.56",
+      "why": "A raw skill of -1.5581 on 29 markets is far outside the range of the other sources (-0.01 to -0.02). It points to a matching or units bug in how Pinnacle's line is paired with Kalshi prices, probably the same cause as sharp's near-zero bet count (p30). This is narrower than p31's general sanity check and should be fixed before sharp's forward test is read.",
+      "judge_by": "After the fix, sharp's raw skill on the same markets lies between -0.1 and +0.1. A spot check of 5 of its 29 markets shows the sharp probability and the market price refer to the same outcome.",
+      "min_resolved": 29,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
