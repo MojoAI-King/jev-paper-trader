@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T12:24:08Z",
+  "generated": "2026-10-12T12:37:46Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T12:24:08Z",
+      "t": "2026-10-12T12:37:46Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -845,7 +845,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1505,
+    "resolved": 1506,
     "sources": [
       {
         "name": "jev_research",
@@ -856,8 +856,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22844006644518272,
-        "n": 1505
+        "brier": 0.22838937583001329,
+        "n": 1506
       },
       {
         "name": "claude_direct",
@@ -874,8 +874,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14613376877076412,
-        "n": 1505
+        "brier": 0.14608336454183266,
+        "n": 1506
       }
     ],
     "paired": {
@@ -917,7 +917,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T12:20:26Z",
+    "ts": "2026-10-12T12:35:22Z",
     "stages": [
       [
         "Fetched",
@@ -1786,7 +1786,7 @@
           99750.45
         ],
         [
-          "2026-10-12T12:24:08Z",
+          "2026-10-12T12:37:46Z",
           99750.45
         ]
       ]
@@ -2511,7 +2511,7 @@
           100000.0
         ],
         [
-          "2026-10-12T12:24:08Z",
+          "2026-10-12T12:37:46Z",
           100000.0
         ]
       ]
@@ -3236,7 +3236,7 @@
           100000.0
         ],
         [
-          "2026-10-12T12:24:08Z",
+          "2026-10-12T12:37:46Z",
           100000.0
         ]
       ]
@@ -4434,6 +4434,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T12:35:22Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T12:20:26Z",
       "type": "scan",
       "fetched": 200,
@@ -4975,15 +4983,6 @@
       "market": 0.475,
       "q": "Will the rate of CPI inflation be above 3.6% for the year ending in September 2026? (Above 3.6%)",
       "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-6-for-the-year-end/kxcpiyoy-26sep"
-    },
-    {
-      "ts": "2026-10-12T01:50:10Z",
-      "type": "call",
-      "jev": 0.14,
-      "claude": null,
-      "market": 0.145,
-      "q": "US announces end of Iranian blockade by October 31, 2026?",
-      "url": "https://polymarket.com/market/us-announces-end-of-iranian-blockade-by-october-31-2026-20260727171711632-895-372-622-413-171-454-592-696"
     }
   ],
   "plan_usage": {
@@ -4996,7 +4995,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1505,
+    "reviewed": 1506,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5624,13 +5623,13 @@
       },
       {
         "category": "weather",
-        "n": 46,
-        "jev_plain": 0.2543,
-        "market": 0.0972,
+        "n": 47,
+        "jev_plain": 0.2522,
+        "market": 0.0966,
         "jev_research": 0.2229,
         "claude_direct": 0.2392,
-        "n_jev_plain": 46,
-        "n_market": 46,
+        "n_jev_plain": 47,
+        "n_market": 47,
         "n_jev_research": 41,
         "n_claude_direct": 28
       },
