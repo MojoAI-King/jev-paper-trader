@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T16:07:07Z",
+  "generated": "2026-10-12T16:22:57Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -193,7 +193,7 @@
       "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
     },
     {
-      "t": "2026-10-12T16:07:07Z",
+      "t": "2026-10-12T16:22:57Z",
       "equity": 77260.98,
       "label": "Now (open bets valued at cost)"
     }
@@ -872,7 +872,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1537,
+    "resolved": 1541,
     "sources": [
       {
         "name": "jev_research",
@@ -883,8 +883,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2291906961613533,
-        "n": 1537
+        "brier": 0.22908831927319923,
+        "n": 1541
       },
       {
         "name": "claude_direct",
@@ -901,8 +901,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14531106327260898,
-        "n": 1537
+        "brier": 0.14501196333549643,
+        "n": 1541
       }
     ],
     "paired": {
@@ -944,7 +944,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T16:04:30Z",
+    "ts": "2026-10-12T16:20:24Z",
     "stages": [
       [
         "Fetched",
@@ -1813,7 +1813,7 @@
           99750.45
         ],
         [
-          "2026-10-12T16:07:07Z",
+          "2026-10-12T16:22:57Z",
           99750.45
         ]
       ]
@@ -2538,7 +2538,7 @@
           100000.0
         ],
         [
-          "2026-10-12T16:07:07Z",
+          "2026-10-12T16:22:57Z",
           100000.0
         ]
       ]
@@ -3263,7 +3263,7 @@
           100000.0
         ],
         [
-          "2026-10-12T16:07:07Z",
+          "2026-10-12T16:22:57Z",
           100000.0
         ]
       ]
@@ -4461,6 +4461,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T16:20:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T16:04:30Z",
       "type": "scan",
       "fetched": 200,
@@ -5019,14 +5027,6 @@
       "ts": "2026-10-12T04:05:11Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 50 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T04:05:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5039,7 +5039,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1537,
+    "reviewed": 1541,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
@@ -5601,14 +5601,14 @@
       },
       {
         "category": "crypto",
-        "n": 209,
+        "n": 213,
         "jev_research": 0.1722,
-        "jev_plain": 0.2136,
-        "market": 0.0958,
+        "jev_plain": 0.2132,
+        "market": 0.0946,
         "claude_direct": 0.1294,
         "n_jev_research": 188,
-        "n_jev_plain": 209,
-        "n_market": 209,
+        "n_jev_plain": 213,
+        "n_market": 213,
         "n_claude_direct": 53
       },
       {
