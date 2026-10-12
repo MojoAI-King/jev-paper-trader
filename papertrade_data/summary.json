@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T03:22:44Z",
+  "generated": "2026-10-12T03:41:33Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T03:22:44Z",
+      "t": "2026-10-12T03:41:33Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -845,7 +845,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1471,
+    "resolved": 1472,
     "sources": [
       {
         "name": "jev_research",
@@ -856,8 +856,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22923827328348062,
-        "n": 1471
+        "brier": 0.22924565217391307,
+        "n": 1472
       },
       {
         "name": "claude_direct",
@@ -874,8 +874,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1468099182528892,
-        "n": 1471
+        "brier": 0.14687664045516305,
+        "n": 1472
       }
     ],
     "paired": {
@@ -917,7 +917,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T03:20:08Z",
+    "ts": "2026-10-12T03:35:11Z",
     "stages": [
       [
         "Fetched",
@@ -961,7 +961,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1786,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T03:22:44Z",
+          "2026-10-12T03:41:33Z",
           99750.45
         ]
       ]
@@ -2511,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:22:44Z",
+          "2026-10-12T03:41:33Z",
           100000.0
         ]
       ]
@@ -3236,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T03:22:44Z",
+          "2026-10-12T03:41:33Z",
           100000.0
         ]
       ]
@@ -4434,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T03:35:11Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T03:35:11Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T03:20:08Z",
       "type": "scan",
       "fetched": 200,
@@ -5053,22 +5068,6 @@
       "judged": 9,
       "researched": 4,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-11T18:20:19Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 9,
-      "researched": 3,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T18:05:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 9,
-      "researched": 3,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5081,7 +5080,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1471,
+    "reviewed": 1472,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5645,14 +5644,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 831,
+        "n": 832,
         "jev_research": 0.2043,
         "jev_plain": 0.2278,
-        "market": 0.177,
+        "market": 0.1771,
         "claude_direct": 0.1763,
         "n_jev_research": 710,
-        "n_jev_plain": 831,
-        "n_market": 831,
+        "n_jev_plain": 832,
+        "n_market": 832,
         "n_claude_direct": 200
       },
       {
