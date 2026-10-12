@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T19:37:42Z",
+  "generated": "2026-10-12T19:52:45Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -193,7 +193,7 @@
       "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
     },
     {
-      "t": "2026-10-12T19:37:42Z",
+      "t": "2026-10-12T19:52:45Z",
       "equity": 77260.98,
       "label": "Now (open bets valued at cost)"
     }
@@ -872,7 +872,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1547,
+    "resolved": 1548,
     "sources": [
       {
         "name": "jev_research",
@@ -883,8 +883,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22902533936651587,
-        "n": 1547
+        "brier": 0.22896111111111112,
+        "n": 1548
       },
       {
         "name": "claude_direct",
@@ -901,8 +901,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14478164059469942,
-        "n": 1547
+        "brier": 0.14486957235142117,
+        "n": 1548
       }
     ],
     "paired": {
@@ -944,7 +944,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T19:35:17Z",
+    "ts": "2026-10-12T19:50:20Z",
     "stages": [
       [
         "Fetched",
@@ -1813,7 +1813,7 @@
           99750.45
         ],
         [
-          "2026-10-12T19:37:42Z",
+          "2026-10-12T19:52:45Z",
           99750.45
         ]
       ]
@@ -2538,7 +2538,7 @@
           100000.0
         ],
         [
-          "2026-10-12T19:37:42Z",
+          "2026-10-12T19:52:45Z",
           100000.0
         ]
       ]
@@ -3263,7 +3263,7 @@
           100000.0
         ],
         [
-          "2026-10-12T19:37:42Z",
+          "2026-10-12T19:52:45Z",
           100000.0
         ]
       ]
@@ -4461,6 +4461,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T19:50:20Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T19:35:17Z",
       "type": "scan",
       "fetched": 200,
@@ -5040,14 +5048,6 @@
       "ts": "2026-10-12T05:50:08Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
-    },
-    {
-      "ts": "2026-10-12T05:50:08Z",
-      "type": "scan",
-      "fetched": 178,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5060,7 +5060,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1547,
+    "reviewed": 1548,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
@@ -5634,13 +5634,13 @@
       },
       {
         "category": "other",
-        "n": 193,
-        "jev_plain": 0.2095,
-        "market": 0.1335,
+        "n": 194,
+        "jev_plain": 0.2091,
+        "market": 0.1343,
         "jev_research": 0.2543,
         "claude_direct": 0.1922,
-        "n_jev_plain": 193,
-        "n_market": 193,
+        "n_jev_plain": 194,
+        "n_market": 194,
         "n_jev_research": 114,
         "n_claude_direct": 35
       },
