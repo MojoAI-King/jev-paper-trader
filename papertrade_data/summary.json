@@ -1,20 +1,20 @@
 {
-  "generated": "2026-10-12T12:54:11Z",
+  "generated": "2026-10-12T13:07:57Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
   "cash": 74899.24,
-  "open_cost": 4413.21,
-  "equity": 79312.45,
-  "realized": -20687.55,
-  "roi_settled": -0.34481807400715553,
+  "open_cost": 4211.1,
+  "equity": 79110.34,
+  "realized": -20889.66,
+  "roi_settled": -0.347017807668936,
   "wins": 11,
-  "settled": 31,
+  "settled": 32,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
     "polymarket": 2159.71,
-    "kalshi": 2253.5
+    "kalshi": 2051.39
   },
   "curve": [
     {
@@ -178,8 +178,13 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T12:54:11Z",
-      "equity": 79312.45,
+      "t": "2026-10-12T13:05:32Z",
+      "equity": 79110.34,
+      "label": "Will average **gas prices** be above $4.3600? (Above 4.3600)"
+    },
+    {
+      "t": "2026-10-12T13:07:57Z",
+      "equity": 79110.34,
       "label": "Now (open bets valued at cost)"
     }
   ],
@@ -211,20 +216,6 @@
       "edge": 0.2776,
       "opened": "2026-10-10T22:50:09Z",
       "close_time": "2026-10-11T12:00:00Z"
-    },
-    {
-      "question": "Will average **gas prices** be above $4.3600? (Above 4.3600)",
-      "url": "https://kalshi.com/markets/kxaaagasw/will-average-gas-prices-be-above-4-3600/kxaaagasw-26oct12",
-      "source": "kalshi",
-      "side": "yes",
-      "contracts": 510,
-      "cost_per": 0.3963,
-      "total_cost": 202.11,
-      "p_side": 0.6,
-      "market_ask": 0.37,
-      "edge": 0.2037,
-      "opened": "2026-10-10T14:50:17Z",
-      "close_time": "2026-10-12T03:59:00Z"
     },
     {
       "question": "Will it rain in Los Angeles on Oct 11, 2026?",
@@ -284,6 +275,24 @@
     }
   ],
   "closed": [
+    {
+      "question": "Will average **gas prices** be above $4.3600? (Above 4.3600)",
+      "url": "https://kalshi.com/markets/kxaaagasw/will-average-gas-prices-be-above-4-3600/kxaaagasw-26oct12",
+      "source": "kalshi",
+      "side": "yes",
+      "contracts": 510,
+      "cost_per": 0.3963,
+      "total_cost": 202.11,
+      "p_side": 0.6,
+      "market_ask": 0.37,
+      "edge": 0.2037,
+      "opened": "2026-10-10T14:50:17Z",
+      "close_time": "2026-10-12T03:59:00Z",
+      "outcome": "no",
+      "payout": 0.0,
+      "pnl": -202.11,
+      "settled": "2026-10-12T13:05:32Z"
+    },
     {
       "question": "North Dakota St. wins by over 3.5 points",
       "url": "https://kalshi.com/markets/kxncaafspread/north-dakota-st-wins-by-over-3-5-points/kxncaafspread-26oct10ndsuunlv",
@@ -845,19 +854,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1506,
+    "resolved": 1507,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20850418445772845,
-        "n": 1171
+        "brier": 0.20842491467576793,
+        "n": 1172
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22838937583001329,
-        "n": 1506
+        "brier": 0.22831453218314532,
+        "n": 1507
       },
       {
         "name": "claude_direct",
@@ -868,39 +877,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21066807078324226,
-        "n": 1098
+        "brier": 0.21059228328480437,
+        "n": 1099
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14608336454183266,
-        "n": 1506
+        "brier": 0.14599445719973456,
+        "n": 1507
       }
     ],
     "paired": {
-      "n": 760,
+      "n": 761,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16432224342105264
+          "brier": 0.16413394218134034
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2195534210526316
+          "brier": 0.2193911957950066
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20337394736842104
+          "brier": 0.20318883048620237
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2453415789473684
+          "brier": 0.24515374507227333
         }
       ]
     }
@@ -917,7 +926,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T12:50:24Z",
+    "ts": "2026-10-12T13:05:32Z",
     "stages": [
       [
         "Fetched",
@@ -1786,7 +1795,7 @@
           99750.45
         ],
         [
-          "2026-10-12T12:54:11Z",
+          "2026-10-12T13:07:57Z",
           99750.45
         ]
       ]
@@ -2511,7 +2520,7 @@
           100000.0
         ],
         [
-          "2026-10-12T12:54:11Z",
+          "2026-10-12T13:07:57Z",
           100000.0
         ]
       ]
@@ -3236,7 +3245,7 @@
           100000.0
         ],
         [
-          "2026-10-12T12:54:11Z",
+          "2026-10-12T13:07:57Z",
           100000.0
         ]
       ]
@@ -4434,6 +4443,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T13:05:32Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T12:50:24Z",
       "type": "scan",
       "fetched": 200,
@@ -4974,14 +4991,6 @@
       "ts": "2026-10-12T02:05:09Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 5 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
-    },
-    {
-      "ts": "2026-10-12T02:05:09Z",
-      "type": "scan",
-      "fetched": 154,
-      "judged": 6,
-      "researched": 3,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -4994,7 +5003,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1506,
+    "reviewed": 1507,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5006,7 +5015,7 @@
       },
       {
         "range": "20\u201340%",
-        "n": 410,
+        "n": 411,
         "predicted": 0.298,
         "actual": 0.273
       },
@@ -5531,9 +5540,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0848,
-      "b": 0.1351,
-      "n": 1171,
+      "a": 1.0858,
+      "b": 0.134,
+      "n": 1172,
       "active": true,
       "need": 300
     },
@@ -5576,14 +5585,14 @@
       },
       {
         "category": "other",
-        "n": 185,
-        "jev_plain": 0.2053,
-        "market": 0.1371,
-        "jev_research": 0.2453,
+        "n": 186,
+        "jev_plain": 0.2048,
+        "market": 0.1364,
+        "jev_research": 0.2441,
         "claude_direct": 0.1922,
-        "n_jev_plain": 185,
-        "n_market": 185,
-        "n_jev_research": 109,
+        "n_jev_plain": 186,
+        "n_market": 186,
+        "n_jev_research": 110,
         "n_claude_direct": 35
       },
       {
