@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-11 14:02 EDT
+Written: 2026-10-11 21:04 EDT
 
+- **State:** Follow-first-trade tested at quoted prices (7b455a6; the workflow attempt hit the plan's session limit, redone as a script): following a NO first trade in new mention markets +18.1% [-1.3, +35.1] at 15 min (108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min); following YES -4% to -25%; placebo NO about 0. Proposed to Joey: a new paper strategy mention_follow (code change). Live: 27 cycles since 18:05Z, one transient Kalshi 504; the touchdown-prop sharp bet settled -249.55 (excluded); mention_no 32 open. Evidence: follow_first_trade.py --summarize on 2,306 markets; 155 offline tests OK.
+- **Next:** On Joey's yes: pre-register mention_follow in EXPERIMENTS.md, build it (first-trade side via the trades endpoint, NO at the quoted ask within the next cycle), tests, lock it
+- **Blocked:** mention_follow waits for Joey's yes
+- **Watch out:** Five parallel research agents hit the Claude plan's session limit; keep research to scripts or one agent at a time
+- **Git:** master @ 7b455a6, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-12 01:04 UTC)
+
+## Earlier
+
+### 2026-10-11 14:02 EDT
 - **State:** Forward tests locked (1fad555): learning.locked_strategies sharp, mention_no; run 38162056755 clean. Follow-the-first-trade test (wf_629049c4-764) still running. Evidence: 155 offline tests OK; run 38162056755 success.
 - **Next:** Read wf_629049c4-764 results; record in CHECKS.md; propose a forward test to Joey only if a rule survives the review
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take on its own clock
 - **Git:** master @ 1fad555, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 18:02 UTC)
-
-## Earlier
 
 ### 2026-10-11 13:52 EDT
 - **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764). Evidence: wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK.
@@ -46,11 +54,3 @@ Written: 2026-10-11 14:02 EDT
 - **Watch out:** Trade-conditioned 'first trade' results can come from the first trader's own choice; only a listing-quote test shows what we get by trading first
 - **Git:** master @ 84ca766, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 16:45 UTC)
-
-### 2026-10-11 10:57 EDT
-- **State:** Sharp pass live (5504147): run 38148752927 matched 6 games (was 0), all decided outside Jev, prices within ~1c of Pinnacle so no bets. Matcher bug fixed (4499823): a touchdown prop had been priced with a team moneyline; that bet is left out of the sharp evaluation. Jev measured: Brier 0.247 alone, 0.217 with research, vs the market's 0.160 on 657 real-priced markets; skill beyond price negative for every forecaster. First-trade scan across all categories running (docs/research/scripts/first_trade_scan.py). Evidence: 152 offline tests OK; run 38148752927 success (sharp matched 6, decided_outside_jev 6); engine.skill and engine.paired read-only.
-- **Next:** When the first-trade scan finishes: --summarize, check leads adversarially, record in CHECKS.md; Joey decides whether Jev keeps picking bets
-- **Blocked:** nothing
-- **Watch out:** First-trade scan rows: research_data/first_trade_rows.jsonl; local .env still has the old free Odds API key
-- **Git:** master @ 4499823, 4 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 14:57 UTC)

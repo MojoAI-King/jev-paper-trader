@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-11 10:57 EDT
+- **State:** Sharp pass live (5504147): run 38148752927 matched 6 games (was 0), all decided outside Jev, prices within ~1c of Pinnacle so no bets. Matcher bug fixed (4499823): a touchdown prop had been priced with a team moneyline; that bet is left out of the sharp evaluation. Jev measured: Brier 0.247 alone, 0.217 with research, vs the market's 0.160 on 657 real-priced markets; skill beyond price negative for every forecaster. First-trade scan across all categories running (docs/research/scripts/first_trade_scan.py). Evidence: 152 offline tests OK; run 38148752927 success (sharp matched 6, decided_outside_jev 6); engine.skill and engine.paired read-only.
+- **Next:** When the first-trade scan finishes: --summarize, check leads adversarially, record in CHECKS.md; Joey decides whether Jev keeps picking bets
+- **Blocked:** nothing
+- **Watch out:** First-trade scan rows: research_data/first_trade_rows.jsonl; local .env still has the old free Odds API key
+- **Git:** master @ 4499823, 4 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 14:57 UTC)
+
 ### 2026-10-11 10:26 EDT
 - **State:** Paid Odds API plan live: GitHub secret updated 14:16Z, quota 19,996 after run 38146719378; sharp lines refresh every 15 min (8ec89f6). Sharp matched 0 of 68 games because it only sees the up-to-40 markets due a Jev look; a dedicated sharp pass is proposed and waits for Joey's OK. Mention forward test running. Evidence: run 38146719378 success (sharp quota_left 19996, matched 0); 151 offline tests OK; skilliton maintain --apply.
 - **Next:** On Joey's yes: build a sharp pass over every fetched game market each cycle (tests first), push, confirm matches in the next cycle
