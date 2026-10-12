@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T21:52:25Z",
+  "generated": "2026-10-12T22:07:38Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -193,7 +193,7 @@
       "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
     },
     {
-      "t": "2026-10-12T21:52:25Z",
+      "t": "2026-10-12T22:07:38Z",
       "equity": 77260.98,
       "label": "Now (open bets valued at cost)"
     }
@@ -872,62 +872,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1554,
+    "resolved": 1559,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20903998316498318,
-        "n": 1188
+        "brier": 0.20878197820620284,
+        "n": 1193
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2290408622908623,
-        "n": 1554
+        "brier": 0.2290384862091084,
+        "n": 1559
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.17731424852071007,
-        "n": 338
+        "brier": 0.17726317404129793,
+        "n": 339
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21110552298654708,
-        "n": 1115
+        "brier": 0.21088824575,
+        "n": 1120
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.145157222007722,
-        "n": 1554
+        "brier": 0.14501536337395765,
+        "n": 1559
       }
     ],
     "paired": {
-      "n": 773,
+      "n": 776,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16316284605433376
+          "brier": 0.1630669201030928
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2194724450194049
+          "brier": 0.219127706185567
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2031041397153946
+          "brier": 0.20261649484536082
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24569857697283312
+          "brier": 0.24567371134020619
         }
       ]
     }
@@ -944,7 +944,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T21:50:25Z",
+    "ts": "2026-10-12T22:05:24Z",
     "stages": [
       [
         "Fetched",
@@ -976,7 +976,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -991,7 +991,7 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1052,8 +1052,8 @@
       "unrealized": 0.0,
       "change": 0.0,
       "realized": 0,
-      "open": 32,
-      "open_cost": 1738.58,
+      "open": 33,
+      "open_cost": 1745.83,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -1813,7 +1813,7 @@
           99750.45
         ],
         [
-          "2026-10-12T21:52:25Z",
+          "2026-10-12T22:07:38Z",
           99750.45
         ]
       ]
@@ -2538,7 +2538,7 @@
           100000.0
         ],
         [
-          "2026-10-12T21:52:25Z",
+          "2026-10-12T22:07:38Z",
           100000.0
         ]
       ]
@@ -3263,7 +3263,7 @@
           100000.0
         ],
         [
-          "2026-10-12T21:52:25Z",
+          "2026-10-12T22:07:38Z",
           100000.0
         ]
       ]
@@ -3335,6 +3335,29 @@
           "p_side": 0.55,
           "edge": 0.0626,
           "opened": "2026-10-10T15:20:17Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXSECPRESSMENTION-26OCT27-HURR",
+      "question": "Will the White House Press Secretary say Hurricane / Isaias at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-hurricane-isaias-at/kxsecpressmention-26oct27",
+      "source": "kalshi",
+      "close_time": "2026-10-27T14:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 10,
+          "cost_per": 0.7247,
+          "total_cost": 7.25,
+          "p_side": 0.755,
+          "edge": 0.0303,
+          "opened": "2026-10-12T22:05:24Z",
           "value": null
         }
       ]
@@ -4461,6 +4484,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T22:05:24Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.7247,
+      "amount": 7.25,
+      "p": 0.755,
+      "q": "Will the White House Press Secretary say Hurricane / Isaias at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-hurricane-isaias-at/kxsecpressmention-26oct27",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-12T22:05:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-12T21:50:25Z",
       "type": "scan",
       "fetched": 200,
@@ -5048,19 +5091,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-12T07:20:05Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T07:20:05Z",
-      "type": "scan",
-      "fetched": 184,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5073,33 +5103,33 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1554,
+    "reviewed": 1559,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 149,
+        "n": 150,
         "predicted": 0.138,
-        "actual": 0.168
+        "actual": 0.167
       },
       {
         "range": "20\u201340%",
-        "n": 420,
+        "n": 422,
         "predicted": 0.298,
-        "actual": 0.281
+        "actual": 0.28
       },
       {
         "range": "40\u201360%",
-        "n": 415,
-        "predicted": 0.489,
-        "actual": 0.535
+        "n": 416,
+        "predicted": 0.49,
+        "actual": 0.534
       },
       {
         "range": "60\u201380%",
-        "n": 193,
+        "n": 194,
         "predicted": 0.661,
-        "actual": 0.741
+        "actual": 0.742
       },
       {
         "range": "80\u2013100%",
@@ -5602,9 +5632,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0776,
-      "b": 0.143,
-      "n": 1188,
+      "a": 1.0796,
+      "b": 0.1393,
+      "n": 1193,
       "active": true,
       "need": 300
     },
@@ -5659,15 +5689,15 @@
       },
       {
         "category": "culture",
-        "n": 92,
-        "jev_plain": 0.1963,
-        "market": 0.0668,
-        "jev_research": 0.1456,
-        "claude_direct": 0.0401,
-        "n_jev_plain": 92,
-        "n_market": 92,
-        "n_jev_research": 27,
-        "n_claude_direct": 7
+        "n": 97,
+        "jev_plain": 0.198,
+        "market": 0.0685,
+        "jev_research": 0.1459,
+        "claude_direct": 0.0551,
+        "n_jev_plain": 97,
+        "n_market": 97,
+        "n_jev_research": 32,
+        "n_claude_direct": 8
       },
       {
         "category": "politics",
