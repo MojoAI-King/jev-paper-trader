@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T04:41:36Z",
+  "generated": "2026-10-12T04:58:10Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T04:41:36Z",
+      "t": "2026-10-12T04:58:10Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T04:35:08Z",
+    "ts": "2026-10-12T04:50:08Z",
     "stages": [
       [
         "Fetched",
-        200
+        170
       ],
       [
         "Passed free filters",
-        200
+        170
       ],
       [
         "Judged by Jev",
@@ -959,10 +959,10 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 100
+      "kalshi": 70
     },
     "problems": [
-      "kalshi: fetch hit its page limit after 64 pages; far-dated markets left out"
+      "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline_exceeded\",\"message\":\"context deadline exceeded\"}}); kept what it had"
     ],
     "cleared_gates": {
       "sharp": 0,
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T04:41:36Z",
+          "2026-10-12T04:58:10Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T04:41:36Z",
+          "2026-10-12T04:58:10Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T04:41:36Z",
+          "2026-10-12T04:58:10Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T04:50:08Z",
+      "type": "problem",
+      "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
+    },
+    {
+      "ts": "2026-10-12T04:50:08Z",
+      "type": "scan",
+      "fetched": 170,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T04:35:08Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 64 pages; far-dated markets left out"
@@ -5040,22 +5053,6 @@
       "judged": 14,
       "researched": 4,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-11T20:35:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 23,
-      "researched": 1,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T20:20:08Z",
-      "type": "loss",
-      "strategy": "sharp",
-      "amount": -249.55,
-      "q": "Mike Washington Jr.: 1+ touchdowns",
-      "url": "https://kalshi.com/markets/kxnfltd/mike-washington-jr-1-touchdowns/kxnfltd-26oct11lvne"
     }
   ],
   "plan_usage": {
