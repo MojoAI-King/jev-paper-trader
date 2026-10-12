@@ -1,6 +1,6 @@
 {
-  "version": 14,
-  "updated": "2026-10-11T00:10:50Z",
+  "version": 15,
+  "updated": "2026-10-12T08:12:13Z",
   "rules": [
     {
       "id": "R1",
@@ -46,15 +46,26 @@
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
+        "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
+        "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "polymarket:4581752",
         "polymarket:4689888",
         "polymarket:4911446",
-        "polymarket:5009102",
-        "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
-        "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU"
+        "polymarket:5009102"
       ],
       "added": "2026-09-29T00:09:39Z"
+    },
+    {
+      "id": "R28",
+      "category": "sports",
+      "rule": "For team win or spread questions, report the home side's home-only and the visitor's road-only records, goals or points allowed over the last 5, the last 8\u201310 meetings, schedule strength behind any record or margin (e.g. FCS foes, first FBS year), and whether a draw resolves No.",
+      "evidence": [
+        "polymarket:5238435",
+        "polymarket:5036247",
+        "kalshi:KXNCAAFSPREAD-26OCT10NDSUUNLV-NDSU4"
+      ],
+      "added": "2026-10-12T08:12:13Z"
     },
     {
       "id": "R8",
@@ -140,25 +151,6 @@
       "added": "2026-10-01T00:08:33Z"
     },
     {
-      "id": "R18",
-      "category": "sports",
-      "rule": "For in-round golf leader questions, pull the live hole-by-hole leaderboard and, for the named player and everyone within about 3 shots, report score, holes left and tee wave, plus the field's scoring average and how the rules settle a tie for the lead.",
-      "evidence": [
-        "kalshi:KXPGAR2LEAD-BAOUC26-KROY",
-        "kalshi:KXPGAR2LEAD-BAOUC26-KSTR"
-      ],
-      "added": "2026-10-04T00:08:06Z"
-    },
-    {
-      "id": "R22",
-      "category": "sports",
-      "rule": "For golf tournament winner questions, report the player's world ranking, pro starts and wins, the field's strength and size, and his prior-week schedule (e.g. a team event); label team-event results and a single pro win as weak evidence of dominance.",
-      "evidence": [
-        "kalshi:KXPGATOUR-BAOUC26-JKOI"
-      ],
-      "added": "2026-10-06T00:09:05Z"
-    },
-    {
       "id": "R19",
       "category": "culture",
       "rule": "For video view questions, check the channel's uploads since the question opened and report any new video's upload time, hours elapsed, views and climb rate first; build references only from first-168-hour counts of recent comparable uploads, not lifetime or undated totals.",
@@ -239,6 +231,7 @@
     "kalshi:KXMLBGAME-26OCT072000TBNYY-TB",
     "kalshi:KXMLBGAME-26OCT072200MILSD-MIL",
     "kalshi:KXMLBGAME-26OCT072200MILSD-SD",
+    "kalshi:KXMLBGAME-26OCT102000CWSCLE-CLE",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
     "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
     "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
@@ -255,7 +248,12 @@
     "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
     "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU",
     "kalshi:KXNCAAFGAME-26OCT10FAMUALST-ALST",
+    "kalshi:KXNCAAFGAME-26OCT10LSUUK-UK",
+    "kalshi:KXNCAAFGAME-26OCT10NDSUUNLV-NDSU",
+    "kalshi:KXNCAAFGAME-26OCT10NDSUUNLV-UNLV",
     "kalshi:KXNCAAFSPREAD-26OCT09ISUBYU-BYU11",
+    "kalshi:KXNCAAFSPREAD-26OCT10CCARMRSH-MRSH5",
+    "kalshi:KXNCAAFSPREAD-26OCT10NDSUUNLV-NDSU4",
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLGAME-26OCT08TBDAL-DAL",
     "kalshi:KXNFLGAME-26OCT08TBDAL-TB",
@@ -311,6 +309,7 @@
     "polymarket:5009102",
     "polymarket:5009117",
     "polymarket:5023463",
+    "polymarket:5036247",
     "polymarket:5055808",
     "polymarket:5070112",
     "polymarket:5073572",
@@ -321,6 +320,7 @@
     "polymarket:5178227",
     "polymarket:5207000",
     "polymarket:5208385",
+    "polymarket:5238435",
     "polymarket:5286105",
     "polymarket:5309160",
     "polymarket:5362505",
@@ -330,7 +330,9 @@
     "R10",
     "R11",
     "R12",
+    "R18",
     "R20",
+    "R22",
     "R3",
     "R4",
     "R5",

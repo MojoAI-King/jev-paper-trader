@@ -520,6 +520,39 @@
       "min_resolved": 100,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p35",
+      "created": "2026-10-12T08:12:58Z",
+      "kind": "code",
+      "title": "Restore the missing strategies to the daily review",
+      "why": "This review lists only sharp, mention_no and mention_follow, and the yardstick is empty. Yet the log shows original placing a bet this period, and main, bold, calibrated, claude_direct and jev_alone_bold all have live experiments (p23, p26, p27, p29) waiting to be judged. Tuning blind would be guessing.",
+      "judge_by": "The next review lists every running strategy with all_time, since_change and by_price_paid, and has a non-empty yardstick comparing main with original.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p36",
+      "created": "2026-10-12T08:12:58Z",
+      "kind": "code",
+      "title": "Check that sharp's 2c edge change was actually applied",
+      "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks like a scoring or matching bug (see p30).",
+      "judge_by": "Joey confirms which min_edge sharp is actually using and when it took effect, and the sharp skill figure is either explained or fixed. If 2c is now in force, p33's 3-day clock restarts from that date.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p37",
+      "created": "2026-10-12T08:12:58Z",
+      "kind": "code",
+      "title": "Make by_price_paid count open bets consistently",
+      "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies.",
+      "judge_by": "In the next review, mention_no's bucket bet counts add up to its all-time 32 or more, and settled P&L by bucket matches its total P&L once bets resolve.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

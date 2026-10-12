@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T07:56:40Z",
+  "generated": "2026-10-12T08:13:28Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T07:56:40Z",
+      "t": "2026-10-12T08:13:28Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T07:50:08Z",
+    "ts": "2026-10-12T08:05:25Z",
     "stages": [
       [
         "Fetched",
-        181
+        179
       ],
       [
         "Passed free filters",
-        181
+        179
       ],
       [
         "Judged by Jev",
@@ -959,7 +959,7 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 81
+      "kalshi": 79
     },
     "problems": [
       "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T07:56:40Z",
+          "2026-10-12T08:13:28Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T07:56:40Z",
+          "2026-10-12T08:13:28Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T07:56:40Z",
+          "2026-10-12T08:13:28Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,50 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T08:13:23Z",
+      "type": "learn",
+      "text": "Research playbook updated to v15"
+    },
+    {
+      "ts": "2026-10-12T08:13:23Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-12T08:12:58Z",
+      "type": "idea",
+      "text": "Restore the missing strategies to the daily review",
+      "status": "proposed",
+      "why": "This review lists only sharp, mention_no and mention_follow, and the yardstick is empty. Yet the log shows original placing a bet this period, and main, bold, calibrated, claude_direct and jev_alone_bold all have live experiments (p23, p26, p27, p29) waiting to be judged. Tuning blind would be guess"
+    },
+    {
+      "ts": "2026-10-12T08:12:58Z",
+      "type": "idea",
+      "text": "Check that sharp's 2c edge change was actually applied",
+      "status": "proposed",
+      "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks "
+    },
+    {
+      "ts": "2026-10-12T08:12:58Z",
+      "type": "idea",
+      "text": "Make by_price_paid count open bets consistently",
+      "status": "proposed",
+      "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies."
+    },
+    {
+      "ts": "2026-10-12T08:05:25Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T08:05:25Z",
+      "type": "scan",
+      "fetched": 179,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T07:50:08Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
@@ -4955,64 +4999,6 @@
       "market": 0.3425,
       "q": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
       "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379"
-    },
-    {
-      "ts": "2026-10-12T00:50:10Z",
-      "type": "problem",
-      "text": "kalshi: fetch stopped after 5 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
-    },
-    {
-      "ts": "2026-10-12T00:50:10Z",
-      "type": "scan",
-      "fetched": 155,
-      "judged": 17,
-      "researched": 5,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T00:35:11Z",
-      "type": "call",
-      "jev": 0.55,
-      "claude": null,
-      "market": 0.615,
-      "q": "Los Angeles R wins",
-      "url": "https://kalshi.com/markets/kxnflgame/los-angeles-r-wins/kxnflgame-26oct12buflar"
-    },
-    {
-      "ts": "2026-10-12T00:35:11Z",
-      "type": "call",
-      "jev": 0.71,
-      "claude": null,
-      "market": 0.67,
-      "q": "Atlanta wins",
-      "url": "https://kalshi.com/markets/kxnbagame/atlanta-wins/kxnbagame-26oct12okcatl"
-    },
-    {
-      "ts": "2026-10-12T00:35:11Z",
-      "type": "call",
-      "jev": 0.24,
-      "claude": null,
-      "market": 0.125,
-      "q": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
-      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep"
-    },
-    {
-      "ts": "2026-10-12T00:35:11Z",
-      "type": "call",
-      "jev": 0.38,
-      "claude": null,
-      "market": 0.86,
-      "q": "Will the rate of core CPI inflation be above 2.3% for the year ending in September 2026? (Above 2.3%)",
-      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-3-for-the-yea/kxcpicoreyoy-26sep"
-    },
-    {
-      "ts": "2026-10-12T00:35:11Z",
-      "type": "call",
-      "jev": 0.35,
-      "claude": null,
-      "market": 0.135,
-      "q": "BUF Bills wins by over 10.5 points?",
-      "url": "https://kalshi.com/markets/kxnflspread/buf-bills-wins-by-over-10-5-points/kxnflspread-26oct12buflar"
     }
   ],
   "plan_usage": {
@@ -5340,8 +5326,8 @@
       }
     ],
     "playbook": {
-      "version": 14,
-      "updated": "2026-10-11T00:10:50Z",
+      "version": 15,
+      "updated": "2026-10-12T08:12:13Z",
       "rules": [
         {
           "id": "R1",
@@ -5366,6 +5352,12 @@
           "category": "sports",
           "rule": "For match questions, report both sides' dated absences and returns from the latest press conferences, the stand-in and the absent player's actual recent output, settled from confirmed lineups; label all-time series and head-to-heads under about 10 games as weak.",
           "added": "2026-09-29T00:09:39Z"
+        },
+        {
+          "id": "R28",
+          "category": "sports",
+          "rule": "For team win or spread questions, report the home side's home-only and the visitor's road-only records, goals or points allowed over the last 5, the last 8\u201310 meetings, schedule strength behind any record or margin (e.g. FCS foes, first FBS year), and whether a draw resolves No.",
+          "added": "2026-10-12T08:12:13Z"
         },
         {
           "id": "R8",
@@ -5410,18 +5402,6 @@
           "added": "2026-10-01T00:08:33Z"
         },
         {
-          "id": "R18",
-          "category": "sports",
-          "rule": "For in-round golf leader questions, pull the live hole-by-hole leaderboard and, for the named player and everyone within about 3 shots, report score, holes left and tee wave, plus the field's scoring average and how the rules settle a tie for the lead.",
-          "added": "2026-10-04T00:08:06Z"
-        },
-        {
-          "id": "R22",
-          "category": "sports",
-          "rule": "For golf tournament winner questions, report the player's world ranking, pro starts and wins, the field's strength and size, and his prior-week schedule (e.g. a team event); label team-event results and a single pro win as weak evidence of dominance.",
-          "added": "2026-10-06T00:09:05Z"
-        },
-        {
           "id": "R19",
           "category": "culture",
           "rule": "For video view questions, check the channel's uploads since the question opened and report any new video's upload time, hours elapsed, views and climb rate first; build references only from first-168-hour counts of recent comparable uploads, not lifetime or undated totals.",
@@ -5459,6 +5439,25 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-12T08:12:13Z",
+          "version": 15,
+          "added": [
+            "R28"
+          ],
+          "revised": [],
+          "retired": [
+            "R18",
+            "R22"
+          ],
+          "changes": [
+            "added: a sports rule for team win or spread questions. It covers venue-specific records, recent defending, the last 8\u201310 meetings, schedule strength behind a record or margin, and whether a draw resolves No. Supported by the Oddevold and Atlanta reviews and the NDSU spread review.",
+            "merged: R18 (golf in-round leader) and R22 (golf winner) into one golf rule, to stay within 20 rules.",
+            "not used: the Marshall spread and Cleveland reviews (lucky) and the NDSU, UNLV and Kentucky game reviews (unlucky); no rules were made from them.",
+            "not used: the reviews' advice about staking, gating and staying near prices. That concerns the forecaster's decisions, not research method."
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-10-11T00:10:50Z",
           "version": 14,
@@ -5543,25 +5542,6 @@
             "Merged R11 into R9 as one tennis completion rule to stay within 20 rules.",
             "Merged R12 into R14 as one general sourcing rule for counts and base rates.",
             "No rules from the ANT, LAD and Mexico reviews: they are marked unlucky or lucky."
-          ],
-          "refused": 0
-        },
-        {
-          "ts": "2026-10-07T00:11:51Z",
-          "version": 10,
-          "added": [
-            "R24"
-          ],
-          "revised": [
-            "R17",
-            "R19"
-          ],
-          "retired": [],
-          "changes": [
-            "merged R17 with a new yardage-prop rule (kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250): NFL player props now also cover current-season attempts, games past the line, opponent rank against the stat and backfield injuries; this stays within the 20-rule cap",
-            "sharpened R19 from polymarket:5105601: for a video that is already live, current views and climb rate come before historical base rates, and sequel or promotion context is noted",
-            "added a politics rule from polymarket:3662876: multi-candidate races need coalition structure (joint tickets, dropouts, vote splitting) and past poll-versus-result gaps reported alongside polls",
-            "no rules from kalshi:KXMLBGAME-26OCT051700CWSCLE-CWS (unlucky), kalshi:KXMLBGAME-26OCT052000NYYTB-NYY (lucky) or kalshi:KXNFLRSHYDS-26OCT05ATLNO-ATLBROBINSON15-50 (lucky)"
           ],
           "refused": 0
         }
@@ -5693,6 +5673,39 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p37",
+        "kind": "code",
+        "title": "Make by_price_paid count open bets consistently",
+        "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies.",
+        "judge_by": "In the next review, mention_no's bucket bet counts add up to its all-time 32 or more, and settled P&L by bucket matches its total P&L once bets resolve.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-12T08:12:58Z"
+      },
+      {
+        "id": "p36",
+        "kind": "code",
+        "title": "Check that sharp's 2c edge change was actually applied",
+        "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks like a scoring or matching bug (see p30).",
+        "judge_by": "Joey confirms which min_edge sharp is actually using and when it took effect, and the sharp skill figure is either explained or fixed. If 2c is now in force, p33's 3-day clock restarts from that date.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-12T08:12:58Z"
+      },
+      {
+        "id": "p35",
+        "kind": "code",
+        "title": "Restore the missing strategies to the daily review",
+        "why": "This review lists only sharp, mention_no and mention_follow, and the yardstick is empty. Yet the log shows original placing a bet this period, and main, bold, calibrated, claude_direct and jev_alone_bold all have live experiments (p23, p26, p27, p29) waiting to be judged. Tuning blind would be guessing.",
+        "judge_by": "The next review lists every running strategy with all_time, since_change and by_price_paid, and has a non-empty yardstick comparing main with original.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-12T08:12:58Z"
+      },
       {
         "id": "p34",
         "kind": "code",
@@ -6074,17 +6087,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-11T15:55:14Z",
-      "headline": "A quiet half-day with 9 new bets and most rules locked until mid-week: the sports-only Claude challenger (ch16) is still the only strategy in profit, up $4.5k on just 7 settled bets, and no forecaster beats the market price overall.",
+      "ts": "2026-10-12T08:12:58Z",
+      "headline": "A quiet, data-poor half day: this report shows only three locked strategies, one settled bet (a $250 loss), and no main or yardstick numbers, while every forecaster still trails the market price, so this review proposes fixes to the report rather than rule changes.",
       "went_well": [
-        "ch16 (Claude direct, sports only) is up $4,542, winning 4 of 7 settled bets, about +$37 per $100 on $12.2k settled stake, with 21 bets still open. Seven results are noise, not a finding.",
-        "Sports is still the one place a forecaster beats the market: Claude direct scores a Brier of 0.169 there against the market's 0.177, on 174 markets. A lower Brier is better. That is what ch16 and claude_direct are built on.",
-        "Bets at 60c and up keep doing well for some strategies: calibrated has won 8 of 8 (+$5.9k), main 3 of 3 (+$2.2k) and original 2 of 2 (+$1.2k). Bold has not (12 of 19, -$4.6k), so the picture is mixed, and every count is small."
+        "Mention markets, NO side opened 32 bets ($1,739 staked, under 2% of its bankroll). None have settled yet, so the mention idea will soon get its first real results.",
+        "Among our forecasters, Claude direct is the closest to the market: 0.203 vs the market's 0.164 on 760 paired markets, against Jev + research's 0.220. In sports it roughly matches the market (0.176 vs 0.178 on 200 markets), which is a tie, not an edge.",
+        "Probe-only sizing is doing its job: with every lambda at 0, losses stay small while the forecasts are tested."
       ],
       "went_badly": [
-        "Tuning main has not paid on the yardstick so far. On shared markets main is -$17.4k on 24 settled, about -$35 per $100 staked, against original's -$15.9k on 37, about -$18 per $100. Since main's edge rose to 12c it has lost both settled bets (-$3.3k), with 6 still open. The stake figures include ope",
-        "We do not beat the market. On 660 paired markets the market scores 0.160, Claude direct 0.200 and Jev + research 0.218. Every skill lambda is 0, so all strategies are still placing probe-sized bets only.",
-        "Sharp line has placed 1 bet ever, and its skill raw of 24.45 on 8 markets is not a believable number (p30 and p31 already ask about this). Long shots are still dead: main, claude_direct and calibrated together are 0 for 21 under 30c, so the 30c floor stays."
+        "Nobody beats the market price. All-time Brier is 0.146 for the market (1,503 markets) against 0.178 for Claude direct (335) and 0.209 for Jev + research (1,171). Every source's raw skill is negative, so no strategy will size up soon.",
+        "The data doesn't add up. The 2026-10-11 log says sharp's min_edge went from 3c to 2c (version 2), but sharp still shows version 1, 3c, no change date, and 'locked'. Mention_no shows 32 bets all time but 0 in every price bucket. Main, original and the other Jev strategies are missing entirely, and th",
+        "Sharp has still placed only 1 bet ever, a loss of $249.55, and its skill reads -1.63 on 28 markets, an implausible value next to the others (-0.015 to -0.025). Mention_follow has placed 0 bets. One settled bet tells us nothing."
       ]
     },
     "auto_start": true,
@@ -6500,6 +6513,27 @@
         "title": "Point Claude direct's forecasts at sports first",
         "why": "Claude direct is the only source that beats the market in any category (sports, 0.169 vs 0.177), but it has forecast only 174 of 717 resolved sports markets. Meanwhile claude_direct placed 1 bet since its last change and ch16 places about 1 a day. Within the existing budget, giving sports markets priority for Claude direct forecasts should give both strategies more bets where the edge actually exists.",
         "created": "2026-10-11T15:55:14Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p35",
+        "title": "Restore the missing strategies to the daily review",
+        "why": "This review lists only sharp, mention_no and mention_follow, and the yardstick is empty. Yet the log shows original placing a bet this period, and main, bold, calibrated, claude_direct and jev_alone_bold all have live experiments (p23, p26, p27, p29) waiting to be judged. Tuning blind would be guessing.",
+        "created": "2026-10-12T08:12:58Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p36",
+        "title": "Check that sharp's 2c edge change was actually applied",
+        "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks like a scoring or matching bug (see p30).",
+        "created": "2026-10-12T08:12:58Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p37",
+        "title": "Make by_price_paid count open bets consistently",
+        "why": "Sharp's price buckets count its 1 bet, but mention_no's 32 open bets appear in no bucket at all, even though its 30-70c price band means they must fall in 30-60c or 60c+. When these settle, the long-shot/favourite comparison behind the 30c floor will be wrong for mention strategies.",
+        "created": "2026-10-12T08:12:58Z",
         "status": "proposed"
       }
     ]
