@@ -383,3 +383,22 @@ about break-even, not +16%.** Its pre-registered forward test (quoted asks, its 
 A possible real edge sits in the same data, as a new hypothesis only: following an informed first trade (buying after
 a market's first trade was a NO purchase) still paid in state gas ladders out of sample, at entry prices taken from the
 next trade print, which needs re-testing at quoted prices before anything is built.
+
+## Following the first trade at quoted prices (2026-10-11/12)
+
+`docs/research/scripts/follow_first_trade.py`: in 2,306 settled Kalshi mention markets (series without EARNINGS or
+TRUMP) whose first trade came 6+ hours before the event, buy the first trade's side S at the QUOTED ask DELTA minutes
+after it printed (minute candles; spread 10¢ or less; ask 30–85¢; entry 6+ hours before the event), after the taker fee.
+The hypothesis (follow a NO first trade) was set before the test, from the previous section.
+
+| Rule, after fees | DELTA 1 min | 5 min | 15 min | 30 min | 60 min |
+|---|---|---|---|---|---|
+| follow when the first trade was a NO buy | +20.0% [−1.5, +39.8] (92 buys, 54 events) | +19.0% [−0.4, +37.1] | **+18.1% [−1.3, +35.1]** (108, 62) | +16.4% [−1.4, +33.0] | +21.5% [−7.7, +47.2] |
+| follow when it was a YES buy | −4.9% | −4.0% | −4.1% | −11.0% | −25.5% [−40.4, −12.2] |
+| placebo: buy NO whatever came first | +0.6% | +1.6% | +2.2% | +4.4% | +14.7% |
+| fade: buy the other side | −14.9% [−25.4, −4.3] | −13.0% | −13.3% | −6.9% | +0.5% |
+
+Both halves of history are positive for "follow NO" at every DELTA (15 min: +16.7% / +19.4%). Read: a NO purchase as a
+new mention market's first trade carries information that the quote has not absorbed 15–60 minutes later; a YES first
+trade does not (YES optimism). The ranges still touch zero and the sample is about 60 events, so this earns a forward
+test, not a stake. A live version needs the first trade's side, one request to Kalshi's trades endpoint per new market.
