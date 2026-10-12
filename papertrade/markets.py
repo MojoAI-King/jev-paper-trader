@@ -409,6 +409,31 @@ def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int 
     return LAST_MENTIONS
 
 
+def kalshi_first_trade(ticker: str, opened: str | None) -> dict | None:
+    """The first real trade in a Kalshi market: {"side": the taker's side, "ts": when}, or None before any trade.
+
+    Kalshi returns trades newest first, so the list is paged to its end (at most 10 pages, from the market's listing
+    time). For the mention_follow strategy: a NO purchase as a new mention market's first trade predicted NO at quoted
+    prices 15-60 minutes later (docs/research/CHECKS.md, "Following the first trade at quoted prices")."""
+    params = {"ticker": ticker, "limit": 1000}
+    o = _dt(opened)
+    if o:
+        params["min_ts"] = int(o.timestamp()) - 60
+    trades, cursor = [], None
+    for page in range(10):
+        if page:
+            _sleep(MENTION_PAUSE)
+        p = dict(params, cursor=cursor) if cursor else params
+        data = _get(f"{KALSHI}/markets/trades", p)
+        trades += data.get("trades") or []
+        cursor = data.get("cursor")
+        if not cursor or not data.get("trades"):
+            break
+    real = sorted((_utc(t.get("created_time")) or "", t.get("taker_side")) for t in trades if not t.get("is_block_trade"))
+    real = [t for t in real if t[0] and t[1] in ("yes", "no")]
+    return {"side": real[0][1], "ts": real[0][0]} if real else None
+
+
 def check_kalshi(tickers: list[str]) -> dict:
     """ticker -> "yes" / "no", or ("void", value) for a market settled at a value rather than yes/no.
 
@@ -452,6 +477,7 @@ def resolve_kalshi(ticker: str) -> str | None:
 
 
 FETCHERS = {"polymarket": fetch_polymarket, "kalshi": fetch_kalshi,
-            "kalshi_mentions": fetch_kalshi_mentions}  # not a source: read by the scan for the mention strategy
+            "kalshi_mentions": fetch_kalshi_mentions,  # not sources: read by the scan for the mention strategies
+            "kalshi_first_trade": kalshi_first_trade}
 RESOLVERS = {"polymarket": resolve_polymarket, "kalshi": resolve_kalshi}
 BATCH_RESOLVERS = {"kalshi": check_kalshi}  # checked every cycle, before the stored close time

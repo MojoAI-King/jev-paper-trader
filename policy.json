@@ -85,7 +85,7 @@
     "min_days_between_changes": 7,
     "_min_days_between_changes": "A strategy's rules change at most once every 7 days (1 from 2026-09-28; 7 since 2026-10-09, docs/REBUILD_PLAN.md phase 1). Report 13 found 18 changes in 11 days, each version judged on a median of 8 settled bets: tuning on noise",
     "frozen_strategies": ["original"],
-    "locked_strategies": ["sharp", "mention_no"],
+    "locked_strategies": ["sharp", "mention_no", "mention_follow"],
     "_locked_strategies": "2026-10-11, Joey: the daily review may not change these strategies' rules while their pre-registered forward tests run (docs/EXPERIMENTS.md), so their results answer one question. Unlike the frozen yardstick they keep skill-based sizing; remove a name to unlock it",
     "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
@@ -134,7 +134,9 @@
                        "_retired": "2026-10-10: its forecaster (Jev alone) scores like a coin flip on 1,006 markets with a real price (0.247) and adds nothing to the price (weight -0.30, range -0.63 to 0.07). Its colour went to the mention strategy; its ledger still settles",
                        "blurb": "Jev with no research and Bold's lower info bar. Retired 2026-10-10: its forecaster scores like a coin flip. Its record stays here and its open bets still settle.",
                        "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"},
-    "original": {"label": "Jev + research, original rules", "short": "Original rules", "desc": "main's starting rules, never tuned", "badge": "Yardstick", "probability": "jev_research", "gates": "jev_research",
+    "original": {
+      "retired": true,
+      "_retired": "2026-10-11, Joey: the frozen yardstick retires too. It bet the old Jev + research way, which scored worse than the market price, and with main retired it had nothing left to be a yardstick for. Ledger kept; open bets still settle","label": "Jev + research, original rules", "short": "Original rules", "desc": "main's starting rules, never tuned", "badge": "Yardstick", "probability": "jev_research", "gates": "jev_research",
                  "blurb": "Jev + Claude on the rules main started with, never changed. Compared with main's bets from the day it started: if main does better on those, the tuning is paying.",
                  "_why": "Joey let the daily review tune any strategy's rules (2026-09-28). This copy of main's starting rules is frozen (learning.frozen_strategies), so the tuning is judged against leaving the rules alone"},
     "sharp": {"label": "Sharp line (Pinnacle)", "short": "Sharp line", "desc": "buys below the sharp sportsbook price", "badge": "New", "probability": "sharp", "gates": "sharp",
@@ -148,7 +150,12 @@
                    "gate_overrides": {"min_edge": 0.03},
                    "rules": {"min_ask": 0.3, "max_ask": 0.7},
                    "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
-                   "_why": "Research report 15 (Bartlett & O'Hara 2026: YES at 50c settled YES about 40% across 35,000+ Kalshi mention markets), replicated on 639 settled Kalshi mention markets on 2026-10-10 (+21.0% after fees), then re-tested the same day on every Mentions series, 7,929 settled markets (docs/research/CHECKS.md): +9.8% bought in the first 48 hours across all series, and outside earnings-call and Trump series +15% to +18% in both halves of history; inside those, no edge, so they are skipped (mention.exclude_series). Found on history, so it must now pass a forward test (docs/EXPERIMENTS.md). Sized by measured skill: probes until its edge shows on 300+ markets; never more contracts than the ask offers"}
+                   "_why": "Research report 15 (Bartlett & O'Hara 2026: YES at 50c settled YES about 40% across 35,000+ Kalshi mention markets), replicated on 639 settled Kalshi mention markets on 2026-10-10 (+21.0% after fees), then re-tested the same day on every Mentions series, 7,929 settled markets (docs/research/CHECKS.md): +9.8% bought in the first 48 hours across all series, and outside earnings-call and Trump series +15% to +18% in both halves of history; inside those, no edge, so they are skipped (mention.exclude_series). Found on history, so it must now pass a forward test (docs/EXPERIMENTS.md). Sized by measured skill: probes until its edge shows on 300+ markets; never more contracts than the ask offers"},
+    "mention_follow": {"label": "Mention markets, follow the first NO", "short": "Follow NO", "desc": "follows an informed first NO buyer",
+                       "badge": "New", "probability": "mention_follow", "gates": "mention_follow", "slot": 3,
+                       "gate_overrides": {"min_edge": 0.03}, "rules": {"min_ask": 0.3, "max_ask": 0.85},
+                       "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within 90 minutes. On 2,306 past markets that paid about +18% after fees at the 15-minute mark (62 events), and following a first YES lost.",
+                       "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"}
   },
 
   "mention": {
@@ -161,6 +168,11 @@
     "relog_move": 0.05,
     "max_hours_listed": null,
     "max_probes_per_day": 30,
+    "follow_bias": 0.12,
+    "follow_max_minutes": 90,
+    "follow_max_fetches": 60,
+    "follow_max_hours_listed": 48,
+    "_follow": "mention_follow (2026-10-12): a market's first trade is read once (markets.kalshi_first_trade, cached in papertrade_data/first_trades.json) for markets listed within follow_max_hours_listed that have traded, at most follow_max_fetches a cycle; when it was a NO purchase made within follow_max_minutes, P(YES) = mid - follow_bias",
     "_pace": "2026-10-10, Joey: check more often, then (B32) see every event and buy only before it, and get more data. Up to 30 probes a day (15 until B32 showed 67 bettable events at once), at most one per event, soonest event first. hours_before_event counts back from the event's earliest possible start; for a date without a time that start is midnight New York time, so the last bets come by 6 pm the evening before"
   },
 

@@ -19,9 +19,11 @@
   forecaster's view; its looks go to `papertrade_data/mentions.jsonl`, not `judgments.jsonl`. It reads every open mention
   market series by series (`markets.fetch_kalshi_mentions`) and times bets by the event's own date
   (`markets.kalshi_event_time`), never by Kalshi's close, which comes about two weeks after the event.
-- **Neither Jev nor Claude picks bets** (Joey, 2026-10-11): `main`, `bold`, `calibrated` and `claude_direct` are retired, and
-  `learning.retired_probabilities` stops the loop from starting a strategy that picks with either. What bets: `sharp`,
-  `mention_no`, and `original` (the frozen yardstick, still Jev + research). Jev still runs as a gate and for `original`. Tests run the machinery on a copy of the policy with them on (`POLICY` in the tests);
+- **Neither Jev nor Claude picks bets** (Joey, 2026-10-11): `main`, `bold`, `calibrated`, `claude_direct` and (2026-10-12)
+  `original` are retired, and `learning.retired_probabilities` stops the loop from starting a strategy that picks with either.
+  What bets: `sharp`, `mention_no` and `mention_follow` (follows a new mention market's first NO trade; first trades read by
+  `markets.kalshi_first_trade`, kept in `papertrade_data/first_trades.json`). With no strategy using them, the scan makes no
+  Jev or Claude research calls (`stats.jev_used`). Tests run the machinery on a copy of the policy with them on (`POLICY` in the tests);
   `RetiredJevTests` checks the live one (`REAL_POLICY`).
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.
 - Any change to question wording in `papertrade/judge.py` requires bumping `QUESTION_SET_VERSION`,
@@ -42,8 +44,9 @@
   (`engine.skill`; small probe bets while it is 0, one stake budget per event). It
   starts and retires challengers. Since 2026-10-11 it may not change `learning.locked_strategies` (`sharp`, `mention_no`) while their forward tests run. It can never change code, fees, the price screen, research budgets,
   market data, settlement, or `original` (the frozen yardstick; `test_main_starts_from_its_pre_registered_gates_and_only_original_stays_on_them`).
-  **Code changes need Joey:** the loop files them as ideas (kind `code`) and he approves or rejects each;
-  the same goes for code changes you think of yourself, so ask him before starting one. Don't build an
+  **Code changes:** since 2026-10-12 Joey's standing permission covers them ("if you need to build something, build it.
+  If you need to change a strategy, do it"): a session builds what the evidence supports, with tests and a registry
+  row first, and tells him afterwards. The loop's own ideas (kind `code`) are built by a session, never by the loop. Don't build an
   unattended job that edits or ships this repo's code (Joey chose this on 2026-09-28 after Claude Code's
   safety check refused one). Playbook rules pass the same screen as research facts (`learn.rule_problem`),
   when written and again when loaded. Improvement sessions follow the `improve` skill.

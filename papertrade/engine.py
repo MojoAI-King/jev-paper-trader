@@ -48,6 +48,7 @@ PROPOSALS = DATA / "proposals.json"  # changes the retrospectives proposed; appr
 TUNED = DATA / "rules.json"  # each strategy's rules as the learning loop tuned them (only the changes)
 ODDS = DATA / "odds.json"  # the sharp sportsbook lines, refreshed within the quota (papertrade/odds.py)
 MENTIONS = DATA / "mentions.jsonl"  # each look at a Kalshi mention market by the mention strategy (no Jev answers)
+FIRST_TRADES = DATA / "first_trades.json"  # mention market -> its first trade (side, time), for mention_follow
 SHARP_LOG = DATA / "sharp.jsonl"  # the sharp strategy's looks at markets no Jev look covered that cycle (_sharp_pass)
 MENTION_SERIES = DATA / "mention_series.json"  # Kalshi's "Mentions" series and when each was last read (markets.fetch_kalshi_mentions)
 TUNED_LOG = DATA / "rules_history.jsonl"  # every rule change: what, from what to what, why, how it will be judged
@@ -536,8 +537,12 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     candidates = [dict(m, category=learn.category(m)) for m in _interleave(per_source)]
     candidates.sort(key=lambda m: seen.get(key(m), ("",))[0])  # never judged first, then judged longest ago
     funnel["passed_filters"] = len(candidates)
-    todo = candidates[: policy["max_jev_calls_per_scan"] // 2]  # up to two Jev calls per market
-    stats["deferred"] = len(candidates) - len(todo)
+    # Jev and Claude research run only when an active strategy uses them (since 2026-10-11 none bets on them: their
+    # forecasts scored worse than the market price), so no call is spent on a forecast nothing reads
+    needs_jev = any(s["probability"] in JEV_SOURCES or s["gates"] in JEV_SOURCES for s in strats.values())
+    todo = candidates[: policy["max_jev_calls_per_scan"] // 2] if needs_jev else []  # up to two Jev calls per market
+    stats["deferred"] = len(candidates) - len(todo) if needs_jev else 0
+    stats["jev_used"] = needs_jev
     mk.add_kalshi_fees(todo)  # each series' published fee multiplier, for the markets about to be judged
     sharp = {}  # market key -> Pinnacle's fair price for that outcome (papertrade/odds.py); never shown to a forecaster
     if any(s["probability"] == "sharp" for s in strats.values()):
@@ -754,7 +759,11 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         for err in mfetch.get("errors") or []:
             warn(f"! kalshi mentions: {err}")
         stats["mention_fetch"] = mfetch
-    _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log)
+    firsts = load_json(FIRST_TRADES, {})
+    _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log,
+                  first_trade=fetchers.get("kalshi_first_trade"), firsts=firsts)
+    if firsts:
+        save_json(FIRST_TRADES, firsts)
     for name, pf in books.items():
         save_portfolio(name, pf)
     if claude is not None and claude.last_rate:
@@ -824,7 +833,8 @@ def mention_prior(m: dict, cfg: dict) -> float:
     return round(m["mid"] - cfg["yes_bias"], 4) if lo <= m["mid"] <= hi else m["mid"]
 
 
-def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log) -> None:
+def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log,
+                  first_trade=None, firsts=None) -> None:
     """Kalshi mention markets for the strategies whose probability is `mention_prior`. They need no Jev or Claude:
     markets.fetch_kalshi_mentions reads every open one each cycle, and each is decided every cycle, soonest event
     first, until its event is `hours_before_event` away. The event's own date decides that
@@ -832,10 +842,13 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
     date is never bet. A market is logged to mentions.jsonl (which settle and the skill measure read) when first
     seen, when bet, and after its mid moves `relog_move` since its last entry, without its rules text, so the log
     grows by what changed rather than by every look. A bet never buys more contracts than the ask offers."""
-    names = {n: s for n, s in strats.items() if s["probability"] == "mention_prior"}
+    names = {n: s for n, s in strats.items() if s["probability"] in ("mention_prior", "mention_follow")}
     if not names or not mk.LAST_MENTIONS:
         return
     cfg = policy["mention"]
+    firsts = {} if firsts is None else firsts
+    follow = any(s["probability"] == "mention_follow" for s in names.values())
+    fetches, followable = 0, 0
     seen = last_judged(MENTIONS)
     pace = dict(policy["skill"], max_probes_per_day=cfg["max_probes_per_day"])  # its own probe limit
     cut = now + timedelta(hours=cfg["hours_before_event"])
@@ -862,10 +875,33 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
             aged += 1
             continue  # listed too long ago: the edge was measured on early purchases (docs/research/CHECKS.md)
         p = mention_prior(m, cfg)
-        signals = {"p_yes": {"noul": p}, "rules_clear": {"noul": 1.0}, "info_sufficient": {"noul": 1.0}}
+        fp, first = None, None
+        if follow:
+            # mention_follow: when the market's first trade was a NO purchase, NO at the quoted ask soon after paid
+            # (docs/research/CHECKS.md, "Following the first trade at quoted prices")
+            mid_ = m["market_id"]
+            if (mid_ not in firsts and first_trade and (m.get("volume") or 0) > 0 and fetches < cfg["follow_max_fetches"]
+                    and opened and now - opened <= timedelta(hours=cfg["follow_max_hours_listed"])):
+                fetches += 1
+                try:
+                    got = first_trade(mid_, m.get("opened"))
+                except Exception:
+                    got = None
+                if got:
+                    firsts[mid_] = got
+            first = firsts.get(mid_)
+            ft = _when((first or {}).get("ts"))
+            if first and first["side"] == "no" and ft and timedelta(0) <= now - ft <= timedelta(minutes=cfg["follow_max_minutes"]):
+                fp = round(m["mid"] - cfg["follow_bias"], 4)
+                followable += 1
+        prob = {"mention_prior": p, "mention_follow": fp}
         decisions = {}
         for name, strat in names.items():
             pf = books[name]
+            if prob[strat["probability"]] is None:
+                continue  # nothing to follow in this market this cycle
+            signals = {"p_yes": {"noul": prob[strat["probability"]]}, "rules_clear": {"noul": 1.0},
+                       "info_sufficient": {"noul": 1.0}}
             if key(m) in {x["key"] for x in pf["open"]}:
                 decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holding this market"]}
                 continue
@@ -874,7 +910,7 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
                 decisions[name] = {"bet": False, "cleared_gates": False, "reasons": ["already holds a bet on this event"]}
                 continue
             open_cost = sum(x["total_cost"] for x in pf["open"])
-            sz = skill_sizing(pf, m, skills.get("mention_prior", {}).get("lambda", 0.0), stamp, event_of)
+            sz = skill_sizing(pf, m, skills.get(strat["probability"], {}).get("lambda", 0.0), stamp, event_of)
             d = decide(m, signals, dict(spolicy[name], skill=pace), equity_at_cost(pf), open_cost, pf["cash"], sz)
             if d["bet"]:
                 size = m.get(f"{d['side']}_ask_size")
@@ -890,15 +926,19 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
                 funnel["bets"][name] += 1
         last = seen.get(key(m))
         moved = last is not None and last[1] is not None and abs(float(m["mid"]) - float(last[1])) >= cfg["relog_move"]
-        if last is None or moved or any(d.get("bet") for d in decisions.values()):
+        if last is None or moved or fp is not None or any(d.get("bet") for d in decisions.values()):
             logged += 1
             for name, d in decisions.items():
                 funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
-            append_jsonl(MENTIONS, {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
-                                    "market": {k: v for k, v in m.items() if k != "rules"},
-                                    "mention_prior": {"p_yes": p}, "decisions": decisions})
+            rec = {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
+                   "market": {k: v for k, v in m.items() if k != "rules"}, "mention_prior": {"p_yes": p},
+                   "decisions": decisions}
+            if fp is not None:
+                rec["mention_follow"] = {"p_yes": fp, "first": first}
+            append_jsonl(MENTIONS, rec)
     stats["mentions"] = {"seen": len(mk.LAST_MENTIONS), "events": len({x.get("event") for x in mk.LAST_MENTIONS}),
-                         "logged": logged, "past_or_close": past, "no_date": undated, "listed_too_long": aged, "excluded_series": excluded}
+                         "logged": logged, "past_or_close": past, "no_date": undated, "listed_too_long": aged, "excluded_series": excluded,
+                         "first_trades_read": fetches, "to_follow": followable}
 
 
 def _record_scan(stats: dict, stamp: str) -> None:
@@ -1015,6 +1055,9 @@ SOURCES = [("jev_research", "Jev + research"), ("jev_plain", "Jev alone"),
 
 
 def _prob(j: dict, source: str):
+    if source == "mention_follow":
+        c = j.get("mention_follow")
+        return float(c["p_yes"]) if c and c.get("p_yes") is not None else None
     if source == "jev_research":
         a = j.get("answers")
         return float(a["p_yes"]["noul"]) if a else None
@@ -1085,7 +1128,8 @@ def paired(judgments: list[dict], resolved: dict) -> dict:
     return {"n": len(looks), "left_out": len(wide - looks.keys()), "sources": sources}
 
 
-SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated", "sharp", "mention_prior")
+JEV_SOURCES = {"jev_plain", "jev_research", "jev_calibrated", "claude_direct"}  # forecasts that need Jev or Claude calls
+SKILL_SOURCES = ("jev_plain", "jev_research", "claude_direct", "jev_calibrated", "sharp", "mention_prior", "mention_follow")
 
 
 def skill(judgments: list[dict], resolved: dict, min_markets: int = 300, boot: int = 200) -> dict:
