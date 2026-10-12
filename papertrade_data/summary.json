@@ -1,20 +1,20 @@
 {
-  "generated": "2026-10-12T15:07:45Z",
+  "generated": "2026-10-12T15:22:55Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
   "cash": 74899.24,
-  "open_cost": 4013.03,
-  "equity": 78912.27,
-  "realized": -21087.73,
-  "roi_settled": -0.3491592865919495,
+  "open_cost": 2361.74,
+  "equity": 77260.98,
+  "realized": -22739.02,
+  "roi_settled": -0.3664804530499612,
   "wins": 11,
-  "settled": 33,
+  "settled": 34,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
     "polymarket": 2159.71,
-    "kalshi": 1853.32
+    "kalshi": 202.03
   },
   "curve": [
     {
@@ -188,8 +188,13 @@
       "label": "Will it rain in Los Angeles on Oct 11, 2026?"
     },
     {
-      "t": "2026-10-12T15:07:45Z",
-      "equity": 78912.27,
+      "t": "2026-10-12T15:20:30Z",
+      "equity": 77260.98,
+      "label": "The Social Reckoning Rotten Tomatoes score? (Above 60)"
+    },
+    {
+      "t": "2026-10-12T15:22:55Z",
+      "equity": 77260.98,
       "label": "Now (open bets valued at cost)"
     }
   ],
@@ -223,20 +228,6 @@
       "close_time": "2026-10-11T12:00:00Z"
     },
     {
-      "question": "The Social Reckoning Rotten Tomatoes score? (Above 60)",
-      "url": "https://kalshi.com/markets/kxrt/the-social-reckoning-rotten-tomatoes-score/kxrt-soc",
-      "source": "kalshi",
-      "side": "yes",
-      "contracts": 3869,
-      "cost_per": 0.4268,
-      "total_cost": 1651.29,
-      "p_side": 0.78,
-      "market_ask": 0.4,
-      "edge": 0.3532,
-      "opened": "2026-10-07T21:05:06Z",
-      "close_time": "2026-10-12T14:00:00Z"
-    },
-    {
       "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
       "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
       "source": "kalshi",
@@ -266,6 +257,24 @@
     }
   ],
   "closed": [
+    {
+      "question": "The Social Reckoning Rotten Tomatoes score? (Above 60)",
+      "url": "https://kalshi.com/markets/kxrt/the-social-reckoning-rotten-tomatoes-score/kxrt-soc",
+      "source": "kalshi",
+      "side": "yes",
+      "contracts": 3869,
+      "cost_per": 0.4268,
+      "total_cost": 1651.29,
+      "p_side": 0.78,
+      "market_ask": 0.4,
+      "edge": 0.3532,
+      "opened": "2026-10-07T21:05:06Z",
+      "close_time": "2026-10-12T14:00:00Z",
+      "outcome": "no",
+      "payout": 0.0,
+      "pnl": -1651.29,
+      "settled": "2026-10-12T15:20:30Z"
+    },
     {
       "question": "Will it rain in Los Angeles on Oct 11, 2026?",
       "url": "https://kalshi.com/markets/kxrain/will-it-rain-in-los-angeles-on-oct-11-2026/kxrain-26oct11",
@@ -863,62 +872,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1527,
+    "resolved": 1536,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20993497036409822,
-        "n": 1181
+        "brier": 0.20908129738837405,
+        "n": 1187
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22919895219384415,
-        "n": 1527
+        "brier": 0.22902994791666667,
+        "n": 1536
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.17813159523809524,
-        "n": 336
+        "brier": 0.17731424852071007,
+        "n": 338
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2120696516696751,
-        "n": 1108
+        "brier": 0.2111269558707361,
+        "n": 1114
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14619091159135558,
-        "n": 1527
+        "brier": 0.14540304166666665,
+        "n": 1536
       }
     ],
     "paired": {
-      "n": 767,
+      "n": 773,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1642744524119948
+          "brier": 0.16316284605433376
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2200910039113429
+          "brier": 0.2194724450194049
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20379465449804432
+          "brier": 0.2031041397153946
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24603585397653194
+          "brier": 0.24569857697283312
         }
       ]
     }
@@ -935,7 +944,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T15:05:22Z",
+    "ts": "2026-10-12T15:20:30Z",
     "stages": [
       [
         "Fetched",
@@ -1804,7 +1813,7 @@
           99750.45
         ],
         [
-          "2026-10-12T15:07:45Z",
+          "2026-10-12T15:22:55Z",
           99750.45
         ]
       ]
@@ -2529,7 +2538,7 @@
           100000.0
         ],
         [
-          "2026-10-12T15:07:45Z",
+          "2026-10-12T15:22:55Z",
           100000.0
         ]
       ]
@@ -3254,7 +3263,7 @@
           100000.0
         ],
         [
-          "2026-10-12T15:07:45Z",
+          "2026-10-12T15:22:55Z",
           100000.0
         ]
       ]
@@ -4452,6 +4461,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T15:20:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T15:05:22Z",
       "type": "scan",
       "fetched": 200,
@@ -5004,14 +5021,6 @@
       "ts": "2026-10-12T03:35:11Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T03:35:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5024,21 +5033,21 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1527,
+    "reviewed": 1536,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 145,
-        "predicted": 0.137,
-        "actual": 0.172
+        "n": 149,
+        "predicted": 0.138,
+        "actual": 0.168
       },
       {
         "range": "20\u201340%",
-        "n": 419,
+        "n": 420,
         "predicted": 0.298,
-        "actual": 0.282
+        "actual": 0.281
       },
       {
         "range": "40\u201360%",
@@ -5048,9 +5057,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 192,
+        "n": 193,
         "predicted": 0.661,
-        "actual": 0.74
+        "actual": 0.741
       },
       {
         "range": "80\u2013100%",
@@ -5553,9 +5562,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0668,
-      "b": 0.1441,
-      "n": 1181,
+      "a": 1.0773,
+      "b": 0.1446,
+      "n": 1187,
       "active": true,
       "need": 300
     },
@@ -5610,15 +5619,15 @@
       },
       {
         "category": "culture",
-        "n": 77,
-        "jev_plain": 0.1935,
-        "market": 0.0779,
-        "jev_research": 0.1762,
+        "n": 86,
+        "jev_plain": 0.1943,
+        "market": 0.071,
+        "jev_research": 0.145,
         "claude_direct": 0.0401,
-        "n_jev_plain": 77,
-        "n_market": 77,
-        "n_jev_research": 20,
-        "n_claude_direct": 5
+        "n_jev_plain": 86,
+        "n_market": 86,
+        "n_jev_research": 26,
+        "n_claude_direct": 7
       },
       {
         "category": "politics",
