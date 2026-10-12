@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T08:26:49Z",
+  "generated": "2026-10-12T08:43:38Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T08:26:49Z",
+      "t": "2026-10-12T08:43:38Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -917,15 +917,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T08:20:27Z",
+    "ts": "2026-10-12T08:35:39Z",
     "stages": [
       [
         "Fetched",
-        180
+        174
       ],
       [
         "Passed free filters",
-        180
+        174
       ],
       [
         "Judged by Jev",
@@ -959,10 +959,10 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 80
+      "kalshi": 74
     },
     "problems": [
-      "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
+      "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline_exceeded\",\"message\":\"context deadline exceeded\"}}); kept what it had"
     ],
     "cleared_gates": {
       "sharp": 0,
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T08:26:49Z",
+          "2026-10-12T08:43:38Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T08:26:49Z",
+          "2026-10-12T08:43:38Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T08:26:49Z",
+          "2026-10-12T08:43:38Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T08:35:39Z",
+      "type": "problem",
+      "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
+    },
+    {
+      "ts": "2026-10-12T08:35:39Z",
+      "type": "scan",
+      "fetched": 174,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T08:20:27Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
@@ -4976,24 +4989,6 @@
       "market": 0.065,
       "q": "Will Bitcoin reach $97,500 in October?",
       "url": "https://polymarket.com/market/will-bitcoin-reach-97pt5k-in-october-2026"
-    },
-    {
-      "ts": "2026-10-12T00:50:10Z",
-      "type": "call",
-      "jev": 0.28,
-      "claude": null,
-      "market": 0.405,
-      "q": "Will Student List \u2013 Students Win win the most seats in the 2026 Serbian parliamentary election?",
-      "url": "https://polymarket.com/market/will-student-list-students-win-win-the-most-seats-in-the-2026-serbian-parliamentary-election"
-    },
-    {
-      "ts": "2026-10-12T00:50:10Z",
-      "type": "call",
-      "jev": 0.3,
-      "claude": null,
-      "market": 0.365,
-      "q": "Will CPI Core rise more than 0.2% in September? (Above 0.2%)",
-      "url": "https://kalshi.com/markets/kxcpicore/will-cpi-core-rise-more-than-0-2-in-september/kxcpicore-26sep"
     }
   ],
   "plan_usage": {
