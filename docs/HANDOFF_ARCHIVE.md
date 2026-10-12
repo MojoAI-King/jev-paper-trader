@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-11 12:45 EDT
+- **State:** Jev retired as a picker (6632112): main, bold, calibrated, ch13 retired; learning.retired_probabilities blocks new Jev challengers; run 38156043216 clean. First-trade scan done (27,294 markets): 4 leads in 107 cuts, all Economics NO 50-85c (first trade +37.0% at 50-70c, 44 events); adversarial workflow wf_79340bda-9e0 running, including a listing-quote test of the mention 'be first in' idea. Evidence: 154 offline tests OK; run 38156043216 success (no Jev bets; sharp matched 3); first_trade_scan.py --summarize.
+- **Next:** Read the workflow verdicts; record the first-trade results in docs/research/CHECKS.md; decide (with evidence) whether mention bets should be limited to untraded markets; ch16 and claude_direct await Joey
+- **Blocked:** nothing
+- **Watch out:** Trade-conditioned 'first trade' results can come from the first trader's own choice; only a listing-quote test shows what we get by trading first
+- **Git:** master @ 84ca766, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 16:45 UTC)
+
 ### 2026-10-11 10:57 EDT
 - **State:** Sharp pass live (5504147): run 38148752927 matched 6 games (was 0), all decided outside Jev, prices within ~1c of Pinnacle so no bets. Matcher bug fixed (4499823): a touchdown prop had been priced with a team moneyline; that bet is left out of the sharp evaluation. Jev measured: Brier 0.247 alone, 0.217 with research, vs the market's 0.160 on 657 real-priced markets; skill beyond price negative for every forecaster. First-trade scan across all categories running (docs/research/scripts/first_trade_scan.py). Evidence: 152 offline tests OK; run 38148752927 success (sharp matched 6, decided_outside_jev 6); engine.skill and engine.paired read-only.
 - **Next:** When the first-trade scan finishes: --summarize, check leads adversarially, record in CHECKS.md; Joey decides whether Jev keeps picking bets
