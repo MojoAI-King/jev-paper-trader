@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T06:11:51Z",
+  "generated": "2026-10-12T06:26:48Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -178,7 +178,7 @@
       "label": "North Dakota St. wins by over 3.5 points"
     },
     {
-      "t": "2026-10-12T06:11:51Z",
+      "t": "2026-10-12T06:26:48Z",
       "equity": 79312.45,
       "label": "Now (open bets valued at cost)"
     }
@@ -845,7 +845,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1502,
+    "resolved": 1503,
     "sources": [
       {
         "name": "jev_research",
@@ -856,8 +856,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2284918774966711,
-        "n": 1502
+        "brier": 0.22836387225548904,
+        "n": 1503
       },
       {
         "name": "claude_direct",
@@ -874,8 +874,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14640575882157122,
-        "n": 1502
+        "brier": 0.14631062674650697,
+        "n": 1503
       }
     ],
     "paired": {
@@ -917,7 +917,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T06:05:07Z",
+    "ts": "2026-10-12T06:20:13Z",
     "stages": [
       [
         "Fetched",
@@ -1788,7 +1788,7 @@
           99750.45
         ],
         [
-          "2026-10-12T06:11:51Z",
+          "2026-10-12T06:26:48Z",
           99750.45
         ]
       ]
@@ -2513,7 +2513,7 @@
           100000.0
         ],
         [
-          "2026-10-12T06:11:51Z",
+          "2026-10-12T06:26:48Z",
           100000.0
         ]
       ]
@@ -3238,7 +3238,7 @@
           100000.0
         ],
         [
-          "2026-10-12T06:11:51Z",
+          "2026-10-12T06:26:48Z",
           100000.0
         ]
       ]
@@ -4436,6 +4436,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T06:20:13Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-12T06:20:13Z",
+      "type": "scan",
+      "fetched": 180,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T06:05:07Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
@@ -5021,23 +5034,6 @@
       "market": 0.125,
       "q": "Will there be more than 30 transit calls through the Strait of Hormuz from Oct 5, 2026 to Oct 11, 2026? (Above 30)",
       "url": "https://kalshi.com/markets/kxhormuzweekly/will-there-be-more-than-30-transit-calls-through-the-strait/kxhormuzweekly-26oct11"
-    },
-    {
-      "ts": "2026-10-11T23:20:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 16,
-      "researched": 4,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-11T23:05:10Z",
-      "type": "call",
-      "jev": 0.46,
-      "claude": null,
-      "market": 0.535,
-      "q": "Bitcoin price on Oct 16, 2026? ($83,500 or above)",
-      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617"
     }
   ],
   "plan_usage": {
@@ -5050,7 +5046,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1502,
+    "reviewed": 1503,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5706,14 +5702,14 @@
       },
       {
         "category": "tech",
-        "n": 17,
+        "n": 18,
         "jev_research": 0.4295,
-        "jev_plain": 0.2526,
-        "market": 0.0557,
+        "jev_plain": 0.2406,
+        "market": 0.0528,
         "claude_direct": 0.49,
         "n_jev_research": 5,
-        "n_jev_plain": 17,
-        "n_market": 17,
+        "n_jev_plain": 18,
+        "n_market": 18,
         "n_claude_direct": 1
       }
     ],
