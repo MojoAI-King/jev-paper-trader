@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T13:22:56Z",
+  "generated": "2026-10-12T13:37:57Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -183,7 +183,7 @@
       "label": "Will average **gas prices** be above $4.3600? (Above 4.3600)"
     },
     {
-      "t": "2026-10-12T13:22:56Z",
+      "t": "2026-10-12T13:37:57Z",
       "equity": 79110.34,
       "label": "Now (open bets valued at cost)"
     }
@@ -854,19 +854,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1507,
+    "resolved": 1508,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20842491467576793,
-        "n": 1172
+        "brier": 0.2083516624040921,
+        "n": 1173
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22831453218314532,
-        "n": 1507
+        "brier": 0.22821511936339525,
+        "n": 1508
       },
       {
         "name": "claude_direct",
@@ -877,14 +877,14 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21059228328480437,
-        "n": 1099
+        "brier": 0.2105232135818182,
+        "n": 1100
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14599445719973456,
-        "n": 1507
+        "brier": 0.14608744827586206,
+        "n": 1508
       }
     ],
     "paired": {
@@ -926,7 +926,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T13:20:36Z",
+    "ts": "2026-10-12T13:35:26Z",
     "stages": [
       [
         "Fetched",
@@ -1795,7 +1795,7 @@
           99750.45
         ],
         [
-          "2026-10-12T13:22:56Z",
+          "2026-10-12T13:37:57Z",
           99750.45
         ]
       ]
@@ -2520,7 +2520,7 @@
           100000.0
         ],
         [
-          "2026-10-12T13:22:56Z",
+          "2026-10-12T13:37:57Z",
           100000.0
         ]
       ]
@@ -3245,7 +3245,7 @@
           100000.0
         ],
         [
-          "2026-10-12T13:22:56Z",
+          "2026-10-12T13:37:57Z",
           100000.0
         ]
       ]
@@ -4443,6 +4443,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-12T13:35:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T13:20:36Z",
       "type": "scan",
       "fetched": 200,
@@ -4985,15 +4993,6 @@
       "market": 0.272,
       "q": "Will the Milwaukee Brewers win the 2026 World Series?",
       "url": "https://polymarket.com/market/will-the-milwaukee-brewers-win-the-2026-world-series"
-    },
-    {
-      "ts": "2026-10-12T02:05:09Z",
-      "type": "call",
-      "jev": 0.2,
-      "claude": null,
-      "market": 0.21,
-      "q": "Will the Democrats win the Texas governor race in 2026?",
-      "url": "https://polymarket.com/market/will-the-democrats-win-the-texas-governor-race-in-2026"
     }
   ],
   "plan_usage": {
@@ -5006,7 +5005,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1507,
+    "reviewed": 1508,
     "post_mortems": 68,
     "win_reviews": 41,
     "calibration": [
@@ -5018,9 +5017,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 411,
+        "n": 412,
         "predicted": 0.298,
-        "actual": 0.273
+        "actual": 0.272
       },
       {
         "range": "40\u201360%",
@@ -5543,9 +5542,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0858,
-      "b": 0.134,
-      "n": 1172,
+      "a": 1.0866,
+      "b": 0.1328,
+      "n": 1173,
       "active": true,
       "need": 300
     },
@@ -5634,14 +5633,14 @@
       },
       {
         "category": "weather",
-        "n": 47,
-        "jev_plain": 0.2522,
-        "market": 0.0966,
-        "jev_research": 0.2229,
+        "n": 48,
+        "jev_plain": 0.2485,
+        "market": 0.1006,
+        "jev_research": 0.2206,
         "claude_direct": 0.2392,
-        "n_jev_plain": 47,
-        "n_market": 47,
-        "n_jev_research": 41,
+        "n_jev_plain": 48,
+        "n_market": 48,
+        "n_jev_research": 42,
         "n_claude_direct": 28
       },
       {
