@@ -27,6 +27,12 @@ DELTAS = (1, 5, 15, 30, 60)
 SKIP = ("EARNINGS", "TRUMP")
 
 
+def full_ts(s):
+    """Kalshi's created_time with its fraction of a second kept."""
+    from datetime import datetime, timezone
+    return datetime.fromisoformat(s.replace("Z", "+00:00")).astimezone(timezone.utc)
+
+
 def quote_at(candles, t):
     """(yes_bid, yes_ask) from the first minute candle ending at or after t, or None."""
     for c in candles:
@@ -78,7 +84,10 @@ def collect():
                 cursor = d.get("cursor")
                 if not cursor:
                     break
-            tr = sorted((mt.ts(t["created_time"]), t["taker_side"]) for t in trades if not t.get("is_block_trade"))
+            # full-precision times, no tie-break on side (a same-second YES and NO must not resolve to "no" by spelling)
+            tr = sorted(((full_ts(t["created_time"]), i), t["taker_side"]) for i, t in enumerate(reversed(trades))
+                        if not t.get("is_block_trade"))
+            tr = [(x[0][0], x[1]) for x in tr]
             if not tr:
                 continue
             ev = m.get("event_ticker") or m["ticker"]

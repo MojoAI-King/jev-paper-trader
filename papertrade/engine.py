@@ -477,7 +477,9 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
     """One pass of the funnel. Jev judges every due market (pennies); Claude researches only where it
     can change a bet, rationed so it never crowds out Joey's own use of the Claude plan."""
     fetchers = fetchers or mk.FETCHERS
-    client = client or JevClient(model=policy["model"])
+    if client is None and any(st["probability"] in JEV_SOURCES or st["gates"] in JEV_SOURCES
+                              for st in strategies(policy).values()):
+        client = JevClient(model=policy["model"])  # needs TYPESAFE_AI_API_KEY; only when a strategy uses Jev
     now = now or datetime.now(timezone.utc)
     started = _clock()
     for path in (JUDGMENTS, RESEARCH, MENTIONS, SHARP_LOG):
@@ -746,7 +748,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             })
     _sharp_pass(sharp, fetched_ok, {key(m) for m in todo}, strats, spolicy, books, skills, event_of, stamp, policy,
                 funnel, stats, log)
-    if any(s["probability"] == "mention_prior" for s in strats.values()) and fetchers.get("kalshi_mentions"):
+    if any(s["probability"] in ("mention_prior", "mention_follow") for s in strats.values()) and fetchers.get("kalshi_mentions"):
         mcache = load_json(MENTION_SERIES, {})
         mk.LAST_FETCH.pop("kalshi_mentions", None)
         try:
@@ -759,10 +761,13 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
         for err in mfetch.get("errors") or []:
             warn(f"! kalshi mentions: {err}")
         stats["mention_fetch"] = mfetch
-    firsts = load_json(FIRST_TRADES, {})
+    raw_firsts = load_json(FIRST_TRADES, {})
+    firsts = {k: v for k, v in (raw_firsts.items() if isinstance(raw_firsts, dict) else ()) if isinstance(v, dict)}
     _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, funnel, stats, log,
                   first_trade=fetchers.get("kalshi_first_trade"), firsts=firsts)
-    if firsts:
+    live = {m.get("market_id") for m in mk.LAST_MENTIONS}
+    firsts = {k: v for k, v in firsts.items() if k in live}  # only markets still open and read this cycle
+    if firsts or raw_firsts:
         save_json(FIRST_TRADES, firsts)
     for name, pf in books.items():
         save_portfolio(name, pf)
@@ -849,6 +854,7 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
     firsts = {} if firsts is None else firsts
     follow = any(s["probability"] == "mention_follow" for s in names.values())
     fetches, followable = 0, 0
+    follow_deadline = _clock() + cfg.get("follow_max_seconds", 120)  # Kalshi stalls must not sink the cycle
     seen = last_judged(MENTIONS)
     pace = dict(policy["skill"], max_probes_per_day=cfg["max_probes_per_day"])  # its own probe limit
     cut = now + timedelta(hours=cfg["hours_before_event"])
@@ -880,16 +886,25 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
             # mention_follow: when the market's first trade was a NO purchase, NO at the quoted ask soon after paid
             # (docs/research/CHECKS.md, "Following the first trade at quoted prices")
             mid_ = m["market_id"]
-            if (mid_ not in firsts and first_trade and (m.get("volume") or 0) > 0 and fetches < cfg["follow_max_fetches"]
+            known = firsts.get(mid_)
+            retry = known is not None and "side" not in known and (_when(known.get("retry_after")) or now) <= now
+            if ((known is None or retry) and first_trade and (m.get("volume") or 0) > 0
+                    and fetches < cfg["follow_max_fetches"] and _clock() < follow_deadline
                     and opened and now - opened <= timedelta(hours=cfg["follow_max_hours_listed"])):
+                if fetches:
+                    mk._sleep(mk.MENTION_PAUSE)
                 fetches += 1
                 try:
                     got = first_trade(mid_, m.get("opened"))
                 except Exception:
                     got = None
-                if got:
-                    firsts[mid_] = got
-            first = firsts.get(mid_)
+                if got and got.get("side") in ("yes", "no") and got.get("ts"):
+                    firsts[mid_] = {"side": got["side"], "ts": got["ts"]}
+                elif got and got.get("unknown"):
+                    firsts[mid_] = {"unknown": True}  # too many trades to find the first: never followed
+                else:  # a failed read, or no trade printed yet: try again in an hour, not every cycle
+                    firsts[mid_] = {"retry_after": (now + timedelta(hours=1)).strftime(TS)}
+            first = firsts.get(mid_) if "side" in (firsts.get(mid_) or {}) else None
             ft = _when((first or {}).get("ts"))
             if first and first["side"] == "no" and ft and timedelta(0) <= now - ft <= timedelta(minutes=cfg["follow_max_minutes"]):
                 fp = round(m["mid"] - cfg["follow_bias"], 4)
@@ -928,8 +943,10 @@ def _mention_pass(policy, strats, spolicy, books, skills, event_of, stamp, now, 
         moved = last is not None and last[1] is not None and abs(float(m["mid"]) - float(last[1])) >= cfg["relog_move"]
         if last is None or moved or fp is not None or any(d.get("bet") for d in decisions.values()):
             logged += 1
-            for name, d in decisions.items():
-                funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
+            fresh_look = last is None or moved
+            for name, d in decisions.items():  # a row logged only for the follow signal doesn't recount mention_no
+                if fresh_look or d.get("bet") or names[name]["probability"] == "mention_follow":
+                    funnel["cleared_gates"][name] += int(d.get("cleared_gates", False))
             rec = {"ts": stamp, "key": key(m), "event": m.get("event"), "question_set": QUESTION_SET_VERSION,
                    "market": {k: v for k, v in m.items() if k != "rules"}, "mention_prior": {"p_yes": p},
                    "decisions": decisions}

@@ -13,7 +13,9 @@ Under Joey's standing permission of 2026-10-12 ("if you need to build something,
 1. `original`, the frozen yardstick on the old Jev + research rules, is retired. Its ledger is kept and its open bets
    still settle.
 2. The scan calls Jev and Claude research only when an active strategy uses a Jev or Claude source
-   (`engine.JEV_SOURCES`); today none does, so a cycle makes no such call (`stats.jev_used` false).
+   (`engine.JEV_SOURCES`); today none does, so the scan makes no Jev or research call (`stats.jev_used` false), and it
+   builds the Jev client only when needed. The cycle's post-mortems and daily review still use Claude (corrected after
+   the review of 2026-10-12, workflow wf_d1c03f32-477).
 3. A new paper strategy, `mention_follow`: when a new Kalshi mention market's first trade is a NO purchase made in the
    last 90 minutes, P(YES) = mid − 12 points and it buys NO at the quoted ask (30–85¢, 6+ hours before the event, one
    bet per event, probes until its edge shows). The first trade is read once per market from Kalshi's trades endpoint

@@ -154,7 +154,7 @@
     "mention_follow": {"label": "Mention markets, follow the first NO", "short": "Follow NO", "desc": "follows an informed first NO buyer",
                        "badge": "New", "probability": "mention_follow", "gates": "mention_follow", "slot": 3,
                        "gate_overrides": {"min_edge": 0.03}, "rules": {"min_ask": 0.3, "max_ask": 0.85},
-                       "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within 90 minutes. On 2,306 past markets that paid about +18% after fees at the 15-minute mark (62 events), and following a first YES lost.",
+                       "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within an hour. In 108 past buys over 62 events that paid about +18% after fees at the 15-minute mark (range -0% to +35%); following a first YES lost.",
                        "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"}
   },
 
@@ -169,10 +169,11 @@
     "max_hours_listed": null,
     "max_probes_per_day": 30,
     "follow_bias": 0.12,
-    "follow_max_minutes": 90,
+    "follow_max_minutes": 60,
+    "follow_max_seconds": 120,
     "follow_max_fetches": 60,
     "follow_max_hours_listed": 48,
-    "_follow": "mention_follow (2026-10-12): a market's first trade is read once (markets.kalshi_first_trade, cached in papertrade_data/first_trades.json) for markets listed within follow_max_hours_listed that have traded, at most follow_max_fetches a cycle; when it was a NO purchase made within follow_max_minutes, P(YES) = mid - follow_bias",
+    "_follow": "mention_follow (2026-10-12): a market's first trade is read once (markets.kalshi_first_trade, cached in papertrade_data/first_trades.json) for markets listed within follow_max_hours_listed that have traded, at most follow_max_fetches a cycle; when it was a NO purchase made within follow_max_minutes, P(YES) = mid - follow_bias. Lookups stop after follow_max_seconds a cycle; a failed or empty read is retried after an hour, and a market with too many trades to find the first is never followed",
     "_pace": "2026-10-10, Joey: check more often, then (B32) see every event and buy only before it, and get more data. Up to 30 probes a day (15 until B32 showed 67 bettable events at once), at most one per event, soonest event first. hours_before_event counts back from the event's earliest possible start; for a date without a time that start is midnight New York time, so the last bets come by 6 pm the evening before"
   },
 

@@ -409,29 +409,44 @@ def fetch_kalshi_mentions(cache: dict, now: datetime | None = None, budget: int 
     return LAST_MENTIONS
 
 
-def kalshi_first_trade(ticker: str, opened: str | None) -> dict | None:
-    """The first real trade in a Kalshi market: {"side": the taker's side, "ts": when}, or None before any trade.
+def kalshi_first_trade(ticker: str, opened: str | None, max_pages: int = 30) -> dict | None:
+    """The first real trade in a Kalshi market: {"side": the taker's side, "ts": when}, None before any trade, or
+    {"unknown": True} when the list ran past `max_pages` (the true first trade can't be told, so never guess).
 
-    Kalshi returns trades newest first, so the list is paged to its end (at most 10 pages, from the market's listing
-    time). For the mention_follow strategy: a NO purchase as a new mention market's first trade predicted NO at quoted
-    prices 15-60 minutes later (docs/research/CHECKS.md, "Following the first trade at quoted prices")."""
+    Kalshi returns trades newest first, so the list is paged to its end from the market's listing time. Times keep
+    their fraction of a second and same-second trades keep Kalshi's order, so a YES and a NO in one second never
+    resolve to "no" by spelling. For mention_follow (docs/research/CHECKS.md, "Following the first trade at quoted
+    prices")."""
     params = {"ticker": ticker, "limit": 1000}
     o = _dt(opened)
     if o:
         params["min_ts"] = int(o.timestamp()) - 60
     trades, cursor = [], None
-    for page in range(10):
+    for page in range(max_pages):
         if page:
             _sleep(MENTION_PAUSE)
-        p = dict(params, cursor=cursor) if cursor else params
-        data = _get(f"{KALSHI}/markets/trades", p)
+        data = _get(f"{KALSHI}/markets/trades", dict(params, cursor=cursor) if cursor else params)
+        if not isinstance(data, dict):
+            return {"unknown": True}
         trades += data.get("trades") or []
         cursor = data.get("cursor")
         if not cursor or not data.get("trades"):
             break
-    real = sorted((_utc(t.get("created_time")) or "", t.get("taker_side")) for t in trades if not t.get("is_block_trade"))
-    real = [t for t in real if t[0] and t[1] in ("yes", "no")]
-    return {"side": real[0][1], "ts": real[0][0]} if real else None
+    else:
+        return {"unknown": True}  # more pages than we read: the first trade is still out there
+    real = []
+    for k, t in enumerate(reversed(trades)):  # oldest first, ties in Kalshi's own order
+        when = t.get("created_time")
+        try:
+            dt = datetime.fromisoformat(str(when).replace("Z", "+00:00")).astimezone(timezone.utc)
+        except ValueError:
+            continue
+        if not t.get("is_block_trade") and t.get("taker_side") in ("yes", "no"):
+            real.append((dt, k, t["taker_side"]))
+    if not real:
+        return None
+    dt, _, side = min(real)
+    return {"side": side, "ts": dt.strftime("%Y-%m-%dT%H:%M:%SZ")}
 
 
 def check_kalshi(tickers: list[str]) -> dict:

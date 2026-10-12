@@ -436,6 +436,32 @@ class MentionReaderTests(unittest.TestCase):
         self.assertIn("KXAMENTION: HTTP 500", mk.LAST_FETCH["kalshi_mentions"]["errors"][0])
 
 
+class FirstTradeReaderTests(unittest.TestCase):
+    """markets.kalshi_first_trade on recorded-shape trade pages (newest first); no network."""
+
+    def pages(self, *pages):
+        it = iter(pages)
+        return lambda url, params=None, timeout=20: next(it)
+
+    def trade(self, ts, side, block=False):
+        return {"created_time": ts, "taker_side": side, "is_block_trade": block}
+
+    def test_the_oldest_real_trade_across_pages_with_fractions_and_kalshi_order(self):
+        p1 = {"trades": [self.trade("2026-10-10T01:05:00.5Z", "yes")], "cursor": "c"}
+        p2 = {"trades": [self.trade("2026-10-10T01:00:00.900Z", "no"), self.trade("2026-10-10T01:00:00.100Z", "yes"),
+                         self.trade("2026-10-10T00:59:00Z", "no", block=True)], "cursor": ""}
+        with mock.patch.object(mk, "_get", side_effect=self.pages(p1, p2)), mock.patch.object(mk, "_sleep", lambda s: None):
+            got = mk.kalshi_first_trade("T", "2026-10-10T00:00:00Z")
+        self.assertEqual(got, {"side": "yes", "ts": "2026-10-10T01:00:00Z"})  # YES at .100 beat NO at .900; block skipped
+
+    def test_no_trades_is_none_and_too_many_pages_is_unknown(self):
+        with mock.patch.object(mk, "_get", side_effect=self.pages({"trades": [], "cursor": ""})):
+            self.assertIsNone(mk.kalshi_first_trade("T", None))
+        endless = {"trades": [self.trade("2026-10-10T01:00:00Z", "no")], "cursor": "more"}
+        with mock.patch.object(mk, "_get", return_value=endless), mock.patch.object(mk, "_sleep", lambda s: None):
+            self.assertEqual(mk.kalshi_first_trade("T", None, max_pages=3), {"unknown": True})
+
+
 class PolymarketFetchTests(unittest.TestCase):
     """Replays recorded Gamma API responses; no network."""
 
@@ -774,6 +800,8 @@ class DataDirTest(unittest.TestCase):
             p.start()
 
     def tearDown(self):
+        for name in ("kalshi_mentions", "kalshi_first_trade"):  # a swallowed guard call must still fail the test
+            self.assertFalse(mk.FETCHERS[name].called, f"a test reached the live {name} reader")
         for p in self._no_odds:
             p.stop()
         for n, v in self._saved.items():
@@ -1317,6 +1345,28 @@ class ResearchPipelineTests(DataDirTest):
         self.assertEqual(engine.load_portfolio(POLICY, "mention_follow")["open"], [])
         fresh = self.mention(market_id="NEW", event="kalshi:NEW", volume=0, opened="1999-12-24T23:00:00Z")
         self.assertEqual(self.scan_follow([fresh], {"side": "no", "ts": "x"}), [])  # nothing traded: nothing to read
+
+    def test_mention_follow_keeps_working_with_mention_no_retired_and_retries_a_failed_read_hourly(self):
+        pol = json.loads(json.dumps(POLICY)); pol["strategies"]["mention_no"]["retired"] = True
+        calls = []
+
+        def broken(ticker, opened):
+            calls.append(ticker)
+            raise RuntimeError("HTTP 504")
+        m = self.mention(volume=40, opened="1999-12-24T22:00:00Z")
+        reader_calls = []
+
+        def reader(cache, now, skip=()):
+            reader_calls.append(1)
+            mk.LAST_MENTIONS[:] = [m]
+        for minutes in (0, 15):
+            engine.scan(dict(pol, sources=["kalshi"]), client=JevClient(transport=lambda *a: {"model": "t", "answers": ans(0.5)}),
+                        fetchers={"kalshi": lambda *a: [], "kalshi_mentions": reader, "kalshi_first_trade": broken},
+                        log=lambda *_: None, now=SCAN_NOW + timedelta(minutes=minutes))
+        mk.LAST_MENTIONS.clear()
+        self.assertEqual(len(reader_calls), 2)  # read for mention_follow alone
+        self.assertEqual(calls, [m["market_id"]])  # the failure is remembered: not read again for an hour
+        self.assertIn("retry_after", engine.load_json(engine.FIRST_TRADES, {})[m["market_id"]])
 
     def test_earnings_call_and_trump_mention_series_are_left_alone(self):
         # no edge there on 7,929 settled markets (+0.5 to +2.5 points, under the costs): policy mention.exclude_series
