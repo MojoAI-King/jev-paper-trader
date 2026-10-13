@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T01:22:29Z",
+  "generated": "2026-10-13T01:37:33Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T01:22:29Z",
+      "t": "2026-10-13T01:37:33Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1563,
+    "resolved": 1565,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20878197820620284,
-        "n": 1193
+        "brier": 0.20853640167364015,
+        "n": 1195
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22908042226487524,
-        "n": 1563
+        "brier": 0.22918670926517573,
+        "n": 1565
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21088824575,
-        "n": 1120
+        "brier": 0.21060025502673796,
+        "n": 1122
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14510385572616763,
-        "n": 1563
+        "brier": 0.14505971341853036,
+        "n": 1565
       }
     ],
     "paired": {
-      "n": 778,
+      "n": 779,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16320363753213368
+          "brier": 0.16319442233632864
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21879280205655527
+          "brier": 0.21855353016688062
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2022529562982005
+          "brier": 0.20210885750962773
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24572724935732648
+          "brier": 0.24570757381258024
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T01:20:23Z",
+    "ts": "2026-10-13T01:35:19Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T01:22:29Z",
+          "2026-10-13T01:37:33Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:22:29Z",
+          "2026-10-13T01:37:33Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:22:29Z",
+          "2026-10-13T01:37:33Z",
           100000.0
         ]
       ]
@@ -4502,6 +4502,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T01:35:19Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T01:20:23Z",
       "type": "scan",
       "fetched": 200,
@@ -5122,11 +5130,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-12T08:35:39Z",
-      "type": "problem",
-      "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
     }
   ],
   "plan_usage": {
@@ -5139,7 +5142,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1563,
+    "reviewed": 1565,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
@@ -5151,9 +5154,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 422,
+        "n": 423,
         "predicted": 0.298,
-        "actual": 0.28
+        "actual": 0.279
       },
       {
         "range": "40\u201360%",
@@ -5163,9 +5166,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 194,
+        "n": 195,
         "predicted": 0.661,
-        "actual": 0.742
+        "actual": 0.744
       },
       {
         "range": "80\u2013100%",
@@ -5664,9 +5667,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0796,
-      "b": 0.1393,
-      "n": 1193,
+      "a": 1.0835,
+      "b": 0.1407,
+      "n": 1195,
       "active": true,
       "need": 300
     },
@@ -5685,14 +5688,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 849,
-        "jev_research": 0.2045,
-        "jev_plain": 0.2279,
-        "market": 0.1786,
+        "n": 851,
+        "jev_research": 0.2041,
+        "jev_plain": 0.2281,
+        "market": 0.1785,
         "claude_direct": 0.1763,
-        "n_jev_research": 716,
-        "n_jev_plain": 849,
-        "n_market": 849,
+        "n_jev_research": 718,
+        "n_jev_plain": 851,
+        "n_market": 851,
         "n_claude_direct": 200
       },
       {
