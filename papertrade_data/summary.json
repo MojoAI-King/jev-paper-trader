@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T17:52:40Z",
+  "generated": "2026-10-13T18:08:11Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T17:52:40Z",
+      "t": "2026-10-13T18:08:11Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1614,
+    "resolved": 1619,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20756540983606558,
-        "n": 1220
+        "brier": 0.2073873469387755,
+        "n": 1225
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22788017348203224,
-        "n": 1614
+        "brier": 0.22764422483014204,
+        "n": 1619
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20977682033129905,
-        "n": 1147
+        "brier": 0.2095830167013889,
+        "n": 1152
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.145437364157373,
-        "n": 1614
+        "brier": 0.14526309141445337,
+        "n": 1619
       }
     ],
     "paired": {
-      "n": 789,
+      "n": 790,
       "left_out": 107,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16311604594423318
+          "brier": 0.1629149180379747
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21823054499366284
+          "brier": 0.2179953164556962
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.201008618504436
+          "brier": 0.20101050632911394
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.244302154626109
+          "brier": 0.24403860759493673
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T17:50:20Z",
+    "ts": "2026-10-13T18:05:29Z",
     "stages": [
       [
         "Fetched",
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-13T17:52:40Z",
+          "2026-10-13T18:08:11Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-13T17:52:40Z",
+          "2026-10-13T18:08:11Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-13T17:52:40Z",
+          "2026-10-13T18:08:11Z",
           99980.19
         ]
       ]
@@ -4546,6 +4546,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T18:07:43Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379"
+    },
+    {
+      "ts": "2026-10-13T18:05:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T17:50:20Z",
       "type": "win",
       "strategy": "mention_no",
@@ -5171,22 +5187,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T02:20:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T02:05:19Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5199,19 +5199,19 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1614,
-    "post_mortems": 77,
+    "reviewed": 1619,
+    "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 152,
+        "n": 153,
         "predicted": 0.138,
-        "actual": 0.171
+        "actual": 0.17
       },
       {
         "range": "20\u201340%",
-        "n": 438,
+        "n": 442,
         "predicted": 0.297,
         "actual": 0.269
       },
@@ -5237,7 +5237,7 @@
     "root_causes": {
       "overconfident": 27,
       "unlucky": 27,
-      "missing_info": 9,
+      "missing_info": 10,
       "stale_info": 7,
       "research_error": 5,
       "misread_rules": 2
@@ -5248,6 +5248,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
+        "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379",
+        "outcome": "yes",
+        "category": "culture",
+        "p": 0.22,
+        "market": 0.3425,
+        "ts": "2026-10-13T18:07:43Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "The October 6\u201313 window resolved in the 360\u2013379 bracket, which ended the market priced at 100% on $4.3M volume. When the forecast was made, about 5.5 of the 7 days had passed and the market already had this bracket at 34%. The forecast of 0.22 came in below that.",
+        "what_we_missed": "The forecaster never looked up the running post count on xtracker.polymarket.com. With most of the window gone, that number largely settles the answer. Instead the forecast leaned on a vague, unverified spread of past weekly totals (about 40 to 459) and shaded below the market's informed price.",
+        "what_worked": "",
+        "lesson": "For post-count bracket markets judged partway through the window, get the current tracker count and the recent posting pace first, project the final total from them, and don't price below the market without that number.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For tweet-count markets, require fetching the live xtracker count (or the market's current bracket prices) and projecting the remaining hours before forecasting, and block forecasts that go against the market when no in-window count was found."
+        }
+      },
       {
         "question": "Will Elon Musk post 0-19 tweets from October 6 to October 13, 2026?",
         "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-0-19",
@@ -5346,26 +5366,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Block any forecast that disagrees with a market priced above 85% or below 15% by more than 40 points unless the research desk has confirmed the resolution metric and the threshold directly from the resolution source."
-        }
-      },
-      {
-        "question": "DeepSeek market share this week? (Above 22.4%)",
-        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.26,
-        "market": 0.95,
-        "ts": "2026-10-12T14:53:30Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "research_error",
-        "what_happened": "OpenRouter's author chart is token-based, and DeepSeek's token share was around 34\u201335% because of strong V4.1 Flash usage. That put it well above 22.4% for the week of Oct 5, and the market resolved YES, as the 95% market price had implied.",
-        "what_we_missed": "The research brief gave the threshold as 23.4% when the rules say 22.4%. It also treated the request-based figures (24.4% and 21.8%) as possibly being what the resolution chart uses. OpenRouter's author market-share chart measures tokens, and every token-based data point that week showed DeepSeek near 34\u201335%. Those errors made the forecaster give a large weight to a false downside, and it ended up at 0.26 against a 0.95 market.",
-        "what_worked": "",
-        "lesson": "Before forecasting, check the threshold against the rules text, and confirm which metric the resolution chart uses (OpenRouter's market share is token-based). When a liquid market sits at 95% and we come out near 25%, treat that as a sign our research has an error.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Add a check that compares the threshold in the research brief with the resolution rules, and record that OpenRouter's author market share is measured in tokens, so request-based figures from blogs are not used as resolution proxies."
         }
       }
     ],
@@ -5724,9 +5724,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0901,
-      "b": 0.1236,
-      "n": 1220,
+      "a": 1.0904,
+      "b": 0.1233,
+      "n": 1225,
       "active": true,
       "need": 300
     },
@@ -5781,14 +5781,14 @@
       },
       {
         "category": "culture",
-        "n": 112,
-        "jev_plain": 0.1852,
-        "market": 0.0681,
-        "jev_research": 0.1319,
+        "n": 117,
+        "jev_plain": 0.1838,
+        "market": 0.069,
+        "jev_research": 0.1351,
         "claude_direct": 0.0347,
-        "n_jev_plain": 112,
-        "n_market": 112,
-        "n_jev_research": 45,
+        "n_jev_plain": 117,
+        "n_market": 117,
+        "n_jev_research": 50,
         "n_claude_direct": 13
       },
       {
@@ -6303,7 +6303,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 49,
+      "research": 50,
       "questions": 2
     },
     "retro": {
