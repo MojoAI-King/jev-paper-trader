@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T16:08:06Z",
+  "generated": "2026-10-13T16:22:36Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T16:08:06Z",
+      "t": "2026-10-13T16:22:36Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1610,
+    "resolved": 1612,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22755496894409938,
-        "n": 1610
+        "brier": 0.2275980148883375,
+        "n": 1612
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14559138555900622,
-        "n": 1610
+        "brier": 0.1454338590260546,
+        "n": 1612
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T16:05:28Z",
+    "ts": "2026-10-13T16:20:24Z",
     "stages": [
       [
         "Fetched",
@@ -994,8 +994,8 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 1,
-      "mention_follow": 1
+      "mention_no": 0,
+      "mention_follow": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1009,8 +1009,8 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 1,
-      "mention_follow": 1
+      "mention_no": 0,
+      "mention_follow": 0
     },
     "judged": 0,
     "with_research": 0
@@ -1839,7 +1839,7 @@
           99750.45
         ],
         [
-          "2026-10-13T16:08:06Z",
+          "2026-10-13T16:22:36Z",
           99750.45
         ]
       ]
@@ -2572,7 +2572,7 @@
           100220.44
         ],
         [
-          "2026-10-13T16:08:06Z",
+          "2026-10-13T16:22:36Z",
           100220.44
         ]
       ]
@@ -3305,7 +3305,7 @@
           99980.19
         ],
         [
-          "2026-10-13T16:08:06Z",
+          "2026-10-13T16:22:36Z",
           99980.19
         ]
       ]
@@ -4548,6 +4548,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T16:20:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T16:07:40Z",
       "type": "review",
       "kind": "miss",
@@ -5185,11 +5193,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T00:07:51Z",
-      "type": "learn",
-      "text": "Research playbook updated to v16"
     }
   ],
   "plan_usage": {
@@ -5202,7 +5205,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1610,
+    "reviewed": 1612,
     "post_mortems": 77,
     "win_reviews": 41,
     "calibration": [
@@ -5760,14 +5763,14 @@
       },
       {
         "category": "crypto",
-        "n": 213,
+        "n": 215,
         "jev_research": 0.1722,
-        "jev_plain": 0.2132,
-        "market": 0.0946,
+        "jev_plain": 0.2136,
+        "market": 0.0939,
         "claude_direct": 0.1294,
         "n_jev_research": 188,
-        "n_jev_plain": 213,
-        "n_market": 213,
+        "n_jev_plain": 215,
+        "n_market": 215,
         "n_claude_direct": 53
       },
       {
