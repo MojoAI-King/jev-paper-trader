@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T23:52:34Z",
+  "generated": "2026-10-13T00:07:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-12T23:52:34Z",
+      "t": "2026-10-13T00:07:56Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-12T23:50:21Z",
+    "ts": "2026-10-13T00:05:20Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-12T23:52:34Z",
+          "2026-10-13T00:07:56Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-12T23:52:34Z",
+          "2026-10-13T00:07:56Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-12T23:52:34Z",
+          "2026-10-13T00:07:56Z",
           100000.0
         ]
       ]
@@ -4502,6 +4502,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T00:07:51Z",
+      "type": "learn",
+      "text": "Research playbook updated to v16"
+    },
+    {
+      "ts": "2026-10-13T00:05:20Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-12T23:50:21Z",
       "type": "scan",
       "fetched": 200,
@@ -5105,20 +5118,6 @@
       "ts": "2026-10-12T08:13:23Z",
       "type": "learn",
       "text": "Daily review written"
-    },
-    {
-      "ts": "2026-10-12T08:12:58Z",
-      "type": "idea",
-      "text": "Restore the missing strategies to the daily review",
-      "status": "proposed",
-      "why": "This review lists only sharp, mention_no and mention_follow, and the yardstick is empty. Yet the log shows original placing a bet this period, and main, bold, calibrated, claude_direct and jev_alone_bold all have live experiments (p23, p26, p27, p29) waiting to be judged. Tuning blind would be guess"
-    },
-    {
-      "ts": "2026-10-12T08:12:58Z",
-      "type": "idea",
-      "text": "Check that sharp's 2c edge change was actually applied",
-      "status": "proposed",
-      "why": "The rule-change log records sharp at version 2 with min_edge 0.02 since 2026-10-11, but sharp's current rules show version 1, min_edge 0.03, rules_changed null and locked. If the change never applied, p33's '1 bet a day within 3 days' test is invalid. Sharp's skill of -1.63 on 28 markets also looks "
     }
   ],
   "plan_usage": {
@@ -5438,8 +5437,8 @@
       }
     ],
     "playbook": {
-      "version": 15,
-      "updated": "2026-10-12T08:12:13Z",
+      "version": 16,
+      "updated": "2026-10-13T00:07:19Z",
       "rules": [
         {
           "id": "R1",
@@ -5544,6 +5543,12 @@
           "added": "2026-10-07T00:11:51Z"
         },
         {
+          "id": "R29",
+          "category": "general",
+          "rule": "Copy the threshold and the measured quantity verbatim from the resolution rules into the brief's first line, check every fact against that exact figure and metric, and label any figure measured on a different basis as a proxy, or state that the source value could not be read.",
+          "added": "2026-10-13T00:07:19Z"
+        },
+        {
           "id": "R14",
           "category": "general",
           "rule": "Take counts and base rates from a cited source covering the current format to the latest event, using the resolution's named provider and its counting method first (e.g. its trailing 2\u20134 weeks); label recalled, disputed or roughly dozen-case counts as unverified.",
@@ -5551,6 +5556,22 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-13T00:07:19Z",
+          "version": 16,
+          "added": [
+            "R29"
+          ],
+          "revised": [],
+          "retired": [],
+          "changes": [
+            "added tech rule for weekly leaderboard-share questions: all five OpenRouter reviews missed the live partial-week chart value, and two used request-based figures although the chart measures tokens",
+            "added general rule to copy the threshold and metric verbatim from the resolution rules: two DeepSeek briefs carried the wrong threshold (23.4% in place of 22.4% and 22.6%), and the OpenAI brief used substitute metrics",
+            "left out the reviews' suggestions about deferring to or gating on market prices, because playbook rules may not mention markets or prices",
+            "kept all 18 existing rules unchanged, since no new review refines or contradicts them"
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-10-12T08:12:13Z",
           "version": 15,
@@ -5628,32 +5649,6 @@
             "sharpened R6: research must report current winless or losing runs and any recent coach change (polymarket:4911446).",
             "no rules made from KXMLBGAME-26OCT071800LADATL-ATL (lucky), KXMLBGAME-26OCT072000TBNYY-TB (unlucky) or polymarket:3662130 (unlucky).",
             "did not adopt the reviews' suggestions to anchor estimates to market prices, because those are forecasting gates rather than research rules."
-          ],
-          "refused": 0
-        },
-        {
-          "ts": "2026-10-08T00:08:38Z",
-          "version": 11,
-          "added": [
-            "R25",
-            "R26"
-          ],
-          "revised": [
-            "R2",
-            "R9",
-            "R14"
-          ],
-          "retired": [
-            "R11",
-            "R12"
-          ],
-          "changes": [
-            "Sharpened R2: add count of the last 14 days the venue traded through the strike level, plus ETF flows as a catalyst (polymarket:5362505).",
-            "Added a goal-total rule: check whether recent blowouts came against weakened opponents and compare with the upcoming opponent's squad strength (KXINTLFRIENDLYTOTAL ARGBEN).",
-            "Added a reality-show elimination rule: verify facts name the asked contestant and partner, and pull the full scoreboard, bottom-three history and eliminations per episode (both DWTS reviews).",
-            "Merged R11 into R9 as one tennis completion rule to stay within 20 rules.",
-            "Merged R12 into R14 as one general sourcing rule for counts and base rates.",
-            "No rules from the ANT, LAD and Mexico reviews: they are marked unlucky or lucky."
           ],
           "refused": 0
         }
