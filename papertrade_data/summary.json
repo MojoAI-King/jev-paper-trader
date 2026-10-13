@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T22:07:42Z",
+  "generated": "2026-10-13T22:22:39Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T22:07:42Z",
+      "t": "2026-10-13T22:22:39Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,62 +890,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1626,
+    "resolved": 1628,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20693032520325205,
-        "n": 1230
+        "brier": 0.20706450040617383,
+        "n": 1231
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22741599015990163,
-        "n": 1626
+        "brier": 0.22747893120393123,
+        "n": 1628
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.1747154534883721,
-        "n": 344
+        "brier": 0.17579627826086955,
+        "n": 345
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2090494209161625,
-        "n": 1157
+        "brier": 0.20923689796200345,
+        "n": 1158
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14486410608856087,
-        "n": 1626
+        "brier": 0.1452065641891892,
+        "n": 1628
       }
     ],
     "paired": {
-      "n": 793,
+      "n": 794,
       "left_out": 107,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16243424401008824
+          "brier": 0.1632385144836272
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21757389659520807
+          "brier": 0.21776851385390428
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20086204287515763
+          "brier": 0.20129874055415617
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24403442622950822
+          "brier": 0.2440052896725441
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T22:05:23Z",
+    "ts": "2026-10-13T22:20:21Z",
     "stages": [
       [
         "Fetched",
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-13T22:07:42Z",
+          "2026-10-13T22:22:39Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-13T22:07:42Z",
+          "2026-10-13T22:22:39Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-13T22:07:42Z",
+          "2026-10-13T22:22:39Z",
           99980.19
         ]
       ]
@@ -4638,6 +4638,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T22:20:21Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T22:05:23Z",
       "type": "scan",
       "fetched": 200,
@@ -5283,14 +5291,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T07:35:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5303,7 +5303,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1626,
+    "reviewed": 1628,
     "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
@@ -5327,9 +5327,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 197,
+        "n": 198,
         "predicted": 0.661,
-        "actual": 0.746
+        "actual": 0.742
       },
       {
         "range": "80\u2013100%",
@@ -5828,9 +5828,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0987,
-      "b": 0.1253,
-      "n": 1230,
+      "a": 1.095,
+      "b": 0.1216,
+      "n": 1231,
       "active": true,
       "need": 300
     },
@@ -5849,15 +5849,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 878,
-        "jev_research": 0.2036,
-        "jev_plain": 0.2278,
-        "market": 0.1804,
-        "claude_direct": 0.1763,
-        "n_jev_research": 729,
-        "n_jev_plain": 878,
-        "n_market": 878,
-        "n_claude_direct": 200
+        "n": 880,
+        "jev_research": 0.2038,
+        "jev_plain": 0.2279,
+        "market": 0.181,
+        "claude_direct": 0.1781,
+        "n_jev_research": 730,
+        "n_jev_plain": 880,
+        "n_market": 880,
+        "n_claude_direct": 201
       },
       {
         "category": "crypto",
