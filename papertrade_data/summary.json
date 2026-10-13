@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T15:52:44Z",
+  "generated": "2026-10-13T16:08:06Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T15:52:44Z",
+      "t": "2026-10-13T16:08:06Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,62 +890,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1597,
+    "resolved": 1610,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20875053852526929,
-        "n": 1207
+        "brier": 0.20756540983606558,
+        "n": 1220
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22877213525360052,
-        "n": 1597
+        "brier": 0.22755496894409938,
+        "n": 1610
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.17726317404129793,
-        "n": 339
+        "brier": 0.1747154534883721,
+        "n": 344
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21087074037037037,
-        "n": 1134
+        "brier": 0.20977682033129905,
+        "n": 1147
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14626612680025047,
-        "n": 1597
+        "brier": 0.14559138555900622,
+        "n": 1610
       }
     ],
     "paired": {
-      "n": 785,
-      "left_out": 103,
+      "n": 789,
+      "left_out": 107,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16375831847133757
+          "brier": 0.16311604594423318
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21895592356687898
+          "brier": 0.21823054499366284
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20200356687898088
+          "brier": 0.201008618504436
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24536178343949044
+          "brier": 0.244302154626109
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T15:50:24Z",
+    "ts": "2026-10-13T16:05:28Z",
     "stages": [
       [
         "Fetched",
@@ -994,8 +994,8 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
-      "mention_follow": 0
+      "mention_no": 1,
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1009,8 +1009,8 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
-      "mention_follow": 0
+      "mention_no": 1,
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1067,11 +1067,11 @@
         "min_edge": 0.03
       },
       "marked": 100220.44,
-      "unrealized": 0.0,
+      "unrealized": -0.0,
       "change": 220.44,
       "realized": 220.44,
-      "open": 29,
-      "open_cost": 1308.27,
+      "open": 30,
+      "open_cost": 1359.65,
       "settled": 4,
       "wins": 3,
       "losses": 1,
@@ -1101,8 +1101,8 @@
       "unrealized": 0.0,
       "change": -19.81,
       "realized": -19.81,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 51.38,
       "settled": 1,
       "wins": 0,
       "losses": 1,
@@ -1839,7 +1839,7 @@
           99750.45
         ],
         [
-          "2026-10-13T15:52:44Z",
+          "2026-10-13T16:08:06Z",
           99750.45
         ]
       ]
@@ -2572,7 +2572,7 @@
           100220.44
         ],
         [
-          "2026-10-13T15:52:44Z",
+          "2026-10-13T16:08:06Z",
           100220.44
         ]
       ]
@@ -3305,7 +3305,7 @@
           99980.19
         ],
         [
-          "2026-10-13T15:52:44Z",
+          "2026-10-13T16:08:06Z",
           99980.19
         ]
       ]
@@ -3400,6 +3400,40 @@
           "p_side": 0.79,
           "edge": 0.0653,
           "opened": "2026-10-10T07:20:10Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXVANCEMENTION-26OCT15-FORD",
+      "question": "What will JD Vance say during Midterm Rally in Monroe, Michigan originally scheduled for October 15, 2026? (Ford / General Motors / GM)",
+      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-monroe-michig/kxvancemention-26oct15",
+      "source": "kalshi",
+      "close_time": "2026-10-29T14:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 89,
+          "cost_per": 0.5773,
+          "total_cost": 51.38,
+          "p_side": 0.645,
+          "edge": 0.0677,
+          "opened": "2026-10-13T16:05:28Z",
+          "value": null
+        },
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 89,
+          "cost_per": 0.5773,
+          "total_cost": 51.38,
+          "p_side": 0.665,
+          "edge": 0.0877,
+          "opened": "2026-10-13T16:05:28Z",
           "value": null
         }
       ]
@@ -4514,6 +4548,46 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T16:07:40Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Will Elon Musk post 0-19 tweets from October 6 to October 13, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-0-19"
+    },
+    {
+      "ts": "2026-10-13T16:05:28Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.5773,
+      "amount": 51.38,
+      "p": 0.645,
+      "q": "What will JD Vance say during Midterm Rally in Monroe, Michigan originally scheduled for October 15, 2026? (Ford / General Motors / GM)",
+      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-monroe-michig/kxvancemention-26oct15",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-13T16:05:28Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.5773,
+      "amount": 51.38,
+      "p": 0.665,
+      "q": "What will JD Vance say during Midterm Rally in Monroe, Michigan originally scheduled for October 15, 2026? (Ford / General Motors / GM)",
+      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-monroe-michig/kxvancemention-26oct15",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-13T16:05:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-10-13T15:50:24Z",
       "type": "scan",
       "fetched": 200,
@@ -5116,38 +5190,6 @@
       "ts": "2026-10-13T00:07:51Z",
       "type": "learn",
       "text": "Research playbook updated to v16"
-    },
-    {
-      "ts": "2026-10-13T00:05:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T23:50:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T23:35:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T23:20:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5160,8 +5202,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1597,
-    "post_mortems": 76,
+    "reviewed": 1610,
+    "post_mortems": 77,
     "win_reviews": 41,
     "calibration": [
       {
@@ -5172,15 +5214,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 426,
-        "predicted": 0.298,
-        "actual": 0.277
+        "n": 438,
+        "predicted": 0.297,
+        "actual": 0.269
       },
       {
         "range": "40\u201360%",
-        "n": 423,
+        "n": 424,
         "predicted": 0.49,
-        "actual": 0.532
+        "actual": 0.531
       },
       {
         "range": "60\u201380%",
@@ -5198,7 +5240,7 @@
     "root_causes": {
       "overconfident": 27,
       "unlucky": 27,
-      "missing_info": 8,
+      "missing_info": 9,
       "stale_info": 7,
       "research_error": 5,
       "misread_rules": 2
@@ -5209,6 +5251,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Elon Musk post 0-19 tweets from October 6 to October 13, 2026?",
+        "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-0-19",
+        "outcome": "no",
+        "category": "culture",
+        "p": 0.58,
+        "market": 0.207,
+        "ts": "2026-10-13T16:07:40Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "Musk posted at his usual pace, about 200 posts a week, so the 0-19 bucket resolved NO. A third-party aggregator showed 200-219 as the favorite at about 24% just before the window opened, with the 180-199 and 220-239 buckets nearby.",
+        "what_we_missed": "The forecaster had no facts at all, not even Musk's normal weekly post count from xtracker or the prices in the other buckets, which were spread across 180-239. It gave 58-60% to a range about ten times below his usual output. Claude-direct's 1% shows that this baseline was easy to know.",
+        "what_worked": "",
+        "lesson": "For a counting-bucket market, start from the subject's recent counts for the same window length and from how the market prices the other buckets. A low bucket getting about 20% on a thin market is not evidence on its own.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Block any forecast when the research facts are empty. On range-bucket markets, require the recent historical count and the prices of the other buckets before giving a probability."
+        }
+      },
       {
         "question": "Will Goldman Sachs (GS) beat quarterly earnings?",
         "url": "https://polymarket.com/market/gs-quarterly-earnings-gaap-eps-10-13-2026-16pt41",
@@ -5307,26 +5369,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Add a check that compares the threshold in the research brief with the resolution rules, and record that OpenRouter's author market share is measured in tokens, so request-based figures from blogs are not used as resolution proxies."
-        }
-      },
-      {
-        "question": "DeepSeek market share this week? (Above 22.9%)",
-        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.31,
-        "market": 0.88,
-        "ts": "2026-10-12T14:53:13Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "DeepSeek's share of OpenRouter text requests for the week of Oct 5, 2026 came in above 22.9%, so the market resolved YES. That fits the trend: DeepSeek led at 21.8% the week before, and its top model, V4.1 Flash, grew another +51% in tokens week over week. The market was already at 0.88 by Oct 10, partway through the week.",
-        "what_we_missed": "The OpenRouter chart for the week in progress was live and showed the running share, and the 0.88 price almost certainly reflected it. We couldn't render that chart, so we fell back on the previous week's 21.8% and treated 22.9% as a hurdle above it. We also gave too little weight to the +51% token surge for DeepSeek's lead model and to September readings of 23\u201324% of requests.",
-        "what_worked": "",
-        "lesson": "If a weekly-share market is judged mid-week and you can't read the live chart, but the market is priced far from your estimate, assume traders can see the partial-week value and move strongly toward the market price.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Add a dependable way to read OpenRouter's market-share-by-author chart for the current week, such as a headless browser or the underlying data endpoint. If that fails, make it a gate rule that a forecast more than 40 points from the market price on a mid-week share question gets capped or flagged."
         }
       }
     ],
@@ -5685,9 +5727,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0772,
-      "b": 0.1351,
-      "n": 1207,
+      "a": 1.0901,
+      "b": 0.1236,
+      "n": 1220,
       "active": true,
       "need": 300
     },
@@ -5742,15 +5784,15 @@
       },
       {
         "category": "culture",
-        "n": 99,
-        "jev_plain": 0.1993,
-        "market": 0.0688,
-        "jev_research": 0.1459,
-        "claude_direct": 0.0551,
-        "n_jev_plain": 99,
-        "n_market": 99,
-        "n_jev_research": 32,
-        "n_claude_direct": 8
+        "n": 112,
+        "jev_plain": 0.1852,
+        "market": 0.0681,
+        "jev_research": 0.1319,
+        "claude_direct": 0.0347,
+        "n_jev_plain": 112,
+        "n_market": 112,
+        "n_jev_research": 45,
+        "n_claude_direct": 13
       },
       {
         "category": "politics",
@@ -6263,7 +6305,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 52,
+      "gates": 53,
       "research": 49,
       "questions": 2
     },
