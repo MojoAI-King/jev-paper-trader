@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T03:52:41Z",
+  "generated": "2026-10-13T04:08:07Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T03:52:41Z",
+      "t": "2026-10-13T04:08:07Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1571,
+    "resolved": 1589,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20853640167364015,
-        "n": 1195
+        "brier": 0.2085291770573566,
+        "n": 1203
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22918249522597073,
-        "n": 1571
+        "brier": 0.2288843926998112,
+        "n": 1589
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21060025502673796,
-        "n": 1122
+        "brier": 0.21066091088495575,
+        "n": 1130
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14577619446212603,
-        "n": 1571
+        "brier": 0.14553932001258654,
+        "n": 1589
       }
     ],
     "paired": {
-      "n": 779,
+      "n": 783,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16319442233632864
+          "brier": 0.16356852490421456
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21855353016688062
+          "brier": 0.2184697318007663
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20210885750962773
+          "brier": 0.20205338441890164
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24570757381258024
+          "brier": 0.24539795657726693
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T03:50:28Z",
+    "ts": "2026-10-13T04:05:15Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T03:52:41Z",
+          "2026-10-13T04:08:07Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T03:52:41Z",
+          "2026-10-13T04:08:07Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T03:52:41Z",
+          "2026-10-13T04:08:07Z",
           100000.0
         ]
       ]
@@ -4525,6 +4525,30 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T04:07:48Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "stale_info",
+      "q": "Will Team Yandex win BLAST Slam VIII?",
+      "url": "https://polymarket.com/market/will-team-yandex-win-blast-slam-viii"
+    },
+    {
+      "ts": "2026-10-13T04:07:20Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Los Angeles R wins",
+      "url": "https://kalshi.com/markets/kxnflgame/los-angeles-r-wins/kxnflgame-26oct12buflar"
+    },
+    {
+      "ts": "2026-10-13T04:05:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T03:50:28Z",
       "type": "scan",
       "fetched": 200,
@@ -5139,30 +5163,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-12T11:20:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T11:05:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T10:50:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5175,27 +5175,27 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1571,
-    "post_mortems": 73,
+    "reviewed": 1589,
+    "post_mortems": 75,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 150,
+        "n": 151,
         "predicted": 0.138,
-        "actual": 0.167
+        "actual": 0.166
       },
       {
         "range": "20\u201340%",
-        "n": 423,
+        "n": 424,
         "predicted": 0.298,
-        "actual": 0.279
+        "actual": 0.278
       },
       {
         "range": "40\u201360%",
-        "n": 416,
+        "n": 422,
         "predicted": 0.49,
-        "actual": 0.534
+        "actual": 0.531
       },
       {
         "range": "60\u201380%",
@@ -5212,9 +5212,9 @@
     ],
     "root_causes": {
       "overconfident": 26,
-      "unlucky": 26,
+      "unlucky": 27,
       "missing_info": 8,
-      "stale_info": 6,
+      "stale_info": 7,
       "research_error": 5,
       "misread_rules": 2
     },
@@ -5224,6 +5224,46 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Team Yandex win BLAST Slam VIII?",
+        "url": "https://polymarket.com/market/will-team-yandex-win-blast-slam-viii",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.43,
+        "market": 0.885,
+        "ts": "2026-10-13T04:07:48Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "stale_info",
+        "what_happened": "Team Yandex won BLAST Slam VIII. They had swept Team Spirit 2-0 in the upper-bracket final and then won the Bo5 grand final on Oct 11 against the team that came through the lower bracket. My search confirmed Yandex reached the final, and the outcome data shows they won it.",
+        "what_we_missed": "The newest fact we had still showed the lower-bracket final as live with PARIVISION up 1-0. By 19:05 UTC the grand final had probably started, and an 88.5% market price suggests Yandex was already ahead or nearly done. Even before the final began, Yandex had swept Spirit and beaten PARIVISION 2-1, so a pre-final estimate should have been above 50%. Our forecast of 43% was too low either way.",
+        "what_worked": "",
+        "lesson": "If a market sits far from your estimate on the last day of an event, check the live score before forecasting. A gap that big usually means the market has newer information than you do.",
+        "suggested_change": {
+          "area": "research",
+          "change": "On event days, require a fresh live-score check from Liquipedia or BLAST.tv taken within an hour of the judgment time, and flag the forecast for review if it differs from the market by more than 30 points without a stated reason."
+        }
+      },
+      {
+        "question": "Los Angeles R wins",
+        "url": "https://kalshi.com/markets/kxnflgame/los-angeles-r-wins/kxnflgame-26oct12buflar",
+        "outcome": "no",
+        "category": "sports",
+        "p": 0.55,
+        "market": 0.615,
+        "ts": "2026-10-13T04:07:20Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "The Bills beat the Rams 37-34 in overtime at SoFi Stadium. The Rams tied it with four seconds left in regulation and recovered a James Cook fumble in overtime. Greg Rousseau then blocked the Rams' go-ahead field goal attempt, Josh Allen's runs (121 rushing yards on the night) set up Tyler Bass's winning field goal, and Buffalo won despite five turnovers.",
+        "what_we_missed": "Nothing important. The Rams were 2.5\u20133.5 point home favorites (moneyline about -150 to -176), so the 0.55 forecast was a bit below the market's 0.615. A game that came down to a blocked field goal in overtime is close to a coin flip.",
+        "what_worked": "",
+        "lesson": "When a close NFL game is lost in overtime and the forecast sat near the market, don't treat the loss as a modeling error. Check calibration across many games instead.",
+        "suggested_change": {
+          "area": "none",
+          "change": "No process change. The forecast was moderate, sat near the market, and the less likely outcome came from late, high-variance plays."
+        }
+      },
       {
         "question": "DeepSeek market share this week? (Above 22.6%)",
         "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
@@ -5302,46 +5342,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "For OpenRouter share markets, block any forecast more than 30 points from a market priced above 80% or below 20% unless the forecaster has the actual current author-share values from the resolving chart (rendered page, API, or screenshot), not substitute metrics like top-N model tokens."
-        }
-      },
-      {
-        "question": "DeepSeek market share this week? (Above 23.4%)",
-        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.24,
-        "market": 0.91,
-        "ts": "2026-10-12T14:52:41Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "OpenRouter's request share for DeepSeek in the week of Oct 5\u201311, 2026 finished above 23.4%, so the market resolved YES. This fits the market's 91% price on Oct 10, when the rankings page already had week-to-date data through Oct 9.",
-        "what_we_missed": "The forecaster leaned on last week's final figure of 21.8% and ignored the live week-to-date share on OpenRouter's rankings page. That share was most likely already above 23.4%, and with 5 of 7 days counted it nearly settled the outcome. There were other signs: DeepSeek V4.1 Flash was #1 in daily tokens on Oct 9, its tokens grew 56% the week before, and share had been 24.4% two weeks earlier. A 91% market price this late in the week was a strong sign that traders could see the current data.",
-        "what_worked": "",
-        "lesson": "For weekly share markets judged late in the week, read the current week's partial value on the source chart first. Last week's final number should be a fallback, and a big gap from a near-certain market price late in the week means you have probably missed live data.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For OpenRouter or Kalshi weekly-share questions, require research to fetch the rankings page directly and record the current week's partial share for the named author, and flag any forecast that differs from the market price by more than 40 points without that number."
-        }
-      },
-      {
-        "question": "Kentucky wins",
-        "url": "https://kalshi.com/markets/kxncaafgame/kentucky-wins/kxncaafgame-26oct10lsuuk",
-        "outcome": "yes",
-        "category": "sports",
-        "p": 0.32,
-        "market": 0.255,
-        "ts": "2026-10-11T03:07:50Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "No. 25 Kentucky beat No. 10 LSU 35-34 in overtime at Kroger Field. Kentucky tied the game with a late field goal, answered Leavitt's overtime touchdown with a Baxter TD, then won on a two-point conversion. A 55-yard punt-return touchdown also helped.",
-        "what_we_missed": "Nothing decisive was missed. The forecast of 0.32 was already above the market's 0.255, leaning toward the home underdog. The game came down to a two-point try in overtime, which is close to a coin flip.",
-        "what_worked": "",
-        "lesson": "For ranked home underdogs in conference play, a moderate lean above the market price is reasonable, but don't move further on the strength of outcomes decided by one-score overtime results.",
-        "suggested_change": {
-          "area": "none",
-          "change": "No process change is needed. The forecast leaned the right way relative to the market, and the outcome came down to a late-game coin flip."
         }
       }
     ],
@@ -5700,9 +5700,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0835,
-      "b": 0.1407,
-      "n": 1195,
+      "a": 1.0831,
+      "b": 0.1342,
+      "n": 1203,
       "active": true,
       "need": 300
     },
@@ -5721,14 +5721,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 856,
-        "jev_research": 0.2041,
-        "jev_plain": 0.2283,
-        "market": 0.1798,
+        "n": 869,
+        "jev_research": 0.2042,
+        "jev_plain": 0.2275,
+        "market": 0.1796,
         "claude_direct": 0.1763,
-        "n_jev_research": 718,
-        "n_jev_plain": 856,
-        "n_market": 856,
+        "n_jev_research": 724,
+        "n_jev_plain": 869,
+        "n_market": 869,
         "n_claude_direct": 200
       },
       {
@@ -5745,14 +5745,14 @@
       },
       {
         "category": "other",
-        "n": 194,
-        "jev_plain": 0.2091,
-        "market": 0.1343,
-        "jev_research": 0.2543,
+        "n": 197,
+        "jev_plain": 0.2095,
+        "market": 0.1324,
+        "jev_research": 0.253,
         "claude_direct": 0.1922,
-        "n_jev_plain": 194,
-        "n_market": 194,
-        "n_jev_research": 114,
+        "n_jev_plain": 197,
+        "n_market": 197,
+        "n_jev_research": 116,
         "n_claude_direct": 35
       },
       {
@@ -5815,12 +5815,12 @@
       },
       {
         "category": "world",
-        "n": 20,
-        "jev_plain": 0.2711,
-        "market": 0.0694,
+        "n": 22,
+        "jev_plain": 0.274,
+        "market": 0.0636,
         "jev_research": 0.4807,
-        "n_jev_plain": 20,
-        "n_market": 20,
+        "n_jev_plain": 22,
+        "n_market": 22,
         "n_jev_research": 5
       }
     ],
@@ -6257,7 +6257,7 @@
     ],
     "suggested_areas": {
       "gates": 51,
-      "research": 48,
+      "research": 49,
       "questions": 2
     },
     "retro": {
