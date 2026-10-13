@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T01:37:33Z",
+  "generated": "2026-10-13T01:52:35Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T01:37:33Z",
+      "t": "2026-10-13T01:52:35Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T01:35:19Z",
+    "ts": "2026-10-13T01:50:26Z",
     "stages": [
       [
         "Fetched",
@@ -995,7 +995,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1010,7 +1010,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1101,8 +1101,8 @@
       "unrealized": 0.0,
       "change": 0.0,
       "realized": 0,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 19.81,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T01:37:33Z",
+          "2026-10-13T01:52:35Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:37:33Z",
+          "2026-10-13T01:52:35Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:37:33Z",
+          "2026-10-13T01:52:35Z",
           100000.0
         ]
       ]
@@ -3376,6 +3376,29 @@
           "p_side": 0.755,
           "edge": 0.0303,
           "opened": "2026-10-12T22:05:24Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXSECPRESSMENTION-26OCT27-BORD",
+      "question": "Will the White House Press Secretary say Border at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-border-at-her-next/kxsecpressmention-26oct27",
+      "source": "kalshi",
+      "close_time": "2026-10-27T14:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 50,
+          "cost_per": 0.3963,
+          "total_cost": 19.81,
+          "p_side": 0.445,
+          "edge": 0.0487,
+          "opened": "2026-10-13T01:50:26Z",
           "value": null
         }
       ]
@@ -4502,6 +4525,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T01:50:26Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.3963,
+      "amount": 19.81,
+      "p": 0.445,
+      "q": "Will the White House Press Secretary say Border at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-border-at-her-next/kxsecpressmention-26oct27",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-13T01:50:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-13T01:35:19Z",
       "type": "scan",
       "fetched": 200,
@@ -5114,19 +5157,6 @@
       "ts": "2026-10-12T09:05:27Z",
       "type": "scan",
       "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-12T08:50:24Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 5 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-12T08:50:24Z",
-      "type": "scan",
-      "fetched": 180,
       "judged": 0,
       "researched": 0,
       "bets": 0
