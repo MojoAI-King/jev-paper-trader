@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T14:37:27Z",
+  "generated": "2026-10-13T14:52:33Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T14:37:27Z",
+      "t": "2026-10-13T14:52:33Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1594,
+    "resolved": 1597,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2288086574654956,
-        "n": 1594
+        "brier": 0.22877213525360052,
+        "n": 1597
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1454778259096612,
-        "n": 1594
+        "brier": 0.14626612680025047,
+        "n": 1597
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T14:35:26Z",
+    "ts": "2026-10-13T14:50:24Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T14:37:27Z",
+          "2026-10-13T14:52:33Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T14:37:27Z",
+          "2026-10-13T14:52:33Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T14:37:27Z",
+          "2026-10-13T14:52:33Z",
           100000.0
         ]
       ]
@@ -4525,6 +4525,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T14:50:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T14:35:26Z",
       "type": "scan",
       "fetched": 200,
@@ -5155,14 +5163,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-12T21:05:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5175,7 +5175,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1594,
+    "reviewed": 1597,
     "post_mortems": 76,
     "win_reviews": 41,
     "calibration": [
@@ -5721,14 +5721,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 872,
+        "n": 875,
         "jev_research": 0.2038,
-        "jev_plain": 0.2275,
-        "market": 0.1793,
+        "jev_plain": 0.2274,
+        "market": 0.1807,
         "claude_direct": 0.1763,
         "n_jev_research": 727,
-        "n_jev_plain": 872,
-        "n_market": 872,
+        "n_jev_plain": 875,
+        "n_market": 875,
         "n_claude_direct": 200
       },
       {
