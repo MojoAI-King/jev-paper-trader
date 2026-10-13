@@ -575,6 +575,28 @@
       "min_resolved": 29,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p40",
+      "created": "2026-10-13T08:37:19Z",
+      "kind": "code",
+      "title": "Hold Claude direct's Kelly sizing until its skill estimate is checked",
+      "why": "Claude direct's lambda turned positive (0.0091, n=783) while it trails the market by 0.038 Brier on 783 paired markets, and its raw skill of 0.042 sits inside one standard error (0.078). Real Kelly sizing should not start on a number that contradicts the Brier comparison. This is a concrete instance of p31.",
+      "judge_by": "Joey either explains why a positive lambda is consistent with Claude's paired Brier being worse than the market's, or keeps Claude direct on probe bets until lambda's lower bound (raw minus 1 standard error) is above 0. Checked at the next review after the fix.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p41",
+      "created": "2026-10-13T08:37:19Z",
+      "kind": "code",
+      "title": "Find out why 48 cycles judged nothing",
+      "why": "In the past 12 hours there were 48 cycles, 0 markets judged, 0 researched, and no Jev or Claude bets, while 41 markets resolved. p38 only adds an alert; this asks for the cause. It may be the same fault that dropped main and the other strategies from this review (p35).",
+      "judge_by": "The next 12-hour review shows judged > 0, bets from Jev or Claude strategies, and main, original and the yardstick present again.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
