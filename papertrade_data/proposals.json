@@ -597,6 +597,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p42",
+      "created": "2026-10-13T20:37:29Z",
+      "kind": "code",
+      "title": "Skill estimate reports a standard error of 0 for six of seven sources",
+      "why": "Every source except Claude direct shows se 0.0 and lambda 0, even mention_prior with raw +0.594 on 94 markets and jev_research on 1,183. A zero standard error on 1,000+ markets looks like a computation fallback, not a real estimate. It may be silently pinning these sources to probe bets, or would mis-size them once their raw skill turns positive. This is a narrower, concrete instance of what p31 and p39 ask about.",
+      "judge_by": "After the fix, every source with 30+ priced, finished markets reports a nonzero se. mention_prior's lambda is then either positive or explained by a stated rule (for example, a minimum of 300 markets).",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

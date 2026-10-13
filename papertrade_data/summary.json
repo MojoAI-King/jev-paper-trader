@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T20:22:58Z",
+  "generated": "2026-10-13T20:37:57Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T20:22:58Z",
+      "t": "2026-10-13T20:37:57Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T20:20:27Z",
+    "ts": "2026-10-13T20:35:21Z",
     "stages": [
       [
         "Fetched",
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-13T20:22:58Z",
+          "2026-10-13T20:37:57Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-13T20:22:58Z",
+          "2026-10-13T20:37:57Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-13T20:22:58Z",
+          "2026-10-13T20:37:57Z",
           99980.19
         ]
       ]
@@ -4638,6 +4638,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T20:37:52Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-13T20:37:29Z",
+      "type": "idea",
+      "text": "Skill estimate reports a standard error of 0 for six of seven sources",
+      "status": "proposed",
+      "why": "Every source except Claude direct shows se 0.0 and lambda 0, even mention_prior with raw +0.594 on 94 markets and jev_research on 1,183. A zero standard error on 1,000+ markets looks like a computation fallback, not a real estimate. It may be silently pinning these sources to probe bets, or would mi"
+    },
+    {
+      "ts": "2026-10-13T20:35:21Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T20:20:27Z",
       "type": "scan",
       "fetched": 200,
@@ -5266,30 +5286,6 @@
     },
     {
       "ts": "2026-10-13T06:05:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T05:50:19Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T05:35:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T05:20:26Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -5958,6 +5954,17 @@
     ],
     "proposals": [
       {
+        "id": "p42",
+        "kind": "code",
+        "title": "Skill estimate reports a standard error of 0 for six of seven sources",
+        "why": "Every source except Claude direct shows se 0.0 and lambda 0, even mention_prior with raw +0.594 on 94 markets and jev_research on 1,183. A zero standard error on 1,000+ markets looks like a computation fallback, not a real estimate. It may be silently pinning these sources to probe bets, or would mis-size them once their raw skill turns positive. This is a narrower, concrete instance of what p31 and p39 ask about.",
+        "judge_by": "After the fix, every source with 30+ priced, finished markets reports a nonzero se. mention_prior's lambda is then either positive or explained by a stated rule (for example, a minimum of 300 markets).",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-13T20:37:29Z"
+      },
+      {
         "id": "p41",
         "kind": "code",
         "title": "Find out why 48 cycles judged nothing",
@@ -6415,17 +6422,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-13T08:37:19Z",
-      "headline": "A half-day with almost nothing to judge: 48 cycles produced no forecasts, the only new bets were 2 mention-market bets, main and most strategies are again missing from this review, and the market price still beats every forecaster we run.",
+      "ts": "2026-10-13T20:37:29Z",
+      "headline": "A quiet, mostly broken half-day: the forecasting pipeline judged nothing for a second review running, the main strategies are missing from the report again, and the only bets came from the two mention strategies, which are small and too young to judge.",
       "went_well": [
-        "41 markets resolved and were reviewed this period, so scoring kept running even though forecasting did not. Of the 2 misses, 1 was put down to bad luck and 1 to stale information.",
-        "Mention, NO side is placing small probe bets as designed: 33 open, $1,746 staked, none settled yet. Mention, follow has 1 open bet of $20.",
-        "Claude direct is the only source to edge the market in any category with real numbers: sports 0.176 vs the market's 0.180 (200 Claude-scored markets). The gap is small and the sample sizes differ, so this is not yet a proven edge."
+        "Mention markets, NO side is up $310 on 6 settled bets, winning 5. That is about +$56 per $100 of settled stake, and it placed 5 of the period's 6 bets. Six results are noise, not a finding.",
+        "Claude direct is the only source whose measured skill is positive (lambda 0.013 on 791 markets), so its Kelly sizing has switched on. The raw estimate (+0.047) is smaller than its standard error (0.074), so that edge is not established.",
+        "In sports, Claude direct edges the market on Brier score (0.176 vs 0.181, 200 markets). It is the one place any forecaster beats the price on a meaningful count."
       ],
       "went_badly": [
-        "Nothing was judged in 48 cycles, so no Jev or Claude strategy could bet. Main, original, bold, calibrated and claude_direct are also missing from this review, and the yardstick is empty, so I can't assess main's 12c change or any of the recent tunes.",
-        "The market price still beats every forecaster on the same 783 markets: market 0.164 Brier, Claude direct 0.202, Jev + research 0.218, Jev alone 0.245 (lower is better). Yet Claude direct's skill lambda is now positive (0.0091 on 783), which would switch on Kelly sizing for a source that trails the m",
-        "Sharp has still placed only 1 bet, which lost $250. Its rules show version 1 with a 3c edge requirement, even though the 2c change is logged as version 2, so that change looks unapplied (p36). Its skill estimate has fallen to -2.24 on 35 markets (p39)."
+        "0 markets were judged in 48 cycles, and none were researched, so Jev- and Claude-driven strategies could not bet at all. p41 and p38 already ask why.",
+        "We still don't beat the market. Its Brier score is 0.145 against 0.175 for Claude direct and 0.207 for Jev + research (1,622 resolved). On the 791 paired markets it scores 0.163 against Claude's 0.201.",
+        "Sharp still shows min_edge 0.03 and rules version 1, although a change to 0.02 was logged on 10-11. It has 1 bet ever (lost $250). Main, original and the yardstick are missing from this report, so tuning main can't be judged today. p35 and p36 already cover this."
       ]
     },
     "auto_start": true,
@@ -6890,6 +6897,13 @@
         "title": "Find out why 48 cycles judged nothing",
         "why": "In the past 12 hours there were 48 cycles, 0 markets judged, 0 researched, and no Jev or Claude bets, while 41 markets resolved. p38 only adds an alert; this asks for the cause. It may be the same fault that dropped main and the other strategies from this review (p35).",
         "created": "2026-10-13T08:37:19Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p42",
+        "title": "Skill estimate reports a standard error of 0 for six of seven sources",
+        "why": "Every source except Claude direct shows se 0.0 and lambda 0, even mention_prior with raw +0.594 on 94 markets and jev_research on 1,183. A zero standard error on 1,000+ markets looks like a computation fallback, not a real estimate. It may be silently pinning these sources to probe bets, or would mis-size them once their raw skill turns positive. This is a narrower, concrete instance of what p31 and p39 ask about.",
+        "created": "2026-10-13T20:37:29Z",
         "status": "proposed"
       }
     ]
