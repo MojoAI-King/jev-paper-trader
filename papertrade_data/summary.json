@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T13:22:47Z",
+  "generated": "2026-10-13T13:37:59Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T13:22:47Z",
+      "t": "2026-10-13T13:37:59Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1593,
+    "resolved": 1594,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20829601990049754,
-        "n": 1206
+        "brier": 0.20875053852526929,
+        "n": 1207
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2287263025737602,
-        "n": 1593
+        "brier": 0.2288086574654956,
+        "n": 1594
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21038619478375994,
-        "n": 1133
+        "brier": 0.21087074037037037,
+        "n": 1134
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14536160043942248,
-        "n": 1593
+        "brier": 0.1454778259096612,
+        "n": 1594
       }
     ],
     "paired": {
-      "n": 784,
+      "n": 785,
       "left_out": 103,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1634528762755102
+          "brier": 0.16375831847133757
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21831364795918368
+          "brier": 0.21895592356687898
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2018753826530612
+          "brier": 0.20200356687898088
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2452155612244898
+          "brier": 0.24536178343949044
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T13:20:30Z",
+    "ts": "2026-10-13T13:35:28Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T13:22:47Z",
+          "2026-10-13T13:37:59Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T13:22:47Z",
+          "2026-10-13T13:37:59Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T13:22:47Z",
+          "2026-10-13T13:37:59Z",
           100000.0
         ]
       ]
@@ -4525,6 +4525,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T13:37:34Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will Goldman Sachs (GS) beat quarterly earnings?",
+      "url": "https://polymarket.com/market/gs-quarterly-earnings-gaap-eps-10-13-2026-16pt41"
+    },
+    {
+      "ts": "2026-10-13T13:35:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T13:20:30Z",
       "type": "scan",
       "fetched": 200,
@@ -5143,21 +5159,6 @@
       "text": "Alert when a cycle judges nothing",
       "status": "proposed",
       "why": "48 cycles in 12 hours judged 0 markets with 0 research while 45 markets resolved, so the forecasting pipeline seems stalled or starved of new markets. A stall like this silently freezes every Jev and Claude strategy."
-    },
-    {
-      "ts": "2026-10-12T20:23:04Z",
-      "type": "idea",
-      "text": "Explain sharp's skill estimate of -1.56",
-      "status": "proposed",
-      "why": "A raw skill of -1.5581 on 29 markets is far outside the range of the other sources (-0.01 to -0.02). It points to a matching or units bug in how Pinnacle's line is paired with Kalshi prices, probably the same cause as sharp's near-zero bet count (p30). This is narrower than p31's general sanity chec"
-    },
-    {
-      "ts": "2026-10-12T20:20:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5170,15 +5171,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1593,
-    "post_mortems": 75,
+    "reviewed": 1594,
+    "post_mortems": 76,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 151,
+        "n": 152,
         "predicted": 0.138,
-        "actual": 0.166
+        "actual": 0.171
       },
       {
         "range": "20\u201340%",
@@ -5206,7 +5207,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 26,
+      "overconfident": 27,
       "unlucky": 27,
       "missing_info": 8,
       "stale_info": 7,
@@ -5219,6 +5220,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Goldman Sachs (GS) beat quarterly earnings?",
+        "url": "https://polymarket.com/market/gs-quarterly-earnings-gaap-eps-10-13-2026-16pt41",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.13,
+        "market": 0.425,
+        "ts": "2026-10-13T13:37:34Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "On Oct 13, 2026 Goldman reported Q3 2026 diluted GAAP EPS of $17.01 on net revenues of $18.68B. That is above the $16.41 strike, so the market resolved YES. It was a roughly 32% beat over the ~$12.86\u201312.90 consensus, helped by strong equities trading, buybacks of $3B and a 4.4% drop in diluted share count.",
+        "what_we_missed": "The forecaster treated the stale, recently cut Zacks consensus of $12.90 as the anchor. It underweighted that Goldman had beaten consensus by 20\u201345% in recent quarters, with Q2 at $20.98 versus $14.47, and that management had flagged very strong equities trading. Clearing $16.41 needed about a 27% beat over Zacks, which was in line with the recent beat pattern and not a tail event. The market's 42.5% priced this correctly.",
+        "what_worked": "",
+        "lesson": "When a company keeps beating EPS consensus by 20\u201345%, estimate the outcome from that history of beat sizes, not from distance to the consensus, and don't go far below a market price near 40% without specific negative evidence.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Flag any forecast that differs from the market by more than 25 points on an earnings-beat question for a check against the company's last 4\u20138 quarters of actual-versus-consensus surprise percentages."
+        }
+      },
       {
         "question": "Will Team Yandex win BLAST Slam VIII?",
         "url": "https://polymarket.com/market/will-team-yandex-win-blast-slam-viii",
@@ -5317,26 +5338,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Add a dependable way to read OpenRouter's market-share-by-author chart for the current week, such as a headless browser or the underlying data endpoint. If that fails, make it a gate rule that a forecast more than 40 points from the market price on a mid-week share question gets capped or flagged."
-        }
-      },
-      {
-        "question": "OpenAI market share this week? (Above 17.8%)",
-        "url": "https://kalshi.com/markets/kxopenshare/openai-market-share-this-week/kxopenshare-26oct12",
-        "outcome": "yes",
-        "category": "tech",
-        "p": 0.22,
-        "market": 0.885,
-        "ts": "2026-10-12T14:52:57Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "OpenAI finished above 17.8% on OpenRouter's author market-share chart for the week of Oct 5, 2026, so the market resolved YES. When we judged, four days of that week's data were already in and the market price was 88.5%, which suggests the chart showed OpenAI well above the threshold.",
-        "what_we_missed": "We never read the actual partial-week author-share values, even though the page had data through Oct 9. Instead we leaned on weaker substitutes: one day of top-12-model token shares (OpenAI about 8%), loose per-model token counts, and an unclear requests-vs-tokens basis. None of these measures what the resolution chart measures, and they pushed us to 22% against an 88.5% market.",
-        "what_worked": "",
-        "lesson": "If the resolving chart's current partial-week values can't be read, don't bet hard against a market that is pricing late in the week; a high price usually means traders can see the chart, so either fetch it some other way or move toward the market.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "For OpenRouter share markets, block any forecast more than 30 points from a market priced above 80% or below 20% unless the forecaster has the actual current author-share values from the resolving chart (rendered page, API, or screenshot), not substitute metrics like top-N model tokens."
         }
       }
     ],
@@ -5695,9 +5696,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0875,
-      "b": 0.135,
-      "n": 1206,
+      "a": 1.0772,
+      "b": 0.1351,
+      "n": 1207,
       "active": true,
       "need": 300
     },
@@ -5740,14 +5741,14 @@
       },
       {
         "category": "other",
-        "n": 197,
-        "jev_plain": 0.2095,
-        "market": 0.1324,
-        "jev_research": 0.253,
+        "n": 198,
+        "jev_plain": 0.2103,
+        "market": 0.1334,
+        "jev_research": 0.2573,
         "claude_direct": 0.1922,
-        "n_jev_plain": 197,
-        "n_market": 197,
-        "n_jev_research": 116,
+        "n_jev_plain": 198,
+        "n_market": 198,
+        "n_jev_research": 117,
         "n_claude_direct": 35
       },
       {
@@ -6273,7 +6274,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 51,
+      "gates": 52,
       "research": 49,
       "questions": 2
     },
