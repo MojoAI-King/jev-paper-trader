@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T20:37:57Z",
+  "generated": "2026-10-13T20:52:50Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T20:37:57Z",
+      "t": "2026-10-13T20:52:50Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1622,
+    "resolved": 1623,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22728791615289765,
-        "n": 1622
+        "brier": 0.2271927911275416,
+        "n": 1623
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14500526294697902,
-        "n": 1622
+        "brier": 0.14491852218114604,
+        "n": 1623
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T20:35:21Z",
+    "ts": "2026-10-13T20:50:24Z",
     "stages": [
       [
         "Fetched",
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-13T20:37:57Z",
+          "2026-10-13T20:52:50Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-13T20:37:57Z",
+          "2026-10-13T20:52:50Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-13T20:37:57Z",
+          "2026-10-13T20:52:50Z",
           99980.19
         ]
       ]
@@ -4638,6 +4638,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T20:50:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T20:37:52Z",
       "type": "learn",
       "text": "Daily review written"
@@ -5283,14 +5291,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T06:05:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5303,7 +5303,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1622,
+    "reviewed": 1623,
     "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
@@ -5885,13 +5885,13 @@
       },
       {
         "category": "culture",
-        "n": 120,
-        "jev_plain": 0.1801,
-        "market": 0.0674,
+        "n": 121,
+        "jev_plain": 0.1792,
+        "market": 0.0669,
         "jev_research": 0.1315,
         "claude_direct": 0.0347,
-        "n_jev_plain": 120,
-        "n_market": 120,
+        "n_jev_plain": 121,
+        "n_market": 121,
         "n_jev_research": 53,
         "n_claude_direct": 13
       },
