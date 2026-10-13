@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T01:07:44Z",
+  "generated": "2026-10-13T01:22:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T01:07:44Z",
+      "t": "2026-10-13T01:22:29Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1562,
+    "resolved": 1563,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22907336747759285,
-        "n": 1562
+        "brier": 0.22908042226487524,
+        "n": 1563
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1450398857234315,
-        "n": 1562
+        "brier": 0.14510385572616763,
+        "n": 1563
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T01:05:27Z",
+    "ts": "2026-10-13T01:20:23Z",
     "stages": [
       [
         "Fetched",
@@ -1831,7 +1831,7 @@
           99750.45
         ],
         [
-          "2026-10-13T01:07:44Z",
+          "2026-10-13T01:22:29Z",
           99750.45
         ]
       ]
@@ -2556,7 +2556,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:07:44Z",
+          "2026-10-13T01:22:29Z",
           100000.0
         ]
       ]
@@ -3281,7 +3281,7 @@
           100000.0
         ],
         [
-          "2026-10-13T01:07:44Z",
+          "2026-10-13T01:22:29Z",
           100000.0
         ]
       ]
@@ -4502,6 +4502,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-13T01:20:23Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T01:05:27Z",
       "type": "scan",
       "fetched": 200,
@@ -5119,14 +5127,6 @@
       "ts": "2026-10-12T08:35:39Z",
       "type": "problem",
       "text": "kalshi: fetch stopped after 4 pages (HTTP 504 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"context_deadline"
-    },
-    {
-      "ts": "2026-10-12T08:35:39Z",
-      "type": "scan",
-      "fetched": 174,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5139,7 +5139,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1562,
+    "reviewed": 1563,
     "post_mortems": 73,
     "win_reviews": 41,
     "calibration": [
@@ -5685,14 +5685,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 848,
+        "n": 849,
         "jev_research": 0.2045,
         "jev_plain": 0.2279,
         "market": 0.1786,
         "claude_direct": 0.1763,
         "n_jev_research": 716,
-        "n_jev_plain": 848,
-        "n_market": 848,
+        "n_jev_plain": 849,
+        "n_market": 849,
         "n_claude_direct": 200
       },
       {
