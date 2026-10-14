@@ -1,20 +1,19 @@
 {
-  "generated": "2026-10-14T13:52:51Z",
+  "generated": "2026-10-14T14:08:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
   "cash": 75788.24,
-  "open_cost": 1957.65,
-  "equity": 77745.89,
-  "realized": -22254.11,
-  "roi_settled": -0.3563445069270987,
+  "open_cost": 1755.62,
+  "equity": 77543.86,
+  "realized": -22456.14,
+  "roi_settled": -0.35842002491814456,
   "wins": 13,
-  "settled": 36,
+  "settled": 37,
   "exposure_cap_pct": 0.5,
   "max_stake_pct": 0.02,
   "by_source": {
-    "polymarket": 1755.62,
-    "kalshi": 202.03
+    "polymarket": 1755.62
   },
   "curve": [
     {
@@ -203,26 +202,17 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T13:52:51Z",
-      "equity": 77745.89,
+      "t": "2026-10-14T14:05:15Z",
+      "equity": 77543.86,
+      "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
+    },
+    {
+      "t": "2026-10-14T14:08:14Z",
+      "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
   ],
   "open": [
-    {
-      "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
-      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
-      "source": "kalshi",
-      "side": "no",
-      "contracts": 369,
-      "cost_per": 0.5475,
-      "total_cost": 202.03,
-      "p_side": 0.7,
-      "market_ask": 0.52,
-      "edge": 0.1525,
-      "opened": "2026-10-10T05:05:14Z",
-      "close_time": "2026-10-14T12:25:00Z"
-    },
     {
       "question": "Next Astra Model (6.1+) released by October 31, 2026?",
       "url": "https://polymarket.com/market/next-astra-model-6pt1-released-by-october-31-2026",
@@ -239,6 +229,24 @@
     }
   ],
   "closed": [
+    {
+      "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
+      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
+      "source": "kalshi",
+      "side": "no",
+      "contracts": 369,
+      "cost_per": 0.5475,
+      "total_cost": 202.03,
+      "p_side": 0.7,
+      "market_ask": 0.52,
+      "edge": 0.1525,
+      "opened": "2026-10-10T05:05:14Z",
+      "close_time": "2026-10-14T12:25:00Z",
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -202.03,
+      "settled": "2026-10-14T14:05:15Z"
+    },
     {
       "question": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?",
       "url": "https://polymarket.com/market/will-the-social-reckoning-opening-weekend-box-office-be-less-than-5m",
@@ -890,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1657,
+    "resolved": 1662,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20695648670427078,
-        "n": 1241
+        "brier": 0.2073749598715891,
+        "n": 1246
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22841200965600483,
-        "n": 1657
+        "brier": 0.228664440433213,
+        "n": 1662
       },
       {
         "name": "claude_direct",
@@ -913,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20901050051369863,
-        "n": 1168
+        "brier": 0.20936141666666666,
+        "n": 1173
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14586147344598674,
-        "n": 1657
+        "brier": 0.14609532882069795,
+        "n": 1662
       }
     ],
     "paired": {
-      "n": 800,
+      "n": 803,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16260760062500001
+          "brier": 0.16240564196762142
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2179595
+          "brier": 0.21804520547945208
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20090287499999998
+          "brier": 0.20087222914072228
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2444075
+          "brier": 0.2445890410958904
         }
       ]
     }
@@ -962,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T13:50:08Z",
+    "ts": "2026-10-14T14:05:15Z",
     "stages": [
       [
         "Fetched",
@@ -1055,7 +1063,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 100310.16,
+      "equity": 100287.74,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1066,17 +1074,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 100310.16,
+      "marked": 100287.74,
       "unrealized": 0.0,
-      "change": 310.16,
-      "realized": 310.16,
-      "open": 38,
-      "open_cost": 1396.97,
-      "settled": 7,
+      "change": 287.74,
+      "realized": 287.74,
+      "open": 37,
+      "open_cost": 1374.55,
+      "settled": 8,
       "wins": 6,
-      "losses": 1,
+      "losses": 2,
       "won_amt": 347.75,
-      "lost_amt": -37.59
+      "lost_amt": -60.01
     },
     {
       "name": "mention_follow",
@@ -1847,7 +1855,11 @@
           99750.45
         ],
         [
-          "2026-10-14T13:52:51Z",
+          "2026-10-14T14:05:15Z",
+          99750.45
+        ],
+        [
+          "2026-10-14T14:08:14Z",
           99750.45
         ]
       ]
@@ -2588,8 +2600,12 @@
           100310.16
         ],
         [
-          "2026-10-14T13:52:51Z",
-          100310.16
+          "2026-10-14T14:05:15Z",
+          100287.74
+        ],
+        [
+          "2026-10-14T14:08:14Z",
+          100287.74
         ]
       ]
     },
@@ -3329,7 +3345,11 @@
           99980.19
         ],
         [
-          "2026-10-14T13:52:51Z",
+          "2026-10-14T14:05:15Z",
+          99980.19
+        ],
+        [
+          "2026-10-14T14:08:14Z",
           99980.19
         ]
       ]
@@ -3355,29 +3375,6 @@
           "p_side": 0.455,
           "edge": 0.0587,
           "opened": "2026-10-10T07:20:10Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXWDAYMENTION-26OCT13-AGEN",
-      "question": "What will Aneel Bhusri say during Workday Rising 2026 \u2014 Innovation Keynote? (Agent)",
-      "url": "https://kalshi.com/markets/kxwdaymention/what-will-aneel-bhusri-say-during-workday-rising-2026-innova/kxwdaymention-26oct13",
-      "source": "kalshi",
-      "close_time": "2026-10-27T14:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 46,
-          "cost_per": 0.4874,
-          "total_cost": 22.42,
-          "p_side": 0.55,
-          "edge": 0.0626,
-          "opened": "2026-10-10T15:20:17Z",
           "value": null
         }
       ]
@@ -4270,6 +4267,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXWDAYMENTION-26OCT13-AGEN",
+      "question": "What will Aneel Bhusri say during Workday Rising 2026 \u2014 Innovation Keynote? (Agent)",
+      "url": "https://kalshi.com/markets/kxwdaymention/what-will-aneel-bhusri-say-during-workday-rising-2026-innova/kxwdaymention-26oct13",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 22.42,
+      "cost_per": 0.4874,
+      "p_side": 0.55,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -22.42,
+      "opened": "2026-10-10T15:20:17Z",
+      "settled": "2026-10-14T14:05:15Z",
+      "strategy": "mention_no"
+    },
+    {
       "key": "kalshi:KXDEBATEMENTION-26OCT13-FILI",
       "question": "What will any participating candidate say during Atlanta Press Club debate for Georgia U.S. Senate originally scheduled for October 13, 2026? (Filibuster)",
       "url": "https://kalshi.com/markets/kxdebatemention/what-will-any-participating-candidate-say-during-atlanta-pre/kxdebatemention-26oct13",
@@ -4849,6 +4862,38 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-14T14:07:49Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
+      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep"
+    },
+    {
+      "ts": "2026-10-14T14:07:31Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
+      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep"
+    },
+    {
+      "ts": "2026-10-14T14:05:15Z",
+      "type": "loss",
+      "strategy": "mention_no",
+      "amount": -22.42,
+      "q": "What will Aneel Bhusri say during Workday Rising 2026 \u2014 Innovation Keynote? (Agent)",
+      "url": "https://kalshi.com/markets/kxwdaymention/what-will-aneel-bhusri-say-during-workday-rising-2026-innova/kxwdaymention-26oct13"
+    },
+    {
+      "ts": "2026-10-14T14:05:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-14T13:52:20Z",
       "type": "review",
@@ -5484,38 +5529,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T23:05:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T22:50:17Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T22:35:16Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T22:20:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5528,21 +5541,21 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1657,
-    "post_mortems": 81,
+    "reviewed": 1662,
+    "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 154,
+        "n": 155,
         "predicted": 0.139,
-        "actual": 0.169
+        "actual": 0.168
       },
       {
         "range": "20\u201340%",
-        "n": 452,
-        "predicted": 0.296,
-        "actual": 0.27
+        "n": 455,
+        "predicted": 0.297,
+        "actual": 0.275
       },
       {
         "range": "40\u201360%",
@@ -5552,9 +5565,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 200,
+        "n": 201,
         "predicted": 0.661,
-        "actual": 0.745
+        "actual": 0.746
       },
       {
         "range": "80\u2013100%",
@@ -5565,8 +5578,8 @@
     ],
     "root_causes": {
       "overconfident": 28,
-      "unlucky": 28,
-      "missing_info": 10,
+      "unlucky": 29,
+      "missing_info": 11,
       "stale_info": 7,
       "research_error": 5,
       "misread_rules": 3
@@ -5577,6 +5590,46 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
+        "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.24,
+        "market": 0.125,
+        "ts": "2026-10-14T14:07:49Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "BLS released September 2026 CPI on October 14. Core CPI rose 0.3% for the month and 2.6% from a year earlier, up from 2.4% in August. That beat the consensus of 0.2% and 2.5%, so the question resolved YES.",
+        "what_we_missed": "Rounding was very close to the threshold. A replacement month of about 0.3% against the roughly 0.2% September 2025 month dropping out was enough to lift the not-seasonally-adjusted figure two tenths, to 2.6%. Also, the briefing facts stated the threshold inconsistently ('2.5% or higher' in one place, 'above 2.4%' in another), when the rules require 2.6% or more. That confusion didn't decide the outcome, but it shows the threshold was handled carelessly. The forecaster's 0.24 was already about double the market's 0.125, and the consensus pointed to NO, so this was mostly an upside surprise.",
+        "what_worked": "",
+        "lesson": "When the year-over-year figure sits one or two tenths from the threshold and the August monthly reading came in hot, a single 0.3% month can flip the rounded result. Probabilities around 15\u201330% are appropriate here, not extreme ones. Also state the rounded threshold exactly before forecasting.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Rebuild the 12-month rate from unrounded NSA index levels for the month dropping out (Sept 2025) and the latest month (Aug 2026), then calculate the exact monthly change needed to reach the rounded threshold. Compare that figure with consensus and the Cleveland Fed nowcast."
+        }
+      },
+      {
+        "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
+        "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.34,
+        "market": 0.47,
+        "ts": "2026-10-14T14:07:31Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "BLS reported on Oct 14, 2026 that core CPI rose 0.3% in September and 2.6% over the 12 months, up from 2.4% in August. That beat the consensus of 0.2% m/m and 2.5% y/y, so the market resolved YES.",
+        "what_we_missed": "Economists' consensus for September core was already 2.5% y/y, which would have resolved YES by itself, and the forecaster never looked it up. The base effect also helped YES: September 2025's 0.2% month was the one dropping out, and August 2026 had come in hot at 0.3%. Even a 0.2\u20130.3% September month gave a good chance of rounding to 2.5% or higher. Given all that, 0.34 sat well below the market's 0.47.",
+        "what_worked": "",
+        "lesson": "For CPI threshold markets, get the published consensus y/y estimate and run the base-effect arithmetic on the month dropping out before moving far from the market price.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For any economic-data question judged within about two weeks of the release, require research to collect the consensus forecast (Bloomberg/Reuters/CNBC preview) and the Cleveland Fed nowcast."
+        }
+      },
       {
         "question": "Will CPI Core rise more than 0.2% in September? (Above 0.2%)",
         "url": "https://kalshi.com/markets/kxcpicore/will-cpi-core-rise-more-than-0-2-in-september/kxcpicore-26sep",
@@ -5655,46 +5708,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For tweet-count markets, require fetching the live xtracker count (or the market's current bracket prices) and projecting the remaining hours before forecasting, and block forecasts that go against the market when no in-window count was found."
-        }
-      },
-      {
-        "question": "Will Elon Musk post 0-19 tweets from October 6 to October 13, 2026?",
-        "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-0-19",
-        "outcome": "no",
-        "category": "culture",
-        "p": 0.58,
-        "market": 0.207,
-        "ts": "2026-10-13T16:07:40Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "Musk posted at his usual pace, about 200 posts a week, so the 0-19 bucket resolved NO. A third-party aggregator showed 200-219 as the favorite at about 24% just before the window opened, with the 180-199 and 220-239 buckets nearby.",
-        "what_we_missed": "The forecaster had no facts at all, not even Musk's normal weekly post count from xtracker or the prices in the other buckets, which were spread across 180-239. It gave 58-60% to a range about ten times below his usual output. Claude-direct's 1% shows that this baseline was easy to know.",
-        "what_worked": "",
-        "lesson": "For a counting-bucket market, start from the subject's recent counts for the same window length and from how the market prices the other buckets. A low bucket getting about 20% on a thin market is not evidence on its own.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Block any forecast when the research facts are empty. On range-bucket markets, require the recent historical count and the prices of the other buckets before giving a probability."
-        }
-      },
-      {
-        "question": "Will Goldman Sachs (GS) beat quarterly earnings?",
-        "url": "https://polymarket.com/market/gs-quarterly-earnings-gaap-eps-10-13-2026-16pt41",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.13,
-        "market": 0.425,
-        "ts": "2026-10-13T13:37:34Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "On Oct 13, 2026 Goldman reported Q3 2026 diluted GAAP EPS of $17.01 on net revenues of $18.68B. That is above the $16.41 strike, so the market resolved YES. It was a roughly 32% beat over the ~$12.86\u201312.90 consensus, helped by strong equities trading, buybacks of $3B and a 4.4% drop in diluted share count.",
-        "what_we_missed": "The forecaster treated the stale, recently cut Zacks consensus of $12.90 as the anchor. It underweighted that Goldman had beaten consensus by 20\u201345% in recent quarters, with Q2 at $20.98 versus $14.47, and that management had flagged very strong equities trading. Clearing $16.41 needed about a 27% beat over Zacks, which was in line with the recent beat pattern and not a tail event. The market's 42.5% priced this correctly.",
-        "what_worked": "",
-        "lesson": "When a company keeps beating EPS consensus by 20\u201345%, estimate the outcome from that history of beat sizes, not from distance to the consensus, and don't go far below a market price near 40% without specific negative evidence.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Flag any forecast that differs from the market by more than 25 points on an earnings-beat question for a check against the company's last 4\u20138 quarters of actual-versus-consensus surprise percentages."
         }
       }
     ],
@@ -6059,9 +6072,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.1003,
-      "b": 0.1288,
-      "n": 1241,
+      "a": 1.0971,
+      "b": 0.1358,
+      "n": 1246,
       "active": true,
       "need": 300
     },
@@ -6128,13 +6141,13 @@
       },
       {
         "category": "economy",
-        "n": 72,
-        "jev_research": 0.2314,
-        "jev_plain": 0.2718,
-        "market": 0.123,
-        "n_jev_research": 50,
-        "n_jev_plain": 72,
-        "n_market": 72
+        "n": 77,
+        "jev_research": 0.2386,
+        "jev_plain": 0.2744,
+        "market": 0.1295,
+        "n_jev_research": 55,
+        "n_jev_plain": 77,
+        "n_market": 77
       },
       {
         "category": "politics",
@@ -6671,7 +6684,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 53,
+      "research": 55,
       "questions": 2
     },
     "retro": {
