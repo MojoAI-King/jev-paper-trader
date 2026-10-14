@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T13:37:24Z",
+  "generated": "2026-10-14T13:52:51Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T13:37:24Z",
+      "t": "2026-10-14T13:52:51Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1656,
+    "resolved": 1657,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20672822580645162,
-        "n": 1240
+        "brier": 0.20695648670427078,
+        "n": 1241
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22827886473429954,
-        "n": 1656
+        "brier": 0.22841200965600483,
+        "n": 1657
       },
       {
         "name": "claude_direct",
@@ -913,14 +913,14 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20878681854327336,
-        "n": 1167
+        "brier": 0.20901050051369863,
+        "n": 1168
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1457060606884058,
-        "n": 1656
+        "brier": 0.14586147344598674,
+        "n": 1657
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T13:35:14Z",
+    "ts": "2026-10-14T13:50:08Z",
     "stages": [
       [
         "Fetched",
@@ -1847,7 +1847,7 @@
           99750.45
         ],
         [
-          "2026-10-14T13:37:24Z",
+          "2026-10-14T13:52:51Z",
           99750.45
         ]
       ]
@@ -2588,7 +2588,7 @@
           100310.16
         ],
         [
-          "2026-10-14T13:37:24Z",
+          "2026-10-14T13:52:51Z",
           100310.16
         ]
       ]
@@ -3329,7 +3329,7 @@
           99980.19
         ],
         [
-          "2026-10-14T13:37:24Z",
+          "2026-10-14T13:52:51Z",
           99980.19
         ]
       ]
@@ -4850,6 +4850,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T13:52:20Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will CPI Core rise more than 0.2% in September? (Above 0.2%)",
+      "url": "https://kalshi.com/markets/kxcpicore/will-cpi-core-rise-more-than-0-2-in-september/kxcpicore-26sep"
+    },
+    {
+      "ts": "2026-10-14T13:50:08Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T13:35:14Z",
       "type": "scan",
       "fetched": 200,
@@ -5500,22 +5516,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T22:05:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T21:50:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5528,8 +5528,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1656,
-    "post_mortems": 80,
+    "reviewed": 1657,
+    "post_mortems": 81,
     "win_reviews": 41,
     "calibration": [
       {
@@ -5540,9 +5540,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 451,
+        "n": 452,
         "predicted": 0.296,
-        "actual": 0.268
+        "actual": 0.27
       },
       {
         "range": "40\u201360%",
@@ -5565,7 +5565,7 @@
     ],
     "root_causes": {
       "overconfident": 28,
-      "unlucky": 27,
+      "unlucky": 28,
       "missing_info": 10,
       "stale_info": 7,
       "research_error": 5,
@@ -5577,6 +5577,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will CPI Core rise more than 0.2% in September? (Above 0.2%)",
+        "url": "https://kalshi.com/markets/kxcpicore/will-cpi-core-rise-more-than-0-2-in-september/kxcpicore-26sep",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.3,
+        "market": 0.365,
+        "ts": "2026-10-14T13:52:20Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "September 2026 core CPI, released October 14, rose 0.3% m/m (2.6% y/y), beating the 0.2% consensus (2.5% y/y), so the question resolved YES. Headline CPI rose 0.6% m/m and 3.7% y/y. Gasoline jumped 9.1%, which BLS said was about half the headline gain; CNBC tied the energy surge to the U.S.\u2013Iran conflict.",
+        "what_we_missed": "No source we found showed this before the release: every preview (Cleveland Fed, TD, Continuum) had core at 0.2%. Some signals did point up and deserved more weight. August core had already beaten consensus at 0.3%, TD flagged upside risk, and a large energy shock can pass through to core via transport and airfares. The forecaster's 0.30 was below the market's 0.365 when those signals argued for at least matching it.",
+        "what_worked": "",
+        "lesson": "When consensus core is 0.2% in an energy-shock month that follows a core beat, treat a print of 0.25% or more (which rounds to 0.3%) as roughly a coin flip, not a 30% outcome, and don't price below the market without specific downside evidence.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For monthly CPI threshold questions, pull the unrounded nowcast and the recent run of beats and misses against consensus, and estimate the rounding odds explicitly instead of anchoring on the headline 0.2% consensus."
+        }
+      },
       {
         "question": "Will the rate of CPI inflation be above 3.5% for the year ending in September 2026? (Above 3.5%)",
         "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-5-for-the-year-end/kxcpiyoy-26sep",
@@ -5675,26 +5695,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Flag any forecast that differs from the market by more than 25 points on an earnings-beat question for a check against the company's last 4\u20138 quarters of actual-versus-consensus surprise percentages."
-        }
-      },
-      {
-        "question": "Will Team Yandex win BLAST Slam VIII?",
-        "url": "https://polymarket.com/market/will-team-yandex-win-blast-slam-viii",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.43,
-        "market": 0.885,
-        "ts": "2026-10-13T04:07:48Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "stale_info",
-        "what_happened": "Team Yandex won BLAST Slam VIII. They had swept Team Spirit 2-0 in the upper-bracket final and then won the Bo5 grand final on Oct 11 against the team that came through the lower bracket. My search confirmed Yandex reached the final, and the outcome data shows they won it.",
-        "what_we_missed": "The newest fact we had still showed the lower-bracket final as live with PARIVISION up 1-0. By 19:05 UTC the grand final had probably started, and an 88.5% market price suggests Yandex was already ahead or nearly done. Even before the final began, Yandex had swept Spirit and beaten PARIVISION 2-1, so a pre-final estimate should have been above 50%. Our forecast of 43% was too low either way.",
-        "what_worked": "",
-        "lesson": "If a market sits far from your estimate on the last day of an event, check the live score before forecasting. A gap that big usually means the market has newer information than you do.",
-        "suggested_change": {
-          "area": "research",
-          "change": "On event days, require a fresh live-score check from Liquipedia or BLAST.tv taken within an hour of the judgment time, and flag the forecast for review if it differs from the market by more than 30 points without a stated reason."
         }
       }
     ],
@@ -6059,9 +6059,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.1029,
-      "b": 0.127,
-      "n": 1240,
+      "a": 1.1003,
+      "b": 0.1288,
+      "n": 1241,
       "active": true,
       "need": 300
     },
@@ -6128,13 +6128,13 @@
       },
       {
         "category": "economy",
-        "n": 71,
-        "jev_research": 0.2261,
-        "jev_plain": 0.2693,
-        "market": 0.119,
-        "n_jev_research": 49,
-        "n_jev_plain": 71,
-        "n_market": 71
+        "n": 72,
+        "jev_research": 0.2314,
+        "jev_plain": 0.2718,
+        "market": 0.123,
+        "n_jev_research": 50,
+        "n_jev_plain": 72,
+        "n_market": 72
       },
       {
         "category": "politics",
@@ -6671,7 +6671,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 52,
+      "research": 53,
       "questions": 2
     },
     "retro": {
