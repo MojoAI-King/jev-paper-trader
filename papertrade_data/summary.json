@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T02:07:39Z",
+  "generated": "2026-10-14T02:23:04Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T02:07:39Z",
+      "t": "2026-10-14T02:23:04Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1629,
+    "resolved": 1630,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20706450040617383,
-        "n": 1231
+        "brier": 0.20693936688311687,
+        "n": 1232
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22776218538980972,
-        "n": 1629
+        "brier": 0.22769337423312883,
+        "n": 1630
       },
       {
         "name": "claude_direct",
@@ -913,19 +913,19 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20923689796200345,
-        "n": 1158
+        "brier": 0.2091060223037101,
+        "n": 1159
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14549570994475136,
-        "n": 1629
+        "brier": 0.1454403291411043,
+        "n": 1630
       }
     ],
     "paired": {
       "n": 794,
-      "left_out": 107,
+      "left_out": 108,
       "sources": [
         {
           "name": "market",
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T02:05:08Z",
+    "ts": "2026-10-14T02:20:28Z",
     "stages": [
       [
         "Fetched",
@@ -995,7 +995,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1010,7 +1010,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1101,8 +1101,8 @@
       "unrealized": 0.0,
       "change": -19.81,
       "realized": -19.81,
-      "open": 1,
-      "open_cost": 51.38,
+      "open": 2,
+      "open_cost": 118.75,
       "settled": 1,
       "wins": 0,
       "losses": 1,
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-14T02:07:39Z",
+          "2026-10-14T02:23:04Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-14T02:07:39Z",
+          "2026-10-14T02:23:04Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-14T02:07:39Z",
+          "2026-10-14T02:23:04Z",
           99980.19
         ]
       ]
@@ -3515,6 +3515,29 @@
           "p_side": 0.635,
           "edge": 0.0577,
           "opened": "2026-10-14T01:50:07Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBERNIEMENTION-26OCT18-IMMI",
+      "question": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Gainesville originally scheduled for October 18, 2026? (Immigrant / Immigration)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct18",
+      "source": "kalshi",
+      "close_time": "2026-11-01T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 84,
+          "cost_per": 0.802,
+          "total_cost": 67.37,
+          "p_side": 0.87,
+          "edge": 0.068,
+          "opened": "2026-10-14T02:20:28Z",
           "value": null
         }
       ]
@@ -4684,6 +4707,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T02:20:28Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.802,
+      "amount": 67.37,
+      "p": 0.87,
+      "q": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Gainesville originally scheduled for October 18, 2026? (Immigrant / Immigration)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct18",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-14T02:20:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-14T02:05:08Z",
       "type": "scan",
       "fetched": 200,
@@ -5331,22 +5374,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T11:50:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T11:35:26Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5359,7 +5386,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1629,
+    "reviewed": 1630,
     "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
@@ -5371,7 +5398,7 @@
       },
       {
         "range": "20\u201340%",
-        "n": 445,
+        "n": 446,
         "predicted": 0.297,
         "actual": 0.267
       },
@@ -5890,9 +5917,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.095,
-      "b": 0.1216,
-      "n": 1231,
+      "a": 1.0965,
+      "b": 0.1212,
+      "n": 1232,
       "active": true,
       "need": 300
     },
@@ -5935,14 +5962,14 @@
       },
       {
         "category": "other",
-        "n": 198,
-        "jev_plain": 0.2103,
-        "market": 0.1334,
-        "jev_research": 0.2573,
+        "n": 199,
+        "jev_plain": 0.2098,
+        "market": 0.133,
+        "jev_research": 0.2555,
         "claude_direct": 0.1922,
-        "n_jev_plain": 198,
-        "n_market": 198,
-        "n_jev_research": 117,
+        "n_jev_plain": 199,
+        "n_market": 199,
+        "n_jev_research": 118,
         "n_claude_direct": 35
       },
       {
