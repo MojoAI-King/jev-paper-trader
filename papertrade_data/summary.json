@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T01:37:24Z",
+  "generated": "2026-10-14T01:52:21Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T01:37:24Z",
+      "t": "2026-10-14T01:52:21Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1628,
+    "resolved": 1629,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22747893120393123,
-        "n": 1628
+        "brier": 0.22776218538980972,
+        "n": 1629
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1452065641891892,
-        "n": 1628
+        "brier": 0.14549570994475136,
+        "n": 1629
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T01:35:09Z",
+    "ts": "2026-10-14T01:50:07Z",
     "stages": [
       [
         "Fetched",
@@ -1070,8 +1070,8 @@
       "unrealized": 0.0,
       "change": 309.73,
       "realized": 309.73,
-      "open": 33,
-      "open_cost": 1357.39,
+      "open": 34,
+      "open_cost": 1363.16,
       "settled": 6,
       "wins": 5,
       "losses": 1,
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-14T01:37:24Z",
+          "2026-10-14T01:52:21Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-14T01:37:24Z",
+          "2026-10-14T01:52:21Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-14T01:37:24Z",
+          "2026-10-14T01:52:21Z",
           99980.19
         ]
       ]
@@ -3492,6 +3492,29 @@
           "p_side": 0.615,
           "edge": 0.0476,
           "opened": "2026-10-14T01:35:09Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBERNIEMENTION-26OCT18-IRAN",
+      "question": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Gainesville originally scheduled for October 18, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct18",
+      "source": "kalshi",
+      "close_time": "2026-11-01T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 10,
+          "cost_per": 0.5773,
+          "total_cost": 5.77,
+          "p_side": 0.635,
+          "edge": 0.0577,
+          "opened": "2026-10-14T01:50:07Z",
           "value": null
         }
       ]
@@ -4661,6 +4684,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T01:50:07Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.5773,
+      "amount": 5.77,
+      "p": 0.635,
+      "q": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Gainesville originally scheduled for October 18, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct18",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-14T01:50:07Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-14T01:35:09Z",
       "type": "bet",
       "strategy": "mention_no",
@@ -5304,22 +5347,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T11:05:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T10:50:31Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5332,7 +5359,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1628,
+    "reviewed": 1629,
     "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
@@ -5944,13 +5971,13 @@
       },
       {
         "category": "economy",
-        "n": 51,
+        "n": 52,
         "jev_research": 0.232,
-        "jev_plain": 0.272,
-        "market": 0.1034,
+        "jev_plain": 0.28,
+        "market": 0.1133,
         "n_jev_research": 42,
-        "n_jev_plain": 51,
-        "n_market": 51
+        "n_jev_plain": 52,
+        "n_market": 52
       },
       {
         "category": "weather",
