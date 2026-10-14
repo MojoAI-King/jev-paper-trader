@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T12:52:23Z",
+  "generated": "2026-10-14T13:08:01Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T12:52:23Z",
+      "t": "2026-10-14T13:08:01Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1637,
+    "resolved": 1642,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.2068182481751825,
-        "n": 1233
+        "brier": 0.20696168148746968,
+        "n": 1237
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22814508246792914,
-        "n": 1637
+        "brier": 0.22832892813641903,
+        "n": 1642
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20897955162931034,
-        "n": 1160
+        "brier": 0.20909223496563575,
+        "n": 1164
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14583163500305435,
-        "n": 1637
+        "brier": 0.1455789960414129,
+        "n": 1642
       }
     ],
     "paired": {
-      "n": 795,
+      "n": 797,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16306953522012577
+          "brier": 0.16303253513174404
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2175732075471698
+          "brier": 0.21820526976160604
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2010958490566038
+          "brier": 0.20110564617314933
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24382716981132077
+          "brier": 0.24422772898368886
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T12:50:05Z",
+    "ts": "2026-10-14T13:05:06Z",
     "stages": [
       [
         "Fetched",
@@ -1847,7 +1847,7 @@
           99750.45
         ],
         [
-          "2026-10-14T12:52:23Z",
+          "2026-10-14T13:08:01Z",
           99750.45
         ]
       ]
@@ -2588,7 +2588,7 @@
           100310.16
         ],
         [
-          "2026-10-14T12:52:23Z",
+          "2026-10-14T13:08:01Z",
           100310.16
         ]
       ]
@@ -3329,7 +3329,7 @@
           99980.19
         ],
         [
-          "2026-10-14T12:52:23Z",
+          "2026-10-14T13:08:01Z",
           99980.19
         ]
       ]
@@ -4850,6 +4850,30 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T13:07:35Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "misread_rules",
+      "q": "Will the rate of CPI inflation be above 3.5% for the year ending in September 2026? (Above 3.5%)",
+      "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-5-for-the-year-end/kxcpiyoy-26sep"
+    },
+    {
+      "ts": "2026-10-14T13:07:10Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the rate of CPI inflation be above 3.6% for the year ending in September 2026? (Above 3.6%)",
+      "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-6-for-the-year-end/kxcpiyoy-26sep"
+    },
+    {
+      "ts": "2026-10-14T13:05:06Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T12:50:05Z",
       "type": "scan",
       "fetched": 200,
@@ -5492,27 +5516,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T21:05:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T20:50:24Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T20:37:52Z",
-      "type": "learn",
-      "text": "Daily review written"
     }
   ],
   "plan_usage": {
@@ -5525,21 +5528,21 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1637,
-    "post_mortems": 78,
+    "reviewed": 1642,
+    "post_mortems": 80,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 153,
-        "predicted": 0.138,
-        "actual": 0.17
+        "n": 154,
+        "predicted": 0.139,
+        "actual": 0.169
       },
       {
         "range": "20\u201340%",
-        "n": 447,
-        "predicted": 0.296,
-        "actual": 0.266
+        "n": 450,
+        "predicted": 0.297,
+        "actual": 0.269
       },
       {
         "range": "40\u201360%",
@@ -5561,12 +5564,12 @@
       }
     ],
     "root_causes": {
-      "overconfident": 27,
+      "overconfident": 28,
       "unlucky": 27,
       "missing_info": 10,
       "stale_info": 7,
       "research_error": 5,
-      "misread_rules": 2
+      "misread_rules": 3
     },
     "credits": {
       "lucky": 20,
@@ -5574,6 +5577,46 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will the rate of CPI inflation be above 3.5% for the year ending in September 2026? (Above 3.5%)",
+        "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-5-for-the-year-end/kxcpiyoy-26sep",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.34,
+        "market": 0.865,
+        "ts": "2026-10-14T13:07:35Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "misread_rules",
+        "what_happened": "The September 2026 CPI was released on October 14 and showed 12-month inflation at 3.6% or higher, above the 3.5% threshold, so the question resolved YES. The main driver was a jump in gasoline prices of about 7.4% from August to September, to a record of about $4.33\u20134.36 per gallon for September, on top of a 3.4% rate in August. I could not find the exact released figure in my search; the resolution is taken from the recorded outcome.",
+        "what_we_missed": "The forecaster appears to have anchored on the research desk's 3.7% calculation, which needed a monthly gain of about 0.50%. But 'above 3.5%' only needs a published 3.6%, which takes a monthly gain of about 0.40%. A 7.4% gasoline jump at roughly 3.5\u20134% of the index adds about 0.25\u20130.3 points by itself. Normal core and seasonal drift (about 0.25% last September) would push the total past 0.40%. The market price of 0.865 reflected this.",
+        "what_worked": "",
+        "lesson": "Before forecasting, convert the question's threshold into the exact published one-decimal value and the monthly change it requires. Do not reuse threshold math written for a sibling question.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Research desk threshold calculations should be tied to the specific question's strike (here, a published 3.6% or higher and about 0.40% monthly), not a neighboring strike like 3.7%. The gasoline contribution should be quantified against that strike."
+        }
+      },
+      {
+        "question": "Will the rate of CPI inflation be above 3.6% for the year ending in September 2026? (Above 3.6%)",
+        "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-6-for-the-year-end/kxcpiyoy-26sep",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.33,
+        "market": 0.475,
+        "ts": "2026-10-14T13:07:10Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "BLS reported September 2026 CPI up 0.6% for the month on both a seasonally adjusted and an unadjusted basis, putting the 12-month rate at 3.7% and resolving the question YES. Gasoline rose 6.5% before seasonal adjustment and energy rose 5.2% seasonally adjusted, driven by the Strait of Hormuz price spike.",
+        "what_we_missed": "The forecaster already had what it needed. Pump prices rose about 7.4% from August to September, and gasoline makes up roughly 3.5\u20134% of the CPI basket, which adds about 0.25\u20130.3 points on its own. Add the usual unadjusted core and food increase of about 0.2\u20130.25 and you get roughly the 0.50% monthly gain the question needed. Instead the forecaster put YES at 33%, well below the market's 47.5%, apparently without working through this pass-through calculation.",
+        "what_worked": "",
+        "lesson": "When a CPI threshold depends on one month's change and gas prices are moving sharply, calculate gasoline's weight times its unadjusted monthly change, add normal core and food inflation, and compare the total to the required change before moving away from the market.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For monthly CPI questions, have the research desk give a bottom-up estimate of the unadjusted monthly change (each component's weight times its expected change, using AAA/EIA gas prices) and compare it to the change the threshold requires."
+        }
+      },
       {
         "question": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
         "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379",
@@ -5652,46 +5695,6 @@
         "suggested_change": {
           "area": "research",
           "change": "On event days, require a fresh live-score check from Liquipedia or BLAST.tv taken within an hour of the judgment time, and flag the forecast for review if it differs from the market by more than 30 points without a stated reason."
-        }
-      },
-      {
-        "question": "Los Angeles R wins",
-        "url": "https://kalshi.com/markets/kxnflgame/los-angeles-r-wins/kxnflgame-26oct12buflar",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.55,
-        "market": 0.615,
-        "ts": "2026-10-13T04:07:20Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "The Bills beat the Rams 37-34 in overtime at SoFi Stadium. The Rams tied it with four seconds left in regulation and recovered a James Cook fumble in overtime. Greg Rousseau then blocked the Rams' go-ahead field goal attempt, Josh Allen's runs (121 rushing yards on the night) set up Tyler Bass's winning field goal, and Buffalo won despite five turnovers.",
-        "what_we_missed": "Nothing important. The Rams were 2.5\u20133.5 point home favorites (moneyline about -150 to -176), so the 0.55 forecast was a bit below the market's 0.615. A game that came down to a blocked field goal in overtime is close to a coin flip.",
-        "what_worked": "",
-        "lesson": "When a close NFL game is lost in overtime and the forecast sat near the market, don't treat the loss as a modeling error. Check calibration across many games instead.",
-        "suggested_change": {
-          "area": "none",
-          "change": "No process change. The forecast was moderate, sat near the market, and the less likely outcome came from late, high-variance plays."
-        }
-      },
-      {
-        "question": "DeepSeek market share this week? (Above 22.6%)",
-        "url": "https://kalshi.com/markets/kxdeepshare/deepseek-market-share-this-week/kxdeepshare-26oct12",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.27,
-        "market": 0.915,
-        "ts": "2026-10-12T14:53:46Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "research_error",
-        "what_happened": "DeepSeek ended above 22.6% on OpenRouter's author market-share chart for the week of Oct 5, so the question resolved YES. The market priced this at 91.5%, but our forecasts were only 27\u201332%. DeepSeek's V4.1 Flash had been the top single model on OpenRouter for weeks, and its token volume was still growing.",
-        "what_we_missed": "OpenRouter's market-share chart counts tokens. On that measure DeepSeek was around 34\u201335%, far above the threshold. We leaned on 'request-based' figures (21.8% and 24.4%) that came from unverified sources, and we also used the wrong threshold (23.4% instead of 22.6%). Both errors pushed the forecast down, even though the market was strongly pointing the other way.",
-        "what_worked": "",
-        "lesson": "Before forecasting a leaderboard-share market, check which measure the resolution source actually uses (for example, by opening OpenRouter's rankings page), and use the threshold exactly as written in the question. If the market sits above 90% and we disagree, find out why it's that high.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Block any forecast that disagrees with a market priced above 85% or below 15% by more than 40 points unless the research desk has confirmed the resolution metric and the threshold directly from the resolution source."
         }
       }
     ],
@@ -6056,9 +6059,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.098,
-      "b": 0.1208,
-      "n": 1233,
+      "a": 1.0973,
+      "b": 0.1237,
+      "n": 1237,
       "active": true,
       "need": 300
     },
@@ -6137,13 +6140,13 @@
       },
       {
         "category": "economy",
-        "n": 52,
-        "jev_research": 0.232,
-        "jev_plain": 0.28,
-        "market": 0.1133,
-        "n_jev_research": 42,
-        "n_jev_plain": 52,
-        "n_market": 52
+        "n": 57,
+        "jev_research": 0.2336,
+        "jev_plain": 0.2808,
+        "market": 0.1088,
+        "n_jev_research": 46,
+        "n_jev_plain": 57,
+        "n_market": 57
       },
       {
         "category": "weather",
@@ -6668,7 +6671,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 50,
+      "research": 52,
       "questions": 2
     },
     "retro": {
