@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T20:37:38Z",
+  "generated": "2026-10-14T20:53:09Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-14T20:37:38Z",
+      "t": "2026-10-14T20:53:09Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T20:35:04Z",
+    "ts": "2026-10-14T20:50:20Z",
     "stages": [
       [
         "Fetched",
@@ -1003,7 +1003,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 1
+      "mention_follow": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1018,7 +1018,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 1
+      "mention_follow": 0
     },
     "judged": 0,
     "with_research": 0
@@ -1875,7 +1875,7 @@
           99750.45
         ],
         [
-          "2026-10-14T20:37:38Z",
+          "2026-10-14T20:53:09Z",
           99750.45
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-14T20:37:38Z",
+          "2026-10-14T20:53:09Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-14T20:37:38Z",
+          "2026-10-14T20:53:09Z",
           99980.19
         ]
       ]
@@ -4963,6 +4963,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T20:53:05Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-14T20:50:20Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T20:35:04Z",
       "type": "bet",
       "strategy": "mention_follow",
@@ -5600,26 +5613,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-14T05:35:03Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T05:20:05Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.715,
-      "amount": 2.86,
-      "p": 0.75,
-      "q": "What will Hailey Bieber say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (e.l.f. / Elf)",
-      "url": "https://kalshi.com/markets/kxbiebermention/what-will-hailey-bieber-say-during-2026-new-york-times-dealb/kxbiebermention-26nov18",
-      "probe": true
     }
   ],
   "plan_usage": {
@@ -6779,17 +6772,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-14T08:52:26Z",
-      "headline": "A thin, half-blind review: the three strategies that report are locked and have settled only 9 bets between them, the core Jev and Claude strategies are missing, and no new forecasts have been made in 48 cycles, so there is nothing to tune safely today.",
+      "ts": "2026-10-14T20:52:42Z",
+      "headline": "Another half-day with no new forecasts: the pipeline judged 0 markets in 48 cycles, the review again shows only three locked strategies, and the market price still beats every forecaster.",
       "went_well": [
-        "Mention markets, NO side is the one bright spot: 6 wins in 7 settled bets, +$310 on about $553 of settled stake (roughly +$56 per $100), with 38 bets still open. Seven bets is noise, so treat this as an experiment worth watching, not a finding.",
-        "Its probability source (mention_prior) shows a positive raw skill of +0.52 on 107 markets. That fits with the early wins, but its standard error is reported as 0, which is not believable (see p42).",
-        "Every bet these three strategies settled was priced 30c or more, so the 30c floor on long shots is holding."
+        "Mention markets, NO side is the only visible strategy in profit: +$168 on 12 settled bets (7 wins, 5 losses), about +$21 per $100 of settled stake. That rests on 12 bets, so it is noise, not a finding.",
+        "Within mention_no, coin-flip bets (30-60c) made +$143 on 8 (4 wins, 4 losses), and favourites (60c and up) made +$26 on 4 (3 wins, 1 loss). It has bought no long shots, so the 30c floor is holding.",
+        "The bets kept resolving: 32 markets were resolved and reviewed this period. Of the misses, 2 were tagged unlucky, 1 overconfident, 1 a misread of the rules and 1 missing information."
       ],
       "went_badly": [
-        "The market price is still the best forecaster by a wide margin. On 795 paired markets it scores a Brier of 0.163, against Claude direct's 0.201 and Jev + research's 0.218. No forecaster beats it in any category with a meaningful count. Claude roughly ties it in sports (0.178 vs 0.181 on 201 markets)",
-        "The pipeline looks broken. 48 cycles judged 0 markets, so no new forecasts were made. Main, original, bold, calibrated and claude_direct are absent from the review, and the yardstick is empty. Sharp still shows rules version 1 with a 3c edge, although p33 is logged as having set it to 2c.",
-        "Claude direct's skill estimate (lambda 0.013 on 795 markets, raw +0.047) is positive, so Kelly sizing may now be live for it. That is hard to square with its paired Brier trailing the market by 0.038. Sharp has bet once and lost it (-$250), and mention_follow has 1 settled bet (-$20)."
+        "The market price is still the best forecaster. On 805 markets scored by everyone, its Brier score is 0.162, against Claude direct's 0.201, Jev + research's 0.219 and Jev alone's 0.245. Lower is better, so none of our forecasters beats it overall.",
+        "For the second review running, 48 cycles judged 0 markets with 0 research, and only mention_follow (3 bets) and mention_no (1 bet) placed bets. Main, original, bold, calibrated, claude_direct and the challengers are missing from the data, and the yardstick is empty. Their performance cannot be revie",
+        "Sharp still shows min_edge 0.03 at rules version 1, although the 2c change (p33, version 2) is logged as applied on 2026-10-11. It has placed 1 bet ever, which lost $250, and its skill estimate is -2.11 on 38 markets. That looks like a data or matching problem, not a verdict on Pinnacle's line."
       ]
     },
     "auto_start": true,
