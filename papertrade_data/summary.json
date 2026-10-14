@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T08:37:21Z",
+  "generated": "2026-10-14T08:53:00Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T08:37:21Z",
+      "t": "2026-10-14T08:53:00Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T08:35:11Z",
+    "ts": "2026-10-14T08:50:10Z",
     "stages": [
       [
         "Fetched",
@@ -1847,7 +1847,7 @@
           99750.45
         ],
         [
-          "2026-10-14T08:37:21Z",
+          "2026-10-14T08:53:00Z",
           99750.45
         ]
       ]
@@ -2588,7 +2588,7 @@
           100310.16
         ],
         [
-          "2026-10-14T08:37:21Z",
+          "2026-10-14T08:53:00Z",
           100310.16
         ]
       ]
@@ -3329,7 +3329,7 @@
           99980.19
         ],
         [
-          "2026-10-14T08:37:21Z",
+          "2026-10-14T08:53:00Z",
           99980.19
         ]
       ]
@@ -4850,6 +4850,33 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T08:52:56Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-14T08:52:26Z",
+      "type": "idea",
+      "text": "Hold the daily review until a health check passes",
+      "status": "proposed",
+      "why": "Today's input has 0 judged markets in 48 cycles and 3 of roughly 10 strategies, with no yardstick. Tuning on this would be guesswork, and the earlier flags for these problems (p35, p38, p41) are still unapproved. A pre-review check would stop us proposing changes against a broken feed: it would requ"
+    },
+    {
+      "ts": "2026-10-14T08:52:26Z",
+      "type": "idea",
+      "text": "Check applied rule changes against the live rules",
+      "status": "proposed",
+      "why": "p33 is logged as applied and set sharp's min_edge to 0.02 (version 2). The live rules still read 0.03, version 1, with rules_changed null. If one applied change was silently lost, others may have been too, and every 'judge_by' since then would be measuring the wrong rules. A daily check of each appl"
+    },
+    {
+      "ts": "2026-10-14T08:50:10Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T08:35:11Z",
       "type": "scan",
       "fetched": 200,
@@ -5501,38 +5528,6 @@
       "cause": "missing_info",
       "q": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
       "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379"
-    },
-    {
-      "ts": "2026-10-13T18:05:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T17:50:20Z",
-      "type": "win",
-      "strategy": "mention_no",
-      "amount": 46.03,
-      "q": "What will Wells Fargo & Company say during their next earnings call? (Tariff)",
-      "url": "https://kalshi.com/markets/kxearningsmentionwfc/what-will-wells-fargo-company-say-during-their-next-earnings/kxearningsmentionwfc-26oct13"
-    },
-    {
-      "ts": "2026-10-13T17:50:20Z",
-      "type": "win",
-      "strategy": "mention_no",
-      "amount": 43.26,
-      "q": "What will Citigroup Inc. say during their next earnings call? (Tariff)",
-      "url": "https://kalshi.com/markets/kxearningsmentionc/what-will-citigroup-inc-say-during-their-next-earnings-call/kxearningsmentionc-26oct13"
-    },
-    {
-      "ts": "2026-10-13T17:50:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -6202,6 +6197,28 @@
     ],
     "proposals": [
       {
+        "id": "p44",
+        "kind": "code",
+        "title": "Check applied rule changes against the live rules",
+        "why": "p33 is logged as applied and set sharp's min_edge to 0.02 (version 2). The live rules still read 0.03, version 1, with rules_changed null. If one applied change was silently lost, others may have been too, and every 'judge_by' since then would be measuring the wrong rules. A daily check of each applied proposal's version and values against the live config would catch this; it widens p36 from sharp to every strategy.",
+        "judge_by": "The check runs once and lists any mismatches between recent_rule_changes and each strategy's live rules and rules_version. Sharp's mismatch is either fixed (shows version 2, min_edge 0.02) or explained.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-14T08:52:26Z"
+      },
+      {
+        "id": "p43",
+        "kind": "code",
+        "title": "Hold the daily review until a health check passes",
+        "why": "Today's input has 0 judged markets in 48 cycles and 3 of roughly 10 strategies, with no yardstick. Tuning on this would be guesswork, and the earlier flags for these problems (p35, p38, p41) are still unapproved. A pre-review check would stop us proposing changes against a broken feed: it would require markets judged in the last day, every live strategy present, and a non-empty yardstick.",
+        "judge_by": "The next review either includes every live strategy, the yardstick and markets judged in the period, or it is replaced by a clear 'pipeline unhealthy' notice naming which check failed.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-14T08:52:26Z"
+      },
+      {
         "id": "p42",
         "kind": "code",
         "title": "Skill estimate reports a standard error of 0 for six of seven sources",
@@ -6670,17 +6687,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-13T20:37:29Z",
-      "headline": "A quiet, mostly broken half-day: the forecasting pipeline judged nothing for a second review running, the main strategies are missing from the report again, and the only bets came from the two mention strategies, which are small and too young to judge.",
+      "ts": "2026-10-14T08:52:26Z",
+      "headline": "A thin, half-blind review: the three strategies that report are locked and have settled only 9 bets between them, the core Jev and Claude strategies are missing, and no new forecasts have been made in 48 cycles, so there is nothing to tune safely today.",
       "went_well": [
-        "Mention markets, NO side is up $310 on 6 settled bets, winning 5. That is about +$56 per $100 of settled stake, and it placed 5 of the period's 6 bets. Six results are noise, not a finding.",
-        "Claude direct is the only source whose measured skill is positive (lambda 0.013 on 791 markets), so its Kelly sizing has switched on. The raw estimate (+0.047) is smaller than its standard error (0.074), so that edge is not established.",
-        "In sports, Claude direct edges the market on Brier score (0.176 vs 0.181, 200 markets). It is the one place any forecaster beats the price on a meaningful count."
+        "Mention markets, NO side is the one bright spot: 6 wins in 7 settled bets, +$310 on about $553 of settled stake (roughly +$56 per $100), with 38 bets still open. Seven bets is noise, so treat this as an experiment worth watching, not a finding.",
+        "Its probability source (mention_prior) shows a positive raw skill of +0.52 on 107 markets. That fits with the early wins, but its standard error is reported as 0, which is not believable (see p42).",
+        "Every bet these three strategies settled was priced 30c or more, so the 30c floor on long shots is holding."
       ],
       "went_badly": [
-        "0 markets were judged in 48 cycles, and none were researched, so Jev- and Claude-driven strategies could not bet at all. p41 and p38 already ask why.",
-        "We still don't beat the market. Its Brier score is 0.145 against 0.175 for Claude direct and 0.207 for Jev + research (1,622 resolved). On the 791 paired markets it scores 0.163 against Claude's 0.201.",
-        "Sharp still shows min_edge 0.03 and rules version 1, although a change to 0.02 was logged on 10-11. It has 1 bet ever (lost $250). Main, original and the yardstick are missing from this report, so tuning main can't be judged today. p35 and p36 already cover this."
+        "The market price is still the best forecaster by a wide margin. On 795 paired markets it scores a Brier of 0.163, against Claude direct's 0.201 and Jev + research's 0.218. No forecaster beats it in any category with a meaningful count. Claude roughly ties it in sports (0.178 vs 0.181 on 201 markets)",
+        "The pipeline looks broken. 48 cycles judged 0 markets, so no new forecasts were made. Main, original, bold, calibrated and claude_direct are absent from the review, and the yardstick is empty. Sharp still shows rules version 1 with a 3c edge, although p33 is logged as having set it to 2c.",
+        "Claude direct's skill estimate (lambda 0.013 on 795 markets, raw +0.047) is positive, so Kelly sizing may now be live for it. That is hard to square with its paired Brier trailing the market by 0.038. Sharp has bet once and lost it (-$250), and mention_follow has 1 settled bet (-$20)."
       ]
     },
     "auto_start": true,
@@ -7152,6 +7169,20 @@
         "title": "Skill estimate reports a standard error of 0 for six of seven sources",
         "why": "Every source except Claude direct shows se 0.0 and lambda 0, even mention_prior with raw +0.594 on 94 markets and jev_research on 1,183. A zero standard error on 1,000+ markets looks like a computation fallback, not a real estimate. It may be silently pinning these sources to probe bets, or would mis-size them once their raw skill turns positive. This is a narrower, concrete instance of what p31 and p39 ask about.",
         "created": "2026-10-13T20:37:29Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p43",
+        "title": "Hold the daily review until a health check passes",
+        "why": "Today's input has 0 judged markets in 48 cycles and 3 of roughly 10 strategies, with no yardstick. Tuning on this would be guesswork, and the earlier flags for these problems (p35, p38, p41) are still unapproved. A pre-review check would stop us proposing changes against a broken feed: it would require markets judged in the last day, every live strategy present, and a non-empty yardstick.",
+        "created": "2026-10-14T08:52:26Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p44",
+        "title": "Check applied rule changes against the live rules",
+        "why": "p33 is logged as applied and set sharp's min_edge to 0.02 (version 2). The live rules still read 0.03, version 1, with rules_changed null. If one applied change was silently lost, others may have been too, and every 'judge_by' since then would be measuring the wrong rules. A daily check of each applied proposal's version and values against the live config would catch this; it widens p36 from sharp to every strategy.",
+        "created": "2026-10-14T08:52:26Z",
         "status": "proposed"
       }
     ]

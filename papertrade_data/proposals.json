@@ -608,6 +608,28 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p43",
+      "created": "2026-10-14T08:52:26Z",
+      "kind": "code",
+      "title": "Hold the daily review until a health check passes",
+      "why": "Today's input has 0 judged markets in 48 cycles and 3 of roughly 10 strategies, with no yardstick. Tuning on this would be guesswork, and the earlier flags for these problems (p35, p38, p41) are still unapproved. A pre-review check would stop us proposing changes against a broken feed: it would require markets judged in the last day, every live strategy present, and a non-empty yardstick.",
+      "judge_by": "The next review either includes every live strategy, the yardstick and markets judged in the period, or it is replaced by a clear 'pipeline unhealthy' notice naming which check failed.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p44",
+      "created": "2026-10-14T08:52:26Z",
+      "kind": "code",
+      "title": "Check applied rule changes against the live rules",
+      "why": "p33 is logged as applied and set sharp's min_edge to 0.02 (version 2). The live rules still read 0.03, version 1, with rules_changed null. If one applied change was silently lost, others may have been too, and every 'judge_by' since then would be measuring the wrong rules. A daily check of each applied proposal's version and values against the live config would catch this; it widens p36 from sharp to every strategy.",
+      "judge_by": "The check runs once and lists any mismatches between recent_rule_changes and each strategy's live rules and rules_version. Sharp's mismatch is either fixed (shows version 2, min_edge 0.02) or explained.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
