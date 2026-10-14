@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T15:07:35Z",
+  "generated": "2026-10-14T15:22:35Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-14T15:07:35Z",
+      "t": "2026-10-14T15:22:35Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1666,
+    "resolved": 1667,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2287421968787515,
-        "n": 1666
+        "brier": 0.22888236352729455,
+        "n": 1667
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14605758493397358,
-        "n": 1666
+        "brier": 0.14607832123575284,
+        "n": 1667
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T15:05:13Z",
+    "ts": "2026-10-14T15:20:12Z",
     "stages": [
       [
         "Fetched",
@@ -1003,7 +1003,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1018,7 +1018,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1063,7 +1063,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 100242.02,
+      "equity": 100202.39,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1074,17 +1074,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 100242.02,
+      "marked": 100202.39,
       "unrealized": 0.0,
-      "change": 242.02,
-      "realized": 242.02,
-      "open": 36,
-      "open_cost": 1328.83,
-      "settled": 9,
+      "change": 202.39,
+      "realized": 202.39,
+      "open": 35,
+      "open_cost": 1289.2,
+      "settled": 10,
       "wins": 6,
-      "losses": 3,
+      "losses": 4,
       "won_amt": 347.75,
-      "lost_amt": -105.73
+      "lost_amt": -145.36
     },
     {
       "name": "mention_follow",
@@ -1109,8 +1109,8 @@
       "unrealized": 0.0,
       "change": -19.81,
       "realized": -19.81,
-      "open": 3,
-      "open_cost": 126.87,
+      "open": 4,
+      "open_cost": 161.91,
       "settled": 1,
       "wins": 0,
       "losses": 1,
@@ -1863,7 +1863,11 @@
           99750.45
         ],
         [
-          "2026-10-14T15:07:35Z",
+          "2026-10-14T15:20:12Z",
+          99750.45
+        ],
+        [
+          "2026-10-14T15:22:35Z",
           99750.45
         ]
       ]
@@ -2612,8 +2616,12 @@
           100242.02
         ],
         [
-          "2026-10-14T15:07:35Z",
-          100242.02
+          "2026-10-14T15:20:12Z",
+          100202.39
+        ],
+        [
+          "2026-10-14T15:22:35Z",
+          100202.39
         ]
       ]
     },
@@ -3361,36 +3369,17 @@
           99980.19
         ],
         [
-          "2026-10-14T15:07:35Z",
+          "2026-10-14T15:20:12Z",
+          99980.19
+        ],
+        [
+          "2026-10-14T15:22:35Z",
           99980.19
         ]
       ]
     }
   ],
   "open_bets": [
-    {
-      "key": "kalshi:KXEARNINGSMENTIONBLK-26OCT13-SPID",
-      "question": "What will BlackRock, Inc. say during their next earnings call? (SpiderRock / Spider Rock)",
-      "url": "https://kalshi.com/markets/kxearningsmentionblk/what-will-blackrock-inc-say-during-their-next-earnings-call/kxearningsmentionblk-26oct13",
-      "source": "kalshi",
-      "close_time": "2026-10-27T14:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 100,
-          "cost_per": 0.3963,
-          "total_cost": 39.63,
-          "p_side": 0.455,
-          "edge": 0.0587,
-          "opened": "2026-10-10T07:20:10Z",
-          "value": null
-        }
-      ]
-    },
     {
       "key": "kalshi:KXFEDMENTION-26OCT-UNCH",
       "question": "Will Kevin Warsh say Unchanged at his Oct 2026 press conference?",
@@ -4024,6 +4013,29 @@
       ]
     },
     {
+      "key": "kalshi:KXMAMDANIMENTION-26NOV18-AI",
+      "question": "What will Zohran Mamdani say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (AI / Artificial Intelligence)",
+      "url": "https://kalshi.com/markets/kxmamdanimention/what-will-zohran-mamdani-say-during-2026-new-york-times-deal/kxmamdanimention-26nov18",
+      "source": "kalshi",
+      "close_time": "2026-12-02T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 75,
+          "cost_per": 0.4672,
+          "total_cost": 35.04,
+          "p_side": 0.54,
+          "edge": 0.0728,
+          "opened": "2026-10-14T15:20:12Z",
+          "value": null
+        }
+      ]
+    },
+    {
       "key": "kalshi:KXEARNINGSMENTIONNFLX-26OCT20-GAME",
       "question": "What will Netflix, Inc. say during their next earnings call? (Gaming)",
       "url": "https://kalshi.com/markets/kxearningsmentionnflx/what-will-netflix-inc-say-during-their-next-earnings-call/kxearningsmentionnflx-26oct20",
@@ -4255,6 +4267,22 @@
     }
   ],
   "settled_recent": [
+    {
+      "key": "kalshi:KXEARNINGSMENTIONBLK-26OCT13-SPID",
+      "question": "What will BlackRock, Inc. say during their next earnings call? (SpiderRock / Spider Rock)",
+      "url": "https://kalshi.com/markets/kxearningsmentionblk/what-will-blackrock-inc-say-during-their-next-earnings-call/kxearningsmentionblk-26oct13",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 39.63,
+      "cost_per": 0.3963,
+      "p_side": 0.455,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -39.63,
+      "opened": "2026-10-10T07:20:10Z",
+      "settled": "2026-10-14T15:20:12Z",
+      "strategy": "mention_no"
+    },
     {
       "key": "kalshi:KXBURNHAMMENTION-26SEP16-UKRA",
       "question": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Ukraine / Ukrainian)",
@@ -4867,6 +4895,34 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-14T15:20:12Z",
+      "type": "loss",
+      "strategy": "mention_no",
+      "amount": -39.63,
+      "q": "What will BlackRock, Inc. say during their next earnings call? (SpiderRock / Spider Rock)",
+      "url": "https://kalshi.com/markets/kxearningsmentionblk/what-will-blackrock-inc-say-during-their-next-earnings-call/kxearningsmentionblk-26oct13"
+    },
+    {
+      "ts": "2026-10-14T15:20:12Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.4672,
+      "amount": 35.04,
+      "p": 0.54,
+      "q": "What will Zohran Mamdani say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (AI / Artificial Intelligence)",
+      "url": "https://kalshi.com/markets/kxmamdanimention/what-will-zohran-mamdani-say-during-2026-new-york-times-deal/kxmamdanimention-26nov18",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-14T15:20:12Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
     {
       "ts": "2026-10-14T15:05:13Z",
       "type": "scan",
@@ -5513,30 +5569,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-14T00:50:14Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T00:35:16Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T00:20:08Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5549,7 +5581,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1666,
+    "reviewed": 1667,
     "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
@@ -6125,13 +6157,13 @@
       },
       {
         "category": "other",
-        "n": 209,
-        "jev_plain": 0.2125,
-        "market": 0.1355,
+        "n": 210,
+        "jev_plain": 0.2137,
+        "market": 0.1357,
         "jev_research": 0.2582,
         "claude_direct": 0.1922,
-        "n_jev_plain": 209,
-        "n_market": 209,
+        "n_jev_plain": 210,
+        "n_market": 210,
         "n_jev_research": 123,
         "n_claude_direct": 35
       },
