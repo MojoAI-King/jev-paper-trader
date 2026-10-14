@@ -1,6 +1,6 @@
 {
-  "version": 16,
-  "updated": "2026-10-13T00:07:19Z",
+  "version": 17,
+  "updated": "2026-10-14T00:07:36Z",
   "rules": [
     {
       "id": "R1",
@@ -68,13 +68,14 @@
       "added": "2026-10-12T08:12:13Z"
     },
     {
-      "id": "R8",
-      "category": "sports",
-      "rule": "Discard any search snippet claiming a match result that is undated or dated before kickoff; report a result only from sources published after the match was played.",
+      "id": "R30",
+      "category": "general",
+      "rule": "If any match or tournament stage started before the judgment time, get its live or final score and the bracket path so far from a tracker timestamped within the past hour (e.g. Liquipedia, BLAST.tv, league site); discard result snippets that are undated or dated before the start.",
       "evidence": [
+        "polymarket:5081245",
         "polymarket:4581752"
       ],
-      "added": "2026-09-29T00:09:39Z"
+      "added": "2026-10-14T00:07:36Z"
     },
     {
       "id": "R25",
@@ -164,6 +165,16 @@
       "added": "2026-10-04T00:08:06Z"
     },
     {
+      "id": "R31",
+      "category": "culture",
+      "rule": "For post-count range questions, first get the in-window running count from the tracker named in the rules with its timestamp, hours left and current hourly pace, plus the subject's totals for recent windows of the same length; never deliver a brief with no count.",
+      "evidence": [
+        "polymarket:5223422",
+        "polymarket:5223516"
+      ],
+      "added": "2026-10-14T00:07:36Z"
+    },
+    {
       "id": "R27",
       "category": "culture",
       "rule": "For live-streamed challenge questions near the deadline, get the current attempt's status from the past 12 hours (stream VODs, streamers' socials, fan trackers): milestones reached, gear, deaths or resets, plus the participants' own past completions and times.",
@@ -192,6 +203,15 @@
       "added": "2026-10-08T00:08:38Z"
     },
     {
+      "id": "R32",
+      "category": "economy",
+      "rule": "For earnings-beat questions, copy the EPS basis (GAAP diluted or adjusted) and strike from the rules, report the dated consensus and recent revisions, the last 4\u20138 quarters' actual-versus-consensus surprise percentages, and management's dated guidance or segment commentary.",
+      "evidence": [
+        "polymarket:5144380"
+      ],
+      "added": "2026-10-14T00:07:36Z"
+    },
+    {
       "id": "R24",
       "category": "politics",
       "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
@@ -210,20 +230,6 @@
         "kalshi:KXOPENSHARE-26OCT12-17.8"
       ],
       "added": "2026-10-13T00:07:19Z"
-    },
-    {
-      "id": "R14",
-      "category": "general",
-      "rule": "Take counts and base rates from a cited source covering the current format to the latest event, using the resolution's named provider and its counting method first (e.g. its trailing 2\u20134 weeks); label recalled, disputed or roughly dozen-case counts as unverified.",
-      "evidence": [
-        "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
-        "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
-        "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
-        "kalshi:KXMLBGAME-26SEP292200CHCSD-SD",
-        "kalshi:KXNCAAFGAME-26OCT03ALAMSST-MSST",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
-      ],
-      "added": "2026-10-01T00:08:33Z"
     }
   ],
   "reviews_used": [
@@ -272,6 +278,7 @@
     "kalshi:KXNFLGAME-26OCT01PITCLE-CLE",
     "kalshi:KXNFLGAME-26OCT08TBDAL-DAL",
     "kalshi:KXNFLGAME-26OCT08TBDAL-TB",
+    "kalshi:KXNFLGAME-26OCT12BUFLAR-LAR",
     "kalshi:KXNFLPASSYDS-26OCT05ATLNO-NOTSHOUGH6-250",
     "kalshi:KXNFLRSHYDS-26OCT05ATLNO-ATLBROBINSON15-50",
     "kalshi:KXNFLSPREAD-26OCT08TBDAL-DAL10",
@@ -329,13 +336,17 @@
     "polymarket:5055808",
     "polymarket:5070112",
     "polymarket:5073572",
+    "polymarket:5081245",
     "polymarket:5083452",
     "polymarket:5083454",
     "polymarket:5105601",
+    "polymarket:5144380",
     "polymarket:5178226",
     "polymarket:5178227",
     "polymarket:5207000",
     "polymarket:5208385",
+    "polymarket:5223422",
+    "polymarket:5223516",
     "polymarket:5238435",
     "polymarket:5286105",
     "polymarket:5309160",
@@ -346,12 +357,14 @@
     "R10",
     "R11",
     "R12",
+    "R14",
     "R18",
     "R20",
     "R22",
     "R3",
     "R4",
     "R5",
-    "R6"
+    "R6",
+    "R8"
   ]
 }

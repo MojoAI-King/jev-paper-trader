@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T23:52:37Z",
+  "generated": "2026-10-14T00:08:21Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-13T23:52:37Z",
+      "t": "2026-10-14T00:08:21Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-13T23:50:12Z",
+    "ts": "2026-10-14T00:05:14Z",
     "stages": [
       [
         "Fetched",
@@ -1843,7 +1843,7 @@
           99750.45
         ],
         [
-          "2026-10-13T23:52:37Z",
+          "2026-10-14T00:08:21Z",
           99750.45
         ]
       ]
@@ -2580,7 +2580,7 @@
           100309.73
         ],
         [
-          "2026-10-13T23:52:37Z",
+          "2026-10-14T00:08:21Z",
           100309.73
         ]
       ]
@@ -3317,7 +3317,7 @@
           99980.19
         ],
         [
-          "2026-10-13T23:52:37Z",
+          "2026-10-14T00:08:21Z",
           99980.19
         ]
       ]
@@ -4638,6 +4638,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T00:08:16Z",
+      "type": "learn",
+      "text": "Research playbook updated to v17"
+    },
+    {
+      "ts": "2026-10-14T00:05:14Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-13T23:50:12Z",
       "type": "scan",
       "fetched": 200,
@@ -5280,19 +5293,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T08:50:44Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T08:37:46Z",
-      "type": "learn",
-      "text": "Daily review written"
     }
   ],
   "plan_usage": {
@@ -5612,8 +5612,8 @@
       }
     ],
     "playbook": {
-      "version": 16,
-      "updated": "2026-10-13T00:07:19Z",
+      "version": 17,
+      "updated": "2026-10-14T00:07:36Z",
       "rules": [
         {
           "id": "R1",
@@ -5646,10 +5646,10 @@
           "added": "2026-10-12T08:12:13Z"
         },
         {
-          "id": "R8",
-          "category": "sports",
-          "rule": "Discard any search snippet claiming a match result that is undated or dated before kickoff; report a result only from sources published after the match was played.",
-          "added": "2026-09-29T00:09:39Z"
+          "id": "R30",
+          "category": "general",
+          "rule": "If any match or tournament stage started before the judgment time, get its live or final score and the bracket path so far from a tracker timestamped within the past hour (e.g. Liquipedia, BLAST.tv, league site); discard result snippets that are undated or dated before the start.",
+          "added": "2026-10-14T00:07:36Z"
         },
         {
           "id": "R25",
@@ -5694,6 +5694,12 @@
           "added": "2026-10-04T00:08:06Z"
         },
         {
+          "id": "R31",
+          "category": "culture",
+          "rule": "For post-count range questions, first get the in-window running count from the tracker named in the rules with its timestamp, hours left and current hourly pace, plus the subject's totals for recent windows of the same length; never deliver a brief with no count.",
+          "added": "2026-10-14T00:07:36Z"
+        },
+        {
           "id": "R27",
           "category": "culture",
           "rule": "For live-streamed challenge questions near the deadline, get the current attempt's status from the past 12 hours (stream VODs, streamers' socials, fan trackers): milestones reached, gear, deaths or resets, plus the participants' own past completions and times.",
@@ -5712,6 +5718,12 @@
           "added": "2026-10-08T00:08:38Z"
         },
         {
+          "id": "R32",
+          "category": "economy",
+          "rule": "For earnings-beat questions, copy the EPS basis (GAAP diluted or adjusted) and strike from the rules, report the dated consensus and recent revisions, the last 4\u20138 quarters' actual-versus-consensus surprise percentages, and management's dated guidance or segment commentary.",
+          "added": "2026-10-14T00:07:36Z"
+        },
+        {
           "id": "R24",
           "category": "politics",
           "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
@@ -5722,15 +5734,30 @@
           "category": "general",
           "rule": "Copy the threshold and the measured quantity verbatim from the resolution rules into the brief's first line, check every fact against that exact figure and metric, and label any figure measured on a different basis as a proxy, or state that the source value could not be read.",
           "added": "2026-10-13T00:07:19Z"
-        },
-        {
-          "id": "R14",
-          "category": "general",
-          "rule": "Take counts and base rates from a cited source covering the current format to the latest event, using the resolution's named provider and its counting method first (e.g. its trailing 2\u20134 weeks); label recalled, disputed or roughly dozen-case counts as unverified.",
-          "added": "2026-10-01T00:08:33Z"
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-14T00:07:36Z",
+          "version": 17,
+          "added": [
+            "R30",
+            "R31",
+            "R32"
+          ],
+          "revised": [],
+          "retired": [
+            "R14",
+            "R8"
+          ],
+          "changes": [
+            "merged R8 into a new general live-status rule: polymarket:5081245 showed a stale lower-bracket score on an esports event day, so the researcher must get a live bracket score timestamped within the past hour; R8's rule to discard pre-start result snippets is kept in the merged rule",
+            "added culture rule for post-count range questions (polymarket:5223422, polymarket:5223516): get the in-window tracker count, pace and hours left, plus same-length historical totals, and never deliver an empty brief",
+            "added economy rule for earnings-beat questions (polymarket:5144380): copy the EPS basis from the rules and report the last 4\u20138 quarters of surprise percentages next to the dated consensus and its revisions",
+            "no rule from kalshi:KXNFLGAME-26OCT12BUFLAR-LAR because the review is marked unlucky"
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-10-13T00:07:19Z",
           "version": 16,
@@ -5803,27 +5830,6 @@
             "Sharpened R25: widened from goal totals to point totals after the TB-DAL over 47.5 review; it now labels 3\u20134 game streaks as small samples and requires both teams' recent totals, QB changes and defensive rankings.",
             "Merged R20 into R19 to stay within 20 rules: both cover view-count questions, and the merged rule keeps the new-upload check and the first-168-hour reference figures.",
             "No rules made from the TB win, DAL win, DAL spread, ETH $2,500, or Alabama St. reviews, which were marked lucky or unlucky."
-          ],
-          "refused": 0
-        },
-        {
-          "ts": "2026-10-09T00:10:10Z",
-          "version": 12,
-          "added": [],
-          "revised": [
-            "R6",
-            "R7",
-            "R13",
-            "R15"
-          ],
-          "retired": [],
-          "changes": [
-            "sharpened R15: research must first get the live or final score of any series game that started before the judgment time, and cite the comeback rate for the current deficit (KXMLBSERIES-26NYYTBALDS-TB stale_info, -NYY).",
-            "sharpened R13: research must report bullpen availability (paternity leave, unavailable arms, short rest) and season and road records, and label old-roster franchise streaks and series-level rates as not single-game evidence (MILSD-SD, MILSD-MIL); trimmed the opener note to stay under the length limi",
-            "sharpened R7: research must cover suspensions as well as absences, and settle conflicting source reports from the confirmed squad before citing them (polymarket:4911446).",
-            "sharpened R6: research must report current winless or losing runs and any recent coach change (polymarket:4911446).",
-            "no rules made from KXMLBGAME-26OCT071800LADATL-ATL (lucky), KXMLBGAME-26OCT072000TBNYY-TB (unlucky) or polymarket:3662130 (unlucky).",
-            "did not adopt the reviews' suggestions to anchor estimates to market prices, because those are forecasting gates rather than research rules."
           ],
           "refused": 0
         }
