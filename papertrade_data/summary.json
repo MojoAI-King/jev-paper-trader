@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T13:22:37Z",
+  "generated": "2026-10-14T13:37:24Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T13:22:37Z",
+      "t": "2026-10-14T13:37:24Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,7 +890,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1651,
+    "resolved": 1656,
     "sources": [
       {
         "name": "jev_research",
@@ -901,8 +901,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22824542701393097,
-        "n": 1651
+        "brier": 0.22827886473429954,
+        "n": 1656
       },
       {
         "name": "claude_direct",
@@ -919,8 +919,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14547779315566323,
-        "n": 1651
+        "brier": 0.1457060606884058,
+        "n": 1656
       }
     ],
     "paired": {
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T13:20:16Z",
+    "ts": "2026-10-14T13:35:14Z",
     "stages": [
       [
         "Fetched",
@@ -1847,7 +1847,7 @@
           99750.45
         ],
         [
-          "2026-10-14T13:22:37Z",
+          "2026-10-14T13:37:24Z",
           99750.45
         ]
       ]
@@ -2588,7 +2588,7 @@
           100310.16
         ],
         [
-          "2026-10-14T13:22:37Z",
+          "2026-10-14T13:37:24Z",
           100310.16
         ]
       ]
@@ -3329,7 +3329,7 @@
           99980.19
         ],
         [
-          "2026-10-14T13:22:37Z",
+          "2026-10-14T13:37:24Z",
           99980.19
         ]
       ]
@@ -4850,6 +4850,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T13:35:14Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T13:20:16Z",
       "type": "scan",
       "fetched": 200,
@@ -5508,14 +5516,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T21:35:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5528,7 +5528,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1651,
+    "reviewed": 1656,
     "post_mortems": 80,
     "win_reviews": 41,
     "calibration": [
@@ -6128,13 +6128,13 @@
       },
       {
         "category": "economy",
-        "n": 66,
+        "n": 71,
         "jev_research": 0.2261,
-        "jev_plain": 0.2715,
-        "market": 0.1113,
+        "jev_plain": 0.2693,
+        "market": 0.119,
         "n_jev_research": 49,
-        "n_jev_plain": 66,
-        "n_market": 66
+        "n_jev_plain": 71,
+        "n_market": 71
       },
       {
         "category": "politics",
