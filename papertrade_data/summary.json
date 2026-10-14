@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T03:52:23Z",
+  "generated": "2026-10-14T04:07:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -203,7 +203,7 @@
       "label": "Will \"The Social Reckoning\" Opening Weekend Box Office be less than 5m?"
     },
     {
-      "t": "2026-10-14T03:52:23Z",
+      "t": "2026-10-14T04:07:29Z",
       "equity": 77745.89,
       "label": "Now (open bets valued at cost)"
     }
@@ -890,19 +890,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1630,
+    "resolved": 1637,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20693936688311687,
-        "n": 1232
+        "brier": 0.2068182481751825,
+        "n": 1233
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22769337423312883,
-        "n": 1630
+        "brier": 0.22814508246792914,
+        "n": 1637
       },
       {
         "name": "claude_direct",
@@ -913,39 +913,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2091060223037101,
-        "n": 1159
+        "brier": 0.20897955162931034,
+        "n": 1160
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1454403291411043,
-        "n": 1630
+        "brier": 0.14583163500305435,
+        "n": 1637
       }
     ],
     "paired": {
-      "n": 794,
+      "n": 795,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1632385144836272
+          "brier": 0.16306953522012577
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21776851385390428
+          "brier": 0.2175732075471698
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20129874055415617
+          "brier": 0.2010958490566038
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2440052896725441
+          "brier": 0.24382716981132077
         }
       ]
     }
@@ -962,7 +962,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T03:50:09Z",
+    "ts": "2026-10-14T04:05:11Z",
     "stages": [
       [
         "Fetched",
@@ -1070,8 +1070,8 @@
       "unrealized": 0.0,
       "change": 310.16,
       "realized": 310.16,
-      "open": 35,
-      "open_cost": 1379.64,
+      "open": 36,
+      "open_cost": 1385.41,
       "settled": 7,
       "wins": 6,
       "losses": 1,
@@ -1847,7 +1847,7 @@
           99750.45
         ],
         [
-          "2026-10-14T03:52:23Z",
+          "2026-10-14T04:07:29Z",
           99750.45
         ]
       ]
@@ -2588,7 +2588,7 @@
           100310.16
         ],
         [
-          "2026-10-14T03:52:23Z",
+          "2026-10-14T04:07:29Z",
           100310.16
         ]
       ]
@@ -3329,7 +3329,7 @@
           99980.19
         ],
         [
-          "2026-10-14T03:52:23Z",
+          "2026-10-14T04:07:29Z",
           99980.19
         ]
       ]
@@ -3481,6 +3481,29 @@
           "p_side": 0.615,
           "edge": 0.0476,
           "opened": "2026-10-14T01:35:09Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBERNIEMENTION-26OCT17B-IRAN",
+      "question": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Melbourne originally scheduled for October 17, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct17b",
+      "source": "kalshi",
+      "close_time": "2026-10-31T14:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 10,
+          "cost_per": 0.5773,
+          "total_cost": 5.77,
+          "p_side": 0.61,
+          "edge": 0.0327,
+          "opened": "2026-10-14T04:05:11Z",
           "value": null
         }
       ]
@@ -4781,6 +4804,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-14T04:05:11Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.5773,
+      "amount": 5.77,
+      "p": 0.61,
+      "q": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Melbourne originally scheduled for October 17, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct17b",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-14T04:05:11Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-14T03:50:09Z",
       "type": "bet",
       "strategy": "mention_no",
@@ -5444,22 +5487,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-13T14:35:26Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-13T14:20:24Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5472,7 +5499,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1630,
+    "reviewed": 1637,
     "post_mortems": 78,
     "win_reviews": 41,
     "calibration": [
@@ -5484,9 +5511,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 446,
-        "predicted": 0.297,
-        "actual": 0.267
+        "n": 447,
+        "predicted": 0.296,
+        "actual": 0.266
       },
       {
         "range": "40\u201360%",
@@ -6003,9 +6030,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0965,
-      "b": 0.1212,
-      "n": 1232,
+      "a": 1.098,
+      "b": 0.1208,
+      "n": 1233,
       "active": true,
       "need": 300
     },
@@ -6048,14 +6075,14 @@
       },
       {
         "category": "other",
-        "n": 199,
-        "jev_plain": 0.2098,
-        "market": 0.133,
-        "jev_research": 0.2555,
+        "n": 205,
+        "jev_plain": 0.2115,
+        "market": 0.1356,
+        "jev_research": 0.2539,
         "claude_direct": 0.1922,
-        "n_jev_plain": 199,
-        "n_market": 199,
-        "n_jev_research": 118,
+        "n_jev_plain": 205,
+        "n_market": 205,
+        "n_jev_research": 119,
         "n_claude_direct": 35
       },
       {
@@ -6118,12 +6145,12 @@
       },
       {
         "category": "world",
-        "n": 23,
-        "jev_plain": 0.2636,
-        "market": 0.061,
+        "n": 24,
+        "jev_plain": 0.2827,
+        "market": 0.0722,
         "jev_research": 0.4807,
-        "n_jev_plain": 23,
-        "n_market": 23,
+        "n_jev_plain": 24,
+        "n_market": 24,
         "n_jev_research": 5
       }
     ],
