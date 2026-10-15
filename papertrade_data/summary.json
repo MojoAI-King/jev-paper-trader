@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15T03:52:47Z",
+  "generated": "2026-10-15T04:07:47Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-15T03:52:47Z",
+      "t": "2026-10-15T04:07:47Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1683,
+    "resolved": 1687,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22896345811051694,
-        "n": 1683
+        "brier": 0.22961547125074097,
+        "n": 1687
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1463926919191919,
-        "n": 1683
+        "brier": 0.1467670275637226,
+        "n": 1687
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-15T03:50:17Z",
+    "ts": "2026-10-15T04:05:25Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 2,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1017,7 +1017,7 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 2,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1078,8 +1078,8 @@
       "unrealized": 0.0,
       "change": 168.19,
       "realized": 168.19,
-      "open": 37,
-      "open_cost": 1205.74,
+      "open": 39,
+      "open_cost": 1209.75,
       "settled": 12,
       "wins": 7,
       "losses": 5,
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-15T03:52:47Z",
+          "2026-10-15T04:07:47Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-15T03:52:47Z",
+          "2026-10-15T04:07:47Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-15T03:52:47Z",
+          "2026-10-15T04:07:47Z",
           99980.19
         ]
       ]
@@ -3710,6 +3710,29 @@
           "p_side": 0.655,
           "edge": 0.0876,
           "opened": "2026-10-10T07:20:10Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBERNIEMENTION-26OCT20-IRAN",
+      "question": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in Houston originally scheduled for October 20, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-get-o/kxberniemention-26oct20",
+      "source": "kalshi",
+      "close_time": "2026-11-03T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 5,
+          "cost_per": 0.3963,
+          "total_cost": 1.98,
+          "p_side": 0.465,
+          "edge": 0.0687,
+          "opened": "2026-10-15T04:05:25Z",
           "value": null
         }
       ]
@@ -4227,6 +4250,29 @@
           "p_side": 0.52,
           "edge": 0.0528,
           "opened": "2026-10-10T18:50:17Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXSECPRESSMENTION-27FEB01-CALI",
+      "question": "Will the White House Press Secretary say California at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-california-at-her-n/kxsecpressmention-27feb01",
+      "source": "kalshi",
+      "close_time": "2027-02-01T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 3,
+          "cost_per": 0.6759,
+          "total_cost": 2.03,
+          "p_side": 0.745,
+          "edge": 0.0691,
+          "opened": "2026-10-15T04:05:25Z",
           "value": null
         }
       ]
@@ -5039,6 +5085,38 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T04:05:25Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.3963,
+      "amount": 1.98,
+      "p": 0.465,
+      "q": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in Houston originally scheduled for October 20, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-get-o/kxberniemention-26oct20",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-15T04:05:25Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.6759,
+      "amount": 2.03,
+      "p": 0.745,
+      "q": "Will the White House Press Secretary say California at her next press briefing?",
+      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-california-at-her-n/kxsecpressmention-27feb01",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-15T04:05:25Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-10-15T03:50:17Z",
       "type": "scan",
       "fetched": 200,
@@ -5679,30 +5757,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-14T13:07:35Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "misread_rules",
-      "q": "Will the rate of CPI inflation be above 3.5% for the year ending in September 2026? (Above 3.5%)",
-      "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-5-for-the-year-end/kxcpiyoy-26sep"
-    },
-    {
-      "ts": "2026-10-14T13:07:10Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "overconfident",
-      "q": "Will the rate of CPI inflation be above 3.6% for the year ending in September 2026? (Above 3.6%)",
-      "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-6-for-the-year-end/kxcpiyoy-26sep"
-    },
-    {
-      "ts": "2026-10-14T13:05:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5715,7 +5769,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1683,
+    "reviewed": 1687,
     "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
@@ -6280,13 +6334,13 @@
       },
       {
         "category": "other",
-        "n": 221,
-        "jev_plain": 0.2134,
-        "market": 0.1378,
+        "n": 222,
+        "jev_plain": 0.2154,
+        "market": 0.1385,
         "jev_research": 0.2582,
         "claude_direct": 0.1922,
-        "n_jev_plain": 221,
-        "n_market": 221,
+        "n_jev_plain": 222,
+        "n_market": 222,
         "n_jev_research": 123,
         "n_claude_direct": 35
       },
@@ -6316,13 +6370,13 @@
       },
       {
         "category": "economy",
-        "n": 77,
+        "n": 79,
         "jev_research": 0.2386,
-        "jev_plain": 0.2744,
-        "market": 0.1295,
+        "jev_plain": 0.2753,
+        "market": 0.1324,
         "n_jev_research": 55,
-        "n_jev_plain": 77,
-        "n_market": 77
+        "n_jev_plain": 79,
+        "n_market": 79
       },
       {
         "category": "politics",
@@ -6362,12 +6416,12 @@
       },
       {
         "category": "world",
-        "n": 24,
-        "jev_plain": 0.2827,
-        "market": 0.0722,
+        "n": 25,
+        "jev_plain": 0.301,
+        "market": 0.087,
         "jev_research": 0.4807,
-        "n_jev_plain": 24,
-        "n_market": 24,
+        "n_jev_plain": 25,
+        "n_market": 25,
         "n_jev_research": 5
       }
     ],
