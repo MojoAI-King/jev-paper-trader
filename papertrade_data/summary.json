@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15T14:38:30Z",
+  "generated": "2026-10-15T14:52:43Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-15T14:38:30Z",
+      "t": "2026-10-15T14:52:43Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1688,
+    "resolved": 1689,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22948797393364928,
-        "n": 1688
+        "brier": 0.2294615748963884,
+        "n": 1689
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14670875325829383,
-        "n": 1688
+        "brier": 0.14675267939609235,
+        "n": 1689
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-15T14:35:37Z",
+    "ts": "2026-10-15T14:50:16Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-15T14:38:30Z",
+          "2026-10-15T14:52:43Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-15T14:38:30Z",
+          "2026-10-15T14:52:43Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-15T14:38:30Z",
+          "2026-10-15T14:52:43Z",
           99980.19
         ]
       ]
@@ -5131,6 +5131,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T14:50:16Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-15T14:35:37Z",
       "type": "scan",
       "fetched": 200,
@@ -5777,18 +5785,6 @@
       "q": "What will any Tesla representative say during Tesla roadster event originally scheduled for October 15, 2026? (Thruster / Rocket)",
       "url": "https://kalshi.com/markets/kxtslamention/what-will-any-tesla-representative-say-during-tesla-roadster/kxtslamention-26oct15",
       "probe": true
-    },
-    {
-      "ts": "2026-10-14T21:20:00Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.715,
-      "amount": 11.44,
-      "p": 0.745,
-      "q": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Reform)",
-      "url": "https://kalshi.com/markets/kxburnhammention/what-will-andy-burnham-say-during-next-prime-minister-s-ques/kxburnhammention-26oct21",
-      "probe": true
     }
   ],
   "plan_usage": {
@@ -5801,7 +5797,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1688,
+    "reviewed": 1689,
     "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
@@ -6378,14 +6374,14 @@
       },
       {
         "category": "crypto",
-        "n": 216,
+        "n": 217,
         "jev_research": 0.1722,
-        "jev_plain": 0.2134,
-        "market": 0.0935,
+        "jev_plain": 0.2133,
+        "market": 0.0941,
         "claude_direct": 0.1294,
         "n_jev_research": 188,
-        "n_jev_plain": 216,
-        "n_market": 216,
+        "n_jev_plain": 217,
+        "n_market": 217,
         "n_claude_direct": 53
       },
       {
