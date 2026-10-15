@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15T21:08:18Z",
+  "generated": "2026-10-15T21:23:09Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-15T21:08:18Z",
+      "t": "2026-10-15T21:23:09Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1693,
+    "resolved": 1695,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22930702894270527,
-        "n": 1693
+        "brier": 0.22922536873156343,
+        "n": 1695
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1468442560543414,
-        "n": 1693
+        "brier": 0.1469400297935103,
+        "n": 1695
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-15T21:05:20Z",
+    "ts": "2026-10-15T21:20:29Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-15T21:08:18Z",
+          "2026-10-15T21:23:09Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-15T21:08:18Z",
+          "2026-10-15T21:23:09Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-15T21:08:18Z",
+          "2026-10-15T21:23:09Z",
           99980.19
         ]
       ]
@@ -5223,6 +5223,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T21:20:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-15T21:08:14Z",
       "type": "learn",
       "text": "Daily review written"
@@ -5868,18 +5876,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-15T04:05:25Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.3963,
-      "amount": 1.98,
-      "p": 0.465,
-      "q": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in Houston originally scheduled for October 20, 2026? (Iran / Iranian)",
-      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-get-o/kxberniemention-26oct20",
-      "probe": true
     }
   ],
   "plan_usage": {
@@ -5892,7 +5888,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1693,
+    "reviewed": 1695,
     "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
@@ -6457,13 +6453,13 @@
       },
       {
         "category": "other",
-        "n": 226,
-        "jev_plain": 0.2145,
-        "market": 0.1394,
+        "n": 228,
+        "jev_plain": 0.214,
+        "market": 0.1401,
         "jev_research": 0.2582,
         "claude_direct": 0.1922,
-        "n_jev_plain": 226,
-        "n_market": 226,
+        "n_jev_plain": 228,
+        "n_market": 228,
         "n_jev_research": 123,
         "n_claude_direct": 35
       },
