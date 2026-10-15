@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-12 01:02 EDT
+Written: 2026-10-14 20:43 EDT
 
+- **State:** Read-only check 2026-10-15: all healthy. sharp placed no bets since the Oct 11 fix: 60 looks at 27 games, Kalshi mid within ~1c of Pinnacle (median), best edge after fees +0.5% vs the 3% gate. mention_no 36 open probes (12 settled, +168), mention_follow 7 open probes (1 settled, -20). Evidence: python3 -m papertrade health (cycle 00:35Z healthy); sharp.jsonl and portfolios/*.json read at 932c49a.
+- **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical snapshots vs Kalshi 1-min candles) before any faster sharp cadence; then follow-first-trade in gas ladders
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; post-mortems and the daily review still use Claude
+- **Git:** master @ 932c49a, 2 tracked uncommitted, 3 untracked
+- **CI:** master green on GitHub (read 2026-10-15 00:43 UTC)
+
+## Earlier
+
+### 2026-10-12 01:02 EDT
 - **State:** Session closed by Joey. Live: sharp (paid odds, own pass, Kalshi walk fixed), mention_no and mention_follow (both pre-registered and locked); all forecaster strategies and original retired; no Jev or research calls. Maintenance recorded. Evidence: 161 offline tests OK; run 38196326048 success; skilliton maintain --apply.
 - **Next:** Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; Kalshi sometimes times out (walk shrinks pages); post-mortems and the daily review still use Claude
 - **Git:** master @ 8d775c5, 0 tracked uncommitted, 2 untracked
 - **CI:** master green on GitHub (read 2026-10-12 05:02 UTC)
-
-## Earlier
 
 ### 2026-10-11 22:42 EDT
 - **State:** Live on Joey's standing permission (2026-10-12): original retired; mention_follow built, hardened after an adversarial review (wf_d1c03f32-477), pre-registered and locked; no Jev or research calls when nothing uses them (jev_used false, judged 0); Kalshi 504 fix (15286af): run 38196326048 read 58 pages with no error (was 5), sharp matched 7 games. Follow research rerun with full-precision ordering: +18.1% at 15 min holds. Evidence: 161 offline tests OK; runs 38195337805 and 38196326048 success; read-only live walk 32 pages no error; kalshi_first_trade live check on 3 markets.
@@ -46,11 +54,3 @@ Written: 2026-10-12 01:02 EDT
 - **Watch out:** Score backtests at quotes the strategy could take on its own clock, never at trade prints whose timing is part of the selection
 - **Git:** master @ 17b920a, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-11 17:52 UTC)
-
-### 2026-10-11 13:09 EDT
-- **State:** Claude retired as a picker too (df3ccd9): claude_direct and ch16 retired; claude_direct in learning.retired_probabilities. Run 38158120513 clean: only original, sharp, mention_no decide; page shows those 3. Workflow wf_79340bda-9e0 (economics first-trade lead, mention listing-quote rule) still running. Evidence: 154 offline tests OK; run 38158120513 success; summary.json strategies original, sharp, mention_no.
-- **Next:** Read wf_79340bda-9e0 verdicts; record in docs/research/CHECKS.md; act only on what survives
-- **Blocked:** nothing
-- **Watch out:** The daily review can still tune mention_no's rules mid forward test; worth a guard (ask Joey)
-- **Git:** master @ fc6d170, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 17:09 UTC)

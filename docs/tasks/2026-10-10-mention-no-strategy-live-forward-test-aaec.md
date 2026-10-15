@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-12T05:02:53.502Z
+- **Updated:** 2026-10-15T00:43:35.219Z
 
 ## Request
 
@@ -155,9 +155,30 @@ not yet written
 - **Next:** Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
 - **Git:** master @ 8d775c5, 0 tracked uncommitted, 2 untracked
 
+### 2026-10-15T00:37:44.842Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 4d531154b2aa, 0 tracked uncommitted, 2 untracked. The newest checkpoint before this one is 2026-10-12T05:02:53.502Z: Session closed by Joey. Live: sharp (paid odds, own pass, Kalshi walk fixed), mention_no and mention_follow (both pre-registered and locked); all forecaster ...
+- **Evidence:** snapshot 2026-10-15T00-37-44-842Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** Carry on from the last recorded next step: Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
+- **Git:** master @ 4d53115, 0 tracked uncommitted, 2 untracked
+
+### 2026-10-15T00:39:58.647Z
+
+- **State:** Automatic checkpoint at a stop, written by the Stop hook from the working tree (checkpoints.auto) and not by the assistant: branch master at 932c49a4d893, 1 tracked uncommitted, 2 untracked. The newest checkpoint before this one is 2026-10-15T00:37:44.842Z: Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 4d531154b2aa, 0 tr...
+- **Evidence:** read at the stop; no gate recorded for that tree (dirty)
+- **Next:** No next step was recorded; read git status and this record.
+- **Git:** master @ 932c49a, 1 tracked uncommitted, 2 untracked
+
+### 2026-10-15T00:43:35.219Z
+
+- **State:** Read-only check 2026-10-15: all healthy. sharp placed no bets since the Oct 11 fix: 60 looks at 27 games, Kalshi mid within ~1c of Pinnacle (median), best edge after fees +0.5% vs the 3% gate. mention_no 36 open probes (12 settled, +168), mention_follow 7 open probes (1 settled, -20).
+- **Evidence:** python3 -m papertrade health (cycle 00:35Z healthy); sharp.jsonl and portfolios/*.json read at 932c49a
+- **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical snapshots vs Kalshi 1-min candles) before any faster sharp cadence; then follow-first-trade in gas ladders
+- **Git:** master @ 932c49a, 2 tracked uncommitted, 3 untracked
+
 ## Handoff
 
-- **State:** Session closed by Joey. Live: sharp (paid odds, own pass, Kalshi walk fixed), mention_no and mention_follow (both pre-registered and locked); all forecaster strategies and original retired; no Jev or research calls. Maintenance recorded. Evidence: 161 offline tests OK; run 38196326048 success; skilliton maintain --apply.
-- **Next:** Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
+- **State:** Read-only check 2026-10-15: all healthy. sharp placed no bets since the Oct 11 fix: 60 looks at 27 games, Kalshi mid within ~1c of Pinnacle (median), best edge after fees +0.5% vs the 3% gate. mention_no 36 open probes (12 settled, +168), mention_follow 7 open probes (1 settled, -20). Evidence: python3 -m papertrade health (cycle 00:35Z healthy); sharp.jsonl and portfolios/*.json read at 932c49a.
+- **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical snapshots vs Kalshi 1-min candles) before any faster sharp cadence; then follow-first-trade in gas ladders
 - **Blocked:** nothing
-- **Watch out:** Score backtests at quotes the strategy could take; Kalshi sometimes times out (walk shrinks pages); post-mortems and the daily review still use Claude
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; post-mortems and the daily review still use Claude
