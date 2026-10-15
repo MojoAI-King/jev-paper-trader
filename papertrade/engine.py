@@ -964,6 +964,31 @@ def _record_scan(stats: dict, stamp: str) -> None:
 
 # ---------------- settle ----------------
 
+def cancel_bets(policy: dict, books: dict, log=print) -> int:
+    """policy.json's `cancelled_bets` ({strategy: {market key: why}}): bets placed by a bug, not by the strategy's
+    rule. Each is refunded (its cost back, any payout taken back) and moved from open/closed to the ledger's
+    `cancelled` list with the reason, so it stays on record but counts in no P&L, win/loss or settled tally.
+    Runs in the cycle (settle), never by hand, so GitHub Actions stays the only writer of the ledgers."""
+    n = 0
+    for name, keys in (policy.get("cancelled_bets") or {}).items():
+        pf = books.get(name)
+        if name.startswith("_") or not pf or not keys:
+            continue
+        for part in ("open", "closed"):
+            keep = []
+            for p in pf[part]:
+                if p["key"] not in keys:
+                    keep.append(p)
+                    continue
+                refund = round(p["total_cost"] - (p.get("payout") or 0.0), 2)
+                pf["cash"] = round(pf["cash"] + refund, 2)
+                pf.setdefault("cancelled", []).append({**p, "cancelled": now_iso(), "why": keys[p["key"]], "refund": refund})
+                n += 1
+                log(f"CANCELLED [{name}] {refund:+10,.2f} refunded  {p['question'][:60]}")
+            pf[part] = keep
+    return n
+
+
 def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
     """Record outcomes and pay out bets. `batch` sources (Kalshi) are checked every cycle whatever the
     stored close time; the rest once their close time has passed. A market settled at a value instead of
@@ -1033,6 +1058,7 @@ def settle(policy: dict, resolvers=None, log=print, batch=None) -> dict:
             resolved[k] = outcome
             stats["resolved"] += 1
 
+    cancel_bets(policy, books, log)
     for name, pf in books.items():
         still_open, n = [], 0
         for p in pf["open"]:

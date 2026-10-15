@@ -143,7 +143,7 @@
               "slot": 2,
               "gate_overrides": {"min_edge": 0.03},
               "rules": {"min_ask": 0.2, "max_ask": 0.85},
-              "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against.",
+              "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against. Its one bet so far (Oct 10, a touchdown market priced with a team's win odds by a matching bug fixed that day) was cancelled and refunded; it stays on record.",
               "_why": "docs/REBUILD_PLAN.md phase 2A, research report 09 (2026-10-10, Joey: 'do what you need to fix this'). The fair price comes from The Odds API (papertrade/odds.py, ODDS_API_KEY); it never reaches Jev or Claude. Sized like every strategy by measured skill: probes until its edge over the venue price shows on 300+ markets"},
     "mention_no": {"label": "Mention markets, NO side", "short": "Mention NO", "desc": "bets against YES optimism in 'will X say Y'", "badge": "New", "probability": "mention_prior", "gates": "mention_prior",
                    "slot": 6,
@@ -156,6 +156,11 @@
                        "gate_overrides": {"min_edge": 0.03}, "rules": {"min_ask": 0.3, "max_ask": 0.85},
                        "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within an hour. In 108 past buys over 62 events that paid about +18% after fees at the 15-minute mark (range -0% to +35%); following a first YES lost.",
                        "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"}
+  },
+
+  "cancelled_bets": {
+    "_why": "Bets a bug placed, not the strategy's rule: refunded and kept on record in the ledger's 'cancelled' list (engine.cancel_bets, run by the cycle's settle). Joey, 2026-10-15.",
+    "sharp": {"kalshi:KXNFLTD-26OCT11LVNE-LVMWASHINGTON4-1": "matcher bug: a player touchdown market priced with the team's moneyline through a shared word; fixed 2026-10-11 (Kalshi game-winner series only)"}
   },
 
   "mention": {

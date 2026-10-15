@@ -978,6 +978,32 @@ class SettleAndStorageTests(DataDirTest):
         later = [j for j in engine.read_jsonl(engine.JUDGMENTS) if j["key"] == "polymarket:2"][0]
         self.assertIn("research time for this cycle used up", later["decisions"]["main"]["reasons"][0])
 
+    def test_a_bet_placed_by_a_bug_is_refunded_and_kept_on_record_out_of_every_tally(self):
+        bet = {"key": "kalshi:BUG", "source": "kalshi", "market_id": "BUG", "question": "Bug bet", "url": "u",
+               "close_time": "1999-12-01T00:00:00Z", "side": "yes", "contracts": 100, "cost_per": 0.4, "total_cost": 40.0,
+               "p_side": 0.6, "market_ask": 0.39, "edge": 0.2, "opened": "1999-11-30T00:00:00Z"}
+        pf = fresh_pf()
+        pf["closed"] = [dict(bet, outcome="no", payout=0.0, pnl=-40.0, settled="1999-12-02T00:00:00Z"),
+                        dict(bet, key="kalshi:OK", market_id="OK", outcome="no", payout=0.0, pnl=-40.0)]
+        pf["open"] = [dict(bet, key="kalshi:BUG2", market_id="BUG2")]
+        pf["cash"] -= 120.0
+        engine.save_portfolio("main", pf)
+        policy = dict(POLICY, cancelled_bets={"_why": "x", "main": {"kalshi:BUG": "matcher bug", "kalshi:BUG2": "same"}})
+        engine.settle(policy, resolvers={}, batch={}, log=lambda *_: None)
+        after = engine.load_portfolio(policy, "main")
+        self.assertEqual(after["cash"], fresh_pf()["cash"] - 40.0)  # both refunded; the honest loss stays
+        self.assertEqual([p["key"] for p in after["closed"]], ["kalshi:OK"])
+        self.assertEqual(after["open"], [])
+        self.assertEqual([(p["key"], p["why"], p["refund"]) for p in after["cancelled"]],
+                         [("kalshi:BUG2", "same", 40.0), ("kalshi:BUG", "matcher bug", 40.0)])
+        engine.settle(policy, resolvers={}, batch={}, log=lambda *_: None)  # a second cycle refunds nothing again
+        self.assertEqual(engine.load_portfolio(policy, "main")["cash"], after["cash"])
+
+    def test_every_live_cancelled_bet_names_a_reason(self):
+        for name, keys in REAL_POLICY.get("cancelled_bets", {}).items():
+            if not name.startswith("_"):
+                self.assertTrue(keys and all(isinstance(w, str) and w for w in keys.values()), name)
+
 
 LEAKY = [
     "Polymarket traders give Lula a 43% chance of winning.",
