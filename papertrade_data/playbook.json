@@ -1,15 +1,18 @@
 {
-  "version": 17,
-  "updated": "2026-10-14T00:07:36Z",
+  "version": 18,
+  "updated": "2026-10-15T00:07:54Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
-      "rule": "Read crypto rules for the exact strike, venue/pair (e.g. Binance BTC/USDT) and test (any touch or a close at a set candle), restate the strike up top, measure each price fact against it, and record a timestamped spot from that venue under an hour old for same-day windows.",
+      "rule": "Read crypto rules for the exact strike, venue/pair and test (any touch or a close at a set candle); if mid-window, first check the venue's candles or dated reports for whether the strike was already hit and by how much, then record a venue spot timestamped under an hour old.",
       "evidence": [
         "polymarket:4797513",
         "polymarket:4797724",
-        "polymarket:5009022"
+        "polymarket:5009022",
+        "polymarket:4797726",
+        "polymarket:4844455",
+        "polymarket:5208385"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -26,18 +29,6 @@
         "polymarket:5362505"
       ],
       "added": "2026-09-28T16:35:53Z"
-    },
-    {
-      "id": "R16",
-      "category": "crypto",
-      "rule": "When judged mid-window, first check whether the strike was already reached inside the window: cite dated reports of the high and its margin past the strike, confirm on the resolution venue's candles where possible, and treat earlier-week moves as background.",
-      "evidence": [
-        "polymarket:4797726",
-        "polymarket:4844455",
-        "polymarket:5009022",
-        "polymarket:5208385"
-      ],
-      "added": "2026-10-02T00:05:57Z"
     },
     {
       "id": "R7",
@@ -72,8 +63,8 @@
       "category": "general",
       "rule": "If any match or tournament stage started before the judgment time, get its live or final score and the bracket path so far from a tracker timestamped within the past hour (e.g. Liquipedia, BLAST.tv, league site); discard result snippets that are undated or dated before the start.",
       "evidence": [
-        "polymarket:5081245",
-        "polymarket:4581752"
+        "polymarket:4581752",
+        "polymarket:5081245"
       ],
       "added": "2026-10-14T00:07:36Z"
     },
@@ -212,6 +203,17 @@
       "added": "2026-10-14T00:07:36Z"
     },
     {
+      "id": "R33",
+      "category": "economy",
+      "rule": "For CPI questions, get the dated consensus and Cleveland Fed nowcast, rebuild the 12-month rate from NSA index levels incl. the month dropping out, find the monthly change the strike needs, and estimate it bottom-up: gas weight \u00d7 AAA/EIA change plus typical core and food.",
+      "evidence": [
+        "kalshi:KXCPIYOY-26SEP-T3.6",
+        "kalshi:KXCPIYOY-26SEP-T3.5",
+        "kalshi:KXCPICOREYOY-26SEP-T2.4"
+      ],
+      "added": "2026-10-15T00:07:54Z"
+    },
+    {
       "id": "R24",
       "category": "politics",
       "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
@@ -223,11 +225,12 @@
     {
       "id": "R29",
       "category": "general",
-      "rule": "Copy the threshold and the measured quantity verbatim from the resolution rules into the brief's first line, check every fact against that exact figure and metric, and label any figure measured on a different basis as a proxy, or state that the source value could not be read.",
+      "rule": "Copy this question's threshold and measured quantity verbatim from its rules into the brief's first line, state the exact published value that resolves Yes (e.g. above 3.5% needs a printed 3.6%), don't reuse a sibling strike's math, and label other-basis figures as proxies.",
       "evidence": [
         "kalshi:KXDEEPSHARE-26OCT12-22.4",
         "kalshi:KXDEEPSHARE-26OCT12-22.6",
-        "kalshi:KXOPENSHARE-26OCT12-17.8"
+        "kalshi:KXOPENSHARE-26OCT12-17.8",
+        "kalshi:KXCPIYOY-26SEP-T3.5"
       ],
       "added": "2026-10-13T00:07:19Z"
     }
@@ -236,6 +239,11 @@
     "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
     "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
     "kalshi:KXCONCACAFNLGAME-26OCT06ANTARU-ANT",
+    "kalshi:KXCPICORE-26SEP-T0.2",
+    "kalshi:KXCPICOREYOY-26SEP-T2.4",
+    "kalshi:KXCPICOREYOY-26SEP-T2.5",
+    "kalshi:KXCPIYOY-26SEP-T3.5",
+    "kalshi:KXCPIYOY-26SEP-T3.6",
     "kalshi:KXDEEPSHARE-26OCT12-22.4",
     "kalshi:KXDEEPSHARE-26OCT12-22.6",
     "kalshi:KXDEEPSHARE-26OCT12-22.9",
@@ -358,6 +366,7 @@
     "R11",
     "R12",
     "R14",
+    "R16",
     "R18",
     "R20",
     "R22",

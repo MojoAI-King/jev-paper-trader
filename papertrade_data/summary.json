@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T23:52:52Z",
+  "generated": "2026-10-15T00:08:47Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-14T23:52:52Z",
+      "t": "2026-10-15T00:08:47Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-14T23:50:18Z",
+    "ts": "2026-10-15T00:05:26Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           99750.45
         ],
         [
-          "2026-10-14T23:52:52Z",
+          "2026-10-15T00:08:47Z",
           99750.45
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-14T23:52:52Z",
+          "2026-10-15T00:08:47Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-14T23:52:52Z",
+          "2026-10-15T00:08:47Z",
           99980.19
         ]
       ]
@@ -5032,6 +5032,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T00:08:41Z",
+      "type": "learn",
+      "text": "Research playbook updated to v18"
+    },
+    {
+      "ts": "2026-10-15T00:05:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-14T23:50:18Z",
       "type": "scan",
       "fetched": 200,
@@ -5679,18 +5692,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-14T08:52:56Z",
-      "type": "learn",
-      "text": "Daily review written"
-    },
-    {
-      "ts": "2026-10-14T08:52:26Z",
-      "type": "idea",
-      "text": "Hold the daily review until a health check passes",
-      "status": "proposed",
-      "why": "Today's input has 0 judged markets in 48 cycles and 3 of roughly 10 strategies, with no yardstick. Tuning on this would be guesswork, and the earlier flags for these problems (p35, p38, p41) are still unapproved. A pre-review check would stop us proposing changes against a broken feed: it would requ"
     }
   ],
   "plan_usage": {
@@ -6010,13 +6011,13 @@
       }
     ],
     "playbook": {
-      "version": 17,
-      "updated": "2026-10-14T00:07:36Z",
+      "version": 18,
+      "updated": "2026-10-15T00:07:54Z",
       "rules": [
         {
           "id": "R1",
           "category": "crypto",
-          "rule": "Read crypto rules for the exact strike, venue/pair (e.g. Binance BTC/USDT) and test (any touch or a close at a set candle), restate the strike up top, measure each price fact against it, and record a timestamped spot from that venue under an hour old for same-day windows.",
+          "rule": "Read crypto rules for the exact strike, venue/pair and test (any touch or a close at a set candle); if mid-window, first check the venue's candles or dated reports for whether the strike was already hit and by how much, then record a venue spot timestamped under an hour old.",
           "added": "2026-09-28T16:35:53Z"
         },
         {
@@ -6024,12 +6025,6 @@
           "category": "crypto",
           "rule": "For crypto threshold questions, report percent distance to strike, hours left, how many of the last 14 days the venue traded through that level, realized volatility, any weekend, and timestamped same-day catalysts (yields, dollar, ETF flows, jobs data) or state none found.",
           "added": "2026-09-28T16:35:53Z"
-        },
-        {
-          "id": "R16",
-          "category": "crypto",
-          "rule": "When judged mid-window, first check whether the strike was already reached inside the window: cite dated reports of the high and its margin past the strike, confirm on the resolution venue's candles where possible, and treat earlier-week moves as background.",
-          "added": "2026-10-02T00:05:57Z"
         },
         {
           "id": "R7",
@@ -6122,6 +6117,12 @@
           "added": "2026-10-14T00:07:36Z"
         },
         {
+          "id": "R33",
+          "category": "economy",
+          "rule": "For CPI questions, get the dated consensus and Cleveland Fed nowcast, rebuild the 12-month rate from NSA index levels incl. the month dropping out, find the monthly change the strike needs, and estimate it bottom-up: gas weight \u00d7 AAA/EIA change plus typical core and food.",
+          "added": "2026-10-15T00:07:54Z"
+        },
+        {
           "id": "R24",
           "category": "politics",
           "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
@@ -6130,11 +6131,32 @@
         {
           "id": "R29",
           "category": "general",
-          "rule": "Copy the threshold and the measured quantity verbatim from the resolution rules into the brief's first line, check every fact against that exact figure and metric, and label any figure measured on a different basis as a proxy, or state that the source value could not be read.",
+          "rule": "Copy this question's threshold and measured quantity verbatim from its rules into the brief's first line, state the exact published value that resolves Yes (e.g. above 3.5% needs a printed 3.6%), don't reuse a sibling strike's math, and label other-basis figures as proxies.",
           "added": "2026-10-13T00:07:19Z"
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-15T00:07:54Z",
+          "version": 18,
+          "added": [
+            "R33"
+          ],
+          "revised": [
+            "R1",
+            "R29"
+          ],
+          "retired": [
+            "R16"
+          ],
+          "changes": [
+            "merged R16 into R1: both cover reading the crypto strike, venue and test and checking whether the strike was already hit mid-window; this frees a slot and keeps all evidence",
+            "sharpened R29 with KXCPIYOY-T3.5: convert the threshold to the exact published rounded value that resolves Yes, and never reuse threshold math from a sibling strike",
+            "added an economy CPI rule from KXCPIYOY-T3.6, KXCPIYOY-T3.5 and KXCPICOREYOY-T2.4: get the consensus and nowcast, run base-effect math on NSA index levels including the month dropping out, find the required monthly change, and build a bottom-up gasoline pass-through estimate",
+            "no rules from KXCPICORE-T0.2 or KXCPICOREYOY-T2.5 because both are marked unlucky"
+          ],
+          "refused": 0
+        },
         {
           "ts": "2026-10-14T00:07:36Z",
           "version": 17,
@@ -6210,26 +6232,6 @@
             "not used: polymarket:5009117 (lucky), kalshi BYU spread and polymarket:5423683 (unlucky) teach nothing about research; suggestions about market anchoring fall outside research rules."
           ],
           "refused": 1
-        },
-        {
-          "ts": "2026-10-10T00:11:41Z",
-          "version": 13,
-          "added": [],
-          "revised": [
-            "R25",
-            "R17",
-            "R19"
-          ],
-          "retired": [
-            "R20"
-          ],
-          "changes": [
-            "Sharpened R17: NFL TD props for Javonte Williams and George Pickens were researched with team D/ST base rates, so the rule now requires research on the named player only and adds TD rate, red-zone use, target share and the opponent's injured defenders.",
-            "Sharpened R25: widened from goal totals to point totals after the TB-DAL over 47.5 review; it now labels 3\u20134 game streaks as small samples and requires both teams' recent totals, QB changes and defensive rankings.",
-            "Merged R20 into R19 to stay within 20 rules: both cover view-count questions, and the merged rule keeps the new-upload check and the first-168-hour reference figures.",
-            "No rules made from the TB win, DAL win, DAL spread, ETH $2,500, or Alabama St. reviews, which were marked lucky or unlucky."
-          ],
-          "refused": 0
         }
       ]
     },
