@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15T05:52:35Z",
+  "generated": "2026-10-15T06:07:50Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-15T05:52:35Z",
+      "t": "2026-10-15T06:07:50Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1687,
+    "resolved": 1688,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22961547125074097,
-        "n": 1687
+        "brier": 0.22948797393364928,
+        "n": 1688
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1467670275637226,
-        "n": 1687
+        "brier": 0.14670875325829383,
+        "n": 1688
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-15T05:50:18Z",
+    "ts": "2026-10-15T06:05:35Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-15T05:52:35Z",
+          "2026-10-15T06:07:50Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-15T05:52:35Z",
+          "2026-10-15T06:07:50Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-15T05:52:35Z",
+          "2026-10-15T06:07:50Z",
           99980.19
         ]
       ]
@@ -5085,6 +5085,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T06:05:35Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-15T05:50:18Z",
       "type": "scan",
       "fetched": 200,
@@ -5749,14 +5757,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-14T14:07:49Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "unlucky",
-      "q": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
-      "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep"
     }
   ],
   "plan_usage": {
@@ -5769,7 +5769,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1687,
+    "reviewed": 1688,
     "post_mortems": 83,
     "win_reviews": 41,
     "calibration": [
@@ -6404,14 +6404,14 @@
       },
       {
         "category": "tech",
-        "n": 27,
+        "n": 28,
         "jev_research": 0.3945,
-        "jev_plain": 0.2634,
+        "jev_plain": 0.2545,
         "market": 0.0487,
         "claude_direct": 0.3962,
         "n_jev_research": 9,
-        "n_jev_plain": 27,
-        "n_market": 27,
+        "n_jev_plain": 28,
+        "n_market": 28,
         "n_claude_direct": 2
       },
       {
