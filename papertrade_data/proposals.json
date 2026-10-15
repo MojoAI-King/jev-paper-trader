@@ -652,6 +652,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p47",
+      "created": "2026-10-15T21:07:49Z",
+      "kind": "code",
+      "title": "One acceptance check for p46, and fold the duplicate diagnostics into it",
+      "why": "p35, p36, p38, p41, p43, p44 and p45 all describe the same failure: 0 markets judged in 48 cycles, missing strategies, and sharp's rules not matching the change log. Each review has added another near-duplicate instead of a fix. Every strategy we are allowed to tune is invisible, and the three we can see are locked, so tuning is blocked until this is fixed.",
+      "judge_by": "Decided now: the next review after Joey's fix passes all four checks. (1) Recent cycles judge more than 0 markets. (2) Main, original, calibrated, bold, Claude direct and any running challengers appear with their rules. (3) The yardstick is not empty. (4) Sharp shows rules_version 2 with min_edge 0.02, and its gate ledger's bet count matches its settled count. If any check fails, p46 stays open an",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
