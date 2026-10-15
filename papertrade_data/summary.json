@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-15T08:52:35Z",
+  "generated": "2026-10-15T09:08:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-15T08:52:35Z",
+      "t": "2026-10-15T09:08:20Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-15T08:50:20Z",
+    "ts": "2026-10-15T09:05:30Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-15T08:52:35Z",
+          "2026-10-15T09:08:20Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-15T08:52:35Z",
+          "2026-10-15T09:08:20Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-15T08:52:35Z",
+          "2026-10-15T09:08:20Z",
           99980.19
         ]
       ]
@@ -5085,6 +5085,33 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-15T09:08:15Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-15T09:07:47Z",
+      "type": "idea",
+      "text": "Reconcile sharp's ledger with its record and live rules",
+      "status": "proposed",
+      "why": "Sharp's gate ledger shows 1 bet placed and lost (-$100 per $100), but its all-time record shows 0 bets. Its live rules show min_edge 0.03 at version 1, even though the 10-11 change to 0.02 (version 2) is logged as applied. Either bets or rule changes are being lost between the stores, so any verdict"
+    },
+    {
+      "ts": "2026-10-15T09:07:47Z",
+      "type": "idea",
+      "text": "Triage: restore judging and the missing strategies before any more tuning",
+      "status": "proposed",
+      "why": "With 0 judged in 48 cycles and every tunable strategy missing from the review, the only rules I can see belong to locked strategies, and tuning blind would only add noise. I suggest Joey take the open proposals in this order: p41 (why nothing is judged), p35 (missing strategies), p44 (applied change"
+    },
+    {
+      "ts": "2026-10-15T09:05:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-15T08:50:20Z",
       "type": "scan",
       "fetched": 200,
@@ -5716,38 +5743,6 @@
     },
     {
       "ts": "2026-10-14T17:05:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T16:50:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T16:35:05Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T16:20:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-14T16:05:19Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -6423,6 +6418,28 @@
     ],
     "proposals": [
       {
+        "id": "p46",
+        "kind": "code",
+        "title": "Triage: restore judging and the missing strategies before any more tuning",
+        "why": "With 0 judged in 48 cycles and every tunable strategy missing from the review, the only rules I can see belong to locked strategies, and tuning blind would only add noise. I suggest Joey take the open proposals in this order: p41 (why nothing is judged), p35 (missing strategies), p44 (applied changes vs live rules), then p40 and p31, because Claude's positive lambda could start Kelly-sized bets on an edge that isn't statistically real.",
+        "judge_by": "The next review shows judged above 0 in recent cycles, lists main, original, bold, calibrated and claude_direct with since_change results, and shows a non-empty yardstick. Tuning resumes only after that.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-15T09:07:47Z"
+      },
+      {
+        "id": "p45",
+        "kind": "code",
+        "title": "Reconcile sharp's ledger with its record and live rules",
+        "why": "Sharp's gate ledger shows 1 bet placed and lost (-$100 per $100), but its all-time record shows 0 bets. Its live rules show min_edge 0.03 at version 1, even though the 10-11 change to 0.02 (version 2) is logged as applied. Either bets or rule changes are being lost between the stores, so any verdict on sharp, and possibly on other strategies, is unreliable until this is fixed. This is a concrete case for p36 and p44, and fixing it first may also explain p30.",
+        "judge_by": "After the fix, sharp's all_time bet count equals its gate_ledger 'bet' count, and its rules show min_edge 0.02 at rules_version 2 (or the log shows why the change was undone). The next review then shows the same counts in both places.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-15T09:07:47Z"
+      },
+      {
         "id": "p44",
         "kind": "code",
         "title": "Check applied rule changes against the live rules",
@@ -6913,17 +6930,17 @@
       "questions": 2
     },
     "retro": {
-      "ts": "2026-10-14T20:52:42Z",
-      "headline": "Another half-day with no new forecasts: the pipeline judged 0 markets in 48 cycles, the review again shows only three locked strategies, and the market price still beats every forecaster.",
+      "ts": "2026-10-15T09:07:47Z",
+      "headline": "For the third review running, no Jev or Claude forecasts were made (48 cycles, 0 judged), so only the locked mention and sharp strategies are visible: mention_no is up $168 on 12 settled bets, which is too few to call it a finding.",
       "went_well": [
-        "Mention markets, NO side is the only visible strategy in profit: +$168 on 12 settled bets (7 wins, 5 losses), about +$21 per $100 of settled stake. That rests on 12 bets, so it is noise, not a finding.",
-        "Within mention_no, coin-flip bets (30-60c) made +$143 on 8 (4 wins, 4 losses), and favourites (60c and up) made +$26 on 4 (3 wins, 1 loss). It has bought no long shots, so the 30c floor is holding.",
-        "The bets kept resolving: 32 markets were resolved and reviewed this period. Of the misses, 2 were tagged unlucky, 1 overconfident, 1 a misread of the rules and 1 missing information."
+        "Mention markets, NO side is 7 wins and 5 losses for +$168 on about $795 of settled stake, roughly +$21 per $100. That rests on 12 markets, so it is mostly noise. Its 30-60c bets made +$143 on 8 and its 60c-and-up bets +$26 on 4.",
+        "The mention strategies run without Jev, so they kept betting during the forecasting outage: 6 bets this half-day (5 mention_no, 1 mention_follow), and 46 bets are still open between them.",
+        "Claude direct roughly matches the market in sports (Brier 0.178 vs the market's 0.181 on 201 markets; lower is better), and looks better in culture (0.035 vs 0.067), though culture rests on only 13 markets."
       ],
       "went_badly": [
-        "The market price is still the best forecaster. On 805 markets scored by everyone, its Brier score is 0.162, against Claude direct's 0.201, Jev + research's 0.219 and Jev alone's 0.245. Lower is better, so none of our forecasters beats it overall.",
-        "For the second review running, 48 cycles judged 0 markets with 0 research, and only mention_follow (3 bets) and mention_no (1 bet) placed bets. Main, original, bold, calibrated, claude_direct and the challengers are missing from the data, and the yardstick is empty. Their performance cannot be revie",
-        "Sharp still shows min_edge 0.03 at rules version 1, although the 2c change (p33, version 2) is logged as applied on 2026-10-11. It has placed 1 bet ever, which lost $250, and its skill estimate is -2.11 on 38 markets. That looks like a data or matching problem, not a verdict on Pinnacle's line."
+        "No forecaster beats the market overall. On the same 806 markets the market scores 0.162, Claude 0.201, Jev + research 0.219 and Jev alone 0.245. In every category except sports and culture, Jev trails the market by a wide margin (crypto 0.172 vs 0.094 over 188 markets).",
+        "The pipeline still looks broken. 48 cycles judged nothing. Main, original, bold, calibrated and claude_direct are missing from this review, and the yardstick is empty. Sharp's rules still show min_edge 0.03 at version 1, although a change to 0.02 was logged on 10-11 as version 2. Sharp's record show",
+        "Claude direct's skill estimate is positive (lambda 0.0039 on 806 markets), which may switch it from probe bets to Kelly sizing. But the estimate is 0.031 \u00b1 0.081, which can't be told apart from zero, and its paired Brier trails the market by 0.04. Mention_prior shows raw skill of +0.448 with a stand"
       ]
     },
     "auto_start": true,
@@ -7409,6 +7426,20 @@
         "title": "Check applied rule changes against the live rules",
         "why": "p33 is logged as applied and set sharp's min_edge to 0.02 (version 2). The live rules still read 0.03, version 1, with rules_changed null. If one applied change was silently lost, others may have been too, and every 'judge_by' since then would be measuring the wrong rules. A daily check of each applied proposal's version and values against the live config would catch this; it widens p36 from sharp to every strategy.",
         "created": "2026-10-14T08:52:26Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p45",
+        "title": "Reconcile sharp's ledger with its record and live rules",
+        "why": "Sharp's gate ledger shows 1 bet placed and lost (-$100 per $100), but its all-time record shows 0 bets. Its live rules show min_edge 0.03 at version 1, even though the 10-11 change to 0.02 (version 2) is logged as applied. Either bets or rule changes are being lost between the stores, so any verdict on sharp, and possibly on other strategies, is unreliable until this is fixed. This is a concrete case for p36 and p44, and fixing it first may also explain p30.",
+        "created": "2026-10-15T09:07:47Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p46",
+        "title": "Triage: restore judging and the missing strategies before any more tuning",
+        "why": "With 0 judged in 48 cycles and every tunable strategy missing from the review, the only rules I can see belong to locked strategies, and tuning blind would only add noise. I suggest Joey take the open proposals in this order: p41 (why nothing is judged), p35 (missing strategies), p44 (applied changes vs live rules), then p40 and p31, because Claude's positive lambda could start Kelly-sized bets on an edge that isn't statistically real.",
+        "created": "2026-10-15T09:07:47Z",
         "status": "proposed"
       }
     ]

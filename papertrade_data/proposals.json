@@ -630,6 +630,28 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p45",
+      "created": "2026-10-15T09:07:47Z",
+      "kind": "code",
+      "title": "Reconcile sharp's ledger with its record and live rules",
+      "why": "Sharp's gate ledger shows 1 bet placed and lost (-$100 per $100), but its all-time record shows 0 bets. Its live rules show min_edge 0.03 at version 1, even though the 10-11 change to 0.02 (version 2) is logged as applied. Either bets or rule changes are being lost between the stores, so any verdict on sharp, and possibly on other strategies, is unreliable until this is fixed. This is a concrete case for p36 and p44, and fixing it first may also explain p30.",
+      "judge_by": "After the fix, sharp's all_time bet count equals its gate_ledger 'bet' count, and its rules show min_edge 0.02 at rules_version 2 (or the log shows why the change was undone). The next review then shows the same counts in both places.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p46",
+      "created": "2026-10-15T09:07:47Z",
+      "kind": "code",
+      "title": "Triage: restore judging and the missing strategies before any more tuning",
+      "why": "With 0 judged in 48 cycles and every tunable strategy missing from the review, the only rules I can see belong to locked strategies, and tuning blind would only add noise. I suggest Joey take the open proposals in this order: p41 (why nothing is judged), p35 (missing strategies), p44 (applied changes vs live rules), then p40 and p31, because Claude's positive lambda could start Kelly-sized bets on an edge that isn't statistically real.",
+      "judge_by": "The next review shows judged above 0 in recent cycles, lists main, original, bold, calibrated and claude_direct with since_change results, and shows a non-empty yardstick. Tuning resumes only after that.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
