@@ -1,9 +1,11 @@
 {
   "created": "2026-10-10T04:05:13Z",
   "starting_bankroll": 100000,
-  "cash": 99750.45,
+  "cash": 100000.0,
   "open": [],
-  "closed": [
+  "closed": [],
+  "peak_equity": 100000,
+  "cancelled": [
     {
       "key": "kalshi:KXNFLTD-26OCT11LVNE-LVMWASHINGTON4-1",
       "source": "kalshi",
@@ -28,8 +30,10 @@
       "outcome": "no",
       "payout": 0.0,
       "pnl": -249.55,
-      "settled": "2026-10-11T20:20:08Z"
+      "settled": "2026-10-11T20:20:08Z",
+      "cancelled": "2026-10-15T01:05:23Z",
+      "why": "matcher bug: a player touchdown market priced with the team's moneyline through a shared word; fixed 2026-10-11 (Kalshi game-winner series only)",
+      "refund": 249.55
     }
-  ],
-  "peak_equity": 100000
+  ]
 }
