@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T03:52:56Z",
+  "generated": "2026-10-16T04:08:24Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T03:52:56Z",
+      "t": "2026-10-16T04:08:24Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1701,
+    "resolved": 1710,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20794552,
-        "n": 1250
+        "brier": 0.20831317891373805,
+        "n": 1252
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2289118753674309,
-        "n": 1701
+        "brier": 0.23004497076023395,
+        "n": 1710
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20993909846219203,
-        "n": 1177
+        "brier": 0.21031812942324005,
+        "n": 1179
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1470479857436802,
-        "n": 1701
+        "brier": 0.14675123684210525,
+        "n": 1710
       }
     ],
     "paired": {
-      "n": 806,
+      "n": 808,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16219761848635236
+          "brier": 0.1629509969059406
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2186018610421836
+          "brier": 0.21903230198019805
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20090533498759305
+          "brier": 0.20098787128712872
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24483833746898262
+          "brier": 0.24608490099009903
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T03:50:17Z",
+    "ts": "2026-10-16T04:05:28Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-16T03:52:56Z",
+          "2026-10-16T04:08:24Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-16T03:52:56Z",
+          "2026-10-16T04:08:24Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-16T03:52:56Z",
+          "2026-10-16T04:08:24Z",
           99980.19
         ]
       ]
@@ -5223,6 +5223,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T04:08:02Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Saudi Oil Pipeline (East-West) restarts by October 15?",
+      "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15"
+    },
+    {
+      "ts": "2026-10-16T04:05:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T03:50:17Z",
       "type": "scan",
       "fetched": 200,
@@ -5815,22 +5831,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-15T13:20:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-15T13:05:17Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5843,15 +5843,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1701,
-    "post_mortems": 83,
+    "reviewed": 1710,
+    "post_mortems": 84,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 157,
+        "n": 158,
         "predicted": 0.139,
-        "actual": 0.172
+        "actual": 0.177
       },
       {
         "range": "20\u201340%",
@@ -5867,9 +5867,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 201,
+        "n": 202,
         "predicted": 0.661,
-        "actual": 0.746
+        "actual": 0.748
       },
       {
         "range": "80\u2013100%",
@@ -5879,7 +5879,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 28,
+      "overconfident": 29,
       "unlucky": 29,
       "missing_info": 11,
       "stale_info": 7,
@@ -5892,6 +5892,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
+        "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
+        "outcome": "yes",
+        "category": "world",
+        "p": 0.11,
+        "market": 0.225,
+        "ts": "2026-10-16T04:08:02Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "On October 6, 2026, the same day as the forecast, Saudi Energy Minister Prince Abdulaziz bin Salman said publicly that the East-West pipeline was pumping 5.8 million barrels and had been back in use since shortly after the attack. That is an official statement that the pipeline is operating now, so the market resolved Yes.",
+        "what_we_missed": "Everyone agreed the pipeline was already running at about 80% of capacity. The ministry had publicly confirmed a restoration before (April 12), and the minister talks to the press regularly. The real question was when the government would say it out loud, not whether the pipeline would restart, and the forecaster priced that as unlikely (0.11, below the market's 0.225). The facts also disagreed about the deadline (October 15 in the title, October 31 in the rules notes), and nobody resolved that.",
+        "what_worked": "",
+        "lesson": "When the physical event has clearly already happened and only an official acknowledgment is missing, give real weight to the government confirming it soon. That holds especially when the same ministry has confirmed similar restorations before and senior officials speak to the press often.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For 'official announcement' questions, look for recent and upcoming interviews or remarks by the minister, not just formal ministry press releases. Also check the deadline against the question title before forecasting."
+        }
+      },
       {
         "question": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
         "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep",
@@ -5990,26 +6010,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For monthly CPI questions, have the research desk give a bottom-up estimate of the unadjusted monthly change (each component's weight times its expected change, using AAA/EIA gas prices) and compare it to the change the threshold requires."
-        }
-      },
-      {
-        "question": "Will Elon Musk post 360-379 tweets from October 6 to October 13, 2026?",
-        "url": "https://polymarket.com/market/elon-musk-of-tweets-october-6-october-13-2026-360-379",
-        "outcome": "yes",
-        "category": "culture",
-        "p": 0.22,
-        "market": 0.3425,
-        "ts": "2026-10-13T18:07:43Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "The October 6\u201313 window resolved in the 360\u2013379 bracket, which ended the market priced at 100% on $4.3M volume. When the forecast was made, about 5.5 of the 7 days had passed and the market already had this bracket at 34%. The forecast of 0.22 came in below that.",
-        "what_we_missed": "The forecaster never looked up the running post count on xtracker.polymarket.com. With most of the window gone, that number largely settles the answer. Instead the forecast leaned on a vague, unverified spread of past weekly totals (about 40 to 459) and shaded below the market's informed price.",
-        "what_worked": "",
-        "lesson": "For post-count bracket markets judged partway through the window, get the current tracker count and the recent posting pace first, project the final total from them, and don't price below the market without that number.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For tweet-count markets, require fetching the live xtracker count (or the market's current bracket prices) and projecting the remaining hours before forecasting, and block forecasts that go against the market when no in-window count was found."
         }
       }
     ],
@@ -6375,9 +6375,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0856,
-      "b": 0.1392,
-      "n": 1250,
+      "a": 1.0766,
+      "b": 0.1404,
+      "n": 1252,
       "active": true,
       "need": 300
     },
@@ -6408,14 +6408,14 @@
       },
       {
         "category": "other",
-        "n": 229,
-        "jev_plain": 0.2138,
-        "market": 0.1401,
-        "jev_research": 0.2582,
+        "n": 231,
+        "jev_plain": 0.2181,
+        "market": 0.1396,
+        "jev_research": 0.2567,
         "claude_direct": 0.1922,
-        "n_jev_plain": 229,
-        "n_market": 229,
-        "n_jev_research": 123,
+        "n_jev_plain": 231,
+        "n_market": 231,
+        "n_jev_research": 124,
         "n_claude_direct": 35
       },
       {
@@ -6477,26 +6477,26 @@
         "n_claude_direct": 28
       },
       {
-        "category": "tech",
-        "n": 28,
-        "jev_research": 0.3945,
-        "jev_plain": 0.2545,
-        "market": 0.0487,
-        "claude_direct": 0.3962,
-        "n_jev_research": 9,
-        "n_jev_plain": 28,
-        "n_market": 28,
-        "n_claude_direct": 2
+        "category": "world",
+        "n": 31,
+        "jev_plain": 0.297,
+        "market": 0.0915,
+        "jev_research": 0.5326,
+        "n_jev_plain": 31,
+        "n_market": 31,
+        "n_jev_research": 6
       },
       {
-        "category": "world",
-        "n": 26,
-        "jev_plain": 0.292,
-        "market": 0.084,
-        "jev_research": 0.4807,
-        "n_jev_plain": 26,
-        "n_market": 26,
-        "n_jev_research": 5
+        "category": "tech",
+        "n": 30,
+        "jev_research": 0.3945,
+        "jev_plain": 0.2692,
+        "market": 0.0457,
+        "claude_direct": 0.3962,
+        "n_jev_research": 9,
+        "n_jev_plain": 30,
+        "n_market": 30,
+        "n_claude_direct": 2
       }
     ],
     "proposals": [
@@ -7020,7 +7020,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 55,
+      "research": 56,
       "questions": 2
     },
     "retro": {
