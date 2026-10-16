@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T05:53:06Z",
+  "generated": "2026-10-16T06:08:26Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T05:53:06Z",
+      "t": "2026-10-16T06:08:26Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1711,
+    "resolved": 1715,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20831317891373805,
-        "n": 1252
+        "brier": 0.20866236044657097,
+        "n": 1254
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22993629456458212,
-        "n": 1711
+        "brier": 0.22991551020408163,
+        "n": 1715
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21031812942324005,
-        "n": 1179
+        "brier": 0.21070563796782388,
+        "n": 1181
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14667253945061368,
-        "n": 1711
+        "brier": 0.14675087696793002,
+        "n": 1715
       }
     ],
     "paired": {
-      "n": 808,
+      "n": 809,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1629509969059406
+          "brier": 0.16275479666254636
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21903230198019805
+          "brier": 0.2187715698393078
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20098787128712872
+          "brier": 0.20074140914709518
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24608490099009903
+          "brier": 0.24580494437577255
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T05:50:28Z",
+    "ts": "2026-10-16T06:05:29Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-16T05:53:06Z",
+          "2026-10-16T06:08:26Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-16T05:53:06Z",
+          "2026-10-16T06:08:26Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-16T05:53:06Z",
+          "2026-10-16T06:08:26Z",
           99980.19
         ]
       ]
@@ -5223,6 +5223,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T06:08:01Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "research_error",
+      "q": "Will Douglas Ruas win the Governor of Rio de Janeiro election?",
+      "url": "https://polymarket.com/market/will-douglas-ruas-win-the-governor-of-rio-de-janeiro-election"
+    },
+    {
+      "ts": "2026-10-16T06:05:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T05:50:28Z",
       "type": "scan",
       "fetched": 200,
@@ -5815,22 +5831,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-15T15:35:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-15T15:20:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5843,15 +5843,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1711,
-    "post_mortems": 84,
+    "reviewed": 1715,
+    "post_mortems": 85,
     "win_reviews": 41,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 158,
-        "predicted": 0.139,
-        "actual": 0.177
+        "n": 160,
+        "predicted": 0.138,
+        "actual": 0.181
       },
       {
         "range": "20\u201340%",
@@ -5883,7 +5883,7 @@
       "unlucky": 29,
       "missing_info": 11,
       "stale_info": 7,
-      "research_error": 5,
+      "research_error": 6,
       "misread_rules": 3
     },
     "credits": {
@@ -5892,6 +5892,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Douglas Ruas win the Governor of Rio de Janeiro election?",
+        "url": "https://polymarket.com/market/will-douglas-ruas-win-the-governor-of-rio-de-janeiro-election",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.08,
+        "market": 0.167,
+        "ts": "2026-10-16T06:08:01Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "research_error",
+        "what_happened": "Ruas led the October 4 first round with 49.27% to Paes's 42.76%, even though every final poll had Paes ahead by about 8 points. The electoral court then annulled Garotinho's roughly 3% of the vote, which lifted Ruas to 50.88% of valid votes. TRE-RJ proclaimed him elected in the first round and Paes conceded.",
+        "what_we_missed": "The forecaster relied on an unverified search snippet claiming Paes had won outright with more than 60%, which was false, and set 8% against the market's 16.7%. It also underweighted two things: Brazilian polls can miss right-wing candidates by a lot, and annulling Garotinho's votes shrinks the valid-vote base for whoever is leading, not only for Paes.",
+        "what_worked": "",
+        "lesson": "Never let an unverifiable snippet about a result move a forecast made while voting is still open, and on election day don't go well below the market without verified results.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Mark any unverified claim about results that predates the official count as inadmissible, and before judging on election day, check TSE or TRE live results or wait until polls close."
+        }
+      },
       {
         "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
         "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
@@ -5990,26 +6010,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Research desk threshold calculations should be tied to the specific question's strike (here, a published 3.6% or higher and about 0.40% monthly), not a neighboring strike like 3.7%. The gasoline contribution should be quantified against that strike."
-        }
-      },
-      {
-        "question": "Will the rate of CPI inflation be above 3.6% for the year ending in September 2026? (Above 3.6%)",
-        "url": "https://kalshi.com/markets/kxcpiyoy/will-the-rate-of-cpi-inflation-be-above-3-6-for-the-year-end/kxcpiyoy-26sep",
-        "outcome": "yes",
-        "category": "economy",
-        "p": 0.33,
-        "market": 0.475,
-        "ts": "2026-10-14T13:07:10Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "BLS reported September 2026 CPI up 0.6% for the month on both a seasonally adjusted and an unadjusted basis, putting the 12-month rate at 3.7% and resolving the question YES. Gasoline rose 6.5% before seasonal adjustment and energy rose 5.2% seasonally adjusted, driven by the Strait of Hormuz price spike.",
-        "what_we_missed": "The forecaster already had what it needed. Pump prices rose about 7.4% from August to September, and gasoline makes up roughly 3.5\u20134% of the CPI basket, which adds about 0.25\u20130.3 points on its own. Add the usual unadjusted core and food increase of about 0.2\u20130.25 and you get roughly the 0.50% monthly gain the question needed. Instead the forecaster put YES at 33%, well below the market's 47.5%, apparently without working through this pass-through calculation.",
-        "what_worked": "",
-        "lesson": "When a CPI threshold depends on one month's change and gas prices are moving sharply, calculate gasoline's weight times its unadjusted monthly change, add normal core and food inflation, and compare the total to the required change before moving away from the market.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For monthly CPI questions, have the research desk give a bottom-up estimate of the unadjusted monthly change (each component's weight times its expected change, using AAA/EIA gas prices) and compare it to the change the threshold requires."
         }
       }
     ],
@@ -6375,9 +6375,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0766,
-      "b": 0.1404,
-      "n": 1252,
+      "a": 1.0641,
+      "b": 0.1393,
+      "n": 1254,
       "active": true,
       "need": 300
     },
@@ -6408,14 +6408,14 @@
       },
       {
         "category": "other",
-        "n": 231,
-        "jev_plain": 0.2181,
-        "market": 0.1396,
-        "jev_research": 0.2567,
+        "n": 233,
+        "jev_plain": 0.2164,
+        "market": 0.1385,
+        "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 231,
-        "n_market": 231,
-        "n_jev_research": 124,
+        "n_jev_plain": 233,
+        "n_market": 233,
+        "n_jev_research": 125,
         "n_claude_direct": 35
       },
       {
@@ -6454,14 +6454,14 @@
       },
       {
         "category": "politics",
-        "n": 62,
-        "jev_research": 0.2596,
-        "jev_plain": 0.3285,
-        "market": 0.122,
+        "n": 63,
+        "jev_research": 0.2723,
+        "jev_plain": 0.3355,
+        "market": 0.1311,
         "claude_direct": 0.2551,
-        "n_jev_research": 45,
-        "n_jev_plain": 62,
-        "n_market": 62,
+        "n_jev_research": 46,
+        "n_jev_plain": 63,
+        "n_market": 63,
         "n_claude_direct": 13
       },
       {
@@ -6488,14 +6488,14 @@
       },
       {
         "category": "tech",
-        "n": 30,
+        "n": 31,
         "jev_research": 0.3945,
-        "jev_plain": 0.2692,
-        "market": 0.0457,
+        "jev_plain": 0.2631,
+        "market": 0.0445,
         "claude_direct": 0.3962,
         "n_jev_research": 9,
-        "n_jev_plain": 30,
-        "n_market": 30,
+        "n_jev_plain": 31,
+        "n_market": 31,
         "n_claude_direct": 2
       }
     ],
@@ -7020,7 +7020,7 @@
     ],
     "suggested_areas": {
       "gates": 53,
-      "research": 56,
+      "research": 57,
       "questions": 2
     },
     "retro": {
