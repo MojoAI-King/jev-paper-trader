@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T00:52:55Z",
+  "generated": "2026-10-16T01:08:02Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T00:52:55Z",
+      "t": "2026-10-16T01:08:02Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T00:50:24Z",
+    "ts": "2026-10-16T01:05:22Z",
     "stages": [
       [
         "Fetched",
@@ -1877,7 +1877,7 @@
           100000.0
         ],
         [
-          "2026-10-16T00:52:55Z",
+          "2026-10-16T01:08:02Z",
           100000.0
         ]
       ]
@@ -2638,7 +2638,7 @@
           100168.19
         ],
         [
-          "2026-10-16T00:52:55Z",
+          "2026-10-16T01:08:02Z",
           100168.19
         ]
       ]
@@ -3399,7 +3399,7 @@
           99980.19
         ],
         [
-          "2026-10-16T00:52:55Z",
+          "2026-10-16T01:08:02Z",
           99980.19
         ]
       ]
@@ -5225,6 +5225,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T01:05:22Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-16T01:05:22Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T00:50:24Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5848,21 +5861,6 @@
       "text": "Reconcile sharp's ledger with its record and live rules",
       "status": "proposed",
       "why": "Sharp's gate ledger shows 1 bet placed and lost (-$100 per $100), but its all-time record shows 0 bets. Its live rules show min_edge 0.03 at version 1, even though the 10-11 change to 0.02 (version 2) is logged as applied. Either bets or rule changes are being lost between the stores, so any verdict"
-    },
-    {
-      "ts": "2026-10-15T09:07:47Z",
-      "type": "idea",
-      "text": "Triage: restore judging and the missing strategies before any more tuning",
-      "status": "proposed",
-      "why": "With 0 judged in 48 cycles and every tunable strategy missing from the review, the only rules I can see belong to locked strategies, and tuning blind would only add noise. I suggest Joey take the open proposals in this order: p41 (why nothing is judged), p35 (missing strategies), p44 (applied change"
-    },
-    {
-      "ts": "2026-10-15T09:05:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
