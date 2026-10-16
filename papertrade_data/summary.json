@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T19:22:49Z",
+  "generated": "2026-10-16T19:37:47Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T19:22:49Z",
+      "t": "2026-10-16T19:37:47Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T19:20:23Z",
+    "ts": "2026-10-16T19:35:18Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1017,7 +1017,7 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1078,8 +1078,8 @@
       "unrealized": 0.0,
       "change": 196.7,
       "realized": 196.7,
-      "open": 42,
-      "open_cost": 1269.72,
+      "open": 43,
+      "open_cost": 1274.69,
       "settled": 15,
       "wins": 8,
       "losses": 7,
@@ -1883,7 +1883,7 @@
           100000.0
         ],
         [
-          "2026-10-16T19:22:49Z",
+          "2026-10-16T19:37:47Z",
           100000.0
         ]
       ]
@@ -2652,7 +2652,7 @@
           100196.7
         ],
         [
-          "2026-10-16T19:22:49Z",
+          "2026-10-16T19:37:47Z",
           100196.7
         ]
       ]
@@ -3421,7 +3421,7 @@
           100017.81
         ],
         [
-          "2026-10-16T19:22:49Z",
+          "2026-10-16T19:37:47Z",
           100017.81
         ]
       ]
@@ -3585,6 +3585,29 @@
           "p_side": 0.525,
           "edge": 0.0477,
           "opened": "2026-10-16T18:50:17Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXFOXSATMENTION-26OCT17-NQE",
+      "question": "What will Katie Zacharia say during Fox News: Saturday in America originally scheduled for October 17, 2026? (Event does not qualify)",
+      "url": "https://kalshi.com/markets/kxfoxsatmention/what-will-katie-zacharia-say-during-fox-news-saturday-in-ame/kxfoxsatmention-26oct17",
+      "source": "kalshi",
+      "close_time": "2026-10-31T14:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 10,
+          "cost_per": 0.4974,
+          "total_cost": 4.97,
+          "p_side": 0.555,
+          "edge": 0.0576,
+          "opened": "2026-10-16T19:35:18Z",
           "value": null
         }
       ]
@@ -5277,6 +5300,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T19:35:18Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.4974,
+      "amount": 4.97,
+      "p": 0.555,
+      "q": "What will Katie Zacharia say during Fox News: Saturday in America originally scheduled for October 17, 2026? (Event does not qualify)",
+      "url": "https://kalshi.com/markets/kxfoxsatmention/what-will-katie-zacharia-say-during-fox-news-saturday-in-ame/kxfoxsatmention-26oct17",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-16T19:35:18Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-16T19:20:23Z",
       "type": "scan",
       "fetched": 200,
@@ -5898,19 +5941,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-16T03:20:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T03:05:28Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
