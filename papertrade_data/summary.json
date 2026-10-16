@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T21:23:01Z",
+  "generated": "2026-10-16T21:37:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T21:23:01Z",
+      "t": "2026-10-16T21:37:56Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1734,
+    "resolved": 1735,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22888604382929642,
-        "n": 1734
+        "brier": 0.2288463400576369,
+        "n": 1735
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14687415037485582,
-        "n": 1734
+        "brier": 0.14692229207492796,
+        "n": 1735
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T21:20:19Z",
+    "ts": "2026-10-16T21:35:18Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1019,7 +1019,7 @@
     ],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1080,8 +1080,8 @@
       "unrealized": 0.0,
       "change": 196.7,
       "realized": 196.7,
-      "open": 43,
-      "open_cost": 1274.69,
+      "open": 44,
+      "open_cost": 1283.04,
       "settled": 15,
       "wins": 8,
       "losses": 7,
@@ -1885,7 +1885,7 @@
           100000.0
         ],
         [
-          "2026-10-16T21:23:01Z",
+          "2026-10-16T21:37:56Z",
           100000.0
         ]
       ]
@@ -2654,7 +2654,7 @@
           100196.7
         ],
         [
-          "2026-10-16T21:23:01Z",
+          "2026-10-16T21:37:56Z",
           100196.7
         ]
       ]
@@ -3423,7 +3423,7 @@
           100017.81
         ],
         [
-          "2026-10-16T21:23:01Z",
+          "2026-10-16T21:37:56Z",
           100017.81
         ]
       ]
@@ -4047,6 +4047,29 @@
           "p_side": 0.54,
           "edge": 0.0426,
           "opened": "2026-10-16T18:05:20Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXMSFTMENTION-26OCT28-OPENS",
+      "question": "What will Jay Parikh say during GitHub Universe 2026 \u2014 Opening Keynote originally scheduled for October 28, 2026? (Open Source)",
+      "url": "https://kalshi.com/markets/kxmsftmention/what-will-jay-parikh-say-during-github-universe-2026-opening/kxmsftmention-26oct28",
+      "source": "kalshi",
+      "close_time": "2026-11-11T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 12,
+          "cost_per": 0.6955,
+          "total_cost": 8.35,
+          "p_side": 0.73,
+          "edge": 0.0345,
+          "opened": "2026-10-16T21:35:18Z",
           "value": null
         }
       ]
@@ -5302,6 +5325,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T21:35:18Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.6955,
+      "amount": 8.35,
+      "p": 0.73,
+      "q": "What will Jay Parikh say during GitHub Universe 2026 \u2014 Opening Keynote originally scheduled for October 28, 2026? (Open Source)",
+      "url": "https://kalshi.com/markets/kxmsftmention/what-will-jay-parikh-say-during-github-universe-2026-opening/kxmsftmention-26oct28",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-16T21:35:18Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-16T21:35:18Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-16T21:20:19Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5901,27 +5949,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-16T06:50:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T06:39:09Z",
-      "type": "learn",
-      "text": "Research playbook updated to v19"
-    },
-    {
-      "ts": "2026-10-16T06:37:56Z",
-      "type": "review",
-      "kind": "win",
-      "cause": "lucky",
-      "q": "Will Eduardo Paes win the Governor of Rio de Janeiro election?",
-      "url": "https://polymarket.com/market/will-eduardo-paes-win-the-governor-of-rio-de-janeiro-election"
     }
   ],
   "plan_usage": {
@@ -5934,7 +5961,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1734,
+    "reviewed": 1735,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6492,13 +6519,13 @@
       },
       {
         "category": "other",
-        "n": 233,
-        "jev_plain": 0.2164,
-        "market": 0.1385,
+        "n": 234,
+        "jev_plain": 0.2162,
+        "market": 0.1389,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 233,
-        "n_market": 233,
+        "n_jev_plain": 234,
+        "n_market": 234,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
