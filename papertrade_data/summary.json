@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T08:07:53Z",
+  "generated": "2026-10-16T08:23:03Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T08:07:53Z",
+      "t": "2026-10-16T08:23:03Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1718,
+    "resolved": 1719,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22957846332945284,
-        "n": 1718
+        "brier": 0.2294477603257708,
+        "n": 1719
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1468978953725262,
-        "n": 1718
+        "brier": 0.1468138942699244,
+        "n": 1719
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T08:05:26Z",
+    "ts": "2026-10-16T08:20:31Z",
     "stages": [
       [
         "Fetched",
@@ -1014,9 +1014,7 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [
-      "kalshi mentions: KXWCMENTION: <urlopen error [Errno 104] Connection reset by peer>"
-    ],
+    "problems": [],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1877,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-16T08:07:53Z",
+          "2026-10-16T08:23:03Z",
           100000.0
         ]
       ]
@@ -2638,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-16T08:07:53Z",
+          "2026-10-16T08:23:03Z",
           100168.19
         ]
       ]
@@ -3399,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-16T08:07:53Z",
+          "2026-10-16T08:23:03Z",
           99980.19
         ]
       ]
@@ -5225,6 +5223,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T08:20:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T08:05:26Z",
       "type": "problem",
       "text": "kalshi mentions: KXWCMENTION: <urlopen error [Errno 104] Connection reset by peer>"
@@ -5807,14 +5813,6 @@
       "q": "What will Melania Trump say during Executive Order Signing Ceremony and Announcement originally scheduled for October 19, 2026? (Education)",
       "url": "https://kalshi.com/markets/kxmelaniamention/what-will-melania-trump-say-during-executive-order-signing-c/kxmelaniamention-26oct19",
       "probe": true
-    },
-    {
-      "ts": "2026-10-15T17:50:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -5827,7 +5825,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1718,
+    "reviewed": 1719,
     "post_mortems": 85,
     "win_reviews": 42,
     "calibration": [
@@ -6455,12 +6453,12 @@
       },
       {
         "category": "world",
-        "n": 34,
-        "jev_plain": 0.2745,
-        "market": 0.0844,
+        "n": 35,
+        "jev_plain": 0.2668,
+        "market": 0.0821,
         "jev_research": 0.5326,
-        "n_jev_plain": 34,
-        "n_market": 34,
+        "n_jev_plain": 35,
+        "n_market": 35,
         "n_jev_research": 6
       },
       {
