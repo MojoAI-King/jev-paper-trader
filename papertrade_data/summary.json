@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T20:52:46Z",
+  "generated": "2026-10-16T21:08:28Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T20:52:46Z",
+      "t": "2026-10-16T21:08:28Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1728,
+    "resolved": 1734,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20865657686212363,
-        "n": 1262
+        "brier": 0.20861695583596213,
+        "n": 1268
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22886643518518518,
-        "n": 1728
+        "brier": 0.22888604382929642,
+        "n": 1734
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21085934196804038,
-        "n": 1189
+        "brier": 0.21087925887866107,
+        "n": 1195
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1465780392071759,
-        "n": 1728
+        "brier": 0.14687415037485582,
+        "n": 1734
       }
     ],
     "paired": {
-      "n": 812,
+      "n": 813,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16296206988916256
+          "brier": 0.16279929366543666
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21848103448275863
+          "brier": 0.21837170971709718
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20103633004926108
+          "brier": 0.20090725707257073
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24505073891625617
+          "brier": 0.24509483394833947
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T20:50:19Z",
+    "ts": "2026-10-16T21:05:21Z",
     "stages": [
       [
         "Fetched",
@@ -1885,7 +1885,7 @@
           100000.0
         ],
         [
-          "2026-10-16T20:52:46Z",
+          "2026-10-16T21:08:28Z",
           100000.0
         ]
       ]
@@ -2654,7 +2654,7 @@
           100196.7
         ],
         [
-          "2026-10-16T20:52:46Z",
+          "2026-10-16T21:08:28Z",
           100196.7
         ]
       ]
@@ -3423,7 +3423,7 @@
           100017.81
         ],
         [
-          "2026-10-16T20:52:46Z",
+          "2026-10-16T21:08:28Z",
           100017.81
         ]
       ]
@@ -5302,6 +5302,32 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T21:08:22Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-16T21:07:47Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "research_error",
+      "q": "Bitcoin price on Oct 16, 2026? ($83,000 or above)",
+      "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617"
+    },
+    {
+      "ts": "2026-10-16T21:05:21Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-16T21:05:21Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T20:50:19Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5899,38 +5925,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-16T06:08:01Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "research_error",
-      "q": "Will Douglas Ruas win the Governor of Rio de Janeiro election?",
-      "url": "https://polymarket.com/market/will-douglas-ruas-win-the-governor-of-rio-de-janeiro-election"
-    },
-    {
-      "ts": "2026-10-16T06:05:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T05:50:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T05:35:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5943,8 +5937,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1728,
-    "post_mortems": 87,
+    "reviewed": 1734,
+    "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
       {
@@ -5961,15 +5955,15 @@
       },
       {
         "range": "40\u201360%",
-        "n": 432,
+        "n": 436,
         "predicted": 0.49,
-        "actual": 0.525
+        "actual": 0.521
       },
       {
         "range": "60\u201380%",
-        "n": 202,
+        "n": 204,
         "predicted": 0.661,
-        "actual": 0.748
+        "actual": 0.75
       },
       {
         "range": "80\u2013100%",
@@ -5983,7 +5977,7 @@
       "unlucky": 29,
       "missing_info": 12,
       "stale_info": 7,
-      "research_error": 6,
+      "research_error": 7,
       "misread_rules": 3
     },
     "credits": {
@@ -5992,6 +5986,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Bitcoin price on Oct 16, 2026? ($83,000 or above)",
+        "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617",
+        "outcome": "no",
+        "category": "crypto",
+        "p": 0.5,
+        "market": 0.58,
+        "ts": "2026-10-16T21:07:47Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "research_error",
+        "what_happened": "BTC traded around $82,500\u201383,100 from Oct 9\u201311, almost exactly at the real $83,000 strike, and the 60-second BRTI average at 5 PM EDT on Oct 16 came in below $83,000, so the market resolved NO. I could not find the exact Oct 16 price. A BGeometrics report puts BTC at about $83,031 on Oct 10, and an undated Changelly page shows about $84,692. The NO outcome is the only firm data point.",
+        "what_we_missed": "The research brief stated the strike wrongly as $80,000 in two places, the status summary and the rules note, while the question's strike is $83,000. That error made it look as if BTC was 3\u20134% in the money when it was really at the money. The final 0.5 suggests the forecaster used the right strike anyway, and it was closer to the outcome than the market's 0.58. The flawed brief was still a real risk.",
+        "what_worked": "",
+        "lesson": "Before using any distance-to-strike figure, check the strike in the research notes against the question title and resolution threshold. In this ladder market, $83,000 means above $82,999.99, not $80,000.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Add an automated check that pulls the threshold out of the resolution rules and flags any research fact that names a different strike before the facts go to the forecaster."
+        }
+      },
       {
         "question": "Will Elon Musk post 340-359 tweets from October 9 to October 16, 2026?",
         "url": "https://polymarket.com/market/elon-musk-of-tweets-october-9-october-16-2026-340-359",
@@ -6090,26 +6104,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Rebuild the 12-month rate from unrounded NSA index levels for the month dropping out (Sept 2025) and the latest month (Aug 2026), then calculate the exact monthly change needed to reach the rounded threshold. Compare that figure with consensus and the Cleveland Fed nowcast."
-        }
-      },
-      {
-        "question": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)",
-        "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-4-for-the-yea/kxcpicoreyoy-26sep",
-        "outcome": "yes",
-        "category": "economy",
-        "p": 0.34,
-        "market": 0.47,
-        "ts": "2026-10-14T14:07:31Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "BLS reported on Oct 14, 2026 that core CPI rose 0.3% in September and 2.6% over the 12 months, up from 2.4% in August. That beat the consensus of 0.2% m/m and 2.5% y/y, so the market resolved YES.",
-        "what_we_missed": "Economists' consensus for September core was already 2.5% y/y, which would have resolved YES by itself, and the forecaster never looked it up. The base effect also helped YES: September 2025's 0.2% month was the one dropping out, and August 2026 had come in hot at 0.3%. Even a 0.2\u20130.3% September month gave a good chance of rounding to 2.5% or higher. Given all that, 0.34 sat well below the market's 0.47.",
-        "what_worked": "",
-        "lesson": "For CPI threshold markets, get the published consensus y/y estimate and run the base-effect arithmetic on the month dropping out before moving far from the market price.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For any economic-data question judged within about two weeks of the release, require research to collect the consensus forecast (Bloomberg/Reuters/CNBC preview) and the Cleveland Fed nowcast."
         }
       }
     ],
@@ -6468,9 +6462,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0617,
-      "b": 0.129,
-      "n": 1262,
+      "a": 1.0612,
+      "b": 0.1234,
+      "n": 1268,
       "active": true,
       "need": 300
     },
@@ -6513,14 +6507,14 @@
       },
       {
         "category": "crypto",
-        "n": 217,
-        "jev_research": 0.1722,
-        "jev_plain": 0.2133,
-        "market": 0.0941,
+        "n": 223,
+        "jev_research": 0.1731,
+        "jev_plain": 0.2138,
+        "market": 0.0978,
         "claude_direct": 0.1294,
-        "n_jev_research": 188,
-        "n_jev_plain": 217,
-        "n_market": 217,
+        "n_jev_research": 194,
+        "n_jev_plain": 223,
+        "n_market": 223,
         "n_claude_direct": 53
       },
       {
@@ -7113,21 +7107,21 @@
     ],
     "suggested_areas": {
       "gates": 54,
-      "research": 58,
+      "research": 59,
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-16T09:07:59Z",
-      "headline": "For a fifth review in a row the system is broken: 48 cycles judged no markets, main, original and every Jev or Claude strategy are missing from the report, and the three strategies shown are all locked, so nothing can be tuned and I am proposing no new changes until Joey's fix (p46/p47) is in.",
+      "ts": "2026-10-16T21:08:04Z",
+      "headline": "A third straight half-day with nothing to tune: 48 cycles judged no markets, and every strategy in the report is locked. Only the two mention strategies are settling bets, and they are slightly ahead on 17 resolved markets, which is still noise.",
       "went_well": [
-        "Mention markets, NO side is the only strategy with settled results. It is +$168 on 12 settled bets, 7 won and 5 lost, about +$21 per $100 of settled stake. Bets at 30-60c made +$143 on 8, with 4 wins. That is far too few to call it skill; it is an experiment going the right way.",
-        "In sports, Claude direct still slightly beats the market price: Brier 0.178 against 0.181 on 201 markets. That gap is small enough to be noise, but no other category or forecaster comes close.",
-        "No long shots were bought. All of the mention bets were at 30c or more, so the 30c floor is holding where we can see it."
+        "mention_no is up $196.70 on 15 settled bets (8 wins, 7 losses). It added 3 new bets this half-day and has 43 still open. That is under 30 resolved markets, so it is an experiment, not a finding.",
+        "mention_no's 30-60c bets made +$173 on $569 staked (10 settled, 5 wins). Its 60c-and-up bets made +$23 on 5. It has placed no long shots, so the 30c floor is holding.",
+        "mention_follow is up $17.81 on 2 settled bets (1 win), with 6 open. That is far too few to say anything."
       ],
       "went_badly": [
-        "The market still beats every forecaster we run. On the 810 markets all of them forecast, the market scores 0.163, Claude direct 0.202, Jev + research 0.219 and Jev alone 0.246 (lower is better). Every skill score except Claude's is 0, and Claude's is a tiny 0.0035, so almost every bet is still a sma",
-        "The judging pipeline is still down: 0 markets judged in 48 cycles. Main, original and every challenger are still missing from the report, and the yardstick comparison is empty. We cannot judge main's 12c edge change or any of the other applied tunes (p23, p26, p27, p29).",
-        "Sharp's figures disagree with each other. The report shows rules version 1 with a 3c edge, yet a change to 2c was logged on 10-11. Its record shows 2 open bets and 0 settled, but its gate ledger shows 1 settled loss. Its minimum price is 20c, below the 30c floor, and its skill score is -2.56 on 48 m"
+        "48 cycles judged 0 markets and researched 0. Jev and Claude are producing no new forecasts. The market price still beats every forecaster: all time, market 0.147 against Claude direct 0.175 and Jev + research 0.209. On 813 paired markets, market 0.163 against Claude 0.201.",
+        "Main, original, calibrated, bold, claude_direct and the challengers are still missing from the report, and the yardstick is empty. So we cannot judge any of the changes made on 10-03 to 10-11, including p23, p29 and p26.",
+        "Sharp's records still disagree with each other. Its live rules show version 1 with a 3c edge, five days after the 2c change was logged as applied. Its strategy record shows 2 open bets and 0 settled, but its gate ledger shows 1 settled loss at -$100 per $100. Its skill estimate is -2.56 on 48 market"
       ]
     },
     "auto_start": true,
