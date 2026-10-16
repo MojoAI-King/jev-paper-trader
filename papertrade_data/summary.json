@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T06:21:03Z",
+  "generated": "2026-10-16T06:39:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T06:21:03Z",
+      "t": "2026-10-16T06:39:14Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1717,
+    "resolved": 1718,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20866236044657097,
-        "n": 1254
+        "brier": 0.20852486055776895,
+        "n": 1255
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22969534071054165,
-        "n": 1717
+        "brier": 0.22957846332945284,
+        "n": 1718
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21070563796782388,
-        "n": 1181
+        "brier": 0.2105613524534687,
+        "n": 1182
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14659231450203844,
-        "n": 1717
+        "brier": 0.1468978953725262,
+        "n": 1718
       }
     ],
     "paired": {
-      "n": 809,
+      "n": 810,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16275479666254636
+          "brier": 0.16332924290123454
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2187715698393078
+          "brier": 0.21854148148148148
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20074140914709518
+          "brier": 0.20151592592592593
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24580494437577255
+          "brier": 0.24552925925925928
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T06:18:40Z",
+    "ts": "2026-10-16T06:35:18Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-16T06:21:03Z",
+          "2026-10-16T06:39:14Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-16T06:21:03Z",
+          "2026-10-16T06:39:14Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-16T06:21:03Z",
+          "2026-10-16T06:39:14Z",
           99980.19
         ]
       ]
@@ -5223,6 +5223,27 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T06:39:09Z",
+      "type": "learn",
+      "text": "Research playbook updated to v19"
+    },
+    {
+      "ts": "2026-10-16T06:37:56Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "lucky",
+      "q": "Will Eduardo Paes win the Governor of Rio de Janeiro election?",
+      "url": "https://polymarket.com/market/will-eduardo-paes-win-the-governor-of-rio-de-janeiro-election"
+    },
+    {
+      "ts": "2026-10-16T06:35:18Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T06:18:40Z",
       "type": "scan",
       "fetched": 200,
@@ -5803,34 +5824,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-15T16:20:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-15T16:05:22Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.4268,
-      "amount": 0.85,
-      "p": 0.465,
-      "q": "What will JD Vance say during CBS Things That Matter: A Town Hall With Vice President JD Vance originally scheduled for October 17, 2026 at 8:00 PM ET? (Illegal Alien)",
-      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-cbs-things-that-matter-a-town/kxvancemention-26oct17",
-      "probe": true
-    },
-    {
-      "ts": "2026-10-15T16:05:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -5843,15 +5836,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1717,
+    "reviewed": 1718,
     "post_mortems": 85,
-    "win_reviews": 41,
+    "win_reviews": 42,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 160,
+        "n": 161,
         "predicted": 0.138,
-        "actual": 0.181
+        "actual": 0.18
       },
       {
         "range": "20\u201340%",
@@ -5887,7 +5880,7 @@
       "misread_rules": 3
     },
     "credits": {
-      "lucky": 20,
+      "lucky": 21,
       "base_rate": 7,
       "research_found_it": 14
     },
@@ -6015,6 +6008,26 @@
     ],
     "recent_wins": [
       {
+        "question": "Will Eduardo Paes win the Governor of Rio de Janeiro election?",
+        "url": "https://polymarket.com/market/will-eduardo-paes-win-the-governor-of-rio-de-janeiro-election",
+        "outcome": "no",
+        "category": "politics",
+        "p": 0.19,
+        "market": 0.8195,
+        "ts": "2026-10-16T06:37:56Z",
+        "bets": {},
+        "kind": "win",
+        "root_cause": "lucky",
+        "what_happened": "In the October 4 first round, Douglas Ruas (PL) finished first with about 49.3% of valid votes and Eduardo Paes about 42.8%, so the race goes to a runoff on October 25. That result reverses the final polls, which had Paes ahead by 8\u201310 points. 274,411 votes for Garotinho are still sub judice, and some outlets reported that how the TSE counts them could even decide the race for Ruas outright. The resolution recorded here is 'no', although as of Oct 16 the runoff had not yet been held.",
+        "what_we_missed": "",
+        "what_worked": "The forecaster treated the October 5 question close as meaning Paes had to win outright in the first round. With polls putting him at roughly 46\u201352% of valid votes, that made a YES much less certain than the market's 82% implied. It also correctly ignored the unverified Substack claim that Paes won with over 60%. But the actual miss came from a polling error of roughly 15 points on the margin, which no fact in the research foresaw. So the 0.19 landed for reasons the forecaster didn't anticipate.",
+        "lesson": "When a question's close date falls before the runoff, work out the probability of an outright first-round win separately from the probability of winning the race overall, and price in Brazilian polls' history of underrating PL/Bolsonaro-aligned candidates.",
+        "suggested_change": {
+          "area": "questions",
+          "change": "Flag questions where the resolution text ('winner of this election', runoff included) clashes with an early close date. Make the forecaster state which reading it is using, and check that the recorded outcome isn't premature before the runoff on October 25."
+        }
+      },
+      {
         "question": "Cleveland wins",
         "url": "https://kalshi.com/markets/kxmlbgame/cleveland-wins/kxmlbgame-26oct102000cwscle",
         "outcome": "yes",
@@ -6125,33 +6138,11 @@
           "area": "research",
           "change": "Always compare the two sides' injury and availability lists from the latest press conferences before forecasting a match, because here they mattered more than the head-to-head history or recent results."
         }
-      },
-      {
-        "question": "Will Brentford FC win on 2026-10-10?",
-        "url": "https://polymarket.com/market/epl-ast-bre-2026-10-10-bre",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.27,
-        "market": 0.375,
-        "ts": "2026-10-10T17:08:02Z",
-        "bets": {
-          "bold": 304.2
-        },
-        "kind": "win",
-        "root_cause": "base_rate",
-        "what_happened": "The VAVEL live blog reported Aston Villa 2-2 Brentford at Villa Park on 10 October 2026, with Brentford equalising late after Villa led. That source's headline still showed 1-1, so the exact score isn't fully confirmed. Either way Brentford did not win in 90 minutes, so the market resolved No.",
-        "what_we_missed": "",
-        "what_worked": "With research, the forecast dropped to 27%, below the market's 37.5%. It gave weight to Brentford's away record (three straight away league draws, no away win since February), injuries to Collins, van den Berg, Jensen and Damsgaard, Ouattara being ill, and the usual low chance of an away win at a Champions League side with a strong home record. It did not let Brentford's 4th place or last season's two 1-0 wins over Villa push it up.",
-        "lesson": "For away-win markets, start from the roughly 25-30% base rate for a mid-table side visiting a stronger home team, and only move up from there on concrete evidence. A good early-season league position or one lucky past meeting is not enough, and draws count as No.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Have research pull each side's recent home and away record and both teams' full injury lists as standard inputs, because in this case those facts, not the league table, correctly pulled the forecast below the market."
-        }
       }
     ],
     "playbook": {
-      "version": 18,
-      "updated": "2026-10-15T00:07:54Z",
+      "version": 19,
+      "updated": "2026-10-16T06:38:31Z",
       "rules": [
         {
           "id": "R1",
@@ -6264,7 +6255,7 @@
         {
           "id": "R24",
           "category": "politics",
-          "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
+          "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
           "added": "2026-10-07T00:11:51Z"
         },
         {
@@ -6275,6 +6266,21 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-16T06:38:31Z",
+          "version": 19,
+          "added": [],
+          "revised": [
+            "R24"
+          ],
+          "retired": [],
+          "changes": [
+            "added world rule on official-confirmation questions (title vs rules deadline, physical status, officials' interviews and past confirmations) from polymarket:4885967",
+            "sharpened R24 to require official live counts once voting starts, discard unverified result snippets, and account for annulled/sub judice votes shrinking the valid-vote base, from polymarket:2487544; trimmed joint-ticket/vote-split wording to fit the length limit",
+            "no rule from polymarket:2487543 because it is marked lucky"
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-10-15T00:07:54Z",
           "version": 18,
@@ -6351,33 +6357,13 @@
             "not used: the reviews' advice about staking, gating and staying near prices. That concerns the forecaster's decisions, not research method."
           ],
           "refused": 1
-        },
-        {
-          "ts": "2026-10-11T00:10:50Z",
-          "version": 14,
-          "added": [
-            "R27"
-          ],
-          "revised": [
-            "R7"
-          ],
-          "retired": [
-            "R6"
-          ],
-          "changes": [
-            "added: live-streamed challenge rule; polymarket:5309160 relied on a day-old clip and never checked the live attempt's progress or the streamers' past completions.",
-            "sharpened R6: added each side's home/away record for the fixture, which drove the correct Brentford away-win read (polymarket:5009082).",
-            "sharpened R7: availability from latest press conferences plus the stand-in and absent player's real output (polymarket:5009102, Iowa QB case), and all-time series records labeled weak (BYU case); trimmed to fit length.",
-            "not used: polymarket:5009117 (lucky), kalshi BYU spread and polymarket:5423683 (unlucky) teach nothing about research; suggestions about market anchoring fall outside research rules."
-          ],
-          "refused": 1
         }
       ]
     },
     "calibration_map": {
-      "a": 1.0641,
-      "b": 0.1393,
-      "n": 1254,
+      "a": 1.0657,
+      "b": 0.1391,
+      "n": 1255,
       "active": true,
       "need": 300
     },
@@ -6454,14 +6440,14 @@
       },
       {
         "category": "politics",
-        "n": 63,
-        "jev_research": 0.2723,
-        "jev_plain": 0.3355,
-        "market": 0.1311,
+        "n": 64,
+        "jev_research": 0.2673,
+        "jev_plain": 0.3307,
+        "market": 0.1395,
         "claude_direct": 0.2551,
-        "n_jev_research": 46,
-        "n_jev_plain": 63,
-        "n_market": 63,
+        "n_jev_research": 47,
+        "n_jev_plain": 64,
+        "n_market": 64,
         "n_claude_direct": 13
       },
       {
@@ -7021,7 +7007,7 @@
     "suggested_areas": {
       "gates": 53,
       "research": 57,
-      "questions": 2
+      "questions": 3
     },
     "retro": {
       "ts": "2026-10-15T21:07:49Z",

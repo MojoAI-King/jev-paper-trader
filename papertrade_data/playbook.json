@@ -1,6 +1,6 @@
 {
-  "version": 18,
-  "updated": "2026-10-15T00:07:54Z",
+  "version": 19,
+  "updated": "2026-10-16T06:38:31Z",
   "rules": [
     {
       "id": "R1",
@@ -9,9 +9,9 @@
       "evidence": [
         "polymarket:4797513",
         "polymarket:4797724",
-        "polymarket:5009022",
         "polymarket:4797726",
         "polymarket:4844455",
+        "polymarket:5009022",
         "polymarket:5208385"
       ],
       "added": "2026-09-28T16:35:53Z"
@@ -207,18 +207,19 @@
       "category": "economy",
       "rule": "For CPI questions, get the dated consensus and Cleveland Fed nowcast, rebuild the 12-month rate from NSA index levels incl. the month dropping out, find the monthly change the strike needs, and estimate it bottom-up: gas weight \u00d7 AAA/EIA change plus typical core and food.",
       "evidence": [
-        "kalshi:KXCPIYOY-26SEP-T3.6",
+        "kalshi:KXCPICOREYOY-26SEP-T2.4",
         "kalshi:KXCPIYOY-26SEP-T3.5",
-        "kalshi:KXCPICOREYOY-26SEP-T2.4"
+        "kalshi:KXCPIYOY-26SEP-T3.6"
       ],
       "added": "2026-10-15T00:07:54Z"
     },
     {
       "id": "R24",
       "category": "politics",
-      "rule": "For multi-seat or multi-candidate elections, report alongside polls the undecided share, joint tickets and endorsements, late dropouts and whom they backed, whether one side's vote splits across candidates, and dated past gaps between final polls and results there.",
+      "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
       "evidence": [
-        "polymarket:3662876"
+        "polymarket:3662876",
+        "polymarket:2487544"
       ],
       "added": "2026-10-07T00:11:51Z"
     },
@@ -227,10 +228,10 @@
       "category": "general",
       "rule": "Copy this question's threshold and measured quantity verbatim from its rules into the brief's first line, state the exact published value that resolves Yes (e.g. above 3.5% needs a printed 3.6%), don't reuse a sibling strike's math, and label other-basis figures as proxies.",
       "evidence": [
+        "kalshi:KXCPIYOY-26SEP-T3.5",
         "kalshi:KXDEEPSHARE-26OCT12-22.4",
         "kalshi:KXDEEPSHARE-26OCT12-22.6",
-        "kalshi:KXOPENSHARE-26OCT12-17.8",
-        "kalshi:KXCPIYOY-26SEP-T3.5"
+        "kalshi:KXOPENSHARE-26OCT12-17.8"
       ],
       "added": "2026-10-13T00:07:19Z"
     }
@@ -313,6 +314,8 @@
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+    "polymarket:2487543",
+    "polymarket:2487544",
     "polymarket:3662130",
     "polymarket:3662876",
     "polymarket:4052418",
@@ -333,6 +336,7 @@
     "polymarket:4868020",
     "polymarket:4868021",
     "polymarket:4868022",
+    "polymarket:4885967",
     "polymarket:4911446",
     "polymarket:4981247",
     "polymarket:5009022",
