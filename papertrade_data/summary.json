@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T17:52:43Z",
+  "generated": "2026-10-16T18:08:12Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T17:52:43Z",
+      "t": "2026-10-16T18:08:12Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1725,
+    "resolved": 1728,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20855531746031744,
-        "n": 1260
+        "brier": 0.20865657686212363,
+        "n": 1262
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22879802898550725,
-        "n": 1725
+        "brier": 0.22886643518518518,
+        "n": 1728
       },
       {
         "name": "claude_direct",
@@ -921,14 +921,14 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21075999682392588,
-        "n": 1187
+        "brier": 0.21085934196804038,
+        "n": 1189
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.146321294057971,
-        "n": 1725
+        "brier": 0.1465780392071759,
+        "n": 1728
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T17:50:17Z",
+    "ts": "2026-10-16T18:05:20Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1017,7 +1017,7 @@
     "problems": [],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1078,8 +1078,8 @@
       "unrealized": 0.0,
       "change": 196.7,
       "realized": 196.7,
-      "open": 40,
-      "open_cost": 1216.51,
+      "open": 41,
+      "open_cost": 1233.92,
       "settled": 15,
       "wins": 8,
       "losses": 7,
@@ -1883,7 +1883,7 @@
           100000.0
         ],
         [
-          "2026-10-16T17:52:43Z",
+          "2026-10-16T18:08:12Z",
           100000.0
         ]
       ]
@@ -2652,7 +2652,7 @@
           100196.7
         ],
         [
-          "2026-10-16T17:52:43Z",
+          "2026-10-16T18:08:12Z",
           100196.7
         ]
       ]
@@ -3421,7 +3421,7 @@
           100017.81
         ],
         [
-          "2026-10-16T17:52:43Z",
+          "2026-10-16T18:08:12Z",
           100017.81
         ]
       ]
@@ -3976,6 +3976,29 @@
           "p_side": 0.525,
           "edge": 0.0578,
           "opened": "2026-10-10T06:05:20Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXMENTIONEARNSFD-26OCT27-SIOU",
+      "question": "What will Smithfield Foods, Inc. say during their next earnings call? (Sioux Falls)",
+      "url": "https://kalshi.com/markets/kxmentionearnsfd/what-will-smithfield-foods-inc-say-during-their-next-earning/kxmentionearnsfd-26oct27",
+      "source": "kalshi",
+      "close_time": "2026-11-10T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 35,
+          "cost_per": 0.4974,
+          "total_cost": 17.41,
+          "p_side": 0.54,
+          "edge": 0.0426,
+          "opened": "2026-10-16T18:05:20Z",
           "value": null
         }
       ]
@@ -5231,6 +5254,34 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T18:07:44Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Will Elon Musk post 340-359 tweets from October 9 to October 16, 2026?",
+      "url": "https://polymarket.com/market/elon-musk-of-tweets-october-9-october-16-2026-340-359"
+    },
+    {
+      "ts": "2026-10-16T18:05:20Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.4974,
+      "amount": 17.41,
+      "p": 0.54,
+      "q": "What will Smithfield Foods, Inc. say during their next earnings call? (Sioux Falls)",
+      "url": "https://kalshi.com/markets/kxmentionearnsfd/what-will-smithfield-foods-inc-say-during-their-next-earning/kxmentionearnsfd-26oct27",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-16T18:05:20Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-16T17:50:17Z",
       "type": "scan",
       "fetched": 200,
@@ -5824,27 +5875,6 @@
       "ts": "2026-10-16T02:20:24Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-16T02:20:24Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T02:05:31Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-16T02:05:31Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5857,8 +5887,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1725,
-    "post_mortems": 86,
+    "reviewed": 1728,
+    "post_mortems": 87,
     "win_reviews": 42,
     "calibration": [
       {
@@ -5875,9 +5905,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 430,
+        "n": 432,
         "predicted": 0.49,
-        "actual": 0.526
+        "actual": 0.525
       },
       {
         "range": "60\u201380%",
@@ -5895,7 +5925,7 @@
     "root_causes": {
       "overconfident": 30,
       "unlucky": 29,
-      "missing_info": 11,
+      "missing_info": 12,
       "stale_info": 7,
       "research_error": 6,
       "misread_rules": 3
@@ -5906,6 +5936,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Elon Musk post 340-359 tweets from October 9 to October 16, 2026?",
+        "url": "https://polymarket.com/market/elon-musk-of-tweets-october-9-october-16-2026-340-359",
+        "outcome": "yes",
+        "category": "culture",
+        "p": 0.4,
+        "market": 0.0645,
+        "ts": "2026-10-16T18:07:44Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "Musk's count for Oct 9\u201316, 2026 landed in the 340\u2013359 bracket, so the market resolved YES. His pace stayed near the roughly 46\u201350 posts a day of the Oct 2\u20139 week (about 324 posts), not the 28\u201331 a day of late September. At judgment the market priced YES at only 6.45%; the researched forecast said 40% and the no-research forecast said 14%.",
+        "what_we_missed": "The forecast was right to be well above the market, but it still leaned the wrong way. It never got the live XTracker count for the first roughly 28 hours of the window (judged Oct 10 15:50Z), which would have shown whether he was on a ~340+ pace. It also weighed the old Sept 29\u2013Oct 6 rate (200\u2013219, from an unverified auto-generated page) against the newer and more relevant Oct 2\u20139 rate of about 324. The no-research forecast of 14% was anchored on the stale lower rate. The only outside snapshot I found was a third-party (PredScope) page from Oct 6, before the window opened, which favored 180\u20132",
+        "what_worked": "",
+        "lesson": "For Musk tweet-count brackets judged partway through the window, pull the live in-window XTracker count and project it forward, putting most of the weight on the most recent 7 days rather than older weekly results.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For any Musk post-count market judged after the window opens, require fetching the current xtracker.polymarket.com count and elapsed time, and compute a projected total with a variance band before forecasting."
+        }
+      },
       {
         "question": "Will Elon Musk post 280-299 tweets from October 9 to October 16, 2026?",
         "url": "https://polymarket.com/market/elon-musk-of-tweets-october-9-october-16-2026-280-299",
@@ -6004,26 +6054,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For any economic-data question judged within about two weeks of the release, require research to collect the consensus forecast (Bloomberg/Reuters/CNBC preview) and the Cleveland Fed nowcast."
-        }
-      },
-      {
-        "question": "Will CPI Core rise more than 0.2% in September? (Above 0.2%)",
-        "url": "https://kalshi.com/markets/kxcpicore/will-cpi-core-rise-more-than-0-2-in-september/kxcpicore-26sep",
-        "outcome": "yes",
-        "category": "economy",
-        "p": 0.3,
-        "market": 0.365,
-        "ts": "2026-10-14T13:52:20Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "September 2026 core CPI, released October 14, rose 0.3% m/m (2.6% y/y), beating the 0.2% consensus (2.5% y/y), so the question resolved YES. Headline CPI rose 0.6% m/m and 3.7% y/y. Gasoline jumped 9.1%, which BLS said was about half the headline gain; CNBC tied the energy surge to the U.S.\u2013Iran conflict.",
-        "what_we_missed": "No source we found showed this before the release: every preview (Cleveland Fed, TD, Continuum) had core at 0.2%. Some signals did point up and deserved more weight. August core had already beaten consensus at 0.3%, TD flagged upside risk, and a large energy shock can pass through to core via transport and airfares. The forecaster's 0.30 was below the market's 0.365 when those signals argued for at least matching it.",
-        "what_worked": "",
-        "lesson": "When consensus core is 0.2% in an energy-shock month that follows a core beat, treat a print of 0.25% or more (which rounds to 0.3%) as roughly a coin flip, not a 30% outcome, and don't price below the market without specific downside evidence.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For monthly CPI threshold questions, pull the unrounded nowcast and the recent run of beats and misses against consensus, and estimate the rounding odds explicitly instead of anchoring on the headline 0.2% consensus."
         }
       }
     ],
@@ -6382,9 +6412,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0622,
-      "b": 0.1287,
-      "n": 1260,
+      "a": 1.0617,
+      "b": 0.129,
+      "n": 1262,
       "active": true,
       "need": 300
     },
@@ -6439,14 +6469,14 @@
       },
       {
         "category": "culture",
-        "n": 127,
-        "jev_plain": 0.1727,
-        "market": 0.064,
-        "jev_research": 0.1388,
+        "n": 130,
+        "jev_plain": 0.1749,
+        "market": 0.0693,
+        "jev_research": 0.1433,
         "claude_direct": 0.0324,
-        "n_jev_plain": 127,
-        "n_market": 127,
-        "n_jev_research": 58,
+        "n_jev_plain": 130,
+        "n_market": 130,
+        "n_jev_research": 60,
         "n_claude_direct": 14
       },
       {
@@ -7027,7 +7057,7 @@
     ],
     "suggested_areas": {
       "gates": 54,
-      "research": 57,
+      "research": 58,
       "questions": 3
     },
     "retro": {
