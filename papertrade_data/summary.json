@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T08:53:04Z",
+  "generated": "2026-10-16T09:08:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-16T08:53:04Z",
+      "t": "2026-10-16T09:08:29Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-16T08:50:27Z",
+    "ts": "2026-10-16T09:05:27Z",
     "stages": [
       [
         "Fetched",
@@ -1875,7 +1875,7 @@
           100000.0
         ],
         [
-          "2026-10-16T08:53:04Z",
+          "2026-10-16T09:08:29Z",
           100000.0
         ]
       ]
@@ -2636,7 +2636,7 @@
           100168.19
         ],
         [
-          "2026-10-16T08:53:04Z",
+          "2026-10-16T09:08:29Z",
           100168.19
         ]
       ]
@@ -3397,7 +3397,7 @@
           99980.19
         ],
         [
-          "2026-10-16T08:53:04Z",
+          "2026-10-16T09:08:29Z",
           99980.19
         ]
       ]
@@ -5223,6 +5223,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-16T09:08:24Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-16T09:05:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-16T08:50:27Z",
       "type": "scan",
       "fetched": 200,
@@ -5788,22 +5801,6 @@
     },
     {
       "ts": "2026-10-15T18:50:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-15T18:35:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-15T18:20:34Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -6995,17 +6992,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-15T21:07:49Z",
-      "headline": "For the third review running, the pipeline judged no markets in 48 cycles and showed only three locked strategies, so there is nothing we can tune; the one useful step is to get it fixed.",
+      "ts": "2026-10-16T09:07:59Z",
+      "headline": "For a fifth review in a row the system is broken: 48 cycles judged no markets, main, original and every Jev or Claude strategy are missing from the report, and the three strategies shown are all locked, so nothing can be tuned and I am proposing no new changes until Joey's fix (p46/p47) is in.",
       "went_well": [
-        "Mention markets, NO side is up $168 on $2,072 staked (about +$8 per $100), with 7 wins in 12 settled bets. 12 is far too few to call this a finding, and 43 bets are still open.",
-        "Its 30-60c bets are +$143 on 8 settled (4 wins, 4 losses). Bets at 60c and up are +$26 on 4 (3 wins). It has no bets under 30c, so the long-shot problem does not arise here.",
-        "In sports, Claude direct roughly ties the market (Brier 0.178 vs 0.181 on 201 markets), and its measured skill is slightly positive (lambda 0.0039 on 806 markets). It is still the only forecaster close to the market anywhere it bets in volume."
+        "Mention markets, NO side is the only strategy with settled results. It is +$168 on 12 settled bets, 7 won and 5 lost, about +$21 per $100 of settled stake. Bets at 30-60c made +$143 on 8, with 4 wins. That is far too few to call it skill; it is an experiment going the right way.",
+        "In sports, Claude direct still slightly beats the market price: Brier 0.178 against 0.181 on 201 markets. That gap is small enough to be noise, but no other category or forecaster comes close.",
+        "No long shots were bought. All of the mention bets were at 30c or more, so the 30c floor is holding where we can see it."
       ],
       "went_badly": [
-        "No forecasts are being made: 48 cycles judged 0 markets and researched 0. Main, original, calibrated, bold, Claude direct and every challenger are again missing from the review, and the yardstick is empty. We cannot tell whether tuning main pays.",
-        "The market still beats every forecaster. All time it scores 0.147 against Claude direct's 0.176 (345 markets) and Jev + research's 0.208 (1,250). On the 806 markets all of them forecast, it scores 0.162, against 0.201 for Claude direct and 0.219 for Jev + research.",
-        "Sharp's records still contradict each other. Its live rules show a 3c edge requirement at rules_version 1, though the change to 2c was logged as version 2 on 10-11. Its record shows 0 settled bets, but its gate ledger shows 1 settled loss. It placed only 2 bets this half-day, short of the 1-a-day ta"
+        "The market still beats every forecaster we run. On the 810 markets all of them forecast, the market scores 0.163, Claude direct 0.202, Jev + research 0.219 and Jev alone 0.246 (lower is better). Every skill score except Claude's is 0, and Claude's is a tiny 0.0035, so almost every bet is still a sma",
+        "The judging pipeline is still down: 0 markets judged in 48 cycles. Main, original and every challenger are still missing from the report, and the yardstick comparison is empty. We cannot judge main's 12c edge change or any of the other applied tunes (p23, p26, p27, p29).",
+        "Sharp's figures disagree with each other. The report shows rules version 1 with a 3c edge, yet a change to 2c was logged on 10-11. Its record shows 2 open bets and 0 settled, but its gate ledger shows 1 settled loss. Its minimum price is 20c, below the 30c floor, and its skill score is -2.56 on 48 m"
       ]
     },
     "auto_start": true,
