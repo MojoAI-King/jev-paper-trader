@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17T16:37:54Z",
+  "generated": "2026-10-17T16:52:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-17T16:37:54Z",
+      "t": "2026-10-17T16:52:56Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,62 +898,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1739,
+    "resolved": 1740,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20845453112687154,
-        "n": 1269
+        "brier": 0.20829543307086618,
+        "n": 1270
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2295972397929845,
-        "n": 1739
+        "brier": 0.22954827586206897,
+        "n": 1740
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.17529860115606938,
-        "n": 346
+        "brier": 0.17481186167146975,
+        "n": 347
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21070392785953176,
-        "n": 1196
+        "brier": 0.21053224405179616,
+        "n": 1197
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1468761562679701,
-        "n": 1739
+        "brier": 0.1467945607758621,
+        "n": 1740
       }
     ],
     "paired": {
-      "n": 814,
+      "n": 815,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16260817045454543
+          "brier": 0.1624146634969325
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21810651105651108
+          "brier": 0.21784674846625765
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20067530712530715
+          "brier": 0.20043693251533742
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2448144963144963
+          "brier": 0.2446912883435583
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-17T16:35:20Z",
+    "ts": "2026-10-17T16:50:20Z",
     "stages": [
       [
         "Fetched",
@@ -1885,7 +1885,7 @@
           100000.0
         ],
         [
-          "2026-10-17T16:37:54Z",
+          "2026-10-17T16:52:56Z",
           100000.0
         ]
       ]
@@ -2654,7 +2654,7 @@
           100196.7
         ],
         [
-          "2026-10-17T16:37:54Z",
+          "2026-10-17T16:52:56Z",
           100196.7
         ]
       ]
@@ -3423,7 +3423,7 @@
           100017.81
         ],
         [
-          "2026-10-17T16:37:54Z",
+          "2026-10-17T16:52:56Z",
           100017.81
         ]
       ]
@@ -5451,6 +5451,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-17T16:50:20Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-17T16:50:20Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-17T16:35:20Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5953,19 +5966,6 @@
       "ts": "2026-10-17T07:05:42Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-17T07:05:42Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-17T06:50:38Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -5978,15 +5978,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1739,
+    "reviewed": 1740,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 162,
-        "predicted": 0.138,
-        "actual": 0.179
+        "n": 163,
+        "predicted": 0.137,
+        "actual": 0.178
       },
       {
         "range": "20\u201340%",
@@ -6488,9 +6488,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0621,
-      "b": 0.1235,
-      "n": 1269,
+      "a": 1.0632,
+      "b": 0.1236,
+      "n": 1270,
       "active": true,
       "need": 300
     },
@@ -6509,15 +6509,15 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 888,
-        "jev_research": 0.2038,
-        "jev_plain": 0.2281,
-        "market": 0.1814,
-        "claude_direct": 0.1781,
-        "n_jev_research": 730,
-        "n_jev_plain": 888,
-        "n_market": 888,
-        "n_claude_direct": 201
+        "n": 889,
+        "jev_research": 0.2036,
+        "jev_plain": 0.228,
+        "market": 0.1812,
+        "claude_direct": 0.1773,
+        "n_jev_research": 731,
+        "n_jev_plain": 889,
+        "n_market": 889,
+        "n_claude_direct": 202
       },
       {
         "category": "other",
