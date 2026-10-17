@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17T08:53:16Z",
+  "generated": "2026-10-17T09:08:31Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-17T08:53:16Z",
+      "t": "2026-10-17T09:08:31Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-17T08:50:36Z",
+    "ts": "2026-10-17T09:05:37Z",
     "stages": [
       [
         "Fetched",
@@ -1885,7 +1885,7 @@
           100000.0
         ],
         [
-          "2026-10-17T08:53:16Z",
+          "2026-10-17T09:08:31Z",
           100000.0
         ]
       ]
@@ -2654,7 +2654,7 @@
           100196.7
         ],
         [
-          "2026-10-17T08:53:16Z",
+          "2026-10-17T09:08:31Z",
           100196.7
         ]
       ]
@@ -3423,7 +3423,7 @@
           100017.81
         ],
         [
-          "2026-10-17T08:53:16Z",
+          "2026-10-17T09:08:31Z",
           100017.81
         ]
       ]
@@ -5451,6 +5451,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-17T09:08:27Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-17T09:05:37Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-17T09:05:37Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-17T08:50:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5970,31 +5988,6 @@
       "q": "What will Mike Sicilia say during Oracle AI World \u2014 Oracle: Where AI Means Business originally scheduled for October 26, 2026? (AI Agent Studio)",
       "url": "https://kalshi.com/markets/kxorclmention/what-will-mike-sicilia-say-during-oracle-ai-world-oracle-whe/kxorclmention-26oct26",
       "probe": true
-    },
-    {
-      "ts": "2026-10-16T23:50:16Z",
-      "type": "bet",
-      "strategy": "mention_follow",
-      "side": "no",
-      "price": 0.7731,
-      "amount": 77.31,
-      "p": 0.86,
-      "q": "What will Jay Parikh say during GitHub Universe 2026 \u2014 Opening Keynote originally scheduled for October 28, 2026? (GitHub Advanced Security)",
-      "url": "https://kalshi.com/markets/kxmsftmention/what-will-jay-parikh-say-during-github-universe-2026-opening/kxmsftmention-26oct28",
-      "probe": true
-    },
-    {
-      "ts": "2026-10-16T23:50:16Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-16T23:50:16Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 3
     }
   ],
   "plan_usage": {
@@ -7166,17 +7159,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-16T21:08:04Z",
-      "headline": "A third straight half-day with nothing to tune: 48 cycles judged no markets, and every strategy in the report is locked. Only the two mention strategies are settling bets, and they are slightly ahead on 17 resolved markets, which is still noise.",
+      "ts": "2026-10-17T09:08:08Z",
+      "headline": "For the fifth review in a row the system is not healthy: 48 cycles judged no markets, only three locked strategies were reported, and sharp's live rules and ledger contradict the change log, so there is nothing safe or useful to tune and no new proposals.",
       "went_well": [
-        "mention_no is up $196.70 on 15 settled bets (8 wins, 7 losses). It added 3 new bets this half-day and has 43 still open. That is under 30 resolved markets, so it is an experiment, not a finding.",
-        "mention_no's 30-60c bets made +$173 on $569 staked (10 settled, 5 wins). Its 60c-and-up bets made +$23 on 5. It has placed no long shots, so the 30c floor is holding.",
-        "mention_follow is up $17.81 on 2 settled bets (1 win), with 6 open. That is far too few to say anything."
+        "Mention markets, NO side is up $197 on 15 settled bets (8 wins, 7 losses), about +$23 per $100 of settled stake. Its 30-60c bets made +$173 on 10 and its 60c-and-up bets +$23 on 5. Fifteen results is mostly noise, so this is a promising experiment, not a finding.",
+        "The mention strategies are the only part of the system still placing bets: 4 (NO side) and 3 (follow) in the last half day, with 5 markets resolved and reviewed. Mention follow is +$18 on 2 settled bets, which tells us nothing yet.",
+        "The 30c floor is holding: none of the three reported strategies has bought a long shot under 30c."
       ],
       "went_badly": [
-        "48 cycles judged 0 markets and researched 0. Jev and Claude are producing no new forecasts. The market price still beats every forecaster: all time, market 0.147 against Claude direct 0.175 and Jev + research 0.209. On 813 paired markets, market 0.163 against Claude 0.201.",
-        "Main, original, calibrated, bold, claude_direct and the challengers are still missing from the report, and the yardstick is empty. So we cannot judge any of the changes made on 10-03 to 10-11, including p23, p29 and p26.",
-        "Sharp's records still disagree with each other. Its live rules show version 1 with a 3c edge, five days after the 2c change was logged as applied. Its strategy record shows 2 open bets and 0 settled, but its gate ledger shows 1 settled loss at -$100 per $100. Its skill estimate is -2.56 on 48 market"
+        "Judging is still stalled. In 48 cycles no market was judged and none was researched, so none of the Jev or Claude strategies could place a bet, and no forecaster scores changed.",
+        "Main, original, bold, calibrated, claude_direct and every challenger are missing from the report again, and the yardstick is empty. We cannot tell whether tuning main pays, or whether any of the changes from 3-11 October worked.",
+        "Sharp's numbers contradict each other. Its live rules show min_edge 0.03 at rules version 1, although the log says it was changed to 0.02 as version 2 on 11 October. Its record shows 2 open bets and nothing settled, but its gate ledger shows 1 settled loss (-$100 per $100), and its skill estimate (-"
       ]
     },
     "auto_start": true,
