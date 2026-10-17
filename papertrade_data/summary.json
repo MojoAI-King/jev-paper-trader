@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17T03:53:38Z",
+  "generated": "2026-10-17T04:08:06Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-17T03:53:38Z",
+      "t": "2026-10-17T04:08:06Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1735,
+    "resolved": 1738,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2288463400576369,
-        "n": 1735
+        "brier": 0.22972238204833142,
+        "n": 1738
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14692229207492796,
-        "n": 1735
+        "brier": 0.1469590487629459,
+        "n": 1738
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-17T03:51:03Z",
+    "ts": "2026-10-17T04:05:39Z",
     "stages": [
       [
         "Fetched",
@@ -1885,7 +1885,7 @@
           100000.0
         ],
         [
-          "2026-10-17T03:53:38Z",
+          "2026-10-17T04:08:06Z",
           100000.0
         ]
       ]
@@ -2654,7 +2654,7 @@
           100196.7
         ],
         [
-          "2026-10-17T03:53:38Z",
+          "2026-10-17T04:08:06Z",
           100196.7
         ]
       ]
@@ -3423,7 +3423,7 @@
           100017.81
         ],
         [
-          "2026-10-17T03:53:38Z",
+          "2026-10-17T04:08:06Z",
           100017.81
         ]
       ]
@@ -5451,6 +5451,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-17T04:05:39Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-17T04:05:39Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-17T03:51:03Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -6003,26 +6016,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-16T19:05:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-16T18:50:17Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.4773,
-      "amount": 35.8,
-      "p": 0.525,
-      "q": "What will Steve Hilton say during Fox News: Saturday in America with Kayleigh McEnany originally scheduled for October 17, 2026? (Homeless / Homelessness)",
-      "url": "https://kalshi.com/markets/kxhiltonmention/what-will-steve-hilton-say-during-fox-news-saturday-in-ameri/kxhiltonmention-26oct17",
-      "probe": true
     }
   ],
   "plan_usage": {
@@ -6035,7 +6028,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1735,
+    "reviewed": 1738,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6578,13 +6571,13 @@
       },
       {
         "category": "other",
-        "n": 234,
-        "jev_plain": 0.2162,
-        "market": 0.1389,
+        "n": 235,
+        "jev_plain": 0.2179,
+        "market": 0.1393,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 234,
-        "n_market": 234,
+        "n_jev_plain": 235,
+        "n_market": 235,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
@@ -6648,12 +6641,12 @@
       },
       {
         "category": "world",
-        "n": 35,
-        "jev_plain": 0.2668,
-        "market": 0.0821,
+        "n": 37,
+        "jev_plain": 0.2952,
+        "market": 0.0849,
         "jev_research": 0.5326,
-        "n_jev_plain": 35,
-        "n_market": 35,
+        "n_jev_plain": 37,
+        "n_market": 37,
         "n_jev_research": 6
       },
       {
