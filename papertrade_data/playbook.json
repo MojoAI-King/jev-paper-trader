@@ -1,6 +1,6 @@
 {
-  "version": 19,
-  "updated": "2026-10-16T06:38:31Z",
+  "version": 20,
+  "updated": "2026-10-17T00:07:57Z",
   "rules": [
     {
       "id": "R1",
@@ -156,16 +156,6 @@
       "added": "2026-10-04T00:08:06Z"
     },
     {
-      "id": "R31",
-      "category": "culture",
-      "rule": "For post-count range questions, first get the in-window running count from the tracker named in the rules with its timestamp, hours left and current hourly pace, plus the subject's totals for recent windows of the same length; never deliver a brief with no count.",
-      "evidence": [
-        "polymarket:5223422",
-        "polymarket:5223516"
-      ],
-      "added": "2026-10-14T00:07:36Z"
-    },
-    {
       "id": "R27",
       "category": "culture",
       "rule": "For live-streamed challenge questions near the deadline, get the current attempt's status from the past 12 hours (stream VODs, streamers' socials, fan trackers): milestones reached, gear, deaths or resets, plus the participants' own past completions and times.",
@@ -218,25 +208,14 @@
       "category": "politics",
       "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
       "evidence": [
-        "polymarket:3662876",
-        "polymarket:2487544"
+        "polymarket:2487544",
+        "polymarket:3662876"
       ],
       "added": "2026-10-07T00:11:51Z"
-    },
-    {
-      "id": "R29",
-      "category": "general",
-      "rule": "Copy this question's threshold and measured quantity verbatim from its rules into the brief's first line, state the exact published value that resolves Yes (e.g. above 3.5% needs a printed 3.6%), don't reuse a sibling strike's math, and label other-basis figures as proxies.",
-      "evidence": [
-        "kalshi:KXCPIYOY-26SEP-T3.5",
-        "kalshi:KXDEEPSHARE-26OCT12-22.4",
-        "kalshi:KXDEEPSHARE-26OCT12-22.6",
-        "kalshi:KXOPENSHARE-26OCT12-17.8"
-      ],
-      "added": "2026-10-13T00:07:19Z"
     }
   ],
   "reviews_used": [
+    "kalshi:KXBTCD-26OCT1617-T82999.99",
     "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
     "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
     "kalshi:KXCONCACAFNLGAME-26OCT06ANTARU-ANT",
@@ -363,6 +342,8 @@
     "polymarket:5286105",
     "polymarket:5309160",
     "polymarket:5362505",
+    "polymarket:5362535",
+    "polymarket:5362547",
     "polymarket:5423683"
   ],
   "retired_ids": [
@@ -374,7 +355,9 @@
     "R18",
     "R20",
     "R22",
+    "R29",
     "R3",
+    "R31",
     "R4",
     "R5",
     "R6",
