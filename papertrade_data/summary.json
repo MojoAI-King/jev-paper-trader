@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T09:22:50Z",
+  "generated": "2026-10-18T09:38:08Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-18T09:22:50Z",
+      "t": "2026-10-18T09:38:08Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,62 +898,62 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1746,
+    "resolved": 1747,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20829543307086618,
-        "n": 1270
+        "brier": 0.20822250196695516,
+        "n": 1271
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22974083619702176,
-        "n": 1746
+        "brier": 0.22966794504865484,
+        "n": 1747
       },
       {
         "name": "claude_direct",
         "label": "Claude direct",
-        "brier": 0.17481186167146975,
-        "n": 347
+        "brier": 0.1747692988505747,
+        "n": 348
       },
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21053224405179616,
-        "n": 1197
+        "brier": 0.21046771379799664,
+        "n": 1198
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1473222140607102,
-        "n": 1746
+        "brier": 0.1473271956210647,
+        "n": 1747
       }
     ],
     "paired": {
-      "n": 815,
+      "n": 816,
       "left_out": 108,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1624146634969325
+          "brier": 0.1624068330269608
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21784674846625765
+          "brier": 0.21772144607843136
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20043693251533742
+          "brier": 0.2003873774509804
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2446912883435583
+          "brier": 0.24451691176470589
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-18T09:20:23Z",
+    "ts": "2026-10-18T09:35:27Z",
     "stages": [
       [
         "Fetched",
@@ -1887,7 +1887,7 @@
           100000.0
         ],
         [
-          "2026-10-18T09:22:50Z",
+          "2026-10-18T09:38:08Z",
           100000.0
         ]
       ]
@@ -2660,7 +2660,7 @@
           100160.9
         ],
         [
-          "2026-10-18T09:22:50Z",
+          "2026-10-18T09:38:08Z",
           100160.9
         ]
       ]
@@ -3433,7 +3433,7 @@
           100017.81
         ],
         [
-          "2026-10-18T09:22:50Z",
+          "2026-10-18T09:38:08Z",
           100017.81
         ]
       ]
@@ -5500,6 +5500,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-18T09:38:03Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-18T09:35:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-18T09:20:23Z",
       "type": "scan",
       "fetched": 200,
@@ -6088,19 +6101,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-17T17:50:23Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-17T17:50:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -6113,7 +6113,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1746,
+    "reviewed": 1747,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6125,7 +6125,7 @@
       },
       {
         "range": "20\u201340%",
-        "n": 456,
+        "n": 457,
         "predicted": 0.296,
         "actual": 0.276
       },
@@ -6623,9 +6623,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0632,
-      "b": 0.1236,
-      "n": 1270,
+      "a": 1.0641,
+      "b": 0.1226,
+      "n": 1271,
       "active": true,
       "need": 300
     },
@@ -6702,15 +6702,15 @@
       },
       {
         "category": "politics",
-        "n": 64,
-        "jev_research": 0.2673,
-        "jev_plain": 0.3307,
-        "market": 0.1395,
-        "claude_direct": 0.2551,
-        "n_jev_research": 47,
-        "n_jev_plain": 64,
-        "n_market": 64,
-        "n_claude_direct": 13
+        "n": 65,
+        "jev_research": 0.2642,
+        "jev_plain": 0.3272,
+        "market": 0.1398,
+        "claude_direct": 0.2483,
+        "n_jev_research": 48,
+        "n_jev_plain": 65,
+        "n_market": 65,
+        "n_claude_direct": 14
       },
       {
         "category": "weather",
@@ -7272,17 +7272,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-17T21:22:50Z",
-      "headline": "For the sixth review running the pipeline is still broken: 48 cycles judged no markets, the strategies that use Jev and Claude are missing from the report, and the only visible strategies are three locked ones, so there is nothing safe or useful to tune today.",
+      "ts": "2026-10-18T09:37:46Z",
+      "headline": "Another half-day with the system still broken: 48 cycles judged 0 markets, only the three locked strategies appear in the review, and nothing here can be tuned, so I propose no changes and leave Joey's triage (p46/p47) as the one thing that matters.",
       "went_well": [
-        "Mention markets, NO side is the one strategy still betting (2 new bets this half-day). It is +$161 on 16 settled bets (8 wins, 8 losses), about +$18 per $100 of the $891 settled stake. That is 16 results, so it is noise, not a finding.",
-        "Within that, mention_no's 30-60c bets are +$137 on 11 settled (+$23 per $100) and its 60c+ bets are +$23 on 5 (+$8 per $100). It has placed no long-shot bets, so the 30c floor is holding.",
-        "The follow-the-first-NO version is +$18 on 2 settled with 9 open. Two results tell us nothing yet, but it is placing bets."
+        "Mention markets, NO side is up $161 on 16 settled bets (8 wins, 8 losses). That is about +$18 per $100 on $891 settled stake. Coin-flip bets are +$137 on 11 and favourites +$23 on 5. With 16 results this is noise and not yet a finding.",
+        "Mention follow is +$18 on 2 settled bets (about +$25 per $100), with 9 still open. Two results tell us nothing yet.",
+        "The 30c floor is holding: none of the three visible strategies has placed a long-shot bet."
       ],
       "went_badly": [
-        "Judging is still dead: 0 markets judged and 0 researched in 48 cycles. Main, original, bold, calibrated, claude_direct and the Jev-alone strategies are still absent from the review, and the yardstick is empty, so we cannot tell whether tuning main pays.",
-        "Sharp's record doesn't add up. Its live rules show min_edge 0.03 at rules_version 1, although the 2026-10-11 change to 0.02 (version 2) is logged. Its gate ledger shows 1 settled loss, but its record shows 0 settled and 2 open. Its skill raw is -2.85 on 52 markets. All of this was already flagged in",
-        "No forecaster beats the market. Market Brier is 0.147 against Claude 0.175 (347 markets) and Jev + research 0.208 (1,270). On the 815 paired markets it is market 0.162, Claude 0.200, Jev + research 0.218. The only bright spot is Claude in sports, 0.177 vs the market's 0.181 on 202 markets, and that "
+        "Judging is still dead: 48 cycles, 0 markets judged, 0 researched and 0 bets recorded in the cycle summary. Main, original, bold, calibrated, claude_direct and every challenger are again missing from the review, so there is no yardstick and no way to judge any of the October rule changes.",
+        "Sharp's record contradicts itself. Its rules show version 1 with a 3c edge, although p33 set 2c on 10-11. Its card shows 2 open bets ($499) and 0 settled, while its gate ledger shows 1 settled loss. Its skill estimate has fallen to -3.19 on 64 markets, which is not a believable number.",
+        "We still don't beat the market. On 816 paired markets the market scores 0.162 Brier, against Claude 0.200, Jev + research 0.218 and Jev alone 0.245. Only Claude has a positive measured skill, and it is tiny (lambda 0.003, raw 0.028, se 0.077)."
       ]
     },
     "auto_start": true,
