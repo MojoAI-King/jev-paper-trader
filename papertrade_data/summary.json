@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T20:22:55Z",
+  "generated": "2026-10-18T20:37:31Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-18T20:22:55Z",
+      "t": "2026-10-18T20:37:31Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1748,
+    "resolved": 1750,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2296683638443936,
-        "n": 1748
+        "brier": 0.22961257142857144,
+        "n": 1750
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14748461713386726,
-        "n": 1748
+        "brier": 0.147487849,
+        "n": 1750
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-18T20:20:18Z",
+    "ts": "2026-10-18T20:35:19Z",
     "stages": [
       [
         "Fetched",
@@ -1032,7 +1032,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 100000.0,
+      "equity": 99500.72,
       "slot": 2,
       "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3\u00a2 below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against. Its one bet so far (Oct 10, a touchdown market priced with a team's win odds by a matching bug fixed that day) was cancelled and refunded; it stays on record.",
       "challenger": false,
@@ -1043,17 +1043,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 100000.0,
+      "marked": 99500.72,
       "unrealized": 0.0,
-      "change": 0.0,
-      "realized": 0,
-      "open": 2,
-      "open_cost": 499.28,
-      "settled": 0,
+      "change": -499.28,
+      "realized": -499.28,
+      "open": 0,
+      "open_cost": 0,
+      "settled": 2,
       "wins": 0,
-      "losses": 0,
+      "losses": 2,
       "won_amt": 0,
-      "lost_amt": 0
+      "lost_amt": -499.28
     },
     {
       "name": "mention_no",
@@ -1891,8 +1891,12 @@
           100000.0
         ],
         [
-          "2026-10-18T20:22:55Z",
-          100000.0
+          "2026-10-18T20:35:19Z",
+          99500.72
+        ],
+        [
+          "2026-10-18T20:37:31Z",
+          99500.72
         ]
       ]
     },
@@ -2668,7 +2672,11 @@
           100143.21
         ],
         [
-          "2026-10-18T20:22:55Z",
+          "2026-10-18T20:35:19Z",
+          100143.21
+        ],
+        [
+          "2026-10-18T20:37:31Z",
           100143.21
         ]
       ]
@@ -3445,59 +3453,17 @@
           100018.37
         ],
         [
-          "2026-10-18T20:22:55Z",
+          "2026-10-18T20:35:19Z",
+          100018.37
+        ],
+        [
+          "2026-10-18T20:37:31Z",
           100018.37
         ]
       ]
     }
   ],
   "open_bets": [
-    {
-      "key": "kalshi:KXNFLGAME-26OCT18CARPHI-CAR",
-      "question": "Carolina wins",
-      "url": "https://kalshi.com/markets/kxnflgame/carolina-wins/kxnflgame-26oct18carphi",
-      "source": "kalshi",
-      "close_time": "2026-10-20T17:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "sharp",
-          "side": "no",
-          "contracts": 599,
-          "cost_per": 0.4167,
-          "total_cost": 249.6,
-          "p_side": 0.4879,
-          "edge": 0.0712,
-          "opened": "2026-10-15T17:05:21Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXNFLGAME-26OCT18CARPHI-PHI",
-      "question": "Philadelphia wins",
-      "url": "https://kalshi.com/markets/kxnflgame/philadelphia-wins/kxnflgame-26oct18carphi",
-      "source": "kalshi",
-      "close_time": "2026-10-20T17:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "sharp",
-          "side": "yes",
-          "contracts": 585,
-          "cost_per": 0.4268,
-          "total_cost": 249.68,
-          "p_side": 0.4879,
-          "edge": 0.0611,
-          "opened": "2026-10-15T17:05:21Z",
-          "value": null
-        }
-      ]
-    },
     {
       "key": "kalshi:KXFEDMENTION-26OCT-UNCH",
       "question": "Will Kevin Warsh say Unchanged at his Oct 2026 press conference?",
@@ -4742,6 +4708,38 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXNFLGAME-26OCT18CARPHI-CAR",
+      "question": "Carolina wins",
+      "url": "https://kalshi.com/markets/kxnflgame/carolina-wins/kxnflgame-26oct18carphi",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 249.6,
+      "cost_per": 0.4167,
+      "p_side": 0.4879,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -249.6,
+      "opened": "2026-10-15T17:05:21Z",
+      "settled": "2026-10-18T20:35:19Z",
+      "strategy": "sharp"
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26OCT18CARPHI-PHI",
+      "question": "Philadelphia wins",
+      "url": "https://kalshi.com/markets/kxnflgame/philadelphia-wins/kxnflgame-26oct18carphi",
+      "source": "kalshi",
+      "side": "yes",
+      "total_cost": 249.68,
+      "cost_per": 0.4268,
+      "p_side": 0.4879,
+      "outcome": "no",
+      "payout": 0.0,
+      "pnl": -249.68,
+      "opened": "2026-10-15T17:05:21Z",
+      "settled": "2026-10-18T20:35:19Z",
+      "strategy": "sharp"
+    },
+    {
       "key": "kalshi:KXBERNIEMENTION-26OCT17-SSEC",
       "question": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Tampa originally scheduled for October 17, 2026? (Social Security)",
       "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct17",
@@ -5027,38 +5025,6 @@
       "pnl": -37.59,
       "opened": "2026-10-10T18:35:11Z",
       "settled": "2026-10-13T15:20:22Z",
-      "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXEARNINGSMENTIONDPZ-26OCT15-WORL",
-      "question": "What will Dominos say during their next earnings call? (World Cup)",
-      "url": "https://kalshi.com/markets/kxearningsmentiondpz/what-will-dominos-say-during-their-next-earnings-call/kxearningsmentiondpz-26oct15",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 249.72,
-      "cost_per": 0.5574,
-      "p_side": 0.645,
-      "outcome": "no",
-      "payout": 448.0,
-      "pnl": 198.28,
-      "opened": "2026-10-10T18:50:17Z",
-      "settled": "2026-10-13T15:05:23Z",
-      "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXSECPRESSMENTION-26OCT27-HURR",
-      "question": "Will the White House Press Secretary say Hurricane / Isaias at her next press briefing?",
-      "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-hurricane-isaias-at/kxsecpressmention-26oct27",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 7.25,
-      "cost_per": 0.7247,
-      "p_side": 0.755,
-      "outcome": "no",
-      "payout": 10.0,
-      "pnl": 2.75,
-      "opened": "2026-10-12T22:05:24Z",
-      "settled": "2026-10-13T15:05:23Z",
       "strategy": "mention_no"
     }
   ],
@@ -5497,6 +5463,30 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-18T20:35:19Z",
+      "type": "loss",
+      "strategy": "sharp",
+      "amount": -249.6,
+      "q": "Carolina wins",
+      "url": "https://kalshi.com/markets/kxnflgame/carolina-wins/kxnflgame-26oct18carphi"
+    },
+    {
+      "ts": "2026-10-18T20:35:19Z",
+      "type": "loss",
+      "strategy": "sharp",
+      "amount": -249.68,
+      "q": "Philadelphia wins",
+      "url": "https://kalshi.com/markets/kxnflgame/philadelphia-wins/kxnflgame-26oct18carphi"
+    },
+    {
+      "ts": "2026-10-18T20:35:19Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-18T20:20:18Z",
       "type": "scan",
@@ -6113,30 +6103,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-18T02:20:19Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-18T02:05:18Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-18T01:50:19Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -6149,7 +6115,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1748,
+    "reviewed": 1750,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6692,13 +6658,13 @@
       },
       {
         "category": "other",
-        "n": 236,
-        "jev_plain": 0.2173,
-        "market": 0.1389,
+        "n": 238,
+        "jev_plain": 0.217,
+        "market": 0.139,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 236,
-        "n_market": 236,
+        "n_jev_plain": 238,
+        "n_market": 238,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
