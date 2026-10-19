@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T22:07:10Z",
+  "generated": "2026-10-19T22:22:42Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-19T22:07:10Z",
+      "t": "2026-10-19T22:22:42Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1780,
+    "resolved": 1781,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22903713483146068,
-        "n": 1780
+        "brier": 0.22902734418865806,
+        "n": 1781
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14769340491573033,
-        "n": 1780
+        "brier": 0.14768943613138685,
+        "n": 1781
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-19T22:05:04Z",
+    "ts": "2026-10-19T22:20:09Z",
     "stages": [
       [
         "Fetched",
@@ -1911,7 +1911,7 @@
           99500.72
         ],
         [
-          "2026-10-19T22:07:10Z",
+          "2026-10-19T22:22:42Z",
           99500.72
         ]
       ]
@@ -2708,7 +2708,7 @@
           100091.23
         ],
         [
-          "2026-10-19T22:07:10Z",
+          "2026-10-19T22:22:42Z",
           100091.23
         ]
       ]
@@ -3505,7 +3505,7 @@
           100026.88
         ],
         [
-          "2026-10-19T22:07:10Z",
+          "2026-10-19T22:22:42Z",
           100026.88
         ]
       ]
@@ -5305,6 +5305,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-19T22:22:37Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-19T22:20:09Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-19T22:05:04Z",
       "type": "scan",
       "fetched": 200,
@@ -5925,22 +5938,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-19T05:05:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-19T04:50:09Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5953,7 +5950,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1780,
+    "reviewed": 1781,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6496,13 +6493,13 @@
       },
       {
         "category": "other",
-        "n": 254,
+        "n": 255,
         "jev_plain": 0.2138,
         "market": 0.139,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 254,
-        "n_market": 254,
+        "n_jev_plain": 255,
+        "n_market": 255,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
@@ -7145,17 +7142,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-19T10:07:20Z",
-      "headline": "For another half day nothing could be tuned: 48 cycles judged no markets, main and the other Jev and Claude strategies are still missing from the review, and the three strategies shown are all locked forward tests, so the only useful moves are two new code checks.",
+      "ts": "2026-10-19T22:22:16Z",
+      "headline": "For a seventh straight review, nothing was forecast (0 markets judged in 48 cycles) and only the three locked strategies are reported, so there is nothing I can tune and I am proposing nothing new until judging and the missing strategies are restored (p46/p50).",
       "went_well": [
-        "Mention markets, NO side is up $135 on 22 settled bets, about +$15 per $100 of settled stake. That is under 30 bets, so it is noise, not a finding. Its 43 open bets will roughly triple the sample.",
-        "Mention markets, follow the first NO is up $35 on 4 settled bets (3 wins). It is a tiny sample.",
-        "The mention_prior source now has a positive skill estimate (lambda 0.08 on 308 markets), the first source other than Claude direct's tiny 0.003 to clear zero."
+        "Mention NO is up $91 on 26 settled bets, about +$9.5 per $100 of the $963 settled stake (9 wins, 17 losses). It is still under 30 markets, so this is noise, not a finding, and p48 says its win count doesn't fit its P&L.",
+        "Mention follow is up $27 on 5 settled (3 wins), about +$18 per $100. That is far too few bets to mean anything.",
+        "Claude direct still edges the market in sports (Brier 0.177 vs 0.183 on 202 markets), the only sizeable category where any of our forecasters is ahead."
       ],
       "went_badly": [
-        "Nothing was judged in 48 cycles, and main, original, bold, calibrated and Claude direct are still absent from the review. We can't judge any Jev or Claude strategy, and the yardstick is empty.",
-        "Sharp line has lost both of its bets (-$499 at 30-60c). Its record still shows min_edge 0.03 at rules version 1, although p33 logged a change to 0.02 as version 2 on 10-11, and the gate ledger counts 1 bet against 2 in its results.",
-        "The market still beats every forecaster. On the 816 paired markets it scores a Brier of 0.162, against 0.200 for Claude direct, 0.218 for Jev + research and 0.245 for Jev alone. No source has shown it can beat the price."
+        "Judging is still dead: 0 markets judged and 0 researched in 48 cycles. Main, original, bold, calibrated and claude_direct are missing again and the yardstick is empty, so we cannot tell whether any tuning pays.",
+        "Overall we do not beat the market. Its Brier is 0.162 against Claude direct's 0.200, Jev + research's 0.217 and Jev alone's 0.244 on 822 paired markets. Sharp has lost both its bets (-$499), and its skill estimate of -3.88 on 85 markets looks broken.",
+        "The records still disagree: sharp shows min_edge 0.03 at rules version 1 although v2 (0.02) is logged as applied. mention_prior's skill is now positive on 352 markets (lambda 0.0144), so Kelly sizing can start, but its standard error (0.31) is nearly three times the raw estimate (0.12). That is the "
       ]
     },
     "auto_start": true,
