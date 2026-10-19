@@ -663,6 +663,39 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p48",
+      "created": "2026-10-19T10:07:20Z",
+      "kind": "code",
+      "title": "Mention NO: wins and losses don't match its P&L",
+      "why": "In the 30-60c band, mention_no shows 5 wins and 11 losses on $631 staked, yet a profit of $111. With every price at or above the 30c floor, that is impossible unless the wins and losses are counted from the YES side or the P&L includes something else. Mention_follow's numbers do add up, so the fault looks specific to NO-side bets.",
+      "judge_by": "Joey confirms which figure is wrong. After the fix, recomputing each band from its bets gives P&L consistent with the win/loss counts and the prices paid, to within fees, for every strategy shown.",
+      "min_resolved": 22,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p49",
+      "created": "2026-10-19T10:07:20Z",
+      "kind": "code",
+      "title": "Check mention_prior's skill before Kelly sizing starts",
+      "why": "mention_prior just passed 300 markets with lambda 0.08, so mention_no moves from probe bets to Kelly sizing. But its standard error (0.34) is larger than its raw estimate (0.24), and mention_follow shows a raw 2.73 on only 11 markets, which suggests the estimator is unstable for these sources (see p31 and p42). This is the mention-source counterpart of p40.",
+      "judge_by": "Before mention_no's next Kelly-sized bet, a check either confirms the estimate (it stays positive when recomputed on settled bets only) or holds sizing at probe until the standard error is below the estimate.",
+      "min_resolved": 300,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p50",
+      "created": "2026-10-19T10:07:20Z",
+      "kind": "code",
+      "title": "p46 first: restore judging and the missing strategies",
+      "why": "This adds no new diagnostic. Every Jev and Claude tune since 10-11 is unjudgeable while cycles judge 0 markets and main, bold, calibrated and Claude direct don't appear. Further tuning or challengers are pointless until p46/p47 land, so this review proposes none.",
+      "judge_by": "The next review shows more than 0 markets judged in recent cycles, lists main and original with a non-empty yardstick, and shows sharp's live rules matching its logged version.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

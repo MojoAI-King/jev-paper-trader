@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T09:52:12Z",
+  "generated": "2026-10-19T10:07:58Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-19T09:52:12Z",
+      "t": "2026-10-19T10:07:58Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-19T09:50:16Z",
+    "ts": "2026-10-19T10:05:17Z",
     "stages": [
       [
         "Fetched",
@@ -1899,7 +1899,7 @@
           99500.72
         ],
         [
-          "2026-10-19T09:52:12Z",
+          "2026-10-19T10:07:58Z",
           99500.72
         ]
       ]
@@ -2684,7 +2684,7 @@
           100135.43
         ],
         [
-          "2026-10-19T09:52:12Z",
+          "2026-10-19T10:07:58Z",
           100135.43
         ]
       ]
@@ -3469,7 +3469,7 @@
           100035.0
         ],
         [
-          "2026-10-19T09:52:12Z",
+          "2026-10-19T10:07:58Z",
           100035.0
         ]
       ]
@@ -5361,6 +5361,40 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-19T10:07:53Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-19T10:07:20Z",
+      "type": "idea",
+      "text": "Mention NO: wins and losses don't match its P&L",
+      "status": "proposed",
+      "why": "In the 30-60c band, mention_no shows 5 wins and 11 losses on $631 staked, yet a profit of $111. With every price at or above the 30c floor, that is impossible unless the wins and losses are counted from the YES side or the P&L includes something else. Mention_follow's numbers do add up, so the fault"
+    },
+    {
+      "ts": "2026-10-19T10:07:20Z",
+      "type": "idea",
+      "text": "Check mention_prior's skill before Kelly sizing starts",
+      "status": "proposed",
+      "why": "mention_prior just passed 300 markets with lambda 0.08, so mention_no moves from probe bets to Kelly sizing. But its standard error (0.34) is larger than its raw estimate (0.24), and mention_follow shows a raw 2.73 on only 11 markets, which suggests the estimator is unstable for these sources (see p"
+    },
+    {
+      "ts": "2026-10-19T10:07:20Z",
+      "type": "idea",
+      "text": "p46 first: restore judging and the missing strategies",
+      "status": "proposed",
+      "why": "This adds no new diagnostic. Every Jev and Claude tune since 10-11 is unjudgeable while cycles judge 0 markets and main, bold, calibrated and Claude direct don't appear. Further tuning or challengers are pointless until p46/p47 land, so this review proposes none."
+    },
+    {
+      "ts": "2026-10-19T10:05:17Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-19T09:50:16Z",
       "type": "scan",
       "fetched": 200,
@@ -5960,46 +5994,6 @@
       "q": "What will JD Vance say during Midterm Rally in Hendersonville, North Carolina originally scheduled for October 19, 2026? (Tax on Tips / Tax on Overtime)",
       "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-hendersonvill/kxvancemention-26oct19",
       "probe": true
-    },
-    {
-      "ts": "2026-10-18T17:20:26Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-10-18T17:05:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-18T16:50:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-18T16:35:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-18T16:20:22Z",
-      "type": "loss",
-      "strategy": "mention_no",
-      "amount": -11.92,
-      "q": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Tampa originally scheduled for October 17, 2026? (Social Security)",
-      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct17"
     }
   ],
   "plan_usage": {
@@ -6648,6 +6642,39 @@
     ],
     "proposals": [
       {
+        "id": "p50",
+        "kind": "code",
+        "title": "p46 first: restore judging and the missing strategies",
+        "why": "This adds no new diagnostic. Every Jev and Claude tune since 10-11 is unjudgeable while cycles judge 0 markets and main, bold, calibrated and Claude direct don't appear. Further tuning or challengers are pointless until p46/p47 land, so this review proposes none.",
+        "judge_by": "The next review shows more than 0 markets judged in recent cycles, lists main and original with a non-empty yardstick, and shows sharp's live rules matching its logged version.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-19T10:07:20Z"
+      },
+      {
+        "id": "p49",
+        "kind": "code",
+        "title": "Check mention_prior's skill before Kelly sizing starts",
+        "why": "mention_prior just passed 300 markets with lambda 0.08, so mention_no moves from probe bets to Kelly sizing. But its standard error (0.34) is larger than its raw estimate (0.24), and mention_follow shows a raw 2.73 on only 11 markets, which suggests the estimator is unstable for these sources (see p31 and p42). This is the mention-source counterpart of p40.",
+        "judge_by": "Before mention_no's next Kelly-sized bet, a check either confirms the estimate (it stays positive when recomputed on settled bets only) or holds sizing at probe until the standard error is below the estimate.",
+        "min_resolved": 300,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-19T10:07:20Z"
+      },
+      {
+        "id": "p48",
+        "kind": "code",
+        "title": "Mention NO: wins and losses don't match its P&L",
+        "why": "In the 30-60c band, mention_no shows 5 wins and 11 losses on $631 staked, yet a profit of $111. With every price at or above the 30c floor, that is impossible unless the wins and losses are counted from the YES side or the P&L includes something else. Mention_follow's numbers do add up, so the fault looks specific to NO-side bets.",
+        "judge_by": "Joey confirms which figure is wrong. After the fix, recomputing each band from its bets gives P&L consistent with the win/loss counts and the prices paid, to within fees, for every strategy shown.",
+        "min_resolved": 22,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-19T10:07:20Z"
+      },
+      {
         "id": "p47",
         "kind": "code",
         "title": "One acceptance check for p46, and fold the duplicate diagnostics into it",
@@ -7171,17 +7198,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-18T21:52:20Z",
-      "headline": "Another half-day with a broken pipeline: no forecasts judged in 48 cycles, only the three locked strategies are reported, and the one new bet came from mention markets. I am proposing no rule changes until the triage in p46/p47 is done.",
+      "ts": "2026-10-19T10:07:20Z",
+      "headline": "For another half day nothing could be tuned: 48 cycles judged no markets, main and the other Jev and Claude strategies are still missing from the review, and the three strategies shown are all locked forward tests, so the only useful moves are two new code checks.",
       "went_well": [
-        "Mention markets, NO side is the only strategy here with a meaningful track record. It is +$143 on 18 settled bets (8 wins, 10 losses), about +$16 per $100 of settled stake. That is under 30 results, so it is an experiment, not a finding.",
-        "Within mention_no, 30-60c bets are +$120 on 13 (about +$19 per $100) and 60c-and-up bets are +$23 on 5. No long shots were bought, so the 30c floor is holding.",
-        "Mention, follow the first NO is +$18 on 3 settled bets (2 wins), with 8 still open. That is far too few to read."
+        "Mention markets, NO side is up $135 on 22 settled bets, about +$15 per $100 of settled stake. That is under 30 bets, so it is noise, not a finding. Its 43 open bets will roughly triple the sample.",
+        "Mention markets, follow the first NO is up $35 on 4 settled bets (3 wins). It is a tiny sample.",
+        "The mention_prior source now has a positive skill estimate (lambda 0.08 on 308 markets), the first source other than Claude direct's tiny 0.003 to clear zero."
       ],
       "went_badly": [
-        "The forecasting pipeline is still not working. This half-day had 48 cycles, 0 markets judged and 0 researched, and the only bet was one by mention_no. Main, original, bold, calibrated and claude_direct are again missing from the review, and the yardstick is empty, so we cannot say whether tuning mai",
-        "Sharp line has lost both its bets (-$499). Its record shows 2 bets, but the gate ledger shows 1, and its live rules show version 1 with a 3c edge, even though a change to v2 at 2c was logged on 2026-10-11. Its skill estimate is -3.58 on 75 markets. Its data is not trustworthy yet (p36, p39, p44, p45",
-        "The market still beats every forecaster on the same 816 markets (Brier scores, lower is better): market 0.162, Claude direct 0.200, Jev + research 0.218, Jev alone 0.245. Yet Claude direct's skill lambda is positive (0.0033, raw 0.028, standard error 0.077) on 816 markets, past the 300 threshold. If"
+        "Nothing was judged in 48 cycles, and main, original, bold, calibrated and Claude direct are still absent from the review. We can't judge any Jev or Claude strategy, and the yardstick is empty.",
+        "Sharp line has lost both of its bets (-$499 at 30-60c). Its record still shows min_edge 0.03 at rules version 1, although p33 logged a change to 0.02 as version 2 on 10-11, and the gate ledger counts 1 bet against 2 in its results.",
+        "The market still beats every forecaster. On the 816 paired markets it scores a Brier of 0.162, against 0.200 for Claude direct, 0.218 for Jev + research and 0.245 for Jev alone. No source has shown it can beat the price."
       ]
     },
     "auto_start": true,
@@ -7688,6 +7715,27 @@
         "title": "One acceptance check for p46, and fold the duplicate diagnostics into it",
         "why": "p35, p36, p38, p41, p43, p44 and p45 all describe the same failure: 0 markets judged in 48 cycles, missing strategies, and sharp's rules not matching the change log. Each review has added another near-duplicate instead of a fix. Every strategy we are allowed to tune is invisible, and the three we can see are locked, so tuning is blocked until this is fixed.",
         "created": "2026-10-15T21:07:49Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p48",
+        "title": "Mention NO: wins and losses don't match its P&L",
+        "why": "In the 30-60c band, mention_no shows 5 wins and 11 losses on $631 staked, yet a profit of $111. With every price at or above the 30c floor, that is impossible unless the wins and losses are counted from the YES side or the P&L includes something else. Mention_follow's numbers do add up, so the fault looks specific to NO-side bets.",
+        "created": "2026-10-19T10:07:20Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p49",
+        "title": "Check mention_prior's skill before Kelly sizing starts",
+        "why": "mention_prior just passed 300 markets with lambda 0.08, so mention_no moves from probe bets to Kelly sizing. But its standard error (0.34) is larger than its raw estimate (0.24), and mention_follow shows a raw 2.73 on only 11 markets, which suggests the estimator is unstable for these sources (see p31 and p42). This is the mention-source counterpart of p40.",
+        "created": "2026-10-19T10:07:20Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p50",
+        "title": "p46 first: restore judging and the missing strategies",
+        "why": "This adds no new diagnostic. Every Jev and Claude tune since 10-11 is unjudgeable while cycles judge 0 markets and main, bold, calibrated and Claude direct don't appear. Further tuning or challengers are pointless until p46/p47 land, so this review proposes none.",
+        "created": "2026-10-19T10:07:20Z",
         "status": "proposed"
       }
     ]
