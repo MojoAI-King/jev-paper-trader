@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T17:37:17Z",
+  "generated": "2026-10-19T17:52:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-19T17:37:17Z",
+      "t": "2026-10-19T17:52:14Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1772,
+    "resolved": 1773,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22937336343115125,
-        "n": 1772
+        "brier": 0.22925352509870275,
+        "n": 1773
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14784867988148984,
-        "n": 1772
+        "brier": 0.1477669970389171,
+        "n": 1773
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-19T17:35:19Z",
+    "ts": "2026-10-19T17:50:15Z",
     "stages": [
       [
         "Fetched",
@@ -1907,7 +1907,7 @@
           99500.72
         ],
         [
-          "2026-10-19T17:37:17Z",
+          "2026-10-19T17:52:14Z",
           99500.72
         ]
       ]
@@ -2700,7 +2700,7 @@
           100111.55
         ],
         [
-          "2026-10-19T17:37:17Z",
+          "2026-10-19T17:52:14Z",
           100111.55
         ]
       ]
@@ -3493,7 +3493,7 @@
           100026.88
         ],
         [
-          "2026-10-19T17:37:17Z",
+          "2026-10-19T17:52:14Z",
           100026.88
         ]
       ]
@@ -5293,6 +5293,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-19T17:50:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-19T17:35:19Z",
       "type": "scan",
       "fetched": 200,
@@ -5917,14 +5925,6 @@
       "amount": 16.63,
       "q": "What will Bernie Sanders say during Fighting Oligarchy: Where We Go From Here rally in Gainesville originally scheduled for October 18, 2026? (Immigrant / Immigration)",
       "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-where/kxberniemention-26oct18"
-    },
-    {
-      "ts": "2026-10-19T01:05:26Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5937,7 +5937,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1772,
+    "reviewed": 1773,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6560,14 +6560,14 @@
       },
       {
         "category": "tech",
-        "n": 33,
+        "n": 34,
         "jev_research": 0.3553,
-        "jev_plain": 0.2487,
-        "market": 0.0421,
+        "jev_plain": 0.2419,
+        "market": 0.0409,
         "claude_direct": 0.3962,
         "n_jev_research": 10,
-        "n_jev_plain": 33,
-        "n_market": 33,
+        "n_jev_plain": 34,
+        "n_market": 34,
         "n_claude_direct": 2
       }
     ],
