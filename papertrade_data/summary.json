@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T20:52:25Z",
+  "generated": "2026-10-19T21:07:35Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-19T20:52:25Z",
+      "t": "2026-10-19T21:07:35Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1775,
+    "resolved": 1777,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22919408450704226,
-        "n": 1775
+        "brier": 0.22913477771525043,
+        "n": 1777
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14775894971830986,
-        "n": 1775
+        "brier": 0.14771749338773213,
+        "n": 1777
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-19T20:50:16Z",
+    "ts": "2026-10-19T21:05:15Z",
     "stages": [
       [
         "Fetched",
@@ -1063,7 +1063,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 100111.55,
+      "equity": 100091.23,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1074,17 +1074,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 100111.55,
+      "marked": 100091.23,
       "unrealized": 0.0,
-      "change": 111.55,
-      "realized": 111.55,
-      "open": 41,
-      "open_cost": 1276.41,
-      "settled": 25,
+      "change": 91.23,
+      "realized": 91.23,
+      "open": 40,
+      "open_cost": 1256.09,
+      "settled": 26,
       "wins": 9,
-      "losses": 16,
+      "losses": 17,
       "won_amt": 418.35,
-      "lost_amt": -306.8
+      "lost_amt": -327.12
     },
     {
       "name": "mention_follow",
@@ -1907,7 +1907,11 @@
           99500.72
         ],
         [
-          "2026-10-19T20:52:25Z",
+          "2026-10-19T21:05:15Z",
+          99500.72
+        ],
+        [
+          "2026-10-19T21:07:35Z",
           99500.72
         ]
       ]
@@ -2700,8 +2704,12 @@
           100111.55
         ],
         [
-          "2026-10-19T20:52:25Z",
-          100111.55
+          "2026-10-19T21:05:15Z",
+          100091.23
+        ],
+        [
+          "2026-10-19T21:07:35Z",
+          100091.23
         ]
       ]
     },
@@ -3493,7 +3501,11 @@
           100026.88
         ],
         [
-          "2026-10-19T20:52:25Z",
+          "2026-10-19T21:05:15Z",
+          100026.88
+        ],
+        [
+          "2026-10-19T21:07:35Z",
           100026.88
         ]
       ]
@@ -3565,29 +3577,6 @@
           "p_side": 0.56,
           "edge": 0.0325,
           "opened": "2026-10-15T10:50:23Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXVANCEMENTION-26OCT19-TAXO",
-      "question": "What will JD Vance say during Midterm Rally in Hendersonville, North Carolina originally scheduled for October 19, 2026? (Tax on Tips / Tax on Overtime)",
-      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-hendersonvill/kxvancemention-26oct19",
-      "source": "kalshi",
-      "close_time": "2026-11-02T15:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 50,
-          "cost_per": 0.4065,
-          "total_cost": 20.32,
-          "p_side": 0.44,
-          "edge": 0.0335,
-          "opened": "2026-10-18T17:20:26Z",
           "value": null
         }
       ]
@@ -4560,6 +4549,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXVANCEMENTION-26OCT19-TAXO",
+      "question": "What will JD Vance say during Midterm Rally in Hendersonville, North Carolina originally scheduled for October 19, 2026? (Tax on Tips / Tax on Overtime)",
+      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-hendersonvill/kxvancemention-26oct19",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 20.32,
+      "cost_per": 0.4065,
+      "p_side": 0.44,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -20.32,
+      "opened": "2026-10-18T17:20:26Z",
+      "settled": "2026-10-19T21:05:15Z",
+      "strategy": "mention_no"
+    },
+    {
       "key": "kalshi:KXMELANIAMENTION-26OCT19-EDUC",
       "question": "What will Melania Trump say during Executive Order Signing Ceremony and Announcement originally scheduled for October 19, 2026? (Education)",
       "url": "https://kalshi.com/markets/kxmelaniamention/what-will-melania-trump-say-during-executive-order-signing-c/kxmelaniamention-26oct19",
@@ -4862,22 +4867,6 @@
       "opened": "2026-10-13T16:05:28Z",
       "settled": "2026-10-16T12:20:24Z",
       "strategy": "mention_follow"
-    },
-    {
-      "key": "kalshi:KXEARNINGSMENTIONMS-26OCT14-BASE",
-      "question": "What will Morgan Stanley say during their next earnings call? (Basel)",
-      "url": "https://kalshi.com/markets/kxearningsmentionms/what-will-morgan-stanley-say-during-their-next-earnings-call/kxearningsmentionms-26oct14",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 67.59,
-      "cost_per": 0.6759,
-      "p_side": 0.74,
-      "outcome": "no",
-      "payout": 100.0,
-      "pnl": 32.41,
-      "opened": "2026-10-10T18:50:17Z",
-      "settled": "2026-10-14T17:05:11Z",
-      "strategy": "mention_no"
     }
   ],
   "calls": [
@@ -5315,6 +5304,22 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-19T21:05:15Z",
+      "type": "loss",
+      "strategy": "mention_no",
+      "amount": -20.32,
+      "q": "What will JD Vance say during Midterm Rally in Hendersonville, North Carolina originally scheduled for October 19, 2026? (Tax on Tips / Tax on Overtime)",
+      "url": "https://kalshi.com/markets/kxvancemention/what-will-jd-vance-say-during-midterm-rally-in-hendersonvill/kxvancemention-26oct19"
+    },
+    {
+      "ts": "2026-10-19T21:05:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-19T20:50:16Z",
       "type": "scan",
@@ -5936,22 +5941,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-19T03:35:18Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-19T03:20:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5964,7 +5953,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1775,
+    "reviewed": 1777,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6507,13 +6496,13 @@
       },
       {
         "category": "other",
-        "n": 249,
-        "jev_plain": 0.2146,
-        "market": 0.1393,
+        "n": 251,
+        "jev_plain": 0.2143,
+        "market": 0.1391,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 249,
-        "n_market": 249,
+        "n_jev_plain": 251,
+        "n_market": 251,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
