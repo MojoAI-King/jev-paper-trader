@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T00:07:19Z",
+  "generated": "2026-10-19T00:22:32Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-19T00:07:19Z",
+      "t": "2026-10-19T00:22:32Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1759,
+    "resolved": 1760,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22941011938601477,
-        "n": 1759
+        "brier": 0.22929818181818182,
+        "n": 1760
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14786207262649234,
-        "n": 1759
+        "brier": 0.14781646917613636,
+        "n": 1760
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-19T00:05:19Z",
+    "ts": "2026-10-19T00:20:24Z",
     "stages": [
       [
         "Fetched",
@@ -1895,7 +1895,7 @@
           99500.72
         ],
         [
-          "2026-10-19T00:07:19Z",
+          "2026-10-19T00:22:32Z",
           99500.72
         ]
       ]
@@ -2676,7 +2676,7 @@
           100143.21
         ],
         [
-          "2026-10-19T00:07:19Z",
+          "2026-10-19T00:22:32Z",
           100143.21
         ]
       ]
@@ -3457,7 +3457,7 @@
           100018.37
         ],
         [
-          "2026-10-19T00:07:19Z",
+          "2026-10-19T00:22:32Z",
           100018.37
         ]
       ]
@@ -5464,6 +5464,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-19T00:20:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-19T00:05:19Z",
       "type": "scan",
       "fetched": 200,
@@ -6092,14 +6100,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-18T06:20:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -6112,7 +6112,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1759,
+    "reviewed": 1760,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6655,13 +6655,13 @@
       },
       {
         "category": "other",
-        "n": 246,
-        "jev_plain": 0.2156,
-        "market": 0.1396,
+        "n": 247,
+        "jev_plain": 0.2149,
+        "market": 0.1393,
         "jev_research": 0.2548,
         "claude_direct": 0.1922,
-        "n_jev_plain": 246,
-        "n_market": 246,
+        "n_jev_plain": 247,
+        "n_market": 247,
         "n_jev_research": 125,
         "n_claude_direct": 35
       },
