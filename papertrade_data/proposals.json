@@ -696,6 +696,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p51",
+      "created": "2026-10-20T22:37:31Z",
+      "kind": "code",
+      "title": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
+      "why": "mention_prior now has lambda 0.24 on 397 markets. That is past the 300-market threshold, so Mention NO has probably left probe bets for Kelly sizing. But the estimate rests on a raw edge of 0.42 with a standard error of 0.37, which is not distinguishable from zero. Its ledger may also be wrong: 6 wins in 21 bets at 30-60c are reported as +$114, which looks too high (p48). This makes p49 urgent rather than replacing it. Mention NO stays locked, so its rules are unchanged; this only holds its sizing at probe size.",
+      "judge_by": "Joey confirms either that Mention NO's win/loss counts reconcile with its P&L and the skill estimate is recomputed on the corrected ledger, or that sizing is held at probe size. After that, Mention NO's settled P&L per $100 stays at zero or better.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

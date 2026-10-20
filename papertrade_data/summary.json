@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T22:22:27Z",
+  "generated": "2026-10-20T22:38:04Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-20T22:22:27Z",
+      "t": "2026-10-20T22:38:04Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-20T22:20:09Z",
+    "ts": "2026-10-20T22:35:08Z",
     "stages": [
       [
         "Fetched",
@@ -1919,7 +1919,7 @@
           99500.72
         ],
         [
-          "2026-10-20T22:22:27Z",
+          "2026-10-20T22:38:04Z",
           99500.72
         ]
       ]
@@ -2724,7 +2724,7 @@
           100108.29
         ],
         [
-          "2026-10-20T22:22:27Z",
+          "2026-10-20T22:38:04Z",
           100108.29
         ]
       ]
@@ -3529,7 +3529,7 @@
           100026.88
         ],
         [
-          "2026-10-20T22:22:27Z",
+          "2026-10-20T22:38:04Z",
           100026.88
         ]
       ]
@@ -5306,6 +5306,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-20T22:38:00Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-20T22:37:31Z",
+      "type": "idea",
+      "text": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
+      "status": "proposed",
+      "why": "mention_prior now has lambda 0.24 on 397 markets. That is past the 300-market threshold, so Mention NO has probably left probe bets for Kelly sizing. But the estimate rests on a raw edge of 0.42 with a standard error of 0.37, which is not distinguishable from zero. Its ledger may also be wrong: 6 wi"
+    },
+    {
+      "ts": "2026-10-20T22:35:08Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-20T22:20:09Z",
       "type": "scan",
       "fetched": 200,
@@ -5917,30 +5937,6 @@
       "amount": -30.19,
       "q": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in El Paso originally scheduled for October 19, 2026? (Midterm)",
       "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-get-o/kxberniemention-26oct19b"
-    },
-    {
-      "ts": "2026-10-20T03:35:14Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T03:20:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T03:05:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -6589,6 +6585,17 @@
     ],
     "proposals": [
       {
+        "id": "p51",
+        "kind": "code",
+        "title": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
+        "why": "mention_prior now has lambda 0.24 on 397 markets. That is past the 300-market threshold, so Mention NO has probably left probe bets for Kelly sizing. But the estimate rests on a raw edge of 0.42 with a standard error of 0.37, which is not distinguishable from zero. Its ledger may also be wrong: 6 wins in 21 bets at 30-60c are reported as +$114, which looks too high (p48). This makes p49 urgent rather than replacing it. Mention NO stays locked, so its rules are unchanged; this only holds its sizing at probe size.",
+        "judge_by": "Joey confirms either that Mention NO's win/loss counts reconcile with its P&L and the skill estimate is recomputed on the corrected ledger, or that sizing is held at probe size. After that, Mention NO's settled P&L per $100 stays at zero or better.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-20T22:37:31Z"
+      },
+      {
         "id": "p50",
         "kind": "code",
         "title": "p46 first: restore judging and the missing strategies",
@@ -7145,17 +7152,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-20T10:37:24Z",
-      "headline": "A quiet half-day with almost no new information: one new bet, five markets resolved, nothing judged in 48 cycles, and only three strategies reported, all of them locked, so I am proposing nothing new and asking that p46/p50 (restore judging and the missing strategies) go first.",
+      "ts": "2026-10-20T22:37:31Z",
+      "headline": "A quiet half-day with the review still broken: Jev judged nothing in 47 cycles, only the three locked strategies are reported, and the market still beats every forecaster, so there is nothing to tune and the one urgent item is that mention_prior may now be sizing bets on a skill estimate we haven't ",
       "went_well": [
-        "Mention NO is slightly up: +$61 on 27 settled bets. It needs 30+ settled before this means anything, and its numbers don't add up (see below).",
-        "Mention follow is +$27 on 5 settled bets (3 wins, 2 losses). Five bets is pure noise.",
-        "Claude direct still edges the market in sports, 0.177 vs 0.183 Brier on 202 markets. That is the only category where any of our forecasters beats the price."
+        "Mention NO is up $108 on 28 settled bets (10 wins, 18 losses), about +$10 per $100 of settled stake. That is under 30 bets, so it is noise rather than a finding, and see p48 on whether its P&L is right.",
+        "Mention follow is 3 wins and 2 losses, +$27 on 5 settled bets. That is far too few to mean anything.",
+        "Mention NO's 30-60c bets are +$114 on 21, the only bucket with more than a handful of bets."
       ],
       "went_badly": [
-        "The market still beats every forecaster we have. On the 823 markets all sources share, the market scores 0.162, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244 (lower is better).",
-        "The pipeline still looks broken. 48 cycles judged 0 markets. Main, original and the other Jev and Claude strategies are missing, so the yardstick is empty. Sharp shows rules v1 with a 3c edge even though v2 (2c) was logged as applied. Its record shows 2 settled bets while the gate ledger shows 1, an",
-        "Two problems with the mention strategies. First, Mention NO's record doesn't match its P&L: 5 wins in 20 bets at 30-60c can't plausibly produce +$67 (p48). Second, mention_prior's lambda is now positive (0.024) on 363 markets, above the 300 needed for Kelly sizing to start, even though its standard "
+        "No forecaster beats the market. On 823 paired markets the market scores a Brier of 0.162, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244. Lower is better.",
+        "Jev judged 0 markets in 47 cycles, and main, original, bold, calibrated and the rest are still missing from the review. The yardstick is empty, so there is no way to say whether any earlier tuning paid. The triage items p46, p47 and p50 are still waiting.",
+        "Sharp is 0 for 2, losing $499 of $499 staked. Its live rules still show min_edge 0.03 at version 1, although p33 is logged as applied. Its gate ledger shows 1 bet against 2 settled, and its skill estimate has fallen to -3.83 on 89 markets."
       ]
     },
     "auto_start": true,
@@ -7683,6 +7690,13 @@
         "title": "p46 first: restore judging and the missing strategies",
         "why": "This adds no new diagnostic. Every Jev and Claude tune since 10-11 is unjudgeable while cycles judge 0 markets and main, bold, calibrated and Claude direct don't appear. Further tuning or challengers are pointless until p46/p47 land, so this review proposes none.",
         "created": "2026-10-19T10:07:20Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p51",
+        "title": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
+        "why": "mention_prior now has lambda 0.24 on 397 markets. That is past the 300-market threshold, so Mention NO has probably left probe bets for Kelly sizing. But the estimate rests on a raw edge of 0.42 with a standard error of 0.37, which is not distinguishable from zero. Its ledger may also be wrong: 6 wins in 21 bets at 30-60c are reported as +$114, which looks too high (p48). This makes p49 urgent rather than replacing it. Mention NO stays locked, so its rules are unchanged; this only holds its sizing at probe size.",
+        "created": "2026-10-20T22:37:31Z",
         "status": "proposed"
       }
     ]
