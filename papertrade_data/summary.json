@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T10:22:18Z",
+  "generated": "2026-10-20T10:37:50Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-20T10:22:18Z",
+      "t": "2026-10-20T10:37:50Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-20T10:20:11Z",
+    "ts": "2026-10-20T10:35:12Z",
     "stages": [
       [
         "Fetched",
@@ -1915,7 +1915,7 @@
           99500.72
         ],
         [
-          "2026-10-20T10:22:18Z",
+          "2026-10-20T10:37:50Z",
           99500.72
         ]
       ]
@@ -2716,7 +2716,7 @@
           100061.04
         ],
         [
-          "2026-10-20T10:22:18Z",
+          "2026-10-20T10:37:50Z",
           100061.04
         ]
       ]
@@ -3517,7 +3517,7 @@
           100026.88
         ],
         [
-          "2026-10-20T10:22:18Z",
+          "2026-10-20T10:37:50Z",
           100026.88
         ]
       ]
@@ -5317,6 +5317,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-20T10:37:46Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-20T10:35:12Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-20T10:20:11Z",
       "type": "scan",
       "fetched": 200,
@@ -5944,22 +5957,6 @@
       "amount": -13.14,
       "q": "What will Melania Trump say during Executive Order Signing Ceremony and Announcement originally scheduled for October 19, 2026? (Education)",
       "url": "https://kalshi.com/markets/kxmelaniamention/what-will-melania-trump-say-during-executive-order-signing-c/kxmelaniamention-26oct19"
-    },
-    {
-      "ts": "2026-10-19T16:20:17Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-19T16:05:13Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -7164,17 +7161,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-19T22:22:16Z",
-      "headline": "For a seventh straight review, nothing was forecast (0 markets judged in 48 cycles) and only the three locked strategies are reported, so there is nothing I can tune and I am proposing nothing new until judging and the missing strategies are restored (p46/p50).",
+      "ts": "2026-10-20T10:37:24Z",
+      "headline": "A quiet half-day with almost no new information: one new bet, five markets resolved, nothing judged in 48 cycles, and only three strategies reported, all of them locked, so I am proposing nothing new and asking that p46/p50 (restore judging and the missing strategies) go first.",
       "went_well": [
-        "Mention NO is up $91 on 26 settled bets, about +$9.5 per $100 of the $963 settled stake (9 wins, 17 losses). It is still under 30 markets, so this is noise, not a finding, and p48 says its win count doesn't fit its P&L.",
-        "Mention follow is up $27 on 5 settled (3 wins), about +$18 per $100. That is far too few bets to mean anything.",
-        "Claude direct still edges the market in sports (Brier 0.177 vs 0.183 on 202 markets), the only sizeable category where any of our forecasters is ahead."
+        "Mention NO is slightly up: +$61 on 27 settled bets. It needs 30+ settled before this means anything, and its numbers don't add up (see below).",
+        "Mention follow is +$27 on 5 settled bets (3 wins, 2 losses). Five bets is pure noise.",
+        "Claude direct still edges the market in sports, 0.177 vs 0.183 Brier on 202 markets. That is the only category where any of our forecasters beats the price."
       ],
       "went_badly": [
-        "Judging is still dead: 0 markets judged and 0 researched in 48 cycles. Main, original, bold, calibrated and claude_direct are missing again and the yardstick is empty, so we cannot tell whether any tuning pays.",
-        "Overall we do not beat the market. Its Brier is 0.162 against Claude direct's 0.200, Jev + research's 0.217 and Jev alone's 0.244 on 822 paired markets. Sharp has lost both its bets (-$499), and its skill estimate of -3.88 on 85 markets looks broken.",
-        "The records still disagree: sharp shows min_edge 0.03 at rules version 1 although v2 (0.02) is logged as applied. mention_prior's skill is now positive on 352 markets (lambda 0.0144), so Kelly sizing can start, but its standard error (0.31) is nearly three times the raw estimate (0.12). That is the "
+        "The market still beats every forecaster we have. On the 823 markets all sources share, the market scores 0.162, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244 (lower is better).",
+        "The pipeline still looks broken. 48 cycles judged 0 markets. Main, original and the other Jev and Claude strategies are missing, so the yardstick is empty. Sharp shows rules v1 with a 3c edge even though v2 (2c) was logged as applied. Its record shows 2 settled bets while the gate ledger shows 1, an",
+        "Two problems with the mention strategies. First, Mention NO's record doesn't match its P&L: 5 wins in 20 bets at 30-60c can't plausibly produce +$67 (p48). Second, mention_prior's lambda is now positive (0.024) on 363 markets, above the 300 needed for Kelly sizing to start, even though its standard "
       ]
     },
     "auto_start": true,
