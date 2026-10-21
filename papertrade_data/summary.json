@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T14:07:43Z",
+  "generated": "2026-10-21T14:22:32Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-21T14:07:43Z",
+      "t": "2026-10-21T14:22:32Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-21T14:05:16Z",
+    "ts": "2026-10-21T14:20:14Z",
     "stages": [
       [
         "Fetched",
@@ -1063,7 +1063,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 100106.31,
+      "equity": 100107.38,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1074,16 +1074,16 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 100106.31,
+      "marked": 100107.38,
       "unrealized": 0.0,
-      "change": 106.31,
-      "realized": 106.31,
-      "open": 38,
-      "open_cost": 1179.53,
-      "settled": 29,
-      "wins": 10,
+      "change": 107.38,
+      "realized": 107.38,
+      "open": 37,
+      "open_cost": 1178.6,
+      "settled": 30,
+      "wins": 11,
       "losses": 19,
-      "won_amt": 465.6,
+      "won_amt": 466.67,
       "lost_amt": -359.29
     },
     {
@@ -1923,7 +1923,11 @@
           99500.72
         ],
         [
-          "2026-10-21T14:07:43Z",
+          "2026-10-21T14:20:14Z",
+          99500.72
+        ],
+        [
+          "2026-10-21T14:22:32Z",
           99500.72
         ]
       ]
@@ -2732,8 +2736,12 @@
           100106.31
         ],
         [
-          "2026-10-21T14:07:43Z",
-          100106.31
+          "2026-10-21T14:20:14Z",
+          100107.38
+        ],
+        [
+          "2026-10-21T14:22:32Z",
+          100107.38
         ]
       ]
     },
@@ -3541,7 +3549,11 @@
           100026.88
         ],
         [
-          "2026-10-21T14:07:43Z",
+          "2026-10-21T14:20:14Z",
+          100026.88
+        ],
+        [
+          "2026-10-21T14:22:32Z",
           100026.88
         ]
       ]
@@ -4330,29 +4342,6 @@
       ]
     },
     {
-      "key": "kalshi:KXEARNINGSMENTIONNFLX-26OCT20-GAME",
-      "question": "What will Netflix, Inc. say during their next earnings call? (Gaming)",
-      "url": "https://kalshi.com/markets/kxearningsmentionnflx/what-will-netflix-inc-say-during-their-next-earnings-call/kxearningsmentionnflx-26oct20",
-      "source": "kalshi",
-      "close_time": "2027-02-01T15:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 2,
-          "cost_per": 0.4672,
-          "total_cost": 0.93,
-          "p_side": 0.52,
-          "edge": 0.0528,
-          "opened": "2026-10-10T18:50:17Z",
-          "value": null
-        }
-      ]
-    },
-    {
       "key": "kalshi:KXSECPRESSMENTION-27FEB01-CALI",
       "question": "Will the White House Press Secretary say California at her next press briefing?",
       "url": "https://kalshi.com/markets/kxsecpressmention/will-the-white-house-press-secretary-say-california-at-her-n/kxsecpressmention-27feb01",
@@ -4538,6 +4527,22 @@
     }
   ],
   "settled_recent": [
+    {
+      "key": "kalshi:KXEARNINGSMENTIONNFLX-26OCT20-GAME",
+      "question": "What will Netflix, Inc. say during their next earnings call? (Gaming)",
+      "url": "https://kalshi.com/markets/kxearningsmentionnflx/what-will-netflix-inc-say-during-their-next-earnings-call/kxearningsmentionnflx-26oct20",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 0.93,
+      "cost_per": 0.4672,
+      "p_side": 0.52,
+      "outcome": "no",
+      "payout": 2.0,
+      "pnl": 1.07,
+      "opened": "2026-10-10T18:50:17Z",
+      "settled": "2026-10-21T14:20:14Z",
+      "strategy": "mention_no"
+    },
     {
       "key": "kalshi:KXBERNIEMENTION-26OCT20-IRAN",
       "question": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in Houston originally scheduled for October 20, 2026? (Iran / Iranian)",
@@ -4840,22 +4845,6 @@
       "pnl": -35.8,
       "opened": "2026-10-16T18:50:17Z",
       "settled": "2026-10-17T17:05:23Z",
-      "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXTSLAMENTION-26OCT15-THRU",
-      "question": "What will any Tesla representative say during Tesla roadster event originally scheduled for October 15, 2026? (Thruster / Rocket)",
-      "url": "https://kalshi.com/markets/kxtslamention/what-will-any-tesla-representative-say-during-tesla-roadster/kxtslamention-26oct15",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 7.05,
-      "cost_per": 0.5872,
-      "p_side": 0.63,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -7.05,
-      "opened": "2026-10-14T21:20:00Z",
-      "settled": "2026-10-16T14:20:21Z",
       "strategy": "mention_no"
     }
   ],
@@ -5294,6 +5283,22 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-21T14:20:14Z",
+      "type": "win",
+      "strategy": "mention_no",
+      "amount": 1.07,
+      "q": "What will Netflix, Inc. say during their next earnings call? (Gaming)",
+      "url": "https://kalshi.com/markets/kxearningsmentionnflx/what-will-netflix-inc-say-during-their-next-earnings-call/kxearningsmentionnflx-26oct20"
+    },
+    {
+      "ts": "2026-10-21T14:20:14Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-21T14:05:16Z",
       "type": "scan",
@@ -5904,22 +5909,6 @@
     },
     {
       "ts": "2026-10-20T19:50:20Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T19:35:13Z",
-      "type": "win",
-      "strategy": "mention_no",
-      "amount": 47.25,
-      "q": "What will Bernie Sanders say during Fighting Oligarchy: Get Out the Vote rally in Amarillo originally scheduled for October 19, 2026? (Iran / Iranian)",
-      "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-fighting-oligarchy-get-o/kxberniemention-26oct19"
-    },
-    {
-      "ts": "2026-10-20T19:35:13Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
