@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T10:22:41Z",
+  "generated": "2026-10-21T10:38:02Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-21T10:22:41Z",
+      "t": "2026-10-21T10:38:02Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-21T10:20:11Z",
+    "ts": "2026-10-21T10:35:15Z",
     "stages": [
       [
         "Fetched",
@@ -1923,7 +1923,7 @@
           99500.72
         ],
         [
-          "2026-10-21T10:22:41Z",
+          "2026-10-21T10:38:02Z",
           99500.72
         ]
       ]
@@ -2732,7 +2732,7 @@
           100106.31
         ],
         [
-          "2026-10-21T10:22:41Z",
+          "2026-10-21T10:38:02Z",
           100106.31
         ]
       ]
@@ -3541,7 +3541,7 @@
           100026.88
         ],
         [
-          "2026-10-21T10:22:41Z",
+          "2026-10-21T10:38:02Z",
           100026.88
         ]
       ]
@@ -5295,6 +5295,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-21T10:37:58Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-21T10:37:32Z",
+      "type": "idea",
+      "text": "Show each locked forward test's end date and pass mark",
+      "status": "proposed",
+      "why": "All three reported strategies are locked, with can_change_from null, so every review can only watch. Mention_prior's skill went positive (lambda 0.26 on 422 markets, but se 0.36 against a raw 0.44), which means Kelly sizing may already be live for mention NO while its win/loss tally is in doubt (p48"
+    },
+    {
+      "ts": "2026-10-21T10:35:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-21T10:20:11Z",
       "type": "scan",
       "fetched": 200,
@@ -5900,30 +5920,6 @@
     },
     {
       "ts": "2026-10-20T16:05:13Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T15:50:15Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T15:35:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-20T15:20:14Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -6577,6 +6573,17 @@
     ],
     "proposals": [
       {
+        "id": "p52",
+        "kind": "code",
+        "title": "Show each locked forward test's end date and pass mark",
+        "why": "All three reported strategies are locked, with can_change_from null, so every review can only watch. Mention_prior's skill went positive (lambda 0.26 on 422 markets, but se 0.36 against a raw 0.44), which means Kelly sizing may already be live for mention NO while its win/loss tally is in doubt (p48, p51). Without the end date and pass mark we can't plan the next step. No new tune or challenger is proposed: challengers depend on judging, which is down.",
+        "judge_by": "The next review's input gives, for each locked strategy, the date its lock ends, the number of resolved markets it is waiting for, and the result that counts as a pass. It also states whether mention NO is currently on probe bets or Kelly sizing.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-21T10:37:32Z"
+      },
+      {
         "id": "p51",
         "kind": "code",
         "title": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
@@ -7144,17 +7151,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-20T22:37:31Z",
-      "headline": "A quiet half-day with the review still broken: Jev judged nothing in 47 cycles, only the three locked strategies are reported, and the market still beats every forecaster, so there is nothing to tune and the one urgent item is that mention_prior may now be sizing bets on a skill estimate we haven't ",
+      "ts": "2026-10-21T10:37:32Z",
+      "headline": "A quiet half-day with nothing new to act on: the forecasters judged 0 markets in 48 cycles, the only strategies reported are three locked forward tests, the market still out-forecasts every model, and the only small profit comes from the mention-market strategies on too few bets to trust.",
       "went_well": [
-        "Mention NO is up $108 on 28 settled bets (10 wins, 18 losses), about +$10 per $100 of settled stake. That is under 30 bets, so it is noise rather than a finding, and see p48 on whether its P&L is right.",
-        "Mention follow is 3 wins and 2 losses, +$27 on 5 settled bets. That is far too few to mean anything.",
-        "Mention NO's 30-60c bets are +$114 on 21, the only bucket with more than a handful of bets."
+        "Mention NO is up $106 on 29 settled bets, about +$10 per $100 staked on the $1,048 settled. That is just under the 30-bet line and its win/loss tally looks inconsistent (p48), so treat it as an experiment, not a finding.",
+        "Mention follow is up $27 on 5 settled bets (3 wins), about +$18 per $100. Five bets is noise.",
+        "The 30c price floor is holding: none of the three strategies has placed a long-shot bet under 30c."
       ],
       "went_badly": [
-        "No forecaster beats the market. On 823 paired markets the market scores a Brier of 0.162, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244. Lower is better.",
-        "Jev judged 0 markets in 47 cycles, and main, original, bold, calibrated and the rest are still missing from the review. The yardstick is empty, so there is no way to say whether any earlier tuning paid. The triage items p46, p47 and p50 are still waiting.",
-        "Sharp is 0 for 2, losing $499 of $499 staked. Its live rules still show min_edge 0.03 at version 1, although p33 is logged as applied. Its gate ledger shows 1 bet against 2 settled, and its skill estimate has fallen to -3.83 on 89 markets."
+        "Nothing was forecast: 48 cycles judged 0 markets, and main, original and every Jev or Claude strategy are again missing from the review. The yardstick is empty, so we can't tell whether tuning main pays (p35, p41, p46 are still unanswered).",
+        "The market still beats every forecaster: on 824 paired markets its Brier is 0.162 against Claude direct's 0.200 and Jev + research's 0.217. Sports is the only category where anyone gets close (Claude 0.177 vs market 0.182, 202 markets).",
+        "Sharp has lost both its bets (-$499, 2 settled). Its live rules still show a 3c edge at version 1, even though p33 was logged as applied at 2c. Its ledger counts 1 bet against 2 in its record, and its skill estimate has slid to -3.91 on 90 markets, which is implausible for a de-vigged Pinnacle line."
       ]
     },
     "auto_start": true,
@@ -7689,6 +7696,13 @@
         "title": "Hold mention_prior's Kelly sizing until p48 and p49 are resolved",
         "why": "mention_prior now has lambda 0.24 on 397 markets. That is past the 300-market threshold, so Mention NO has probably left probe bets for Kelly sizing. But the estimate rests on a raw edge of 0.42 with a standard error of 0.37, which is not distinguishable from zero. Its ledger may also be wrong: 6 wins in 21 bets at 30-60c are reported as +$114, which looks too high (p48). This makes p49 urgent rather than replacing it. Mention NO stays locked, so its rules are unchanged; this only holds its sizing at probe size.",
         "created": "2026-10-20T22:37:31Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p52",
+        "title": "Show each locked forward test's end date and pass mark",
+        "why": "All three reported strategies are locked, with can_change_from null, so every review can only watch. Mention_prior's skill went positive (lambda 0.26 on 422 markets, but se 0.36 against a raw 0.44), which means Kelly sizing may already be live for mention NO while its win/loss tally is in doubt (p48, p51). Without the end date and pass mark we can't plan the next step. No new tune or challenger is proposed: challengers depend on judging, which is down.",
+        "created": "2026-10-21T10:37:32Z",
         "status": "proposed"
       }
     ]

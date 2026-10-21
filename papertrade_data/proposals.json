@@ -707,6 +707,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p52",
+      "created": "2026-10-21T10:37:32Z",
+      "kind": "code",
+      "title": "Show each locked forward test's end date and pass mark",
+      "why": "All three reported strategies are locked, with can_change_from null, so every review can only watch. Mention_prior's skill went positive (lambda 0.26 on 422 markets, but se 0.36 against a raw 0.44), which means Kelly sizing may already be live for mention NO while its win/loss tally is in doubt (p48, p51). Without the end date and pass mark we can't plan the next step. No new tune or challenger is proposed: challengers depend on judging, which is down.",
+      "judge_by": "The next review's input gives, for each locked strategy, the date its lock ends, the number of resolved markets it is waiting for, and the result that counts as a pass. It also states whether mention NO is currently on probe bets or Kelly sizing.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
