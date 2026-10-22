@@ -718,6 +718,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p53",
+      "created": "2026-10-22T22:52:47Z",
+      "kind": "code",
+      "title": "Stop the review loop until p46 is fixed",
+      "why": "For about 11 days, 48 cycles per review have judged 0 markets, and only 3 locked strategies (50 settled bets between them) are visible, so there is nothing to tune and no yardstick. p35, p36, p41, p43\u2013p47, p48, p51 and p52 all ask for parts of the same fix. Repeating them each review adds noise, not information. I am deliberately proposing no tunes or challengers: every challenger source depends on judging, which is producing nothing.",
+      "judge_by": "The next review shows recent.judged > 0, includes main and original with a non-empty yardstick, and shows sharp's live min_edge matching p33 (0.02) or a logged revert. Until then, reviews should report status only and add no new proposals.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

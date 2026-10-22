@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T22:38:32Z",
+  "generated": "2026-10-22T22:53:25Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-22T22:38:32Z",
+      "t": "2026-10-22T22:53:25Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-22T22:35:47Z",
+    "ts": "2026-10-22T22:50:12Z",
     "stages": [
       [
         "Fetched",
@@ -1957,7 +1957,7 @@
           99500.72
         ],
         [
-          "2026-10-22T22:38:32Z",
+          "2026-10-22T22:53:25Z",
           99500.72
         ]
       ]
@@ -2798,7 +2798,7 @@
           99824.76
         ],
         [
-          "2026-10-22T22:38:32Z",
+          "2026-10-22T22:53:25Z",
           99824.76
         ]
       ]
@@ -3639,7 +3639,7 @@
           100090.31
         ],
         [
-          "2026-10-22T22:38:32Z",
+          "2026-10-22T22:53:25Z",
           100090.31
         ]
       ]
@@ -5231,6 +5231,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-22T22:53:20Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-22T22:52:47Z",
+      "type": "idea",
+      "text": "Stop the review loop until p46 is fixed",
+      "status": "proposed",
+      "why": "For about 11 days, 48 cycles per review have judged 0 markets, and only 3 locked strategies (50 settled bets between them) are visible, so there is nothing to tune and no yardstick. p35, p36, p41, p43\u2013p47, p48, p51 and p52 all ask for parts of the same fix. Repeating them each review adds noise, not"
+    },
+    {
+      "ts": "2026-10-22T22:50:12Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-22T22:50:12Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-22T22:35:47Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5759,38 +5784,6 @@
     },
     {
       "ts": "2026-10-22T12:35:04Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T12:20:11Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T12:05:07Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T11:50:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T11:35:14Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -6444,6 +6437,17 @@
     ],
     "proposals": [
       {
+        "id": "p53",
+        "kind": "code",
+        "title": "Stop the review loop until p46 is fixed",
+        "why": "For about 11 days, 48 cycles per review have judged 0 markets, and only 3 locked strategies (50 settled bets between them) are visible, so there is nothing to tune and no yardstick. p35, p36, p41, p43\u2013p47, p48, p51 and p52 all ask for parts of the same fix. Repeating them each review adds noise, not information. I am deliberately proposing no tunes or challengers: every challenger source depends on judging, which is producing nothing.",
+        "judge_by": "The next review shows recent.judged > 0, includes main and original with a non-empty yardstick, and shows sharp's live min_edge matching p33 (0.02) or a logged revert. Until then, reviews should report status only and add no new proposals.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-22T22:52:47Z"
+      },
+      {
         "id": "p52",
         "kind": "code",
         "title": "Show each locked forward test's end date and pass mark",
@@ -7022,17 +7026,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-22T10:52:34Z",
-      "headline": "A quiet, mostly broken half-day: the pipeline judged nothing in 48 cycles, only three locked strategies are visible, and none of the visible strategies beats the market price, so this review proposes no new changes and leaves the existing fix queue (p46/p50) in front of Joey.",
+      "ts": "2026-10-22T22:52:47Z",
+      "headline": "For the 11th review running, nothing is being judged, and only three locked strategies are visible, so there is nothing to tune. The one live sizing change, Kelly bets on the mention prior, is running on a strategy that has lost money on 42 settled bets.",
       "went_well": [
-        "Mention markets, follow the first NO is +$26.88 on $147 staked across 5 settled bets (about +$18 per $100, 3 wins and 2 losses). That is far too few results to call a finding.",
-        "Mention markets, NO side is nearly flat: -$64.69 on 37 settled bets, about -$4.6 per $100 of settled stake ($1,421). By price paid, 30-60c is -$29 on 28 bets and 60c+ is -$35 on 9.",
-        "The 30c floor is holding. None of the three visible strategies has placed a long-shot bet."
+        "Mention follow is +$90 on 6 settled bets (4 wins, 2 losses), about +$49 per $100 of settled stake. With 6 results this is noise, not a finding.",
+        "Mention NO is close to flat: -$175 on $2,355 staked, 42 settled. That is about -$7 per $100, much better than the long-shot losses that led to the 30c floor.",
+        "Scoring keeps accumulating: 1,833 resolved markets are scored all time. Claude direct is the least-bad forecaster on the 824 paired markets (Brier 0.200 vs Jev + research 0.217)."
       ],
       "went_badly": [
-        "Judging has stalled. 48 cycles produced 0 judged markets and 0 research runs, and only 1 bet was placed (mention_no). Main, original, bold, calibrated and claude_direct are still missing from this review, and the yardstick is empty, so we cannot tell whether tuning main pays.",
-        "No forecaster beats the market. On 824 paired markets the market scores 0.162 Brier, against Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244. All time, the market's 0.147 on 1,820 markets beats every source.",
-        "Sharp's data is still inconsistent. Its live rules show min_edge 0.03 at rules_version 1, although p33 (2c edge) is logged as applied. Its record shows 2 settled losses (-$499) while its gate ledger shows 1 bet. Its skill estimate is -3.78 on 91 markets, and six of seven sources report a standard er"
+        "Every forecaster still loses to the market price. On 824 paired markets the market scores 0.162, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.244. The market also wins in every category except sports, where Claude scores 0.177 vs 0.182 on 202 markets.",
+        "The pipeline is still broken. The last 48 cycles judged 0 markets, and main, original, bold, calibrated, claude_direct and the challengers are missing from the review, so the yardstick is empty. Sharp's live rules still show a 3c edge and a 20c min_ask, which contradict p33 (2c) and the 30c floor. S",
+        "Mention prior's lambda is 0.29 on 550 markets, so mention NO now sizes by Kelly. Yet its record (14 wins in 42, -$7 per $100) has not shown that edge in money, and p48 says its wins and losses don't add up to its P&L."
       ]
     },
     "auto_start": true,
@@ -7574,6 +7578,13 @@
         "title": "Show each locked forward test's end date and pass mark",
         "why": "All three reported strategies are locked, with can_change_from null, so every review can only watch. Mention_prior's skill went positive (lambda 0.26 on 422 markets, but se 0.36 against a raw 0.44), which means Kelly sizing may already be live for mention NO while its win/loss tally is in doubt (p48, p51). Without the end date and pass mark we can't plan the next step. No new tune or challenger is proposed: challengers depend on judging, which is down.",
         "created": "2026-10-21T10:37:32Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p53",
+        "title": "Stop the review loop until p46 is fixed",
+        "why": "For about 11 days, 48 cycles per review have judged 0 markets, and only 3 locked strategies (50 settled bets between them) are visible, so there is nothing to tune and no yardstick. p35, p36, p41, p43\u2013p47, p48, p51 and p52 all ask for parts of the same fix. Repeating them each review adds noise, not information. I am deliberately proposing no tunes or challengers: every challenger source depends on judging, which is producing nothing.",
+        "created": "2026-10-22T22:52:47Z",
         "status": "proposed"
       }
     ]
