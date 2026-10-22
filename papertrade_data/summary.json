@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T19:52:42Z",
+  "generated": "2026-10-22T20:08:02Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-22T19:52:42Z",
+      "t": "2026-10-22T20:08:02Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-22T19:50:14Z",
+    "ts": "2026-10-22T20:05:15Z",
     "stages": [
       [
         "Fetched",
@@ -1002,8 +1002,8 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
-      "mention_follow": 0
+      "mention_no": 1,
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1019,8 +1019,8 @@
     ],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
-      "mention_follow": 0
+      "mention_no": 1,
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1080,8 +1080,8 @@
       "unrealized": 0.0,
       "change": -175.24,
       "realized": -175.24,
-      "open": 29,
-      "open_cost": 750.29,
+      "open": 30,
+      "open_cost": 795.0,
       "settled": 42,
       "wins": 14,
       "losses": 28,
@@ -1111,8 +1111,8 @@
       "unrealized": 0.0,
       "change": 90.31,
       "realized": 90.31,
-      "open": 7,
-      "open_cost": 326.18,
+      "open": 8,
+      "open_cost": 370.89,
       "settled": 6,
       "wins": 4,
       "losses": 2,
@@ -1957,7 +1957,7 @@
           99500.72
         ],
         [
-          "2026-10-22T19:52:42Z",
+          "2026-10-22T20:08:02Z",
           99500.72
         ]
       ]
@@ -2798,7 +2798,7 @@
           99824.76
         ],
         [
-          "2026-10-22T19:52:42Z",
+          "2026-10-22T20:08:02Z",
           99824.76
         ]
       ]
@@ -3639,7 +3639,7 @@
           100090.31
         ],
         [
-          "2026-10-22T19:52:42Z",
+          "2026-10-22T20:08:02Z",
           100090.31
         ]
       ]
@@ -4319,6 +4319,40 @@
           "p_side": 0.54,
           "edge": 0.0728,
           "opened": "2026-10-14T15:20:12Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNVDAMENTION-26DEC01-HERM",
+      "question": "What will Jensen Huang say during NVIDIA GTC Washington, D.C. Keynote originally scheduled for December 1, 2026? (Hermes)",
+      "url": "https://kalshi.com/markets/kxnvdamention/what-will-jensen-huang-say-during-nvidia-gtc-washington-d-c/kxnvdamention-26dec01",
+      "source": "kalshi",
+      "close_time": "2026-12-15T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 100,
+          "cost_per": 0.4471,
+          "total_cost": 44.71,
+          "p_side": 0.48,
+          "edge": 0.0329,
+          "opened": "2026-10-22T20:05:15Z",
+          "value": null
+        },
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 100,
+          "cost_per": 0.4471,
+          "total_cost": 44.71,
+          "p_side": 0.5,
+          "edge": 0.0529,
+          "opened": "2026-10-22T20:05:15Z",
           "value": null
         }
       ]
@@ -5197,6 +5231,43 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-22T20:05:15Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.4471,
+      "amount": 44.71,
+      "p": 0.48,
+      "q": "What will Jensen Huang say during NVIDIA GTC Washington, D.C. Keynote originally scheduled for December 1, 2026? (Hermes)",
+      "url": "https://kalshi.com/markets/kxnvdamention/what-will-jensen-huang-say-during-nvidia-gtc-washington-d-c/kxnvdamention-26dec01",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-22T20:05:15Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.4471,
+      "amount": 44.71,
+      "p": 0.5,
+      "q": "What will Jensen Huang say during NVIDIA GTC Washington, D.C. Keynote originally scheduled for December 1, 2026? (Hermes)",
+      "url": "https://kalshi.com/markets/kxnvdamention/what-will-jensen-huang-say-during-nvidia-gtc-washington-d-c/kxnvdamention-26dec01",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-22T20:05:15Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-22T20:05:15Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-10-22T19:50:14Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5743,38 +5814,6 @@
       "ts": "2026-10-22T07:20:57Z",
       "type": "problem",
       "text": "kalshi: could not fetch markets (HTTP 503 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"service_unavailable\""
-    },
-    {
-      "ts": "2026-10-22T07:20:57Z",
-      "type": "scan",
-      "fetched": 100,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T07:05:21Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T06:50:17Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T06:35:17Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5785,7 +5824,7 @@
   },
   "research_runs_today": 0,
   "research_per_day": 150,
-  "cycles_24h": 95,
+  "cycles_24h": 96,
   "learning": {
     "reviewed": 1820,
     "post_mortems": 88,
