@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T07:53:10Z",
+  "generated": "2026-10-22T08:07:41Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-22T07:53:10Z",
+      "t": "2026-10-22T08:07:41Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,15 +970,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-22T07:51:02Z",
+    "ts": "2026-10-22T08:05:12Z",
     "stages": [
       [
         "Fetched",
-        100
+        200
       ],
       [
         "Passed free filters",
-        100
+        200
       ],
       [
         "Judged by Jev",
@@ -1011,11 +1011,10 @@
     "facts_kept": 0,
     "facts_dropped": 0,
     "by_source": {
-      "polymarket": 100
+      "polymarket": 100,
+      "kalshi": 100
     },
-    "problems": [
-      "kalshi: could not fetch markets (HTTP 503 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"service_unavailable\",\"message\":\"service_unavailable\"}})"
-    ],
+    "problems": [],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1940,7 +1939,7 @@
           99500.72
         ],
         [
-          "2026-10-22T07:53:10Z",
+          "2026-10-22T08:07:41Z",
           99500.72
         ]
       ]
@@ -2765,7 +2764,7 @@
           99935.31
         ],
         [
-          "2026-10-22T07:53:10Z",
+          "2026-10-22T08:07:41Z",
           99935.31
         ]
       ]
@@ -3590,7 +3589,7 @@
           100026.88
         ],
         [
-          "2026-10-22T07:53:10Z",
+          "2026-10-22T08:07:41Z",
           100026.88
         ]
       ]
@@ -5286,6 +5285,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-22T08:05:12Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-22T07:51:02Z",
       "type": "problem",
       "text": "kalshi: could not fetch markets (HTTP 503 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"service_unavailable\""
@@ -5838,18 +5845,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-21T20:11:51Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.335,
-      "amount": 3.35,
-      "p": 0.405,
-      "q": "What will Arkady Volozh say during Nebius LIVE interview at NVIDIA GTC Berlin originally scheduled for October 22, 2026? (Agentic)",
-      "url": "https://kalshi.com/markets/kxnbismention/what-will-arkady-volozh-say-during-nebius-live-interview-at/kxnbismention-26oct22",
-      "probe": false
     }
   ],
   "plan_usage": {
