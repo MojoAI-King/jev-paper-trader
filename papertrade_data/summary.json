@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T17:22:51Z",
+  "generated": "2026-10-22T17:37:46Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-22T17:22:51Z",
+      "t": "2026-10-22T17:37:46Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-22T17:20:13Z",
+    "ts": "2026-10-22T17:35:14Z",
     "stages": [
       [
         "Fetched",
@@ -1014,7 +1014,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1063,7 +1065,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 99828.11,
+      "equity": 99824.76,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1074,17 +1076,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 99828.11,
+      "marked": 99824.76,
       "unrealized": 0.0,
-      "change": -171.89,
-      "realized": -171.89,
-      "open": 30,
-      "open_cost": 753.64,
-      "settled": 41,
+      "change": -175.24,
+      "realized": -175.24,
+      "open": 29,
+      "open_cost": 750.29,
+      "settled": 42,
       "wins": 14,
-      "losses": 27,
+      "losses": 28,
       "won_amt": 564.91,
-      "lost_amt": -736.8
+      "lost_amt": -740.15
     },
     {
       "name": "mention_follow",
@@ -1951,7 +1953,11 @@
           99500.72
         ],
         [
-          "2026-10-22T17:22:51Z",
+          "2026-10-22T17:35:14Z",
+          99500.72
+        ],
+        [
+          "2026-10-22T17:37:46Z",
           99500.72
         ]
       ]
@@ -2788,8 +2794,12 @@
           99828.11
         ],
         [
-          "2026-10-22T17:22:51Z",
-          99828.11
+          "2026-10-22T17:35:14Z",
+          99824.76
+        ],
+        [
+          "2026-10-22T17:37:46Z",
+          99824.76
         ]
       ]
     },
@@ -3625,7 +3635,11 @@
           100090.31
         ],
         [
-          "2026-10-22T17:22:51Z",
+          "2026-10-22T17:35:14Z",
+          100090.31
+        ],
+        [
+          "2026-10-22T17:37:46Z",
           100090.31
         ]
       ]
@@ -3674,29 +3688,6 @@
           "p_side": 0.5,
           "edge": 0.0328,
           "opened": "2026-10-11T02:20:16Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXNBISMENTION-26OCT22-AGEN",
-      "question": "What will Arkady Volozh say during Nebius LIVE interview at NVIDIA GTC Berlin originally scheduled for October 22, 2026? (Agentic)",
-      "url": "https://kalshi.com/markets/kxnbismention/what-will-arkady-volozh-say-during-nebius-live-interview-at/kxnbismention-26oct22",
-      "source": "kalshi",
-      "close_time": "2026-11-05T15:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 10,
-          "cost_per": 0.335,
-          "total_cost": 3.35,
-          "p_side": 0.405,
-          "edge": 0.07,
-          "opened": "2026-10-21T20:11:51Z",
           "value": null
         }
       ]
@@ -4450,6 +4441,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXNBISMENTION-26OCT22-AGEN",
+      "question": "What will Arkady Volozh say during Nebius LIVE interview at NVIDIA GTC Berlin originally scheduled for October 22, 2026? (Agentic)",
+      "url": "https://kalshi.com/markets/kxnbismention/what-will-arkady-volozh-say-during-nebius-live-interview-at/kxnbismention-26oct22",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 3.35,
+      "cost_per": 0.335,
+      "p_side": 0.405,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -3.35,
+      "opened": "2026-10-21T20:11:51Z",
+      "settled": "2026-10-22T17:35:14Z",
+      "strategy": "mention_no"
+    },
+    {
       "key": "kalshi:KXZMMENTION-26OCT20-AICO",
       "question": "What will Eric Yuan say during Zoomtopia 2026 Keynote? (AI Companion)",
       "url": "https://kalshi.com/markets/kxzmmention/what-will-eric-yuan-say-during-zoomtopia-2026-keynote/kxzmmention-26oct20",
@@ -4750,22 +4757,6 @@
       "payout": 0.0,
       "pnl": -5.77,
       "opened": "2026-10-14T03:50:09Z",
-      "settled": "2026-10-19T14:50:20Z",
-      "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXFOXSATMENTION-26OCT17-NQE",
-      "question": "What will Katie Zacharia say during Fox News: Saturday in America originally scheduled for October 17, 2026? (Event does not qualify)",
-      "url": "https://kalshi.com/markets/kxfoxsatmention/what-will-katie-zacharia-say-during-fox-news-saturday-in-ame/kxfoxsatmention-26oct17",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 4.97,
-      "cost_per": 0.4974,
-      "p_side": 0.555,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -4.97,
-      "opened": "2026-10-16T19:35:18Z",
       "settled": "2026-10-19T14:50:20Z",
       "strategy": "mention_no"
     }
@@ -5205,6 +5196,27 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-22T17:35:14Z",
+      "type": "loss",
+      "strategy": "mention_no",
+      "amount": -3.35,
+      "q": "What will Arkady Volozh say during Nebius LIVE interview at NVIDIA GTC Berlin originally scheduled for October 22, 2026? (Agentic)",
+      "url": "https://kalshi.com/markets/kxnbismention/what-will-arkady-volozh-say-during-nebius-live-interview-at/kxnbismention-26oct22"
+    },
+    {
+      "ts": "2026-10-22T17:35:14Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-22T17:35:14Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-22T17:20:13Z",
       "type": "scan",
@@ -5781,27 +5793,6 @@
       "ts": "2026-10-22T02:35:14Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-22T02:35:14Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T02:20:13Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-22T02:20:13Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
