@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T15:53:01Z",
+  "generated": "2026-10-22T16:08:16Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-22T15:53:01Z",
+      "t": "2026-10-22T16:08:16Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-22T15:50:19Z",
+    "ts": "2026-10-22T16:05:26Z",
     "stages": [
       [
         "Fetched",
@@ -1014,9 +1014,7 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [
-      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    ],
+    "problems": [],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1065,7 +1063,7 @@
       "badge": "New",
       "retired": false,
       "main": false,
-      "equity": 99935.31,
+      "equity": 99869.68,
       "slot": 6,
       "blurb": "No AI forecast: in Kalshi markets on whether a politician or TV show will say a word, it buys NO at 30-70c before the event (earnings calls and Trump are skipped). Real NO trades in those markets won 58% against 49% implied, but at the posted prices it pays, the same rule was about break-even on history (+0.5%, range -10% to +11%). This live test decides.",
       "challenger": false,
@@ -1076,17 +1074,17 @@
       "gate_overrides": {
         "min_edge": 0.03
       },
-      "marked": 99935.31,
+      "marked": 99869.68,
       "unrealized": 0.0,
-      "change": -64.69,
-      "realized": -64.69,
-      "open": 34,
-      "open_cost": 889.84,
-      "settled": 37,
+      "change": -130.32,
+      "realized": -130.32,
+      "open": 33,
+      "open_cost": 824.21,
+      "settled": 38,
       "wins": 13,
-      "losses": 24,
+      "losses": 25,
       "won_amt": 552.36,
-      "lost_amt": -617.05
+      "lost_amt": -682.68
     },
     {
       "name": "mention_follow",
@@ -1941,7 +1939,11 @@
           99500.72
         ],
         [
-          "2026-10-22T15:53:01Z",
+          "2026-10-22T16:05:26Z",
+          99500.72
+        ],
+        [
+          "2026-10-22T16:08:16Z",
           99500.72
         ]
       ]
@@ -2766,8 +2768,12 @@
           99935.31
         ],
         [
-          "2026-10-22T15:53:01Z",
-          99935.31
+          "2026-10-22T16:05:26Z",
+          99869.68
+        ],
+        [
+          "2026-10-22T16:08:16Z",
+          99869.68
         ]
       ]
     },
@@ -3591,7 +3597,11 @@
           100026.88
         ],
         [
-          "2026-10-22T15:53:01Z",
+          "2026-10-22T16:05:26Z",
+          100026.88
+        ],
+        [
+          "2026-10-22T16:08:16Z",
           100026.88
         ]
       ]
@@ -4437,29 +4447,6 @@
       ]
     },
     {
-      "key": "kalshi:KXEARNINGSMENTIONTSLA-26OCT28-CYBR",
-      "question": "What will Tesla say during their next earnings call? (Cybertruck)",
-      "url": "https://kalshi.com/markets/kxearningsmentiontsla/what-will-tesla-say-during-their-next-earnings-call/kxearningsmentiontsla-26oct28",
-      "source": "kalshi",
-      "close_time": "2027-03-31T14:00:00Z",
-      "category": null,
-      "price": null,
-      "price_at": null,
-      "positions": [
-        {
-          "strategy": "mention_no",
-          "side": "no",
-          "contracts": 100,
-          "cost_per": 0.6563,
-          "total_cost": 65.63,
-          "p_side": 0.715,
-          "edge": 0.0587,
-          "opened": "2026-10-10T18:50:17Z",
-          "value": null
-        }
-      ]
-    },
-    {
       "key": "kalshi:KXEARNINGSMENTIONPSKY-26NOV09-INVE",
       "question": "What will Paramount say during their next earnings call? (Investment Grade)",
       "url": "https://kalshi.com/markets/kxearningsmentionpsky/what-will-paramount-say-during-their-next-earnings-call/kxearningsmentionpsky-26nov09",
@@ -4530,6 +4517,22 @@
     }
   ],
   "settled_recent": [
+    {
+      "key": "kalshi:KXEARNINGSMENTIONTSLA-26OCT28-CYBR",
+      "question": "What will Tesla say during their next earnings call? (Cybertruck)",
+      "url": "https://kalshi.com/markets/kxearningsmentiontsla/what-will-tesla-say-during-their-next-earnings-call/kxearningsmentiontsla-26oct28",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 65.63,
+      "cost_per": 0.6563,
+      "p_side": 0.715,
+      "outcome": "yes",
+      "payout": 0.0,
+      "pnl": -65.63,
+      "opened": "2026-10-10T18:50:17Z",
+      "settled": "2026-10-22T16:05:26Z",
+      "strategy": "mention_no"
+    },
     {
       "key": "kalshi:KXVANCEMENTION-26OCT21-CAMP",
       "question": "What will JD Vance say during Fraud Task Force Press Conference in Cincinnati, Ohio originally scheduled for October 21, 2026? (2028 / Campaign)",
@@ -4831,22 +4834,6 @@
       "payout": 2.0,
       "pnl": 0.57,
       "opened": "2026-10-17T18:35:20Z",
-      "settled": "2026-10-19T01:05:26Z",
-      "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXZELENSKYYMENTION-26OCT18-STAR",
-      "question": "What will Volodymyr Zelenskyy say during Meet the Press originally scheduled for October 18, 2026? (Starlink)",
-      "url": "https://kalshi.com/markets/kxzelenskyymention/what-will-volodymyr-zelenskyy-say-during-meet-the-press-orig/kxzelenskyymention-26oct18",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 1.73,
-      "cost_per": 0.5773,
-      "p_side": 0.625,
-      "outcome": "yes",
-      "payout": 0.0,
-      "pnl": -1.73,
-      "opened": "2026-10-17T19:20:21Z",
       "settled": "2026-10-19T01:05:26Z",
       "strategy": "mention_no"
     }
@@ -5286,6 +5273,22 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-22T16:05:26Z",
+      "type": "loss",
+      "strategy": "mention_no",
+      "amount": -65.63,
+      "q": "What will Tesla say during their next earnings call? (Cybertruck)",
+      "url": "https://kalshi.com/markets/kxearningsmentiontsla/what-will-tesla-say-during-their-next-earnings-call/kxearningsmentiontsla-26oct28"
+    },
+    {
+      "ts": "2026-10-22T16:05:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-22T15:50:19Z",
       "type": "problem",
@@ -5854,19 +5857,6 @@
     },
     {
       "ts": "2026-10-22T01:20:10Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-22T01:05:08Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-22T01:05:08Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
