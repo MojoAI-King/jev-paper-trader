@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T20:22:56Z",
+  "generated": "2026-10-23T20:37:37Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-23T20:22:56Z",
+      "t": "2026-10-23T20:37:37Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-23T20:20:12Z",
+    "ts": "2026-10-23T20:35:09Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1019,7 +1019,7 @@
     ],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1080,8 +1080,8 @@
       "unrealized": 0.0,
       "change": -172.58,
       "realized": -172.58,
-      "open": 31,
-      "open_cost": 805.82,
+      "open": 32,
+      "open_cost": 826.84,
       "settled": 43,
       "wins": 15,
       "losses": 28,
@@ -1961,7 +1961,7 @@
           99500.72
         ],
         [
-          "2026-10-23T20:22:56Z",
+          "2026-10-23T20:37:37Z",
           99500.72
         ]
       ]
@@ -2806,7 +2806,7 @@
           99827.42
         ],
         [
-          "2026-10-23T20:22:56Z",
+          "2026-10-23T20:37:37Z",
           99827.42
         ]
       ]
@@ -3651,7 +3651,7 @@
           100090.31
         ],
         [
-          "2026-10-23T20:22:56Z",
+          "2026-10-23T20:37:37Z",
           100090.31
         ]
       ]
@@ -3757,6 +3757,29 @@
           "p_side": 0.605,
           "edge": 0.0476,
           "opened": "2026-10-21T22:20:07Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXMTPMENTION-26OCT25-MANU",
+      "question": "What will Mike Rogers say during Meet the Press originally scheduled for Oct 25, 2026? (Manufacturing)",
+      "url": "https://kalshi.com/markets/kxmtpmention/what-will-mike-rogers-say-during-meet-the-press-originally-s/kxmtpmention-26oct25",
+      "source": "kalshi",
+      "close_time": "2026-11-08T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 45,
+          "cost_per": 0.4672,
+          "total_cost": 21.02,
+          "p_side": 0.51,
+          "edge": 0.0428,
+          "opened": "2026-10-23T20:35:09Z",
           "value": null
         }
       ]
@@ -5289,6 +5312,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-23T20:35:09Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.4672,
+      "amount": 21.02,
+      "p": 0.51,
+      "q": "What will Mike Rogers say during Meet the Press originally scheduled for Oct 25, 2026? (Manufacturing)",
+      "url": "https://kalshi.com/markets/kxmtpmention/what-will-mike-rogers-say-during-meet-the-press-originally-s/kxmtpmention-26oct25",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-23T20:35:09Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-23T20:35:09Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-23T20:20:12Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5791,24 +5839,6 @@
     },
     {
       "ts": "2026-10-23T11:05:09Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-23T11:05:09Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-23T10:53:13Z",
-      "type": "learn",
-      "text": "Daily review written"
-    },
-    {
-      "ts": "2026-10-23T10:50:14Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
