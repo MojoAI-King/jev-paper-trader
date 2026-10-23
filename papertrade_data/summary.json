@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T05:37:43Z",
+  "generated": "2026-10-23T05:52:50Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-23T05:37:43Z",
+      "t": "2026-10-23T05:52:50Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-23T05:35:12Z",
+    "ts": "2026-10-23T05:50:10Z",
     "stages": [
       [
         "Fetched",
@@ -1003,7 +1003,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1020,7 +1020,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0
+      "mention_follow": 1
     },
     "judged": 0,
     "with_research": 0
@@ -1111,8 +1111,8 @@
       "unrealized": 0.0,
       "change": 90.31,
       "realized": 90.31,
-      "open": 8,
-      "open_cost": 370.89,
+      "open": 9,
+      "open_cost": 392.23,
       "settled": 6,
       "wins": 4,
       "losses": 2,
@@ -1957,7 +1957,7 @@
           99500.72
         ],
         [
-          "2026-10-23T05:37:43Z",
+          "2026-10-23T05:52:50Z",
           99500.72
         ]
       ]
@@ -2798,7 +2798,7 @@
           99824.76
         ],
         [
-          "2026-10-23T05:37:43Z",
+          "2026-10-23T05:52:50Z",
           99824.76
         ]
       ]
@@ -3639,7 +3639,7 @@
           100090.31
         ],
         [
-          "2026-10-23T05:37:43Z",
+          "2026-10-23T05:52:50Z",
           100090.31
         ]
       ]
@@ -4055,6 +4055,29 @@
           "p_side": 0.415,
           "edge": 0.0391,
           "opened": "2026-10-22T23:35:05Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBURNHAMMENTION-26OCT28-TAX",
+      "question": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Tax)",
+      "url": "https://kalshi.com/markets/kxburnhammention/what-will-andy-burnham-say-during-next-prime-minister-s-ques/kxburnhammention-26oct28",
+      "source": "kalshi",
+      "close_time": "2026-11-18T16:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 50,
+          "cost_per": 0.4268,
+          "total_cost": 21.34,
+          "p_side": 0.48,
+          "edge": 0.0532,
+          "opened": "2026-10-23T05:50:10Z",
           "value": null
         }
       ]
@@ -5254,6 +5277,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-23T05:50:10Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.4268,
+      "amount": 21.34,
+      "p": 0.48,
+      "q": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Tax)",
+      "url": "https://kalshi.com/markets/kxburnhammention/what-will-andy-burnham-say-during-next-prime-minister-s-ques/kxburnhammention-26oct28",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-23T05:50:10Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-23T05:50:10Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-23T05:35:12Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5757,35 +5805,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-22T20:05:15Z",
-      "type": "bet",
-      "strategy": "mention_no",
-      "side": "no",
-      "price": 0.4471,
-      "amount": 44.71,
-      "p": 0.48,
-      "q": "What will Jensen Huang say during NVIDIA GTC Washington, D.C. Keynote originally scheduled for December 1, 2026? (Hermes)",
-      "url": "https://kalshi.com/markets/kxnvdamention/what-will-jensen-huang-say-during-nvidia-gtc-washington-d-c/kxnvdamention-26dec01",
-      "probe": true
-    },
-    {
-      "ts": "2026-10-22T20:05:15Z",
-      "type": "bet",
-      "strategy": "mention_follow",
-      "side": "no",
-      "price": 0.4471,
-      "amount": 44.71,
-      "p": 0.5,
-      "q": "What will Jensen Huang say during NVIDIA GTC Washington, D.C. Keynote originally scheduled for December 1, 2026? (Hermes)",
-      "url": "https://kalshi.com/markets/kxnvdamention/what-will-jensen-huang-say-during-nvidia-gtc-washington-d-c/kxnvdamention-26dec01",
-      "probe": true
-    },
-    {
-      "ts": "2026-10-22T20:05:15Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
