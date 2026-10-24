@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T23:37:17Z",
+  "generated": "2026-10-24T23:51:38Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-24T23:37:17Z",
+      "t": "2026-10-24T23:51:38Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1844,
+    "resolved": 1845,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277458785249458,
-        "n": 1844
+        "brier": 0.2276330623306233,
+        "n": 1845
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14633616363882862,
-        "n": 1844
+        "brier": 0.14637913861788618,
+        "n": 1845
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-24T23:34:44Z",
+    "ts": "2026-10-24T23:48:54Z",
     "stages": [
       [
         "Fetched",
@@ -1961,7 +1961,7 @@
           99500.72
         ],
         [
-          "2026-10-24T23:37:17Z",
+          "2026-10-24T23:51:38Z",
           99500.72
         ]
       ]
@@ -2806,7 +2806,7 @@
           99827.42
         ],
         [
-          "2026-10-24T23:37:17Z",
+          "2026-10-24T23:51:38Z",
           99827.42
         ]
       ]
@@ -3651,7 +3651,7 @@
           100090.31
         ],
         [
-          "2026-10-24T23:37:17Z",
+          "2026-10-24T23:51:38Z",
           100090.31
         ]
       ]
@@ -5358,6 +5358,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-24T23:48:54Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-24T23:48:54Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-24T23:34:44Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5860,19 +5873,6 @@
       "ts": "2026-10-24T14:04:54Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-24T14:04:54Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-24T13:49:48Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -5885,7 +5885,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1844,
+    "reviewed": 1845,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
@@ -6498,12 +6498,12 @@
       },
       {
         "category": "world",
-        "n": 40,
-        "jev_plain": 0.3285,
-        "market": 0.1,
+        "n": 41,
+        "jev_plain": 0.321,
+        "market": 0.103,
         "jev_research": 0.5326,
-        "n_jev_plain": 40,
-        "n_market": 40,
+        "n_jev_plain": 41,
+        "n_market": 41,
         "n_jev_research": 6
       },
       {
