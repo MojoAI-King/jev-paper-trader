@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T10:52:18Z",
+  "generated": "2026-10-24T11:07:54Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-24T10:52:18Z",
+      "t": "2026-10-24T11:07:54Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-24T10:49:46Z",
+    "ts": "2026-10-24T11:04:50Z",
     "stages": [
       [
         "Fetched",
@@ -1961,7 +1961,7 @@
           99500.72
         ],
         [
-          "2026-10-24T10:52:18Z",
+          "2026-10-24T11:07:54Z",
           99500.72
         ]
       ]
@@ -2806,7 +2806,7 @@
           99827.42
         ],
         [
-          "2026-10-24T10:52:18Z",
+          "2026-10-24T11:07:54Z",
           99827.42
         ]
       ]
@@ -3651,7 +3651,7 @@
           100090.31
         ],
         [
-          "2026-10-24T10:52:18Z",
+          "2026-10-24T11:07:54Z",
           100090.31
         ]
       ]
@@ -5358,6 +5358,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-24T11:07:49Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-24T11:04:50Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-24T11:04:50Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-24T10:49:46Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5862,24 +5880,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-24T01:20:13Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-24T01:20:13Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-24T01:05:13Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -7117,17 +7117,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-23T22:52:50Z",
-      "headline": "In this half-day the pipeline judged nothing in 48 cycles, the review can only see three strategies and all three are locked, and no forecaster beats the market price, so this review proposes no changes.",
+      "ts": "2026-10-24T11:07:30Z",
+      "headline": "Nothing can be tuned today: the review shows only three locked strategies, the forecasters judged no new markets in 48 cycles, and the market price still beats every forecaster.",
       "went_well": [
-        "Mention follow-the-first-NO is up $90 on 6 settled bets (4 wins, 2 losses), about +$49 per $100 settled. Six bets is noise, not a finding.",
-        "In sports Claude direct roughly matches the market: Brier 0.177 against the market's 0.181 on 202 markets. That is the only category where any forecaster is level with the price.",
-        "Mention NO lost little per bet: -$173 on 43 settled, about -$11 per $100 of settled stake. That is close to breaking even, but it is still a loss."
+        "Mention follow is up $90 on 6 settled bets (4 wins). It has 10 bets still open. Six results is noise, not a finding.",
+        "Mention NO's coin-flip bets (30-60c) are nearly flat: -$60 on $1,038 staked over 32 settled, about -$6 per $100.",
+        "No strategy shown has bet on long shots under 30c, so the losses that prompted the 30c floor have not come back."
       ],
       "went_badly": [
-        "Nothing is being forecast. 48 of 48 cycles judged 0 markets, and the period produced only 2 bets (both mention NO) and 1 resolved market. The review also still shows only 3 of the strategies; main, original, calibrated, bold and the challengers are missing, and the yardstick is empty. This is the pr",
-        "The market still beats every forecaster. Paired on 824 markets, the market scores 0.162, Claude 0.200, Jev + research 0.217 and Jev alone 0.244. Only claude_direct (0.0043) and mention_prior have a positive skill estimate (lambda).",
-        "The records don't add up. Sharp has lost both its bets (-$499). Its live rules still show a 3c edge requirement at rules version 1, although a change to 2c was logged as applied (p36, p44), and its skill estimate is -3.70 on 94 markets (p39). Mention NO's 10 wins and 22 losses at 30-60c fit poorly w"
+        "Nothing is being forecast. 48 cycles judged 0 markets, and main, original and the other strategies are still missing from the review, so there is no yardstick and nothing to tune. This is the fault already reported in p46 and p53.",
+        "The market price still beats every forecaster. All time it scores Brier 0.146, against Claude direct's 0.175 (348 markets) and Jev + research's 0.208 (1,276). On the 824 markets all of them forecast, the market scores 0.162 against Claude's 0.200.",
+        "Mention NO is down $173 on 43 settled bets (15 wins), about -$11 per $100 settled, and its favourites lost $112 on 11. Yet mention_prior's measured skill is positive (lambda 0.26 on 569 markets), so Kelly sizing may now be live on a strategy that loses money. Its sizing should be held until p49 and "
       ]
     },
     "auto_start": true,
