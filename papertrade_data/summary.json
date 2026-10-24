@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T05:07:45Z",
+  "generated": "2026-10-24T05:22:59Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-24T05:07:45Z",
+      "t": "2026-10-24T05:22:59Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-24T05:05:12Z",
+    "ts": "2026-10-24T05:20:13Z",
     "stages": [
       [
         "Fetched",
@@ -1002,7 +1002,7 @@
     "research_reused": 0,
     "bets": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "claude_calls": 0,
@@ -1019,7 +1019,7 @@
     ],
     "cleared_gates": {
       "sharp": 0,
-      "mention_no": 0,
+      "mention_no": 1,
       "mention_follow": 0
     },
     "judged": 0,
@@ -1080,8 +1080,8 @@
       "unrealized": 0.0,
       "change": -172.58,
       "realized": -172.58,
-      "open": 32,
-      "open_cost": 826.84,
+      "open": 33,
+      "open_cost": 866.47,
       "settled": 43,
       "wins": 15,
       "losses": 28,
@@ -1961,7 +1961,7 @@
           99500.72
         ],
         [
-          "2026-10-24T05:07:45Z",
+          "2026-10-24T05:22:59Z",
           99500.72
         ]
       ]
@@ -2806,7 +2806,7 @@
           99827.42
         ],
         [
-          "2026-10-24T05:07:45Z",
+          "2026-10-24T05:22:59Z",
           99827.42
         ]
       ]
@@ -3651,7 +3651,7 @@
           100090.31
         ],
         [
-          "2026-10-24T05:07:45Z",
+          "2026-10-24T05:22:59Z",
           100090.31
         ]
       ]
@@ -4400,6 +4400,29 @@
           "p_side": 0.555,
           "edge": 0.0475,
           "opened": "2026-10-15T12:05:14Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXLUCKEYMENTION-26NOV18-MANU",
+      "question": "What will Palmer Luckey say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (Manufacture / Manufacturing)",
+      "url": "https://kalshi.com/markets/kxluckeymention/what-will-palmer-luckey-say-during-2026-new-york-times-dealb/kxluckeymention-26nov18",
+      "source": "kalshi",
+      "close_time": "2026-12-02T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 100,
+          "cost_per": 0.3963,
+          "total_cost": 39.63,
+          "p_side": 0.43,
+          "edge": 0.0337,
+          "opened": "2026-10-24T05:20:13Z",
           "value": null
         }
       ]
@@ -5335,6 +5358,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-24T05:20:13Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.3963,
+      "amount": 39.63,
+      "p": 0.43,
+      "q": "What will Palmer Luckey say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (Manufacture / Manufacturing)",
+      "url": "https://kalshi.com/markets/kxluckeymention/what-will-palmer-luckey-say-during-2026-new-york-times-dealb/kxluckeymention-26nov18",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-24T05:20:13Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-24T05:20:13Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-24T05:05:12Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -5843,24 +5891,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-23T19:50:10Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-23T19:50:10Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-23T19:35:09Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
