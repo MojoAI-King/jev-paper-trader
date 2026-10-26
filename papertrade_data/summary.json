@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T09:06:55Z",
+  "generated": "2026-10-26T09:22:34Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-26T09:06:55Z",
+      "t": "2026-10-26T09:22:34Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1866,
+    "resolved": 1867,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20803860465116278,
-        "n": 1290
+        "brier": 0.20833671572424475,
+        "n": 1291
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22747422293676314,
-        "n": 1866
+        "brier": 0.2276456882699518,
+        "n": 1867
       },
       {
         "name": "claude_direct",
@@ -921,14 +921,14 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21028805378289475,
-        "n": 1216
+        "brier": 0.21059475481511916,
+        "n": 1217
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1469225099142551,
-        "n": 1866
+        "brier": 0.14727285940010712,
+        "n": 1867
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-26T09:04:51Z",
+    "ts": "2026-10-26T09:19:58Z",
     "stages": [
       [
         "Fetched",
@@ -1971,7 +1971,7 @@
           99500.72
         ],
         [
-          "2026-10-26T09:06:55Z",
+          "2026-10-26T09:22:34Z",
           99500.72
         ]
       ]
@@ -2828,7 +2828,7 @@
           99777.01
         ],
         [
-          "2026-10-26T09:06:55Z",
+          "2026-10-26T09:22:34Z",
           99777.01
         ]
       ]
@@ -3685,7 +3685,7 @@
           100069.13
         ],
         [
-          "2026-10-26T09:06:55Z",
+          "2026-10-26T09:22:34Z",
           100069.13
         ]
       ]
@@ -5289,6 +5289,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-26T09:21:56Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will Luiz In\u00e1cio Lula da Silva win the second round of the 2026 Brazilian presidential election by less than 4%?",
+      "url": "https://polymarket.com/market/will-luiz-inacio-lula-da-silva-win-the-second-round-of-the-2026-brazilian-presidential-election-by-less-than-4"
+    },
+    {
+      "ts": "2026-10-26T09:19:58Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-26T09:04:51Z",
       "type": "scan",
       "fetched": 200,
@@ -5916,22 +5932,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-25T15:49:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-25T15:34:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5944,8 +5944,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1866,
-    "post_mortems": 88,
+    "reviewed": 1867,
+    "post_mortems": 89,
     "win_reviews": 42,
     "calibration": [
       {
@@ -5956,9 +5956,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 463,
+        "n": 464,
         "predicted": 0.296,
-        "actual": 0.276
+        "actual": 0.278
       },
       {
         "range": "40\u201360%",
@@ -5981,7 +5981,7 @@
     ],
     "root_causes": {
       "overconfident": 30,
-      "unlucky": 29,
+      "unlucky": 30,
       "missing_info": 12,
       "stale_info": 7,
       "research_error": 7,
@@ -5993,6 +5993,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Luiz In\u00e1cio Lula da Silva win the second round of the 2026 Brazilian presidential election by less than 4%?",
+        "url": "https://polymarket.com/market/will-luiz-inacio-lula-da-silva-win-the-second-round-of-the-2026-brazilian-presidential-election-by-less-than-4",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.23,
+        "market": 0.105,
+        "ts": "2026-10-26T09:21:56Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "Lula won the October 25 runoff by about 2 points of the valid vote (live TSE counts with 60\u201373% of sections in showed roughly 50.5\u201351.0% to 49.0\u201349.5%), even though every poll released after the first round had Fl\u00e1vio ahead by 4\u20135.6 points. Fl\u00e1vio had also beaten the polls in the first round. I only found partial counts, not the final certified total.",
+        "what_we_missed": "Most of Lula's winning outcomes fell in this bracket, so the question was really whether Lula would win at all. Two things may have deserved more weight: a 4\u20135 point poll lead with 2+ weeks to go is not decisive in Brazil, and Brazil's polarized runoffs tend to tighten. Even so, the post-first-round evidence pointed clearly toward Fl\u00e1vio. At 23% the forecast was already more than double the market's 10.5%, and that was the better side.",
+        "what_worked": "",
+        "lesson": "In a polarized runoff where the leader is ahead by only 4\u20136 points two weeks out, assume a wide spread of outcomes (a standard deviation of about 4\u20135 points on the margin). Don't push the trailing candidate's narrow-win bracket much below 20\u201325% just because polls missed in one direction in the first round.",
+        "suggested_change": {
+          "area": "none",
+          "change": "None needed. The forecast was reasonably calibrated and beat the market, and the less likely outcome happened."
+        }
+      },
       {
         "question": "Bitcoin price on Oct 16, 2026? ($83,000 or above)",
         "url": "https://kalshi.com/markets/kxbtcd/bitcoin-price-on-oct-16-2026/kxbtcd-26oct1617",
@@ -6091,26 +6111,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For 'official announcement' questions, look for recent and upcoming interviews or remarks by the minister, not just formal ministry press releases. Also check the deadline against the question title before forecasting."
-        }
-      },
-      {
-        "question": "Will the rate of core CPI inflation be above 2.5% for the year ending in September 2026? (Above 2.5%)",
-        "url": "https://kalshi.com/markets/kxcpicoreyoy/will-the-rate-of-core-cpi-inflation-be-above-2-5-for-the-yea/kxcpicoreyoy-26sep",
-        "outcome": "yes",
-        "category": "economy",
-        "p": 0.24,
-        "market": 0.125,
-        "ts": "2026-10-14T14:07:49Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "BLS released September 2026 CPI on October 14. Core CPI rose 0.3% for the month and 2.6% from a year earlier, up from 2.4% in August. That beat the consensus of 0.2% and 2.5%, so the question resolved YES.",
-        "what_we_missed": "Rounding was very close to the threshold. A replacement month of about 0.3% against the roughly 0.2% September 2025 month dropping out was enough to lift the not-seasonally-adjusted figure two tenths, to 2.6%. Also, the briefing facts stated the threshold inconsistently ('2.5% or higher' in one place, 'above 2.4%' in another), when the rules require 2.6% or more. That confusion didn't decide the outcome, but it shows the threshold was handled carelessly. The forecaster's 0.24 was already about double the market's 0.125, and the consensus pointed to NO, so this was mostly an upside surprise.",
-        "what_worked": "",
-        "lesson": "When the year-over-year figure sits one or two tenths from the threshold and the August monthly reading came in hot, a single 0.3% month can flip the rounded result. Probabilities around 15\u201330% are appropriate here, not extreme ones. Also state the rounded threshold exactly before forecasting.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Rebuild the 12-month rate from unrounded NSA index levels for the month dropping out (Sept 2025) and the latest month (Aug 2026), then calculate the exact monthly change needed to reach the rounded threshold. Compare that figure with consensus and the Cleveland Fed nowcast."
         }
       }
     ],
@@ -6454,9 +6454,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0595,
-      "b": 0.1243,
-      "n": 1290,
+      "a": 1.055,
+      "b": 0.1255,
+      "n": 1291,
       "active": true,
       "need": 300
     },
@@ -6523,14 +6523,14 @@
       },
       {
         "category": "politics",
-        "n": 80,
-        "jev_research": 0.2724,
-        "jev_plain": 0.3201,
-        "market": 0.1583,
+        "n": 81,
+        "jev_research": 0.2777,
+        "jev_plain": 0.323,
+        "market": 0.1663,
         "claude_direct": 0.2799,
-        "n_jev_research": 59,
-        "n_jev_plain": 80,
-        "n_market": 80,
+        "n_jev_research": 60,
+        "n_jev_plain": 81,
+        "n_market": 81,
         "n_claude_direct": 15
       },
       {
