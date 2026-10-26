@@ -222,4 +222,5 @@ Decision entries in `docs/decisions/`, sorted by ID. `skilliton index` writes th
 | [2026-10-11-lock-strategies-during-their-forward-tes-920a](docs/decisions/2026-10-11-lock-strategies-during-their-forward-tes-920a.md) | Lock strategies during their forward tests | accepted | 2026-10-11 |
 | [2026-10-11-retire-the-yardstick-stop-jev-calls-star-6023](docs/decisions/2026-10-11-retire-the-yardstick-stop-jev-calls-star-6023.md) | Retire the yardstick, stop Jev calls, start mention_follow | accepted | 2026-10-11 |
 | [2026-10-14-cancel-bets-a-bug-placed-refund-them-kee-e8ce](docs/decisions/2026-10-14-cancel-bets-a-bug-placed-refund-them-kee-e8ce.md) | Cancel bets a bug placed, refund them, keep them on record | accepted | 2026-10-14 |
+| [2026-10-26-add-a-for-fun-heavy-favourites-bot-with-9808](docs/decisions/2026-10-26-add-a-for-fun-heavy-favourites-bot-with-9808.md) | Add a for-fun heavy favourites bot with big flat bets | accepted | 2026-10-26 |
 <!-- skilliton:index:decisions:end -->

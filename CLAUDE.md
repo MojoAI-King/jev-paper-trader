@@ -22,7 +22,10 @@
 - **Neither Jev nor Claude picks bets** (Joey, 2026-10-11): `main`, `bold`, `calibrated`, `claude_direct` and (2026-10-12)
   `original` are retired, and `learning.retired_probabilities` stops the loop from starting a strategy that picks with either.
   What bets: `sharp`, `mention_no` and `mention_follow` (follows a new mention market's first NO trade; first trades read by
-  `markets.kalshi_first_trade`, kept in `papertrade_data/first_trades.json`). With no strategy using them, the scan makes no
+  `markets.kalshi_first_trade`, kept in `papertrade_data/first_trades.json`). Since 2026-10-26 also `favorites`, **for fun** (Joey: his friends
+  want to watch a bot bet a lot, big, and win often): probability `"fun"`, `engine._fun_pass`, buys the favourite at
+  90–97¢ on markets settling within 5 days, flat 1.5% bets; hard limits `FUN_MAX_STAKE_PCT` and `FUN_MAX_BETS_PER_DAY` in code.
+  About break-even on history, never a proven edge, never a real-money candidate. With no strategy using them, the scan makes no
   Jev or Claude research calls (`stats.jev_used`). Tests run the machinery on a copy of the policy with them on (`POLICY` in the tests);
   `RetiredJevTests` checks the live one (`REAL_POLICY`).
 - Read `PLAN.md` (the experiment and its pre-registered criteria) and `DECISIONS.md` before changing design.

@@ -748,6 +748,7 @@ def scan(policy: dict, client: JevClient | None = None, fetchers=None, log=print
             })
     _sharp_pass(sharp, fetched_ok, {key(m) for m in todo}, strats, spolicy, books, skills, event_of, stamp, policy,
                 funnel, stats, log)
+    _fun_pass(fetched_ok, strats, books, stamp, now, policy, funnel, stats, log)
     if any(s["probability"] in ("mention_prior", "mention_follow") for s in strats.values()) and fetchers.get("kalshi_mentions"):
         mcache = load_json(MENTION_SERIES, {})
         mk.LAST_FETCH.pop("kalshi_mentions", None)
@@ -827,6 +828,60 @@ def _sharp_pass(sharp, fetched, judged, strats, spolicy, books, skills, event_of
                                      "market": {k: v for k, v in m.items() if k != "rules"}, "sharp": line,
                                      "decisions": decisions})
     stats.setdefault("sharp", {}).update(decided_outside_jev=len(todo), logged=logged)
+
+
+FUN_MAX_STAKE_PCT = 0.03  # hard limits on the fun strategies, whatever policy.json says: one bet at most 3% of the
+FUN_MAX_BETS_PER_DAY = 50  # bankroll (learning.bounds' top), at most 50 bets a day
+
+
+def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) -> None:
+    """The fun strategies (probability "fun"; Joey, 2026-10-26: his friends want to watch a bot bet a lot, and big,
+    and win often). No forecast and no edge gate: each buys the favourite of every fetched market whose favourite's
+    ask is in its `fun` band, a flat share of its bankroll a bet, soonest-settling markets first, one bet per event.
+    On the markets the trader watched settle, favourites at 90-97c won 95% of the time and lost about 0.5% a bet
+    after costs (docs/EXPERIMENTS.md): a show, about break-even, not a proven edge. No Jev or Claude call; fees,
+    slippage and the contracts on offer are the same as for every other strategy."""
+    names = {n: s for n, s in strats.items() if s["probability"] == "fun"}
+    if not names:
+        return
+    horizon = now + timedelta(days=policy["fun"]["settles_within_days"])
+    lo = min(s["fun"]["min_ask"] for s in names.values())
+    hi = max(s["fun"]["max_ask"] for s in names.values())
+    pool = sorted((m for m in fetched if real_price(m) and event_time(m) <= horizon
+                   and lo <= max(m["yes_ask"], m["no_ask"]) <= hi), key=soonest)
+    mk.add_kalshi_fees(pool)  # only the markets some fun strategy could buy: a handful of series lookups
+    cap = policy["sizing"]["max_total_exposure_pct"]
+    for name, strat in names.items():
+        pf, r = books[name], strat["fun"]
+        held = {p["key"] for p in pf["open"]}
+        events = {p.get("event") for p in pf["open"] if p.get("event")}
+        today = sum(1 for p in pf["open"] + pf["closed"] if p["opened"][:10] == stamp[:10])
+        for m in pool:
+            if today >= min(r["max_bets_per_day"], FUN_MAX_BETS_PER_DAY):
+                break
+            if key(m) in held or (m.get("event") and m["event"] in events):
+                continue
+            side, ask = max((("yes", m["yes_ask"]), ("no", m["no_ask"])), key=lambda s: s[1])  # the favourite
+            if not r["min_ask"] <= ask <= r["max_ask"]:
+                continue
+            c = round(ask + fee_per_contract(m["source"], ask, policy, m) + policy["fees"]["slippage"], 4)
+            eq, open_cost = equity_at_cost(pf), sum(x["total_cost"] for x in pf["open"])
+            stake = min(min(r["stake_pct"], FUN_MAX_STAKE_PCT) * eq, max(0.0, cap * eq - open_cost), pf["cash"])
+            contracts = math.floor(stake / c)
+            offered = m.get(f"{side}_ask_size")
+            if offered is not None:
+                contracts = min(contracts, math.floor(offered))  # never more than the ask offers
+            if contracts < 1:
+                continue
+            q = m["mid"] if side == "yes" else 1 - m["mid"]
+            _bet(name, pf, m, {"side": side, "contracts": contracts, "cost": c, "total_cost": round(contracts * c, 2),
+                               "q": q, "ask": ask, "edge": round(q - c, 4), "sizing": "fun"},
+                 stamp, log, strat["rules_version"])
+            funnel["bets"][name] += 1
+            held.add(key(m))
+            events.add(m.get("event"))
+            today += 1
+    stats["fun"] = {"pool": len(pool)}
 
 
 def mention_prior(m: dict, cfg: dict) -> float:

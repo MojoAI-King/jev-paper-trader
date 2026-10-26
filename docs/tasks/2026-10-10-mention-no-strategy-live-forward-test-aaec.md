@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-15T01:08:26.663Z
+- **Updated:** 2026-10-26T23:35:56.910Z
 
 ## Request
 
@@ -182,6 +182,20 @@ not yet written
 - **Evidence:** 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health
 - **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical vs Kalshi 1-min candles); then follow-first-trade in gas ladders
 - **Git:** master @ 3319ddd, 1 tracked uncommitted, 3 untracked
+
+### 2026-10-26T23:26:56.144Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at a54bfa4353af, 0 tracked uncommitted, 2 untracked. The newest checkpoint before this one is 2026-10-15T01:08:26.663Z: Sharp's touchdown-prop bug bet cancelled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 canc...
+- **Evidence:** snapshot 2026-10-26T23-26-56-144Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** Carry on from the last recorded next step: Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical vs Kalshi 1-min candles); then follow-first-trade in gas ladders
+- **Git:** master @ a54bfa43, 0 tracked uncommitted, 2 untracked
+
+### 2026-10-26T23:35:56.910Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at a54bfa4353af, 4 tracked uncommitted, 2 untracked. The newest checkpoint before this one is 2026-10-26T23:26:56.144Z: Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at a54bfa4353af, 0 tr...
+- **Evidence:** snapshot 2026-10-26T23-35-56-910Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** No next step was recorded before compaction; read git status and this record, then record a checkpoint.
+- **Git:** master @ a54bfa43, 4 tracked uncommitted, 2 untracked
 
 ## Handoff
 

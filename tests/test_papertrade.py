@@ -847,7 +847,7 @@ class EndToEndTests(DataDirTest):
                             forecaster=FakeForecaster({"Q1": 0.62, "Q2": 0.68, "Q3": 0.41}), **kw)
         self.assertEqual((stats["funnel"]["judged"], stats["funnel"]["with_research"]), (3, 3))
         self.assertEqual(stats["funnel"]["bets"], {"main": 2, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                                   "original": 2, "sharp": 0, "mention_no": 0, "mention_follow": 0})  # the yardstick bets as main started
+                                                   "original": 2, "sharp": 0, "mention_no": 0, "mention_follow": 0, "favorites": 0})  # the yardstick bets as main started
         self.assertFalse(any(seen_prices))
 
         # a second scan in the same hour judges nothing and asks Claude for nothing
@@ -859,7 +859,7 @@ class EndToEndTests(DataDirTest):
                           log=lambda *_: None)
         # settling covers every ledger, the retired Jev alone's too
         self.assertEqual(s["by_strategy"], {"main": 2, "jev_alone": 0, "claude_direct": 1, "bold": 2, "calibrated": 0,
-                                            "jev_alone_bold": 0, "original": 2, "sharp": 0, "mention_no": 0, "mention_follow": 0})
+                                            "jev_alone_bold": 0, "original": 2, "sharp": 0, "mention_no": 0, "mention_follow": 0, "favorites": 0})
         pf = engine.load_portfolio(policy)
         self.assertEqual(len(pf["open"]), 0)
         self.assertEqual(sorted(p["outcome"] for p in pf["closed"]), ["yes", "yes"])
@@ -1463,7 +1463,7 @@ class ResearchPipelineTests(DataDirTest):
         fc = FakeForecaster({"Will Lula win the election? (L)": 0.45})
         stats = self.run_scan([self.lula()], FakeResearcher([fact(CLEAN[0])]), fc, transport=transport)
         self.assertEqual(stats["funnel"]["bets"], {"main": 1, "claude_direct": 0, "bold": 1, "calibrated": 0,
-                                                   "original": 1, "sharp": 0, "mention_no": 0, "mention_follow": 0})
+                                                   "original": 1, "sharp": 0, "mention_no": 0, "mention_follow": 0, "favorites": 0})
         j = engine.read_jsonl(engine.JUDGMENTS)[0]
         self.assertEqual((j["decisions"]["main"]["p_yes"], j["answers_no_news"]["p_yes"]["noul"]), (0.70, 0.60))
         self.assertFalse({"jev_alone", "jev_alone_bold"} & set(j["decisions"]))  # retired: they no longer bet
@@ -2511,7 +2511,7 @@ class RetiredJevTests(DataDirTest):
     def test_jev_strategies_are_retired_and_the_rest_still_trade(self):
         live = {n for n in engine.strategies(REAL_POLICY)}
         self.assertFalse({"main", "bold", "calibrated", "jev_alone", "jev_alone_bold", "claude_direct", "original"} & live)
-        self.assertEqual(live, {"sharp", "mention_no", "mention_follow"})
+        self.assertEqual(live, {"sharp", "mention_no", "mention_follow", "favorites"})
         def no_jev(*a):
             raise AssertionError("no live strategy uses Jev, so no call")
         stats = engine.scan(dict(REAL_POLICY, sources=["polymarket"]), client=JevClient(transport=no_jev),
@@ -2523,9 +2523,9 @@ class RetiredJevTests(DataDirTest):
         self.assertFalse({"main", "bold", "calibrated", "claude_direct"} & {r["name"] for r in s["strategies"]})
 
     def test_strategies_in_a_forward_test_are_locked_against_the_review(self):
-        self.assertEqual(REAL_POLICY["learning"]["locked_strategies"], ["sharp", "mention_no", "mention_follow"])
+        self.assertEqual(REAL_POLICY["learning"]["locked_strategies"], ["sharp", "mention_no", "mention_follow", "favorites"])
         now = datetime(2026, 10, 11, tzinfo=timezone.utc)
-        for name in ("sharp", "mention_no", "mention_follow"):
+        for name in ("sharp", "mention_no", "mention_follow", "favorites"):
             status, reason = coach.tune(REAL_POLICY, name, {"min_edge": 0.06}, now)
             self.assertEqual(status, "invalid")
             self.assertIn("locked while its forward test runs", reason)
@@ -2540,6 +2540,58 @@ class RetiredJevTests(DataDirTest):
             self.assertIn("no longer picks bets", learn.challenger_problem(cfg, REAL_POLICY))
         claude = {"label": "Claude, picky", "probability": "claude_direct", "gates": "jev_research"}
         self.assertIsNone(learn.challenger_problem(claude, POLICY))  # the machinery itself still works when allowed
+
+
+class FunStrategyTests(DataDirTest):
+    """The fun strategy (Joey, 2026-10-26): no forecast, the favourite of every soon-settled busy market in its band,
+    big flat bets, real costs, hard limits in code."""
+
+    def scan(self, ms, policy=None, now=SCAN_NOW):
+        def no_jev(*a):
+            raise AssertionError("the fun strategy needs no Jev call")
+        return engine.scan(dict(policy or REAL_POLICY, sources=["polymarket"]), client=JevClient(transport=no_jev),
+                           fetchers={"polymarket": lambda *a: ms}, log=lambda *_: None, now=now,
+                           researcher=FakeResearcher([]), forecaster=FakeForecaster({}))
+
+    def test_it_buys_the_favourite_in_its_band_big_once_per_event_and_soonest_first(self):
+        soon, later = "1999-12-27T00:00:00Z", "1999-12-29T00:00:00Z"
+        ms = [market(mid="1", yes_ask=0.95, no_ask=0.06, m=0.945, close=later) | {"event": "e1"},
+              market(mid="2", yes_ask=0.06, no_ask=0.95, m=0.055, close=soon) | {"event": "e2"},   # NO is the favourite
+              market(mid="3", yes_ask=0.94, no_ask=0.07, m=0.935, close=soon) | {"event": "e1"},   # same event as 1
+              market(mid="4", yes_ask=0.80, no_ask=0.22, m=0.79, close=soon) | {"event": "e3"},    # under the band
+              market(mid="5", yes_ask=0.95, no_ask=0.06, m=0.945, close="2000-01-20T00:00:00Z")]  # settles too late
+        stats = self.scan(ms)
+        pf = engine.load_portfolio(REAL_POLICY, "favorites")
+        self.assertEqual([(p["market_id"], p["side"]) for p in pf["open"]], [("2", "no"), ("3", "yes")])
+        self.assertEqual(stats["funnel"]["bets"]["favorites"], 2)
+        bet = pf["open"][0]
+        self.assertEqual(bet["sizing"], "fun")
+        self.assertLessEqual(bet["total_cost"], 0.015 * 100000)
+        self.assertGreater(bet["total_cost"], 0.014 * 100000)  # a real bet, not a probe
+        self.assertAlmostEqual(bet["cost_per"], 0.95 + REAL_POLICY["fees"]["slippage"], places=4)  # fee-free test market
+        self.scan(ms, now=SCAN_NOW + timedelta(minutes=15))  # already holding both events: nothing new
+        self.assertEqual(len(engine.load_portfolio(REAL_POLICY, "favorites")["open"]), 2)
+
+    def test_its_limits_hold_whatever_the_policy_says(self):
+        pol = json.loads(json.dumps(REAL_POLICY))
+        pol["strategies"]["favorites"]["fun"].update(stake_pct=0.5, max_bets_per_day=1000)
+        ms = [market(mid=str(i), yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z") | {"event": f"e{i}"}
+              for i in range(80)]
+        self.scan(ms, policy=pol)
+        pf = engine.load_portfolio(pol, "favorites")
+        self.assertLessEqual(max(p["total_cost"] for p in pf["open"]), engine.FUN_MAX_STAKE_PCT * 100000)
+        self.assertLessEqual(len(pf["open"]), engine.FUN_MAX_BETS_PER_DAY)
+        self.assertLessEqual(sum(p["total_cost"] for p in pf["open"]), 0.5 * 100000 + 1)  # the open-bet cap
+
+    def test_it_never_buys_more_contracts_than_the_ask_offers(self):
+        m = market(src="kalshi", mid="K1", yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
+        mk._SERIES_FEE["K1"] = 1.0
+        try:
+            self.scan([m | {"event": "kalshi:K1", "yes_ask_size": 40.0, "no_ask_size": 10.0}])
+        finally:
+            mk._SERIES_FEE.pop("K1", None)
+        pf = engine.load_portfolio(REAL_POLICY, "favorites")
+        self.assertEqual([p["contracts"] for p in pf["open"]], [40])
 
 
 class ExperimentsRegistryTests(unittest.TestCase):

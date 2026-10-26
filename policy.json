@@ -85,7 +85,7 @@
     "min_days_between_changes": 7,
     "_min_days_between_changes": "A strategy's rules change at most once every 7 days (1 from 2026-09-28; 7 since 2026-10-09, docs/REBUILD_PLAN.md phase 1). Report 13 found 18 changes in 11 days, each version judged on a median of 8 settled bets: tuning on noise",
     "frozen_strategies": ["original"],
-    "locked_strategies": ["sharp", "mention_no", "mention_follow"],
+    "locked_strategies": ["sharp", "mention_no", "mention_follow", "favorites"],
     "_locked_strategies": "2026-10-11, Joey: the daily review may not change these strategies' rules while their pre-registered forward tests run (docs/EXPERIMENTS.md), so their results answer one question. Unlike the frozen yardstick they keep skill-based sizing; remove a name to unlock it",
     "_frozen_strategies": "Never tuned: the yardstick the tuning is judged against",
     "auto_start_challengers": true,
@@ -155,7 +155,16 @@
                        "badge": "New", "probability": "mention_follow", "gates": "mention_follow", "slot": 3,
                        "gate_overrides": {"min_edge": 0.03}, "rules": {"min_ask": 0.3, "max_ask": 0.85},
                        "blurb": "No AI forecast: when a new Kalshi 'will they say X' market's very first trade is someone buying NO, it buys NO too at the posted price within an hour. In 108 past buys over 62 events that paid about +18% after fees at the 15-minute mark (range -0% to +35%); following a first YES lost.",
-                       "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"}
+                       "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"},
+    "favorites": {"label": "Heavy favourites, big bets (for fun)", "short": "Favourites", "desc": "bets big on near-sure things",
+                  "badge": "For fun", "probability": "fun", "gates": "fun", "slot": 1,
+                  "fun": {"min_ask": 0.90, "max_ask": 0.97, "stake_pct": 0.015, "max_bets_per_day": 40},
+                  "blurb": "Just for fun, no AI: it buys the favourite on every busy market priced 90 to 97 cents that settles within 5 days, about $1,500 a bet, up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
+                  "_why": "Joey, 2026-10-26: his friends want more bets, bigger bets, more wins, and not a page that keeps losing. Of the rules checked on markets the trader watched settle (first look, real price, one per event), favourites at 90-97c came closest to even: 95% won, -0.5% a bet [-3.7, +2.3], n=239; favourites at 60-90c lost -7.8% [-13.5, -2.3] (n=489), longshots at 8-30c -19.7% [-37.4, +1.0] (n=400). engine._fun_pass; hard limits FUN_MAX_STAKE_PCT 3% and FUN_MAX_BETS_PER_DAY 50 in code"}
+  },
+  "fun": {
+    "settles_within_days": 5,
+    "_readme": "The fun strategies (probability \"fun\", engine._fun_pass): no forecast, they bet only on markets decided within this many days so results come fast. Each strategy's own `fun` sets its price band, its flat stake (share of its bankroll) and its daily bet limit"
   },
 
   "cancelled_bets": {
