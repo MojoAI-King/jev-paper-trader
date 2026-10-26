@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T20:07:03Z",
+  "generated": "2026-10-26T20:22:36Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-26T20:07:03Z",
+      "t": "2026-10-26T20:22:36Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-26T20:04:49Z",
+    "ts": "2026-10-26T20:19:52Z",
     "stages": [
       [
         "Fetched",
@@ -1975,7 +1975,7 @@
           99500.72
         ],
         [
-          "2026-10-26T20:07:03Z",
+          "2026-10-26T20:22:36Z",
           99500.72
         ]
       ]
@@ -2836,7 +2836,7 @@
           99772.95
         ],
         [
-          "2026-10-26T20:07:03Z",
+          "2026-10-26T20:22:36Z",
           99772.95
         ]
       ]
@@ -3697,7 +3697,7 @@
           100069.13
         ],
         [
-          "2026-10-26T20:07:03Z",
+          "2026-10-26T20:22:36Z",
           100069.13
         ]
       ]
@@ -5278,6 +5278,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-26T20:22:30Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-26T20:19:52Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-26T20:04:49Z",
       "type": "scan",
       "fetched": 200,
@@ -5892,22 +5905,6 @@
     },
     {
       "ts": "2026-10-26T00:49:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-26T00:34:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-26T00:19:31Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -7150,17 +7147,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-26T08:07:01Z",
-      "headline": "Judging is still down: 0 markets judged in 48 cycles, the strategies you can tune are still missing from this review, and the only three listed are locked, so I propose nothing and point back to the triage already queued (p46).",
+      "ts": "2026-10-26T20:22:06Z",
+      "headline": "Half a day with nothing new judged and only the three locked strategies reported, so there is nothing I'm allowed to tune and nothing new to learn; the mention NO strategy is still losing, and its Kelly sizing is now switched on.",
       "went_well": [
-        "Mention markets, follow the first NO is up $69 on 9 settled bets (5 wins, 4 losses), including 2 of 2 wins at 60c and up. Nine bets is noise, not a finding.",
-        "Mention NO is close to break-even: -$223 on $2,463 staked (about -$9 per $100) across 47 settled bets. It is the only strategy with a usable count, and it still placed a bet this half-day while everything else was idle.",
-        "In sports, Claude direct is slightly ahead of the market (Brier 0.1765 vs 0.1805 on 203 markets). That is still the only place any forecaster beats the price, and the margin is thin."
+        "Mention 'follow the first NO' is up $69 on 9 settled bets (about +$32 per $100 settled), winning 5 of 9. That is far too few to mean anything yet.",
+        "Claude direct is the only forecaster that beats the market anywhere: in sports it scores 0.1765 against the market's 0.1805 on 203 markets. The gap is small.",
+        "Mention NO's ledger now adds up. Its two price buckets sum to its 48 settled bets and its -$227 P&L, which partly answers the mismatch p48 asked about."
       ],
       "went_badly": [
-        "The market still beats every forecaster. On the 840 markets scored for all of them, the market's Brier is 0.163, against 0.201 for Claude direct, 0.217 for Jev + research and 0.244 for Jev alone. Nothing we run has shown it can beat the price overall.",
-        "The pipeline looks unchanged since mid-October. There were 48 cycles with 0 markets judged, and main, original, the yardstick (empty here), calibrated, bold and Claude direct are all missing. Sharp still shows rules version 1 with a 3c edge even though p33 (2c) is logged as applied, and its gate led",
-        "Mention NO now sizes by Kelly. Its source has lambda 0.09 on 637 markets, but the standard error is 0.26, larger than the raw estimate of 0.22. Its 47 settled bets lose: 11 of 36 won at 30-60c (-$110) and 5 of 11 at 60c and up (-$112). The checks p49 and p51 asked for still haven't happened."
+        "No forecaster beats the market overall. On 841 paired markets the market scores 0.163, Claude direct 0.201, Jev + research 0.217 and Jev alone 0.244 (lower is better).",
+        "Mention NO is down $227 on 48 settled bets, about -$14 per $100 of settled stake, winning 16 of 48. Even so, mention_prior's measured skill (0.18) is positive on 642 markets, above the 300 needed, so Kelly sizing has started for it. That skill estimate's standard error (0.26) is larger than the esti",
+        "The pipeline still looks broken. 45 cycles judged nothing. Main, original, the yardstick and every challenger are missing from this report. Sharp shows rules version 1 with a 3c edge, though p33 recorded changing it to 2c, and its skill estimate (-2.87) rests on 128 markets while its record shows on"
       ]
     },
     "auto_start": true,
