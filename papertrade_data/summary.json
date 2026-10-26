@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T15:22:07Z",
+  "generated": "2026-10-26T15:52:35Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-26T15:22:07Z",
+      "t": "2026-10-26T15:52:35Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1867,
+    "resolved": 1869,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2276456882699518,
-        "n": 1867
+        "brier": 0.2276899946495452,
+        "n": 1869
       },
       {
         "name": "claude_direct",
@@ -927,33 +927,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14727285940010712,
-        "n": 1867
+        "brier": 0.14721491626538255,
+        "n": 1869
       }
     ],
     "paired": {
-      "n": 840,
+      "n": 841,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16349077767857143
+          "brier": 0.16337369589774078
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2170389285714286
+          "brier": 0.21711486325802618
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20064619047619048
+          "brier": 0.2008946492271106
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2442602380952381
+          "brier": 0.24448775267538647
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-26T15:20:02Z",
+    "ts": "2026-10-26T15:50:24Z",
     "stages": [
       [
         "Fetched",
@@ -1971,7 +1971,7 @@
           99500.72
         ],
         [
-          "2026-10-26T15:22:07Z",
+          "2026-10-26T15:52:35Z",
           99500.72
         ]
       ]
@@ -2828,7 +2828,7 @@
           99777.01
         ],
         [
-          "2026-10-26T15:22:07Z",
+          "2026-10-26T15:52:35Z",
           99777.01
         ]
       ]
@@ -3685,7 +3685,7 @@
           100069.13
         ],
         [
-          "2026-10-26T15:22:07Z",
+          "2026-10-26T15:52:35Z",
           100069.13
         ]
       ]
@@ -5289,6 +5289,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-26T15:50:24Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-26T15:20:02Z",
       "type": "scan",
       "fetched": 200,
@@ -5924,14 +5932,6 @@
       "q": "What will Bernie Sanders say during remarks in Alpena, Michigan about Abdul El-Sayed originally scheduled for October 26, 2026? (Robot / Robotic / Robotics)",
       "url": "https://kalshi.com/markets/kxberniemention/what-will-bernie-sanders-say-during-remarks-in-alpena-michig/kxberniemention-26oct26",
       "probe": true
-    },
-    {
-      "ts": "2026-10-25T20:04:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -5942,9 +5942,9 @@
   },
   "research_runs_today": 0,
   "research_per_day": 150,
-  "cycles_24h": 94,
+  "cycles_24h": 93,
   "learning": {
-    "reviewed": 1867,
+    "reviewed": 1869,
     "post_mortems": 89,
     "win_reviews": 42,
     "calibration": [
@@ -6511,13 +6511,13 @@
       },
       {
         "category": "culture",
-        "n": 139,
-        "jev_plain": 0.1765,
-        "market": 0.0741,
+        "n": 141,
+        "jev_plain": 0.1778,
+        "market": 0.0744,
         "jev_research": 0.1404,
         "claude_direct": 0.0324,
-        "n_jev_plain": 139,
-        "n_market": 139,
+        "n_jev_plain": 141,
+        "n_market": 141,
         "n_jev_research": 62,
         "n_claude_direct": 14
       },
