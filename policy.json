@@ -158,13 +158,13 @@
                        "_why": "docs/research/CHECKS.md, 'Following the first trade at quoted prices' (2026-10-12): follow a NO first trade at the quoted ask 15 min later +18.1% [-1.3, +35.1], 108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min; follow YES -4% to -25%; placebo NO about 0. P(YES) = the mid less mention.follow_bias (the measured gap, 9.5 points over the NO price paid plus about half the 6c spread). Probes until its edge shows; one bet per event; never more contracts than the ask offers"},
     "favorites": {"label": "Heavy favourites, big bets (for fun)", "short": "Favourites", "desc": "bets big on near-sure things",
                   "badge": "For fun", "probability": "fun", "gates": "fun", "slot": 1,
-                  "fun": {"min_ask": 0.90, "max_ask": 0.97, "stake_pct": 0.015, "max_bets_per_day": 40},
+                  "fun": {"min_ask": 0.90, "max_ask": 0.97, "stake_pct": 0.015, "max_bets_per_day": 40, "min_stake": 500},
                   "blurb": "Just for fun, no AI: it buys the favourite on every busy market priced 90 to 97 cents that settles within 5 days, about $1,500 a bet, up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
                   "_why": "Joey, 2026-10-26: his friends want more bets, bigger bets, more wins, and not a page that keeps losing. Of the rules checked on markets the trader watched settle (first look, real price, one per event), favourites at 90-97c came closest to even: 95% won, -0.5% a bet [-3.7, +2.3], n=239; favourites at 60-90c lost -7.8% [-13.5, -2.3] (n=489), longshots at 8-30c -19.7% [-37.4, +1.0] (n=400). engine._fun_pass; hard limits FUN_MAX_STAKE_PCT 3% and FUN_MAX_BETS_PER_DAY 50 in code"}
   },
   "fun": {
     "settles_within_days": 5,
-    "_readme": "The fun strategies (probability \"fun\", engine._fun_pass): no forecast, they bet only on markets decided within this many days so results come fast. Each strategy's own `fun` sets its price band, its flat stake (share of its bankroll) and its daily bet limit"
+    "_readme": "The fun strategies (probability \"fun\", engine._fun_pass): no forecast, they bet only on markets decided within this many days so results come fast. Each strategy's own `fun` sets its price band, its flat stake (share of its bankroll), its daily bet limit, and `min_stake`: a market whose ask offers less than this many dollars is skipped, not bet small (2026-10-26, after the first cycle placed $1.85 and $1.91 bets on thin books)"
   },
 
   "cancelled_bets": {

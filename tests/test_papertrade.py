@@ -2585,13 +2585,16 @@ class FunStrategyTests(DataDirTest):
 
     def test_it_never_buys_more_contracts_than_the_ask_offers(self):
         m = market(src="kalshi", mid="K1", yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
-        mk._SERIES_FEE["K1"] = 1.0
+        thin = market(src="kalshi", mid="K2", yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
+        mk._SERIES_FEE["K1"] = mk._SERIES_FEE["K2"] = 1.0
         try:
-            self.scan([m | {"event": "kalshi:K1", "yes_ask_size": 40.0, "no_ask_size": 10.0}])
+            self.scan([m | {"event": "kalshi:K1", "yes_ask_size": 600.0, "no_ask_size": 10.0},
+                       thin | {"event": "kalshi:K2", "yes_ask_size": 40.0, "no_ask_size": 10.0}])  # about $38 on offer
         finally:
             mk._SERIES_FEE.pop("K1", None)
+            mk._SERIES_FEE.pop("K2", None)
         pf = engine.load_portfolio(REAL_POLICY, "favorites")
-        self.assertEqual([p["contracts"] for p in pf["open"]], [40])
+        self.assertEqual([(p["market_id"], p["contracts"]) for p in pf["open"]], [("K1", 600)])  # no tiny bet on the thin one
 
 
 class ExperimentsRegistryTests(unittest.TestCase):

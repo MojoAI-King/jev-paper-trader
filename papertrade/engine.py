@@ -871,8 +871,8 @@ def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) ->
             offered = m.get(f"{side}_ask_size")
             if offered is not None:
                 contracts = min(contracts, math.floor(offered))  # never more than the ask offers
-            if contracts < 1:
-                continue
+            if contracts < 1 or contracts * c < r.get("min_stake", 0):
+                continue  # a thin book: skip it rather than show a tiny bet (Joey's friends want real money moved)
             q = m["mid"] if side == "yes" else 1 - m["mid"]
             _bet(name, pf, m, {"side": side, "contracts": contracts, "cost": c, "total_cost": round(contracts * c, 2),
                                "q": q, "ask": ask, "edge": round(q - c, 4), "sizing": "fun"},
