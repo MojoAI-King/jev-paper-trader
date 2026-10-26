@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-26T23:35:56.910Z
+- **Updated:** 2026-10-26T23:40:24.097Z
 
 ## Request
 
@@ -197,9 +197,16 @@ not yet written
 - **Next:** No next step was recorded before compaction; read git status and this record, then record a checkpoint.
 - **Git:** master @ a54bfa43, 4 tracked uncommitted, 2 untracked
 
+### 2026-10-26T23:40:24.097Z
+
+- **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged.
+- **Evidence:** 166 offline tests OK; commit 4dcbdf5 pushed to master
+- **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
+- **Git:** master @ 4dcbdf5a, 0 tracked uncommitted, 2 untracked
+
 ## Handoff
 
-- **State:** Sharp's touchdown-prop bug bet cancelled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 cancelled. Live total about +148. Strategies otherwise unchanged; all healthy. Evidence: 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health.
-- **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical vs Kalshi 1-min candles); then follow-first-trade in gas ladders
+- **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
+- **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard

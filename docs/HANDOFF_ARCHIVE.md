@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-11 14:02 EDT
+- **State:** Forward tests locked (1fad555): learning.locked_strategies sharp, mention_no; run 38162056755 clean. Follow-the-first-trade test (wf_629049c4-764) still running. Evidence: 155 offline tests OK; run 38162056755 success.
+- **Next:** Read wf_629049c4-764 results; record in CHECKS.md; propose a forward test to Joey only if a rule survives the review
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take on its own clock
+- **Git:** master @ 1fad555, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-11 18:02 UTC)
+
 ### 2026-10-11 13:52 EDT
 - **State:** Workflow wf_79340bda-9e0 done: Economics lead refuted for a first mover (AAA gas in a falling week; quote-based -2.7% on 494 unseen events). Mention edge at quoted prices +0.5% [-10.2, +11.3] (779 buys), so expected about break-even; page blurb and registry corrected (17b920a); forward test stands. New hypothesis under test: follow the informed first trade at quoted prices (workflow wf_629049c4-764). Evidence: wf_79340bda-9e0: 6 agents, 0 errors; 154 offline tests OK.
 - **Next:** Read wf_629049c4-764 (follow-first-trade); record in CHECKS.md; if a rule survives, propose a forward test to Joey (code change)

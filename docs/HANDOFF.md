@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-14 21:08 EDT
+Written: 2026-10-26 19:40 EDT
 
+- **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
+- **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
+- **Git:** master @ 4dcbdf5a, 0 tracked uncommitted, 2 untracked
+- **CI:** master green on GitHub (read 2026-10-26 23:40 UTC)
+
+## Earlier
+
+### 2026-10-14 21:08 EDT
 - **State:** Sharp's touchdown-prop bug bet cancelled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 cancelled. Live total about +148. Strategies otherwise unchanged; all healthy. Evidence: 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health.
 - **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical vs Kalshi 1-min candles); then follow-first-trade in gas ladders
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
 - **Git:** master @ 3319ddd, 1 tracked uncommitted, 3 untracked
 - **CI:** master green on GitHub (read 2026-10-15 01:08 UTC)
-
-## Earlier
 
 ### 2026-10-14 20:43 EDT
 - **State:** Read-only check 2026-10-15: all healthy. sharp placed no bets since the Oct 11 fix: 60 looks at 27 games, Kalshi mid within ~1c of Pinnacle (median), best edge after fees +0.5% vs the 3% gate. mention_no 36 open probes (12 settled, +168), mention_follow 7 open probes (1 settled, -20). Evidence: python3 -m papertrade health (cycle 00:35Z healthy); sharp.jsonl and portfolios/*.json read at 932c49a.
@@ -46,11 +54,3 @@ Written: 2026-10-14 21:08 EDT
 - **Watch out:** Five parallel research agents hit the Claude plan's session limit; keep research to scripts or one agent at a time
 - **Git:** master @ 7b455a6, 2 uncommitted
 - **CI:** master green on GitHub (read 2026-10-12 01:04 UTC)
-
-### 2026-10-11 14:02 EDT
-- **State:** Forward tests locked (1fad555): learning.locked_strategies sharp, mention_no; run 38162056755 clean. Follow-the-first-trade test (wf_629049c4-764) still running. Evidence: 155 offline tests OK; run 38162056755 success.
-- **Next:** Read wf_629049c4-764 results; record in CHECKS.md; propose a forward test to Joey only if a rule survives the review
-- **Blocked:** nothing
-- **Watch out:** Score backtests at quotes the strategy could take on its own clock
-- **Git:** master @ 1fad555, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-11 18:02 UTC)
