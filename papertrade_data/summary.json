@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T03:21:44Z",
+  "generated": "2026-10-26T03:36:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-26T03:21:44Z",
+      "t": "2026-10-26T03:36:29Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1848,
+    "resolved": 1849,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20833043818466354,
-        "n": 1278
+        "brier": 0.20818287724784987,
+        "n": 1279
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22794870129870132,
-        "n": 1848
+        "brier": 0.22785657111952407,
+        "n": 1849
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21064909387873754,
-        "n": 1204
+        "brier": 0.2104899255767635,
+        "n": 1205
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14677227313311686,
-        "n": 1848
+        "brier": 0.14689811614386153,
+        "n": 1849
       }
     ],
     "paired": {
-      "n": 826,
+      "n": 827,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16252548516949153
+          "brier": 0.16275776420798066
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21796900726392254
+          "brier": 0.2177403869407497
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20050230024213075
+          "brier": 0.20050471584038693
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2449369249394673
+          "brier": 0.24471632406287788
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-26T03:19:36Z",
+    "ts": "2026-10-26T03:34:27Z",
     "stages": [
       [
         "Fetched",
@@ -1971,7 +1971,7 @@
           99500.72
         ],
         [
-          "2026-10-26T03:21:44Z",
+          "2026-10-26T03:36:29Z",
           99500.72
         ]
       ]
@@ -2828,7 +2828,7 @@
           99777.01
         ],
         [
-          "2026-10-26T03:21:44Z",
+          "2026-10-26T03:36:29Z",
           99777.01
         ]
       ]
@@ -3685,7 +3685,7 @@
           100069.13
         ],
         [
-          "2026-10-26T03:21:44Z",
+          "2026-10-26T03:36:29Z",
           100069.13
         ]
       ]
@@ -5289,6 +5289,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-26T03:34:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-26T03:19:36Z",
       "type": "scan",
       "fetched": 200,
@@ -5927,14 +5935,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-25T09:34:43Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -5947,15 +5947,15 @@
   "research_per_day": 150,
   "cycles_24h": 95,
   "learning": {
-    "reviewed": 1848,
+    "reviewed": 1849,
     "post_mortems": 88,
     "win_reviews": 42,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 167,
+        "n": 168,
         "predicted": 0.137,
-        "actual": 0.18
+        "actual": 0.179
       },
       {
         "range": "20\u201340%",
@@ -6457,9 +6457,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0553,
+      "a": 1.0568,
       "b": 0.1246,
-      "n": 1278,
+      "n": 1279,
       "active": true,
       "need": 300
     },
@@ -6536,14 +6536,14 @@
       },
       {
         "category": "politics",
-        "n": 68,
-        "jev_research": 0.2816,
-        "jev_plain": 0.341,
-        "market": 0.145,
+        "n": 69,
+        "jev_research": 0.2765,
+        "jev_plain": 0.3369,
+        "market": 0.1484,
         "claude_direct": 0.2799,
-        "n_jev_research": 50,
-        "n_jev_plain": 68,
-        "n_market": 68,
+        "n_jev_research": 51,
+        "n_jev_plain": 69,
+        "n_market": 69,
         "n_claude_direct": 15
       },
       {
