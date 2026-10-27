@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-27T04:07:20Z",
+  "generated": "2026-10-27T04:22:09Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-27T04:07:20Z",
+      "t": "2026-10-27T04:22:09Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1870,
+    "resolved": 1872,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22785320855614974,
-        "n": 1870
+        "brier": 0.22788547008547008,
+        "n": 1872
       },
       {
         "name": "claude_direct",
@@ -927,33 +927,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14713848596256685,
-        "n": 1870
+        "brier": 0.14707426215277777,
+        "n": 1872
       }
     ],
     "paired": {
-      "n": 842,
+      "n": 844,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16318306472684085
+          "brier": 0.16289581220379146
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21725653206650833
+          "brier": 0.2169579383886256
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20088598574821853
+          "brier": 0.20057689573459717
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24481306413301662
+          "brier": 0.24482819905213268
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-27T04:04:48Z",
+    "ts": "2026-10-27T04:19:54Z",
     "stages": [
       [
         "Fetched",
@@ -1140,8 +1140,8 @@
       "unrealized": 0.0,
       "change": 0.0,
       "realized": 0,
-      "open": 22,
-      "open_cost": 25540.26,
+      "open": 23,
+      "open_cost": 26063.24,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -2010,7 +2010,7 @@
           99500.72
         ],
         [
-          "2026-10-27T04:07:20Z",
+          "2026-10-27T04:22:09Z",
           99500.72
         ]
       ]
@@ -2875,7 +2875,7 @@
           99743.09
         ],
         [
-          "2026-10-27T04:07:20Z",
+          "2026-10-27T04:22:09Z",
           99743.09
         ]
       ]
@@ -3740,7 +3740,7 @@
           100069.13
         ],
         [
-          "2026-10-27T04:07:20Z",
+          "2026-10-27T04:22:09Z",
           100069.13
         ]
       ]
@@ -4605,7 +4605,7 @@
           100000.0
         ],
         [
-          "2026-10-27T04:07:20Z",
+          "2026-10-27T04:22:09Z",
           100000.0
         ]
       ]
@@ -5091,6 +5091,29 @@
           "p_side": 0.945,
           "edge": -0.0277,
           "opened": "2026-10-27T04:04:48Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:5170741",
+      "question": "Will Bitcoin dip to $72,500 in October?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-72pt5k-in-october-2026",
+      "source": "polymarket",
+      "close_time": "2026-11-01T04:00:00Z",
+      "category": "crypto",
+      "price": 0.125,
+      "price_at": "2026-10-12T01:20:08Z",
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 545,
+          "cost_per": 0.9596,
+          "total_cost": 522.98,
+          "p_side": 0.9455,
+          "edge": -0.0141,
+          "opened": "2026-10-27T04:19:54Z",
           "value": null
         }
       ]
@@ -6692,6 +6715,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-27T04:19:54Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9596,
+      "amount": 522.98,
+      "p": 0.9455,
+      "q": "Will Bitcoin dip to $72,500 in October?",
+      "url": "https://polymarket.com/market/will-bitcoin-dip-to-72pt5k-in-october-2026",
+      "probe": false
+    },
+    {
+      "ts": "2026-10-27T04:19:54Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-27T04:06:56Z",
       "type": "review",
       "kind": "miss",
@@ -7403,22 +7446,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-26T15:04:54Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-26T14:49:56Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -7431,7 +7458,7 @@
   "research_per_day": 150,
   "cycles_24h": 93,
   "learning": {
-    "reviewed": 1870,
+    "reviewed": 1872,
     "post_mortems": 90,
     "win_reviews": 42,
     "calibration": [
@@ -8010,14 +8037,14 @@
       },
       {
         "category": "politics",
-        "n": 81,
+        "n": 83,
         "jev_research": 0.2777,
-        "jev_plain": 0.323,
-        "market": 0.1663,
+        "jev_plain": 0.3214,
+        "market": 0.1643,
         "claude_direct": 0.2799,
         "n_jev_research": 60,
-        "n_jev_plain": 81,
-        "n_market": 81,
+        "n_jev_plain": 83,
+        "n_market": 83,
         "n_claude_direct": 15
       },
       {
