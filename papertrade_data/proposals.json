@@ -729,6 +729,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p54",
+      "created": "2026-10-27T08:36:18Z",
+      "kind": "code",
+      "title": "A stop rule for Mention NO's forward test",
+      "why": "Mention NO is locked, and on 49 settled bets it loses $16 per $100 while its source's lambda is positive, so Kelly sizing could grow bets on a strategy that is losing money. Rather than add another diagnostic to p46-p53, this asks for one decision written down now: the result at which the forward test ends early.",
+      "judge_by": "Joey records a pass mark and a stop mark for mention_no's forward test, for example stopping early if settled P&L per $100 is still below -$10 at 100 settled bets. At 100 settled bets we apply whichever mark it has hit.",
+      "min_resolved": 100,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
