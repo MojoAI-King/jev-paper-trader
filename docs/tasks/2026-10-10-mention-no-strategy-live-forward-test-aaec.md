@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-26T23:40:24.097Z
+- **Updated:** 2026-10-27T00:08:55.550Z
 
 ## Request
 
@@ -204,9 +204,23 @@ not yet written
 - **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
 - **Git:** master @ 4dcbdf5a, 0 tracked uncommitted, 2 untracked
 
+### 2026-10-27T00:05:22.831Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 4a1b7e836628, 4 tracked uncommitted, 3 untracked. The newest checkpoint before this one is 2026-10-26T23:40:24.097Z: New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locke...
+- **Evidence:** snapshot 2026-10-27T00-05-22-831Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** Carry on from the last recorded next step: Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
+- **Git:** master @ 4a1b7e83, 4 tracked uncommitted, 3 untracked
+
+### 2026-10-27T00:08:55.550Z
+
+- **State:** Fun bot review fixes committed: Polymarket books read before betting, no cancelled re-buys, daily limit counts settled/cancelled, page marks ignore pre-bet prices, $500 minimum bet
+- **Evidence:** python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c
+- **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **Git:** master @ dd988c0c, 2 tracked uncommitted, 3 untracked
+
 ## Handoff
 
-- **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
-- **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
+- **State:** Fun bot review fixes committed: Polymarket books read before betting, no cancelled re-buys, daily limit counts settled/cancelled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
+- **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard

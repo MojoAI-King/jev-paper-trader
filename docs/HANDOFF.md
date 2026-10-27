@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-26 19:40 EDT
+Written: 2026-10-26 20:08 EDT
 
+- **State:** Fun bot review fixes committed: Polymarket books read before betting, no cancelled re-buys, daily limit counts settled/cancelled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
+- **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
+- **Git:** master @ dd988c0c, 2 tracked uncommitted, 3 untracked
+- **CI:** master green on GitHub (read 2026-10-27 00:08 UTC)
+
+## Earlier
+
+### 2026-10-26 19:40 EDT
 - **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
 - **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
 - **Git:** master @ 4dcbdf5a, 0 tracked uncommitted, 2 untracked
 - **CI:** master green on GitHub (read 2026-10-26 23:40 UTC)
-
-## Earlier
 
 ### 2026-10-14 21:08 EDT
 - **State:** Sharp's touchdown-prop bug bet cancelled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 cancelled. Live total about +148. Strategies otherwise unchanged; all healthy. Evidence: 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health.
@@ -46,11 +54,3 @@ Written: 2026-10-26 19:40 EDT
 - **Watch out:** Kalshi answers slowly at times: the walk now shrinks pages on 504 and stops at its 300 s budget; post-mortems and the daily review still use Claude
 - **Git:** master @ 6677104, 0 tracked uncommitted, 2 untracked
 - **CI:** master green on GitHub (read 2026-10-12 02:42 UTC)
-
-### 2026-10-11 21:04 EDT
-- **State:** Follow-first-trade tested at quoted prices (7b455a6; the workflow attempt hit the plan's session limit, redone as a script): following a NO first trade in new mention markets +18.1% [-1.3, +35.1] at 15 min (108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min); following YES -4% to -25%; placebo NO about 0. Proposed to Joey: a new paper strategy mention_follow (code change). Live: 27 cycles since 18:05Z, one transient Kalshi 504; the touchdown-prop sharp bet settled -249.55 (excluded); mention_no 32 open. Evidence: follow_first_trade.py --summarize on 2,306 markets; 155 offline tests OK.
-- **Next:** On Joey's yes: pre-register mention_follow in EXPERIMENTS.md, build it (first-trade side via the trades endpoint, NO at the quoted ask within the next cycle), tests, lock it
-- **Blocked:** mention_follow waits for Joey's yes
-- **Watch out:** Five parallel research agents hit the Claude plan's session limit; keep research to scripts or one agent at a time
-- **Git:** master @ 7b455a6, 2 uncommitted
-- **CI:** master green on GitHub (read 2026-10-12 01:04 UTC)

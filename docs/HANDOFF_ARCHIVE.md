@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-11 21:04 EDT
+- **State:** Follow-first-trade tested at quoted prices (7b455a6; the workflow attempt hit the plan's session limit, redone as a script): following a NO first trade in new mention markets +18.1% [-1.3, +35.1] at 15 min (108 buys, 62 events, both halves positive; +16% to +21% at 1-60 min); following YES -4% to -25%; placebo NO about 0. Proposed to Joey: a new paper strategy mention_follow (code change). Live: 27 cycles since 18:05Z, one transient Kalshi 504; the touchdown-prop sharp bet settled -249.55 (excluded); mention_no 32 open. Evidence: follow_first_trade.py --summarize on 2,306 markets; 155 offline tests OK.
+- **Next:** On Joey's yes: pre-register mention_follow in EXPERIMENTS.md, build it (first-trade side via the trades endpoint, NO at the quoted ask within the next cycle), tests, lock it
+- **Blocked:** mention_follow waits for Joey's yes
+- **Watch out:** Five parallel research agents hit the Claude plan's session limit; keep research to scripts or one agent at a time
+- **Git:** master @ 7b455a6, 2 uncommitted
+- **CI:** master green on GitHub (read 2026-10-12 01:04 UTC)
+
 ### 2026-10-11 14:02 EDT
 - **State:** Forward tests locked (1fad555): learning.locked_strategies sharp, mention_no; run 38162056755 clean. Follow-the-first-trade test (wf_629049c4-764) still running. Evidence: 155 offline tests OK; run 38162056755 success.
 - **Next:** Read wf_629049c4-764 results; record in CHECKS.md; propose a forward test to Joey only if a rule survives the review
