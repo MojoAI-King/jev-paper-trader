@@ -110,7 +110,7 @@ Saguillo et al. ran an LLM (DeepSeek-R1-Distill-Qwen-32B, with markets grouped b
 The five pairs made about $95k in total, the largest about $60k, mostly at thin moments with an average maximum profit of about $100. Outside elections, 2,267 pairs gave one flagged pair, and it failed the strict test.
 For matching *identical* events across venues, Gebele & Matthes report a three-step pipeline:
 1. a structural filter (same category, overlapping dates);
-2. retrieval of the 20 nearest neighbours by text embedding;
+2. retrieval of the 20 nearest neighbors by text embedding;
 3. a two-pass LLM check of what each market counts as YES.
 
 The paper claims 99.9% recall and under 2% false positives. Our verifiers did not confirm those accuracy figures (1–2), so treat them as the authors' own claims.
@@ -152,7 +152,7 @@ Ranked by expected value for the effort. All of them are code changes, so each o
 3. **Use a matched twin on the other venue as a check in the betting rules, not in forecasting.**
    - **The rule:** where a verified twin exists, don't bet against the side that both venues' asks agree on. When the venues disagree, treat the Kalshi price as the stale one, since Polymarket leads (F8).
    - **The screen:** prices may enter only the code that makes the bet, never Jev's or Claude's inputs (`news.screen_facts` and its tests stay as they are).
-   - **Effect:** small. It might trim the losing "bet against the favourite" group (REBUILD_SCOPE finding 4), but at most about 2–8% of non-sports markets will have a twin.
+   - **Effect:** small. It might trim the losing "bet against the favorite" group (REBUILD_SCOPE finding 4), but at most about 2–8% of non-sports markets will have a twin.
    - **Confidence:** low until T4 runs.
 4. **If arbitrage is ever wanted, it's a different system.** It would need:
    - order-book polling every few seconds;
@@ -200,7 +200,7 @@ Use `engine.fee_per_contract(source, price, policy)` for each leg's taker fee an
 1. **Candidates:**
    - same category;
    - close times within 2 days of each other;
-   - then either title-token overlap ≥ 0.6 or the top 20 embedding neighbours.
+   - then either title-token overlap ≥ 0.6 or the top 20 embedding neighbors.
    - Sports: match on teams, ET game date and market type.
 2. **Check the rules:** an LLM or a person compares the two `rules` texts on these points:
    - resolution source and station;

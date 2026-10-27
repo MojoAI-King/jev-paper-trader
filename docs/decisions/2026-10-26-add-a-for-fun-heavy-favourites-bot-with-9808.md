@@ -1,4 +1,4 @@
-# Add a for-fun heavy favourites bot with big flat bets
+# Add a for-fun heavy favorites bot with big flat bets
 
 Kind: Living. Decision entry.
 
@@ -8,10 +8,10 @@ Kind: Living. Decision entry.
 
 ## Decision
 
-A new strategy, `favorites` ("Heavy favourites, big bets (for fun)", page slot 1), joins the three safe ones. It uses
+A new strategy, `favorites` ("Heavy favorites, big bets (for fun)", page slot 1), joins the three safe ones. It uses
 no AI and no forecast (probability `"fun"`, `engine._fun_pass`, run every cycle after the sharp pass). Its rules:
 
-- buy the favourite of every busy fetched market whose favourite's ask is 90–97¢ and that settles within 5 days,
+- buy the favorite of every busy fetched market whose favorite's ask is 90–97¢ and that settles within 5 days,
   soonest first;
 - a flat 1.5% of its bankroll a bet (about $1,500), at most 40 bets a day, one bet per event;
 - never more contracts than the ask offers; real fees and slippage.
@@ -26,8 +26,8 @@ Joey, 2026-10-26: his friends loved watching Bold "relentlessly bet". They want 
 and "more volume more wins … instead of aggressively continuing to lose". Backtest on the markets the trader watched
 settle (first look per event, real price, after costs):
 
-- favourites at 90–97¢ won 95% of 239 bets at −0.5% a bet [−3.7, +2.3]: about break-even;
-- favourites at 60–90¢ lost −7.8% [−13.5, −2.3] (n=489);
+- favorites at 90–97¢ won 95% of 239 bets at −0.5% a bet [−3.7, +2.3]: about break-even;
+- favorites at 60–90¢ lost −7.8% [−13.5, −2.3] (n=489);
 - longshots at 8–30¢ lost −19.7% [−37.4, +1.0] (n=400).
 
 Only the 90–97¢ band gives volume and frequent wins without a measured bleed.
@@ -36,7 +36,7 @@ Only the 90–97¢ band gives volume and frequent wins without a measured bleed.
 
 - **A Bold-style Jev/Claude bot:** Joey retired forecaster pickers on 2026-10-11; every forecaster's skill beyond the
   price was negative.
-- **Favourites at 60–90¢ or longshots:** both lost on history (above).
+- **Favorites at 60–90¢ or longshots:** both lost on history (above).
 - **Bigger bets for the safe strategies:** their small bets come from thin Kalshi mention books and probe sizing while
   their forward tests run; changing that would spoil the tests.
 
@@ -58,7 +58,7 @@ Set its `probability` to a retired value or remove it from `policy.json`; open b
   no Jev call). Updated: `RetiredJevTests`.
 - Registry row in docs/EXPERIMENTS.md, written before any bet.
 - Same day, after an independent review: no bet under $500 (`min_stake`); Polymarket order books read before
-  betting (`markets.add_polymarket_depth`); a cancelled bet is never bought again; bets settled or cancelled
+  betting (`markets.add_polymarket_depth`); a canceled bet is never bought again; bets settled or canceled
   today count toward the daily limit; the page no longer marks an open bet at a price from before it was bought
   (`dashboard._mark`; the first bets showed a made-up loss of about $961). Offline tests: 171 pass, and each new
   test fails with its fix taken out.

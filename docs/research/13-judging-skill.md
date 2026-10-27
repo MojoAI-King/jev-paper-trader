@@ -5,7 +5,7 @@ Researched 2026-10-09 for `docs/research/briefs/13-judging-skill.md`.
 Method: the deep-research workflow (5 search angles, 22 sources fetched, 107 claims extracted, the top 25 put to a
 3-vote adversarial check: 23 confirmed, 2 refuted), then a second pass that read the primary papers for the topics the
 first pass dropped for budget (deflated Sharpe, backtest overfitting, false discovery, closing-line value). Sample-size
-numbers are my own arithmetic from the standard formulas, marked as such. No `papertrade_data/` was analysed; the
+numbers are my own arithmetic from the standard formulas, marked as such. No `papertrade_data/` was analyzed; the
 spreads used below come from the ± figures already published in `docs/REBUILD_SCOPE.md`.
 
 ## Answer in five lines

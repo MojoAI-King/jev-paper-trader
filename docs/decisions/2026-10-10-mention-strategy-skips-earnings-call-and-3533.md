@@ -50,6 +50,6 @@ Easy: empty `mention.exclude_series` and set `yes_bias` back in `policy.json`.
 
 ## Evidence
 
-- `docs/research/scripts/mention_timing.py` output, 2026-10-10 (summarised in `docs/research/CHECKS.md`, section
+- `docs/research/scripts/mention_timing.py` output, 2026-10-10 (summarized in `docs/research/CHECKS.md`, section
   "Mention markets: coverage and timing").
 - Offline tests: 151 pass, including `test_earnings_call_and_trump_mention_series_are_left_alone`.

@@ -45,7 +45,7 @@ Researched 2026-10-09 for `docs/research/briefs/10-fees-and-liquidity.md`.
 
 ### F3. Kalshi maker fees: 0.0175, only on flagged series
 
-**The claim.** Maker fee = `0.0175 × C × P × (1−P)`, on resting orders that later fill, only in series whose `fee_type` is `quadratic_with_maker_fees`. 0.0175 = 0.07 × 0.25, matching the API doc's "0.25 maker multiplier". Combo series use a 0.5 maker multiplier. Cancelling is free. Overpayments from maker-fee rounding above $10 a month are refunded the next month.
+**The claim.** Maker fee = `0.0175 × C × P × (1−P)`, on resting orders that later fill, only in series whose `fee_type` is `quadratic_with_maker_fees`. 0.0175 = 0.07 × 0.25, matching the API doc's "0.25 maker multiplier". Combo series use a 0.5 maker multiplier. Canceling is free. Overpayments from maker-fee rounding above $10 a month are refunded the next month.
 
 **Evidence.** The [fee schedule PDF](https://kalshi.com/docs/kalshi-fee-schedule.pdf) (Feb 5, 2026; 3 of 3 verifiers agreed). [Get Series](https://docs.kalshi.com/api-reference/market/get-series) for the 0.25 and 0.5 multipliers. The fee-change log dates the switches:
 - 2025-10-04: WNBA and MLB.

@@ -17,7 +17,7 @@ everything".
 Buying at the mid assumes someone sells to us at the mid whenever we want. A resting order only fills when a seller
 comes down to it, which happens most when news turns against the bet. Counted as filled only when a later snapshot
 (about 30 minutes apart) showed that side's ask at or below our price, the same strategies returned −16% to −31%.
-"Always buy the favourite" went from −2.8% at the ask to −9.3% as a resting order. That is adverse selection.
+"Always buy the favorite" went from −2.8% at the ask to −9.3% as a resting order. That is adverse selection.
 
 ## The fix
 

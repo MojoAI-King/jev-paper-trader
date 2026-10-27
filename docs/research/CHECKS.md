@@ -51,7 +51,7 @@ standard error.
   | 90–100¢ | +1.0% [−2, +4], n 133 | +1.9% [−1, +5], n 139 |
 
   With a 0.05 Polymarket fee, Polymarket's 90–100¢ row is +1.6% [−1.1, +4.6]. The shape matches the literature:
-  cheap contracts lose most of their money, and favourites are break-even within noise.
+  cheap contracts lose most of their money, and favorites are break-even within noise.
 - **Its test T3** (slope from the price alone) is the 05 refit above: 1.12 [0.98, 1.28]. The price looks about
   calibrated; the "1.35" in the first briefs was wrong.
 - **Its question about ±:** in the scope doc and briefs, ± is one standard error.
@@ -167,9 +167,9 @@ price and scored on the newer half (the fit's prior was negligible, so it is clo
 The market scored 0.1785–0.1845 on the same test markets. Calibration doesn't carry over from older to newer
 markets here, so plan item 2C (B29) is dropped.
 
-## Favourites as a small-edge strategy (run 2026-10-10, for Joey's "it's a formula" question)
+## Favorites as a small-edge strategy (run 2026-10-10, for Joey's "it's a formula" question)
 
-The favourite bought at the ask with real fees plus 1¢, at the first look, on 1,026 finished markets with a real
+The favorite bought at the ask with real fees plus 1¢, at the first look, on 1,026 finished markets with a real
 price (95% ranges resample whole events):
 
 | Slice | Markets | Return |
@@ -193,7 +193,7 @@ Written by a research agent from this session (six parallel researchers plus a w
 load-bearing sources itself: the Akey et al. CEPR paper, Becker's 72-million-trade study, two arbitrage papers,
 Prediction Arena, Polymarket's rebate page, and Théo's figures. All matched. Its headline: about four wallets ever
 made $10M+ on Polymarket. The money flows from takers to makers and from YES and long-shot buyers to NO and
-favourite buyers. AI agents trading every 15–45 minutes lost 16–31% on Kalshi.
+favorite buyers. AI agents trading every 15–45 minutes lost 16–31% on Kalshi.
 
 - **Corrections it found in earlier reports:**
   - Report 10 called the 2026-07-10 Polymarket sports fee rise (0.03 → 0.05) refuted. Polymarket's changelog has it,
@@ -234,20 +234,20 @@ favourite buyers. AI agents trading every 15–45 minutes lost 16–31% on Kalsh
 
 Reports 01, 11 and 15 say the money flows from takers to makers. Our earlier resting-order test counted a fill
 whenever a later snapshot's ask reached our price, which is too harsh. This one uses Kalshi's public trade
-records, on 628 finished Kalshi markets with a real price and a favourite at 50–95¢:
-- a bid on the favourite side one cent above the best bid, so first in the queue;
+records, on 628 finished Kalshi markets with a real price and a favorite at 50–95¢:
+- a bid on the favorite side one cent above the best bid, so first in the queue;
 - filled only when real trades sold into it, enough to cover a $250 order;
 - Kalshi's maker fee charged on every fill (0.0175·p·(1−p)).
 
 | Order life | Filled | Maker return | Same markets at the ask | Win rate, filled vs never filled |
 |---|---|---|---|---|
-| Never cancelled, 50–95¢ | 549/628 (87%) | −2.8% [−9.1, +3.5] | −7.3% [−13.2, −1.2] | 68% vs 97% |
-| Never cancelled, 70–95¢ | 247/295 | +0.4% [−5.1, +6.2] | −3.0% [−8.3, +2.7] | 84% vs 100% |
-| Cancelled after 6 h, 50–95¢ | 215/628 (34%) | −1.3% [−10.3, +6.8] | −5.7% [−14.2, +1.8] | 71% vs 71% |
-| Cancelled after 6 h, 70–95¢ | 120/295 | +0.5% [−9.4, +7.2] | −3.1% [−12.5, +3.5] | 84% vs 89% |
+| Never canceled, 50–95¢ | 549/628 (87%) | −2.8% [−9.1, +3.5] | −7.3% [−13.2, −1.2] | 68% vs 97% |
+| Never canceled, 70–95¢ | 247/295 | +0.4% [−5.1, +6.2] | −3.0% [−8.3, +2.7] | 84% vs 100% |
+| Canceled after 6 h, 50–95¢ | 215/628 (34%) | −1.3% [−10.3, +6.8] | −5.7% [−14.2, +1.8] | 71% vs 71% |
+| Canceled after 6 h, 70–95¢ | 120/295 | +0.5% [−9.4, +7.2] | −3.1% [−12.5, +3.5] | 84% vs 89% |
 
 Making instead of taking saves about 4–5 points, the spread plus the fee gap. A slow maker still only breaks even,
-and the never-cancelled orders show adverse selection plainly: the orders that never filled would have won 97%.
+and the never-canceled orders show adverse selection plainly: the orders that never filled would have won 97%.
 Not built as a strategy. It may later lower the cost of a strategy that has an edge (for example `mention_no`).
 
 

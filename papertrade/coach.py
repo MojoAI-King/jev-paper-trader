@@ -38,7 +38,7 @@ Reply with only a JSON object and no other text:
 
 RETRO_PROMPT = """You run the daily review of a paper-trading experiment: forecasters (Jev, an AI judge; Claude) estimate yes/no prediction-market questions without ever seeing the market's price, several strategies each bet a fake $100,000 on the same markets, and every resolved market is scored. You get the numbers: each strategy's rules and results (all time, and since its rules last changed), the forecasters' scores, what each gate stopped, and the recent rule changes.
 
-Your job is to make the strategies make more money by experimenting. The money is fake, so trying things is cheap and is the point; every change is logged and shown to the people watching. Write an honest review a curious friend could read, then propose at most {max_proposals} changes.
+Your job is to make the strategies make more money by experimenting. The money is fake, so trying things is cheap and is the point; every change is logged and shown to the people watching. Write an honest review a curious friend could read, in American English (favorite, color, analyze), then propose at most {max_proposals} changes.
 
 What you may do:
 - "tune": change any strategy's rules, main included. The rules and their allowed ranges: {bounds}. The gates: min_edge is how far the forecast must beat the price paid, after fees; min_rules_clear and min_info_sufficient are Jev's own 0-1 ratings of how clear the rules are and whether it has the information it needs; max_framing_gap is how far Jev's YES and NO answers may disagree. Sizing, as fractions of the strategy's bankroll (0.02 = 2%): kelly_fraction is the share of the Kelly stake bet, max_stake_pct caps one bet (and all open bets in one event together), max_total_exposure_pct caps all open bets together. Since 2026-10-09 every strategy but the yardstick sizes by its forecaster's measured edge over the market price ("skill": lambda per probability source, from finished markets with a real price). While a source's lambda is 0, its strategies place only small probe bets (0.25% of the bankroll, at most 5 a day) whatever kelly_fraction says; Kelly sizing on the forecast shrunk toward the price starts once lambda is positive on 300+ markets. So a sizing change does nothing until then: improve the gates and filters instead. "skip_categories" is a list drawn from {categories}; "min_ask" and "max_ask" bound the price paid for a contract. null puts a rule back to that strategy's starting value. You can't tune {frozen} (the yardstick the tuning is judged against), a strategy marked "locked" (its forward test is running), or a strategy whose "can_change_from" is still in the future.
@@ -50,7 +50,7 @@ Rules for honesty:
 - Say how many results a number rests on. Under 30 resolved markets it is mostly noise: you may still experiment, but call it an experiment, not a finding.
 - The market's own price is a strong forecaster. Beating it is the goal; say plainly when we don't.
 - Judge a strategy's current rules by its results since they last changed ("since_change"), not all time.
-- "by_price_paid" splits each strategy's settled bets into long shots (under 30c), coin flips and favourites. On 2026-10-01 long shots had lost 32.6k of the 35.7k lost (1 win in 21), so Joey set every strategy's min_ask to 0.30; lower it only if the numbers say long shots now pay.
+- "by_price_paid" splits each strategy's settled bets into long shots (under 30c), coin flips and favorites. On 2026-10-01 long shots had lost 32.6k of the 35.7k lost (1 win in 21), so Joey set every strategy's min_ask to 0.30; lower it only if the numbers say long shots now pay.
 - Whether tuning main pays is read from "yardstick": main against original on the bets both placed since original started.
 - Every proposal says now how we'll know it worked ("judge_by") and after how many resolved markets.
 - Fees, the price screen, research budgets and how results are scored are not yours to change.
@@ -215,7 +215,7 @@ def retro_due(policy: dict, now: datetime) -> bool:
 
 
 def _normal(k: str, v):
-    """One spelling per behaviour: a category list is sorted without repeats. An empty list stays an empty
+    """One spelling per behavior: a category list is sorted without repeats. An empty list stays an empty
     list when stored (it clears a starting skip list; null would put the starting list back)."""
     if k == "skip_categories" and isinstance(v, list):
         return sorted(set(v))
@@ -240,7 +240,7 @@ PRICE_BANDS = ((0.0, 0.3, "under 30c"), (0.3, 0.6, "30-60c"), (0.6, 1.01, "60c a
 
 
 def by_price(positions: list[dict]) -> dict:
-    """Settled record by the price paid per contract: long shots, coin flips, favourites (code idea p4,
+    """Settled record by the price paid per contract: long shots, coin flips, favorites (code idea p4,
     approved by Joey 2026-10-01 after long shots under 30c lost 32.6k of 35.7k)."""
     return {name: _record([p for p in positions if p.get("settled") and lo <= p["cost_per"] < hi])
             for lo, hi, name in PRICE_BANDS}
@@ -432,7 +432,7 @@ def _label_taken(book: dict, label, pid: str) -> bool:
 
 
 def _free_slot(book: dict, pid: str | None = None):
-    """A page colour for a challenger that is starting: one no other running challenger holds (7 or 8)."""
+    """A page color for a challenger that is starting: one no other running challenger holds (7 or 8)."""
     held = {x.get("slot") for x in book["proposals"] if x.get("status") == "running" and x.get("id") != pid}
     return next((s for s in (7, 8) if s not in held), None)
 

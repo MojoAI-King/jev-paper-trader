@@ -114,13 +114,13 @@ class OddsTests(unittest.TestCase):
     CFG = {"sports": ["americanfootball_nfl"], "refresh_minutes": 360, "reserve": 25, "max_line_age_minutes": 45,
            "max_margin": 0.06, "kickoff_window_hours": 8}
 
-    def test_the_margin_comes_out_and_the_favourite_stays_the_favourite(self):
+    def test_the_margin_comes_out_and_the_favorite_stays_the_favorite(self):
         p = odds.devig_power([1.9, 1.9])
         self.assertAlmostEqual(p[0], 0.5)
         self.assertAlmostEqual(sum(p), 1.0)
         p = odds.devig_power([1.5, 2.8])
         self.assertAlmostEqual(sum(p), 1.0, places=6)
-        self.assertGreater(p[0], 1 / 1.5 / (1 / 1.5 + 1 / 2.8))  # power method: the favourite keeps a bit more
+        self.assertGreater(p[0], 1 / 1.5 / (1 / 1.5 + 1 / 2.8))  # power method: the favorite keeps a bit more
         self.assertIsNone(odds.devig_power([1.9]))
         self.assertIsNone(odds.devig_power([1.9, None]))
         self.assertIsNone(odds.devig_power([1.9, 1.0]))
@@ -999,7 +999,7 @@ class SettleAndStorageTests(DataDirTest):
         engine.settle(policy, resolvers={}, batch={}, log=lambda *_: None)  # a second cycle refunds nothing again
         self.assertEqual(engine.load_portfolio(policy, "main")["cash"], after["cash"])
 
-    def test_every_live_cancelled_bet_names_a_reason(self):
+    def test_every_live_canceled_bet_names_a_reason(self):
         for name, keys in REAL_POLICY.get("cancelled_bets", {}).items():
             if not name.startswith("_"):
                 self.assertTrue(keys and all(isinstance(w, str) and w for w in keys.values()), name)
@@ -1007,7 +1007,7 @@ class SettleAndStorageTests(DataDirTest):
 
 LEAKY = [
     "Polymarket traders give Lula a 43% chance of winning.",
-    "Lula is the 4/6 favourite with bookmakers.",
+    "Lula is the 4/6 favorite with bookmakers.",
     "FiveThirtyEight's forecast model gives Lula a 61 in 100 shot.",
     "Lula stands at 43% in the latest tally.",          # the market's own price, unlabeled
     "Yes shares for Lula trade at 57 cents.",
@@ -2460,7 +2460,7 @@ class TuningTests(DataDirTest):
         coach.tune(POLICY, "main", {"min_info_sufficient": 0.3}, self.NOW)  # tuned after the scan
         self.assertEqual(dashboard.last_scan(POLICY, [j])["fail_info"], 1)
 
-    def test_every_ledger_has_a_row_and_every_running_challenger_a_colour(self):
+    def test_every_ledger_has_a_row_and_every_running_challenger_a_color(self):
         engine.save_json(engine.PROPOSALS, {"proposals": [{"id": "ch1", "kind": "challenger", "status": "running",
             "strategy": {"label": "Old one", "probability": "jev_research", "gates": "jev_research"}}]})  # from before slots
         engine.save_portfolio("gone", dict(fresh_pf(), cash=99000.0, closed=[{"key": "z", "source": "polymarket",
@@ -2546,7 +2546,7 @@ DEEP = {"yes_ask_size": 1e6, "no_ask_size": 1e6}  # a book deep enough not to ma
 
 
 class FunStrategyTests(DataDirTest):
-    """The fun strategy (Joey, 2026-10-26): no forecast, the favourite of every soon-settled busy market in its band,
+    """The fun strategy (Joey, 2026-10-26): no forecast, the favorite of every soon-settled busy market in its band,
     big flat bets, real costs, hard limits in code."""
 
     def scan(self, ms, policy=None, now=SCAN_NOW):
@@ -2556,10 +2556,10 @@ class FunStrategyTests(DataDirTest):
                            fetchers={"polymarket": lambda *a: ms}, log=lambda *_: None, now=now,
                            researcher=FakeResearcher([]), forecaster=FakeForecaster({}))
 
-    def test_it_buys_the_favourite_in_its_band_big_once_per_event_and_soonest_first(self):
+    def test_it_buys_the_favorite_in_its_band_big_once_per_event_and_soonest_first(self):
         soon, later = "1999-12-27T00:00:00Z", "1999-12-29T00:00:00Z"
         ms = [market(mid="1", yes_ask=0.95, no_ask=0.06, m=0.945, close=later) | {"event": "e1"},
-              market(mid="2", yes_ask=0.06, no_ask=0.95, m=0.055, close=soon) | {"event": "e2"},   # NO is the favourite
+              market(mid="2", yes_ask=0.06, no_ask=0.95, m=0.055, close=soon) | {"event": "e2"},   # NO is the favorite
               market(mid="3", yes_ask=0.94, no_ask=0.07, m=0.935, close=soon) | {"event": "e1"},   # same event as 1
               market(mid="4", yes_ask=0.80, no_ask=0.22, m=0.79, close=soon) | {"event": "e3"},    # under the band
               market(mid="5", yes_ask=0.95, no_ask=0.06, m=0.945, close="2000-01-20T00:00:00Z"),  # settles too late
@@ -2602,16 +2602,16 @@ class FunStrategyTests(DataDirTest):
         pf = engine.load_portfolio(pol, "favorites")
         today = SCAN_NOW.isoformat()
         pf["closed"].append({"key": "polymarket:x", "opened": today})       # settled already, still today's
-        pf["cancelled"] = [{"key": "polymarket:y", "opened": today}]       # cancelled, still today's
+        pf["cancelled"] = [{"key": "polymarket:y", "opened": today}]       # canceled, still today's
         engine.save_portfolio("favorites", pf)
         self.scan(self.many(80), policy=pol)
         self.assertEqual(len(engine.load_portfolio(pol, "favorites")["open"]), 3)
 
-    def test_it_never_buys_a_cancelled_bet_again(self):
+    def test_it_never_buys_a_canceled_bet_again(self):
         pol = json.loads(json.dumps(REAL_POLICY))
         pol["cancelled_bets"] = {"favorites": {"polymarket:0": "a bug placed it"}}
         pf = engine.load_portfolio(pol, "favorites")
-        pf["cancelled"] = [{"key": "polymarket:1", "opened": "1999-12-01T00:00:00Z"}]  # cancelled and refunded already
+        pf["cancelled"] = [{"key": "polymarket:1", "opened": "1999-12-01T00:00:00Z"}]  # canceled and refunded already
         engine.save_portfolio("favorites", pf)
         self.scan(self.many(3), policy=pol)
         self.assertEqual([p["market_id"] for p in engine.load_portfolio(pol, "favorites")["open"]], ["2"])

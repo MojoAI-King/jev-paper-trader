@@ -69,7 +69,7 @@ Researched 2026-10-09 for `docs/research/briefs/03-stale-markets.md`.
 
 **4. On Kalshi, a decided market is tradable only while it is "active", and sports winners close early.**
 - After `close_time` passes, every order operation is rejected with `MARKET_INACTIVE`, and resting orders are
-  cancelled.
+  canceled.
 - `closed` means no new orders and a result pending. `determined` means the result is known and a settlement
   timer is running (it can still go to disputed or amended). Only `finalized` is terminal. All three arrive
   after trading has stopped, so they tell a bot the window is over, never that one is open.
@@ -115,7 +115,7 @@ Researched 2026-10-09 for `docs/research/briefs/03-stale-markets.md`.
 **7. Rule traps are real, and the wording differs from contract to contract.**
 - Polymarket sports (from mirrored market pages, **anecdotal** until checked on the venue):
   - a postponed game keeps the market open until the game is completed;
-  - a game cancelled with no make-up resolves 50-50;
+  - a game canceled with no make-up resolves 50-50;
   - some MLB markets name a winner for a tie and others resolve a tie 50-50;
   - the official league stats are the source, with a fallback to "consensus of credible reporting" after
     24 hours.
@@ -151,7 +151,7 @@ Researched 2026-10-09 for `docs/research/briefs/03-stale-markets.md`.
 
 **9. Our own data, re-read.**
 - The "already decided?" question rated 11 of 939 finished markets above 0.6, and on those the market
-  favourite was right as often as Jev (`docs/REBUILD_SCOPE.md`).
+  favorite was right as often as Jev (`docs/REBUILD_SCOPE.md`).
 - The Polymarket "Completed Match" tennis books (asks at 97–99¢ and 91–92¢, no bids) were seen *before* the
   matches started. They show an empty book, not a decided market selling cheap, so they are not evidence of a
   stale window.
@@ -190,7 +190,7 @@ Changing that is a code change and needs Joey. Ranked:
 4. **The cadence each window would need** (see the table). None fits a 30-minute cycle, except possibly the
    Polymarket post-game wait, where the price is unlikely to pay.
 
-| Market type | Signal that it's decided | Venue behaviour after that | Window | Cadence needed | Worth watching? |
+| Market type | Signal that it's decided | Venue behavior after that | Window | Cadence needed | Worth watching? |
 |---|---|---|---|---|---|
 | Kalshi sports game winner | league final score (official stats API, ESPN) | early close once a winner is reported (FOOTBALLGAMEWIN Rule 7.2) | minutes? not documented | seconds to 1 min | no, unless the logger finds a long gap |
 | Polymarket sports / esports / tennis | final score; then a UMA proposal on chain | makers leave; winner drifts to ~99.9¢; about 2 h of challenge after the proposal | hours, but priced near 99.9¢ | 5 min to catch it before the proposal; 30 min only sees the tail | only to measure (logger) |
@@ -217,11 +217,11 @@ All of this is for the main session; this report did not analyze `papertrade_dat
      more, *and* the loser rate is under 1% on at least 300 markets.
    - *Kills it:* anything less.
 3. **The "already decided" signal at every threshold:**
-   - *Compute:* across all 939+ judged markets, plot the favourite's win rate and Jev's accuracy against the
+   - *Compute:* across all 939+ judged markets, plot the favorite's win rate and Jev's accuracy against the
      `already_decided` score in bands (0.2, 0.4, 0.6, 0.8), with the count and ± in each band.
-   - *Kills the question for good:* no band above 0.4 holds 50 or more markets where Jev beats the favourite.
-4. **Favourite at 95–99¢ by category:**
-   - *Compute:* on every finished market whose first look had the favourite's ask between 95¢ and 99¢, the
+   - *Kills the question for good:* no band above 0.4 holds 50 or more markets where Jev beats the favorite.
+4. **Favorite at 95–99¢ by category:**
+   - *Compute:* on every finished market whose first look had the favorite's ask between 95¢ and 99¢, the
      return after the real taker fee, split by category, with ±.
    - This checks finding 1 on our own markets: is any category positive after fees?
 
@@ -243,11 +243,11 @@ All of this is for the main session; this report did not analyze `papertrade_dat
   and no source measures it.
 - How long after a reported winner Kalshi actually triggers an early close, and the text of Rule 7.2.
 - Whether Kalshi's `can_close_early` and `early_close_condition` fields exist in its own API reference
-  (seen only in third-party schema catalogues).
+  (seen only in third-party schema catalogs).
 - How often a disputed Polymarket market resolves against the apparent result, and the 2026 dispute rate as a
   share of markets (only a count of 1,150+ for January–May, from a secondary source).
 - How fast competing bots are in post-decision windows on either venue.
 - Score feed delays (ESPN, league APIs), and mention or speech market rules and transcript timing.
 - Whether Kalshi economic-data markets ever trade after the release, whether crypto "touch" markets stay open
   after the level is hit, and whether weather markets stay active between midnight and the CLI.
-- Whether the favourite edge in finding 1 survives today's fees on each venue (brief 10 covers fees).
+- Whether the favorite edge in finding 1 survives today's fees on each venue (brief 10 covers fees).

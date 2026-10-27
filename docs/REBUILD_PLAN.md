@@ -66,7 +66,7 @@ forward test written down before its results come in. It bets more than probes o
 - **D. Make linked forecasts consistent (02, B3).** Probabilities on mutually exclusive outcomes add up to 1,
   and ladders fall as the threshold rises. Small.
 - **E. New jobs for Jev (14).** Reading market rules for the math pricers, checking whether research facts show
-  a market already decided, and labelling how two markets relate. Each job is measured on about 200 hand-checked
+  a market already decided, and labeling how two markets relate. Each job is measured on about 200 hand-checked
   cases before anything acts on it. Jev's own forecast is kept only as a logged yardstick.
 
 - **F. Fading YES in Kalshi mention markets (report 15). Built 2026-10-10: the `mention_no` strategy.** In "will X

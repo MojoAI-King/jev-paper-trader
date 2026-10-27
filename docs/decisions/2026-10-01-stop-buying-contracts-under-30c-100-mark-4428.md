@@ -34,7 +34,7 @@ Jev + research goes from -$1,306 to +$1,121 (26 bets, 19 won), Claude direct fro
 
 - A price ceiling (65c or 70c): changed nothing in the simulation.
 - Leaning the forecast toward the market price (half weight): fewer bets and no better than the floor alone.
-- Always buying the favourite: 110 of 140 won, still -$600 after fees.
+- Always buying the favorite: 110 of 140 won, still -$600 after fees.
 
 ## Risk
 

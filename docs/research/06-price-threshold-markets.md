@@ -12,7 +12,7 @@ the worked example recomputed and checked by simulation, and one live snapshot o
 
 1. These markets are options. "Above $K at time T" is a European digital worth N(d2); "reach $B by T" is a
    one-touch barrier worth about twice that. Both can be computed from the current price and one volatility
-   number, with no AI judgement needed.
+   number, with no AI judgment needed.
 2. The volatility input matters more than the formula. For a one-day market, use option implied volatility for
    that same expiry (Deribit, free and live). The 30-day indices (DVOL, VIX, OVX, GVZ) run high over short
    horizons: on 2026-10-09 DVOL said 36% and next-day BTC options said 16–18%.
@@ -248,7 +248,7 @@ abstract read).
 - **Information:** they add little beyond spot and options.
 - Strength: moderate. A thesis, not peer-reviewed, but the sample covers our period.
 
-### F9. Kalshi's favourite-longshot bias holds in its crypto and financial markets (strong for the pattern, moderate for today's size)
+### F9. Kalshi's favorite-longshot bias holds in its crypto and financial markets (strong for the pattern, moderate for today's size)
 
 Bürgi, Deng & Whelan, "Makers and Takers: The Economics of the Kalshi Prediction Market", UCD, January 2026
 ([pdf](https://www.karlwhelan.com/Papers/Kalshi.pdf), read in full).
@@ -296,7 +296,7 @@ Ranked. Each item is a code or policy change, so each waits for Joey's yes. None
 because the model reads the underlying (BTC, oil, gold, index) and its options, never the prediction market's
 own price.
 
-1. **Stop using AI judgement as the forecast in these markets; compute it.**
+1. **Stop using AI judgment as the forecast in these markets; compute it.**
    - Parse each market's rules into: reference, threshold, direction, close-above vs touch, window, monitoring.
    - Price it with F1, using the reference price from F2 and expiry-matched vol from F4.
    - Expected effect: Brier close to the market's (0.146 on our 61 crypto markets) instead of Claude direct's

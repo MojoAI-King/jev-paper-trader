@@ -112,7 +112,7 @@
     "jev_alone": {"label": "Jev alone", "short": "Jev alone", "desc": "Jev with no research (retired)", "probability": "jev_plain", "gates": "jev_plain",
                   "retired": true,
                   "blurb": "Jev with no research at all. Retired 2026-10-10: on 1,006 finished markets it scored like a coin flip, and it placed one bet in two weeks. Its record stays here and its open bet still settles.",
-                  "_retired": "docs/REBUILD_PLAN.md and research report 14: Jev isn't built for world forecasting; 'does research help Jev?' is answered by the Forecasters panel. Its colour went to the sharp-line strategy. engine.strategies leaves a retired strategy out of betting; all_books still settles its ledger"},
+                  "_retired": "docs/REBUILD_PLAN.md and research report 14: Jev isn't built for world forecasting; 'does research help Jev?' is answered by the Forecasters panel. Its color went to the sharp-line strategy. engine.strategies leaves a retired strategy out of betting; all_books still settles its ledger"},
     "claude_direct": {
       "retired": true,
       "_retired": "2026-10-11, Joey: Claude stops picking bets too. On 657 markets with a real price Claude direct scored a Brier of 0.200 against the market price's 0.160, and its measured skill beyond the price was negative (-0.014). The ledger is kept and its open bets still settle","label": "Claude direct", "short": "Claude direct", "desc": "Claude's own call, same research", "probability": "claude_direct", "gates": "jev_research",
@@ -131,7 +131,7 @@
     "jev_alone_bold": {"label": "Jev alone, bold", "short": "Jev alone, bold", "desc": "no research, bets when unsure (retired)", "badge": "Challenger", "probability": "jev_plain", "gates": "jev_plain",
                        "gate_overrides": {"min_info_sufficient": 0.2},
                        "retired": true,
-                       "_retired": "2026-10-10: its forecaster (Jev alone) scores like a coin flip on 1,006 markets with a real price (0.247) and adds nothing to the price (weight -0.30, range -0.63 to 0.07). Its colour went to the mention strategy; its ledger still settles",
+                       "_retired": "2026-10-10: its forecaster (Jev alone) scores like a coin flip on 1,006 markets with a real price (0.247) and adds nothing to the price (weight -0.30, range -0.63 to 0.07). Its color went to the mention strategy; its ledger still settles",
                        "blurb": "Jev with no research and Bold's lower info bar. Retired 2026-10-10: its forecaster scores like a coin flip. Its record stays here and its open bets still settle.",
                        "_why": "Joey asked for more action (2026-09-28: 'it can't self-improve if it's incredibly cautious'). Jev alone's gates with the info bar at 0.2, as Bold has; it differs from Bold only in having no research"},
     "original": {
@@ -143,7 +143,7 @@
               "slot": 2,
               "gate_overrides": {"min_edge": 0.03},
               "rules": {"min_ask": 0.2, "max_ask": 0.85},
-              "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against. Its one bet so far (Oct 10, a touchdown market priced with a team's win odds by a matching bug fixed that day) was cancelled and refunded; it stays on record.",
+              "blurb": "No AI forecast: on games, it buys a Kalshi or Polymarket side priced at least 3¢ below Pinnacle's odds with the bookmaker's margin taken out. Pinnacle is the sportsbook professional bettors measure themselves against. Its one bet so far (Oct 10, a touchdown market priced with a team's win odds by a matching bug fixed that day) was canceled and refunded; it stays on record.",
               "_why": "docs/REBUILD_PLAN.md phase 2A, research report 09 (2026-10-10, Joey: 'do what you need to fix this'). The fair price comes from The Odds API (papertrade/odds.py, ODDS_API_KEY); it never reaches Jev or Claude. Sized like every strategy by measured skill: probes until its edge over the venue price shows on 300+ markets"},
     "mention_no": {"label": "Mention markets, NO side", "short": "Mention NO", "desc": "bets against YES optimism in 'will X say Y'", "badge": "New", "probability": "mention_prior", "gates": "mention_prior",
                    "slot": 6,
@@ -160,7 +160,7 @@
                   "badge": "For fun", "probability": "fun", "gates": "fun", "slot": 1,
                   "fun": {"min_ask": 0.90, "max_ask": 0.97, "stake_pct": 0.015, "max_bets_per_day": 40, "min_stake": 500},
                   "blurb": "Just for fun, no AI: it buys the favorite on every busy market priced about 90 to 95 cents that settles within 5 days, about $1,500 a bet (never under $500: it skips thin markets), up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
-                  "_why": "Joey, 2026-10-26: his friends want more bets, bigger bets, more wins, and not a page that keeps losing. Of the rules checked on markets the trader watched settle (first look, real price, one per event), favourites at 90-97c came closest to even: 95% won, -0.5% a bet [-3.7, +2.3], n=239; favourites at 60-90c lost -7.8% [-13.5, -2.3] (n=489), longshots at 8-30c -19.7% [-37.4, +1.0] (n=400). engine._fun_pass; hard limits FUN_MAX_STAKE_PCT 3% and FUN_MAX_BETS_PER_DAY 50 in code"}
+                  "_why": "Joey, 2026-10-26: his friends want more bets, bigger bets, more wins, and not a page that keeps losing. Of the rules checked on markets the trader watched settle (first look, real price, one per event), favorites at 90-97c came closest to even: 95% won, -0.5% a bet [-3.7, +2.3], n=239; favorites at 60-90c lost -7.8% [-13.5, -2.3] (n=489), longshots at 8-30c -19.7% [-37.4, +1.0] (n=400). engine._fun_pass; hard limits FUN_MAX_STAKE_PCT 3% and FUN_MAX_BETS_PER_DAY 50 in code"}
   },
   "fun": {
     "settles_within_days": 5,

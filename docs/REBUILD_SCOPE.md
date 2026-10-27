@@ -25,15 +25,15 @@ one standard error.
    YES?"), which needs world knowledge. On its own it scores like a coin flip (0.249 on 646 markets). Given
    Claude's research it does worse than Claude reading the same research (0.213 vs 0.184 on the same 646
    markets). Its "already decided?" signal almost never fires (11 of 939 markets) and, when it does, the
-   market's favourite is right just as often.
+   market's favorite is right just as often.
 3. **Trading costs eat about 8.4% of every bet.** If the market's mid price were exactly right, our post-floor
    bets would still lose 8.4% (crossing the spread about 3.8%, fees and slippage 4.6%). An edge has to be
    bigger than that to show a profit. We don't have one.
 4. **Overconfidence.** On the 137 settled bets placed since the 30¢ floor, our forecasts expected 99.8 wins
    (a +64% return); the market's prices expected 65.7; 62 came in, for a −13.4% return (−46% before the
-   floor). The worst group is betting *against* the market's favourite: bets at 30–50¢ won 15 of 55 when the
-   market expected 22 (−35%). Bets at 50–70¢ (with the favourite) made +4.2%.
-5. **Favourites vs long shots, in our own data.** Always buying the market's favourite at the ask on all
+   floor). The worst group is betting *against* the market's favorite: bets at 30–50¢ won 15 of 55 when the
+   market expected 22 (−35%). Bets at 50–70¢ (with the favorite) made +4.2%.
+5. **Favorites vs long shots, in our own data.** Always buying the market's favorite at the ask on all
    1,133 finished markets: −2.8% ± 1.7%, about the cost of trading. Always buying the underdog: −31.9% ± 4.6%.
 6. **Things that looked like fixes but aren't:**
    - *Blending each forecast with the market price.* Fitted on every finished market, it seemed to show our
@@ -68,7 +68,7 @@ Volume is 20 to 35 bets a day across all strategies. Research runs about 150 a d
   - weather, from official forecast models;
   - economic releases, from nowcasts and consensus;
   - sports, by comparing with sharp sportsbook lines rather than asking an LLM;
-  - structural gaps: favourite/long-shot pricing, the same event priced differently on Kalshi and Polymarket,
+  - structural gaps: favorite/long-shot pricing, the same event priced differently on Kalshi and Polymarket,
     and multi-outcome events that don't add up to 100%.
 - **Give Jev the jobs it is built for** (typed checks over given information: reading resolution rules,
   verifying facts, triage) instead of world forecasting, or take it out of the forecasting seat.
@@ -88,7 +88,7 @@ all at once. Each session writes its report into `docs/research/`. The run sheet
 side by side, and the report format are in `docs/research/README.md`. The same list, with a copy button for each
 tab's one-line prompt, is on a page private to Joey: https://claude.ai/artifact/2USu1tPk31NdbK2p1vj5ta.
 
-- **Where an edge could come from:** 01 favourite and long-shot pricing, 02 prices that don't add up (across venues
+- **Where an edge could come from:** 01 favorite and long-shot pricing, 02 prices that don't add up (across venues
   and within an event), 03 markets still trading after the answer is known.
 - **Better forecasts:** 04 what makes an AI forecaster more accurate, 05 combining a forecast with the market price,
   14 using Jev for the jobs it's built for.

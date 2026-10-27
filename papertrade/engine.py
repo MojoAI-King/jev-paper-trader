@@ -836,9 +836,9 @@ FUN_MAX_BETS_PER_DAY = 50  # bankroll (learning.bounds' top), at most 50 bets a 
 
 def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) -> None:
     """The fun strategies (probability "fun"; Joey, 2026-10-26: his friends want to watch a bot bet a lot, and big,
-    and win often). No forecast and no edge gate: each buys the favourite of every fetched market whose favourite's
+    and win often). No forecast and no edge gate: each buys the favorite of every fetched market whose favorite's
     ask is in its `fun` band, a flat share of its bankroll a bet, soonest-settling markets first, one bet per event.
-    On the markets the trader watched settle, favourites at 90-97c won 95% of the time and lost about 0.5% a bet
+    On the markets the trader watched settle, favorites at 90-97c won 95% of the time and lost about 0.5% a bet
     after costs (docs/EXPERIMENTS.md): a show, about break-even, not a proven edge. No Jev or Claude call; fees,
     slippage and the contracts on offer are the same as for every other strategy."""
     names = {n: s for n, s in strats.items() if s["probability"] == "fun"}
@@ -855,7 +855,7 @@ def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) ->
     for name, strat in names.items():
         pf, r = books[name], strat["fun"]
         gone = pf.get("cancelled", []) + [{"key": k} for k in (policy.get("cancelled_bets") or {}).get(name, {})]
-        held = {p["key"] for p in pf["open"] + gone}  # a cancelled bet is never bought again, to be cancelled again
+        held = {p["key"] for p in pf["open"] + gone}  # a canceled bet is never bought again, to be canceled again
         events = {p.get("event") for p in pf["open"] if p.get("event")}
         today = sum(1 for p in pf["open"] + pf["closed"] + pf.get("cancelled", []) if p["opened"][:10] == stamp[:10])
         for m in pool:
@@ -863,7 +863,7 @@ def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) ->
                 break
             if key(m) in held or (m.get("event") and m["event"] in events):
                 continue
-            side, ask = max((("yes", m["yes_ask"]), ("no", m["no_ask"])), key=lambda s: s[1])  # the favourite
+            side, ask = max((("yes", m["yes_ask"]), ("no", m["no_ask"])), key=lambda s: s[1])  # the favorite
             if not r["min_ask"] <= ask <= r["max_ask"]:
                 continue
             c = round(ask + fee_per_contract(m["source"], ask, policy, m) + policy["fees"]["slippage"], 4)
@@ -1042,7 +1042,7 @@ def cancel_bets(policy: dict, books: dict, log=print) -> int:
                 pf["cash"] = round(pf["cash"] + refund, 2)
                 pf.setdefault("cancelled", []).append({**p, "cancelled": now_iso(), "why": keys[p["key"]], "refund": refund})
                 n += 1
-                log(f"CANCELLED [{name}] {refund:+10,.2f} refunded  {p['question'][:60]}")
+                log(f"CANCELED [{name}] {refund:+10,.2f} refunded  {p['question'][:60]}")
             pf[part] = keep
     return n
 

@@ -13,7 +13,7 @@ How often do Kalshi and Polymarket markets keep trading below 95–99¢ after th
 
 ## What we already know
 
-- Jev answers an "already decided?" question on every market. With research it rated 11 of 939 finished markets above 0.6, and on those the market's favourite was right as often as Jev.
+- Jev answers an "already decided?" question on every market. With research it rated 11 of 939 finished markets above 0.6, and on those the market's favorite was right as often as Jev.
 - Our cycle runs every 30 minutes, so anything that settles within minutes is out of reach.
 - Some Polymarket sports markets stay open well after the game starts.
 

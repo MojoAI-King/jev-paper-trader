@@ -24,7 +24,7 @@ Researched 2026-10-09 for `docs/research/briefs/12-bet-sizing.md`.
 
 - **Claim.** Plugging an estimated probability into Kelly does worse out of sample than in sample, and the
   growth-optimal stake is the plug-in stake shrunk by a factor below 1. The mechanism matters for us:
-  "outcomes with overestimated values will consistently look more favourable than in reality, with larger
+  "outcomes with overestimated values will consistently look more favorable than in reality, with larger
   wagers placed on them" (Metel). A bot that bets only where it sees an edge picks exactly the over-estimates.
 - **Evidence.**
   - Baker & McHale, "Optimal betting under parameter uncertainty", *Decision Analysis* 10(3):189–199 (2013),
@@ -89,7 +89,7 @@ Researched 2026-10-09 for `docs/research/briefs/12-bet-sizing.md`.
     - a 100/180 record at odds 1.952: naive Kelly 8.9%, Bayes 4.8%;
     - a tighter prior: 0.5% (0.075 of Kelly);
     - real NBA data, 271/484: 5.4% vs 7.6%.
-    Their prior is centred on 0.5, not on the market; centring it on the price is our adaptation.
+    Their prior is centered on 0.5, not on the market; centring it on the price is our adaptation.
 - **Applied to our forecasters (our inference, not a source).** If E[y | p, m] = m + λ(p − m), then full Kelly on
   that conditional mean is exactly λ-Kelly. λ can be estimated as the through-origin slope
   λ̂ = Σ(y − m)(p − m) / Σ(p − m)².
@@ -185,7 +185,7 @@ Researched 2026-10-09 for `docs/research/briefs/12-bet-sizing.md`.
     https://www.nber.org/chapters/c0355.pdf. Digital calls and puts "can be expressed as portfolios of digital
     ranges", and buying a range "can be thought of as shorting all other outcomes".
     - Sizing a strike ladder as one race end to end is our inference; no paper found does it.
-  - **Simultaneous independent bets.** A log-wealth optimisation run by a research agent, for n identical
+  - **Simultaneous independent bets.** A log-wealth optimization run by a research agent, for n identical
     independent 50¢ contracts at p = 0.55:
     - each stake stays at 96% of its single Kelly at n = 5 and 90% at n = 10;
     - it shrinks hard only when n × single Kelly nears 100% of wealth.
@@ -218,7 +218,7 @@ Researched 2026-10-09 for `docs/research/briefs/12-bet-sizing.md`.
   - Wald's SPRT is optimal for a fixed alternative, but no peer-reviewed application to trading strategies was
     found. It also needs an assumed edge size, which the e-process does not.
   - This overlaps brief 13 (telling skill from luck), which should own the test itself.
-- **For sizing.** A Bayesian stake with a prior centred on zero edge starts near 0 and grows only as evidence
+- **For sizing.** A Bayesian stake with a prior centered on zero edge starts near 0 and grows only as evidence
   comes in. Browne & Whitt, *Adv. Appl. Probab.* 28(4) (1996), abstract only: bet "a fraction … equal to a linear
   function of the posterior mean increment". λ from F4 does exactly this.
 - **Strength:** strong for e-process validity; moderate for applying it to our strategies.
@@ -353,9 +353,9 @@ Why each number:
 | k (`kelly_fraction`) | 0.25 | 0.5 (0.05) | It now multiplies a *calibrated* edge, so the drawdown table (F5) applies honestly. k = 0.25 gives about an 8% chance of ever losing 30% and 44% of max growth. It matches risk-constrained Kelly at α = 0.7, β = 0.1 (c ≈ 0.27, F6). Ceiling 0.5: Thorp's range for protection against estimation error; above it the chance of a −30% drawdown passes 34%. |
 | `max_stake_pct` | 0.02 | 0.03 (0.0025) | In F11, scenario C, going from 2% to 3% raised P(−30%) from 6% to 19%, and 5% raised it to 41%. 2% already binds in most simulated bets. |
 | Group cap (event, underlying-date) | = `max_stake_pct` | same | Correlation 1 means the group together gets one bet's stake (Thorp, Table 5). The simulated ladder went from P(−50%) 67% to 0%. |
-| `max_total_exposure_pct` | 0.5 | 0.5 (0.05) | No source gives a number. With 2% groups, 50% means at least 25 separate groups, which is enough spread for mostly independent events. Joey set 50% on 2026-09-28; a ceiling above it adds risk without evidence. Judgement. |
-| Floor α | 0.7 | fixed in code | Busseti's worked example uses α = 0.7. A −30% drawdown is also where a strategy has clearly stopped working on this scale. Judgement; the Grossman–Zhou multiplier was not verified. |
-| Probe stake (λ_s = 0) | 0.25% of E, ≤ 5 a day, flagged as probes | 0.5% | Learning λ needs forecasts, not bets. Probes are for the page and for measuring real fills; at 8.4% cost they bleed about 0.1% a day. Judgement. |
+| `max_total_exposure_pct` | 0.5 | 0.5 (0.05) | No source gives a number. With 2% groups, 50% means at least 25 separate groups, which is enough spread for mostly independent events. Joey set 50% on 2026-09-28; a ceiling above it adds risk without evidence. Judgment. |
+| Floor α | 0.7 | fixed in code | Busseti's worked example uses α = 0.7. A −30% drawdown is also where a strategy has clearly stopped working on this scale. Judgment; the Grossman–Zhou multiplier was not verified. |
+| Probe stake (λ_s = 0) | 0.25% of E, ≤ 5 a day, flagged as probes | 0.5% | Learning λ needs forecasts, not bets. Probes are for the page and for measuring real fills; at 8.4% cost they bleed about 0.1% a day. Judgment. |
 
 ## How to test it on our history
 
@@ -388,7 +388,7 @@ Report every number with its ± from a bootstrap clustered by event and by (unde
    - **Confirms:** (c) and (d) cut max drawdown by more than half without a lower return.
    - **Kills:** (b)–(d) are indistinguishable from (a). That would mean sizing isn't where the losses come from,
      and the rebuild should look elsewhere.
-4. **Drawdown formula on our bet stream.** Compare each strategy's realised maximum drawdown with what
+4. **Drawdown formula on our bet stream.** Compare each strategy's realized maximum drawdown with what
    x^(2/c − 1) predicts, using c = k/λ̂. A large mismatch means correlation or fat tails beyond the model, and
    argues for the cushion over the formula.
 

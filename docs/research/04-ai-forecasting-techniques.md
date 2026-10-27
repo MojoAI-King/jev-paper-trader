@@ -134,7 +134,7 @@ Metaculus calibration notebook. Each claim below says which kind of check it got
 - Two published results fit the idea:
   - Halawi's system was only competitive where the crowd was uncertain (0.238 vs 0.240 when the crowd sat between 0.3 and 0.7).
   - Turtel et al.'s simulated trading edge came only from markets priced 40–60%, where bets won 11.8 points more often than the price implied; where the market was confident the model did no better than chance (1,265 questions).
-- Our worst group, betting against the favourite at 30–50¢ (15 wins of 55 where the market expected 22), is consistent with this.
+- Our worst group, betting against the favorite at 30–50¢ (15 wins of 55 where the market expected 22), is consistent with this.
 - Strength: **weak** (an inference); the main session can test it (T1 below).
 
 **F14. Anchoring on recent news and misreading the question.**

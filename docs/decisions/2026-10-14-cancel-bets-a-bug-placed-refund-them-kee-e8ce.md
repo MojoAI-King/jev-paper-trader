@@ -8,7 +8,7 @@ Kind: Living. Decision entry.
 
 ## Decision
 
-A bet that a bug placed, rather than the strategy's own rule, can be cancelled by naming it in `policy.json`
+A bet that a bug placed, rather than the strategy's own rule, can be canceled by naming it in `policy.json`
 `cancelled_bets` (`{strategy: {market key: why}}`). The trading cycle's settle step (`engine.cancel_bets`) refunds it
 (its cost back, any payout taken back) and moves it from the ledger's open or closed list to a `cancelled` list with the
 reason and the refund. It then counts in no P&L, win/loss or settled tally, on the page or in the strategy's evaluation.
@@ -28,7 +28,7 @@ sharp's pre-registered evaluation (docs/EXPERIMENTS.md, 2026-10-11, before it se
 
 ## Risk
 
-Cancelling could be used to hide real losses. Guard: only bets a named bug placed, each with its reason in
+Canceling could be used to hide real losses. Guard: only bets a named bug placed, each with its reason in
 `policy.json`, decided by a session with the bug's fix on record; the bet stays visible in the ledger.
 
 ## Reversibility
@@ -39,5 +39,5 @@ of cash.
 ## Evidence
 
 Offline tests 163 pass (`test_a_bet_placed_by_a_bug_is_refunded_and_kept_on_record_out_of_every_tally`,
-`test_every_live_cancelled_bet_names_a_reason`); an in-memory dry run on the live ledger refunded $249.55, leaving
-sharp at $100,000 with 0 settled and 1 cancelled.
+`test_every_live_canceled_bet_names_a_reason`); an in-memory dry run on the live ledger refunded $249.55, leaving
+sharp at $100,000 with 0 settled and 1 canceled.

@@ -193,7 +193,7 @@ VWAP = Σ nᵢ · pᵢ / N                                            # average 
 Round `N` down to the venue's step: whole contracts on Kalshi (not verified, `count_fp` hints at fractions), and at
 least `min_order_size` from `/book` on Polymarket. Prices must sit on the venue's `tick_size`.
 - *Assumption A3:* `α = 0.5`, meaning we take at most half of each displayed level. This is a haircut for depth that
-  may be cancelled between our fetch and a real order arriving, and for the snapshot optimism in F7. It is a guess
+  may be canceled between our fetch and a real order arriving, and for the snapshot optimism in F7. It is a guess
   with no prediction-market measurement behind it. Keep it a code constant (fill realism, like `slippage`, is not a
   rule the loop may tune) and calibrate it with test T3 below.
 - *Assumption A4:* the fee is charged per level at that level's price, because Polymarket's fee depends on

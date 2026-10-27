@@ -12,7 +12,7 @@ The first research design called the Anthropic API directly. The estimate came t
 
 ## The mechanism
 
-Two different billing paths exist. The Messages API bills per token and per search to whatever account owns `ANTHROPIC_API_KEY`. Claude Code (`claude -p`) signed in with a Claude plan draws on the plan's usage windows (5-hour and weekly) instead. Anthropic announced moving scripted use to a separate credit billed at API rates from June 15, 2026, then paused that (help center article 15036540, checked 2026-09-27). Claude Code prefers `ANTHROPIC_API_KEY` over the plan login whenever that variable is set, so one stray environment variable silently turns plan usage into a bill. Also: Claude Code 2.1.278 rejected `claude-opus-5-5` ("version 2.1.280 or newer is required"), and every `claude -p` stream carries a `rate_limit_event` with the plan's current window utilisation.
+Two different billing paths exist. The Messages API bills per token and per search to whatever account owns `ANTHROPIC_API_KEY`. Claude Code (`claude -p`) signed in with a Claude plan draws on the plan's usage windows (5-hour and weekly) instead. Anthropic announced moving scripted use to a separate credit billed at API rates from June 15, 2026, then paused that (help center article 15036540, checked 2026-09-27). Claude Code prefers `ANTHROPIC_API_KEY` over the plan login whenever that variable is set, so one stray environment variable silently turns plan usage into a bill. Also: Claude Code 2.1.278 rejected `claude-opus-5-5` ("version 2.1.280 or newer is required"), and every `claude -p` stream carries a `rate_limit_event` with the plan's current window utilization.
 
 ## The fix
 

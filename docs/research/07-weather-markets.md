@@ -17,7 +17,7 @@ Researched 2026-10-09 for `docs/research/briefs/07-weather-markets.md`.
 **F1. Kalshi switched settlement source from the NWS Daily Climate Report to The Weather Company for events dated 2026-08-14 onward. In practice TWC still relays the NWS number.**
 - **Evidence, the rules:** live `rules_primary` text on every daily-high series reads "...greater than X° fahrenheit according to The Weather Company", still keyed to the NWS climate-report code, e.g. "New York City (CLINYC)" ([Kalshi API, KXHIGHNY open markets, read 2026-10-09](https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXHIGHNY&status=open)). Settled KXHIGHNY events up to 26AUG13 name the NWS "Climatological Report (Daily)"; 26AUG14 onward name TWC ([Kalshi API, settled](https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXHIGHNY&status=settled)). The partnership was announced on 2026-08-27, about two weeks *after* the rules changed ([Artemis](https://artemis.bm/news/prediction-market-kalshi-partners-with-the-weather-company-for-weather-hedge-settlements)).
 - **Evidence, the numbers:** our researcher compared Kalshi's settled values with NWS climate-report values archived by the Iowa Environmental Mesonet (IEM) for 8 series (NY, CHI, AUS, LAX, DEN, PHIL and MIA highs, plus the NYC low), 2026-08-02 to 2026-10-08. In the TWC era the two agreed on **447 of 448 series-days**. The one exception was Miami on 2026-08-29: Kalshi settled at 90, IEM shows 85, cause unknown ([IEM CLI JSON](https://mesonet.agron.iastate.edu/json/cli.py?station=KMIA&year=2026)).
-- **Conflict:** Kalshi's own help centre (last updated 2026-07-22) still says daily markets settle on "the final NWS Daily Climate Report" ([Kalshi Help](https://help.kalshi.com/en/articles/13823837-weather-markets)). So does a trader site updated 2026-08-28 ([wethr.net](https://wethr.net/market-resolution)). The live market rules win.
+- **Conflict:** Kalshi's own help center (last updated 2026-07-22) still says daily markets settle on "the final NWS Daily Climate Report" ([Kalshi Help](https://help.kalshi.com/en/articles/13823837-weather-markets)). So does a trader site updated 2026-08-28 ([wethr.net](https://wethr.net/market-resolution)). The live market rules win.
 - **Strength:** strong (primary rules text plus a measured 448-day check).
 
 **F2. Kalshi rules: whole °F; the first non-preliminary TWC publication counts; later revisions are ignored; settlement comes the next morning.**
@@ -156,7 +156,7 @@ Researched 2026-10-09 for `docs/research/briefs/07-weather-markets.md`.
 
 ### Efficiency and bots
 
-**F17. Kalshi weather prices show a favourite–long-shot bias: cheap contracts are overpriced.**
+**F17. Kalshi weather prices show a favorite–long-shot bias: cheap contracts are overpriced.**
 - **Source:** Bürgi, Deng and Whelan, "Makers and Takers", University College Dublin, January 2026. It is an academic working paper.
 - **Data:** 46,282 contracts from 2021 to April 2025, of which 29,924 price observations are in Climate & Weather ([PDF](https://www.karlwhelan.com/Papers/Kalshi.pdf)).
 - **The bias:** contracts at 10¢ and under lose over 60% on average after fees, across all categories. The bias appears in every volume band, but it was weaker in the 2025 data.
@@ -213,7 +213,7 @@ Ranked by expected value to us. All code changes below are **proposals that need
 
 For the pricer to beat the price, at least one of these must hold, measured on our data:
 - (a) prices lag observations on the day by more than the cost of crossing the spread;
-- (b) Polymarket US prices are centred on the official-maximum forecast rather than on the hourly-reading maximum;
+- (b) Polymarket US prices are centered on the official-maximum forecast rather than on the hourly-reading maximum;
 - (c) long-shot bins win less often than their price, by more than fees plus spread.
 
 The pricer's core forecast cannot be the edge on its own: by F11 it at best matches the market.

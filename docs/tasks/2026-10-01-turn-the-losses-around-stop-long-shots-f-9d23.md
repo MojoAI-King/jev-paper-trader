@@ -14,7 +14,7 @@ not yet written
 
 ## Acceptance criteria
 
-- [ ] min_ask 0.30 applied to every tunable strategy and shown on the page; every resolved judged market analysed for loss patterns with numbers; changes justified by that analysis built with tests; Joey told what changed and why
+- [ ] min_ask 0.30 applied to every tunable strategy and shown on the page; every resolved judged market analyzed for loss patterns with numbers; changes justified by that analysis built with tests; Joey told what changed and why
 
 ## Decisions
 

@@ -43,9 +43,9 @@ Researched 2026-10-09 for `docs/research/briefs/09-sports-vs-sharp-books.md`.
 - **Caveats:** the odds were Friday/Tuesday snapshots rather than closing prices, and the cut-offs were chosen in-sample with no significance test (by our verifier's estimate, +10% on 821 bets is about 2 standard errors at best). The bets went to soft bookmakers, with no limits or costs. The venue we would bet on (Kalshi, Polymarket) is now the *tight* one, the reverse of this setup.
 - **Strength:** moderate for the mechanism, weak as evidence of an edge today.
 
-**F5. Kalshi as a whole shows a favourite-longshot bias, but there is no sports-only estimate, and it was fading in 2025.**
+**F5. Kalshi as a whole shows a favorite-longshot bias, but there is no sports-only estimate, and it was fading in 2025.**
 - **Evidence:** Bürgi, Deng & Whelan, UCD working paper WP25/19 (July 2025). The sample is 313,972 Kalshi contract prices, 2021 to April 2025, limited to contracts with at least $1,000 volume and a final spread of 20¢ or less. Contracts under 10¢ lost over 60% after fees. Contracts above 50¢ earned small positive returns, significant above 70¢. The bias measure fell from 0.048 (2024) to 0.021 (2025, significant only at 10%) ([UCD PDF](https://www.ucd.ie/economics/t4media/WP2025_19.pdf)). The authors' February 2026 revision says the result holds without the category that contains sports, but the paper gives no sports estimate. The data end about four months after Kalshi's sports volume took off.
-- **Against it, our own data:** buying the sports favourite at the ask lost 1.6% ± 2.6% over 606 markets (`docs/REBUILD_SCOPE.md`). That fits a fair price minus our costs. Brief 01 covers this bias in depth.
+- **Against it, our own data:** buying the sports favorite at the ask lost 1.6% ± 2.6% over 606 markets (`docs/REBUILD_SCOPE.md`). That fits a fair price minus our costs. Brief 01 covers this bias in depth.
 - **Strength:** moderate for Kalshi overall, weak for sports.
 
 **F6. A sharp closing price is close to calibrated, which is what we need to use it as the fair-value yardstick.**
@@ -60,11 +60,11 @@ Researched 2026-10-09 for `docs/research/briefs/09-sports-vs-sharp-books.md`.
   - **power:** pᵢ = (1/oᵢ)^k, with k solved so the pᵢ add up to 1;
   - **Shin:** models a share z of insider money and solves for the pᵢ and z together.
 
-  The plain method spreads the margin in proportion to probability, so it leaves favourites slightly too low and long shots slightly too high.
+  The plain method spreads the margin in proportion to probability, so it leaves favorites slightly too low and long shots slightly too high.
 - **Evidence on accuracy:**
   - Clarke, Kovalchik & Ingram (2017), on three datasets from three sports: the power method "universally outperforms the multiplicative method and outperforms or is comparable to the Shin method" ([AJSS](https://www.sciencepublishinggroup.com/article/10.11648/j.ajss.20170506.12)).
   - On out-of-sample football in four leagues in 2016-17, Shin put more probability on the actual result than the plain method in every league, for example Premier League 0.4516 against 0.4480 ([arXiv 1802.08848](https://arxiv.org/pdf/1802.08848)).
-  - On bet365 Premier League home wins over 6,840 matches (2002/03–2019/20), Shin was unbiased and the plain method was not (p = 0.015). In La Liga both underrated favourites ([Annals of OR, 2022](https://link.springer.com/article/10.1007/s10479-022-04722-3)).
+  - On bet365 Premier League home wins over 6,840 matches (2002/03–2019/20), Shin was unbiased and the plain method was not (p = 0.015). In La Liga both underrated favorites ([Annals of OR, 2022](https://link.springer.com/article/10.1007/s10479-022-04722-3)).
 - **Size:** the gains are 0.0035–0.0047 in mean probability on the result. Every dataset comes from soft books, whose margins (5–10%) are much bigger than Pinnacle's.
 - **Strength:** strong that power and Shin beat the plain method; weak that the difference matters on a low-margin sharp line.
 
@@ -76,7 +76,7 @@ Researched 2026-10-09 for `docs/research/briefs/09-sports-vs-sharp-books.md`.
   - a live odds call costs "1 per region per market";
   - "every group of 10 bookmakers is the equivalent of 1 region", so `bookmakers=pinnacle,kalshi,polymarket&markets=h2h` costs **1 credit**;
   - the events list is free;
-  - the bookmaker-level `last_update` field is deprecated in favour of the market-level one, which we would use to drop stale Pinnacle quotes.
+  - the bookmaker-level `last_update` field is deprecated in favor of the market-level one, which we would use to drop stale Pinnacle quotes.
 - **Not verified:** how long the Pinnacle delay is (one competitor says about 60 seconds), and which sports and market types the Kalshi and Polymarket keys actually carry. Pinnacle reportedly closed its own public API in July 2025; the only source is a secondary blog.
 - **Strength:** strong (vendor documentation), apart from the delay.
 
@@ -123,7 +123,7 @@ Add the 1¢ slippage our engine charges. At 50¢, a Kalshi NFL bet needs the fai
 - **Strength:** moderate that CLV tracks profit; anecdotal on the exact size.
 
 **F15. How many bets each test needs (derived here; the arithmetic is standard, the inputs are assumptions).**
-- **Profit test.** A $1 stake at price p has a profit standard deviation of about √((1−p)/p): 1.0 at 50¢, 0.65 at 70¢. To show a +3% edge at 2 standard errors at 50¢ takes n ≈ (2 × 1.0 / 0.03)² ≈ **4,400 bets**. Our own ±2.6% on 606 favourites matches this formula.
+- **Profit test.** A $1 stake at price p has a profit standard deviation of about √((1−p)/p): 1.0 at 50¢, 0.65 at 70¢. To show a +3% edge at 2 standard errors at 50¢ takes n ≈ (2 × 1.0 / 0.03)² ≈ **4,400 bets**. Our own ±2.6% on 606 favorites matches this formula.
 - **CLV test.** Per bet, CLV = (de-vigged closing probability ÷ cost paid) − 1. Its noise is only how much the price moves between our entry and the start. If that move has a standard deviation of about 3¢ at 50¢ (an assumption to measure from our snapshots, **not verified**), CLV has an SD of about 6%. A +3% mean then shows at 2 standard errors in about **16–100 bets**, depending on the true SD.
 - **Strength:** strong arithmetic; the CLV input is assumed.
 

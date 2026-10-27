@@ -6,9 +6,9 @@ Researched 2026-10-09 for `docs/research/briefs/01-favourite-longshot.md`.
 
 1. Cheap contracts lose a lot and expensive ones gain a little. On Kalshi (2021 to April 2025, about 314,000 contract prices), takers lost about 72% at 1–10¢, 29% at 10–30¢, 9% at 30–50¢ and 2% at 50–70¢ after fees, and made roughly 0 to +1% at 70–99¢. Makers did 10 to 40 points better at the cheap end and made about +4% to +6% at 50–90¢.
 2. Polymarket shows the same direction but much smaller numbers: about −4% at 1–10¢ and +0.6% to +1.2% at 70–100¢, before fees, averaged over trades. The result swings with how trades are weighted (cheap contracts lose anywhere from 19% to gaining 4%), and in sports the pattern disappears.
-3. For a taker, buying favourites (or NO on cheap YES, which is the same trade) is at best break-even after Kalshi's fee curve: roughly +0.5% to +1% at 85–99¢ and about zero at 70–80¢ on 2021–25 data, and the bias weakened in 2025. Only makers earn it reliably, and makers who post orders on long shots get picked off.
+3. For a taker, buying favorites (or NO on cheap YES, which is the same trade) is at best break-even after Kalshi's fee curve: roughly +0.5% to +1% at 85–99¢ and about zero at 70–80¢ on 2021–25 data, and the bias weakened in 2025. Only makers earn it reliably, and makers who post orders on long shots get picked off.
 4. Why it happens: people overrate small chances; traders with the most extreme beliefs take liquidity and pay a spread and fee that are proportionally biggest on cheap contracts; at long horizons, tying up money pushes prices toward 50¢. The bias is strongest in politics, crypto and long-dated markets and weakest in sports and finance. It has shrunk slightly on Kalshi, there are no trend numbers for Polymarket, and on racetracks it has lasted 50+ years.
-5. Our own numbers match the literature closely. Keep the 30¢ floor, treat favourites as break-even rather than an edge, test betting only on the favourite's side, and don't expect resting orders to rescue us.
+5. Our own numbers match the literature closely. Keep the 30¢ floor, treat favorites as break-even rather than an edge, test betting only on the favorite's side, and don't expect resting orders to rescue us.
 
 ## Findings
 
@@ -67,7 +67,7 @@ Our own "flat $100 on every finished market" test also weights each market equal
 
 ### F3. On Polymarket the bias points the same way but is far smaller, and fragile
 
-**The claim.** Cheap Polymarket contracts lose a few percent, and those above 70¢ gain about 1%, before fees. The long-shot loss depends heavily on weighting and is concentrated in a few large events. The small gain on favourites holds up better.
+**The claim.** Cheap Polymarket contracts lose a few percent, and those above 70¢ gain about 1%, before fees. The long-shot loss depends heavily on weighting and is concentrated in a few large events. The small gain on favorites holds up better.
 
 **The evidence.** Qin & Yang, "Polymarket-v1 Database" ([arXiv 2606.04217, June 2026](https://arxiv.org/html/2606.04217v1)).
 - Sample: the full on-chain archive of Polymarket's first-generation exchange, 21 Nov 2022 to 28 Apr 2026. 1.20 billion trades, 1.3 million markets, $60.9 billion.
@@ -98,13 +98,13 @@ Cardozo & Rivero-Wildemauwe, "The Favorite-Longshot Bias in Prediction Markets: 
 - Sample: 560.9 million purchases, $22.49 billion, in 591,187 markets resolved between Nov 2022 and Mar 2026. Returns are before fees.
 - Long shots (below 10¢) lose −6.30% [95% CI −8.38, −4.22] with equal weight per market and −19.35% [−46.99, +8.30] pooled by dollar, but *gain* +4.09% when weighted by event.
 - The pooled long-shot loss is not statistically robust (p = 0.184), and dropping the ten largest events cuts it to −10.6%.
-- Favourites (90¢ and up) gain +0.28% [0.24, 0.31] per market, +0.83% pooled and +0.39% per event, and that gain is robust (p = 0.001).
-- Buyers who posted a resting order: long shots −3.50%, favourites +0.64%.
-- Buyers who accepted someone else's offer (roughly takers): long shots −31.17%, and favourites **−0.46% [−0.52, −0.41]** per market, but +0.88% pooled.
+- Favorites (90¢ and up) gain +0.28% [0.24, 0.31] per market, +0.83% pooled and +0.39% per event, and that gain is robust (p = 0.001).
+- Buyers who posted a resting order: long shots −3.50%, favorites +0.64%.
+- Buyers who accepted someone else's offer (roughly takers): long shots −31.17%, and favorites **−0.46% [−0.52, −0.41]** per market, but +0.88% pooled.
 
 **Strength: moderate.** The data are large, but the papers are recent working papers, cover mostly the fee-free era, and their conclusions depend on weighting. A smaller study of 2,946 high-volume markets, snapshotted 1–30 days before resolution, found no long-shot overpricing at all ([honest-odds, GitHub, data to Sept 2026](https://github.com/CH4RL3I/honest-odds); anecdotal).
 
-### F4. Kalshi's fee curve makes long shots expensive and favourites cheap, but small orders pay a minimum
+### F4. Kalshi's fee curve makes long shots expensive and favorites cheap, but small orders pay a minimum
 
 **The claim.** The Kalshi taker fee is 0.07 × contracts × P × (1−P), rounded up to the next cent per order. Per dollar staked that is about 0.07 × (1−P), so it ranges from about 6–7% of the stake at 5–10¢ down to 0.36% at 95¢. The round-up costs a 1-contract order 1–2¢ whatever the price, which on a 98¢ contract is half the possible profit.
 
@@ -137,7 +137,7 @@ The fee is not the whole cost. A taker pays the spread on top, and the returns i
 
 **Strength: strong for the formulas, moderate for the current coefficients.** The live Kalshi schedule (a reported 7 July 2026 version) could not be read.
 
-### F5. Buying favourites, or NO on cheap YES, is thin for takers and reliable only for makers
+### F5. Buying favorites, or NO on cheap YES, is thin for takers and reliable only for makers
 
 **The claim.** Buying NO on a 5¢ YES is a 95¢ purchase. The fee is identical, and Table 1's 90–99¢ row is that trade.
 
@@ -152,11 +152,11 @@ On Kalshi's 2021–April 2025 data, a taker after fees made about +0.6% at 90–
 
 These come from the researcher's arithmetic on [Bürgi et al., Table 4](https://www.karlwhelan.com/Papers/Kalshi.pdf): profit = −1.736 + 0.034 × price, in cents, with a 100-lot fee. A straight line overstates the edge near 99¢.
 
-Makers made +3.6% to +6.2% at 50–89¢. On Polymarket before fees, takers' favourite purchases were −0.46% per market and makers' +0.64% (F3).
+Makers made +3.6% to +6.2% at 50–89¢. On Polymarket before fees, takers' favorite purchases were −0.46% per market and makers' +0.64% (F3).
 
 **What makes it fragile.** At entry price P, one loss costs as much as P/(1−P) wins: 19 wins at 95¢, 49 at 98¢. An edge of +0.3% to +1.7% disappears if the true win rate is 0.3 to 1.5 points lower than measured, which a single disputed resolution can do (researcher's arithmetic).
 
-The traders on Polymarket most inclined to buy favourites "earn less than others" ([Cardozo & Rivero-Wildemauwe](https://arxiv.org/html/2609.12878v1)). No practitioner "bond strategy" (buying at 95–99¢) has a published track record with sample, dates and net returns; the guides that promote it are anecdotal ([startpolymarket.com](https://startpolymarket.com/strategies/bonding/), affiliate links).
+The traders on Polymarket most inclined to buy favorites "earn less than others" ([Cardozo & Rivero-Wildemauwe](https://arxiv.org/html/2609.12878v1)). No practitioner "bond strategy" (buying at 95–99¢) has a published track record with sample, dates and net returns; the guides that promote it are anecdotal ([startpolymarket.com](https://startpolymarket.com/strategies/bonding/), affiliate links).
 
 **Strength: moderate.** Taker-only returns at 90–99¢ exist only in a chart (±1 point), and nothing covers Kalshi after April 2025.
 
@@ -167,7 +167,7 @@ The traders on Polymarket most inclined to buy favourites "earn less than others
 **The evidence.**
 - **Kalshi:** makers −9.64% against takers −31.46%. Makers' purchases at 10¢ or less still lost money with statistical significance on 5 of 6 days shown, and on the closing day their losses on cheap contracts matched takers' ([Bürgi et al., pp. 27–30](https://www.karlwhelan.com/Papers/Kalshi.pdf)).
 - **Betfair soccer, 2022–24:** 152,102 matches and 902,568 bets. Takers made −2.5% after commission and makers +0.6% (t = 11.8). The maker figure has a 198% standard deviation ([Whelan, Jan 2026](https://www.karlwhelan.com/Papers/Betfair.pdf)).
-- **Polymarket:** long shots bought with a resting order were *up* 4.85% after 5 minutes, 6.96% after an hour and 6.62% after a day, then **−36.27%** at resolution. Favourites bought with a resting order made +1.94% at resolution ([Cardozo & Rivero-Wildemauwe, Table 18](https://arxiv.org/html/2609.12878v1)).
+- **Polymarket:** long shots bought with a resting order were *up* 4.85% after 5 minutes, 6.96% after an hour and 6.62% after a day, then **−36.27%** at resolution. Favorites bought with a resting order made +1.94% at resolution ([Cardozo & Rivero-Wildemauwe, Table 18](https://arxiv.org/html/2609.12878v1)).
 - **Old TradeSports:** limit orders "often execute against traders who exploit the well-known favorite-longshot bias" ([Tetlock 2008](https://drupalgsb-test.paas.cc.columbia.edu/sites/default/files-efs/pubfiles/3098/Tetlock_SSRN_Liquidity_and_Efficiency.pdf)).
 - Bürgi et al. note that makers "must also be willing to cancel those orders if new evidence emerges" (p. 27).
 
@@ -175,7 +175,7 @@ The traders on Polymarket most inclined to buy favourites "earn less than others
 
 ### F7. The bias differs by market type: strongest in politics and crypto, weakest in sports and finance
 
-**The claim.** Every category on Kalshi is biased, but by different amounts. Polymarket sports shows no favourite-longshot pattern.
+**The claim.** Every category on Kalshi is biased, but by different amounts. Polymarket sports shows no favorite-longshot pattern.
 
 **The evidence.**
 - **Kalshi, Bürgi et al., Table 8.** This is a regression of profit on price, before fees, on closing and earlier prices from 2021 to April 2025. A larger slope means a steeper bias.
@@ -206,7 +206,7 @@ The traders on Polymarket most inclined to buy favourites "earn less than others
 
 - **Polymarket, Cardozo & Rivero-Wildemauwe** (before fees, equal weight per market):
 
-| Category | Long shots under 10¢ | Favourites 90¢+ |
+| Category | Long shots under 10¢ | Favorites 90¢+ |
 |---|---|---|
 | Crypto | −14.8% | +0.64% |
 | Politics | −16.3% | +1.04% |
@@ -225,7 +225,7 @@ There is a conflict on politics. In Bürgi's return regression its slope is the 
 
 ### F8. Time to resolution matters in two opposite ways
 
-**The claim.** Far from resolution, prices are more compressed toward 50¢ (long shots too expensive, favourites too cheap). Very close to the end of live sports, long shots are badly overpriced (the "Yogi Berra" effect, named for "it ain't over till it's over"). Short-dated weather prices are too *extreme*, the reverse of the usual bias.
+**The claim.** Far from resolution, prices are more compressed toward 50¢ (long shots too expensive, favorites too cheap). Very close to the end of live sports, long shots are badly overpriced (the "Yogi Berra" effect, named for "it ain't over till it's over"). Short-dated weather prices are too *extreme*, the reverse of the usual bias.
 
 **The evidence.**
 - **Le, Kalshi Table 4.** Slopes by domain and time left ([arXiv](https://arxiv.org/pdf/2602.19520)). The average slope rises from 0.99 at 0–1 hours to 1.32 at a month or more.
@@ -258,26 +258,26 @@ There is a conflict on politics. In Bürgi's return regression its slope is the 
 
 **Strength: weak to moderate.** The studies are not measured the same way.
 
-### F10. Older betting markets: the same shape for 75 years, and heavy favourites still don't pay
+### F10. Older betting markets: the same shape for 75 years, and heavy favorites still don't pay
 
-**The claim.** On racetracks, return falls steadily as odds lengthen. Backing every favourite loses only a little, and nothing simple is profitable.
+**The claim.** On racetracks, return falls steadily as odds lengthen. Backing every favorite loses only a little, and nothing simple is profitable.
 
 **The evidence.** Snowberg & Wolfers (JPE 2010; [NBER w15923](https://www.nber.org/system/files/working_papers/w15923/w15923.pdf)) studied all 6.4 million US horse starts from 1992–2001:
 
 | Bet | Return per dollar |
 |---|---|
-| Always the favourite | −5.5% |
+| Always the favorite | −5.5% |
 | 4/1 to 9/1 shots | about −18% |
 | Random bet | −23% |
 | 100/1 or longer | about −61% |
 
 - The same pattern holds in Australia (2.7M starts) and Britain (380,000 starts).
 - The bias "has been stable since first noted in Griffith (1949)", whose sample was 1,386 races in 1947.
-- The authors say the claim that extreme favourites earn positive returns (Thaler & Ziemba 1988) "is not true in any of our datasets".
+- The authors say the claim that extreme favorites earn positive returns (Thaler & Ziemba 1988) "is not true in any of our datasets".
 - The exceptions are Hong Kong and Japan: no bias in about 7,000 races (Busche & Hall 1988; Busche 1994).
 - Two-outcome sports markets are less consistent. Baseball moneylines once showed a reversed bias that later corrections weakened ([Woodland & Woodland 1994](https://ideas.repec.org/a/bla/jfinan/v49y1994i1p269-79.html)).
 
-**Strength: strong.** Racing is the most-studied case. The −5.5% for favourites is after a track take of roughly 15–20%; that take figure is not verified.
+**Strength: strong.** Racing is the most-studied case. The −5.5% for favorites is after a track take of roughly 15–20%; that take figure is not verified.
 
 ### F11. Why the bias exists: people overweight small chances, and costs and slow money keep it alive
 
@@ -307,7 +307,7 @@ There is a conflict on politics. In Bürgi's return regression its slope is the 
 | 2024 | 0.048 | 53,338 |
 | 2025 (Jan–Apr) | **0.021** (significant only at 10%) | 51,321 |
 
-- **Becker:** takers averaged +2.0% per trade from 2021 to 2023. After the 2024 election the gap flipped to +2.5 points in makers' favour, while quarterly volume went from $30M (Q3 2024) to $820M (Q4 2024) ([jbecker.dev](https://www.jbecker.dev/research/prediction-market-microstructure)).
+- **Becker:** takers averaged +2.0% per trade from 2021 to 2023. After the 2024 election the gap flipped to +2.5 points in makers' favor, while quarterly volume went from $30M (Q3 2024) to $820M (Q4 2024) ([jbecker.dev](https://www.jbecker.dev/research/prediction-market-microstructure)).
 - **Polymarket:** quarterly returns appear only in a chart (Cardozo, Figure 6).
 - **Racing:** stable from 1947 to 2004 (Snowberg & Wolfers). UK bookmaker bias fell after 2000, when betting exchanges arrived ([Smith & Vaughan Williams 2010](https://ideas.repec.org/a/eee/intfor/v26yi3p543-550.html)).
 - **Liquidity:** more liquidity did not reduce price errors on TradeSports ([Tetlock 2008](https://drupalgsb-test.paas.cc.columbia.edu/sites/default/files-efs/pubfiles/3098/Tetlock_SSRN_Liquidity_and_Efficiency.pdf)).
@@ -324,15 +324,15 @@ There is a conflict on politics. In Bürgi's return regression its slope is the 
 | Our bets at 30–50¢: **−7.0%** (73 bets) | Kalshi takers −9.1%, makers −1.0%. Polymarket about 0 before fees, −2% to −5% after today's taker fee | Matches the Kalshi taker figure. |
 | Our bets at 50–70¢: **−0.4%** (81 bets) | Kalshi takers −2.4%, makers +3.6% | Matches. |
 | Our bets at 70¢ and up: **−21.6%** (19 bets) | Kalshi takers +0.4% (70–89¢), +0.6% (90–99¢) | Doesn't match, but 19 bets can't tell us anything: at these prices a single loss costs a whole stake. |
-| Every favourite at the ask: **−2.8% ± 1.7%** (1,133 markets) | Kalshi takers, weighted like ours (each price snapshot counts equally, not each trade): −2.4% at 50–70¢, about +0.5% above 70¢ | Matches. A taker buying favourites loses about what trading costs. |
-| Favourites at 70–95¢: **−1.5% ± 1.8%** (544 markets) | Kalshi takers +0.4% to +0.6% after fees. Polymarket after today's fee about 0% to +0.6% | The literature sits at or just above the top of our range. Break-even is the honest reading. |
+| Every favorite at the ask: **−2.8% ± 1.7%** (1,133 markets) | Kalshi takers, weighted like ours (each price snapshot counts equally, not each trade): −2.4% at 50–70¢, about +0.5% above 70¢ | Matches. A taker buying favorites loses about what trading costs. |
+| Favorites at 70–95¢: **−1.5% ± 1.8%** (544 markets) | Kalshi takers +0.4% to +0.6% after fees. Polymarket after today's fee about 0% to +0.6% | The literature sits at or just above the top of our range. Break-even is the honest reading. |
 | Every underdog at the ask: **−31.9% ± 4.6%** | Kalshi takers −72% to −9% depending on price | Matches in direction and size. |
 | Weight of 1.35 on the market's log-odds | Polymarket overall 1.06–1.11; politics 1.45. Kalshi from 0.99 (under an hour left) to 1.32 (a month or more), and up to 1.83 for politics a week to a month out | At the high end of the published range, like politics or month-ahead markets. Two caveats follow below the table. |
 | Resting orders with a strict fill rule: **−16% to −31%** | Makers who actually got filled: Kalshi +3.6% to +6.2% at 50–89¢. But Polymarket long-shot bids were −36% at resolution after early gains | Our result matches the adverse-selection half of the literature. See change 6. |
 
 Two caveats on the 1.35 weight:
 - In `docs/REBUILD_SCOPE.md` it comes from the blend fit, estimated alongside our forecasts, so it is not a clean measure of the price alone.
-- Taken literally, it says an 80¢ favourite wins about 86.7% of the time. That would be roughly +8% before costs, yet we measure −1.5% at the ask for 70–95¢ (my arithmetic, assuming no intercept). Either the 1.35 overstates the bias in our sample, or the spread and fees eat it. Test T3 below settles which.
+- Taken literally, it says an 80¢ favorite wins about 86.7% of the time. That would be roughly +8% before costs, yet we measure −1.5% at the ask for 70–95¢ (my arithmetic, assuming no intercept). Either the 1.35 overstates the bias in our sample, or the spread and fees eat it. Test T3 below settles which.
 
 ### Changes, ranked
 
@@ -342,17 +342,17 @@ Two caveats on the 1.35 weight:
    - Confidence: high.
    - How: it is a rule (`min_ask`), already set, and the coach prompt already warns against lowering it. No code change.
 
-2. **Test raising `min_ask` to about 0.50, so a strategy only buys the side the market already favours.**
-   - Our 30–50¢ bets lost 7.0%, and our bets *against* the market's favourite at 30–50¢ lost 35% (55 bets). Kalshi takers lost 9.1% at 31–50¢ and 2.4% at 50–70¢.
+2. **Test raising `min_ask` to about 0.50, so a strategy only buys the side the market already favors.**
+   - Our 30–50¢ bets lost 7.0%, and our bets *against* the market's favorite at 30–50¢ lost 35% (55 bets). Kalshi takers lost 9.1% at 31–50¢ and 2.4% at 50–70¢.
    - Expected effect: losses shrink from about −7% toward −2% to 0% on those bets. This cuts losses; it does not create profit.
    - Confidence: moderate.
    - How: it is a rule the loop can set. Run it as a challenger with a row in `docs/EXPERIMENTS.md` first, not as a change to `main`.
 
-3. **Treat buying favourites as break-even at best for a taker, and don't build a "buy every favourite" or 95–99¢ "bond" strategy expecting profit.**
+3. **Treat buying favorites as break-even at best for a taker, and don't build a "buy every favorite" or 95–99¢ "bond" strategy expecting profit.**
    - The evidence: +0.4% to +1.2% after fees on Kalshi in 2021–25, with the bias weakening in 2025; Polymarket takers −0.46% even before fees; our own −1.5% ± 1.8%; and one loss at 95¢ wipes out 19 wins.
    - Expected effect: avoids wasting a strategy slot.
    - Confidence: moderate to high.
-   - If anything, run it as a yardstick, labelled as such. `market_filters.max_price` 0.95 already keeps the trader out of the 95–99¢ range.
+   - If anything, run it as a yardstick, labeled as such. `market_filters.max_price` 0.95 already keeps the trader out of the 95–99¢ range.
 
 4. **Use the market price, corrected for this bias, as the baseline forecast, and bet only where a specific, checkable reason says that baseline is wrong.**
    - The correction is a calibration slope fitted on our history by category and time to resolution. The literature says it should be largest for politics and long horizons, about 1.0 for sports and finance, and below 1 for short-dated weather.
@@ -361,14 +361,14 @@ Two caveats on the 1.35 weight:
    - How: a code change, so it needs Joey's OK. It overlaps with brief 05.
 
 5. **Filter by category and horizon only after our own data confirms the literature.**
-   - The literature says the favourite edge, where it exists, is biggest in politics, crypto and month-ahead markets.
-   - It says there is no favourite edge in Polymarket sports, and that short-dated weather leans the other way: there the cheap side is, if anything, *under*priced.
+   - The literature says the favorite edge, where it exists, is biggest in politics, crypto and month-ahead markets.
+   - It says there is no favorite edge in Polymarket sports, and that short-dated weather leans the other way: there the cheap side is, if anything, *under*priced.
    - Expected effect: unknown until tested, probably a few points either way.
    - Confidence: low.
    - How: `skip_categories` is a rule the loop can set. `days_ahead` is in `policy.json` for Joey to change.
 
 6. **Re-test resting orders only in a narrow form, if at all.**
-   - The form: bids on the *favourite* side at 70–95¢ (the same as offering to sell the long shot), never on long shots, scored with the strict fill rule and with how the price moved after each fill.
+   - The form: bids on the *favorite* side at 70–95¢ (the same as offering to sell the long shot), never on long shots, scored with the strict fill rule and with how the price moved after each fill.
    - The literature's maker profits are real but go to makers who cancel when news breaks. An hourly cycle can't do that, so our −16% to −31% is what the literature predicts for a slow maker.
    - Expected effect: probably still negative. Worth one honest backtest, not a live strategy.
    - Confidence: low.
@@ -394,7 +394,7 @@ All of these use the roughly 1,133 finished markets. The common rules:
 **T1. Return by price bucket at the ask, at first look.**
 - What to compute: the buckets 1–10, 10–30, 30–50, 50–70, 70–90 and 90–99¢, before and after fees, for all markets and separately for our actual bets. Then repeat at the snapshots nearest 24 hours, 6 hours and 1 hour before close.
 - Confirms the literature: returns rise with price, and 1–30¢ is strongly negative at every snapshot.
-- Kills "favourites are break-even": 70–90¢ or 90–99¢ comes out positive by more than twice its ± after fees. That would justify pre-registering a favourite strategy.
+- Kills "favorites are break-even": 70–90¢ or 90–99¢ comes out positive by more than twice its ± after fees. That would justify pre-registering a favorite strategy.
 - Kills "the bias grows with horizon" for our markets: the first-look snapshot is no more compressed than the 1-hour snapshot.
 
 **T2. The same table by category (sports, crypto, politics, weather, economics/finance, other), by time to resolution (under 1 day, 1–7 days, 7–30 days) and by venue.**
@@ -405,16 +405,16 @@ All of these use the roughly 1,133 finished markets. The common rules:
 - What to compute: a logistic regression of outcome on the log-odds of the mid price, and separately of the ask, with an intercept and confidence intervals that resample events. Overall, then by category, horizon and venue.
 - Then check whether the slope's implied return in each bucket matches the realized return in T1.
 - Confirms the 1.35: the overall slope's interval stays above 1, and the politics or long-horizon slopes are the largest.
-- Kills it: the interval includes 1, or the implied favourite returns don't show up at the ask. That would mean the spread eats the bias, and change 4 is about forecasting accuracy only, not profit.
+- Kills it: the interval includes 1, or the implied favorite returns don't show up at the ask. That would mean the spread eats the bias, and change 4 is about forecasting accuracy only, not profit.
 
-**T4. Favourite-buying net of the real fee curve.**
-- What to compute: the flat-$100 "always the favourite" and "favourites 70–95¢" tests from REBUILD_SCOPE, repeated with the corrected fees (rounded-up Kalshi fees, real Polymarket fees) and split by venue.
+**T4. Favorite-buying net of the real fee curve.**
+- What to compute: the flat-$100 "always the favorite" and "favorites 70–95¢" tests from REBUILD_SCOPE, repeated with the corrected fees (rounded-up Kalshi fees, real Polymarket fees) and split by venue.
 - Confirms change 3: the result stays at or below zero within its ±.
 - Changes the conclusion: the Kalshi 85–95¢ subset is positive by more than twice its ±. Pre-register that subset as a challenger, nothing more.
 
 **T5. Our bets against the market's own baseline in the same bucket.**
 - What to compute: for each settled bet, its return minus the T1 all-market return in the same bucket and venue. This separates the price bias from how well our forecasts pick bets within a bucket.
-- Confirms "our forecasts subtract value": negative within buckets, especially at 30–50¢ against the favourite.
+- Confirms "our forecasts subtract value": negative within buckets, especially at 30–50¢ against the favorite.
 - Kills it: within-bucket differences are zero or positive.
 
 **T6. Testing a `min_ask` of 0.50 on past bets.**
@@ -423,7 +423,7 @@ All of these use the roughly 1,133 finished markets. The common rules:
 - Kills it: no difference within the ±.
 
 **T7. Resting orders, narrow form.**
-- What to compute: simulated resting bids on the favourite side at 70–95¢ only, with the strict fill rule. Report the price move 1, 6 and 24 hours after each fill and the return at resolution, next to the taker return in the same bucket.
+- What to compute: simulated resting bids on the favorite side at 70–95¢ only, with the strict fill rule. Report the price move 1, 6 and 24 hours after each fill and the return at resolution, next to the taker return in the same bucket.
 - Confirms change 6 is worth building: filled orders beat the taker by more than their ±.
 - Kills it: they are at or below the taker figure, or the price usually moves against us right after a fill (the same adverse selection as before).
 
@@ -446,7 +446,7 @@ Our history cannot test whether the bias is shrinking over time. Two weeks is to
   - All bucket figures were read from charts (±1 point), not printed.
   - The "over 60%" text and the −56% chart value are not reconciled.
   - The July 2025 UCD version was not read.
-  - The VoxEU column summarising the paper was not read.
+  - The VoxEU column summarizing the paper was not read.
 - **Becker:** whether the ±1.12% averages are weighted by trade or by dollar, and how fees were treated in the category table.
 - **Polymarket:**
   - The effective dates of fees by category beyond the month level, and the date today's rates took effect.
@@ -460,6 +460,6 @@ Our history cannot test whether the bias is shrinking over time. Two weeks is to
   - Yurchyna on composition shift.
   - Zitzewitz's PredictIt numbers by price: abstract only.
 - **Older studies:** the Thaler & Ziemba (1988) table by odds band, the racetrack take, sample periods for Ali (1977) and Jullien & Salanié (2000), and the authorship of the TradeSports NFL point-spread study.
-- **Kalshi's current interest rate on balances** (3.25% or 4.05% in different help pages). It matters for whether locking up money in long-dated favourites costs anything.
+- **Kalshi's current interest rate on balances** (3.25% or 4.05% in different help pages). It matters for whether locking up money in long-dated favorites costs anything.
 - **Anecdotal claims not checked:** Hacking the Markets' "+2.5% makers", SimpleFunctions' "bias is reversed", and the claims on sportsgameodds.com of no bias in Fed and rate markets.
 - **Our own 1.35 weight:** whether it comes from a price-only fit or the blend fit with our forecasts (REBUILD_SCOPE presents it alongside the blend weights), and whether our "±" figures are one standard error or a 95% interval.

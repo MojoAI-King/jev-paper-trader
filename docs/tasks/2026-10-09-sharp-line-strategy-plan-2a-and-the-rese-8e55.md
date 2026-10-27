@@ -38,7 +38,7 @@ not yet written
 
 ### 2026-10-10T04:27:03.059Z
 
-- **State:** Maintenance run. Sharp line live with Joey's key (286 free requests left, tests can't spend them). Favourites test recorded in docs/research/CHECKS.md (break-even overall; >7 days +8.3% on 72, a lead to re-run). Background: maker test on Kalshi trade prints, research report 15, next-cycle check
+- **State:** Maintenance run. Sharp line live with Joey's key (286 free requests left, tests can't spend them). Favorites test recorded in docs/research/CHECKS.md (break-even overall; >7 days +8.3% on 72, a lead to re-run). Background: maker test on Kalshi trade prints, research report 15, next-cycle check
 - **Evidence:** 138 offline tests OK; maintenance recorded
 - **Next:** Read the maker-test result and report 15; confirm the next cycle's sharp stats; recommend the next build to Joey
 - **Git:** master @ 114cc25, 2 uncommitted

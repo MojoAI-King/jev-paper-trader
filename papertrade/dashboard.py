@@ -16,8 +16,8 @@ from . import coach, engine, learn, markets, review
 
 TEMPLATE = Path(__file__).with_name("dashboard_template.html")
 SLOTS = 6  # categorical colors s1-s6 for policy.json's strategies, in order; a strategy keeps its slot for good.
-# A running challenger keeps the colour it was given when it started (s7 or s8, coach._free_slot); a retired one
-# turns grey (s0); a frozen yardstick has its own neutral (sy).
+# A running challenger keeps the color it was given when it started (s7 or s8, coach._free_slot); a retired one
+# turns gray (s0); a frozen yardstick has its own neutral (sy).
 RACE_POINTS = 240  # the race chart's resolution; settlements and the latest point are always kept
 CALLS = 12  # how many recent researched calls the page shows
 FEED = 80  # events in the live feed

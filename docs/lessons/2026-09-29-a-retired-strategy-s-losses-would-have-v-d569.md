@@ -26,7 +26,7 @@ the status without the `retired` stamp, so even `strategies(retired=True)` misse
 
 `engine.strategies(policy, retired=True)` adds retired challengers (marked `retired`);
 `engine.all_books` loads every ledger; `dashboard.current_summary` uses `all_books`, and
-`dashboard.strategy_rows` gives every ledger a row: badge "Retired" (grey slot 0), or "Stopped" for a
+`dashboard.strategy_rows` gives every ledger a row: badge "Retired" (gray slot 0), or "Stopped" for a
 ledger no strategy owns. `coach.set_status` routes reject/retire of a running challenger through
 `coach._retire`, and refuses to change a retired one. Commit 44b97f1.
 
@@ -38,7 +38,7 @@ must leave its record on the page.
 
 ## What now enforces it
 
-`test_a_retired_challenger_keeps_its_record_on_the_page`, `test_every_ledger_has_a_row_and_every_running_challenger_a_colour`,
+`test_a_retired_challenger_keeps_its_record_on_the_page`, `test_every_ledger_has_a_row_and_every_running_challenger_a_color`,
 `test_joey_s_approve_and_reject_keep_challengers_honest`,
 `test_a_retired_challenger_stays_retired_and_names_stay_unique_by_hand_too`; each fails with its guard
 removed (mutation run, 2026-09-29).

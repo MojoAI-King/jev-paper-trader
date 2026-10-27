@@ -16,14 +16,14 @@ Researched 2026-10-09 for `docs/research/briefs/14-jev-harness.md`.
 3. Give Jev reading and checking jobs instead, each made of narrow questions, with code doing the dates, numbers
    and decisions. In order of value: (A) a market reader that pulls out what the market is about, the threshold,
    the comparison and the deadline, for the specialist pricers in briefs 06, 07 and 08; (C) a fact-by-fact check
-   of whether Claude's research shows the YES condition already met or no longer possible; (E) labelling how two
+   of whether Claude's research shows the YES condition already met or no longer possible; (E) labeling how two
    linked markets relate, for brief 02; (D) checking research facts against their source pages; (B) rule-risk
    flags.
-4. Outside evidence supports verification over a supplied state. Small specialised checkers match large models
+4. Outside evidence supports verification over a supplied state. Small specialized checkers match large models
    when the evidence is in the input, and are much worse without it. It is weak for predicting trouble from rule
    text alone, and for finding linked markets with a model alone: in the arbitrage study below, 1,576 flagged pairs
    left 13 real ones. None of these studies used Jev.
-5. Every new job needs its error rates measured on about 200 hand-labelled cases before anything acts on it. Its
+5. Every new job needs its error rates measured on about 200 hand-labeled cases before anything acts on it. Its
    history tests cost cents, since Jev is $0.042 per million input tokens. Pin the model version, give each job its
    own question-set version, and leave `papertrade-v2` untouched while the frozen `original` yardstick depends on it.
 
@@ -49,7 +49,7 @@ Python?" at 0.5 does not mean medium skill). Choice `confidence` = (p_max − 1/
 concentrated the answer is, not the chance it's right. Every answer is limited to the options supplied, and
 questions in one request are judged separately; none sees another's answer. Evidence:
 [Primitives](https://docs.typesafe.ai/primitives.md), [Noul](https://docs.typesafe.ai/primitives/noul.md),
-[Confidence](https://docs.typesafe.ai/confidence.md). Strength: **strong** (documented API behaviour).
+[Confidence](https://docs.typesafe.ai/confidence.md). Strength: **strong** (documented API behavior).
 
 **F3. Calibration is claimed as a training goal, not published as a measurement.** Jev is trained with "RLCD"
 (reinforcement learning for calibrated decisions) so that "higher probability should correspond to a greater
@@ -128,7 +128,7 @@ models, Wikipedia claims, not Jev).
 
 **F8. A judge's flag rate is biased until its error rates are measured.** Using a judge model's yes/no answers to
 estimate how often something happens gives a biased rate. Correct it with the Rogan-Gladen estimator,
-θ = (p + spec − 1)/(sens + spec − 1), whose interval includes the uncertainty of the hand-labelled set. About 200
+θ = (p + spec − 1)/(sens + spec − 1), whose interval includes the uncertainty of the hand-labeled set. About 200
 labels is the suggested scale, and very small sets make the correction unstable.
 [Lee et al., preprint, v4 May 2026](https://arxiv.org/abs/2511.21140); the estimator dates from Rogan and Gladen,
 1978. Separately, general LLM judges are badly overconfident about themselves. On JudgeBench (350 pairs), GPT-4o's
@@ -177,7 +177,7 @@ Ranked by expected value. Every item is a code change, so each waits for Joey's 
 4. **Job C, the fact-by-fact "already met / can't happen" check**, replacing `already_decided`. *Effect:* finds the
    only kind of edge a non-forecaster can supply, information the price hasn't absorbed, if any exists. *Sure:*
    medium that the reading is accurate; low that the market is often slow enough to profit after the 8.4% costs.
-5. **Job E, labelling how linked markets relate**, as the meaning check inside brief 02's arithmetic. *Sure:*
+5. **Job E, labeling how linked markets relate**, as the meaning check inside brief 02's arithmetic. *Sure:*
    medium; F9 says it only works with code narrowing the candidates first and checking after.
 6. **Job D, checking facts against their sources**, for research quality. *Sure:* medium-low that it pays: it needs
    source pages fetched and stored, and we don't yet know how often Claude's facts are wrong.
@@ -226,7 +226,7 @@ field means no specialist price: skip the market.
 | `discretion` | Do `market.rules` let the exchange, a committee or a resolver decide by judgment rather than by a named source or measurement? |
 | `title_rules_mismatch` | Do `market.rules` set a condition that differs from what `market.title` says (another deadline, threshold, source or definition of the event)? |
 | `announcement_required` | Does YES under `market.rules` require an official announcement or report, rather than the event itself happening? |
-| `no_fallback` | Do `market.rules` fail to say what happens if the event is postponed or cancelled, or the named source is unavailable? |
+| `no_fallback` | Do `market.rules` fail to say what happens if the event is postponed or canceled, or the named source is unavailable? |
 
 **Job C: fact-by-fact evidence check** (one request per researched event, after `screen_facts`)
 
@@ -288,7 +288,7 @@ Report every number with n and ± one standard error, and cluster by event.
 **Job A (reader).**
 1. **Label.** Hand-label 200 markets, stratified by category and source. Claude Opus may pre-label, with every label checked by a person.
 2. **Score.** Per question: accuracy, accuracy in confidence bands, and coverage at confidence ≥ 0.8. Compare against a regex-only parser on the same 200.
-3. **Automatic check.** For crypto and index threshold markets (enough of them in the 1,133), code combines the parsed (asset, comparison, threshold, observation, deadline) with the realised price from free history (for example exchange candles), predicts YES/NO, and compares with the actual settlement. Every disagreement is either a parsing error or a rules subtlety; read them all.
+3. **Automatic check.** For crypto and index threshold markets (enough of them in the 1,133), code combines the parsed (asset, comparison, threshold, observation, deadline) with the realized price from free history (for example exchange candles), predicts YES/NO, and compares with the actual settlement. Every disagreement is either a parsing error or a rules subtlety; read them all.
 4. **Confirm:** at least 98% agreement on cases with confidence ≥ 0.8, covering at least 80% of threshold markets, and better than regex.
 5. **Kill:** no better than regex, or under 95% on confident cases.
 

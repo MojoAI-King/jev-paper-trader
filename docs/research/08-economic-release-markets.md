@@ -6,7 +6,7 @@ Researched 2026-10-09 for `docs/research/briefs/08-economic-release-markets.md`.
 
 1. **Kalshi's prices for these markets are already as good as the professional benchmarks, or slightly better.** Over 2022 to mid-2025, the Federal Reserve Board's own study found Kalshi's prices beat the Bloomberg consensus on headline CPI on release day (error 0.063–0.069 against 0.081 points) and tied it on core CPI and unemployment. On Fed decisions they tied or beat fed funds futures; the only difference was one meeting. Studies from 2002–2005 of a market on data releases found the same, and they found its probabilities for each outcome bin well calibrated.
 2. **The free inputs a model would use don't beat the consensus forecast.** The Atlanta Fed says its GDPNow is not shown to beat professional forecasters (its error is 1.17 points, typical size measured as RMSE, over 56 quarters). The Cleveland Fed inflation nowcast beats surveys on headline inflation but not on core. Correcting the consensus for its known biases doesn't work in real time. FedWatch is a market price, so it is only a check on Kalshi, not an edge over it.
-3. **To price a bin, centre a fat-tailed curve on the consensus or nowcast, then account for Kalshi's rounding.** Kalshi settles CPI, unemployment and GDP on the first one-decimal figure the agency publishes, and ignores revisions. Bloomberg consensus errors since 2022 have a typical size (RMSE) of about 0.10 point for headline and core CPI month on month, and 0.13 for unemployment. Payroll surprises had a standard deviation of about 110k jobs through 2009; the post-2020 figure is not verified.
+3. **To price a bin, center a fat-tailed curve on the consensus or nowcast, then account for Kalshi's rounding.** Kalshi settles CPI, unemployment and GDP on the first one-decimal figure the agency publishes, and ignores revisions. Bloomberg consensus errors since 2022 have a typical size (RMSE) of about 0.10 point for headline and core CPI month on month, and 0.13 for unemployment. Payroll surprises had a standard deviation of about 110k jobs through 2009; the post-2020 figure is not verified.
 4. **No general edge is plausible.** One narrow lead is worth an offline backtest on Kalshi's free public price history, which covers hundreds of events: cheap long-shot bins are overpriced in economics markets as everywhere else on Kalshi. A second lead is weaker: one 45-release study found Kalshi's CPI distribution sits slightly too low. Either has to clear Kalshi's fee of 0.07 × p × (1 − p) per contract plus the spread.
 5. **For our trader:** stop the AI forecasters from pricing these markets, and don't build a consensus-based pricer that bets. Our price screen strips the consensus and nowcast figures out of their research by design, so their poor score here (Claude direct Brier 0.306 against the market's 0.087, on 6 markets) is what you'd expect. If anything is built, it is an offline backtest of the long-shot lead.
 
@@ -34,7 +34,7 @@ Researched 2026-10-09 for `docs/research/briefs/08-economic-release-markets.md`.
 | KXU3 | seasonally adjusted U-3 rate, one decimal, "above X%" | 8:29 | about 30 to 95 minutes after |
 | KXGDP | BEA advance estimate, real GDP growth at an annual rate (SAAR), one decimal | 8:29 | next listed event is 2026-10-30 (Q3) |
 | KXFED | upper bound of the target range after the meeting, "greater than X%" | 1:55 PM | within about 25 minutes of the 2:00 PM statement |
-| KXFEDDECISION | the size of the move; the outcomes are mutually exclusive, and a cancelled meeting settles as "maintains" | 1:59 PM | within about 10 minutes of the statement |
+| KXFEDDECISION | the size of the move; the outcomes are mutually exclusive, and a canceled meeting settles as "maintains" | 1:59 PM | within about 10 minutes of the statement |
 
 - **Evidence:** live and settled markets from the [Kalshi API](https://api.elections.kalshi.com/trade-api/v2/markets?series_ticker=KXU3&status=settled), read 2026-10-09. Settled values in the last few months, which are after my training data, so as Kalshi reports them:
   - CPI month on month: +0.1 (Jul 2026), +0.4 (Aug)
@@ -88,7 +88,7 @@ Researched 2026-10-09 for `docs/research/briefs/08-economic-release-markets.md`.
 - **Limits:** the samples are small (33 payroll, 30 ISM, 26 retail-sales and 64 jobless-claims auctions). The series don't include CPI, GDP or the Fed. The market traded on release morning, after the survey was taken.
 - **Strength:** moderate.
 
-**F9. Kalshi's economics markets have the same favourite–long-shot bias as the rest of Kalshi.**
+**F9. Kalshi's economics markets have the same favorite–long-shot bias as the rest of Kalshi.**
 - **The study:** Bürgi, Deng and Whelan, "Makers and Takers: The Economics of the Kalshi Prediction Market", UCD, January 2026 ([karlwhelan.com](https://www.karlwhelan.com/Papers/Kalshi.pdf); also GWU Research Program on Forecasting WP 2026-001, February 2026, [PDF](https://www2.gwu.edu/~forcpgm/2026-001.pdf)).
 - **Sample:** every Kalshi contract from 2021 to April 2025 with at least $1,000 of volume and a final spread of 20¢ or less. That is 46,282 contracts and 156,986 daily prices.
 - **Results:**
@@ -205,7 +205,7 @@ Ranked by expected effect.
 
 ### The model for each release (if built as a benchmark)
 
-| Release | Centre | Spread around it | Rounding and settlement | Free data |
+| Release | Center | Spread around it | Rounding and settlement | Free data |
 |---|---|---|---|---|
 | CPI m/m (headline) | Cleveland nowcast on the eve of release, blended with free consensus | Student-t with σ≈0.10 (since 2022), fitted to past nowcast errors | P(BLS one-decimal > k) = P(unrounded ≥ k + 0.05) | Cleveland nowcast; FRED CPIAUCSL to 3 decimals |
 | Core CPI m/m | Consensus; the Cleveland core nowcast adds little (F11) | σ≈0.10; consensus is often exactly 0.2 or 0.3, so model where it sits inside the tenth | same | FRED CPILFESL |
@@ -225,7 +225,7 @@ Ranked by expected effect.
 2. **The screen's effect on economics research.** For economics events, count researched facts by screen reason, especially "makes a prediction" and "a figure within 1 point of this market's price", against all other categories.
    - *Confirms F18:* economics events lose a clearly larger share of facts to those two reasons.
    - *Kills it:* drop rates no higher than other categories.
-3. **The settled bets.** Did we bet economics markets? With what return, and with or against the favourite? Check the brief's example (U-3 above 3.9% for September at about 9.5¢) against Kalshi's settled value: KXU3-26SEP settled at 4.2%, so "above 3.9%" resolved **Yes**.
+3. **The settled bets.** Did we bet economics markets? With what return, and with or against the favorite? Check the brief's example (U-3 above 3.9% for September at about 9.5¢) against Kalshi's settled value: KXU3-26SEP settled at 4.2%, so "above 3.9%" resolved **Yes**.
    - A Yes contract at 9.5¢ on that line would have been far off the market, since unemployment had printed 4.1% for two months. Check which side and which market the bet was.
 
 **On Kalshi's public history (the real test; free, no account):**
@@ -243,7 +243,7 @@ Ranked by expected effect.
   - *Only if it beats Kalshi by more than 2 standard errors:* simulate trading where |pricer − ask| > fee + 2¢. The after-fee return must be positive on each half of the test period.
 - **Test C (Goel's lead).** Compute the PIT of headline CPI against Kalshi's implied distribution on the eve of release for events after Goel's sample (2026 onward).
   - *Confirms:* the mean PIT is still above 0.55.
-- **One known problem.** Free *historical* consensus is the weak link. If Trading Economics' history is paid, use the Cleveland nowcast (its history is published) and GDPNow (its history is published) as the centres, and the BLS or BEA prior value as a naive benchmark.
+- **One known problem.** Free *historical* consensus is the weak link. If Trading Economics' history is paid, use the Cleveland nowcast (its history is published) and GDPNow (its history is published) as the centers, and the BLS or BEA prior value as a naive benchmark.
 
 ## Data sources
 

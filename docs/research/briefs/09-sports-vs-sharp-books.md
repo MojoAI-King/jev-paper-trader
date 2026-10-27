@@ -13,7 +13,7 @@ Do Kalshi and Polymarket sports prices lag or differ from sharp sportsbook price
 
 ## What we already know
 
-- Sports are 606 of our 1,133 finished markets. On the 205 real-priced sports markets that Claude forecast, its own forecast was slightly worse than the market (Brier +0.011 ± 0.005). Always buying the favourite at the ask lost 1.6% ± 2.6% (606 markets).
+- Sports are 606 of our 1,133 finished markets. On the 205 real-priced sports markets that Claude forecast, its own forecast was slightly worse than the market (Brier +0.011 ± 0.005). Always buying the favorite at the ask lost 1.6% ± 2.6% (606 markets).
 - Many Polymarket sports markets are illiquid, for example tennis "Completed Match" markets with asks of 97¢ and 92¢ and no bids.
 
 ## Find out

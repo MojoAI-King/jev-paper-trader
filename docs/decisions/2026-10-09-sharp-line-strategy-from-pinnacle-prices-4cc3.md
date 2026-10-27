@@ -34,7 +34,7 @@ serious winner." This builds plan item 2A (`docs/REBUILD_PLAN.md`, research repo
 4. **The price screen holds.** The line is a price, so it goes only to this strategy's decision and to the scoring
    (judgments carry `sharp`). It is never put into a Jev or Claude state; a test checks that through the real scan.
 5. **`jev_alone` retired** (`retired: true` in `policy.json`). `engine.strategies` leaves a retired policy strategy
-   out of betting and tuning. Its ledger still settles (`all_books`) and stays on the page. Its colour went to
+   out of betting and tuning. Its ledger still settles (`all_books`) and stays on the page. Its color went to
    `sharp` (a policy strategy may now name its `slot`).
 
 ## Why
@@ -44,7 +44,7 @@ Professional sports bettors measure skill against the sharp closing line, and Pi
 winner needs information the venue's price might not have: a sharper market's price is the most direct candidate.
 The Odds API covers Pinnacle, Betfair's exchange, Kalshi and Polymarket in one feed (bookmakers page read
 2026-10-10). "Jev alone" scored like a coin flip on 1,006 markets and placed one bet in two weeks (report 14 says
-stop betting on Jev's own forecast); it held the colour slot the new strategy needed.
+stop betting on Jev's own forecast); it held the color slot the new strategy needed.
 
 ## Alternatives rejected
 
@@ -52,7 +52,7 @@ stop betting on Jev's own forecast); it held the colour slot the new strategy ne
   accounts (reports 02, 11). This repo is paper-only on a 30-minute cycle.
 - **Using The Odds API's own Kalshi and Polymarket prices to place bets.** Bets use our own venue feeds, which give
   the market ids settlement needs; the API's venue prices are only a matching check (report 09).
-- **A grey ninth strategy colour.** It would read as retired on the page.
+- **A gray ninth strategy color.** It would read as retired on the page.
 - **Removing `jev_alone` from `policy.json`.** That would lose its label on the page; `retired` keeps it.
 
 ## Risk
@@ -74,7 +74,7 @@ stop betting on Jev's own forecast); it held the colour slot the new strategy ne
 ## Evidence
 
 - `OddsTests`:
-  - de-vig sums to 1 and keeps the favourite;
+  - de-vig sums to 1 and keeps the favorite;
   - only a fresh, low-margin sharp line counts, and a soft book is never the reference;
   - Kalshi and Polymarket matching, including spreads, totals, late markets, other games, unclear sides, started
     games and two-game ambiguity left out;

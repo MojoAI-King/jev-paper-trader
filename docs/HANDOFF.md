@@ -6,7 +6,7 @@ Kind: Living.
 
 Written: 2026-10-26 20:08 EDT
 
-- **State:** Fun bot review fixes committed: Polymarket books read before betting, no cancelled re-buys, daily limit counts settled/cancelled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
+- **State:** Fun bot review fixes committed: Polymarket books read before betting, no canceled re-buys, daily limit counts settled/canceled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
 - **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
@@ -16,7 +16,7 @@ Written: 2026-10-26 20:08 EDT
 ## Earlier
 
 ### 2026-10-26 19:40 EDT
-- **State:** New for-fun strategy 'favorites' live: heavy favourites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
+- **State:** New for-fun strategy 'favorites' live: heavy favorites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
 - **Next:** Confirm favorites places bets on the next cycle (health, portfolios/favorites.json); Oct check-in: settled mention bets, mention_forward early read; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
@@ -24,7 +24,7 @@ Written: 2026-10-26 20:08 EDT
 - **CI:** master green on GitHub (read 2026-10-26 23:40 UTC)
 
 ### 2026-10-14 21:08 EDT
-- **State:** Sharp's touchdown-prop bug bet cancelled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 cancelled. Live total about +148. Strategies otherwise unchanged; all healthy. Evidence: 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health.
+- **State:** Sharp's touchdown-prop bug bet canceled and refunded through the cycle (policy.json cancelled_bets, engine.cancel_bets): sharp at 100,000, 0 settled, 1 canceled. Live total about +148. Strategies otherwise unchanged; all healthy. Evidence: 163 offline tests OK; 6489a01 pushed; cycle 3319ddd (01:08Z) applied it; python3 -m papertrade health.
 - **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical vs Kalshi 1-min candles); then follow-first-trade in gas ladders
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard

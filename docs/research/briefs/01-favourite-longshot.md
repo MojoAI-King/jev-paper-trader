@@ -14,14 +14,14 @@ On Kalshi and Polymarket, what return does buying a contract at each price level
 ## What we already know
 
 - Our own settled bets by price paid: under 30¢, 4 won of 78 when the prices implied 9.3 wins (−78% return); 30–50¢ −7.0% (73 bets); 50–70¢ −0.4% (81); 70¢ and up −21.6% (19, a small sample).
-- Flat $100 on every finished market at the ask: always the favourite −2.8% ± 1.7% (1,133 markets); favourites priced 70–95¢ −1.5% ± 1.8% (544); always the underdog −31.9% ± 4.6%.
+- Flat $100 on every finished market at the ask: always the favorite −2.8% ± 1.7% (1,133 markets); favorites priced 70–95¢ −1.5% ± 1.8% (544); always the underdog −31.9% ± 4.6%.
 - Regressing outcomes on the market's log-odds puts a weight of 1.12 on the price (range 0.98 to 1.28) on the ~1,000 finished markets with a real price, so the price looks about calibrated; long shots may be slightly overpriced, but the evidence is weak. (The first version of this brief said 1.35; that number included markets with fake prices. See `docs/research/CHECKS.md`.)
 
 ## Find out
 
 - Published analyses of Kalshi and Polymarket trade data on returns by price level, maker vs taker (for example the 2025 academic study of Kalshi trades split by makers and takers), and older evidence from other betting markets for comparison.
 - How the bias differs by category (sports, crypto, politics, weather, economics), by time to resolution, and by venue.
-- Whether buying favourites, or buying NO on cheap YES contracts, is profitable after Kalshi's fee curve, or only for makers.
+- Whether buying favorites, or buying NO on cheap YES contracts, is profitable after Kalshi's fee curve, or only for makers.
 - Why the bias exists (risk-loving retail, attention, fees) and whether it has shrunk as volume grew from 2023 to 2026.
 
 ## Leave out

@@ -42,7 +42,7 @@ winner":
    - Millisecond trading was ruled out: it can't be simulated honestly on paper, it needs always-on co-located
      servers and real accounts, the venues delay fast takers, and incumbents hold the speed edge (report 15).
 5. **`jev_alone_bold` retired**, as `jev_alone` was: its forecaster scores like a coin flip and adds nothing to the
-   price. Its ledger still settles, and its colour slot (6) went to `mention_no`.
+   price. Its ledger still settles, and its color slot (6) went to `mention_no`.
 
 ## Why
 

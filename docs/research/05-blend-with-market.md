@@ -169,7 +169,7 @@ and b = 1 + g − Σ w_k. Read it as a Bayesian update with the market as the pr
 ratio against the market is counted at weight w_k.
 
 *The fit.* Maximise the logistic likelihood with Gaussian priors, which is ridge logistic regression with offset Lm:
-- a ~ N(0, 0.2²) and g ~ N(0, 0.15²): small corrections to the market's own calibration (favourite/long-shot
+- a ~ N(0, 0.2²) and g ~ N(0, 0.15²): small corrections to the market's own calibration (favorite/long-shot
   belongs to brief 01);
 - w_k ~ N(0, 0.25²).
 
@@ -213,7 +213,7 @@ calibrated market with Brier ~0.17 plus an LLM with independent errors at Brier 
 b ≈ 0.75 and c ≈ 0.12, not 1.35 and 0.52. Making 13% of the market mids uninformative (wide spreads) raised c to 0.21
 and *lowered* b. So b + c ≈ 1.87 says both inputs are far too timid on our sample. That could be real (the market
 underreacts on short-dated markets), or it could be a leak or a scoring artifact. Taken at face value it says a 70¢
-favourite the model agrees with is worth 83%, which our own "always buy the favourite: −2.8% ± 1.7%" contradicts.
+favorite the model agrees with is worth 83%, which our own "always buy the favorite: −2.8% ± 1.7%" contradicts.
 Confidence: moderate that something in that fit is off, because this is my simulation, not a paper.
 
 **3. Keep the price screen and blend in code** (no change). F10 supports this, and it keeps the blind forecast as
