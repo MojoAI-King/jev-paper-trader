@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-27T20:22:28Z",
+  "generated": "2026-10-27T20:37:59Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-27T20:22:28Z",
+      "t": "2026-10-27T20:37:59Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-27T20:19:51Z",
+    "ts": "2026-10-27T20:34:44Z",
     "stages": [
       [
         "Fetched",
@@ -2034,7 +2034,7 @@
           99500.72
         ],
         [
-          "2026-10-27T20:22:28Z",
+          "2026-10-27T20:37:59Z",
           99500.72
         ]
       ]
@@ -2923,7 +2923,7 @@
           99781.68
         ],
         [
-          "2026-10-27T20:22:28Z",
+          "2026-10-27T20:37:59Z",
           99781.68
         ]
       ]
@@ -3812,7 +3812,7 @@
           100139.56
         ],
         [
-          "2026-10-27T20:22:28Z",
+          "2026-10-27T20:37:59Z",
           100139.56
         ]
       ]
@@ -4701,7 +4701,7 @@
           100181.95
         ],
         [
-          "2026-10-27T20:22:28Z",
+          "2026-10-27T20:37:59Z",
           100181.95
         ]
       ]
@@ -6892,6 +6892,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-27T20:37:54Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-27T20:34:44Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-27T20:19:51Z",
       "type": "scan",
       "fetched": 200,
@@ -7550,26 +7563,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-27T05:10:40Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T04:49:46Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.93,
-      "amount": 685.41,
-      "p": 0.915,
-      "q": "Will WTI Crude Oil (WTI) hit (HIGH) $110 in October?",
-      "url": "https://polymarket.com/market/will-wti-reach-110-in-october-2026",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -8218,6 +8211,17 @@
     ],
     "proposals": [
       {
+        "id": "ch55",
+        "kind": "challenger",
+        "title": "Claude direct, sports and culture, moderate edge",
+        "why": "Both challenger slots are empty, and sports is the only category where a forecaster beats the market (Claude 0.177 vs 0.181 on 203). Culture also looks good (0.032 vs 0.074) but rests on only 14 markets. This sits between ch16's loose setup and claude_direct's strict 12c edge, keeps the 30c floor, and caps the price at 75c so wins still pay. It is an experiment. It will place nothing until judging works again, which costs nothing.",
+        "judge_by": "Once judging resumes, it should place at least 1 bet a day. After 30 settled bets its P&L per $100 staked should be positive and ahead of claude_direct's over the same period. If it is below -$15 per $100 at that point, retire it. If it places no bets within 3 days of judging resuming, the setup is too strict: loosen the edge to 0.04 or retire it.",
+        "min_resolved": 30,
+        "status": "invalid",
+        "status_reason": "claude_direct no longer picks bets (learning.retired_probabilities; Joey, 2026-10-11)",
+        "created": "2026-10-27T20:37:17Z"
+      },
+      {
         "id": "p54",
         "kind": "code",
         "title": "A stop rule for Mention NO's forward test",
@@ -8818,17 +8822,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-27T08:36:18Z",
-      "headline": "A quiet, half-day window with nothing I can tune: all four strategies in this report are locked forward tests, Jev judged no markets in 45 cycles, and the market price still beats every forecaster we have.",
+      "ts": "2026-10-27T20:37:17Z",
+      "headline": "A quiet half day: no forecasts were judged in 47 cycles, main and its rivals are still missing from this report, and the four locked forward tests mostly just accumulated open bets, so there is nothing new to tune and nobody beats the market.",
       "went_well": [
-        "Mention markets, follow the first NO is up $69 on 9 settled bets (5 wins, 4 losses), about +$32 per $100 staked. That rests on 9 results, so it is noise for now.",
-        "Heavy favorites opened 27 bets ($31.2k staked, about 31% of its bankroll) in the half day. The 1 that settled won $42 on $1,500.",
-        "Mention NO's ledger now adds up: its price buckets total 49 settled bets and -$256.91, matching its record. That was the mismatch flagged in p48."
+        "Mention follow is 7 wins and 4 losses, +$140 on about $344 of settled stake (+$40 per $100), but 11 settled bets is noise.",
+        "Favorites has won all 3 settled bets, +$182 on $4.5k (+$4 per $100), and placed 8 new bets this period, the only strategy that bet at all.",
+        "Claude direct still edges the market in sports (Brier 0.177 vs 0.181 on 203 markets), the one category where any forecaster does. The gap is thin."
       ],
       "went_badly": [
-        "Mention markets, NO side is down $257 on 49 settled bets (16 wins, 33 losses), about -$16 per $100. Its coin-flip NO bets (30-60c) won 11 of 38 for -$13 per $100, and its 60c+ bets won 5 of 11 for -$21 per $100. Yet mention_prior's skill estimate is positive (lambda 0.031 on 662 markets), so the est",
-        "Sharp line lost both of its bets (-$499 on 2 settled), and its skill estimate is -2.94 on 132 markets. Its live min_edge still reads 0.03 at rules version 1, although p33 (a 2c edge) was logged as applied.",
-        "Jev judged 0 markets in 45 cycles. Main, original, calibrated and the other Jev strategies are again missing from this review, so the yardstick is empty. The market (Brier 0.147 on 1,872) still beats Claude direct (0.176 on 350) and Jev + research (0.208 on 1,292), and it does so on paired markets a"
+        "Judging is still dead: 47 cycles judged 0 markets. Main, original, bold, calibrated and the others remain absent, so the yardstick is empty and their tuning can't be read. This has been flagged since p35, p41 and p46, and no new code proposal will help more than fixing those.",
+        "Mention NO loses $218 on 53 settled (about -$13 per $100 settled, 18 wins). That is the only source with positive skill (lambda 0.12 on 716), which doesn't fit losing money, and p48, p49 and p51 are still open.",
+        "Across 844 paired markets the market price (Brier 0.163) beats Claude direct (0.201) and Jev + research (0.217). Sharp is 0 for 2 (-$499), and its rules still show min_edge 0.03, as if the applied 2c change (p33) never took effect."
       ]
     },
     "auto_start": true,

@@ -740,6 +740,39 @@
       "min_resolved": 100,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "ch55",
+      "created": "2026-10-27T20:37:17Z",
+      "kind": "challenger",
+      "title": "Claude direct, sports and culture, moderate edge",
+      "why": "Both challenger slots are empty, and sports is the only category where a forecaster beats the market (Claude 0.177 vs 0.181 on 203). Culture also looks good (0.032 vs 0.074) but rests on only 14 markets. This sits between ch16's loose setup and claude_direct's strict 12c edge, keeps the 30c floor, and caps the price at 75c so wins still pay. It is an experiment. It will place nothing until judging works again, which costs nothing.",
+      "judge_by": "Once judging resumes, it should place at least 1 bet a day. After 30 settled bets its P&L per $100 staked should be positive and ahead of claude_direct's over the same period. If it is below -$15 per $100 at that point, retire it. If it places no bets within 3 days of judging resuming, the setup is too strict: loosen the edge to 0.04 or retire it.",
+      "min_resolved": 30,
+      "status": "invalid",
+      "status_reason": "claude_direct no longer picks bets (learning.retired_probabilities; Joey, 2026-10-11)",
+      "strategy": {
+        "label": "Claude direct, sports + culture, 5c edge",
+        "probability": "claude_direct",
+        "gates": "jev_plain",
+        "rules": {
+          "min_edge": 0.05,
+          "min_info_sufficient": 0.3,
+          "min_rules_clear": 0.75,
+          "max_framing_gap": 0.15,
+          "min_ask": 0.3,
+          "max_ask": 0.75,
+          "skip_categories": [
+            "crypto",
+            "weather",
+            "economy",
+            "politics",
+            "world",
+            "tech",
+            "other"
+          ]
+        }
+      }
     }
   ]
 }
