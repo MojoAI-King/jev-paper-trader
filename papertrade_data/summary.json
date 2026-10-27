@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-27T03:52:23Z",
+  "generated": "2026-10-27T04:07:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-27T03:52:23Z",
+      "t": "2026-10-27T04:07:20Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1869,
+    "resolved": 1870,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20833671572424475,
-        "n": 1291
+        "brier": 0.2084358359133127,
+        "n": 1292
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2276899946495452,
-        "n": 1869
+        "brier": 0.22785320855614974,
+        "n": 1870
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21059475481511916,
-        "n": 1217
+        "brier": 0.21065896171592774,
+        "n": 1218
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14721491626538255,
-        "n": 1869
+        "brier": 0.14713848596256685,
+        "n": 1870
       }
     ],
     "paired": {
-      "n": 841,
+      "n": 842,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16337369589774078
+          "brier": 0.16318306472684085
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21711486325802618
+          "brier": 0.21725653206650833
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2008946492271106
+          "brier": 0.20088598574821853
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24448775267538647
+          "brier": 0.24481306413301662
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-27T03:49:52Z",
+    "ts": "2026-10-27T04:04:48Z",
     "stages": [
       [
         "Fetched",
@@ -1004,7 +1004,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1140,8 +1140,8 @@
       "unrealized": 0.0,
       "change": 0.0,
       "realized": 0,
-      "open": 21,
-      "open_cost": 24759.18,
+      "open": 22,
+      "open_cost": 25540.26,
       "settled": 0,
       "wins": 0,
       "losses": 0,
@@ -2010,7 +2010,7 @@
           99500.72
         ],
         [
-          "2026-10-27T03:52:23Z",
+          "2026-10-27T04:07:20Z",
           99500.72
         ]
       ]
@@ -2875,7 +2875,7 @@
           99743.09
         ],
         [
-          "2026-10-27T03:52:23Z",
+          "2026-10-27T04:07:20Z",
           99743.09
         ]
       ]
@@ -3740,7 +3740,7 @@
           100069.13
         ],
         [
-          "2026-10-27T03:52:23Z",
+          "2026-10-27T04:07:20Z",
           100069.13
         ]
       ]
@@ -4605,7 +4605,7 @@
           100000.0
         ],
         [
-          "2026-10-27T03:52:23Z",
+          "2026-10-27T04:07:20Z",
           100000.0
         ]
       ]
@@ -5068,6 +5068,29 @@
           "p_side": 0.895,
           "edge": -0.015,
           "opened": "2026-10-27T00:04:53Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXBTCMAXMON-BTC-26OCT31-8750000",
+      "question": "Will BTC trimmed mean be above $87500.00 by 11:59 PM ET on Oct 31, 2026? (Above $87,500.00)",
+      "url": "https://kalshi.com/markets/kxbtcmaxmon/will-btc-trimmed-mean-be-above-87500-00-by-11-59-pm-et-on-oc/kxbtcmaxmon-btc-26oct31",
+      "source": "kalshi",
+      "close_time": "2026-11-01T03:59:59Z",
+      "category": "crypto",
+      "price": 0.58,
+      "price_at": "2026-10-11T18:35:06Z",
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 803,
+          "cost_per": 0.9727,
+          "total_cost": 781.08,
+          "p_side": 0.945,
+          "edge": -0.0277,
+          "opened": "2026-10-27T04:04:48Z",
           "value": null
         }
       ]
@@ -6669,6 +6692,34 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-27T04:06:56Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Will Alexia Putellas win the 2026 Women's Ballon d'Or?",
+      "url": "https://polymarket.com/market/will-alexia-putellas-win-the-2026-womens-ballon-dor"
+    },
+    {
+      "ts": "2026-10-27T04:04:48Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9727,
+      "amount": 781.08,
+      "p": 0.945,
+      "q": "Will BTC trimmed mean be above $87500.00 by 11:59 PM ET on Oct 31, 2026? (Above $87,500.00)",
+      "url": "https://kalshi.com/markets/kxbtcmaxmon/will-btc-trimmed-mean-be-above-87500-00-by-11-59-pm-et-on-oc/kxbtcmaxmon-btc-26oct31",
+      "probe": false
+    },
+    {
+      "ts": "2026-10-27T04:04:48Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-27T03:49:52Z",
       "type": "scan",
       "fetched": 200,
@@ -7368,30 +7419,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-26T14:34:47Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-26T14:19:59Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-26T14:04:48Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -7404,8 +7431,8 @@
   "research_per_day": 150,
   "cycles_24h": 93,
   "learning": {
-    "reviewed": 1869,
-    "post_mortems": 89,
+    "reviewed": 1870,
+    "post_mortems": 90,
     "win_reviews": 42,
     "calibration": [
       {
@@ -7422,9 +7449,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 441,
+        "n": 442,
         "predicted": 0.49,
-        "actual": 0.522
+        "actual": 0.523
       },
       {
         "range": "60\u201380%",
@@ -7442,7 +7469,7 @@
     "root_causes": {
       "overconfident": 30,
       "unlucky": 30,
-      "missing_info": 12,
+      "missing_info": 13,
       "stale_info": 7,
       "research_error": 7,
       "misread_rules": 3
@@ -7453,6 +7480,26 @@
       "research_found_it": 14
     },
     "recent": [
+      {
+        "question": "Will Alexia Putellas win the 2026 Women's Ballon d'Or?",
+        "url": "https://polymarket.com/market/will-alexia-putellas-win-the-2026-womens-ballon-dor",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.42,
+        "market": 0.9345,
+        "ts": "2026-10-27T04:06:56Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "We were given that the outcome was YES: Putellas won the 2026 Women's Ballon d'Or at the London ceremony on 26 October. I could not confirm this myself, because my search only turned up coverage from before the ceremony. Her case was strong: she won five trophies with Barcelona, had a competition-high 14 goal contributions in the Champions League, was named its Player of the Season, and the three-time winner Bonmat\u00ed was off the shortlist.",
+        "what_we_missed": "The market had Putellas at about 93% and the forecaster said 42%. The forecaster seems to have treated Pajor, Pina and the other Barcelona players as serious rivals, when the facts it had already pointed to one clear favourite: the UWCL Player of the Season on a treble-plus team, with the dominant winner gone. It also appears not to have checked bookmaker odds, power rankings or reported leaks, which almost certainly showed her as the overwhelming favourite.",
+        "what_worked": "",
+        "lesson": "For voted awards where one candidate holds the main season honours and the usual winner is absent, check bookmaker odds and media power rankings before forecasting. Treat a market price above 90% as strong evidence unless you have a concrete reason to bet against it.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For award-voting questions, always pull current bookmaker odds and major outlets' power rankings. If the forecast is more than 30 points away from the market, write down the specific reason why."
+        }
+      },
       {
         "question": "Will Luiz In\u00e1cio Lula da Silva win the second round of the 2026 Brazilian presidential election by less than 4%?",
         "url": "https://polymarket.com/market/will-luiz-inacio-lula-da-silva-win-the-second-round-of-the-2026-brazilian-presidential-election-by-less-than-4",
@@ -7551,26 +7598,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Mark any unverified claim about results that predates the official count as inadmissible, and before judging on election day, check TSE or TRE live results or wait until polls close."
-        }
-      },
-      {
-        "question": "Saudi Oil Pipeline (East-West) restarts by October 15?",
-        "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-15",
-        "outcome": "yes",
-        "category": "world",
-        "p": 0.11,
-        "market": 0.225,
-        "ts": "2026-10-16T04:08:02Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "On October 6, 2026, the same day as the forecast, Saudi Energy Minister Prince Abdulaziz bin Salman said publicly that the East-West pipeline was pumping 5.8 million barrels and had been back in use since shortly after the attack. That is an official statement that the pipeline is operating now, so the market resolved Yes.",
-        "what_we_missed": "Everyone agreed the pipeline was already running at about 80% of capacity. The ministry had publicly confirmed a restoration before (April 12), and the minister talks to the press regularly. The real question was when the government would say it out loud, not whether the pipeline would restart, and the forecaster priced that as unlikely (0.11, below the market's 0.225). The facts also disagreed about the deadline (October 15 in the title, October 31 in the rules notes), and nobody resolved that.",
-        "what_worked": "",
-        "lesson": "When the physical event has clearly already happened and only an official acknowledgment is missing, give real weight to the government confirming it soon. That holds especially when the same ministry has confirmed similar restorations before and senior officials speak to the press often.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For 'official announcement' questions, look for recent and upcoming interviews or remarks by the minister, not just formal ministry press releases. Also check the deadline against the question title before forecasting."
         }
       }
     ],
@@ -7914,9 +7941,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.055,
-      "b": 0.1255,
-      "n": 1291,
+      "a": 1.0551,
+      "b": 0.1276,
+      "n": 1292,
       "active": true,
       "need": 300
     },
@@ -7947,14 +7974,14 @@
       },
       {
         "category": "other",
-        "n": 292,
-        "jev_plain": 0.2067,
-        "market": 0.1359,
-        "jev_research": 0.253,
+        "n": 293,
+        "jev_plain": 0.2078,
+        "market": 0.1355,
+        "jev_research": 0.2537,
         "claude_direct": 0.1922,
-        "n_jev_plain": 292,
-        "n_market": 292,
-        "n_jev_research": 126,
+        "n_jev_plain": 293,
+        "n_market": 293,
+        "n_jev_research": 127,
         "n_claude_direct": 35
       },
       {
@@ -8625,7 +8652,7 @@
     ],
     "suggested_areas": {
       "gates": 54,
-      "research": 59,
+      "research": 60,
       "questions": 3
     },
     "retro": {
