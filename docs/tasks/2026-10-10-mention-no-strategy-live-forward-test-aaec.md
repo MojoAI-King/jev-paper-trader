@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-27T00:08:55.550Z
+- **Updated:** 2026-10-27T01:27:36.369Z
 
 ## Request
 
@@ -218,9 +218,16 @@ not yet written
 - **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Git:** master @ dd988c0c, 2 tracked uncommitted, 3 untracked
 
+### 2026-10-27T01:27:36.369Z
+
+- **State:** American English across the repo (Joey: no British English): page text, comments, tests, docs, review prompt; data keys cancelled_bets/cancelled and file names kept
+- **Evidence:** python3 -m unittest discover -s tests -t .: 171 OK
+- **Next:** Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **Git:** master @ 14b66421, 1 tracked uncommitted, 3 untracked
+
 ## Handoff
 
-- **State:** Fun bot review fixes committed: Polymarket books read before betting, no canceled re-buys, daily limit counts settled/canceled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
-- **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **State:** American English across the repo (Joey: no British English): page text, comments, tests, docs, review prompt; data keys cancelled_bets/cancelled and file names kept. Evidence: python3 -m unittest discover -s tests -t .: 171 OK.
+- **Next:** Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard

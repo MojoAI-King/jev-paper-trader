@@ -4,16 +4,24 @@ Kind: Living.
 
 ## RESUME HERE
 
-Written: 2026-10-26 20:08 EDT
+Written: 2026-10-26 21:27 EDT
 
+- **State:** American English across the repo (Joey: no British English): page text, comments, tests, docs, review prompt; data keys cancelled_bets/cancelled and file names kept. Evidence: python3 -m unittest discover -s tests -t .: 171 OK.
+- **Next:** Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
+- **Git:** master @ 14b66421, 1 tracked uncommitted, 3 untracked
+- **CI:** master green on GitHub (read 2026-10-27 01:27 UTC)
+
+## Earlier
+
+### 2026-10-26 20:08 EDT
 - **State:** Fun bot review fixes committed: Polymarket books read before betting, no canceled re-buys, daily limit counts settled/canceled, page marks ignore pre-bet prices, $500 minimum bet. Evidence: python3 -m unittest discover -s tests -t .: 171 OK; mutation check: 4 new tests fail without fixes; commit dd988c0c.
 - **Next:** Watch next cycle: no favorites bet under $500, Polymarket sizes respected, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Blocked:** nothing
 - **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; cancel only bets a named bug placed; a stash holds a reformatted policy.json to discard
 - **Git:** master @ dd988c0c, 2 tracked uncommitted, 3 untracked
 - **CI:** master green on GitHub (read 2026-10-27 00:08 UTC)
-
-## Earlier
 
 ### 2026-10-26 19:40 EDT
 - **State:** New for-fun strategy 'favorites' live: heavy favorites 90-97c settling within 5 days, 1.5% flat bets, up to 40 a day; hard caps 3% and 50/day in code; locked. Safe strategies unchanged. Evidence: 166 offline tests OK; commit 4dcbdf5 pushed to master.
@@ -46,11 +54,3 @@ Written: 2026-10-26 20:08 EDT
 - **Watch out:** Score backtests at quotes the strategy could take; Kalshi sometimes times out (walk shrinks pages); post-mortems and the daily review still use Claude
 - **Git:** master @ 8d775c5, 0 tracked uncommitted, 2 untracked
 - **CI:** master green on GitHub (read 2026-10-12 05:02 UTC)
-
-### 2026-10-11 22:42 EDT
-- **State:** Live on Joey's standing permission (2026-10-12): original retired; mention_follow built, hardened after an adversarial review (wf_d1c03f32-477), pre-registered and locked; no Jev or research calls when nothing uses them (jev_used false, judged 0); Kalshi 504 fix (15286af): run 38196326048 read 58 pages with no error (was 5), sharp matched 7 games. Follow research rerun with full-precision ordering: +18.1% at 15 min holds. Evidence: 161 offline tests OK; runs 38195337805 and 38196326048 success; read-only live walk 32 pages no error; kalshi_first_trade live check on 3 markets.
-- **Next:** Let sharp, mention_no and mention_follow run; early read on the mention strategies in 2-3 weeks (mention_forward.py); next research: follow-first-trade in other families (gas ladders) at quoted prices
-- **Blocked:** nothing
-- **Watch out:** Kalshi answers slowly at times: the walk now shrinks pages on 504 and stops at its 300 s budget; post-mortems and the daily review still use Claude
-- **Git:** master @ 6677104, 0 tracked uncommitted, 2 untracked
-- **CI:** master green on GitHub (read 2026-10-12 02:42 UTC)
