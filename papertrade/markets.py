@@ -18,6 +18,7 @@ from datetime import datetime, timedelta, timezone
 
 UA = {"User-Agent": "jev-papertrade/0.1", "Accept": "application/json"}
 POLY = "https://gamma-api.polymarket.com"
+POLY_CLOB = "https://clob.polymarket.com"
 KALSHI = "https://api.elections.kalshi.com/trade-api/v2"
 MAX_PAGES = 25   # hard stop per source per fetch, so a feed that never runs dry can't loop forever
 POLY_PAGE = 100
@@ -106,6 +107,10 @@ def normalize_polymarket(m: dict) -> dict | None:
     yes_ask = best_ask if best_ask else prices[0]
     no_ask = (1 - best_bid) if best_bid else prices[1]
     events = m.get("events") if isinstance(m.get("events"), list) else []
+    try:
+        token_yes = (json.loads(m.get("clobTokenIds") or "[]") or [None])[0]
+    except (ValueError, TypeError):
+        token_yes = None
     return {
         "source": "polymarket",
         "market_id": str(m.get("id")),
@@ -122,6 +127,7 @@ def normalize_polymarket(m: dict) -> dict | None:
         "volume": _f(m.get("volumeNum"), 0.0),
         "url": f"https://polymarket.com/market/{m.get('slug', '')}",
         "fee_rate": _poly_fee_rate(m),
+        "token_yes": token_yes,  # the YES token's order book id, for add_polymarket_depth
     }
 
 
@@ -311,6 +317,28 @@ def add_kalshi_fees(ms: list[dict]) -> None:
         if series and series not in _SERIES_FEE:
             _sleep(0.2)  # small /series reads, paced politely
         m["fee_multiplier"] = kalshi_fee_multiplier(series) if series else None
+
+
+def add_polymarket_depth(ms: list[dict]) -> None:
+    """Sets `yes_ask_size` and `no_ask_size` on each Polymarket market that has none, from the YES token's order book
+    (`GET {POLY_CLOB}/book`): the shares offered at or below our YES ask, and the shares bid at or above 1 - our NO
+    ask (a NO buyer takes a YES bid; Polymarket's two books mirror each other). Called for the few markets a fun
+    strategy could buy, so a bet is never bigger than the book. A market whose book can't be read gets 0, not a guess."""
+    for m in ms:
+        if m.get("source") != "polymarket" or m.get("yes_ask_size") is not None:
+            continue
+        m["yes_ask_size"] = m["no_ask_size"] = 0.0
+        if not m.get("token_yes"):
+            continue
+        try:
+            book = _get(f"{POLY_CLOB}/book", {"token_id": m["token_yes"]})
+            asks = [(float(o["price"]), float(o["size"])) for o in book.get("asks") or ()]
+            bids = [(float(o["price"]), float(o["size"])) for o in book.get("bids") or ()]
+        except Exception:
+            continue
+        m["yes_ask_size"] = sum(z for px, z in asks if px <= m["yes_ask"] + 1e-9)
+        m["no_ask_size"] = sum(z for px, z in bids if px >= 1 - m["no_ask"] - 1e-9)
+        _sleep(0.1)  # a handful of small reads, paced politely
 
 
 _MONTHS = {m: i for i, m in enumerate("JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".split(), 1)}

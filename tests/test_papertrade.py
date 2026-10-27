@@ -2542,6 +2542,9 @@ class RetiredJevTests(DataDirTest):
         self.assertIsNone(learn.challenger_problem(claude, POLICY))  # the machinery itself still works when allowed
 
 
+DEEP = {"yes_ask_size": 1e6, "no_ask_size": 1e6}  # a book deep enough not to matter
+
+
 class FunStrategyTests(DataDirTest):
     """The fun strategy (Joey, 2026-10-26): no forecast, the favourite of every soon-settled busy market in its band,
     big flat bets, real costs, hard limits in code."""
@@ -2559,7 +2562,10 @@ class FunStrategyTests(DataDirTest):
               market(mid="2", yes_ask=0.06, no_ask=0.95, m=0.055, close=soon) | {"event": "e2"},   # NO is the favourite
               market(mid="3", yes_ask=0.94, no_ask=0.07, m=0.935, close=soon) | {"event": "e1"},   # same event as 1
               market(mid="4", yes_ask=0.80, no_ask=0.22, m=0.79, close=soon) | {"event": "e3"},    # under the band
-              market(mid="5", yes_ask=0.95, no_ask=0.06, m=0.945, close="2000-01-20T00:00:00Z")]  # settles too late
+              market(mid="5", yes_ask=0.95, no_ask=0.06, m=0.945, close="2000-01-20T00:00:00Z"),  # settles too late
+              market(mid="6", yes_ask=0.98, no_ask=0.04, m=0.94, close=soon) | {"event": "e6"},    # ask over the band
+              market(mid="7", yes_ask=0.95, no_ask=0.20, m=0.90, close=soon) | {"event": "e7"}]    # spread too wide
+        ms = [x | DEEP for x in ms]
         stats = self.scan(ms)
         pf = engine.load_portfolio(REAL_POLICY, "favorites")
         self.assertEqual([(p["market_id"], p["side"]) for p in pf["open"]], [("2", "no"), ("3", "yes")])
@@ -2572,16 +2578,67 @@ class FunStrategyTests(DataDirTest):
         self.scan(ms, now=SCAN_NOW + timedelta(minutes=15))  # already holding both events: nothing new
         self.assertEqual(len(engine.load_portfolio(REAL_POLICY, "favorites")["open"]), 2)
 
-    def test_its_limits_hold_whatever_the_policy_says(self):
+    def many(self, n):
+        return [market(mid=str(i), yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
+                | {"event": f"e{i}"} | DEEP for i in range(n)]
+
+    def test_its_stake_and_open_limits_hold_whatever_the_policy_says(self):
         pol = json.loads(json.dumps(REAL_POLICY))
         pol["strategies"]["favorites"]["fun"].update(stake_pct=0.5, max_bets_per_day=1000)
-        ms = [market(mid=str(i), yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z") | {"event": f"e{i}"}
-              for i in range(80)]
-        self.scan(ms, policy=pol)
+        self.scan(self.many(80), policy=pol)
         pf = engine.load_portfolio(pol, "favorites")
         self.assertLessEqual(max(p["total_cost"] for p in pf["open"]), engine.FUN_MAX_STAKE_PCT * 100000)
-        self.assertLessEqual(len(pf["open"]), engine.FUN_MAX_BETS_PER_DAY)
+        self.assertGreater(min(p["total_cost"] for p in pf["open"][:16]), 0.029 * 100000)  # capped at 3%, not at 50%
         self.assertLessEqual(sum(p["total_cost"] for p in pf["open"]), 0.5 * 100000 + 1)  # the open-bet cap
+        self.assertEqual(len(pf["open"]), 17)  # 16 bets of 3%, then the ~2% left under the cap; then no room
+
+    def test_its_daily_limit_holds_whatever_the_policy_says_and_counts_every_bet_opened_today(self):
+        pol = json.loads(json.dumps(REAL_POLICY))
+        pol["strategies"]["favorites"]["fun"].update(stake_pct=0.001, min_stake=0, max_bets_per_day=1000)
+        self.scan(self.many(80), policy=pol)
+        self.assertEqual(len(engine.load_portfolio(pol, "favorites")["open"]), engine.FUN_MAX_BETS_PER_DAY)
+        engine.save_portfolio("favorites", engine.load_portfolio(pol, "favorites") | {"open": [], "closed": [], "cancelled": []})
+        pol["strategies"]["favorites"]["fun"]["max_bets_per_day"] = 5
+        pf = engine.load_portfolio(pol, "favorites")
+        today = SCAN_NOW.isoformat()
+        pf["closed"].append({"key": "polymarket:x", "opened": today})       # settled already, still today's
+        pf["cancelled"] = [{"key": "polymarket:y", "opened": today}]       # cancelled, still today's
+        engine.save_portfolio("favorites", pf)
+        self.scan(self.many(80), policy=pol)
+        self.assertEqual(len(engine.load_portfolio(pol, "favorites")["open"]), 3)
+
+    def test_it_never_buys_a_cancelled_bet_again(self):
+        pol = json.loads(json.dumps(REAL_POLICY))
+        pol["cancelled_bets"] = {"favorites": {"polymarket:0": "a bug placed it"}}
+        pf = engine.load_portfolio(pol, "favorites")
+        pf["cancelled"] = [{"key": "polymarket:1", "opened": "1999-12-01T00:00:00Z"}]  # cancelled and refunded already
+        engine.save_portfolio("favorites", pf)
+        self.scan(self.many(3), policy=pol)
+        self.assertEqual([p["market_id"] for p in engine.load_portfolio(pol, "favorites")["open"]], ["2"])
+
+    def test_it_reads_the_polymarket_book_and_skips_a_market_whose_book_it_cannot_see(self):
+        ms = [market(mid=str(i), yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
+              | {"event": f"e{i}", "token_yes": f"t{i}"} for i in range(4)]
+        ms[3].pop("token_yes")  # no token: no book, no bet
+        books = {"t0": {"asks": [{"price": "0.95", "size": "700"}, {"price": "0.96", "size": "5000"}], "bids": []},
+                 "t1": {"asks": [{"price": "0.95", "size": "30"}], "bids": []}}   # about $29 on offer: too thin
+        def get(url, params=None, **kw):
+            self.assertTrue(url.endswith("/book"))
+            if params["token_id"] == "t2":
+                raise urllib.error.URLError("down")
+            return books[params["token_id"]]
+        with mock.patch.object(mk, "_get", side_effect=get), mock.patch.object(mk, "_sleep", lambda s: None):
+            self.scan(ms)
+        pf = engine.load_portfolio(REAL_POLICY, "favorites")
+        self.assertEqual([(p["market_id"], p["contracts"]) for p in pf["open"]], [("0", 700)])  # only the ask at 95c
+
+    def test_the_depth_reader_counts_the_no_side_from_the_yes_bids(self):
+        m = market(yes_ask=0.06, no_ask=0.95, m=0.055) | {"token_yes": "t"}
+        book = {"asks": [{"price": "0.06", "size": "10"}],
+                "bids": [{"price": "0.05", "size": "400"}, {"price": "0.04", "size": "9000"}]}
+        with mock.patch.object(mk, "_get", return_value=book), mock.patch.object(mk, "_sleep", lambda s: None):
+            mk.add_polymarket_depth([m])
+        self.assertEqual((m["yes_ask_size"], m["no_ask_size"]), (10.0, 400.0))  # NO at 95c = a YES bid at 5c
 
     def test_it_never_buys_more_contracts_than_the_ask_offers(self):
         m = market(src="kalshi", mid="K1", yes_ask=0.95, no_ask=0.06, m=0.945, close="1999-12-27T00:00:00Z")
@@ -2595,6 +2652,13 @@ class FunStrategyTests(DataDirTest):
             mk._SERIES_FEE.pop("K2", None)
         pf = engine.load_portfolio(REAL_POLICY, "favorites")
         self.assertEqual([(p["market_id"], p["contracts"]) for p in pf["open"]], [("K1", 600)])  # no tiny bet on the thin one
+
+
+class OpenBetMarkTests(unittest.TestCase):
+    def test_an_open_bet_is_never_marked_at_a_price_from_before_it_was_bought(self):
+        bet = {"key": "polymarket:1", "side": "yes", "contracts": 100, "total_cost": 95.0, "opened": "2026-10-26T23:52:00Z"}
+        self.assertIsNone(dashboard._mark(bet, {"polymarket:1": ("2026-10-12T10:00:00Z", 0.50)}))
+        self.assertIsNotNone(dashboard._mark(bet, {"polymarket:1": ("2026-10-27T00:07:00Z", 0.96)}))
 
 
 class ExperimentsRegistryTests(unittest.TestCase):

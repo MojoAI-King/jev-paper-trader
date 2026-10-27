@@ -850,12 +850,14 @@ def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) ->
     pool = sorted((m for m in fetched if real_price(m) and event_time(m) <= horizon
                    and lo <= max(m["yes_ask"], m["no_ask"]) <= hi), key=soonest)
     mk.add_kalshi_fees(pool)  # only the markets some fun strategy could buy: a handful of series lookups
+    mk.add_polymarket_depth(pool)  # and their Polymarket books, so no bet is bigger than what is on offer
     cap = policy["sizing"]["max_total_exposure_pct"]
     for name, strat in names.items():
         pf, r = books[name], strat["fun"]
-        held = {p["key"] for p in pf["open"]}
+        gone = pf.get("cancelled", []) + [{"key": k} for k in (policy.get("cancelled_bets") or {}).get(name, {})]
+        held = {p["key"] for p in pf["open"] + gone}  # a cancelled bet is never bought again, to be cancelled again
         events = {p.get("event") for p in pf["open"] if p.get("event")}
-        today = sum(1 for p in pf["open"] + pf["closed"] if p["opened"][:10] == stamp[:10])
+        today = sum(1 for p in pf["open"] + pf["closed"] + pf.get("cancelled", []) if p["opened"][:10] == stamp[:10])
         for m in pool:
             if today >= min(r["max_bets_per_day"], FUN_MAX_BETS_PER_DAY):
                 break
@@ -869,8 +871,9 @@ def _fun_pass(fetched, strats, books, stamp, now, policy, funnel, stats, log) ->
             stake = min(min(r["stake_pct"], FUN_MAX_STAKE_PCT) * eq, max(0.0, cap * eq - open_cost), pf["cash"])
             contracts = math.floor(stake / c)
             offered = m.get(f"{side}_ask_size")
-            if offered is not None:
-                contracts = min(contracts, math.floor(offered))  # never more than the ask offers
+            if offered is None:
+                continue  # a book we couldn't see: no full-size bet on a guess
+            contracts = min(contracts, math.floor(offered))  # never more than the ask offers
             if contracts < 1 or contracts * c < r.get("min_stake", 0):
                 continue  # a thin book: skip it rather than show a tiny bet (Joey's friends want real money moved)
             q = m["mid"] if side == "yes" else 1 - m["mid"]

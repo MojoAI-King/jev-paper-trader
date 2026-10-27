@@ -101,6 +101,14 @@ def _side_value(p: dict, mid: float) -> float:
     return p["contracts"] * (mid if p["side"] == "yes" else 1 - mid)
 
 
+def _mark(p: dict, prices: dict) -> float | None:
+    """An open bet's value at the last price seen, or None when that price is older than the bet: a Jev look weeks
+    before a strategy bought the market would show a gain or loss the market never made since (2026-10-26, the fun
+    strategy's first bets showed a made-up loss of about $961 on two-week-old prices)."""
+    seen = prices.get(p["key"])
+    return _side_value(p, seen[1]) if seen and seen[0] >= (p.get("opened") or "") else None
+
+
 def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: dict | None = None) -> list[dict]:
     """One row per strategy. `marked` values open bets at the last price we saw (up to a few hours old);
     `equity` is the official number, with open bets at what they cost."""
@@ -134,8 +142,7 @@ def strategy_rows(policy: dict, books: dict, prices: dict | None = None, cmap: d
             blurb += (f" Since {y['since'][:10]}, on markets both could bet: main {m['pnl']:+,.0f} on {m['settled']}"
                       f" settled bets, this {t['pnl']:+,.0f} on {t['settled']}.")
         eq = round(engine.equity_at_cost(b), 2)
-        marked = b["cash"] + sum(_side_value(p, prices[p["key"]][1]) if p["key"] in prices else p["total_cost"]
-                                 for p in b["open"])
+        marked = b["cash"] + sum(v if (v := _mark(p, prices)) is not None else p["total_cost"] for p in b["open"])
         note = None
         if strat.get("probability") == "jev_calibrated" and cmap and not cmap.get("active"):
             note = f"Learning: {cmap['n']} of {cmap['need']} results in"
@@ -178,12 +185,12 @@ def race(books: dict, judgments: list[dict], generated_at: str) -> list[dict]:
         keep, step = set(settles) | {times[0], times[-1]}, len(times) / RACE_POINTS
         times = sorted({times[int(i * step)] for i in range(RACE_POINTS)} | (keep & set(times)))
 
-    def price(key, t):
+    def price(key, t, since):
         last = None
         for ts, mid in history.get(key, ()):
             if ts > t:
                 break
-            last = mid
+            last = mid if ts >= since else None  # a price from before the bet says nothing about it (see _mark)
         return last
 
     out = []
@@ -199,7 +206,7 @@ def race(books: dict, judgments: list[dict], generated_at: str) -> list[dict]:
                 if p.get("settled") and p["settled"] <= t:
                     cash += p["payout"]
                 else:
-                    mid = price(p["key"], t)
+                    mid = price(p["key"], t, p.get("opened") or "")
                     value += _side_value(p, mid) if mid is not None else p["total_cost"]
             pts.append([t, round(cash + value, 2)])
         out.append({"name": name, "points": pts})
@@ -222,7 +229,7 @@ def open_bets(books: dict, prices: dict, judgments: list[dict]) -> list[dict]:
             m["positions"].append({"strategy": name, "side": p["side"], "contracts": p["contracts"],
                                    "cost_per": p["cost_per"], "total_cost": p["total_cost"], "p_side": p["p_side"],
                                    "edge": p["edge"], "opened": p["opened"],
-                                   "value": round(_side_value(p, prices[p["key"]][1]), 2) if p["key"] in prices else None})
+                                   "value": round(v, 2) if (v := _mark(p, prices)) is not None else None})
     return sorted(by_key.values(), key=lambda m: m["close_time"] or "")
 
 

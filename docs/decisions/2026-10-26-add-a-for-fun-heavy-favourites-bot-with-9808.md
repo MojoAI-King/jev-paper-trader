@@ -57,3 +57,8 @@ Set its `probability` to a retired value or remove it from `policy.json`; open b
 - Offline tests: 166 pass. New: `FunStrategyTests` (band, soonest first, one bet per event, hard limits, ask size,
   no Jev call). Updated: `RetiredJevTests`.
 - Registry row in docs/EXPERIMENTS.md, written before any bet.
+- Same day, after an independent review: no bet under $500 (`min_stake`); Polymarket order books read before
+  betting (`markets.add_polymarket_depth`); a cancelled bet is never bought again; bets settled or cancelled
+  today count toward the daily limit; the page no longer marks an open bet at a price from before it was bought
+  (`dashboard._mark`; the first bets showed a made-up loss of about $961). Offline tests: 171 pass, and each new
+  test fails with its fix taken out.
