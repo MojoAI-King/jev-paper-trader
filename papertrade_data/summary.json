@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T20:22:42Z",
+  "generated": "2026-10-28T20:37:22Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-28T20:22:42Z",
+      "t": "2026-10-28T20:37:22Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-28T20:19:55Z",
+    "ts": "2026-10-28T20:34:49Z",
     "stages": [
       [
         "Fetched",
@@ -1004,7 +1004,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 2
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1015,7 +1015,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1140,8 +1142,8 @@
       "unrealized": -0.0,
       "change": 659.99,
       "realized": 659.99,
-      "open": 38,
-      "open_cost": 42230.77,
+      "open": 40,
+      "open_cost": 43644.29,
       "settled": 10,
       "wins": 10,
       "losses": 0,
@@ -2066,7 +2068,7 @@
           99500.72
         ],
         [
-          "2026-10-28T20:22:42Z",
+          "2026-10-28T20:37:22Z",
           99500.72
         ]
       ]
@@ -2987,7 +2989,7 @@
           99766.45
         ],
         [
-          "2026-10-28T20:22:42Z",
+          "2026-10-28T20:37:22Z",
           99766.45
         ]
       ]
@@ -3908,7 +3910,7 @@
           100190.91
         ],
         [
-          "2026-10-28T20:22:42Z",
+          "2026-10-28T20:37:22Z",
           100190.91
         ]
       ]
@@ -4829,7 +4831,7 @@
           100659.99
         ],
         [
-          "2026-10-28T20:22:42Z",
+          "2026-10-28T20:37:22Z",
           100659.99
         ]
       ]
@@ -5177,6 +5179,52 @@
           "p_side": 0.9005,
           "edge": -0.0145,
           "opened": "2026-10-26T23:49:49Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXLOLMAP-26OCT291600T1MKOI-1-MKOI",
+      "question": "Movistar KOI wins game 1",
+      "url": "https://kalshi.com/markets/kxlolmap/movistar-koi-wins-game-1/kxlolmap-26oct291600t1mkoi-1",
+      "source": "kalshi",
+      "close_time": "2026-10-31T20:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 861,
+          "cost_per": 0.9633,
+          "total_cost": 829.4,
+          "p_side": 0.94,
+          "edge": -0.0233,
+          "opened": "2026-10-28T20:34:49Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXLOLGAME-26OCT291600T1MKOI-T1",
+      "question": "T1 wins",
+      "url": "https://kalshi.com/markets/kxlolgame/t1-wins/kxlolgame-26oct291600t1mkoi",
+      "source": "kalshi",
+      "close_time": "2026-10-31T20:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 631,
+          "cost_per": 0.9257,
+          "total_cost": 584.12,
+          "p_side": 0.9,
+          "edge": -0.0257,
+          "opened": "2026-10-28T20:34:49Z",
           "value": null
         }
       ]
@@ -7043,6 +7091,43 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-28T20:34:49Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9633,
+      "amount": 829.4,
+      "p": 0.94,
+      "q": "Movistar KOI wins game 1",
+      "url": "https://kalshi.com/markets/kxlolmap/movistar-koi-wins-game-1/kxlolmap-26oct291600t1mkoi-1",
+      "probe": false
+    },
+    {
+      "ts": "2026-10-28T20:34:49Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9257,
+      "amount": 584.12,
+      "p": 0.9,
+      "q": "T1 wins",
+      "url": "https://kalshi.com/markets/kxlolgame/t1-wins/kxlolgame-26oct291600t1mkoi",
+      "probe": false
+    },
+    {
+      "ts": "2026-10-28T20:34:49Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-28T20:34:49Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-10-28T20:19:55Z",
       "type": "win",
       "strategy": "mention_no",
@@ -7681,38 +7766,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 2
-    },
-    {
-      "ts": "2026-10-28T07:34:47Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-28T07:19:51Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-28T07:04:49Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-28T06:49:48Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
