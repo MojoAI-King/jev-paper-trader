@@ -773,6 +773,28 @@
           ]
         }
       }
+    },
+    {
+      "id": "p56",
+      "created": "2026-10-28T08:37:19Z",
+      "kind": "code",
+      "title": "Say why a proposal was marked invalid, and check proposals when they are submitted",
+      "why": "ch55, a Claude direct challenger for sports and culture, was marked invalid with no reason given. Two challenger slots sit empty while Claude direct is the only source that edges the market anywhere (sports Brier 0.177 vs 0.181 on 203 markets). Without a stated reason, the next challenger may fail the same way.",
+      "judge_by": "The next review shows a reason string for every proposal whose status is invalid. A challenger resubmitted with the problem fixed starts trading, placing at least 1 bet within 2 days of judging resuming.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p57",
+      "created": "2026-10-28T08:37:19Z",
+      "kind": "code",
+      "title": "Report favorites' open exposure and worst case next to its record",
+      "why": "Heavy favorites has $44k staked across 40 bets, about $36k of it in 34 open bets, against a $100k bankroll. Its 6-for-6 record (+$370) says nothing about what a few upsets would cost. Readers need the open stake and the loss if the open bets fail at their implied odds, so they can judge the forward test honestly.",
+      "judge_by": "The review shows favorites' open stake, its expected loss at market prices, and its result per $100 against what the market prices implied. Once 30 have settled, we compare its win rate with the average implied probability of its bets.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T08:22:07Z",
+  "generated": "2026-10-28T08:37:53Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-28T08:22:07Z",
+      "t": "2026-10-28T08:37:53Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-28T08:19:45Z",
+    "ts": "2026-10-28T08:34:47Z",
     "stages": [
       [
         "Fetched",
@@ -2042,7 +2042,7 @@
           99500.72
         ],
         [
-          "2026-10-28T08:22:07Z",
+          "2026-10-28T08:37:53Z",
           99500.72
         ]
       ]
@@ -2939,7 +2939,7 @@
           99781.68
         ],
         [
-          "2026-10-28T08:22:07Z",
+          "2026-10-28T08:37:53Z",
           99781.68
         ]
       ]
@@ -3836,7 +3836,7 @@
           100139.56
         ],
         [
-          "2026-10-28T08:22:07Z",
+          "2026-10-28T08:37:53Z",
           100139.56
         ]
       ]
@@ -4733,7 +4733,7 @@
           100369.58
         ],
         [
-          "2026-10-28T08:22:07Z",
+          "2026-10-28T08:37:53Z",
           100369.58
         ]
       ]
@@ -6970,6 +6970,33 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-28T08:37:48Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-28T08:37:19Z",
+      "type": "idea",
+      "text": "Say why a proposal was marked invalid, and check proposals when they are submitted",
+      "status": "proposed",
+      "why": "ch55, a Claude direct challenger for sports and culture, was marked invalid with no reason given. Two challenger slots sit empty while Claude direct is the only source that edges the market anywhere (sports Brier 0.177 vs 0.181 on 203 markets). Without a stated reason, the next challenger may fail t"
+    },
+    {
+      "ts": "2026-10-28T08:37:19Z",
+      "type": "idea",
+      "text": "Report favorites' open exposure and worst case next to its record",
+      "status": "proposed",
+      "why": "Heavy favorites has $44k staked across 40 bets, about $36k of it in 34 open bets, against a $100k bankroll. Its 6-for-6 record (+$370) says nothing about what a few upsets would cost. Readers need the open stake and the loss if the open bets fail at their implied odds, so they can judge the forward "
+    },
+    {
+      "ts": "2026-10-28T08:34:47Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-28T08:19:45Z",
       "type": "scan",
       "fetched": 200,
@@ -7600,38 +7627,6 @@
     },
     {
       "ts": "2026-10-27T17:04:48Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T16:49:56Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T16:34:53Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T16:19:50Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 70.81,
-      "q": "Will the price of Bitcoin be above $82,000 on October 27?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-october-27-2026"
-    },
-    {
-      "ts": "2026-10-27T16:19:50Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -8285,6 +8280,28 @@
     ],
     "proposals": [
       {
+        "id": "p57",
+        "kind": "code",
+        "title": "Report favorites' open exposure and worst case next to its record",
+        "why": "Heavy favorites has $44k staked across 40 bets, about $36k of it in 34 open bets, against a $100k bankroll. Its 6-for-6 record (+$370) says nothing about what a few upsets would cost. Readers need the open stake and the loss if the open bets fail at their implied odds, so they can judge the forward test honestly.",
+        "judge_by": "The review shows favorites' open stake, its expected loss at market prices, and its result per $100 against what the market prices implied. Once 30 have settled, we compare its win rate with the average implied probability of its bets.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-28T08:37:19Z"
+      },
+      {
+        "id": "p56",
+        "kind": "code",
+        "title": "Say why a proposal was marked invalid, and check proposals when they are submitted",
+        "why": "ch55, a Claude direct challenger for sports and culture, was marked invalid with no reason given. Two challenger slots sit empty while Claude direct is the only source that edges the market anywhere (sports Brier 0.177 vs 0.181 on 203 markets). Without a stated reason, the next challenger may fail the same way.",
+        "judge_by": "The next review shows a reason string for every proposal whose status is invalid. A challenger resubmitted with the problem fixed starts trading, placing at least 1 bet within 2 days of judging resuming.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-10-28T08:37:19Z"
+      },
+      {
         "id": "ch55",
         "kind": "challenger",
         "title": "Claude direct, sports and culture, moderate edge",
@@ -8896,17 +8913,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-27T20:37:17Z",
-      "headline": "A quiet half day: no forecasts were judged in 47 cycles, main and its rivals are still missing from this report, and the four locked forward tests mostly just accumulated open bets, so there is nothing new to tune and nobody beats the market.",
+      "ts": "2026-10-28T08:37:19Z",
+      "headline": "Another quiet half-day: none of the 48 cycles judged a market, the only new bets were 5 heavy favorites, and main, original and the other Jev and Claude strategies are still missing from this review, so there is nothing tunable to tune.",
       "went_well": [
-        "Mention follow is 7 wins and 4 losses, +$140 on about $344 of settled stake (+$40 per $100), but 11 settled bets is noise.",
-        "Favorites has won all 3 settled bets, +$182 on $4.5k (+$4 per $100), and placed 8 new bets this period, the only strategy that bet at all.",
-        "Claude direct still edges the market in sports (Brier 0.177 vs 0.181 on 203 markets), the one category where any forecaster does. The gap is thin."
+        "Mention markets, follow the first NO is up $140 on $584 staked (+$24 per $100) with 7 wins in 11 settled. That rests on 11 markets, so it is noise, not a finding.",
+        "Heavy favorites has won all 6 of its settled bets, +$370 on $8.0k staked (+$4.6 per $100). That is expected when you buy near-certainties, and 6 bets prove nothing about whether the price was worth paying.",
+        "Claude direct is still the only forecaster with any edge anywhere: in sports it scores a Brier of 0.177 against the market's 0.181, on 203 markets. Lower Brier is better. Its skill estimate is barely positive (lambda 0.0022 on 844 markets)."
       ],
       "went_badly": [
-        "Judging is still dead: 47 cycles judged 0 markets. Main, original, bold, calibrated and the others remain absent, so the yardstick is empty and their tuning can't be read. This has been flagged since p35, p41 and p46, and no new code proposal will help more than fixing those.",
-        "Mention NO loses $218 on 53 settled (about -$13 per $100 settled, 18 wins). That is the only source with positive skill (lambda 0.12 on 716), which doesn't fit losing money, and p48, p49 and p51 are still open.",
-        "Across 844 paired markets the market price (Brier 0.163) beats Claude direct (0.201) and Jev + research (0.217). Sharp is 0 for 2 (-$499), and its rules still show min_edge 0.03, as if the applied 2c change (p33) never took effect."
+        "No forecaster beats the market overall. On the 844 markets all four sources scored, the market's Brier is 0.163, Claude direct's 0.201, Jev + research's 0.217 and Jev alone's 0.245.",
+        "Mention NO is down $218 on $2.5k staked (-$8.8 per $100) over 53 settled, with 18 wins and 35 losses. Both of its price bands lose, 30-60c and 60c+. Yet its skill estimate (lambda 0.202 on 740 markets) is now high enough to switch on Kelly sizing, the concern raised in p49 and p51.",
+        "The pipeline still looks broken: 48 cycles judged 0 markets, and the latest challenger (ch55) was marked invalid without a stated reason. Sharp has lost both of its bets, and its live min_edge is still 0.03 even though p33's change to 0.02 is listed as applied. Its skill reading of -2.31 is not beli"
       ]
     },
     "auto_start": true,
@@ -9462,6 +9479,20 @@
         "title": "A stop rule for Mention NO's forward test",
         "why": "Mention NO is locked, and on 49 settled bets it loses $16 per $100 while its source's lambda is positive, so Kelly sizing could grow bets on a strategy that is losing money. Rather than add another diagnostic to p46-p53, this asks for one decision written down now: the result at which the forward test ends early.",
         "created": "2026-10-27T08:36:18Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p56",
+        "title": "Say why a proposal was marked invalid, and check proposals when they are submitted",
+        "why": "ch55, a Claude direct challenger for sports and culture, was marked invalid with no reason given. Two challenger slots sit empty while Claude direct is the only source that edges the market anywhere (sports Brier 0.177 vs 0.181 on 203 markets). Without a stated reason, the next challenger may fail the same way.",
+        "created": "2026-10-28T08:37:19Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p57",
+        "title": "Report favorites' open exposure and worst case next to its record",
+        "why": "Heavy favorites has $44k staked across 40 bets, about $36k of it in 34 open bets, against a $100k bankroll. Its 6-for-6 record (+$370) says nothing about what a few upsets would cost. Readers need the open stake and the loss if the open bets fail at their implied odds, so they can judge the forward test honestly.",
+        "created": "2026-10-28T08:37:19Z",
         "status": "proposed"
       }
     ]
