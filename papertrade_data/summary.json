@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T14:22:26Z",
+  "generated": "2026-10-28T14:38:18Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-28T14:22:26Z",
+      "t": "2026-10-28T14:38:18Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1874,
+    "resolved": 1876,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22777379935965847,
-        "n": 1874
+        "brier": 0.22796151385927504,
+        "n": 1876
       },
       {
         "name": "claude_direct",
@@ -927,33 +927,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14692640661686232,
-        "n": 1874
+        "brier": 0.14752655170575693,
+        "n": 1876
       }
     ],
     "paired": {
-      "n": 844,
+      "n": 846,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16289581220379146
+          "brier": 0.1640523528368794
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2169579383886256
+          "brier": 0.2176225768321513
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20057689573459717
+          "brier": 0.20187210401891253
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24482819905213268
+          "brier": 0.24519420803782507
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-28T14:19:54Z",
+    "ts": "2026-10-28T14:34:53Z",
     "stages": [
       [
         "Fetched",
@@ -1127,7 +1127,7 @@
       "badge": "For fun",
       "retired": false,
       "main": false,
-      "equity": 100369.58,
+      "equity": 100434.9,
       "slot": 1,
       "blurb": "Just for fun, no AI: it buys the favorite on every busy market priced about 90 to 95 cents that settles within 5 days, about $1,500 a bet (never under $500: it skips thin markets), up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
       "challenger": false,
@@ -1136,16 +1136,16 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 100369.58,
+      "marked": 100434.9,
       "unrealized": 0.0,
-      "change": 369.58,
-      "realized": 369.58,
-      "open": 38,
-      "open_cost": 41039.83,
-      "settled": 6,
-      "wins": 6,
+      "change": 434.9,
+      "realized": 434.9,
+      "open": 37,
+      "open_cost": 40097.15,
+      "settled": 7,
+      "wins": 7,
       "losses": 0,
-      "won_amt": 369.58,
+      "won_amt": 434.9,
       "lost_amt": 0
     }
   ],
@@ -2042,7 +2042,11 @@
           99500.72
         ],
         [
-          "2026-10-28T14:22:26Z",
+          "2026-10-28T14:34:53Z",
+          99500.72
+        ],
+        [
+          "2026-10-28T14:38:18Z",
           99500.72
         ]
       ]
@@ -2939,7 +2943,11 @@
           99781.68
         ],
         [
-          "2026-10-28T14:22:26Z",
+          "2026-10-28T14:34:53Z",
+          99781.68
+        ],
+        [
+          "2026-10-28T14:38:18Z",
           99781.68
         ]
       ]
@@ -3836,7 +3844,11 @@
           100139.56
         ],
         [
-          "2026-10-28T14:22:26Z",
+          "2026-10-28T14:34:53Z",
+          100139.56
+        ],
+        [
+          "2026-10-28T14:38:18Z",
           100139.56
         ]
       ]
@@ -4733,8 +4745,12 @@
           100369.58
         ],
         [
-          "2026-10-28T14:22:26Z",
-          100369.58
+          "2026-10-28T14:34:53Z",
+          100434.9
+        ],
+        [
+          "2026-10-28T14:38:18Z",
+          100434.9
         ]
       ]
     }
@@ -4805,29 +4821,6 @@
           "p_side": 0.9,
           "edge": -0.02,
           "opened": "2026-10-27T11:49:52Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXCBDECISIONCANADA-26OCT-H0",
-      "question": "Will Bank of Canada maintain the current rate at their October 2026 meeting? (Maintains rate)",
-      "url": "https://kalshi.com/markets/kxcbdecisioncanada/will-bank-of-canada-maintain-the-current-rate-at-their-octob/kxcbdecisioncanada-26oct",
-      "source": "kalshi",
-      "close_time": "2026-10-28T13:29:00Z",
-      "category": "other",
-      "price": 0.835,
-      "price_at": "2026-10-11T18:50:06Z",
-      "positions": [
-        {
-          "strategy": "favorites",
-          "side": "no",
-          "contracts": 1008,
-          "cost_per": 0.9352,
-          "total_cost": 942.68,
-          "p_side": 0.905,
-          "edge": -0.0302,
-          "opened": "2026-10-28T00:34:54Z",
           "value": null
         }
       ]
@@ -6306,6 +6299,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXCBDECISIONCANADA-26OCT-H0",
+      "question": "Will Bank of Canada maintain the current rate at their October 2026 meeting? (Maintains rate)",
+      "url": "https://kalshi.com/markets/kxcbdecisioncanada/will-bank-of-canada-maintain-the-current-rate-at-their-octob/kxcbdecisioncanada-26oct",
+      "source": "kalshi",
+      "side": "no",
+      "total_cost": 942.68,
+      "cost_per": 0.9352,
+      "p_side": 0.905,
+      "outcome": "no",
+      "payout": 1008.0,
+      "pnl": 65.32,
+      "opened": "2026-10-28T00:34:54Z",
+      "settled": "2026-10-28T14:34:53Z",
+      "strategy": "favorites"
+    },
+    {
       "key": "kalshi:KXDWTSELIMINATION-26OCT28-MHIG",
       "question": "Will Maura Higgins and their partner be eliminated from Dancing with the Stars Season 35 before Oct 28, 2026?",
       "url": "https://kalshi.com/markets/kxdwtselimination/will-maura-higgins-and-their-partner-be-eliminated-from-danc/kxdwtselimination-26oct28",
@@ -6608,22 +6617,6 @@
       "opened": "2026-10-23T20:35:09Z",
       "settled": "2026-10-25T18:49:32Z",
       "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXMTPMENTION-26OCT25-CHIN",
-      "question": "What will Mike Rogers say during Meet the Press originally scheduled for Oct 25, 2026? (China / Chinese)",
-      "url": "https://kalshi.com/markets/kxmtpmention/what-will-mike-rogers-say-during-meet-the-press-originally-s/kxmtpmention-26oct25",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 7.63,
-      "cost_per": 0.7635,
-      "p_side": 0.82,
-      "outcome": "no",
-      "payout": 10.0,
-      "pnl": 2.37,
-      "opened": "2026-10-24T00:35:07Z",
-      "settled": "2026-10-25T18:49:32Z",
-      "strategy": "mention_follow"
     }
   ],
   "calls": [
@@ -7061,6 +7054,35 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-28T14:38:13Z",
+      "type": "learn",
+      "text": "Research playbook updated to v21"
+    },
+    {
+      "ts": "2026-10-28T14:37:20Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "lucky",
+      "q": "Will Bank of Canada Hike rates by 0bps at their October 2026 meeting? (Maintains rate)",
+      "url": "https://kalshi.com/markets/kxcbdecisioncanada/will-bank-of-canada-hike-rates-by-0bps-at-their-october-2026/kxcbdecisioncanada-26oct"
+    },
+    {
+      "ts": "2026-10-28T14:34:53Z",
+      "type": "win",
+      "strategy": "favorites",
+      "amount": 65.32,
+      "q": "Will Bank of Canada maintain the current rate at their October 2026 meeting? (Maintains rate)",
+      "url": "https://kalshi.com/markets/kxcbdecisioncanada/will-bank-of-canada-maintain-the-current-rate-at-their-octob/kxcbdecisioncanada-26oct"
+    },
+    {
+      "ts": "2026-10-28T14:34:53Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-28T14:19:54Z",
       "type": "scan",
@@ -7699,38 +7721,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-27T23:04:47Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T22:49:44Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T22:34:50Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-27T22:19:52Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -7743,9 +7733,9 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1874,
+    "reviewed": 1876,
     "post_mortems": 90,
-    "win_reviews": 42,
+    "win_reviews": 43,
     "calibration": [
       {
         "range": "0\u201320%",
@@ -7787,7 +7777,7 @@
       "misread_rules": 3
     },
     "credits": {
-      "lucky": 21,
+      "lucky": 22,
       "base_rate": 7,
       "research_found_it": 14
     },
@@ -7915,6 +7905,28 @@
     ],
     "recent_wins": [
       {
+        "question": "Will Bank of Canada Hike rates by 0bps at their October 2026 meeting? (Maintains rate)",
+        "url": "https://kalshi.com/markets/kxcbdecisioncanada/will-bank-of-canada-hike-rates-by-0bps-at-their-october-2026/kxcbdecisioncanada-26oct",
+        "outcome": "no",
+        "category": "other",
+        "p": null,
+        "market": 0.835,
+        "ts": "2026-10-28T14:37:20Z",
+        "bets": {
+          "favorites": 65.32
+        },
+        "kind": "win",
+        "root_cause": "lucky",
+        "what_happened": "On Oct 28, 2026 the Bank of Canada raised its overnight rate 25bps, from 2.25% to 2.5%. It was the bank's first hike since 2023, driven by an oil-shock jump in inflation (September CPI 3.1%) and a higher inflation forecast. The 'maintains rate' market resolved NO.",
+        "what_we_missed": "",
+        "what_worked": "With no research facts, jev_alone gave 0.51 while the market had 0.835 on a hold, so the forecaster was effectively betting against the favorite. That turned out right, but nothing in the record shows it saw the hike coming. Most of the hawkish news came after Oct 11: the business outlook survey showing higher inflation expectations, the September CPI print, and economists saying markets had pushed Macklem into a hike.",
+        "lesson": "Before a central-bank meeting, check for big data releases still due before the decision (CPI, the BoC business outlook survey, jobs). When an energy price shock is pushing headline inflation up, an 80%+ 'hold' price two weeks out can be fragile.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For central-bank rate questions, always pull current OIS/swap pricing, the latest CPI and inflation-expectations data, and the calendar of releases still due before the meeting, so the forecaster doesn't judge with an empty fact list."
+        }
+      },
+      {
         "question": "Will Eduardo Paes win the Governor of Rio de Janeiro election?",
         "url": "https://polymarket.com/market/will-eduardo-paes-win-the-governor-of-rio-de-janeiro-election",
         "outcome": "no",
@@ -8022,34 +8034,11 @@
           "area": "research",
           "change": "Have the researcher give an explicit three-way estimate (win, draw, loss) from bookmaker odds or recent draw rates, so the gap with the market comes from stated numbers rather than a gut discount."
         }
-      },
-      {
-        "question": "Will AFC Bournemouth win on 2026-10-10?",
-        "url": "https://polymarket.com/market/epl-che-bou-2026-10-10-bou",
-        "outcome": "no",
-        "category": "sports",
-        "p": 0.11,
-        "market": 0.205,
-        "ts": "2026-10-10T18:22:53Z",
-        "bets": {
-          "bold": 325.09,
-          "ch13": 459.99
-        },
-        "kind": "win",
-        "root_cause": "research_found_it",
-        "what_happened": "Chelsea beat Bournemouth 5-1 at Stamford Bridge on 10 October 2026, so the question resolved No. Chelsea led 2-0 inside three minutes through Henderson and Rogers, Jo\u00e3o Pedro scored twice and Henderson added a late goal. Bournemouth are still without a Premier League win under Marco Rose after six matchdays.",
-        "what_we_missed": "",
-        "what_worked": "Research pulled the forecast down from 0.38 to 0.11, well below the market's 0.205. It found Bournemouth with no wins and a long list of injuries (Scott, Kluivert, Brooks, Kroupi and possibly Gittens), Chelsea's key players (Caicedo, Palmer, James, Jo\u00e3o Pedro) declared fit, and Chelsea unbeaten in 9 meetings. To be fair, the market also made No about an 80% favourite, so the edge over the market was modest. The lopsided score backs the research, but on its own it doesn't prove 0.11 was the better number.",
-        "lesson": "When an away underdog is winless and missing several first-choice attackers while the home side gets its stars back, size the forecast mainly from the team news, not from the home side's recent form or leaky defence.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Always compare the two sides' injury and availability lists from the latest press conferences before forecasting a match, because here they mattered more than the head-to-head history or recent results."
-        }
       }
     ],
     "playbook": {
-      "version": 20,
-      "updated": "2026-10-17T00:07:57Z",
+      "version": 21,
+      "updated": "2026-10-28T14:37:42Z",
       "rules": [
         {
           "id": "R1",
@@ -8142,6 +8131,12 @@
           "added": "2026-10-08T00:08:38Z"
         },
         {
+          "id": "R34",
+          "category": "other",
+          "rule": "For voted awards, check the ceremony date and search for coverage dated after it; otherwise read the official shortlist, list each finalist's dated season honours, trophies and stats, note past winners missing from it, and cite major outlets' dated rankings.",
+          "added": "2026-10-28T14:37:42Z"
+        },
+        {
           "id": "R32",
           "category": "economy",
           "rule": "For earnings-beat questions, copy the EPS basis (GAAP diluted or adjusted) and strike from the rules, report the dated consensus and recent revisions, the last 4\u20138 quarters' actual-versus-consensus surprise percentages, and management's dated guidance or segment commentary.",
@@ -8161,6 +8156,21 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-28T14:37:42Z",
+          "version": 21,
+          "added": [
+            "R34"
+          ],
+          "revised": [],
+          "retired": [],
+          "changes": [
+            "added: voted-award rule (other) from polymarket:4411997. The research found no post-ceremony coverage and did not show that one finalist held the main season honours while the usual winner was off the shortlist; the review's pricing suggestions are left out because rules can't mention them.",
+            "no rule from polymarket:5340072: the review is marked unlucky.",
+            "no rule from kalshi:KXCBDECISIONCANADA-26OCT-H0: the review is marked lucky."
+          ],
+          "refused": 0
+        },
         {
           "ts": "2026-10-17T00:07:57Z",
           "version": 20,
@@ -8233,22 +8243,6 @@
             "no rule from kalshi:KXNFLGAME-26OCT12BUFLAR-LAR because the review is marked unlucky"
           ],
           "refused": 1
-        },
-        {
-          "ts": "2026-10-13T00:07:19Z",
-          "version": 16,
-          "added": [
-            "R29"
-          ],
-          "revised": [],
-          "retired": [],
-          "changes": [
-            "added tech rule for weekly leaderboard-share questions: all five OpenRouter reviews missed the live partial-week chart value, and two used request-based figures although the chart measures tokens",
-            "added general rule to copy the threshold and metric verbatim from the resolution rules: two DeepSeek briefs carried the wrong threshold (23.4% in place of 22.4% and 22.6%), and the OpenAI brief used substitute metrics",
-            "left out the reviews' suggestions about deferring to or gating on market prices, because playbook rules may not mention markets or prices",
-            "kept all 18 existing rules unchanged, since no new review refines or contradicts them"
-          ],
-          "refused": 1
         }
       ]
     },
@@ -8286,13 +8280,13 @@
       },
       {
         "category": "other",
-        "n": 293,
-        "jev_plain": 0.2078,
-        "market": 0.1355,
+        "n": 295,
+        "jev_plain": 0.2092,
+        "market": 0.1394,
         "jev_research": 0.2537,
         "claude_direct": 0.1922,
-        "n_jev_plain": 293,
-        "n_market": 293,
+        "n_jev_plain": 295,
+        "n_market": 295,
         "n_jev_research": 127,
         "n_claude_direct": 35
       },
@@ -9008,7 +9002,7 @@
     ],
     "suggested_areas": {
       "gates": 54,
-      "research": 60,
+      "research": 61,
       "questions": 3
     },
     "retro": {
