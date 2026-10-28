@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T03:52:22Z",
+  "generated": "2026-10-28T04:07:30Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-28T03:52:22Z",
+      "t": "2026-10-28T04:07:30Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1873,
+    "resolved": 1874,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277920448478377,
-        "n": 1873
+        "brier": 0.22777379935965847,
+        "n": 1874
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14699735384410037,
-        "n": 1873
+        "brier": 0.14692640661686232,
+        "n": 1874
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-28T03:49:49Z",
+    "ts": "2026-10-28T04:04:55Z",
     "stages": [
       [
         "Fetched",
@@ -2038,7 +2038,7 @@
           99500.72
         ],
         [
-          "2026-10-28T03:52:22Z",
+          "2026-10-28T04:07:30Z",
           99500.72
         ]
       ]
@@ -2931,7 +2931,7 @@
           99781.68
         ],
         [
-          "2026-10-28T03:52:22Z",
+          "2026-10-28T04:07:30Z",
           99781.68
         ]
       ]
@@ -3824,7 +3824,7 @@
           100139.56
         ],
         [
-          "2026-10-28T03:52:22Z",
+          "2026-10-28T04:07:30Z",
           100139.56
         ]
       ]
@@ -4717,7 +4717,7 @@
           100269.87
         ],
         [
-          "2026-10-28T03:52:22Z",
+          "2026-10-28T04:07:30Z",
           100269.87
         ]
       ]
@@ -6931,6 +6931,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-28T04:04:55Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-28T03:49:49Z",
       "type": "scan",
       "fetched": 200,
@@ -7590,18 +7598,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-27T12:35:00Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9502,
-      "amount": 570.12,
-      "p": 0.9355,
-      "q": "VidantaWorld Mexico Open: Wyndham Clark wins",
-      "url": "https://kalshi.com/markets/kxpgatour/vidantaworld-mexico-open-wyndham-clark-wins/kxpgatour-vimo26",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -7614,7 +7610,7 @@
   "research_per_day": 150,
   "cycles_24h": 92,
   "learning": {
-    "reviewed": 1873,
+    "reviewed": 1874,
     "post_mortems": 90,
     "win_reviews": 42,
     "calibration": [
@@ -8193,14 +8189,14 @@
       },
       {
         "category": "politics",
-        "n": 84,
+        "n": 85,
         "jev_research": 0.2777,
-        "jev_plain": 0.3182,
-        "market": 0.1624,
+        "jev_plain": 0.3167,
+        "market": 0.1607,
         "claude_direct": 0.2799,
         "n_jev_research": 60,
-        "n_jev_plain": 84,
-        "n_market": 84,
+        "n_jev_plain": 85,
+        "n_market": 85,
         "n_claude_direct": 15
       },
       {
