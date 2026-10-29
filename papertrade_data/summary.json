@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T03:53:15Z",
+  "generated": "2026-10-29T04:09:26Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-29T03:53:15Z",
+      "t": "2026-10-29T04:09:26Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1879,
+    "resolved": 1881,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2278625332623736,
-        "n": 1879
+        "brier": 0.2277837852206273,
+        "n": 1881
       },
       {
         "name": "claude_direct",
@@ -927,33 +927,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14733107291112293,
-        "n": 1879
+        "brier": 0.14720336842105264,
+        "n": 1881
       }
     ],
     "paired": {
-      "n": 849,
+      "n": 851,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16356533038869256
+          "brier": 0.16323738601645124
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21741955241460542
+          "brier": 0.21754618096357226
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2012917550058893
+          "brier": 0.20093772032902465
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2449042402826855
+          "brier": 0.24470188014101057
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-29T03:50:50Z",
+    "ts": "2026-10-29T04:05:46Z",
     "stages": [
       [
         "Fetched",
@@ -1127,7 +1127,7 @@
       "badge": "For fun",
       "retired": false,
       "main": false,
-      "equity": 100842.8,
+      "equity": 100930.09,
       "slot": 1,
       "blurb": "Just for fun, no AI: it buys the favorite on every busy market priced about 90 to 95 cents that settles within 5 days, about $1,500 a bet (never under $500: it skips thin markets), up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
       "challenger": false,
@@ -1136,16 +1136,16 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 100842.8,
+      "marked": 100930.09,
       "unrealized": 0.0,
-      "change": 842.8,
-      "realized": 842.8,
-      "open": 39,
-      "open_cost": 43044.69,
-      "settled": 13,
-      "wins": 13,
+      "change": 930.09,
+      "realized": 930.09,
+      "open": 38,
+      "open_cost": 41544.98,
+      "settled": 14,
+      "wins": 14,
       "losses": 0,
-      "won_amt": 842.8,
+      "won_amt": 930.09,
       "lost_amt": 0
     }
   ],
@@ -2078,7 +2078,11 @@
           99500.72
         ],
         [
-          "2026-10-29T03:53:15Z",
+          "2026-10-29T04:05:46Z",
+          99500.72
+        ],
+        [
+          "2026-10-29T04:09:26Z",
           99500.72
         ]
       ]
@@ -3011,7 +3015,11 @@
           99766.45
         ],
         [
-          "2026-10-29T03:53:15Z",
+          "2026-10-29T04:05:46Z",
+          99766.45
+        ],
+        [
+          "2026-10-29T04:09:26Z",
           99766.45
         ]
       ]
@@ -3944,7 +3952,11 @@
           100190.91
         ],
         [
-          "2026-10-29T03:53:15Z",
+          "2026-10-29T04:05:46Z",
+          100190.91
+        ],
+        [
+          "2026-10-29T04:09:26Z",
           100190.91
         ]
       ]
@@ -4877,8 +4889,12 @@
           100842.8
         ],
         [
-          "2026-10-29T03:53:15Z",
-          100842.8
+          "2026-10-29T04:05:46Z",
+          100930.09
+        ],
+        [
+          "2026-10-29T04:09:26Z",
+          100930.09
         ]
       ]
     }
@@ -4949,29 +4965,6 @@
           "p_side": 0.9,
           "edge": -0.02,
           "opened": "2026-10-27T11:49:52Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "polymarket:2589812",
-      "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
-      "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
-      "source": "polymarket",
-      "close_time": "2026-10-29T03:59:00Z",
-      "category": "economy",
-      "price": 0.835,
-      "price_at": "2026-10-12T01:50:10Z",
-      "positions": [
-        {
-          "strategy": "favorites",
-          "side": "yes",
-          "contracts": 1587,
-          "cost_per": 0.945,
-          "total_cost": 1499.71,
-          "p_side": 0.9345,
-          "edge": -0.0105,
-          "opened": "2026-10-26T23:49:49Z",
           "value": null
         }
       ]
@@ -6427,6 +6420,22 @@
   ],
   "settled_recent": [
     {
+      "key": "polymarket:2589812",
+      "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+      "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
+      "source": "polymarket",
+      "side": "yes",
+      "total_cost": 1499.71,
+      "cost_per": 0.945,
+      "p_side": 0.9345,
+      "outcome": "yes",
+      "payout": 1587.0,
+      "pnl": 87.29,
+      "opened": "2026-10-26T23:49:49Z",
+      "settled": "2026-10-29T04:05:46Z",
+      "strategy": "favorites"
+    },
+    {
       "key": "kalshi:KXMLBWSOUTCOME-26-MILTB",
       "question": "Pro Baseball Championship: Milwaukee beats Tampa Bay",
       "url": "https://kalshi.com/markets/kxmlbwsoutcome/pro-baseball-championship-milwaukee-beats-tampa-bay/kxmlbwsoutcome-26",
@@ -6729,22 +6738,6 @@
       "opened": "2026-10-16T18:05:20Z",
       "settled": "2026-10-27T15:34:49Z",
       "strategy": "mention_no"
-    },
-    {
-      "key": "kalshi:KXMENTIONEARNSFD-26OCT27-HOTH",
-      "question": "What will Smithfield Foods, Inc. say during their next earnings call? (Hot Honey)",
-      "url": "https://kalshi.com/markets/kxmentionearnsfd/what-will-smithfield-foods-inc-say-during-their-next-earning/kxmentionearnsfd-26oct27",
-      "source": "kalshi",
-      "side": "no",
-      "total_cost": 86.89,
-      "cost_per": 0.8689,
-      "p_side": 0.925,
-      "outcome": "no",
-      "payout": 100.0,
-      "pnl": 13.11,
-      "opened": "2026-10-17T00:05:20Z",
-      "settled": "2026-10-27T15:34:49Z",
-      "strategy": "mention_follow"
     }
   ],
   "calls": [
@@ -7182,6 +7175,35 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-29T04:09:21Z",
+      "type": "learn",
+      "text": "Research playbook updated to v22"
+    },
+    {
+      "ts": "2026-10-29T04:08:21Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "lucky",
+      "q": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+      "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031"
+    },
+    {
+      "ts": "2026-10-29T04:05:46Z",
+      "type": "win",
+      "strategy": "favorites",
+      "amount": 87.29,
+      "q": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+      "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031"
+    },
+    {
+      "ts": "2026-10-29T04:05:46Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-29T03:50:50Z",
       "type": "win",
@@ -7749,38 +7771,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-28T18:22:51Z",
-      "type": "review",
-      "kind": "win",
-      "cause": "base_rate",
-      "q": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Oct 28, 2026 meeting? (Above 4.00%)",
-      "url": "https://kalshi.com/markets/kxfed/will-the-upper-bound-of-the-federal-funds-rate-be-above-4-00/kxfed-26oct"
-    },
-    {
-      "ts": "2026-10-28T18:22:32Z",
-      "type": "review",
-      "kind": "win",
-      "cause": "lucky",
-      "q": "Will the Federal Reserve Hike rates by 0bps at their October 2026 meeting? (Fed maintains rate)",
-      "url": "https://kalshi.com/markets/kxfeddecision/will-the-federal-reserve-hike-rates-by-0bps-at-their-october/kxfeddecision-26oct"
-    },
-    {
-      "ts": "2026-10-28T18:19:58Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 0.15,
-      "q": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Oct 28, 2026 meeting? (Above 4.00%)",
-      "url": "https://kalshi.com/markets/kxfed/will-the-upper-bound-of-the-federal-funds-rate-be-above-4-00/kxfed-26oct"
-    },
-    {
-      "ts": "2026-10-28T18:19:58Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 87.92,
-      "q": "Will the Federal Reserve Hike rates by 0bps at their October 2026 meeting? (Fed maintains rate)",
-      "url": "https://kalshi.com/markets/kxfeddecision/will-the-federal-reserve-hike-rates-by-0bps-at-their-october/kxfeddecision-26oct"
     }
   ],
   "plan_usage": {
@@ -7793,9 +7783,9 @@
   "research_per_day": 150,
   "cycles_24h": 95,
   "learning": {
-    "reviewed": 1879,
+    "reviewed": 1881,
     "post_mortems": 90,
-    "win_reviews": 45,
+    "win_reviews": 46,
     "calibration": [
       {
         "range": "0\u201320%",
@@ -7837,7 +7827,7 @@
       "misread_rules": 3
     },
     "credits": {
-      "lucky": 23,
+      "lucky": 24,
       "base_rate": 8,
       "research_found_it": 14
     },
@@ -7965,6 +7955,28 @@
     ],
     "recent_wins": [
       {
+        "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
+        "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
+        "outcome": "yes",
+        "category": "economy",
+        "p": null,
+        "market": 0.835,
+        "ts": "2026-10-29T04:08:21Z",
+        "bets": {
+          "favorites": 87.29
+        },
+        "kind": "win",
+        "root_cause": "lucky",
+        "what_happened": "On October 28, 2026 the FOMC under Chair Kevin Warsh voted 10-2 to keep the target range at 3.75%\u20134.00%, so the upper bound did not change and the market resolved YES. Cook and Hammack dissented in favor of a 25 bp hike, and the hold came after a 25 bp hike in September.",
+        "what_we_missed": "",
+        "what_worked": "There was no research and no reasoning behind this. jev_alone said 0.5 with no facts, which is just a coin flip, and it was less accurate than the market's 0.835. The money was made by the 'favorites' strategy, which simply bet with the market's 83.5% hold price. That price turned out to be correct because two weeks before an FOMC meeting the market's read on the decision is usually right.",
+        "lesson": "If the forecaster has no facts and the market is pricing an FOMC outcome above 80% within a few weeks of the meeting, use the market price as the default instead of 0.5, and check CME FedWatch plus the latest Fed speeches (here, the September hike and the hawkish dissents) before trying to beat it.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Do not let a forecast with no research and a probability of exactly 0.5 count as a real view. Either require a research pass first or default to the market price for scheduled central-bank decisions."
+        }
+      },
+      {
         "question": "Will the upper bound of the federal funds rate be above 4.00% following the Fed's Oct 28, 2026 meeting? (Above 4.00%)",
         "url": "https://kalshi.com/markets/kxfed/will-the-upper-bound-of-the-federal-funds-rate-be-above-4-00/kxfed-26oct",
         "outcome": "no",
@@ -8071,33 +8083,11 @@
           "area": "gates",
           "change": "Limit bet size when our probability is within about 10 points of a market priced between 40% and 60% on a single MLB game, since the result is mostly variance."
         }
-      },
-      {
-        "question": "Marshall wins by over 4.5 points",
-        "url": "https://kalshi.com/markets/kxncaafspread/marshall-wins-by-over-4-5-points/kxncaafspread-26oct10ccarmrsh",
-        "outcome": "no",
-        "category": "other",
-        "p": 0.28,
-        "market": 0.495,
-        "ts": "2026-10-11T02:39:33Z",
-        "bets": {
-          "bold": 147.08
-        },
-        "kind": "win",
-        "root_cause": "lucky",
-        "what_happened": "The question resolved NO: Marshall did not win the October 10, 2026 home game against Coastal Carolina by more than 4.5 points. I could not find the final score, so I can't say whether Marshall won narrowly, pushed toward the line, or lost.",
-        "what_we_missed": "",
-        "what_worked": "With research, the forecast came down to 0.28 from about 0.40. Several facts pushed it lower: Marshall had won its three games by 2, 6 and 1 points; it allowed 35 points a game while Coastal Carolina allowed 25; Coastal's three recent losses were all close; and Coastal had won 3 of the last 4 meetings. Still, the market's 0.495 put the line at roughly a fair spread, and covering a 4.5-point spread in college football is close to a coin flip, so most of the edge here was luck rather than proven skill.",
-        "lesson": "When a spread market is priced near 50%, close margins in a team's wins plus a defense that gives up a lot of points are reasonable reasons to lean against the favorite covering. Size those bets modestly, because one game's margin is very noisy.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Cap the stake on spread-cover bets where the market is between 0.45 and 0.55 and the edge comes only from season-margin stats, unless the research turned up something like an injury or a quarterback change that the line hasn't priced in."
-        }
       }
     ],
     "playbook": {
-      "version": 21,
-      "updated": "2026-10-28T14:37:42Z",
+      "version": 22,
+      "updated": "2026-10-29T04:08:51Z",
       "rules": [
         {
           "id": "R1",
@@ -8208,6 +8198,12 @@
           "added": "2026-10-15T00:07:54Z"
         },
         {
+          "id": "R35",
+          "category": "economy",
+          "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
+          "added": "2026-10-29T04:08:51Z"
+        },
+        {
           "id": "R24",
           "category": "politics",
           "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
@@ -8215,6 +8211,21 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-10-29T04:08:51Z",
+          "version": 22,
+          "added": [
+            "R35"
+          ],
+          "revised": [],
+          "retired": [],
+          "changes": [
+            "added: Fed rate-decision rule (current range from the FOMC statement, strict above-vs-at wording against the upper bound, Fed speakers, dissents, economist polls), supported by the base_rate review kalshi:KXFED-26OCT-T4.00; references to market pricing left out",
+            "no rules drawn from kalshi:KXFEDDECISION-26OCT-H0 or polymarket:2589812 because both are marked lucky",
+            "all other existing rules kept unchanged; no new review refines or contradicts them"
+          ],
+          "refused": 0
+        },
         {
           "ts": "2026-10-28T14:37:42Z",
           "version": 21,
@@ -8281,27 +8292,6 @@
             "no rules from KXCPICORE-T0.2 or KXCPICOREYOY-T2.5 because both are marked unlucky"
           ],
           "refused": 0
-        },
-        {
-          "ts": "2026-10-14T00:07:36Z",
-          "version": 17,
-          "added": [
-            "R30",
-            "R31",
-            "R32"
-          ],
-          "revised": [],
-          "retired": [
-            "R14",
-            "R8"
-          ],
-          "changes": [
-            "merged R8 into a new general live-status rule: polymarket:5081245 showed a stale lower-bracket score on an esports event day, so the researcher must get a live bracket score timestamped within the past hour; R8's rule to discard pre-start result snippets is kept in the merged rule",
-            "added culture rule for post-count range questions (polymarket:5223422, polymarket:5223516): get the in-window tracker count, pace and hours left, plus same-length historical totals, and never deliver an empty brief",
-            "added economy rule for earnings-beat questions (polymarket:5144380): copy the EPS basis from the rules and report the last 4\u20138 quarters of surprise percentages next to the dated consensus and its revisions",
-            "no rule from kalshi:KXNFLGAME-26OCT12BUFLAR-LAR because the review is marked unlucky"
-          ],
-          "refused": 1
         }
       ]
     },
@@ -8387,12 +8377,12 @@
       },
       {
         "category": "economy",
-        "n": 83,
-        "jev_plain": 0.2691,
-        "market": 0.1269,
+        "n": 85,
+        "jev_plain": 0.2664,
+        "market": 0.1246,
         "jev_research": 0.2386,
-        "n_jev_plain": 83,
-        "n_market": 83,
+        "n_jev_plain": 85,
+        "n_market": 85,
         "n_jev_research": 55
       },
       {
@@ -9060,7 +9050,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 54,
+      "gates": 55,
       "research": 63,
       "questions": 3
     },

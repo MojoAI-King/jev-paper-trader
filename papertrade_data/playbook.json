@@ -1,6 +1,6 @@
 {
-  "version": 21,
-  "updated": "2026-10-28T14:37:42Z",
+  "version": 22,
+  "updated": "2026-10-29T04:08:51Z",
   "rules": [
     {
       "id": "R1",
@@ -213,6 +213,15 @@
       "added": "2026-10-15T00:07:54Z"
     },
     {
+      "id": "R35",
+      "category": "economy",
+      "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
+      "evidence": [
+        "kalshi:KXFED-26OCT-T4.00"
+      ],
+      "added": "2026-10-29T04:08:51Z"
+    },
+    {
       "id": "R24",
       "category": "politics",
       "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
@@ -240,6 +249,8 @@
     "kalshi:KXDEEPSHARE-26OCT12-23.4",
     "kalshi:KXDWTSELIMINATION-26OCT07-CMIL",
     "kalshi:KXDWTSELIMINATION-26OCT07-JOLS",
+    "kalshi:KXFED-26OCT-T4.00",
+    "kalshi:KXFEDDECISION-26OCT-H0",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
     "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
     "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
@@ -305,6 +316,7 @@
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
     "polymarket:2487543",
     "polymarket:2487544",
+    "polymarket:2589812",
     "polymarket:3662130",
     "polymarket:3662876",
     "polymarket:4052418",
