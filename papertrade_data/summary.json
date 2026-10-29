@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T20:36:28Z",
+  "generated": "2026-10-29T20:54:09Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-29T20:36:28Z",
+      "t": "2026-10-29T20:54:09Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-29T20:33:41Z",
+    "ts": "2026-10-29T20:50:50Z",
     "stages": [
       [
         "Fetched",
@@ -2096,7 +2096,7 @@
           99500.72
         ],
         [
-          "2026-10-29T20:36:28Z",
+          "2026-10-29T20:54:09Z",
           99500.72
         ]
       ]
@@ -3045,7 +3045,7 @@
           99766.45
         ],
         [
-          "2026-10-29T20:36:28Z",
+          "2026-10-29T20:54:09Z",
           99766.45
         ]
       ]
@@ -3994,7 +3994,7 @@
           100190.91
         ],
         [
-          "2026-10-29T20:36:28Z",
+          "2026-10-29T20:54:09Z",
           100190.91
         ]
       ]
@@ -4943,7 +4943,7 @@
           101087.15
         ],
         [
-          "2026-10-29T20:36:28Z",
+          "2026-10-29T20:54:09Z",
           101087.15
         ]
       ]
@@ -7432,6 +7432,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-29T20:54:03Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-10-29T20:50:50Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-29T20:50:50Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-29T20:33:41Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8048,34 +8066,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-29T07:35:45Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-29T07:20:40Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-29T07:05:45Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.95,
-      "amount": 676.4,
-      "p": 0.935,
-      "q": "US-Iran Hormuz Agreement by November 2?",
-      "url": "https://polymarket.com/market/us-iran-hormuz-agreement-by-november-2",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -9371,17 +9361,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-10-29T08:53:07Z",
-      "headline": "A quiet half day: Jev and Claude forecast nothing for the 18th review running, so only the four locked strategies bet. Their totals are too thin to call, and none can be tuned.",
+      "ts": "2026-10-29T20:53:40Z",
+      "headline": "A quiet half-day: the four strategies the review can see placed 8 bets and resolved 2, the forecasters judged nothing for the 48th cycle in a row, and the strategies we built to beat the market (main, original, calibrated, bold, claude_direct) are still missing from this report, so there is nothing ",
       "went_well": [
-        "Favorites is 15 for 15 on settled heavy-favorite bets, +$964 on $17.0k settled stake (about +$5.70 per $100). That is the small, steady return you'd expect at 60c and up. It rests on 15 bets, so it is not yet a finding.",
-        "Mention follow is 9 wins and 4 losses, +$191 on about $443 settled stake (about +$43 per $100). That is only 13 settled markets, so it is mostly noise.",
-        "Claude direct still edges the market in sports (Brier 0.177 vs 0.181 on 203 markets) and culture (0.032 vs 0.074, only 14 markets). It is the only forecaster beating the price anywhere, and only narrowly."
+        "Favorites is 18 for 18 (+$1,087 on $19.3k settled, about +$5.6 per $100). That is still under 30 results, and it is bets at 60c and up winning as favorites usually do. It is not evidence of edge.",
+        "Mention follow is 9 wins and 4 losses, +$191 on $647 staked (about +$29 per $100). Its 4 bets at 60c and up all won. This rests on 13 settled markets, so it is noise until it passes 30.",
+        "One of the 2 markets reviewed this period was a win credited to research finding the answer."
       ],
       "went_badly": [
-        "None of the 48 cycles judged a single market, so main, original, calibrated and the Claude strategies are still missing. No Jev- or Claude-driven strategy can bet, be measured or be tuned. Overall, the market price (Brier 0.163 paired, 851 markets) still beats every forecaster: Claude 0.201, Jev + r",
-        "Mention NO is 19 wins and 37 losses on 56 settled, -$234 on about $1.7k settled stake (about -$13 per $100). Its NO bets at 30-60c won 13 of 43 (30%), and at 60c+ only 6 of 13 (46%), both below what the prices implied. Yet its skill estimate is positive (lambda 0.13 on 848 markets), and the two disa",
-        "Sharp lost both its bets (-$499, 2 settled). Its live rules still show min_edge 0.03 at version 1, although p33 (2c) is marked applied, and its gate ledger counts 1 bet where its record shows 2. Favorites has about $44.8k open across 41 bets, close to its 50% exposure cap, so one bad day could wipe "
+        "No forecaster judged a single market in 48 cycles, and main, original, calibrated, bold and claude_direct are absent again, along with the yardstick. We can't say whether any Jev or Claude strategy beats the market. The last full scores (853 paired markets) still have the market ahead: 0.163 against",
+        "Mention NO has lost $234 on $2,562 staked (-$9 per $100) on 56 settled bets, winning 19. It loses both on coin-flip prices (-$117) and on favorites (-$116). Meanwhile its source, mention_prior, has a positive lambda (0.126, raw 0.244, standard error 0.236 on 855 markets), so Kelly sizing may now be ",
+        "Sharp has lost both of its 2 bets (-$499). Its live min_edge is still 0.03 at rules version 1, even though the 2c change (p33) was logged as applied. The gate ledger shows 1 bet against a record of 2, and its skill reads raw -2.589 with a standard error of 0."
       ]
     },
     "auto_start": true,
