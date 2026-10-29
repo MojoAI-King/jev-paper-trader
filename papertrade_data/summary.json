@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T15:09:33Z",
+  "generated": "2026-10-29T15:24:01Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-29T15:09:33Z",
+      "t": "2026-10-29T15:24:01Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1881,
+    "resolved": 1883,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.2084358359133127,
-        "n": 1292
+        "brier": 0.20819258114374034,
+        "n": 1294
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277837852206273,
-        "n": 1881
+        "brier": 0.22777657992565056,
+        "n": 1883
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21065896171592774,
-        "n": 1218
+        "brier": 0.21037444540163935,
+        "n": 1220
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14720336842105264,
-        "n": 1881
+        "brier": 0.14708404726500263,
+        "n": 1883
       }
     ],
     "paired": {
-      "n": 851,
+      "n": 853,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16323738601645124
+          "brier": 0.1629278610785463
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21754618096357226
+          "brier": 0.2173672919109027
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20093772032902465
+          "brier": 0.20076682297772566
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24470188014101057
+          "brier": 0.2446657678780774
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-29T15:05:45Z",
+    "ts": "2026-10-29T15:20:48Z",
     "stages": [
       [
         "Fetched",
@@ -1004,7 +1004,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1127,7 +1127,7 @@
       "badge": "For fun",
       "retired": false,
       "main": false,
-      "equity": 100963.75,
+      "equity": 100973.47,
       "slot": 1,
       "blurb": "Just for fun, no AI: it buys the favorite on every busy market priced about 90 to 95 cents that settles within 5 days, about $1,500 a bet (never under $500: it skips thin markets), up to 40 bets a day. On 239 past markets that rule won 95% of its bets and came out about even after fees (-0.5% a bet, range -3.7% to +2.3%). Expect lots of small wins and the odd big loss.",
       "challenger": false,
@@ -1136,16 +1136,16 @@
       "tuned_at": null,
       "frozen": false,
       "gate_overrides": {},
-      "marked": 100963.75,
+      "marked": 100973.47,
       "unrealized": 0.0,
-      "change": 963.75,
-      "realized": 963.75,
-      "open": 44,
-      "open_cost": 49351.99,
-      "settled": 15,
-      "wins": 15,
+      "change": 973.47,
+      "realized": 973.47,
+      "open": 43,
+      "open_cost": 49211.71,
+      "settled": 16,
+      "wins": 16,
       "losses": 0,
-      "won_amt": 963.75,
+      "won_amt": 973.47,
       "lost_amt": 0
     }
   ],
@@ -2086,7 +2086,11 @@
           99500.72
         ],
         [
-          "2026-10-29T15:09:33Z",
+          "2026-10-29T15:20:48Z",
+          99500.72
+        ],
+        [
+          "2026-10-29T15:24:01Z",
           99500.72
         ]
       ]
@@ -3027,7 +3031,11 @@
           99766.45
         ],
         [
-          "2026-10-29T15:09:33Z",
+          "2026-10-29T15:20:48Z",
+          99766.45
+        ],
+        [
+          "2026-10-29T15:24:01Z",
           99766.45
         ]
       ]
@@ -3968,7 +3976,11 @@
           100190.91
         ],
         [
-          "2026-10-29T15:09:33Z",
+          "2026-10-29T15:20:48Z",
+          100190.91
+        ],
+        [
+          "2026-10-29T15:24:01Z",
           100190.91
         ]
       ]
@@ -4909,8 +4921,12 @@
           100963.75
         ],
         [
-          "2026-10-29T15:09:33Z",
-          100963.75
+          "2026-10-29T15:20:48Z",
+          100973.47
+        ],
+        [
+          "2026-10-29T15:24:01Z",
+          100973.47
         ]
       ]
     }
@@ -5073,29 +5089,6 @@
           "p_side": 0.905,
           "edge": -0.0207,
           "opened": "2026-10-29T10:50:44Z",
-          "value": null
-        }
-      ]
-    },
-    {
-      "key": "kalshi:KXGDP-26OCT30-T2.0",
-      "question": "Will **real GDP** increase by more than 2.0% in Q3 2026? (Above 2.0%)",
-      "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-2-0-in-q3-2026/kxgdp-26oct30",
-      "source": "kalshi",
-      "close_time": "2026-10-30T12:29:00Z",
-      "category": "economy",
-      "price": 0.915,
-      "price_at": "2026-10-11T20:35:06Z",
-      "positions": [
-        {
-          "strategy": "favorites",
-          "side": "yes",
-          "contracts": 150,
-          "cost_per": 0.9352,
-          "total_cost": 140.28,
-          "p_side": 0.91,
-          "edge": -0.0252,
-          "opened": "2026-10-26T23:49:49Z",
           "value": null
         }
       ]
@@ -6608,6 +6601,22 @@
   ],
   "settled_recent": [
     {
+      "key": "kalshi:KXGDP-26OCT30-T2.0",
+      "question": "Will **real GDP** increase by more than 2.0% in Q3 2026? (Above 2.0%)",
+      "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-2-0-in-q3-2026/kxgdp-26oct30",
+      "source": "kalshi",
+      "side": "yes",
+      "total_cost": 140.28,
+      "cost_per": 0.9352,
+      "p_side": 0.91,
+      "outcome": "yes",
+      "payout": 150.0,
+      "pnl": 9.72,
+      "opened": "2026-10-26T23:49:49Z",
+      "settled": "2026-10-29T15:20:48Z",
+      "strategy": "favorites"
+    },
+    {
       "key": "polymarket:6331127",
       "question": "Will Bitcoin dip to $78,000 on October 28?",
       "url": "https://polymarket.com/market/will-bitcoin-dip-to-78k-on-october-28-2026",
@@ -6909,22 +6918,6 @@
       "pnl": 69.04,
       "opened": "2026-10-26T23:49:49Z",
       "settled": "2026-10-27T18:19:51Z",
-      "strategy": "favorites"
-    },
-    {
-      "key": "polymarket:5972420",
-      "question": "Will the price of Bitcoin be above $82,000 on October 27?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-october-27-2026",
-      "source": "polymarket",
-      "side": "no",
-      "total_cost": 1499.19,
-      "cost_per": 0.9549,
-      "p_side": 0.9395,
-      "outcome": "no",
-      "payout": 1570.0,
-      "pnl": 70.81,
-      "opened": "2026-10-26T23:49:49Z",
-      "settled": "2026-10-27T16:19:50Z",
       "strategy": "favorites"
     }
   ],
@@ -7363,6 +7356,30 @@
     }
   ],
   "feed": [
+    {
+      "ts": "2026-10-29T15:23:31Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "research_found_it",
+      "q": "Will **real GDP** increase by more than 2.0% in Q3 2026? (Above 2.0%)",
+      "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-2-0-in-q3-2026/kxgdp-26oct30"
+    },
+    {
+      "ts": "2026-10-29T15:20:48Z",
+      "type": "win",
+      "strategy": "favorites",
+      "amount": 9.72,
+      "q": "Will **real GDP** increase by more than 2.0% in Q3 2026? (Above 2.0%)",
+      "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-2-0-in-q3-2026/kxgdp-26oct30"
+    },
+    {
+      "ts": "2026-10-29T15:20:48Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
     {
       "ts": "2026-10-29T15:05:45Z",
       "type": "bet",
@@ -8010,24 +8027,6 @@
       "q": "What will David Ellison say during 2026 New York Times DealBook Summit originally scheduled for November 18, 2026? (Warner Bros / Warner Brothers)",
       "url": "https://kalshi.com/markets/kxellisonmention/what-will-david-ellison-say-during-2026-new-york-times-dealb/kxellisonmention-26nov18",
       "probe": true
-    },
-    {
-      "ts": "2026-10-29T01:19:46Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-29T01:19:46Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-10-29T01:04:44Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8038,17 +8037,17 @@
   },
   "research_runs_today": 0,
   "research_per_day": 150,
-  "cycles_24h": 95,
+  "cycles_24h": 96,
   "learning": {
-    "reviewed": 1881,
+    "reviewed": 1883,
     "post_mortems": 90,
-    "win_reviews": 46,
+    "win_reviews": 47,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 170,
+        "n": 171,
         "predicted": 0.137,
-        "actual": 0.176
+        "actual": 0.175
       },
       {
         "range": "20\u201340%",
@@ -8064,9 +8063,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 205,
+        "n": 206,
         "predicted": 0.661,
-        "actual": 0.751
+        "actual": 0.752
       },
       {
         "range": "80\u2013100%",
@@ -8086,7 +8085,7 @@
     "credits": {
       "lucky": 24,
       "base_rate": 8,
-      "research_found_it": 14
+      "research_found_it": 15
     },
     "recent": [
       {
@@ -8212,6 +8211,28 @@
     ],
     "recent_wins": [
       {
+        "question": "Will **real GDP** increase by more than 2.0% in Q3 2026? (Above 2.0%)",
+        "url": "https://kalshi.com/markets/kxgdp/will-real-gdp-increase-by-more-than-2-0-in-q3-2026/kxgdp-26oct30",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.7,
+        "market": 0.915,
+        "ts": "2026-10-29T15:23:31Z",
+        "bets": {
+          "favorites": 9.72
+        },
+        "kind": "win",
+        "root_cause": "research_found_it",
+        "what_happened": "On October 29, 2026, BEA's advance estimate put Q3 2026 real GDP growth at 3.4% annualized, up from 2.2% in Q2. That is well above the 2.0% threshold, so the question resolved YES. Business investment, led by inventories and computer equipment, contributed 3.3 pp and consumer spending 2.6 pp, while imports subtracted 2.6 pp.",
+        "what_we_missed": "",
+        "what_worked": "The research pulled the October 8 GDPNow nowcast of 3.6%. That sits about 1.6 pp above the 2.0 threshold, more than one RMSE (1.15 pp) clear, and it took the forecast from 0.36 to 0.70. Still, 0.70 was underconfident next to the market's 0.915. One likely cause is that the 'rules' fact listed the threshold as 'strictly above 4.0', which conflicts with the question's 2.0. The weak NY Fed nowcast from early September (2.3%) and the 1.4 pp miss on Q2 may also have pulled the number down too far.",
+        "lesson": "When a fresh GDPNow nowcast sits more than about 1.3 RMSE above the threshold and private trackers agree, rate YES at about 85\u201390%. Before discounting, check that the threshold in the rules matches the question title.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Add a consistency check that flags any rules fact whose numeric threshold differs from the one in the question title, and resolve the conflict before the forecaster sees the fact list."
+        }
+      },
+      {
         "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
         "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
         "outcome": "yes",
@@ -8317,28 +8338,6 @@
         "suggested_change": {
           "area": "questions",
           "change": "Flag questions where the resolution text ('winner of this election', runoff included) clashes with an early close date. Make the forecaster state which reading it is using, and check that the recorded outcome isn't premature before the runoff on October 25."
-        }
-      },
-      {
-        "question": "Cleveland wins",
-        "url": "https://kalshi.com/markets/kxmlbgame/cleveland-wins/kxmlbgame-26oct102000cwscle",
-        "outcome": "yes",
-        "category": "sports",
-        "p": 0.64,
-        "market": 0.565,
-        "ts": "2026-10-11T03:08:11Z",
-        "bets": {
-          "ch13": 1350.59
-        },
-        "kind": "win",
-        "root_cause": "lucky",
-        "what_happened": "Cleveland beat the White Sox 2-0 in ALDS Game 5 at Progressive Field on Oct 10, 2026, coming back from 0-2 down in the series. Gavin Williams struck out 12, tying the franchise record, and Jos\u00e9 Ram\u00edrez hit a two-run homer in the 4th, the only runs of the game.",
-        "what_we_missed": "",
-        "what_worked": "With research the forecaster said 64%, against 56.5% for the market and 34% without research. It correctly picked out home field, Cleveland's momentum after Games 3 and 4, Williams as the likely starter with his AL-leading strikeout numbers and 11 strikeouts in Game 2, and a tired White Sox bullpen. Still, a single winner-take-all baseball game at 64% is close to a coin flip, and a 2-0 game could easily have gone the other way.",
-        "lesson": "In single-elimination baseball games, treat a starter edge plus home field as a small move of a few points over the market, and size bets to match rather than calling it strong evidence.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Limit bet size when our probability is within about 10 points of a market priced between 40% and 60% on a single MLB game, since the result is mostly variance."
         }
       }
     ],
@@ -8553,9 +8552,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0551,
-      "b": 0.1276,
-      "n": 1292,
+      "a": 1.0585,
+      "b": 0.1293,
+      "n": 1294,
       "active": true,
       "need": 300
     },
@@ -8621,6 +8620,16 @@
         "n_claude_direct": 14
       },
       {
+        "category": "economy",
+        "n": 87,
+        "jev_plain": 0.2653,
+        "market": 0.1225,
+        "jev_research": 0.232,
+        "n_jev_plain": 87,
+        "n_market": 87,
+        "n_jev_research": 57
+      },
+      {
         "category": "politics",
         "n": 85,
         "jev_research": 0.2777,
@@ -8631,16 +8640,6 @@
         "n_jev_plain": 85,
         "n_market": 85,
         "n_claude_direct": 15
-      },
-      {
-        "category": "economy",
-        "n": 85,
-        "jev_plain": 0.2664,
-        "market": 0.1246,
-        "jev_research": 0.2386,
-        "n_jev_plain": 85,
-        "n_market": 85,
-        "n_jev_research": 55
       },
       {
         "category": "weather",
@@ -9318,7 +9317,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 55,
+      "gates": 56,
       "research": 63,
       "questions": 3
     },
