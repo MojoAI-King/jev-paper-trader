@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-30T23:52:32Z",
+  "generated": "2026-10-31T00:07:15Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-30T23:52:32Z",
+      "t": "2026-10-31T00:07:15Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1886,
+    "resolved": 1888,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22765,
-        "n": 1886
+        "brier": 0.22751276483050847,
+        "n": 1888
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14685647454931072,
-        "n": 1886
+        "brier": 0.14673424748411015,
+        "n": 1888
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-30T23:49:47Z",
+    "ts": "2026-10-31T00:04:40Z",
     "stages": [
       [
         "Fetched",
@@ -1003,7 +1003,7 @@
     "bets": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0,
+      "mention_follow": 1,
       "favorites": 0
     },
     "claude_calls": 0,
@@ -1021,7 +1021,7 @@
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
-      "mention_follow": 0,
+      "mention_follow": 1,
       "favorites": 0
     },
     "judged": 0,
@@ -1110,11 +1110,11 @@
         "min_edge": 0.03
       },
       "marked": 100192.02,
-      "unrealized": 0.0,
+      "unrealized": -0.0,
       "change": 192.02,
       "realized": 192.02,
-      "open": 7,
-      "open_cost": 243.38,
+      "open": 8,
+      "open_cost": 252.29,
       "settled": 14,
       "wins": 10,
       "losses": 4,
@@ -2124,7 +2124,7 @@
           99500.72
         ],
         [
-          "2026-10-30T23:52:32Z",
+          "2026-10-31T00:07:15Z",
           99500.72
         ]
       ]
@@ -3101,7 +3101,7 @@
           99830.56
         ],
         [
-          "2026-10-30T23:52:32Z",
+          "2026-10-31T00:07:15Z",
           99830.56
         ]
       ]
@@ -4078,7 +4078,7 @@
           100192.02
         ],
         [
-          "2026-10-30T23:52:32Z",
+          "2026-10-31T00:07:15Z",
           100192.02
         ]
       ]
@@ -5055,7 +5055,7 @@
           100175.42
         ],
         [
-          "2026-10-30T23:52:32Z",
+          "2026-10-31T00:07:15Z",
           100175.42
         ]
       ]
@@ -6081,6 +6081,29 @@
           "p_side": 0.7,
           "edge": 0.0633,
           "opened": "2026-10-30T23:34:38Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXFTNMENTION-26NOV01-TRUM",
+      "question": "What will Josh Shapiro say during Face the Nation originally scheduled for November 1, 2026? (Trump)",
+      "url": "https://kalshi.com/markets/kxftnmention/what-will-josh-shapiro-say-during-face-the-nation-originally/kxftnmention-26nov01",
+      "source": "kalshi",
+      "close_time": "2026-11-15T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_follow",
+          "side": "no",
+          "contracts": 14,
+          "cost_per": 0.6367,
+          "total_cost": 8.91,
+          "p_side": 0.685,
+          "edge": 0.0483,
+          "opened": "2026-10-31T00:04:40Z",
           "value": null
         }
       ]
@@ -7509,6 +7532,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-31T00:04:40Z",
+      "type": "bet",
+      "strategy": "mention_follow",
+      "side": "no",
+      "price": 0.6367,
+      "amount": 8.91,
+      "p": 0.685,
+      "q": "What will Josh Shapiro say during Face the Nation originally scheduled for November 1, 2026? (Trump)",
+      "url": "https://kalshi.com/markets/kxftnmention/what-will-josh-shapiro-say-during-face-the-nation-originally/kxftnmention-26nov01",
+      "probe": true
+    },
+    {
+      "ts": "2026-10-31T00:04:40Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-31T00:04:40Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-10-30T23:49:47Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8066,30 +8114,6 @@
       "ts": "2026-10-30T16:34:41Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-30T16:34:41Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-10-30T16:19:49Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 35.9,
-      "q": "Will the price of Bitcoin be above $84,000 on October 30?",
-      "url": "https://polymarket.com/market/bitcoin-above-84k-on-october-30-2026"
-    },
-    {
-      "ts": "2026-10-30T16:19:49Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 19.52,
-      "q": "Will the price of Ethereum be above $2,400 on October 30?",
-      "url": "https://polymarket.com/market/ethereum-above-2400-on-october-30-2026"
     }
   ],
   "plan_usage": {
@@ -8102,7 +8126,7 @@
   "research_per_day": 150,
   "cycles_24h": 95,
   "learning": {
-    "reviewed": 1886,
+    "reviewed": 1888,
     "post_mortems": 90,
     "win_reviews": 48,
     "calibration": [
@@ -8638,14 +8662,14 @@
     "by_category": [
       {
         "category": "sports",
-        "n": 921,
+        "n": 923,
         "jev_research": 0.2027,
-        "jev_plain": 0.2275,
-        "market": 0.1805,
+        "jev_plain": 0.2272,
+        "market": 0.1802,
         "claude_direct": 0.1765,
         "n_jev_research": 735,
-        "n_jev_plain": 921,
-        "n_market": 921,
+        "n_jev_plain": 923,
+        "n_market": 923,
         "n_claude_direct": 203
       },
       {
