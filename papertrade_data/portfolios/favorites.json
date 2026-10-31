@@ -1,7 +1,7 @@
 {
   "created": "2026-10-26T23:49:42Z",
   "starting_bankroll": 100000,
-  "cash": 50241.9,
+  "cash": 50341.58,
   "open": [
     {
       "key": "kalshi:KXNCAAFGAME-26OCT30MSSTTEX-MSST",
@@ -21,28 +21,6 @@
       "question_set": "papertrade-v2",
       "rules_version": 1,
       "event": "kalshi:KXNCAAFGAME-26OCT30MSSTTEX",
-      "sizing": "fun",
-      "probe": false,
-      "lambda": null
-    },
-    {
-      "key": "kalshi:KXAAAGASM-26OCT31-4.30",
-      "source": "kalshi",
-      "market_id": "KXAAAGASM-26OCT31-4.30",
-      "question": "Will average **gas prices** be above $4.30? (Above 4.30)",
-      "url": "https://kalshi.com/markets/kxaaagasm/will-average-gas-prices-be-above-4-30/kxaaagasm-26oct31",
-      "close_time": "2026-10-31T03:59:00Z",
-      "side": "no",
-      "contracts": 1603,
-      "cost_per": 0.9352,
-      "total_cost": 1499.13,
-      "p_side": 0.915,
-      "market_ask": 0.92,
-      "edge": -0.0202,
-      "opened": "2026-10-26T23:49:49Z",
-      "question_set": "papertrade-v2",
-      "rules_version": 1,
-      "event": "kalshi:KXAAAGASM-26OCT31",
       "sizing": "fun",
       "probe": false,
       "lambda": null
@@ -926,6 +904,28 @@
       "sizing": "fun",
       "probe": false,
       "lambda": null
+    },
+    {
+      "key": "polymarket:5447182",
+      "source": "polymarket",
+      "market_id": "5447182",
+      "question": "US-Iran ceasefire continues through the midterms?",
+      "url": "https://polymarket.com/market/us-iran-ceasefire-continues-through-the-midterms",
+      "close_time": "2026-11-04T04:59:00Z",
+      "side": "yes",
+      "contracts": 1652,
+      "cost_per": 0.91,
+      "total_cost": 1503.32,
+      "p_side": 0.89,
+      "market_ask": 0.9,
+      "edge": -0.02,
+      "opened": "2026-10-31T13:05:25Z",
+      "question_set": "papertrade-v2",
+      "rules_version": 1,
+      "event": "polymarket:1156710",
+      "sizing": "fun",
+      "probe": false,
+      "lambda": null
     }
   ],
   "closed": [
@@ -1682,6 +1682,32 @@
       "payout": 130.0,
       "pnl": 4.77,
       "settled": "2026-10-30T21:19:45Z"
+    },
+    {
+      "key": "kalshi:KXAAAGASM-26OCT31-4.30",
+      "source": "kalshi",
+      "market_id": "KXAAAGASM-26OCT31-4.30",
+      "question": "Will average **gas prices** be above $4.30? (Above 4.30)",
+      "url": "https://kalshi.com/markets/kxaaagasm/will-average-gas-prices-be-above-4-30/kxaaagasm-26oct31",
+      "close_time": "2026-10-31T03:59:00Z",
+      "side": "no",
+      "contracts": 1603,
+      "cost_per": 0.9352,
+      "total_cost": 1499.13,
+      "p_side": 0.915,
+      "market_ask": 0.92,
+      "edge": -0.0202,
+      "opened": "2026-10-26T23:49:49Z",
+      "question_set": "papertrade-v2",
+      "rules_version": 1,
+      "event": "kalshi:KXAAAGASM-26OCT31",
+      "sizing": "fun",
+      "probe": false,
+      "lambda": null,
+      "outcome": "no",
+      "payout": 1603.0,
+      "pnl": 103.87,
+      "settled": "2026-10-31T13:05:25Z"
     }
   ]
 }
