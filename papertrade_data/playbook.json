@@ -1,6 +1,6 @@
 {
-  "version": 22,
-  "updated": "2026-10-29T04:08:51Z",
+  "version": 23,
+  "updated": "2026-10-31T17:08:33Z",
   "rules": [
     {
       "id": "R1",
@@ -61,10 +61,15 @@
     {
       "id": "R30",
       "category": "general",
-      "rule": "If any match or tournament stage started before the judgment time, get its live or final score and the bracket path so far from a tracker timestamped within the past hour (e.g. Liquipedia, BLAST.tv, league site); discard result snippets that are undated or dated before the start.",
+      "rule": "If any game, match or stage began before the judgment time, first get its live or final score from a tracker timestamped within the hour (league site, Liquipedia), dropping undated snippets; for series add wins each side needs, venues and the cited comeback rate.",
       "evidence": [
         "polymarket:4581752",
-        "polymarket:5081245"
+        "polymarket:5081245",
+        "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
+        "kalshi:KXMLBSERIES-26NYYTBALDS-NYY",
+        "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
+        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
+        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-14T00:07:36Z"
     },
@@ -126,19 +131,6 @@
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXMLBGAME-26SEP292000BOSNYY-BOS",
         "kalshi:KXMLBGAME-26SEP292200CHCSD-SD"
-      ],
-      "added": "2026-10-01T00:08:33Z"
-    },
-    {
-      "id": "R15",
-      "category": "sports",
-      "rule": "For playoff series, first get the live or final score of any game started before the judgment time, then report the series score, wins the trailer needs and where, the cited comeback rate for that deficit, game margins and season records; past seasons' playoffs are background.",
-      "evidence": [
-        "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
-        "kalshi:KXMLBSERIES-26NYYTBALDS-NYY",
-        "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
-        "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
-        "kalshi:KXWNBASERIES-26NYMINR1-MIN"
       ],
       "added": "2026-10-01T00:08:33Z"
     },
@@ -213,6 +205,15 @@
       "added": "2026-10-15T00:07:54Z"
     },
     {
+      "id": "R36",
+      "category": "economy",
+      "rule": "For GDP questions, confirm the rules' threshold and measure (BEA advance estimate, annualized real growth) match the question title, then report the release date, the latest dated GDPNow and NY Fed nowcasts, each one's typical error, and recent quarters' nowcast misses.",
+      "evidence": [
+        "kalshi:KXGDP-26OCT30-T2.0"
+      ],
+      "added": "2026-10-31T17:08:33Z"
+    },
+    {
       "id": "R35",
       "category": "economy",
       "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
@@ -222,14 +223,13 @@
       "added": "2026-10-29T04:08:51Z"
     },
     {
-      "id": "R24",
-      "category": "politics",
-      "rule": "For elections, once voting starts take results only from the official count (e.g. TSE/TRE live page) and discard unverified snippets; report undecideds, endorsements, late dropouts, annulled or sub judice votes and the valid-vote base, and dated past poll-vs-result gaps.",
+      "id": "R37",
+      "category": "tech",
+      "rule": "For point-release (X.1) model questions, report the parent model's official launch date and current rollout stage, the company's past gaps between flagship and point releases, and any dated official announcement or release notes naming the version.",
       "evidence": [
-        "polymarket:2487544",
-        "polymarket:3662876"
+        "kalshi:KXGPT-ASTRA61-26OCT30"
       ],
-      "added": "2026-10-07T00:11:51Z"
+      "added": "2026-10-31T17:08:33Z"
     }
   ],
   "reviews_used": [
@@ -251,8 +251,11 @@
     "kalshi:KXDWTSELIMINATION-26OCT07-JOLS",
     "kalshi:KXFED-26OCT-T4.00",
     "kalshi:KXFEDDECISION-26OCT-H0",
+    "kalshi:KXGDP-26OCT30-T2.0",
+    "kalshi:KXGPT-ASTRA61-26OCT30",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
     "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
+    "kalshi:KXLLM1-26OCT31-A",
     "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
     "kalshi:KXMLBGAME-26OCT051700CWSCLE-CWS",
     "kalshi:KXMLBGAME-26OCT052000NYYTB-NYY",
@@ -375,10 +378,12 @@
     "R11",
     "R12",
     "R14",
+    "R15",
     "R16",
     "R18",
     "R20",
     "R22",
+    "R24",
     "R29",
     "R3",
     "R31",
