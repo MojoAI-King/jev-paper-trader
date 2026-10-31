@@ -806,6 +806,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p59",
+      "created": "2026-10-31T09:07:55Z",
+      "kind": "code",
+      "title": "Mention NO's stakes don't match any sizing rule",
+      "why": "Mention NO has staked $2,693 across 88 bets, about $31 each. That is far below the $250 probe bet (0.25% of $100k) and below what quarter-Kelly would give with lambda 0.22, so the sizing path for mention_prior seems to be doing something undocumented. Please fold this into the p58 fix list rather than treating it as a separate task.",
+      "judge_by": "For the next 20 Mention NO bets, the log shows each bet's lambda, Kelly stake and applied cap, and each stake equals the documented rule to within $1.",
+      "min_resolved": 20,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
