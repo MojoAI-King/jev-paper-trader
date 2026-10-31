@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-31T17:22:54Z",
+  "generated": "2026-10-31T17:38:23Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-31T17:22:54Z",
+      "t": "2026-10-31T17:38:23Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1890,
+    "resolved": 1891,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20811242283950618,
-        "n": 1296
+        "brier": 0.2081685427910563,
+        "n": 1297
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22755910052910053,
-        "n": 1890
+        "brier": 0.22756573241671074,
+        "n": 1891
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21027354546644844,
-        "n": 1222
+        "brier": 0.21028338905151267,
+        "n": 1223
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1466742376984127,
-        "n": 1890
+        "brier": 0.14674242953463776,
+        "n": 1891
       }
     ],
     "paired": {
-      "n": 855,
+      "n": 856,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16257259122807016
+          "brier": 0.1627360578271028
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21720701754385963
+          "brier": 0.21728142523364485
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20041707602339184
+          "brier": 0.2005235981308411
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24462210526315792
+          "brier": 0.24464018691588785
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-31T17:20:22Z",
+    "ts": "2026-10-31T17:35:27Z",
     "stages": [
       [
         "Fetched",
@@ -2128,7 +2128,7 @@
           99500.72
         ],
         [
-          "2026-10-31T17:22:54Z",
+          "2026-10-31T17:38:23Z",
           99500.72
         ]
       ]
@@ -3109,7 +3109,7 @@
           99830.56
         ],
         [
-          "2026-10-31T17:22:54Z",
+          "2026-10-31T17:38:23Z",
           99830.56
         ]
       ]
@@ -4090,7 +4090,7 @@
           100192.02
         ],
         [
-          "2026-10-31T17:22:54Z",
+          "2026-10-31T17:38:23Z",
           100192.02
         ]
       ]
@@ -5071,7 +5071,7 @@
           100484.65
         ],
         [
-          "2026-10-31T17:22:54Z",
+          "2026-10-31T17:38:23Z",
           100484.65
         ]
       ]
@@ -7548,6 +7548,27 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-31T17:37:57Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will Likud win the most seats in the 2026 Israeli legislative election?",
+      "url": "https://polymarket.com/market/will-likud-win-the-most-seats-in-the-2026-israeli-legislative-election"
+    },
+    {
+      "ts": "2026-10-31T17:35:27Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-31T17:35:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-31T17:20:22Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8076,23 +8097,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-31T09:08:23Z",
-      "type": "learn",
-      "text": "Daily review written"
-    },
-    {
-      "ts": "2026-10-31T09:07:55Z",
-      "type": "idea",
-      "text": "Mention NO's stakes don't match any sizing rule",
-      "status": "proposed",
-      "why": "Mention NO has staked $2,693 across 88 bets, about $31 each. That is far below the $250 probe bet (0.25% of $100k) and below what quarter-Kelly would give with lambda 0.22, so the sizing path for mention_prior seems to be doing something undocumented. Please fold this into the p58 fix list rather th"
-    },
-    {
-      "ts": "2026-10-31T09:05:24Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8105,8 +8109,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1890,
-    "post_mortems": 90,
+    "reviewed": 1891,
+    "post_mortems": 91,
     "win_reviews": 49,
     "calibration": [
       {
@@ -8123,9 +8127,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 443,
+        "n": 444,
         "predicted": 0.49,
-        "actual": 0.521
+        "actual": 0.523
       },
       {
         "range": "60\u201380%",
@@ -8142,7 +8146,7 @@
     ],
     "root_causes": {
       "overconfident": 30,
-      "unlucky": 30,
+      "unlucky": 31,
       "missing_info": 13,
       "stale_info": 7,
       "research_error": 7,
@@ -8154,6 +8158,26 @@
       "research_found_it": 15
     },
     "recent": [
+      {
+        "question": "Will Likud win the most seats in the 2026 Israeli legislative election?",
+        "url": "https://polymarket.com/market/will-likud-win-the-most-seats-in-the-2026-israeli-legislative-election",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.47,
+        "market": 0.475,
+        "ts": "2026-10-31T17:37:57Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "Likud, running on a joint list with New Hope, came first by a clear margin. The i24NEWS exit poll had Likud at 27 seats and Yashar at 20, and partial counts showed Likud at about 23% of the vote against Yashar's 16%. Results were not yet certified when this was checked, but every report had Likud well ahead. Turnout was reported as possibly the highest on record.",
+        "what_we_missed": "The research split the polls evenly, six leads each, and leaned toward the mainstream pollsters (Kantar, Midgam, Maariv, Kan, Channel 13), which all had Yashar ahead. It did not check how those pollsters had done before. Mainstream Israeli polls have tended to underestimate Likud in past elections, including 2015 and 2022, and this time the Channel 14 and Direct Polls numbers were closer to the result.",
+        "what_worked": "",
+        "lesson": "When pollsters in a country split along house lines, look at how each group has erred in past elections before treating them as equal, and don't let a pollster's reputation outweigh a pattern of misses that consistently favor one side.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For election markets, have the research desk record each major pollster's past error for the leading parties, for example the final poll against the actual seat count in the last two or three elections, so polls can be adjusted for house effects."
+        }
+      },
       {
         "question": "Will Alexia Putellas win the 2026 Women's Ballon d'Or?",
         "url": "https://polymarket.com/market/will-alexia-putellas-win-the-2026-womens-ballon-dor",
@@ -8252,26 +8276,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Cap single-bracket probabilities on Musk tweet-count markets when more than three days remain, and require a check of the live XTracker count whenever the forecast differs from the market by more than 3x."
-        }
-      },
-      {
-        "question": "Will Douglas Ruas win the Governor of Rio de Janeiro election?",
-        "url": "https://polymarket.com/market/will-douglas-ruas-win-the-governor-of-rio-de-janeiro-election",
-        "outcome": "yes",
-        "category": "politics",
-        "p": 0.08,
-        "market": 0.167,
-        "ts": "2026-10-16T06:08:01Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "research_error",
-        "what_happened": "Ruas led the October 4 first round with 49.27% to Paes's 42.76%, even though every final poll had Paes ahead by about 8 points. The electoral court then annulled Garotinho's roughly 3% of the vote, which lifted Ruas to 50.88% of valid votes. TRE-RJ proclaimed him elected in the first round and Paes conceded.",
-        "what_we_missed": "The forecaster relied on an unverified search snippet claiming Paes had won outright with more than 60%, which was false, and set 8% against the market's 16.7%. It also underweighted two things: Brazilian polls can miss right-wing candidates by a lot, and annulling Garotinho's votes shrinks the valid-vote base for whoever is leading, not only for Paes.",
-        "what_worked": "",
-        "lesson": "Never let an unverifiable snippet about a result move a forecast made while voting is still open, and on election day don't go well below the market without verified results.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Mark any unverified claim about results that predates the official count as inadmissible, and before judging on election day, check TSE or TRE live results or wait until polls close."
         }
       }
     ],
@@ -8621,9 +8625,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0605,
-      "b": 0.1296,
-      "n": 1296,
+      "a": 1.0613,
+      "b": 0.1317,
+      "n": 1297,
       "active": true,
       "need": 300
     },
@@ -8700,14 +8704,14 @@
       },
       {
         "category": "politics",
-        "n": 85,
-        "jev_research": 0.2777,
-        "jev_plain": 0.3167,
-        "market": 0.1607,
+        "n": 86,
+        "jev_research": 0.2778,
+        "jev_plain": 0.3158,
+        "market": 0.162,
         "claude_direct": 0.2799,
-        "n_jev_research": 60,
-        "n_jev_plain": 85,
-        "n_market": 85,
+        "n_jev_research": 61,
+        "n_jev_plain": 86,
+        "n_market": 86,
         "n_claude_direct": 15
       },
       {
@@ -9398,7 +9402,7 @@
     ],
     "suggested_areas": {
       "gates": 56,
-      "research": 65,
+      "research": 66,
       "questions": 3
     },
     "retro": {
