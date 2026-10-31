@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-31T21:23:57Z",
+  "generated": "2026-10-31T21:38:23Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-10-31T21:23:57Z",
+      "t": "2026-10-31T21:38:23Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,7 +898,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1895,
+    "resolved": 1896,
     "sources": [
       {
         "name": "jev_research",
@@ -909,8 +909,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2274487598944591,
-        "n": 1895
+        "brier": 0.22770094936708862,
+        "n": 1896
       },
       {
         "name": "claude_direct",
@@ -927,8 +927,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1466769686015831,
-        "n": 1895
+        "brier": 0.1467863293776371,
+        "n": 1896
       }
     ],
     "paired": {
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-10-31T21:20:32Z",
+    "ts": "2026-10-31T21:35:32Z",
     "stages": [
       [
         "Fetched",
@@ -2132,7 +2132,7 @@
           99500.72
         ],
         [
-          "2026-10-31T21:23:57Z",
+          "2026-10-31T21:38:23Z",
           99500.72
         ]
       ]
@@ -3117,7 +3117,7 @@
           99830.56
         ],
         [
-          "2026-10-31T21:23:57Z",
+          "2026-10-31T21:38:23Z",
           99830.56
         ]
       ]
@@ -4102,7 +4102,7 @@
           100192.02
         ],
         [
-          "2026-10-31T21:23:57Z",
+          "2026-10-31T21:38:23Z",
           100192.02
         ]
       ]
@@ -5087,7 +5087,7 @@
           100623.97
         ],
         [
-          "2026-10-31T21:23:57Z",
+          "2026-10-31T21:38:23Z",
           100623.97
         ]
       ]
@@ -7587,6 +7587,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-10-31T21:35:32Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-10-31T21:35:32Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-10-31T21:23:52Z",
       "type": "learn",
       "text": "Daily review written"
@@ -8127,19 +8140,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-31T13:20:25Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 0.09,
-      "q": "Will Diesel Price on October 31, 2026 be above $6.30? (Above $6.30)",
-      "url": "https://kalshi.com/markets/kxdieselmon/will-diesel-price-on-october-31-2026-be-above-6-30/kxdieselmon-26oct31"
-    },
-    {
-      "ts": "2026-10-31T13:20:25Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8152,7 +8152,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1895,
+    "reviewed": 1896,
     "post_mortems": 91,
     "win_reviews": 50,
     "calibration": [
@@ -8783,12 +8783,12 @@
       },
       {
         "category": "world",
-        "n": 41,
-        "jev_plain": 0.321,
-        "market": 0.103,
+        "n": 42,
+        "jev_plain": 0.3302,
+        "market": 0.109,
         "jev_research": 0.5326,
-        "n_jev_plain": 41,
-        "n_market": 41,
+        "n_jev_plain": 42,
+        "n_market": 42,
         "n_jev_research": 6
       }
     ],
