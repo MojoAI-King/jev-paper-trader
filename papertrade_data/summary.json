@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T22:53:19Z",
+  "generated": "2026-11-01T23:08:07Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-01T22:53:19Z",
+      "t": "2026-11-01T23:08:07Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-01T22:50:27Z",
+    "ts": "2026-11-01T23:05:26Z",
     "stages": [
       [
         "Fetched",
@@ -1007,7 +1007,7 @@
     "researched_new": 0,
     "research_reused": 0,
     "bets": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1025,7 +1025,7 @@
       "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     ],
     "cleared_gates": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1054,11 +1054,11 @@
         "min_edge": 0.03
       },
       "marked": 99500.72,
-      "unrealized": 0.0,
+      "unrealized": -0.0,
       "change": -499.28,
       "realized": -499.28,
-      "open": 0,
-      "open_cost": 0,
+      "open": 1,
+      "open_cost": 248.68,
       "settled": 2,
       "wins": 0,
       "losses": 2,
@@ -2162,7 +2162,7 @@
           99500.72
         ],
         [
-          "2026-11-01T22:53:19Z",
+          "2026-11-01T23:08:07Z",
           99500.72
         ]
       ]
@@ -3171,7 +3171,7 @@
           99867.74
         ],
         [
-          "2026-11-01T22:53:19Z",
+          "2026-11-01T23:08:07Z",
           99867.74
         ]
       ]
@@ -4180,7 +4180,7 @@
           100183.11
         ],
         [
-          "2026-11-01T22:53:19Z",
+          "2026-11-01T23:08:07Z",
           100183.11
         ]
       ]
@@ -5189,7 +5189,7 @@
           99924.84
         ],
         [
-          "2026-11-01T22:53:19Z",
+          "2026-11-01T23:08:07Z",
           99924.84
         ]
       ]
@@ -6158,6 +6158,29 @@
           "p_side": 0.925,
           "edge": -0.0196,
           "opened": "2026-11-01T12:05:27Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNCAAFGAME-26NOV07UKTENN-UK",
+      "question": "Kentucky wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/kentucky-wins/kxncaafgame-26nov07uktenn",
+      "source": "kalshi",
+      "close_time": "2026-11-09T20:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "sharp",
+          "side": "yes",
+          "contracts": 680,
+          "cost_per": 0.3657,
+          "total_cost": 248.68,
+          "p_side": 0.4878,
+          "edge": 0.1221,
+          "opened": "2026-11-01T23:05:26Z",
           "value": null
         }
       ]
@@ -7643,6 +7666,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-01T23:05:26Z",
+      "type": "bet",
+      "strategy": "sharp",
+      "side": "yes",
+      "price": 0.3657,
+      "amount": 248.68,
+      "p": 0.4878,
+      "q": "Kentucky wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/kentucky-wins/kxncaafgame-26nov07uktenn",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-01T23:05:26Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-01T23:05:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-01T22:50:27Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8203,27 +8251,6 @@
     },
     {
       "ts": "2026-11-01T14:50:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-01T14:35:30Z",
-      "type": "problem",
-      "text": "kalshi mentions: KXMENTIONEARNSFD: HTTP 429 from https://api.elections.kalshi.com/trade-api/v2/events: {\"error\":{\"code\":\"too_many_requests\","
-    },
-    {
-      "ts": "2026-11-01T14:35:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-01T14:20:26Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
