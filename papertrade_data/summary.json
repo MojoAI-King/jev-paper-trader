@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T01:52:57Z",
+  "generated": "2026-11-01T02:08:38Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -207,7 +207,7 @@
       "label": "Will the rate of core CPI inflation be above 2.4% for the year ending in September 2026? (Above 2.4%)"
     },
     {
-      "t": "2026-11-01T01:52:57Z",
+      "t": "2026-11-01T02:08:38Z",
       "equity": 77543.86,
       "label": "Now (open bets valued at cost)"
     }
@@ -898,19 +898,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1907,
+    "resolved": 1908,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20742410099464423,
-        "n": 1307
+        "brier": 0.20729311926605506,
+        "n": 1308
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22710513896171997,
-        "n": 1907
+        "brier": 0.2270875786163522,
+        "n": 1908
       },
       {
         "name": "claude_direct",
@@ -921,39 +921,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20951510265206816,
-        "n": 1233
+        "brier": 0.20937296244732576,
+        "n": 1234
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1464145802307289,
-        "n": 1907
+        "brier": 0.1464823005765199,
+        "n": 1908
       }
     ],
     "paired": {
-      "n": 868,
+      "n": 869,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16172889631336407
+          "brier": 0.16193660184119676
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21566255760368663
+          "brier": 0.21545166858457998
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.1988673963133641
+          "brier": 0.19874211737629457
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24332937788018433
+          "brier": 0.24328239355581127
         }
       ]
     }
@@ -970,7 +970,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-01T01:50:24Z",
+    "ts": "2026-11-01T02:05:30Z",
     "stages": [
       [
         "Fetched",
@@ -2134,7 +2134,7 @@
           99500.72
         ],
         [
-          "2026-11-01T01:52:57Z",
+          "2026-11-01T02:08:38Z",
           99500.72
         ]
       ]
@@ -3123,7 +3123,7 @@
           99830.56
         ],
         [
-          "2026-11-01T01:52:57Z",
+          "2026-11-01T02:08:38Z",
           99830.56
         ]
       ]
@@ -4112,7 +4112,7 @@
           100192.02
         ],
         [
-          "2026-11-01T01:52:57Z",
+          "2026-11-01T02:08:38Z",
           100192.02
         ]
       ]
@@ -5101,7 +5101,7 @@
           101196.93
         ],
         [
-          "2026-11-01T01:52:57Z",
+          "2026-11-01T02:08:38Z",
           101196.93
         ]
       ]
@@ -7555,6 +7555,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-01T02:08:08Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "research_found_it",
+      "q": "Will the Rhine River return to normal levels between October 1 and October 31, 2026?",
+      "url": "https://polymarket.com/market/will-the-rhine-river-return-to-normal-levels-between-october-1-and-october-31-2026"
+    },
+    {
+      "ts": "2026-11-01T02:05:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-01T01:50:24Z",
       "type": "scan",
       "fetched": 200,
@@ -8123,19 +8139,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-31T17:09:14Z",
-      "type": "learn",
-      "text": "Research playbook updated to v23"
-    },
-    {
-      "ts": "2026-10-31T17:08:14Z",
-      "type": "review",
-      "kind": "win",
-      "cause": "lucky",
-      "q": "Best AI in Oct 2026? (Claude)",
-      "url": "https://kalshi.com/markets/kxllm1/best-ai-in-oct-2026/kxllm1-26oct31"
     }
   ],
   "plan_usage": {
@@ -8148,15 +8151,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1907,
+    "reviewed": 1908,
     "post_mortems": 92,
-    "win_reviews": 51,
+    "win_reviews": 52,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 176,
+        "n": 177,
         "predicted": 0.137,
-        "actual": 0.176
+        "actual": 0.175
       },
       {
         "range": "20\u201340%",
@@ -8194,7 +8197,7 @@
     "credits": {
       "lucky": 27,
       "base_rate": 9,
-      "research_found_it": 15
+      "research_found_it": 16
     },
     "recent": [
       {
@@ -8322,6 +8325,26 @@
     ],
     "recent_wins": [
       {
+        "question": "Will the Rhine River return to normal levels between October 1 and October 31, 2026?",
+        "url": "https://polymarket.com/market/will-the-rhine-river-return-to-normal-levels-between-october-1-and-october-31-2026",
+        "outcome": "no",
+        "category": "other",
+        "p": 0.19,
+        "market": 0.525,
+        "ts": "2026-11-01T02:08:08Z",
+        "bets": {},
+        "kind": "win",
+        "root_cause": "research_found_it",
+        "what_happened": "Kaub sat near record lows for most of October: -6 cm at the start, about 11 cm around Oct 18, then 27 cm on Oct 25. Storm rain in late October gave a forecast peak of only about 66 cm around Oct 28, with levels expected to fall afterward. As reported, Kaub never reached 77 cm before November 1, so the market resolved No.",
+        "what_we_missed": "",
+        "what_worked": "The research showed how far the river had to climb: from about 0\u20139 cm it needed roughly 70 cm in October. It also found forecasts of a dry first half of October with only showery rain after that, and the 2018 case, where a deep low did not recover in October. The market at 52.5% and the no-research forecast at 44% ignored that gap. The margin was thinner than 19% implies, though: a late storm took the gauge to within about 11 cm of the mark, so some luck was involved.",
+        "lesson": "For low-water recovery questions, work out how many centimetres the gauge must rise and compare that with weather-model rainfall over the catchment, instead of anchoring on how the river 'normally' behaves in that month.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Pull the official BfG/WSV multi-day Kaub forecasts and catchment rainfall totals, and size the required rise against past rain-driven rises, because a single storm here came within about 11 cm of resolving YES."
+        }
+      },
+      {
         "question": "Will Likud win 30-34 seats in the 2026 Israeli legislative election?",
         "url": "https://polymarket.com/market/will-likud-win-30-34-seats-in-the-2026-israeli-legislative-election",
         "outcome": "no",
@@ -8429,28 +8452,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Add a consistency check that flags any rules fact whose numeric threshold differs from the one in the question title, and resolve the conflict before the forecaster sees the fact list."
-        }
-      },
-      {
-        "question": "Will there be no change in Fed interest rates after the October 2026 meeting?",
-        "url": "https://polymarket.com/market/will-there-be-no-change-in-fed-interest-rates-after-the-october-2026-meeting-20260617190324031",
-        "outcome": "yes",
-        "category": "economy",
-        "p": null,
-        "market": 0.835,
-        "ts": "2026-10-29T04:08:21Z",
-        "bets": {
-          "favorites": 87.29
-        },
-        "kind": "win",
-        "root_cause": "lucky",
-        "what_happened": "On October 28, 2026 the FOMC under Chair Kevin Warsh voted 10-2 to keep the target range at 3.75%\u20134.00%, so the upper bound did not change and the market resolved YES. Cook and Hammack dissented in favor of a 25 bp hike, and the hold came after a 25 bp hike in September.",
-        "what_we_missed": "",
-        "what_worked": "There was no research and no reasoning behind this. jev_alone said 0.5 with no facts, which is just a coin flip, and it was less accurate than the market's 0.835. The money was made by the 'favorites' strategy, which simply bet with the market's 83.5% hold price. That price turned out to be correct because two weeks before an FOMC meeting the market's read on the decision is usually right.",
-        "lesson": "If the forecaster has no facts and the market is pricing an FOMC outcome above 80% within a few weeks of the meeting, use the market price as the default instead of 0.5, and check CME FedWatch plus the latest Fed speeches (here, the September hike and the hawkish dissents) before trying to beat it.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Do not let a forecast with no research and a probability of exactly 0.5 count as a real view. Either require a research pass first or default to the market price for scheduled central-bank decisions."
         }
       }
     ],
@@ -8662,9 +8663,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0667,
-      "b": 0.1293,
-      "n": 1307,
+      "a": 1.0681,
+      "b": 0.1291,
+      "n": 1308,
       "active": true,
       "need": 300
     },
@@ -8695,14 +8696,14 @@
       },
       {
         "category": "other",
-        "n": 305,
-        "jev_plain": 0.207,
-        "market": 0.1374,
-        "jev_research": 0.2444,
+        "n": 306,
+        "jev_plain": 0.2069,
+        "market": 0.1378,
+        "jev_research": 0.2429,
         "claude_direct": 0.1822,
-        "n_jev_plain": 305,
-        "n_market": 305,
-        "n_jev_research": 137,
+        "n_jev_plain": 306,
+        "n_market": 306,
+        "n_jev_research": 138,
         "n_claude_direct": 37
       },
       {
@@ -9439,7 +9440,7 @@
     ],
     "suggested_areas": {
       "gates": 56,
-      "research": 69,
+      "research": 70,
       "questions": 3
     },
     "retro": {
