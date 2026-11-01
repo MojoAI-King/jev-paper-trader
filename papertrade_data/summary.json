@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T06:08:14Z",
+  "generated": "2026-11-01T06:23:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-01T06:08:14Z",
+      "t": "2026-11-01T06:23:20Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1971,
+    "resolved": 1978,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20660282738095237,
-        "n": 1344
+        "brier": 0.20646379182156135,
+        "n": 1345
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22812313546423135,
-        "n": 1971
+        "brier": 0.2276149140546006,
+        "n": 1978
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2086669636535433,
-        "n": 1270
+        "brier": 0.2085172550747443,
+        "n": 1271
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14710634170471842,
-        "n": 1971
+        "brier": 0.14669914029322548,
+        "n": 1978
       }
     ],
     "paired": {
-      "n": 898,
+      "n": 900,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16428299944320712
+          "brier": 0.16393864833333333
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21616670378619154
+          "brier": 0.21571855555555558
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20042227171492205
+          "brier": 0.2000107777777778
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24365812917594656
+          "brier": 0.24317011111111111
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-01T06:05:35Z",
+    "ts": "2026-11-01T06:20:34Z",
     "stages": [
       [
         "Fetched",
@@ -2144,7 +2144,7 @@
           99500.72
         ],
         [
-          "2026-11-01T06:08:14Z",
+          "2026-11-01T06:23:20Z",
           99500.72
         ]
       ]
@@ -3137,7 +3137,7 @@
           99830.56
         ],
         [
-          "2026-11-01T06:08:14Z",
+          "2026-11-01T06:23:20Z",
           99830.56
         ]
       ]
@@ -4130,7 +4130,7 @@
           100192.02
         ],
         [
-          "2026-11-01T06:08:14Z",
+          "2026-11-01T06:23:20Z",
           100192.02
         ]
       ]
@@ -5123,7 +5123,7 @@
           100977.89
         ],
         [
-          "2026-11-01T06:08:14Z",
+          "2026-11-01T06:23:20Z",
           100977.89
         ]
       ]
@@ -7508,6 +7508,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-01T06:20:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-01T06:05:35Z",
       "type": "scan",
       "fetched": 200,
@@ -8134,14 +8142,6 @@
       "ts": "2026-10-31T20:50:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-31T20:50:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8154,15 +8154,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1971,
+    "reviewed": 1978,
     "post_mortems": 96,
     "win_reviews": 54,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 184,
+        "n": 185,
         "predicted": 0.138,
-        "actual": 0.174
+        "actual": 0.173
       },
       {
         "range": "20\u201340%",
@@ -8664,9 +8664,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.072,
+      "a": 1.0733,
       "b": 0.1216,
-      "n": 1344,
+      "n": 1345,
       "active": true,
       "need": 300
     },
@@ -8697,14 +8697,14 @@
       },
       {
         "category": "other",
-        "n": 311,
-        "jev_plain": 0.2125,
-        "market": 0.1397,
-        "jev_research": 0.245,
+        "n": 313,
+        "jev_plain": 0.2116,
+        "market": 0.1389,
+        "jev_research": 0.2434,
         "claude_direct": 0.184,
-        "n_jev_plain": 311,
-        "n_market": 311,
-        "n_jev_research": 139,
+        "n_jev_plain": 313,
+        "n_market": 313,
+        "n_jev_research": 140,
         "n_claude_direct": 38
       },
       {
@@ -8755,24 +8755,24 @@
       },
       {
         "category": "world",
-        "n": 57,
-        "jev_plain": 0.3163,
-        "market": 0.1261,
+        "n": 60,
+        "jev_plain": 0.3038,
+        "market": 0.1222,
         "jev_research": 0.4053,
-        "n_jev_plain": 57,
-        "n_market": 57,
+        "n_jev_plain": 60,
+        "n_market": 60,
         "n_jev_research": 10
       },
       {
         "category": "tech",
-        "n": 51,
+        "n": 53,
         "jev_research": 0.2968,
-        "jev_plain": 0.2224,
-        "market": 0.0892,
+        "jev_plain": 0.2184,
+        "market": 0.0869,
         "claude_direct": 0.3962,
         "n_jev_research": 12,
-        "n_jev_plain": 51,
-        "n_market": 51,
+        "n_jev_plain": 53,
+        "n_market": 53,
         "n_claude_direct": 2
       },
       {
