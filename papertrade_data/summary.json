@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T13:23:13Z",
+  "generated": "2026-11-01T13:38:13Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-01T13:23:13Z",
+      "t": "2026-11-01T13:38:13Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-01T13:20:23Z",
+    "ts": "2026-11-01T13:35:41Z",
     "stages": [
       [
         "Fetched",
@@ -1021,7 +1021,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch stopped after 54 pages (<urlopen error [Errno 104] Connection reset by peer>); kept what it had"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -2144,7 +2146,7 @@
           99500.72
         ],
         [
-          "2026-11-01T13:23:13Z",
+          "2026-11-01T13:38:13Z",
           99500.72
         ]
       ]
@@ -3137,7 +3139,7 @@
           99830.56
         ],
         [
-          "2026-11-01T13:23:13Z",
+          "2026-11-01T13:38:13Z",
           99830.56
         ]
       ]
@@ -4130,7 +4132,7 @@
           100192.02
         ],
         [
-          "2026-11-01T13:23:13Z",
+          "2026-11-01T13:38:13Z",
           100192.02
         ]
       ]
@@ -5123,7 +5125,7 @@
           100977.89
         ],
         [
-          "2026-11-01T13:23:13Z",
+          "2026-11-01T13:38:13Z",
           100977.89
         ]
       ]
@@ -7600,6 +7602,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-01T13:35:41Z",
+      "type": "problem",
+      "text": "kalshi: fetch stopped after 54 pages (<urlopen error [Errno 104] Connection reset by peer>); kept what it had"
+    },
+    {
+      "ts": "2026-11-01T13:35:41Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-01T13:20:23Z",
       "type": "scan",
       "fetched": 200,
@@ -8252,19 +8267,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-01T00:08:43Z",
-      "type": "learn",
-      "text": "Research playbook updated to v23"
-    },
-    {
-      "ts": "2026-11-01T00:07:54Z",
-      "type": "review",
-      "kind": "miss",
-      "cause": "unlucky",
-      "q": "Will the Milwaukee Brewers win the 2026 World Series?",
-      "url": "https://polymarket.com/market/will-the-milwaukee-brewers-win-the-2026-world-series"
     }
   ],
   "plan_usage": {
