@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-01T10:52:57Z",
+  "generated": "2026-11-01T11:08:10Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-01T10:52:57Z",
+      "t": "2026-11-01T11:08:10Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 1990,
+    "resolved": 1991,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22658959798994974,
-        "n": 1990
+        "brier": 0.2264958814665997,
+        "n": 1991
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14598249334170854,
-        "n": 1990
+        "brier": 0.145911294198895,
+        "n": 1991
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-01T10:50:29Z",
+    "ts": "2026-11-01T11:05:34Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1146,8 +1146,8 @@
       "unrealized": 0.0,
       "change": 977.89,
       "realized": 977.89,
-      "open": 38,
-      "open_cost": 46586.04,
+      "open": 39,
+      "open_cost": 48100.25,
       "settled": 48,
       "wins": 46,
       "losses": 2,
@@ -2144,7 +2144,7 @@
           99500.72
         ],
         [
-          "2026-11-01T10:52:57Z",
+          "2026-11-01T11:08:10Z",
           99500.72
         ]
       ]
@@ -3137,7 +3137,7 @@
           99830.56
         ],
         [
-          "2026-11-01T10:52:57Z",
+          "2026-11-01T11:08:10Z",
           99830.56
         ]
       ]
@@ -4130,7 +4130,7 @@
           100192.02
         ],
         [
-          "2026-11-01T10:52:57Z",
+          "2026-11-01T11:08:10Z",
           100192.02
         ]
       ]
@@ -5123,7 +5123,7 @@
           100977.89
         ],
         [
-          "2026-11-01T10:52:57Z",
+          "2026-11-01T11:08:10Z",
           100977.89
         ]
       ]
@@ -5356,6 +5356,29 @@
           "p_side": 0.925,
           "edge": -0.0196,
           "opened": "2026-10-30T16:19:49Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:1194657",
+      "question": "Will \u0410ndrey Gyurov win the next Bulgarian presidential election?",
+      "url": "https://polymarket.com/market/will-ndrey-gyurov-win-the-next-bulgarian-presidential-election",
+      "source": "polymarket",
+      "close_time": "2026-11-02T04:59:00Z",
+      "category": "politics",
+      "price": 0.115,
+      "price_at": "2026-10-12T00:35:11Z",
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1640,
+          "cost_per": 0.9233,
+          "total_cost": 1514.21,
+          "p_side": 0.905,
+          "edge": -0.0183,
+          "opened": "2026-11-01T11:05:34Z",
           "value": null
         }
       ]
@@ -7531,6 +7554,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-01T11:05:34Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9233,
+      "amount": 1514.21,
+      "p": 0.905,
+      "q": "Will \u0410ndrey Gyurov win the next Bulgarian presidential election?",
+      "url": "https://polymarket.com/market/will-ndrey-gyurov-win-the-next-bulgarian-presidential-election",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-01T11:05:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-01T10:50:29Z",
       "type": "scan",
       "fetched": 200,
@@ -8179,19 +8222,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-10-31T23:05:23Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-10-31T23:05:23Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8204,7 +8234,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 1990,
+    "reviewed": 1991,
     "post_mortems": 96,
     "win_reviews": 54,
     "calibration": [
@@ -8805,12 +8835,12 @@
       },
       {
         "category": "world",
-        "n": 67,
-        "jev_plain": 0.2781,
-        "market": 0.1108,
+        "n": 68,
+        "jev_plain": 0.2746,
+        "market": 0.1092,
         "jev_research": 0.4053,
-        "n_jev_plain": 67,
-        "n_market": 67,
+        "n_jev_plain": 68,
+        "n_market": 68,
         "n_jev_research": 10
       },
       {
