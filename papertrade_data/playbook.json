@@ -1,39 +1,51 @@
 {
-  "version": 23,
-  "updated": "2026-11-01T00:08:16Z",
+  "version": 24,
+  "updated": "2026-11-02T00:08:14Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
-      "rule": "Read crypto rules for the exact strike, venue/pair and test (any touch or a close at a set candle); if mid-window, first check the venue's candles or dated reports for whether the strike was already hit and by how much, then record a venue spot timestamped under an hour old.",
+      "rule": "Copy the crypto strike, venue/pair and test (any touch or a close at a set candle) from the title and rules and check every fact cites that strike; check the venue's candles for whether it was already hit, and record a venue spot timestamped within 15 minutes of judgment.",
       "evidence": [
         "polymarket:4797513",
         "polymarket:4797724",
         "polymarket:4797726",
         "polymarket:4844455",
         "polymarket:5009022",
-        "polymarket:5208385"
+        "polymarket:5208385",
+        "polymarket:5170737",
+        "polymarket:5170738"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
     {
       "id": "R2",
-      "category": "crypto",
-      "rule": "For crypto threshold questions, report percent distance to strike, hours left, how many of the last 14 days the venue traded through that level, realized volatility, any weekend, and timestamped same-day catalysts (yields, dollar, ETF flows, jobs data) or state none found.",
+      "category": "world",
+      "rule": "For price-touch questions (crypto, oil, commodities), use the contract or venue the rules name and report percent distance to strike, days left, realized volatility, days in the last 14 that traded through it, and dated catalysts; label old peaks as not current evidence.",
       "evidence": [
         "polymarket:4689727",
         "polymarket:4797513",
         "polymarket:4797726",
         "polymarket:5009022",
         "polymarket:5208385",
-        "polymarket:5362505"
+        "polymarket:5362505",
+        "polymarket:4936102"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
     {
+      "id": "R38",
+      "category": "world",
+      "rule": "When a question resolves on an official statement, search for statements dated in the last 24 hours, and report independent dated reports that the event (e.g. pipeline flows) already happened plus the same body's past announcements of similar events and their lag.",
+      "evidence": [
+        "polymarket:4619164"
+      ],
+      "added": "2026-11-02T00:08:14Z"
+    },
+    {
       "id": "R7",
       "category": "sports",
-      "rule": "For match questions, report both sides' dated absences and returns from the latest press conferences, the stand-in and the absent player's actual recent output, settled from confirmed lineups; label all-time series and head-to-heads under about 10 games as weak.",
+      "rule": "For match or fight questions, report both sides' dated absences, returns and weigh-in news, the stand-in's and absent player's recent output, settled from confirmed lineups; label head-to-heads under about 10 games, win streaks and common-opponent links as weak.",
       "evidence": [
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-CWS",
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
@@ -43,18 +55,21 @@
         "polymarket:4581752",
         "polymarket:4689888",
         "polymarket:4911446",
-        "polymarket:5009102"
+        "polymarket:5009102",
+        "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
     {
       "id": "R28",
       "category": "sports",
-      "rule": "For team win or spread questions, report the home side's home-only and the visitor's road-only records, goals or points allowed over the last 5, the last 8\u201310 meetings, schedule strength behind any record or margin (e.g. FCS foes, first FBS year), and whether a draw resolves No.",
+      "rule": "For team win, spread or total questions, report home-only and road-only records, dated scores and points allowed over each side's last 5, last 8\u201310 meetings, schedule strength, starting QB or key starter changes, and whether a draw resolves No; label 3\u20134 game streaks weak.",
       "evidence": [
         "kalshi:KXNCAAFSPREAD-26OCT10NDSUUNLV-NDSU4",
         "polymarket:5036247",
-        "polymarket:5238435"
+        "polymarket:5238435",
+        "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
+        "kalshi:KXNFLTOTAL-26OCT08TBDAL-48"
       ],
       "added": "2026-10-12T08:12:13Z"
     },
@@ -74,14 +89,14 @@
       "added": "2026-10-14T00:07:36Z"
     },
     {
-      "id": "R25",
+      "id": "R34",
       "category": "sports",
-      "rule": "For game-total questions (goals or points), report both teams' recent game totals with dates, label a 3\u20134 game streak as a small sample, note weakened opponents in any blowout, and report each side's starting QB or key starter changes and defensive ranking.",
+      "rule": "For tournament or award winners, first search coverage dated after the final or ceremony; else list remaining rounds, formats and opponents for brackets, or the official shortlist and finalists' dated honours for awards, and label past-season reputation weak.",
       "evidence": [
-        "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
-        "kalshi:KXNFLTOTAL-26OCT08TBDAL-48"
+        "polymarket:4411997",
+        "polymarket:4397202"
       ],
-      "added": "2026-10-08T00:08:38Z"
+      "added": "2026-10-28T14:37:42Z"
     },
     {
       "id": "R9",
@@ -110,15 +125,6 @@
         "kalshi:KXNFLTD-26OCT08TBDAL-DALJWILLIAMS33-1"
       ],
       "added": "2026-10-03T00:07:21Z"
-    },
-    {
-      "id": "R21",
-      "category": "sports",
-      "rule": "For single MMA fights, report each fighter's age, recent opponents and how those fights ended, and dated weigh-in or weight-cut news; label win streaks and common-opponent comparisons as weak evidence.",
-      "evidence": [
-        "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE"
-      ],
-      "added": "2026-10-05T00:11:07Z"
     },
     {
       "id": "R13",
@@ -174,15 +180,6 @@
         "kalshi:KXDWTSELIMINATION-26OCT07-JOLS"
       ],
       "added": "2026-10-08T00:08:38Z"
-    },
-    {
-      "id": "R34",
-      "category": "other",
-      "rule": "For voted awards, check the ceremony date and search for coverage dated after it; otherwise read the official shortlist, list each finalist's dated season honours, trophies and stats, note past winners missing from it, and cite major outlets' dated rankings.",
-      "evidence": [
-        "polymarket:4411997"
-      ],
-      "added": "2026-10-28T14:37:42Z"
     },
     {
       "id": "R32",
@@ -327,10 +324,13 @@
     "polymarket:3662130",
     "polymarket:3662876",
     "polymarket:4052418",
+    "polymarket:4294627",
+    "polymarket:4397202",
     "polymarket:4411997",
     "polymarket:4581722",
     "polymarket:4581752",
     "polymarket:4581768",
+    "polymarket:4619164",
     "polymarket:4678632",
     "polymarket:4689727",
     "polymarket:4689888",
@@ -347,6 +347,7 @@
     "polymarket:4868022",
     "polymarket:4885967",
     "polymarket:4911446",
+    "polymarket:4936102",
     "polymarket:4981247",
     "polymarket:5009022",
     "polymarket:5009082",
@@ -362,6 +363,9 @@
     "polymarket:5083454",
     "polymarket:5105601",
     "polymarket:5144380",
+    "polymarket:5170737",
+    "polymarket:5170738",
+    "polymarket:5170739",
     "polymarket:5178226",
     "polymarket:5178227",
     "polymarket:5207000",
@@ -386,8 +390,10 @@
     "R16",
     "R18",
     "R20",
+    "R21",
     "R22",
     "R24",
+    "R25",
     "R29",
     "R3",
     "R31",
