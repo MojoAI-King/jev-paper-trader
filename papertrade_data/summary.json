@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T21:38:03Z",
+  "generated": "2026-11-02T21:53:47Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T21:38:03Z",
+      "t": "2026-11-02T21:53:47Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T21:35:32Z",
+    "ts": "2026-11-02T21:50:38Z",
     "stages": [
       [
         "Fetched",
@@ -2182,7 +2182,7 @@
           99500.72
         ],
         [
-          "2026-11-02T21:38:03Z",
+          "2026-11-02T21:53:47Z",
           99500.72
         ]
       ]
@@ -3211,7 +3211,7 @@
           99833.69
         ],
         [
-          "2026-11-02T21:38:03Z",
+          "2026-11-02T21:53:47Z",
           99833.69
         ]
       ]
@@ -4240,7 +4240,7 @@
           100149.06
         ],
         [
-          "2026-11-02T21:38:03Z",
+          "2026-11-02T21:53:47Z",
           100149.06
         ]
       ]
@@ -5269,7 +5269,7 @@
           101000.19
         ],
         [
-          "2026-11-02T21:38:03Z",
+          "2026-11-02T21:53:47Z",
           101000.19
         ]
       ]
@@ -7563,6 +7563,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-02T21:53:42Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-02T21:50:38Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-02T21:50:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T21:35:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8181,34 +8199,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 1
-    },
-    {
-      "ts": "2026-11-02T06:35:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-02T06:20:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-02T06:05:29Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9163,
-      "amount": 1507.31,
-      "p": 0.895,
-      "q": "Will the price of Ethereum be above $2,400 on November 3?",
-      "url": "https://polymarket.com/market/ethereum-above-2400-on-november-3-2026",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -9519,17 +9509,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-02T09:42:37Z",
-      "headline": "A quiet half day with nothing to tune: all four visible strategies are locked forward tests, no new markets were judged in 48 cycles, main, original and the challengers are still missing from the report, and the market price remains the best forecaster.",
+      "ts": "2026-11-02T21:53:21Z",
+      "headline": "A quiet half-day: the four locked strategies barely moved, judging still produced nothing in 46 cycles, and main, original and the other Jev and Claude strategies are still missing from the review, so there is nothing we can safely tune today.",
       "went_well": [
-        "Mention markets, follow the first NO is up $183 on 15 settled bets (10 wins, 5 losses), about +$40 per $100 settled. That is under 30 results, so it is an encouraging experiment, not a finding.",
-        "Heavy favorites is 60 for 63 on settled bets (all 60c and up) and is up $524, but that is only +$0.73 per $100 on $71.7k staked. It shows the market prices favorites about right, and three losses nearly erased the gains.",
-        "Mention NO is close to break-even: down $132 on 62 settled bets (about -$7 per $100) while betting very small stakes."
+        "Heavy favorites is up $1,000 on 70 settled bets (67 wins, 3 losses). That is only about $1.30 per $100 staked on $78.3k, so three more upsets would erase it, and 37 bets are still open.",
+        "Mention follow is up $149 on 17 settled (11 wins), about +$30 per $100 settled. Under 30 results, this is noise, not a finding.",
+        "The 30c price floor is holding: no strategy has settled a single long-shot bet, so long shots aren't costing us anything."
       ],
       "went_badly": [
-        "Nothing new was forecast. 48 cycles judged 0 markets, so the Jev and Claude scores are unchanged. The market still leads on paired markets (Brier 0.163, against 0.199 for Claude and 0.216 for Jev + research, on 906 markets).",
-        "Sharp line is 0 for 2 (-$499) and has placed 3 bets ever. Its live rules still show a 3c edge requirement at version 1, though the 2c change was logged as applied. Its skill estimate (-2.09, standard error 0) and its gate ledger (1 bet) don't match its record.",
-        "Heavy favorites has about $49k, roughly 49% of its bankroll, open on 44 bets, right at its 50% exposure cap, with an average stake near $1.1k. A few upsets could cost far more than its $524 profit."
+        "Judging is still down. 46 cycles judged 0 markets with 0 research, so the Jev and Claude forecasters placed no bets. Only mention_no bet, once. Main, original, bold, calibrated and claude_direct are still absent and the yardstick is empty, so we can't tell whether tuning main pays (p46 and p50 are s",
+        "Mention NO is down $166 on 64 settled (24 wins, 40 losses). Its record still doesn't add up: it won 16 of 48 bets at 30-60c yet lost only $47 there (p48). Its roughly $31 average stake also matches no sizing rule (p59), even though mention_prior's skill is positive on 992 markets.",
+        "Sharp has lost both settled bets (-$499) and placed only 3 bets ever. Its live rules still show a 3c edge at version 1, though p33 logged a change to 2c at version 2. Its skill reading of -2.09 with a standard error of 0 is still unexplained (p36, p39, p42, p45)."
       ]
     },
     "auto_start": true,
