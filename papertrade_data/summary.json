@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T18:37:59Z",
+  "generated": "2026-11-02T18:53:22Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T18:37:59Z",
+      "t": "2026-11-02T18:53:22Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2009,
+    "resolved": 2010,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22655893479342956,
-        "n": 2009
+        "brier": 0.2267889552238806,
+        "n": 2010
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14561850286212044,
-        "n": 2009
+        "brier": 0.145779501119403,
+        "n": 2010
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T18:35:30Z",
+    "ts": "2026-11-02T18:50:35Z",
     "stages": [
       [
         "Fetched",
@@ -2176,7 +2176,7 @@
           99500.72
         ],
         [
-          "2026-11-02T18:37:59Z",
+          "2026-11-02T18:53:22Z",
           99500.72
         ]
       ]
@@ -3201,7 +3201,7 @@
           99833.69
         ],
         [
-          "2026-11-02T18:37:59Z",
+          "2026-11-02T18:53:22Z",
           99833.69
         ]
       ]
@@ -4226,7 +4226,7 @@
           100149.06
         ],
         [
-          "2026-11-02T18:37:59Z",
+          "2026-11-02T18:53:22Z",
           100149.06
         ]
       ]
@@ -5251,7 +5251,7 @@
           100972.59
         ],
         [
-          "2026-11-02T18:37:59Z",
+          "2026-11-02T18:53:22Z",
           100972.59
         ]
       ]
@@ -7568,6 +7568,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-02T18:50:35Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T18:35:30Z",
       "type": "scan",
       "fetched": 200,
@@ -8219,14 +8227,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-02T04:05:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8239,7 +8239,7 @@
   "research_per_day": 150,
   "cycles_24h": 94,
   "learning": {
-    "reviewed": 2009,
+    "reviewed": 2010,
     "post_mortems": 96,
     "win_reviews": 55,
     "calibration": [
@@ -8847,12 +8847,12 @@
       },
       {
         "category": "world",
-        "n": 73,
-        "jev_plain": 0.2802,
-        "market": 0.1124,
+        "n": 74,
+        "jev_plain": 0.2857,
+        "market": 0.1172,
         "jev_research": 0.4053,
-        "n_jev_plain": 73,
-        "n_market": 73,
+        "n_jev_plain": 74,
+        "n_market": 74,
         "n_jev_research": 10
       },
       {
