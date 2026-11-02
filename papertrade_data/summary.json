@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T06:53:06Z",
+  "generated": "2026-11-02T07:07:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T06:53:06Z",
+      "t": "2026-11-02T07:07:56Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2005,
+    "resolved": 2006,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22616678304239402,
-        "n": 2005
+        "brier": 0.22616889332003987,
+        "n": 2006
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1455302379052369,
-        "n": 2005
+        "brier": 0.14546492883848455,
+        "n": 2006
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T06:50:28Z",
+    "ts": "2026-11-02T07:05:30Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2168,7 +2168,7 @@
           99500.72
         ],
         [
-          "2026-11-02T06:53:06Z",
+          "2026-11-02T07:07:56Z",
           99500.72
         ]
       ]
@@ -3185,7 +3185,7 @@
           99867.74
         ],
         [
-          "2026-11-02T06:53:06Z",
+          "2026-11-02T07:07:56Z",
           99867.74
         ]
       ]
@@ -4202,7 +4202,7 @@
           100183.11
         ],
         [
-          "2026-11-02T06:53:06Z",
+          "2026-11-02T07:07:56Z",
           100183.11
         ]
       ]
@@ -5219,7 +5219,7 @@
           100524.0
         ],
         [
-          "2026-11-02T06:53:06Z",
+          "2026-11-02T07:07:56Z",
           100524.0
         ]
       ]
@@ -7673,6 +7673,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-02T07:05:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T06:50:28Z",
       "type": "bet",
       "strategy": "favorites",
@@ -8316,11 +8324,6 @@
       "q": "Will the price of Bitcoin be above $80,000 on November 2?",
       "url": "https://polymarket.com/market/bitcoin-above-80k-on-november-2-2026",
       "probe": false
-    },
-    {
-      "ts": "2026-11-01T21:05:27Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8333,7 +8336,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2005,
+    "reviewed": 2006,
     "post_mortems": 96,
     "win_reviews": 55,
     "calibration": [
@@ -8951,14 +8954,14 @@
       },
       {
         "category": "tech",
-        "n": 57,
+        "n": 58,
         "jev_research": 0.2555,
-        "jev_plain": 0.2087,
-        "market": 0.0924,
+        "jev_plain": 0.2091,
+        "market": 0.0911,
         "claude_direct": 0.2423,
         "n_jev_research": 14,
-        "n_jev_plain": 57,
-        "n_market": 57,
+        "n_jev_plain": 58,
+        "n_market": 58,
         "n_claude_direct": 4
       },
       {
