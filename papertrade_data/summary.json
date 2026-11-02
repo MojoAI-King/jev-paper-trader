@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T02:22:50Z",
+  "generated": "2026-11-02T02:37:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T02:22:50Z",
+      "t": "2026-11-02T02:37:56Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2002,
+    "resolved": 2003,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22590819180819183,
-        "n": 2002
+        "brier": 0.2259751372940589,
+        "n": 2003
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14546891958041958,
-        "n": 2002
+        "brier": 0.14566234498252623,
+        "n": 2003
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T02:20:26Z",
+    "ts": "2026-11-02T02:35:29Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2164,7 +2164,7 @@
           99500.72
         ],
         [
-          "2026-11-02T02:22:50Z",
+          "2026-11-02T02:37:56Z",
           99500.72
         ]
       ]
@@ -3177,7 +3177,7 @@
           99867.74
         ],
         [
-          "2026-11-02T02:22:50Z",
+          "2026-11-02T02:37:56Z",
           99867.74
         ]
       ]
@@ -4190,7 +4190,7 @@
           100183.11
         ],
         [
-          "2026-11-02T02:22:50Z",
+          "2026-11-02T02:37:56Z",
           100183.11
         ]
       ]
@@ -5203,7 +5203,7 @@
           100101.3
         ],
         [
-          "2026-11-02T02:22:50Z",
+          "2026-11-02T02:37:56Z",
           100101.3
         ]
       ]
@@ -7703,6 +7703,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-02T02:35:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T02:20:26Z",
       "type": "bet",
       "strategy": "favorites",
@@ -8295,14 +8303,6 @@
       "amount": -26.38,
       "q": "What will Josh Shapiro say during Face the Nation originally scheduled for November 1, 2026? (Democrat)",
       "url": "https://kalshi.com/markets/kxftnmention/what-will-josh-shapiro-say-during-face-the-nation-originally/kxftnmention-26nov01"
-    },
-    {
-      "ts": "2026-11-01T17:50:34Z",
-      "type": "loss",
-      "strategy": "mention_follow",
-      "amount": -8.91,
-      "q": "What will Josh Shapiro say during Face the Nation originally scheduled for November 1, 2026? (Trump)",
-      "url": "https://kalshi.com/markets/kxftnmention/what-will-josh-shapiro-say-during-face-the-nation-originally/kxftnmention-26nov01"
     }
   ],
   "plan_usage": {
@@ -8315,7 +8315,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2002,
+    "reviewed": 2003,
     "post_mortems": 96,
     "win_reviews": 54,
     "calibration": [
@@ -8865,13 +8865,13 @@
       },
       {
         "category": "other",
-        "n": 320,
-        "jev_plain": 0.209,
-        "market": 0.1366,
+        "n": 321,
+        "jev_plain": 0.2095,
+        "market": 0.1378,
         "jev_research": 0.2429,
         "claude_direct": 0.184,
-        "n_jev_plain": 320,
-        "n_market": 320,
+        "n_jev_plain": 321,
+        "n_market": 321,
         "n_jev_research": 142,
         "n_claude_direct": 38
       },
