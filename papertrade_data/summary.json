@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T20:53:22Z",
+  "generated": "2026-11-02T21:08:04Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T20:53:22Z",
+      "t": "2026-11-02T21:08:04Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T20:50:35Z",
+    "ts": "2026-11-02T21:05:33Z",
     "stages": [
       [
         "Fetched",
@@ -1021,7 +1021,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -2180,7 +2182,7 @@
           99500.72
         ],
         [
-          "2026-11-02T20:53:22Z",
+          "2026-11-02T21:08:04Z",
           99500.72
         ]
       ]
@@ -3209,7 +3211,7 @@
           99833.69
         ],
         [
-          "2026-11-02T20:53:22Z",
+          "2026-11-02T21:08:04Z",
           99833.69
         ]
       ]
@@ -4238,7 +4240,7 @@
           100149.06
         ],
         [
-          "2026-11-02T20:53:22Z",
+          "2026-11-02T21:08:04Z",
           100149.06
         ]
       ]
@@ -5267,7 +5269,7 @@
           101000.19
         ],
         [
-          "2026-11-02T20:53:22Z",
+          "2026-11-02T21:08:04Z",
           101000.19
         ]
       ]
@@ -7561,6 +7563,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-02T21:05:33Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-02T21:05:33Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T20:50:35Z",
       "type": "scan",
       "fetched": 200,
@@ -8200,22 +8215,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-02T05:35:32Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 125.79,
-      "q": "Will \u0410ndrey Gyurov win the next Bulgarian presidential election?",
-      "url": "https://polymarket.com/market/will-ndrey-gyurov-win-the-next-bulgarian-presidential-election"
-    },
-    {
-      "ts": "2026-11-02T05:20:31Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 72.75,
-      "q": "Will Ethereum reach $2,600 October 26-November 1?",
-      "url": "https://polymarket.com/market/will-ethereum-reach-2600-october-26-november-1-2026"
     }
   ],
   "plan_usage": {
