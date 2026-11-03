@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-03T01:08:12Z",
+  "generated": "2026-11-03T01:23:11Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-03T01:08:12Z",
+      "t": "2026-11-03T01:23:11Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2020,
+    "resolved": 2021,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2270132178217822,
-        "n": 2020
+        "brier": 0.22704517565561602,
+        "n": 2021
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14538873428217822,
-        "n": 2020
+        "brier": 0.14566178537852548,
+        "n": 2021
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-03T01:05:38Z",
+    "ts": "2026-11-03T01:20:33Z",
     "stages": [
       [
         "Fetched",
@@ -2182,7 +2182,7 @@
           99500.72
         ],
         [
-          "2026-11-03T01:08:12Z",
+          "2026-11-03T01:23:11Z",
           99500.72
         ]
       ]
@@ -3211,7 +3211,7 @@
           99833.69
         ],
         [
-          "2026-11-03T01:08:12Z",
+          "2026-11-03T01:23:11Z",
           99833.69
         ]
       ]
@@ -4240,7 +4240,7 @@
           100149.06
         ],
         [
-          "2026-11-03T01:08:12Z",
+          "2026-11-03T01:23:11Z",
           100149.06
         ]
       ]
@@ -5269,7 +5269,7 @@
           101064.21
         ],
         [
-          "2026-11-03T01:08:12Z",
+          "2026-11-03T01:23:11Z",
           101064.21
         ]
       ]
@@ -7517,6 +7517,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-03T01:20:33Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-03T01:20:33Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-03T01:05:38Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8086,22 +8099,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-02T13:35:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-02T13:20:27Z",
-      "type": "win",
-      "strategy": "mention_no",
-      "amount": 2.18,
-      "q": "What will Scott Bessent say during Face the Nation originally scheduled for November 1, 2026? (Oil / Gas / Gasoline)",
-      "url": "https://kalshi.com/markets/kxbessentmtpmention/what-will-scott-bessent-say-during-face-the-nation-originall/kxbessentmtpmention-26nov01"
     }
   ],
   "plan_usage": {
@@ -8114,7 +8111,7 @@
   "research_per_day": 150,
   "cycles_24h": 94,
   "learning": {
-    "reviewed": 2020,
+    "reviewed": 2021,
     "post_mortems": 98,
     "win_reviews": 56,
     "calibration": [
@@ -8667,13 +8664,13 @@
       },
       {
         "category": "other",
-        "n": 324,
-        "jev_plain": 0.2102,
-        "market": 0.1368,
+        "n": 325,
+        "jev_plain": 0.2104,
+        "market": 0.1385,
         "jev_research": 0.2438,
         "claude_direct": 0.184,
-        "n_jev_plain": 324,
-        "n_market": 324,
+        "n_jev_plain": 325,
+        "n_market": 325,
         "n_jev_research": 144,
         "n_claude_direct": 38
       },
