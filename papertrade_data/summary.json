@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-03T18:08:24Z",
+  "generated": "2026-11-03T18:23:13Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-03T18:08:24Z",
+      "t": "2026-11-03T18:23:13Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2026,
+    "resolved": 2027,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22688460019743337,
-        "n": 2026
+        "brier": 0.22679240256536756,
+        "n": 2027
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14543230170286278,
-        "n": 2026
+        "brier": 0.14536707856438086,
+        "n": 2027
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-03T18:05:57Z",
+    "ts": "2026-11-03T18:21:01Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2204,7 +2204,7 @@
           99500.72
         ],
         [
-          "2026-11-03T18:08:24Z",
+          "2026-11-03T18:23:13Z",
           99500.72
         ]
       ]
@@ -3257,7 +3257,7 @@
           99744.28
         ],
         [
-          "2026-11-03T18:08:24Z",
+          "2026-11-03T18:23:13Z",
           99744.28
         ]
       ]
@@ -4310,7 +4310,7 @@
           100149.06
         ],
         [
-          "2026-11-03T18:08:24Z",
+          "2026-11-03T18:23:13Z",
           100149.06
         ]
       ]
@@ -5363,7 +5363,7 @@
           101867.99
         ],
         [
-          "2026-11-03T18:08:24Z",
+          "2026-11-03T18:23:13Z",
           101867.99
         ]
       ]
@@ -7703,6 +7703,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-03T18:21:01Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-03T18:05:57Z",
       "type": "bet",
       "strategy": "favorites",
@@ -8394,14 +8402,6 @@
       "amount": 51.19,
       "q": "George Holani: 1+ touchdowns",
       "url": "https://kalshi.com/markets/kxnfltd/george-holani-1-touchdowns/kxnfltd-26nov02chisea"
-    },
-    {
-      "ts": "2026-11-03T04:50:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8414,7 +8414,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2026,
+    "reviewed": 2027,
     "post_mortems": 98,
     "win_reviews": 56,
     "calibration": [
@@ -8967,13 +8967,13 @@
       },
       {
         "category": "other",
-        "n": 329,
-        "jev_plain": 0.2103,
-        "market": 0.1375,
+        "n": 330,
+        "jev_plain": 0.2098,
+        "market": 0.1371,
         "jev_research": 0.2438,
         "claude_direct": 0.184,
-        "n_jev_plain": 329,
-        "n_market": 329,
+        "n_jev_plain": 330,
+        "n_market": 330,
         "n_jev_research": 144,
         "n_claude_direct": 38
       },
