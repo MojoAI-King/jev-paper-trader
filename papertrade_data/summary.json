@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T23:54:38Z",
+  "generated": "2026-11-03T00:09:01Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-02T23:54:38Z",
+      "t": "2026-11-03T00:09:01Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-02T23:50:31Z",
+    "ts": "2026-11-03T00:05:31Z",
     "stages": [
       [
         "Fetched",
@@ -2182,7 +2182,7 @@
           99500.72
         ],
         [
-          "2026-11-02T23:54:38Z",
+          "2026-11-03T00:09:01Z",
           99500.72
         ]
       ]
@@ -3211,7 +3211,7 @@
           99833.69
         ],
         [
-          "2026-11-02T23:54:38Z",
+          "2026-11-03T00:09:01Z",
           99833.69
         ]
       ]
@@ -4240,7 +4240,7 @@
           100149.06
         ],
         [
-          "2026-11-02T23:54:38Z",
+          "2026-11-03T00:09:01Z",
           100149.06
         ]
       ]
@@ -5269,7 +5269,7 @@
           101064.21
         ],
         [
-          "2026-11-02T23:54:38Z",
+          "2026-11-03T00:09:01Z",
           101064.21
         ]
       ]
@@ -7517,6 +7517,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-03T00:08:56Z",
+      "type": "learn",
+      "text": "Research playbook updated to v25"
+    },
+    {
+      "ts": "2026-11-03T00:05:31Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-03T00:05:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-02T23:54:11Z",
       "type": "review",
       "kind": "miss",
@@ -8096,30 +8114,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-02T11:50:36Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-02T11:35:46Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-02T11:09:05Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8433,8 +8427,8 @@
       }
     ],
     "playbook": {
-      "version": 24,
-      "updated": "2026-11-02T00:08:14Z",
+      "version": 25,
+      "updated": "2026-11-03T00:08:16Z",
       "rules": [
         {
           "id": "R1",
@@ -8469,14 +8463,8 @@
         {
           "id": "R30",
           "category": "general",
-          "rule": "If any game, match or stage began before the judgment time, first get its live or final score from a tracker timestamped within the hour (league site, Liquipedia), dropping undated snippets; for series add wins each side needs, venues and the cited comeback rate.",
+          "rule": "If a game, stage, final or ceremony began before judgment, first get its result from a source timestamped within the hour (league site, Liquipedia), dropping undated snippets; else report series wins needed, remaining rounds and opponents, or the award shortlist.",
           "added": "2026-10-14T00:07:36Z"
-        },
-        {
-          "id": "R34",
-          "category": "sports",
-          "rule": "For tournament or award winners, first search coverage dated after the final or ceremony; else list remaining rounds, formats and opponents for brackets, or the official shortlist and finalists' dated honours for awards, and label past-season reputation weak.",
-          "added": "2026-10-28T14:37:42Z"
         },
         {
           "id": "R9",
@@ -8521,6 +8509,12 @@
           "added": "2026-10-08T00:08:38Z"
         },
         {
+          "id": "R39",
+          "category": "other",
+          "rule": "For cumulative box-office questions, take the latest weekend and daily totals from The Numbers or Box Office Mojo dated within 7 days of judgment, report recent weekly drop rates, and project the remaining gross to the deadline against the threshold.",
+          "added": "2026-11-03T00:08:16Z"
+        },
+        {
           "id": "R32",
           "category": "economy",
           "rule": "For earnings-beat questions, copy the EPS basis (GAAP diluted or adjusted) and strike from the rules, report the dated consensus and recent revisions, the last 4\u20138 quarters' actual-versus-consensus surprise percentages, and management's dated guidance or segment commentary.",
@@ -8552,6 +8546,26 @@
         }
       ],
       "history": [
+        {
+          "ts": "2026-11-03T00:08:16Z",
+          "version": 25,
+          "added": [
+            "R39"
+          ],
+          "revised": [
+            "R30"
+          ],
+          "retired": [
+            "R34"
+          ],
+          "changes": [
+            "added: other rule for cumulative box-office questions (latest weekend/daily totals from The Numbers or Box Office Mojo dated within 7 days, drop rates, projection to deadline), because polymarket:4893275 relied on a total that was four weeks old.",
+            "added: politics rule for elections (dated first-round and runoff polls, incumbency, where eliminated candidates' voters go, official commission count), because polymarket:1194657 had no researched facts at all.",
+            "merged: R34 (tournament/award winners) into R30, since both check first whether the deciding event already happened, which keeps the playbook at 20 rules.",
+            "skipped: kalshi:KXBTCMAXMON-BTC-26OCT31-8750000 (lucky) and polymarket:4893303 (unlucky), so no rules come from them, including the genre and holiday hold idea."
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-11-02T00:08:14Z",
           "version": 24,
@@ -8626,21 +8640,6 @@
             "added: Fed rate-decision rule (current range from the FOMC statement, strict above-vs-at wording against the upper bound, Fed speakers, dissents, economist polls), supported by the base_rate review kalshi:KXFED-26OCT-T4.00; references to market pricing left out",
             "no rules drawn from kalshi:KXFEDDECISION-26OCT-H0 or polymarket:2589812 because both are marked lucky",
             "all other existing rules kept unchanged; no new review refines or contradicts them"
-          ],
-          "refused": 0
-        },
-        {
-          "ts": "2026-10-28T14:37:42Z",
-          "version": 21,
-          "added": [
-            "R34"
-          ],
-          "revised": [],
-          "retired": [],
-          "changes": [
-            "added: voted-award rule (other) from polymarket:4411997. The research found no post-ceremony coverage and did not show that one finalist held the main season honours while the usual winner was off the shortlist; the review's pricing suggestions are left out because rules can't mention them.",
-            "no rule from polymarket:5340072: the review is marked unlucky.",
-            "no rule from kalshi:KXCBDECISIONCANADA-26OCT-H0: the review is marked lucky."
           ],
           "refused": 0
         }

@@ -1,6 +1,6 @@
 {
-  "version": 24,
-  "updated": "2026-11-02T00:08:14Z",
+  "version": 25,
+  "updated": "2026-11-03T00:08:16Z",
   "rules": [
     {
       "id": "R1",
@@ -12,9 +12,9 @@
         "polymarket:4797726",
         "polymarket:4844455",
         "polymarket:5009022",
-        "polymarket:5208385",
         "polymarket:5170737",
-        "polymarket:5170738"
+        "polymarket:5170738",
+        "polymarket:5208385"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -26,10 +26,10 @@
         "polymarket:4689727",
         "polymarket:4797513",
         "polymarket:4797726",
+        "polymarket:4936102",
         "polymarket:5009022",
         "polymarket:5208385",
-        "polymarket:5362505",
-        "polymarket:4936102"
+        "polymarket:5362505"
       ],
       "added": "2026-09-28T16:35:53Z"
     },
@@ -51,12 +51,12 @@
         "kalshi:KXMLBGAME-26SEP291700CWSHOU-HOU",
         "kalshi:KXNCAAFGAME-26OCT09IOWAWASH-IOWA",
         "kalshi:KXNCAAFGAME-26OCT09ISUBYU-BYU",
+        "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "polymarket:4581752",
         "polymarket:4689888",
         "polymarket:4911446",
-        "polymarket:5009102",
-        "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE"
+        "polymarket:5009102"
       ],
       "added": "2026-09-29T00:09:39Z"
     },
@@ -65,18 +65,18 @@
       "category": "sports",
       "rule": "For team win, spread or total questions, report home-only and road-only records, dated scores and points allowed over each side's last 5, last 8\u201310 meetings, schedule strength, starting QB or key starter changes, and whether a draw resolves No; label 3\u20134 game streaks weak.",
       "evidence": [
-        "kalshi:KXNCAAFSPREAD-26OCT10NDSUUNLV-NDSU4",
-        "polymarket:5036247",
-        "polymarket:5238435",
         "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
-        "kalshi:KXNFLTOTAL-26OCT08TBDAL-48"
+        "kalshi:KXNCAAFSPREAD-26OCT10NDSUUNLV-NDSU4",
+        "kalshi:KXNFLTOTAL-26OCT08TBDAL-48",
+        "polymarket:5036247",
+        "polymarket:5238435"
       ],
       "added": "2026-10-12T08:12:13Z"
     },
     {
       "id": "R30",
       "category": "general",
-      "rule": "If any game, match or stage began before the judgment time, first get its live or final score from a tracker timestamped within the hour (league site, Liquipedia), dropping undated snippets; for series add wins each side needs, venues and the cited comeback rate.",
+      "rule": "If a game, stage, final or ceremony began before judgment, first get its result from a source timestamped within the hour (league site, Liquipedia), dropping undated snippets; else report series wins needed, remaining rounds and opponents, or the award shortlist.",
       "evidence": [
         "kalshi:KXMLBGAME-26OCT011400PHIATL-ATL",
         "kalshi:KXMLBSERIES-26NYYTBALDS-NYY",
@@ -84,19 +84,11 @@
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "kalshi:KXWNBASERIES-26NYMINR1-MIN",
         "polymarket:4581752",
-        "polymarket:5081245"
-      ],
-      "added": "2026-10-14T00:07:36Z"
-    },
-    {
-      "id": "R34",
-      "category": "sports",
-      "rule": "For tournament or award winners, first search coverage dated after the final or ceremony; else list remaining rounds, formats and opponents for brackets, or the official shortlist and finalists' dated honours for awards, and label past-season reputation weak.",
-      "evidence": [
+        "polymarket:5081245",
         "polymarket:4411997",
         "polymarket:4397202"
       ],
-      "added": "2026-10-28T14:37:42Z"
+      "added": "2026-10-14T00:07:36Z"
     },
     {
       "id": "R9",
@@ -182,6 +174,15 @@
       "added": "2026-10-08T00:08:38Z"
     },
     {
+      "id": "R39",
+      "category": "other",
+      "rule": "For cumulative box-office questions, take the latest weekend and daily totals from The Numbers or Box Office Mojo dated within 7 days of judgment, report recent weekly drop rates, and project the remaining gross to the deadline against the threshold.",
+      "evidence": [
+        "polymarket:4893275"
+      ],
+      "added": "2026-11-03T00:08:16Z"
+    },
+    {
       "id": "R32",
       "category": "economy",
       "rule": "For earnings-beat questions, copy the EPS basis (GAAP diluted or adjusted) and strike from the rules, report the dated consensus and recent revisions, the last 4\u20138 quarters' actual-versus-consensus surprise percentages, and management's dated guidance or segment commentary.",
@@ -231,6 +232,7 @@
   ],
   "reviews_used": [
     "kalshi:KXBTCD-26OCT1617-T82999.99",
+    "kalshi:KXBTCMAXMON-BTC-26OCT31-8750000",
     "kalshi:KXCBDECISIONCANADA-26OCT-H0",
     "kalshi:KXCONCACAFNLGAME-26OCT01DOMHTI-HTI",
     "kalshi:KXCONCACAFNLGAME-26OCT02MTQHND-HND",
@@ -314,6 +316,7 @@
     "kalshi:KXWNBAGAME-26SEP29LVIND-LV",
     "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
+    "polymarket:1194657",
     "polymarket:1235568",
     "polymarket:2100981",
     "polymarket:2110579",
@@ -346,6 +349,8 @@
     "polymarket:4868021",
     "polymarket:4868022",
     "polymarket:4885967",
+    "polymarket:4893275",
+    "polymarket:4893303",
     "polymarket:4911446",
     "polymarket:4936102",
     "polymarket:4981247",
@@ -397,6 +402,7 @@
     "R29",
     "R3",
     "R31",
+    "R34",
     "R4",
     "R5",
     "R6",
