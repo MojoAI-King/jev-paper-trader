@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T05:10:43Z",
+  "generated": "2026-11-04T05:23:14Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T05:10:43Z",
+      "t": "2026-11-04T05:23:14Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2040,
+    "resolved": 2041,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22674906862745098,
-        "n": 2040
+        "brier": 0.22676046055854973,
+        "n": 2041
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1447900300245098,
-        "n": 2040
+        "brier": 0.14474173750612443,
+        "n": 2041
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T05:05:45Z",
+    "ts": "2026-11-04T05:20:36Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2212,7 +2212,7 @@
           99500.72
         ],
         [
-          "2026-11-04T05:10:43Z",
+          "2026-11-04T05:23:14Z",
           99500.72
         ]
       ]
@@ -3273,7 +3273,7 @@
           99744.28
         ],
         [
-          "2026-11-04T05:10:43Z",
+          "2026-11-04T05:23:14Z",
           99744.28
         ]
       ]
@@ -4334,7 +4334,7 @@
           100149.06
         ],
         [
-          "2026-11-04T05:10:43Z",
+          "2026-11-04T05:23:14Z",
           100149.06
         ]
       ]
@@ -5395,7 +5395,7 @@
           98098.89
         ],
         [
-          "2026-11-04T05:10:43Z",
+          "2026-11-04T05:23:14Z",
           98098.89
         ]
       ]
@@ -7758,6 +7758,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T05:20:36Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T05:10:37Z",
       "type": "learn",
       "text": "Research playbook updated to v26"
@@ -8426,18 +8434,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-03T16:05:44Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.9136,
-      "amount": 1004.96,
-      "p": 0.895,
-      "q": "Will the Democrats win the Iowa governor race in 2026?",
-      "url": "https://polymarket.com/market/will-the-democrats-win-the-iowa-governor-race-in-2026",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -8450,7 +8446,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2040,
+    "reviewed": 2041,
     "post_mortems": 99,
     "win_reviews": 58,
     "calibration": [
@@ -9055,14 +9051,14 @@
       },
       {
         "category": "politics",
-        "n": 100,
+        "n": 101,
         "jev_research": 0.268,
-        "jev_plain": 0.2991,
-        "market": 0.1442,
+        "jev_plain": 0.2986,
+        "market": 0.1432,
         "claude_direct": 0.2799,
         "n_jev_research": 64,
-        "n_jev_plain": 100,
-        "n_market": 100,
+        "n_jev_plain": 101,
+        "n_market": 101,
         "n_claude_direct": 15
       },
       {
