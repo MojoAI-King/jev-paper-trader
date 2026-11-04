@@ -1,11 +1,11 @@
 {
-  "version": 25,
-  "updated": "2026-11-03T00:08:16Z",
+  "version": 26,
+  "updated": "2026-11-04T05:09:56Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
-      "rule": "Copy the crypto strike, venue/pair and test (any touch or a close at a set candle) from the title and rules and check every fact cites that strike; check the venue's candles for whether it was already hit, and record a venue spot timestamped within 15 minutes of judgment.",
+      "rule": "For price-touch questions (crypto, oil, commodities), copy strike, venue and test (touch or candle close) from the rules, check venue candles for a prior hit, and report spot within 15 min, % to strike, days left, volatility, days of last 14 through it, dated catalysts.",
       "evidence": [
         "polymarket:4797513",
         "polymarket:4797724",
@@ -14,21 +14,9 @@
         "polymarket:5009022",
         "polymarket:5170737",
         "polymarket:5170738",
-        "polymarket:5208385"
-      ],
-      "added": "2026-09-28T16:35:53Z"
-    },
-    {
-      "id": "R2",
-      "category": "world",
-      "rule": "For price-touch questions (crypto, oil, commodities), use the contract or venue the rules name and report percent distance to strike, days left, realized volatility, days in the last 14 that traded through it, and dated catalysts; label old peaks as not current evidence.",
-      "evidence": [
-        "polymarket:4689727",
-        "polymarket:4797513",
-        "polymarket:4797726",
-        "polymarket:4936102",
-        "polymarket:5009022",
         "polymarket:5208385",
+        "polymarket:4689727",
+        "polymarket:4936102",
         "polymarket:5362505"
       ],
       "added": "2026-09-28T16:35:53Z"
@@ -41,6 +29,24 @@
         "polymarket:4619164"
       ],
       "added": "2026-11-02T00:08:14Z"
+    },
+    {
+      "id": "R40",
+      "category": "world",
+      "rule": "For ceasefire or 'no strike' questions, read what counts as a breach in the rules, then search recent weeks for dated strikes or fire exchanged during the ceasefire, deal breakdowns and force deployments; don't rely on the ceasefire's name or leaders' remarks.",
+      "evidence": [
+        "polymarket:5447182"
+      ],
+      "added": "2026-11-04T05:09:56Z"
+    },
+    {
+      "id": "R41",
+      "category": "politics",
+      "rule": "For election questions, report the state's partisan lean, recent results for the same office, candidates' cash on hand, dated latest polls, and the national environment (generic ballot, president's approval); don't assume a state's past polling misses recur in the same direction.",
+      "evidence": [
+        "polymarket:631045"
+      ],
+      "added": "2026-11-04T05:09:56Z"
     },
     {
       "id": "R7",
@@ -83,10 +89,10 @@
         "kalshi:KXMLBSERIES-26NYYTBALDS-TB",
         "kalshi:KXWNBAGAME-26SEP29MINNY-MIN",
         "kalshi:KXWNBASERIES-26NYMINR1-MIN",
-        "polymarket:4581752",
-        "polymarket:5081245",
+        "polymarket:4397202",
         "polymarket:4411997",
-        "polymarket:4397202"
+        "polymarket:4581752",
+        "polymarket:5081245"
       ],
       "added": "2026-10-14T00:07:36Z"
     },
@@ -384,7 +390,10 @@
     "polymarket:5362505",
     "polymarket:5362535",
     "polymarket:5362547",
-    "polymarket:5423683"
+    "polymarket:5423683",
+    "polymarket:5447182",
+    "polymarket:5572739",
+    "polymarket:631045"
   ],
   "retired_ids": [
     "R10",
@@ -394,6 +403,7 @@
     "R15",
     "R16",
     "R18",
+    "R2",
     "R20",
     "R21",
     "R22",
