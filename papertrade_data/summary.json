@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T06:38:17Z",
+  "generated": "2026-11-04T06:54:07Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T06:38:17Z",
+      "t": "2026-11-04T06:54:07Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2043,
+    "resolved": 2045,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20612789667896678,
-        "n": 1355
+        "brier": 0.20675563743551956,
+        "n": 1357
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22684199706314243,
-        "n": 2043
+        "brier": 0.2269869437652812,
+        "n": 2045
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20808834277907884,
-        "n": 1281
+        "brier": 0.20881670773967265,
+        "n": 1283
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14473674571708273,
-        "n": 2043
+        "brier": 0.1452935068459658,
+        "n": 2045
       }
     ],
     "paired": {
-      "n": 916,
+      "n": 918,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16194776173580785
+          "brier": 0.16315054438997822
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21494705240174675
+          "brier": 0.21589106753812634
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19787368995633187
+          "brier": 0.19887222222222223
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24292794759825326
+          "brier": 0.24320065359477125
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T06:35:34Z",
+    "ts": "2026-11-04T06:50:40Z",
     "stages": [
       [
         "Fetched",
@@ -2212,7 +2212,7 @@
           99500.72
         ],
         [
-          "2026-11-04T06:38:17Z",
+          "2026-11-04T06:54:07Z",
           99500.72
         ]
       ]
@@ -3273,7 +3273,7 @@
           99744.28
         ],
         [
-          "2026-11-04T06:38:17Z",
+          "2026-11-04T06:54:07Z",
           99744.28
         ]
       ]
@@ -4334,7 +4334,7 @@
           100149.06
         ],
         [
-          "2026-11-04T06:38:17Z",
+          "2026-11-04T06:54:07Z",
           100149.06
         ]
       ]
@@ -5395,7 +5395,7 @@
           98098.89
         ],
         [
-          "2026-11-04T06:38:17Z",
+          "2026-11-04T06:54:07Z",
           98098.89
         ]
       ]
@@ -7781,6 +7781,30 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T06:53:34Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "unlucky",
+      "q": "Will the Democrats win the South Carolina Senate race in 2026?",
+      "url": "https://polymarket.com/market/will-the-democrats-win-the-south-carolina-senate-race-in-2026"
+    },
+    {
+      "ts": "2026-11-04T06:53:09Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the Republicans win the South Carolina Senate race in 2026?",
+      "url": "https://polymarket.com/market/will-the-republicans-win-the-south-carolina-senate-race-in-2026"
+    },
+    {
+      "ts": "2026-11-04T06:50:40Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T06:35:34Z",
       "type": "scan",
       "fetched": 200,
@@ -8433,34 +8457,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-03T17:35:39Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9337,
-      "amount": 746.96,
-      "p": 0.915,
-      "q": "Will Elon Musk post 320-339 tweets from October 30 to November 6, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-october-30-november-6-2026-320-339",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-03T17:35:39Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-03T17:20:34Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 29.22,
-      "q": "Will the price of Bitcoin be above $82,000 on November 3?",
-      "url": "https://polymarket.com/market/bitcoin-above-82k-on-november-3-2026"
     }
   ],
   "plan_usage": {
@@ -8473,8 +8469,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2043,
-    "post_mortems": 100,
+    "reviewed": 2045,
+    "post_mortems": 102,
     "win_reviews": 58,
     "calibration": [
       {
@@ -8485,9 +8481,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 489,
+        "n": 490,
         "predicted": 0.295,
-        "actual": 0.27
+        "actual": 0.271
       },
       {
         "range": "40\u201360%",
@@ -8497,9 +8493,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 212,
-        "predicted": 0.661,
-        "actual": 0.75
+        "n": 213,
+        "predicted": 0.662,
+        "actual": 0.746
       },
       {
         "range": "80\u2013100%",
@@ -8509,8 +8505,8 @@
       }
     ],
     "root_causes": {
-      "overconfident": 32,
-      "unlucky": 34,
+      "overconfident": 33,
+      "unlucky": 35,
       "missing_info": 15,
       "stale_info": 8,
       "research_error": 8,
@@ -8522,6 +8518,46 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Will the Democrats win the South Carolina Senate race in 2026?",
+        "url": "https://polymarket.com/market/will-the-democrats-win-the-south-carolina-senate-race-in-2026",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.2,
+        "market": 0.155,
+        "ts": "2026-11-04T06:53:34Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "unlucky",
+        "what_happened": "Democrat Annie Andrews beat appointed Sen. Darline Graham, who replaced her late brother Lindsey Graham, on Nov. 3, 2026. AP, NBC and Fox all called the race for Andrews. It was the first Democratic Senate win in South Carolina since 1998. Polls tightened late, and a late-October NYT/Siena poll had the race tied at 48%.",
+        "what_we_missed": "As of Oct. 11, every recent poll had the race within 1 to 5 points, and the Republican was a weakened, newly appointed nominee coming off a bitter runoff. The 2020 Harrison precedent, where polls overstated the Democrat, may have been given too much weight in a cycle where conditions looked different. Our 20% was above the market's 15.5% but probably still too low.",
+        "what_worked": "",
+        "lesson": "If a deep-red state has a weak or new incumbent and polls show a steady tie across several pollsters, including Republican-leaning ones, don't discount the Democrat's chances below about 25\u201330% on the strength of one past polling miss.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Check how the nominee's situation (appointed, after a runoff, no electoral record of their own) and the national climate this cycle differ from the past polling-error case, instead of applying that case's polling error wholesale."
+        }
+      },
+      {
+        "question": "Will the Republicans win the South Carolina Senate race in 2026?",
+        "url": "https://polymarket.com/market/will-the-republicans-win-the-south-carolina-senate-race-in-2026",
+        "outcome": "no",
+        "category": "politics",
+        "p": 0.79,
+        "market": 0.845,
+        "ts": "2026-11-04T06:53:09Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "Democrat Annie Andrews beat appointed Sen. Darline Graham on Nov 3, 2026. AP, NBC and Decision Desk HQ all called the race within about three hours of polls closing, and Graham got roughly 47.2%. In the final weeks the polls had tightened to a tie, with NYT/Siena at 48\u201348.",
+        "what_we_missed": "We treated the 2020 polling miss and South Carolina's deep-red history as if they would reliably push Graham to a win. But she was a first-time candidate, appointed after her brother died, who only narrowly won the special runoff (52.5%). She never led in any poll by more than 1\u20135 points, and raters were moving the race toward Democrats. All of that pointed to real risk of a Democratic win, not just polling noise in a safe seat.",
+        "what_worked": "",
+        "lesson": "If a weak or unusual candidate (appointed, first-time, or a surprise nominee) is tied in several independent polls, don't assume a past polling error will repeat. Keep the probability closer to 60\u201370%, even in a strongly partisan state.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Before adjusting for past polling bias, check whether the earlier error came from a different, stronger candidate. Then reduce the adjustment when the current nominee has no electoral track record or the circumstances are unusual."
+        }
+      },
       {
         "question": "Will the Democrats win the Georgia governor race in 2026?",
         "url": "https://polymarket.com/market/will-the-democrats-win-the-georgia-governor-race-in-2026",
@@ -8602,46 +8638,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For cumulative-gross questions, require the most recent weekend and daily figures from The Numbers or Box Office Mojo, dated within 7 days of the judgment, plus a simple decay projection to the deadline."
-        }
-      },
-      {
-        "question": "Saudi Oil Pipeline (East-West) restarts by October 31?",
-        "url": "https://polymarket.com/market/saudi-oil-pipeline-east-west-restarts-by-october-31",
-        "outcome": "yes",
-        "category": "world",
-        "p": 0.14,
-        "market": 0.414,
-        "ts": "2026-11-01T04:09:27Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "On October 6, 2026, the same day as the forecast, Saudi Energy Minister Prince Abdulaziz bin Salman publicly said the East-West pipeline was pumping 5.8 million b/d. A government official saying the pipeline is currently operating meets the rules, so the market resolved Yes.",
-        "what_we_missed": "Several independent sources already showed the pipeline running at about 80% of capacity, and the ministry had publicly confirmed a restoration in April. A government statement was therefore likely to follow soon. The forecaster treated the ministry's silence so far as if it would continue, and went to 14% against a market price of 41%.",
-        "what_worked": "",
-        "lesson": "If the physical event has clearly already happened and the only question is whether officials will announce it, expect an official statement within a few weeks, especially when the same government has announced similar restorations before. Don't bet heavily on continued silence.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Flag any forecast more than 20 points below the market on a question that depends on an announcement when the underlying event has already been reported as happening, and require an explicit reason why officials would stay silent until the deadline."
-        }
-      },
-      {
-        "question": "Will Bitcoin dip to $80,000 in October?",
-        "url": "https://polymarket.com/market/will-bitcoin-dip-to-80k-in-october-2026",
-        "outcome": "yes",
-        "category": "crypto",
-        "p": 0.44,
-        "market": 0.565,
-        "ts": "2026-11-01T04:08:41Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "research_error",
-        "what_happened": "On Oct 11, BTC was around $83,000, only about 3.6% above the $80,000 strike, and it had already hit about $80,365 on Oct 8. Around Oct 26, ahead of the Oct 27\u201328 FOMC meeting and amid ETF outflows, BTC dropped below $80,000. Reports put the intraday low under $79,300, so the market resolved YES.",
-        "what_we_missed": "The facts we gave the forecaster measured everything against a $70,000 strike (\"15.6% above the $70,000 strike\", \"no report shows trading near $70,000\"), but this question's strike is $80,000. That made the gap look about four times bigger than it was. With a 3\u20134% gap, 20 days left, a near-touch three days earlier, and an FOMC meeting inside the window, the chance of touching $80,000 should have been roughly 65\u201375%, not 41\u201344%. The market's price of 56.5% was closer.",
-        "what_worked": "",
-        "lesson": "Before using a fact sheet, check that its strike matches the question title, and work out the distance to the strike yourself from the current price.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Add an automatic check that pulls the strike from the question title and resolution rules, and flags any research fact that cites a different strike before the forecast goes out."
         }
       }
     ],
@@ -9009,9 +9005,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0767,
-      "b": 0.1251,
-      "n": 1355,
+      "a": 1.0625,
+      "b": 0.12,
+      "n": 1357,
       "active": true,
       "need": 300
     },
@@ -9078,14 +9074,14 @@
       },
       {
         "category": "politics",
-        "n": 102,
-        "jev_research": 0.2714,
-        "jev_plain": 0.2992,
-        "market": 0.1445,
+        "n": 104,
+        "jev_research": 0.2822,
+        "jev_plain": 0.3007,
+        "market": 0.1554,
         "claude_direct": 0.2799,
-        "n_jev_research": 65,
-        "n_jev_plain": 102,
-        "n_market": 102,
+        "n_jev_research": 67,
+        "n_jev_plain": 104,
+        "n_market": 104,
         "n_claude_direct": 15
       },
       {
@@ -9786,7 +9782,7 @@
     ],
     "suggested_areas": {
       "gates": 62,
-      "research": 77,
+      "research": 79,
       "questions": 3
     },
     "retro": {
