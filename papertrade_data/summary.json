@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T19:08:05Z",
+  "generated": "2026-11-04T19:23:22Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T19:08:05Z",
+      "t": "2026-11-04T19:23:22Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2088,
+    "resolved": 2089,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2279630268199234,
-        "n": 2088
+        "brier": 0.22794241263762566,
+        "n": 2089
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14506479286398466,
-        "n": 2088
+        "brier": 0.14500466622786023,
+        "n": 2089
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T19:05:33Z",
+    "ts": "2026-11-04T19:20:35Z",
     "stages": [
       [
         "Fetched",
@@ -2230,7 +2230,7 @@
           99500.72
         ],
         [
-          "2026-11-04T19:08:05Z",
+          "2026-11-04T19:23:22Z",
           99500.72
         ]
       ]
@@ -3307,7 +3307,7 @@
           99744.28
         ],
         [
-          "2026-11-04T19:08:05Z",
+          "2026-11-04T19:23:22Z",
           99744.28
         ]
       ]
@@ -4384,7 +4384,7 @@
           100149.06
         ],
         [
-          "2026-11-04T19:08:05Z",
+          "2026-11-04T19:23:22Z",
           100149.06
         ]
       ]
@@ -5461,7 +5461,7 @@
           97102.73
         ],
         [
-          "2026-11-04T19:08:05Z",
+          "2026-11-04T19:23:22Z",
           97102.73
         ]
       ]
@@ -7939,6 +7939,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T19:20:35Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-04T19:20:35Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T19:05:33Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8579,22 +8592,6 @@
       "q": "Full Game: over 28.5 points scored? (Over 28.5 points)",
       "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-28-5-points-scored/kxnfltotal-26nov08tbchi",
       "probe": false
-    },
-    {
-      "ts": "2026-11-04T08:20:38Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-04T08:05:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8607,7 +8604,7 @@
   "research_per_day": 150,
   "cycles_24h": 91,
   "learning": {
-    "reviewed": 2088,
+    "reviewed": 2089,
     "post_mortems": 103,
     "win_reviews": 59,
     "calibration": [
@@ -9234,12 +9231,12 @@
       },
       {
         "category": "world",
-        "n": 80,
-        "jev_plain": 0.2841,
-        "market": 0.1164,
+        "n": 81,
+        "jev_plain": 0.2829,
+        "market": 0.1152,
         "jev_research": 0.3703,
-        "n_jev_plain": 80,
-        "n_market": 80,
+        "n_jev_plain": 81,
+        "n_market": 81,
         "n_jev_research": 11
       },
       {
