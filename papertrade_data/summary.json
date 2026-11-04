@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T09:07:58Z",
+  "generated": "2026-11-04T09:23:10Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T09:07:58Z",
+      "t": "2026-11-04T09:23:10Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2071,
+    "resolved": 2073,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22777875422501206,
-        "n": 2071
+        "brier": 0.2277562952243126,
+        "n": 2073
       },
       {
         "name": "claude_direct",
@@ -933,33 +933,33 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14548613097537422,
-        "n": 2071
+        "brier": 0.14551192824409068,
+        "n": 2073
       }
     ],
     "paired": {
-      "n": 936,
+      "n": 938,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16402651682692307
+          "brier": 0.1640439976012793
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.2174147435897436
+          "brier": 0.21772409381663113
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.2003761752136752
+          "brier": 0.2005366737739872
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2448602564102564
+          "brier": 0.24473869936034115
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T09:05:35Z",
+    "ts": "2026-11-04T09:20:36Z",
     "stages": [
       [
         "Fetched",
@@ -2220,7 +2220,7 @@
           99500.72
         ],
         [
-          "2026-11-04T09:07:58Z",
+          "2026-11-04T09:23:10Z",
           99500.72
         ]
       ]
@@ -3289,7 +3289,7 @@
           99744.28
         ],
         [
-          "2026-11-04T09:07:58Z",
+          "2026-11-04T09:23:10Z",
           99744.28
         ]
       ]
@@ -4358,7 +4358,7 @@
           100149.06
         ],
         [
-          "2026-11-04T09:07:58Z",
+          "2026-11-04T09:23:10Z",
           100149.06
         ]
       ]
@@ -5427,7 +5427,7 @@
           98311.48
         ],
         [
-          "2026-11-04T09:07:58Z",
+          "2026-11-04T09:23:10Z",
           98311.48
         ]
       ]
@@ -7790,6 +7790,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T09:20:36Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T09:05:35Z",
       "type": "scan",
       "fetched": 200,
@@ -8450,18 +8458,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-03T20:36:00Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.9719,
-      "amount": 750.31,
-      "p": 0.945,
-      "q": "Will CD Universidad de Concepci\u00f3n vs. O'Higgins FC end in a draw?",
-      "url": "https://polymarket.com/market/chi1-cu1-ohf-2026-11-05-draw",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -8474,7 +8470,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2071,
+    "reviewed": 2073,
     "post_mortems": 103,
     "win_reviews": 59,
     "calibration": [
@@ -9079,14 +9075,14 @@
       },
       {
         "category": "politics",
-        "n": 126,
+        "n": 128,
         "jev_research": 0.2805,
-        "jev_plain": 0.3005,
-        "market": 0.1583,
+        "jev_plain": 0.299,
+        "market": 0.1586,
         "claude_direct": 0.2751,
         "n_jev_research": 79,
-        "n_jev_plain": 126,
-        "n_market": 126,
+        "n_jev_plain": 128,
+        "n_market": 128,
         "n_claude_direct": 16
       },
       {
