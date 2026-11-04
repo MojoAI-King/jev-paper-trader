@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T14:23:40Z",
+  "generated": "2026-11-04T14:38:25Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T14:23:40Z",
+      "t": "2026-11-04T14:38:25Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T14:20:44Z",
+    "ts": "2026-11-04T14:35:38Z",
     "stages": [
       [
         "Fetched",
@@ -1007,10 +1007,10 @@
     "researched_new": 0,
     "research_reused": 0,
     "bets": {
-      "sharp": 0,
+      "sharp": 2,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1023,7 +1023,7 @@
     },
     "problems": [],
     "cleared_gates": {
-      "sharp": 0,
+      "sharp": 2,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1052,11 +1052,11 @@
         "min_edge": 0.03
       },
       "marked": 99500.72,
-      "unrealized": -0.0,
+      "unrealized": 0.0,
       "change": -499.28,
       "realized": -499.28,
-      "open": 1,
-      "open_cost": 248.68,
+      "open": 3,
+      "open_cost": 746.12,
       "settled": 2,
       "wins": 0,
       "losses": 2,
@@ -2228,7 +2228,7 @@
           99500.72
         ],
         [
-          "2026-11-04T14:23:40Z",
+          "2026-11-04T14:38:25Z",
           99500.72
         ]
       ]
@@ -3305,7 +3305,7 @@
           99744.28
         ],
         [
-          "2026-11-04T14:23:40Z",
+          "2026-11-04T14:38:25Z",
           99744.28
         ]
       ]
@@ -4382,7 +4382,7 @@
           100149.06
         ],
         [
-          "2026-11-04T14:23:40Z",
+          "2026-11-04T14:38:25Z",
           100149.06
         ]
       ]
@@ -5459,7 +5459,7 @@
           98825.72
         ],
         [
-          "2026-11-04T14:23:40Z",
+          "2026-11-04T14:38:25Z",
           98825.72
         ]
       ]
@@ -6267,6 +6267,52 @@
           "p_side": 0.4878,
           "edge": 0.1221,
           "opened": "2026-11-01T23:05:26Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26NOV08CLENO-CLE",
+      "question": "Cleveland wins",
+      "url": "https://kalshi.com/markets/kxnflgame/cleveland-wins/kxnflgame-26nov08cleno",
+      "source": "kalshi",
+      "close_time": "2026-11-10T18:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "sharp",
+          "side": "yes",
+          "contracts": 544,
+          "cost_per": 0.4572,
+          "total_cost": 248.72,
+          "p_side": 0.4878,
+          "edge": 0.0306,
+          "opened": "2026-11-04T14:35:38Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26NOV08CLENO-NO",
+      "question": "New Orleans wins",
+      "url": "https://kalshi.com/markets/kxnflgame/new-orleans-wins/kxnflgame-26nov08cleno",
+      "source": "kalshi",
+      "close_time": "2026-11-10T18:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "sharp",
+          "side": "no",
+          "contracts": 544,
+          "cost_per": 0.4572,
+          "total_cost": 248.72,
+          "p_side": 0.4878,
+          "edge": 0.0306,
+          "opened": "2026-11-04T14:35:38Z",
           "value": null
         }
       ]
@@ -7776,6 +7822,38 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T14:35:38Z",
+      "type": "bet",
+      "strategy": "sharp",
+      "side": "yes",
+      "price": 0.4572,
+      "amount": 248.72,
+      "p": 0.4878,
+      "q": "Cleveland wins",
+      "url": "https://kalshi.com/markets/kxnflgame/cleveland-wins/kxnflgame-26nov08cleno",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-04T14:35:38Z",
+      "type": "bet",
+      "strategy": "sharp",
+      "side": "no",
+      "price": 0.4572,
+      "amount": 248.72,
+      "p": 0.4878,
+      "q": "New Orleans wins",
+      "url": "https://kalshi.com/markets/kxnflgame/new-orleans-wins/kxnflgame-26nov08cleno",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-04T14:35:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-11-04T14:20:44Z",
       "type": "bet",
       "strategy": "favorites",
@@ -8424,34 +8502,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-04T02:20:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-04T02:05:25Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-04T01:50:30Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9539,
-      "amount": 1493.81,
-      "p": 0.935,
-      "q": "Will the price of Bitcoin be above $80,000 on November 5?",
-      "url": "https://polymarket.com/market/bitcoin-above-80k-on-november-5-2026",
-      "probe": false
     }
   ],
   "plan_usage": {
