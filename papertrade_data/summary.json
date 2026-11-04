@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T18:38:01Z",
+  "generated": "2026-11-04T18:53:12Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T18:38:01Z",
+      "t": "2026-11-04T18:53:12Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T18:35:32Z",
+    "ts": "2026-11-04T18:50:37Z",
     "stages": [
       [
         "Fetched",
@@ -1007,10 +1007,10 @@
     "researched_new": 0,
     "research_reused": 0,
     "bets": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1025,7 +1025,7 @@
       "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     ],
     "cleared_gates": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1057,8 +1057,8 @@
       "unrealized": 0.0,
       "change": -499.28,
       "realized": -499.28,
-      "open": 3,
-      "open_cost": 746.12,
+      "open": 4,
+      "open_cost": 994.74,
       "settled": 2,
       "wins": 0,
       "losses": 2,
@@ -1148,8 +1148,8 @@
       "unrealized": 0.0,
       "change": -2897.27,
       "realized": -2897.27,
-      "open": 43,
-      "open_cost": 47522.34,
+      "open": 44,
+      "open_cost": 48551.06,
       "settled": 104,
       "wins": 96,
       "losses": 8,
@@ -2230,7 +2230,7 @@
           99500.72
         ],
         [
-          "2026-11-04T18:38:01Z",
+          "2026-11-04T18:53:12Z",
           99500.72
         ]
       ]
@@ -3307,7 +3307,7 @@
           99744.28
         ],
         [
-          "2026-11-04T18:38:01Z",
+          "2026-11-04T18:53:12Z",
           99744.28
         ]
       ]
@@ -4384,7 +4384,7 @@
           100149.06
         ],
         [
-          "2026-11-04T18:38:01Z",
+          "2026-11-04T18:53:12Z",
           100149.06
         ]
       ]
@@ -5461,7 +5461,7 @@
           97102.73
         ],
         [
-          "2026-11-04T18:38:01Z",
+          "2026-11-04T18:53:12Z",
           97102.73
         ]
       ]
@@ -6297,6 +6297,29 @@
       ]
     },
     {
+      "key": "kalshi:KXRT-CAT-55",
+      "question": "The Cat in the Hat Rotten Tomatoes score? (Above 55)",
+      "url": "https://kalshi.com/markets/kxrt/the-cat-in-the-hat-rotten-tomatoes-score/kxrt-cat",
+      "source": "kalshi",
+      "close_time": "2026-11-09T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1100,
+          "cost_per": 0.9352,
+          "total_cost": 1028.72,
+          "p_side": 0.91,
+          "edge": -0.0252,
+          "opened": "2026-11-04T18:50:37Z",
+          "value": null
+        }
+      ]
+    },
+    {
       "key": "kalshi:KXNCAAFGAME-26NOV07UKTENN-UK",
       "question": "Kentucky wins",
       "url": "https://kalshi.com/markets/kxncaafgame/kentucky-wins/kxncaafgame-26nov07uktenn",
@@ -6453,6 +6476,29 @@
           "p_side": 0.905,
           "edge": -0.0302,
           "opened": "2026-11-04T14:50:38Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26NOV08ARISEA-ARI",
+      "question": "Arizona wins",
+      "url": "https://kalshi.com/markets/kxnflgame/arizona-wins/kxnflgame-26nov08arisea",
+      "source": "kalshi",
+      "close_time": "2026-11-10T21:25:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "sharp",
+          "side": "no",
+          "contracts": 310,
+          "cost_per": 0.802,
+          "total_cost": 248.62,
+          "p_side": 0.8633,
+          "edge": 0.0613,
+          "opened": "2026-11-04T18:50:37Z",
           "value": null
         }
       ]
@@ -7893,6 +7939,43 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T18:50:37Z",
+      "type": "bet",
+      "strategy": "sharp",
+      "side": "no",
+      "price": 0.802,
+      "amount": 248.62,
+      "p": 0.8633,
+      "q": "Arizona wins",
+      "url": "https://kalshi.com/markets/kxnflgame/arizona-wins/kxnflgame-26nov08arisea",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-04T18:50:37Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9352,
+      "amount": 1028.72,
+      "p": 0.91,
+      "q": "The Cat in the Hat Rotten Tomatoes score? (Above 55)",
+      "url": "https://kalshi.com/markets/kxrt/the-cat-in-the-hat-rotten-tomatoes-score/kxrt-cat",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-04T18:50:37Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-04T18:50:37Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-11-04T18:35:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8515,42 +8598,6 @@
       "cause": "lucky",
       "q": "Will the Democrats win the Iowa governor race in 2026?",
       "url": "https://polymarket.com/market/will-the-democrats-win-the-iowa-governor-race-in-2026"
-    },
-    {
-      "ts": "2026-11-04T07:35:43Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 95.04,
-      "q": "Will the Democrats win the Iowa governor race in 2026?",
-      "url": "https://polymarket.com/market/will-the-democrats-win-the-iowa-governor-race-in-2026"
-    },
-    {
-      "ts": "2026-11-04T07:35:43Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9539,
-      "amount": 1052.15,
-      "p": 0.935,
-      "q": "AEK Athens wins",
-      "url": "https://kalshi.com/markets/kxuclgame/aek-athens-wins/kxuclgame-26nov04aekrma",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-04T07:35:43Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-04T07:20:37Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
