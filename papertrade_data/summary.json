@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T05:23:14Z",
+  "generated": "2026-11-04T05:38:54Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T05:23:14Z",
+      "t": "2026-11-04T05:38:54Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2041,
+    "resolved": 2043,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20591824224519942,
-        "n": 1354
+        "brier": 0.20612789667896678,
+        "n": 1355
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22676046055854973,
-        "n": 2041
+        "brier": 0.22684199706314243,
+        "n": 2043
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20789463828906252,
-        "n": 1280
+        "brier": 0.20808834277907884,
+        "n": 1281
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14474173750612443,
-        "n": 2041
+        "brier": 0.14473674571708273,
+        "n": 2043
       }
     ],
     "paired": {
-      "n": 915,
+      "n": 916,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1618235243169399
+          "brier": 0.16194776173580785
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21467661202185792
+          "brier": 0.21494705240174675
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19782754098360655
+          "brier": 0.19787368995633187
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24280000000000002
+          "brier": 0.24292794759825326
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T05:20:36Z",
+    "ts": "2026-11-04T05:35:42Z",
     "stages": [
       [
         "Fetched",
@@ -2212,7 +2212,7 @@
           99500.72
         ],
         [
-          "2026-11-04T05:23:14Z",
+          "2026-11-04T05:38:54Z",
           99500.72
         ]
       ]
@@ -3273,7 +3273,7 @@
           99744.28
         ],
         [
-          "2026-11-04T05:23:14Z",
+          "2026-11-04T05:38:54Z",
           99744.28
         ]
       ]
@@ -4334,7 +4334,7 @@
           100149.06
         ],
         [
-          "2026-11-04T05:23:14Z",
+          "2026-11-04T05:38:54Z",
           100149.06
         ]
       ]
@@ -5395,7 +5395,7 @@
           98098.89
         ],
         [
-          "2026-11-04T05:23:14Z",
+          "2026-11-04T05:38:54Z",
           98098.89
         ]
       ]
@@ -7758,6 +7758,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T05:38:24Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the Democrats win the Georgia governor race in 2026?",
+      "url": "https://polymarket.com/market/will-the-democrats-win-the-georgia-governor-race-in-2026"
+    },
+    {
+      "ts": "2026-11-04T05:35:42Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T05:20:36Z",
       "type": "scan",
       "fetched": 200,
@@ -8418,22 +8434,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-03T16:35:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-03T16:20:47Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8446,8 +8446,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2041,
-    "post_mortems": 99,
+    "reviewed": 2043,
+    "post_mortems": 100,
     "win_reviews": 58,
     "calibration": [
       {
@@ -8458,9 +8458,9 @@
       },
       {
         "range": "20\u201340%",
-        "n": 488,
+        "n": 489,
         "predicted": 0.295,
-        "actual": 0.268
+        "actual": 0.27
       },
       {
         "range": "40\u201360%",
@@ -8482,7 +8482,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 31,
+      "overconfident": 32,
       "unlucky": 34,
       "missing_info": 15,
       "stale_info": 8,
@@ -8495,6 +8495,26 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Will the Democrats win the Georgia governor race in 2026?",
+        "url": "https://polymarket.com/market/will-the-democrats-win-the-georgia-governor-race-in-2026",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.3,
+        "market": 0.475,
+        "ts": "2026-11-04T05:38:24Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "AP, NBC and Fox 5 called the race for Democrat Keisha Lance Bottoms on Nov 3, 2026, and Republican Rick Jackson conceded. Early official returns had Bottoms at about 56% to Jackson's 44%, a much wider margin than the tied October polls suggested, even though Jackson had spent more than $200M of his own money.",
+        "what_we_missed": "The forecaster's own facts pointed toward a Democratic win or at least a coin flip. The governor polls were tied, Ossoff led the Senate race by about 10 points, Democratic primary turnout was higher than Republican for the first time since 2006, and the market was at 47.5%. The forecaster still dropped to 30%, mostly because Republicans had won every governor race since 2002 and Jackson had far more money. Neither reason justified going that far against the polls and the political climate.",
+        "what_worked": "",
+        "lesson": "If the polls in a race are tied and a same-ballot race shows a strong lean toward one party, don't push below the market because of past results or a spending gap. Big self-funded spending and long party winning streaks often add little in a strong wave year.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "When a forecast is more than 15 points from the market and the head-to-head polls are within 2 points, require a specific argument for the gap, or move the forecast toward the market, and require a check of the same-ballot Senate polls."
+        }
+      },
       {
         "question": "US-Iran ceasefire continues through the midterms?",
         "url": "https://polymarket.com/market/us-iran-ceasefire-continues-through-the-midterms",
@@ -8595,26 +8615,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Add an automatic check that pulls the strike from the question title and resolution rules, and flags any research fact that cites a different strike before the forecast goes out."
-        }
-      },
-      {
-        "question": "Will Bitcoin dip to $77,500 in October?",
-        "url": "https://polymarket.com/market/will-bitcoin-dip-to-77pt5k-in-october-2026",
-        "outcome": "yes",
-        "category": "crypto",
-        "p": 0.44,
-        "market": 0.365,
-        "ts": "2026-11-01T04:08:16Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "BTC drifted down through late October. A hawkish macro backdrop (oil above $117, risk-off selling in tech stocks and gold) combined with weak sentiment after a large crypto hack. Around the Oct 28 FOMC and into Oct 31, BTC traded near $77,000\u201377,150, which crossed the $77,500 strike on Binance.",
-        "what_we_missed": "Little could have been known on Oct 10. The forecast already sat above the market (0.44 vs 0.365), and it correctly weighted September's repeated trades below $77.5k, the FOMC and macro events still to come, and the 50-week MA support near $77k. A 6.2% drop over about three weeks, with recent weekly ranges of 5\u201317%, was close to a coin flip.",
-        "what_worked": "",
-        "lesson": "For monthly crypto 'dip to X' markets where the strike is about 6% away, more than three weeks remain, and the asset traded below the strike in recent weeks, touch probabilities near or slightly above 50% are reasonable, so don't anchor on the lower market price.",
-        "suggested_change": {
-          "area": "none",
-          "change": "Keep using volatility-based touch probability estimates. This forecast was well calibrated and leaned the right way relative to the market."
         }
       }
     ],
@@ -8982,9 +8982,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0789,
-      "b": 0.1234,
-      "n": 1354,
+      "a": 1.0767,
+      "b": 0.1251,
+      "n": 1355,
       "active": true,
       "need": 300
     },
@@ -9015,13 +9015,13 @@
       },
       {
         "category": "other",
-        "n": 333,
-        "jev_plain": 0.2106,
-        "market": 0.136,
+        "n": 334,
+        "jev_plain": 0.2108,
+        "market": 0.1356,
         "jev_research": 0.2422,
         "claude_direct": 0.1793,
-        "n_jev_plain": 333,
-        "n_market": 333,
+        "n_jev_plain": 334,
+        "n_market": 334,
         "n_jev_research": 145,
         "n_claude_direct": 39
       },
@@ -9051,14 +9051,14 @@
       },
       {
         "category": "politics",
-        "n": 101,
-        "jev_research": 0.268,
-        "jev_plain": 0.2986,
-        "market": 0.1432,
+        "n": 102,
+        "jev_research": 0.2714,
+        "jev_plain": 0.2992,
+        "market": 0.1445,
         "claude_direct": 0.2799,
-        "n_jev_research": 64,
-        "n_jev_plain": 101,
-        "n_market": 101,
+        "n_jev_research": 65,
+        "n_jev_plain": 102,
+        "n_market": 102,
         "n_claude_direct": 15
       },
       {
@@ -9758,7 +9758,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 61,
+      "gates": 62,
       "research": 77,
       "questions": 3
     },
