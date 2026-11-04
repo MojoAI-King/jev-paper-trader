@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T06:54:07Z",
+  "generated": "2026-11-04T07:08:22Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T06:54:07Z",
+      "t": "2026-11-04T07:08:22Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2045,
+    "resolved": 2047,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20675563743551956,
-        "n": 1357
+        "brier": 0.20685110456553754,
+        "n": 1358
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2269869437652812,
-        "n": 2045
+        "brier": 0.22710112359550563,
+        "n": 2047
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20881670773967265,
-        "n": 1283
+        "brier": 0.20888847195482868,
+        "n": 1284
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1452935068459658,
-        "n": 2045
+        "brier": 0.14520755813385441,
+        "n": 2047
       }
     ],
     "paired": {
-      "n": 918,
+      "n": 919,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16315054438997822
+          "brier": 0.16307423803046792
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21589106753812634
+          "brier": 0.2160221980413493
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19887222222222223
+          "brier": 0.19896147986942328
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24320065359477125
+          "brier": 0.24343917301414583
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T06:50:40Z",
+    "ts": "2026-11-04T07:05:36Z",
     "stages": [
       [
         "Fetched",
@@ -2212,7 +2212,7 @@
           99500.72
         ],
         [
-          "2026-11-04T06:54:07Z",
+          "2026-11-04T07:08:22Z",
           99500.72
         ]
       ]
@@ -3273,7 +3273,7 @@
           99744.28
         ],
         [
-          "2026-11-04T06:54:07Z",
+          "2026-11-04T07:08:22Z",
           99744.28
         ]
       ]
@@ -4334,7 +4334,7 @@
           100149.06
         ],
         [
-          "2026-11-04T06:54:07Z",
+          "2026-11-04T07:08:22Z",
           100149.06
         ]
       ]
@@ -5395,7 +5395,7 @@
           98098.89
         ],
         [
-          "2026-11-04T06:54:07Z",
+          "2026-11-04T07:08:22Z",
           98098.89
         ]
       ]
@@ -7781,6 +7781,22 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T07:07:57Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the Democrats win the Ohio governor race in 2026?",
+      "url": "https://polymarket.com/market/will-the-democrats-win-the-ohio-governor-race-in-2026"
+    },
+    {
+      "ts": "2026-11-04T07:05:36Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T06:53:34Z",
       "type": "review",
       "kind": "miss",
@@ -8441,22 +8457,6 @@
       "q": "Will the price of Ethereum be above $2,400 on November 4?",
       "url": "https://polymarket.com/market/ethereum-above-2400-on-november-4-2026",
       "probe": false
-    },
-    {
-      "ts": "2026-11-03T18:05:57Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-03T17:50:45Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8469,8 +8469,8 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2045,
-    "post_mortems": 102,
+    "reviewed": 2047,
+    "post_mortems": 103,
     "win_reviews": 58,
     "calibration": [
       {
@@ -8487,9 +8487,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 454,
+        "n": 455,
         "predicted": 0.489,
-        "actual": 0.526
+        "actual": 0.527
       },
       {
         "range": "60\u201380%",
@@ -8505,7 +8505,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 33,
+      "overconfident": 34,
       "unlucky": 35,
       "missing_info": 15,
       "stale_info": 8,
@@ -8518,6 +8518,26 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Will the Democrats win the Ohio governor race in 2026?",
+        "url": "https://polymarket.com/market/will-the-democrats-win-the-ohio-governor-race-in-2026",
+        "outcome": "yes",
+        "category": "politics",
+        "p": 0.42,
+        "market": 0.675,
+        "ts": "2026-11-04T07:07:57Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "Democrat Amy Acton won the Ohio governor's race, resolving the question YES. She had led almost every high-quality poll in early October (CNN/SSRS +8, NYT/Siena +4, Marist +6, Suffolk +9, YouGov +4), and prediction markets had her at roughly 68\u201380%. My search didn't find post-election coverage, so the YES result comes from the outcome given, not from results I checked.",
+        "what_we_missed": "The forecaster put Acton at 42%, below even odds, despite a consistent poll lead, Toss-up ratings, and a 67.5% market. It leaned too hard on one outlet's informal comparison of four past races, where polls understated Republicans in presidential and Senate contests. It also gave too much weight to Ohio's partisan lean and to a single Republican-leaning co/efficient poll, and missed that this was a midterm with a weak Republican nominee and a polling lead that was growing.",
+        "what_worked": "",
+        "lesson": "If nearly every high-quality poll and the market agree on a leader, an informal polling-error adjustment drawn from a few presidential-year races should shrink the lead, not reverse it. Forecasting below 50% against the poll leader needs strong, race-specific evidence.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Flag for review any forecast that puts the consensus poll leader below 50% while the market is above 60%, and require the forecaster to show that its polling-bias adjustment is based on similar elections (midterm, governor race) rather than presidential races."
+        }
+      },
       {
         "question": "Will the Democrats win the South Carolina Senate race in 2026?",
         "url": "https://polymarket.com/market/will-the-democrats-win-the-south-carolina-senate-race-in-2026",
@@ -8618,26 +8638,6 @@
         "suggested_change": {
           "area": "research",
           "change": "For box-office bracket questions, compare the projected run against similar films' holds in their 4th to 7th weeks and against calendar boosts like holidays, instead of carrying the latest week-over-week drop forward unchanged."
-        }
-      },
-      {
-        "question": "Will the total domestic gross for Spider-Man: Brand New Day be less than 970m by October 31?",
-        "url": "https://polymarket.com/market/will-the-total-domestic-gross-for-spider-man-brand-new-day-be-less-than-970m-by-october-31",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.45,
-        "market": 0.939,
-        "ts": "2026-11-02T23:53:41Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "The film reached about $944.5M domestic by September 20 after a $6.5M eighth weekend (down 22.6%). Its weekly takings kept shrinking after that, so by October 31 it was well short of $970M and the market resolved YES.",
-        "what_we_missed": "The forecaster's newest figure was the Labor Day total of about $923M. Reports from mid and late September, available before the October 5 judgment, showed weekends had dropped to single-digit millions. At that rate the film could only add about $15\u201325M more, short of the ~$47M the $923M figure left to go, so it would end well below $970M. The forecaster gave 45% for 'under $970M' when the evidence and the 94% market pointed to near-certain YES.",
-        "what_worked": "",
-        "lesson": "For box-office threshold questions, get the latest weekend total and weekly drop rate and project the remaining gross before setting a probability. Don't work from a total that is four weeks old.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For cumulative-gross questions, require the most recent weekend and daily figures from The Numbers or Box Office Mojo, dated within 7 days of the judgment, plus a simple decay projection to the deadline."
         }
       }
     ],
@@ -9005,9 +9005,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0625,
-      "b": 0.12,
-      "n": 1357,
+      "a": 1.0626,
+      "b": 0.1219,
+      "n": 1358,
       "active": true,
       "need": 300
     },
@@ -9074,14 +9074,14 @@
       },
       {
         "category": "politics",
-        "n": 104,
-        "jev_research": 0.2822,
-        "jev_plain": 0.3007,
-        "market": 0.1554,
+        "n": 106,
+        "jev_research": 0.283,
+        "jev_plain": 0.3015,
+        "market": 0.1536,
         "claude_direct": 0.2799,
-        "n_jev_research": 67,
-        "n_jev_plain": 104,
-        "n_market": 104,
+        "n_jev_research": 68,
+        "n_jev_plain": 106,
+        "n_market": 106,
         "n_claude_direct": 15
       },
       {
@@ -9781,7 +9781,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 62,
+      "gates": 63,
       "research": 79,
       "questions": 3
     },
