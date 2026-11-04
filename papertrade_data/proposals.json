@@ -817,6 +817,17 @@
       "min_resolved": 20,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p60",
+      "created": "2026-11-04T22:23:24Z",
+      "kind": "code",
+      "title": "Sharp's 20c price floor is below the 30c floor set for every strategy",
+      "why": "On 2026-10-01 Joey set min_ask to 0.30 for every strategy after long shots lost $32.6k of $35.7k, but sharp's live rules (locked, so I can't tune them) still allow 20c contracts. Sharp has already lost its only 2 settled bets (-$499), so before its forward test runs further, either raise the floor or confirm that the exception is intended.",
+      "judge_by": "Sharp's live rules show min_ask 0.30, or Joey records that sharp's 0.20 floor is a deliberate exception. After that, none of sharp's new bets are bought under the agreed floor.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
