@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T07:38:38Z",
+  "generated": "2026-11-04T07:53:05Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T07:38:38Z",
+      "t": "2026-11-04T07:53:05Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2060,
+    "resolved": 2063,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20717897435897437,
-        "n": 1365
+        "brier": 0.2074321141185077,
+        "n": 1367
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22763067961165048,
-        "n": 2060
+        "brier": 0.22761386330586525,
+        "n": 2063
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2093393572889233,
-        "n": 1291
+        "brier": 0.20962347942768753,
+        "n": 1293
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14558975084951456,
-        "n": 2060
+        "brier": 0.14571659561318467,
+        "n": 2063
       }
     ],
     "paired": {
-      "n": 928,
+      "n": 930,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.1640769609375
+          "brier": 0.1644353438172043
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21734978448275863
+          "brier": 0.21778924731182797
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.20022338362068964
+          "brier": 0.20052924731182795
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24444191810344829
+          "brier": 0.2446363440860215
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T07:35:43Z",
+    "ts": "2026-11-04T07:50:34Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2216,7 +2216,7 @@
           99500.72
         ],
         [
-          "2026-11-04T07:38:38Z",
+          "2026-11-04T07:53:05Z",
           99500.72
         ]
       ]
@@ -3281,7 +3281,7 @@
           99744.28
         ],
         [
-          "2026-11-04T07:38:38Z",
+          "2026-11-04T07:53:05Z",
           99744.28
         ]
       ]
@@ -4346,7 +4346,7 @@
           100149.06
         ],
         [
-          "2026-11-04T07:38:38Z",
+          "2026-11-04T07:53:05Z",
           100149.06
         ]
       ]
@@ -5411,7 +5411,7 @@
           98193.93
         ],
         [
-          "2026-11-04T07:38:38Z",
+          "2026-11-04T07:53:05Z",
           98193.93
         ]
       ]
@@ -7797,6 +7797,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-04T07:50:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T07:38:15Z",
       "type": "review",
       "kind": "win",
@@ -8461,14 +8469,6 @@
       "amount": -1514.39,
       "q": "Will Elon Musk post 380-399 tweets from October 27 to November 3, 2026?",
       "url": "https://polymarket.com/market/elon-musk-of-tweets-october-27-november-3-2026-380-399"
-    },
-    {
-      "ts": "2026-11-03T19:06:06Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8481,7 +8481,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2060,
+    "reviewed": 2063,
     "post_mortems": 103,
     "win_reviews": 59,
     "calibration": [
@@ -8493,15 +8493,15 @@
       },
       {
         "range": "20\u201340%",
-        "n": 492,
+        "n": 493,
         "predicted": 0.295,
-        "actual": 0.272
+        "actual": 0.274
       },
       {
         "range": "40\u201360%",
-        "n": 457,
+        "n": 458,
         "predicted": 0.489,
-        "actual": 0.527
+        "actual": 0.526
       },
       {
         "range": "60\u201380%",
@@ -9017,9 +9017,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0526,
-      "b": 0.1166,
-      "n": 1365,
+      "a": 1.049,
+      "b": 0.1158,
+      "n": 1367,
       "active": true,
       "need": 300
     },
@@ -9086,14 +9086,14 @@
       },
       {
         "category": "politics",
-        "n": 118,
-        "jev_research": 0.2818,
-        "jev_plain": 0.3038,
-        "market": 0.1606,
+        "n": 121,
+        "jev_research": 0.2844,
+        "jev_plain": 0.3016,
+        "market": 0.1624,
         "claude_direct": 0.2751,
-        "n_jev_research": 75,
-        "n_jev_plain": 118,
-        "n_market": 118,
+        "n_jev_research": 77,
+        "n_jev_plain": 121,
+        "n_market": 121,
         "n_claude_direct": 16
       },
       {
