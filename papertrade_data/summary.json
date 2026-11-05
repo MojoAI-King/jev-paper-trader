@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-04T23:53:09Z",
+  "generated": "2026-11-05T00:09:09Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-04T23:53:09Z",
+      "t": "2026-11-05T00:09:09Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-04T23:50:36Z",
+    "ts": "2026-11-05T00:05:47Z",
     "stages": [
       [
         "Fetched",
@@ -2242,7 +2242,7 @@
           99500.72
         ],
         [
-          "2026-11-04T23:53:09Z",
+          "2026-11-05T00:09:09Z",
           99500.72
         ]
       ]
@@ -3331,7 +3331,7 @@
           99769.32
         ],
         [
-          "2026-11-04T23:53:09Z",
+          "2026-11-05T00:09:09Z",
           99769.32
         ]
       ]
@@ -4420,7 +4420,7 @@
           100149.06
         ],
         [
-          "2026-11-04T23:53:09Z",
+          "2026-11-05T00:09:09Z",
           100149.06
         ]
       ]
@@ -5509,7 +5509,7 @@
           97457.78
         ],
         [
-          "2026-11-04T23:53:09Z",
+          "2026-11-05T00:09:09Z",
           97457.78
         ]
       ]
@@ -7941,6 +7941,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-05T00:09:04Z",
+      "type": "learn",
+      "text": "Research playbook updated to v27"
+    },
+    {
+      "ts": "2026-11-05T00:05:47Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-05T00:05:47Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-04T23:50:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8493,27 +8511,6 @@
       "ts": "2026-11-04T16:35:38Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-04T16:35:38Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-04T16:20:34Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-04T16:20:34Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8831,8 +8828,8 @@
       }
     ],
     "playbook": {
-      "version": 26,
-      "updated": "2026-11-04T05:09:56Z",
+      "version": 27,
+      "updated": "2026-11-05T00:08:30Z",
       "rules": [
         {
           "id": "R1",
@@ -8855,8 +8852,14 @@
         {
           "id": "R41",
           "category": "politics",
-          "rule": "For election questions, report the state's partisan lean, recent results for the same office, candidates' cash on hand, dated latest polls, and the national environment (generic ballot, president's approval); don't assume a state's past polling misses recur in the same direction.",
+          "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated recent poll with its pollster, raters' ratings and recent shifts, polls for other races on the same ballot, primary turnout by party, and the national environment.",
           "added": "2026-11-04T05:09:56Z"
+        },
+        {
+          "id": "R42",
+          "category": "politics",
+          "rule": "Before citing a state's past polling miss, check whether it came from a different candidate or a presidential year, and report the nominee's own record (appointed, first-time, primary upset, runoff margin); label party win streaks and spending gaps as weak evidence.",
+          "added": "2026-11-05T00:08:30Z"
         },
         {
           "id": "R7",
@@ -8947,15 +8950,29 @@
           "category": "economy",
           "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
           "added": "2026-10-29T04:08:51Z"
-        },
-        {
-          "id": "R37",
-          "category": "tech",
-          "rule": "For point-release (X.1) model questions, report the parent model's official launch date and current rollout stage, the company's past gaps between flagship and point releases, and any dated official announcement or release notes naming the version.",
-          "added": "2026-10-31T17:08:33Z"
         }
       ],
       "history": [
+        {
+          "ts": "2026-11-05T00:08:30Z",
+          "version": 27,
+          "added": [
+            "R42"
+          ],
+          "revised": [
+            "R41"
+          ],
+          "retired": [
+            "R37"
+          ],
+          "changes": [
+            "Sharpened R41: election research must now list every dated recent poll with its pollster, raters' ratings and their shifts, polls for other races on the same ballot, and primary turnout by party (GA governor, OH governor and SC Senate reviews). The past-polling-miss caveat moved into the new rule.",
+            "Added a politics rule: before using a past polling miss, check whether it came from a different candidate or a presidential year; report the nominee's own electoral record; label party win streaks and spending gaps as weak evidence (SC Senate R, OH governor and GA governor reviews).",
+            "Made no rules from polymarket:630924 (unlucky) or polymarket:629397 (lucky).",
+            "Left out the reviews' suggestions about comparing with or deferring to the market; these are gating advice, not research rules, and the playbook does not mention markets."
+          ],
+          "refused": 1
+        },
         {
           "ts": "2026-11-04T05:09:56Z",
           "version": 26,
@@ -9036,28 +9053,6 @@
             "No changes: all four new reviews (polymarket:2100981, polymarket:3554657, polymarket:2110579, polymarket:1235568) are marked lucky or unlucky, so none of them can support adding, sharpening or dropping a rule; all 19 existing rules are kept as written."
           ],
           "refused": 0
-        },
-        {
-          "ts": "2026-10-31T17:08:33Z",
-          "version": 23,
-          "added": [
-            "R36",
-            "R37"
-          ],
-          "revised": [
-            "R30"
-          ],
-          "retired": [
-            "R15",
-            "R24"
-          ],
-          "changes": [
-            "added: economy GDP rule (KXGDP-26OCT30-T2.0): the dated GDPNow nowcast carried the call, and a rules fact listed a threshold of 4.0 against the title's 2.0, so the rule checks that threshold against the title.",
-            "added: tech point-release rule (KXGPT-ASTRA61-26OCT30): the parent model's launch date and rollout stage were the deciding evidence.",
-            "merged: R15 into R30 to stay within 20 rules; both say to get the live or final score of anything already started, and the series-specific checks are kept as a clause in R30.",
-            "skipped: KXLLM1-26OCT31-A is marked lucky, so no rule was made from it."
-          ],
-          "refused": 1
         }
       ]
     },

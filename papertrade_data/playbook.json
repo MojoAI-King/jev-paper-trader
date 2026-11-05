@@ -1,22 +1,22 @@
 {
-  "version": 26,
-  "updated": "2026-11-04T05:09:56Z",
+  "version": 27,
+  "updated": "2026-11-05T00:08:30Z",
   "rules": [
     {
       "id": "R1",
       "category": "crypto",
       "rule": "For price-touch questions (crypto, oil, commodities), copy strike, venue and test (touch or candle close) from the rules, check venue candles for a prior hit, and report spot within 15 min, % to strike, days left, volatility, days of last 14 through it, dated catalysts.",
       "evidence": [
+        "polymarket:4689727",
         "polymarket:4797513",
         "polymarket:4797724",
         "polymarket:4797726",
         "polymarket:4844455",
+        "polymarket:4936102",
         "polymarket:5009022",
         "polymarket:5170737",
         "polymarket:5170738",
         "polymarket:5208385",
-        "polymarket:4689727",
-        "polymarket:4936102",
         "polymarket:5362505"
       ],
       "added": "2026-09-28T16:35:53Z"
@@ -42,11 +42,25 @@
     {
       "id": "R41",
       "category": "politics",
-      "rule": "For election questions, report the state's partisan lean, recent results for the same office, candidates' cash on hand, dated latest polls, and the national environment (generic ballot, president's approval); don't assume a state's past polling misses recur in the same direction.",
+      "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated recent poll with its pollster, raters' ratings and recent shifts, polls for other races on the same ballot, primary turnout by party, and the national environment.",
       "evidence": [
-        "polymarket:631045"
+        "polymarket:631045",
+        "polymarket:629337",
+        "polymarket:629557",
+        "polymarket:630925"
       ],
       "added": "2026-11-04T05:09:56Z"
+    },
+    {
+      "id": "R42",
+      "category": "politics",
+      "rule": "Before citing a state's past polling miss, check whether it came from a different candidate or a presidential year, and report the nominee's own record (appointed, first-time, primary upset, runoff margin); label party win streaks and spending gaps as weak evidence.",
+      "evidence": [
+        "polymarket:630925",
+        "polymarket:629557",
+        "polymarket:629337"
+      ],
+      "added": "2026-11-05T00:08:30Z"
     },
     {
       "id": "R7",
@@ -225,15 +239,6 @@
         "kalshi:KXFED-26OCT-T4.00"
       ],
       "added": "2026-10-29T04:08:51Z"
-    },
-    {
-      "id": "R37",
-      "category": "tech",
-      "rule": "For point-release (X.1) model questions, report the parent model's official launch date and current rollout stage, the company's past gaps between flagship and point releases, and any dated official announcement or release notes naming the version.",
-      "evidence": [
-        "kalshi:KXGPT-ASTRA61-26OCT30"
-      ],
-      "added": "2026-10-31T17:08:33Z"
     }
   ],
   "reviews_used": [
@@ -393,6 +398,11 @@
     "polymarket:5423683",
     "polymarket:5447182",
     "polymarket:5572739",
+    "polymarket:629337",
+    "polymarket:629397",
+    "polymarket:629557",
+    "polymarket:630924",
+    "polymarket:630925",
     "polymarket:631045"
   ],
   "retired_ids": [
@@ -413,6 +423,7 @@
     "R3",
     "R31",
     "R34",
+    "R37",
     "R4",
     "R5",
     "R6",
