@@ -828,6 +828,37 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "ch61",
+      "created": "2026-11-05T10:23:25Z",
+      "kind": "challenger",
+      "title": "Claude direct, sports and culture, moderate edge",
+      "why": "Sports (Claude 0.176 vs market 0.180, 204 markets) and culture (0.032 vs 0.074, 14 markets) are the only places any forecaster beats the price. Claude's skill estimate is positive on 947 markets, so it sizes by Kelly rather than probes. No challenger is visible as running, and ch55 tried this idea but was marked invalid without a stated reason, so this rebuilds it using only the allowed sources, rule names and categories. This is an experiment.",
+      "judge_by": "After 30 resolved bets: (1) settled P&L per $100 staked is zero or better; (2) Claude's Brier on the markets it bet is lower than the market's on the same markets. If it places fewer than 1 bet a day for a week, or is below -$15 per $100 after 30 resolved, retire it.",
+      "min_resolved": 30,
+      "status": "invalid",
+      "status_reason": "claude_direct no longer picks bets (learning.retired_probabilities; Joey, 2026-10-11)",
+      "strategy": {
+        "label": "Claude direct, sports and culture, 8c edge",
+        "probability": "claude_direct",
+        "gates": "jev_research",
+        "rules": {
+          "min_edge": 0.08,
+          "min_info_sufficient": 0.2,
+          "min_ask": 0.3,
+          "max_ask": 0.85,
+          "skip_categories": [
+            "crypto",
+            "weather",
+            "economy",
+            "politics",
+            "world",
+            "tech",
+            "other"
+          ]
+        }
+      }
     }
   ]
 }
