@@ -859,6 +859,43 @@
           ]
         }
       }
+    },
+    {
+      "id": "ch62",
+      "created": "2026-11-05T22:38:18Z",
+      "kind": "challenger",
+      "title": "Claude direct, sports only, simple rules",
+      "why": "Sports is the one category where any forecaster beats the market: Claude scores 0.176 vs the market's 0.180 on 204 markets. No challenger slot is in use. ch55 and ch61 were rejected for reasons we weren't told, so this version uses only standard values inside the allowed ranges and keeps the 30c price floor. It is an experiment, and it will place nothing until judging works again.",
+      "judge_by": "First, it must be accepted as valid and place at least 1 bet a day once judging resumes. After the minimum number of settled bets, its settled P&L per $100 staked should be zero or better, and Claude's Brier on its bets should be no worse than the market's on those same markets. Otherwise, retire it.",
+      "min_resolved": 30,
+      "status": "invalid",
+      "status_reason": "claude_direct no longer picks bets (learning.retired_probabilities; Joey, 2026-10-11)",
+      "strategy": {
+        "label": "Claude direct, sports only",
+        "probability": "claude_direct",
+        "gates": "jev_research",
+        "rules": {
+          "min_edge": 0.08,
+          "min_rules_clear": 0.75,
+          "min_info_sufficient": 0.35,
+          "max_framing_gap": 0.15,
+          "kelly_fraction": 0.25,
+          "max_stake_pct": 0.02,
+          "max_total_exposure_pct": 0.3,
+          "min_ask": 0.3,
+          "max_ask": 0.8,
+          "skip_categories": [
+            "crypto",
+            "weather",
+            "economy",
+            "culture",
+            "politics",
+            "world",
+            "tech",
+            "other"
+          ]
+        }
+      }
     }
   ]
 }
