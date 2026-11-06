@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06T19:53:08Z",
+  "generated": "2026-11-06T20:07:13Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-06T19:53:08Z",
+      "t": "2026-11-06T20:07:13Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-06T19:50:38Z",
+    "ts": "2026-11-06T20:05:34Z",
     "stages": [
       [
         "Fetched",
@@ -1007,7 +1007,7 @@
     "researched_new": 0,
     "research_reused": 0,
     "bets": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1022,10 +1022,12 @@
       "kalshi": 100
     },
     "problems": [
-      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+      "kalshi: fetch stopped after 14 pages (<urlopen error [Errno 104] Connection reset by peer>); kept what it had",
+      "kalshi mentions: KXBDONMENTION: <urlopen error [Errno 104] Connection reset by peer>",
+      "kalshi mentions: KXJPOWMENTION: <urlopen error [Errno 104] Connection reset by peer>"
     ],
     "cleared_gates": {
-      "sharp": 0,
+      "sharp": 1,
       "mention_no": 0,
       "mention_follow": 0,
       "favorites": 0
@@ -1057,8 +1059,8 @@
       "unrealized": 0.0,
       "change": -499.28,
       "realized": -499.28,
-      "open": 4,
-      "open_cost": 994.74,
+      "open": 5,
+      "open_cost": 1243.42,
       "settled": 2,
       "wins": 0,
       "losses": 2,
@@ -2262,7 +2264,7 @@
           99500.72
         ],
         [
-          "2026-11-06T19:53:08Z",
+          "2026-11-06T20:07:13Z",
           99500.72
         ]
       ]
@@ -3371,7 +3373,7 @@
           99724.07
         ],
         [
-          "2026-11-06T19:53:08Z",
+          "2026-11-06T20:07:13Z",
           99724.07
         ]
       ]
@@ -4480,7 +4482,7 @@
           100149.06
         ],
         [
-          "2026-11-06T19:53:08Z",
+          "2026-11-06T20:07:13Z",
           100149.06
         ]
       ]
@@ -5589,7 +5591,7 @@
           92608.87
         ],
         [
-          "2026-11-06T19:53:08Z",
+          "2026-11-06T20:07:13Z",
           92608.87
         ]
       ]
@@ -6259,6 +6261,29 @@
           "p_side": 0.4878,
           "edge": 0.1221,
           "opened": "2026-11-01T23:05:26Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNCAAFGAME-26NOV07UKTENN-TENN",
+      "question": "Tennessee wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/tennessee-wins/kxncaafgame-26nov07uktenn",
+      "source": "kalshi",
+      "close_time": "2026-11-09T20:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "sharp",
+          "side": "no",
+          "contracts": 680,
+          "cost_per": 0.3657,
+          "total_cost": 248.68,
+          "p_side": 0.5452,
+          "edge": 0.1795,
+          "opened": "2026-11-06T20:05:34Z",
           "value": null
         }
       ]
@@ -7975,6 +8000,36 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-06T20:05:34Z",
+      "type": "bet",
+      "strategy": "sharp",
+      "side": "no",
+      "price": 0.3657,
+      "amount": 248.68,
+      "p": 0.5452,
+      "q": "Tennessee wins",
+      "url": "https://kalshi.com/markets/kxncaafgame/tennessee-wins/kxncaafgame-26nov07uktenn",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-06T20:05:34Z",
+      "type": "problem",
+      "text": "kalshi: fetch stopped after 14 pages (<urlopen error [Errno 104] Connection reset by peer>); kept what it had"
+    },
+    {
+      "ts": "2026-11-06T20:05:34Z",
+      "type": "problem",
+      "text": "kalshi mentions: KXBDONMENTION: <urlopen error [Errno 104] Connection reset by peer>"
+    },
+    {
+      "ts": "2026-11-06T20:05:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-06T19:50:38Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8479,31 +8534,6 @@
     },
     {
       "ts": "2026-11-06T11:05:38Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-06T11:05:38Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-06T10:53:37Z",
-      "type": "learn",
-      "text": "Daily review written"
-    },
-    {
-      "ts": "2026-11-06T10:53:04Z",
-      "type": "idea",
-      "text": "A pass/stop mark for the favorites forward test",
-      "status": "proposed",
-      "why": "Favorites has lost $4.60 per $100 on 116 settled bets, all priced 60c and up, and it has the largest open exposure of any strategy (about $46k). It has no rule saying when the test ends. p54 does this for Mention NO only."
-    },
-    {
-      "ts": "2026-11-06T10:50:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
