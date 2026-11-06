@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06T10:38:08Z",
+  "generated": "2026-11-06T10:53:42Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-06T10:38:08Z",
+      "t": "2026-11-06T10:53:42Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-06T10:35:33Z",
+    "ts": "2026-11-06T10:50:32Z",
     "stages": [
       [
         "Fetched",
@@ -2258,7 +2258,7 @@
           99500.72
         ],
         [
-          "2026-11-06T10:38:08Z",
+          "2026-11-06T10:53:42Z",
           99500.72
         ]
       ]
@@ -3363,7 +3363,7 @@
           99724.07
         ],
         [
-          "2026-11-06T10:38:08Z",
+          "2026-11-06T10:53:42Z",
           99724.07
         ]
       ]
@@ -4468,7 +4468,7 @@
           100149.06
         ],
         [
-          "2026-11-06T10:38:08Z",
+          "2026-11-06T10:53:42Z",
           100149.06
         ]
       ]
@@ -5573,7 +5573,7 @@
           93987.94
         ],
         [
-          "2026-11-06T10:38:08Z",
+          "2026-11-06T10:53:42Z",
           93987.94
         ]
       ]
@@ -7982,6 +7982,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-06T10:53:37Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-06T10:53:04Z",
+      "type": "idea",
+      "text": "A pass/stop mark for the favorites forward test",
+      "status": "proposed",
+      "why": "Favorites has lost $4.60 per $100 on 116 settled bets, all priced 60c and up, and it has the largest open exposure of any strategy (about $46k). It has no rule saying when the test ends. p54 does this for Mention NO only."
+    },
+    {
+      "ts": "2026-11-06T10:50:32Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-06T10:50:32Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-06T10:35:33Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8476,32 +8501,6 @@
     },
     {
       "ts": "2026-11-06T01:35:40Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-06T01:20:30Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-06T01:20:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-06T01:05:32Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-06T01:05:32Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -9178,6 +9177,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p63",
+        "kind": "code",
+        "title": "A pass/stop mark for the favorites forward test",
+        "why": "Favorites has lost $4.60 per $100 on 116 settled bets, all priced 60c and up, and it has the largest open exposure of any strategy (about $46k). It has no rule saying when the test ends. p54 does this for Mention NO only.",
+        "judge_by": "Joey sets the mark now: at 200 settled, stop favorites if it is worse than -$2 per $100 settled; otherwise keep it running. The review should show this mark next to favorites' record.",
+        "min_resolved": 200,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-06T10:53:04Z"
+      },
       {
         "id": "ch62",
         "kind": "challenger",
@@ -9867,17 +9877,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-05T22:38:18Z",
-      "headline": "A quiet half day with only 2 new bets, all from the favorites strategy. None of the four strategies shown can be tuned because all are locked, and the Jev-based strategies, judging and the yardstick are still missing from this review.",
+      "ts": "2026-11-06T10:53:04Z",
+      "headline": "Quiet half day: the system judged nothing in 47 cycles, placed one bet (favorites), and every strategy in this review is locked, so I have nothing to tune.",
       "went_well": [
-        "Mention markets, follow the first NO is up $149 on $696 staked (+$21 per $100), 11 wins in 17 settled. That rests on 17 markets, so it is noise, not a finding.",
-        "Claude direct still has the best forecast scores in its strongest categories: sports Brier 0.176 vs the market's 0.180 (204 markets) and culture 0.032 vs 0.074 (only 14 markets). Its measured skill is slightly positive (lambda 0.0016 on 948 markets).",
-        "Mention NO is losing slowly rather than quickly: -$276 on $2.8k staked (-$10 per $100) over 68 settled, because its stakes are tiny."
+        "Mention follow is up $149 on 17 settled (11 wins, 6 losses), about +$30 per $100 settled. That is too few results to count as a finding.",
+        "Over 204 sports markets, Claude direct (Brier 0.176) is slightly better than the market (0.180). It is the only place any forecaster beats the price, and the margin is thin.",
+        "Mention NO's losses stay small: -$276 on 68 settled. It loses about $13 per $100 settled, but stakes are tiny (about $30 a bet)."
       ],
       "went_badly": [
-        "The market still beats every forecaster we have. All time it scores 0.145 against Claude's 0.174 and Jev + research's 0.207. On the 948 markets all of them forecast, it scores 0.164 against Claude's 0.200 and Jev + research's 0.218.",
-        "Heavy favorites won 104 of 115 settled bets and still lost $6.1k on $128.6k staked (-$4.7 per $100). About $46.6k, nearly half its bankroll, is still open across 42 bets. Winning often at high prices does not pay when the price already reflects the odds.",
-        "The pipeline still looks broken. 48 cycles judged 0 markets, and main, original and the other Jev strategies are absent, so the yardstick is empty. Sharp's record says version 1 with a 3c edge although a 2c change was logged as version 2. Sharp's skill estimate is -2.47 with a standard error of 0. B"
+        "Favorites is down $6.0k on 116 settled despite winning 105. It loses about $4.60 per $100, because each loss on a heavy favorite wipes out many small wins. It also has about $46k in 42 open bets.",
+        "No forecaster beats the market overall. On 949 paired markets the market scores Brier 0.163, Claude direct 0.200, Jev + research 0.218 and Jev alone 0.245. The 47 cycles this period judged 0 markets, and main, original and the challengers are still missing from the review.",
+        "Sharp is 0 for 2 settled (-$499) on 6 bets. Its live rules still show a 3c edge and version 1, even though the logged 2c change (v2) says otherwise. The last three challengers (ch55, ch61, ch62) were all marked invalid with no reason given."
       ]
     },
     "auto_start": true,
@@ -10468,6 +10478,13 @@
         "title": "Sharp's 20c price floor is below the 30c floor set for every strategy",
         "why": "On 2026-10-01 Joey set min_ask to 0.30 for every strategy after long shots lost $32.6k of $35.7k, but sharp's live rules (locked, so I can't tune them) still allow 20c contracts. Sharp has already lost its only 2 settled bets (-$499), so before its forward test runs further, either raise the floor or confirm that the exception is intended.",
         "created": "2026-11-04T22:23:24Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p63",
+        "title": "A pass/stop mark for the favorites forward test",
+        "why": "Favorites has lost $4.60 per $100 on 116 settled bets, all priced 60c and up, and it has the largest open exposure of any strategy (about $46k). It has no rule saying when the test ends. p54 does this for Mention NO only.",
+        "created": "2026-11-06T10:53:04Z",
         "status": "proposed"
       }
     ]
