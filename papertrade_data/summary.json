@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-05T23:53:17Z",
+  "generated": "2026-11-06T00:08:52Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-05T23:53:17Z",
+      "t": "2026-11-06T00:08:52Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2094,
+    "resolved": 2095,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20747258181818184,
-        "n": 1375
+        "brier": 0.20753372093023256,
+        "n": 1376
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2276738299904489,
-        "n": 2094
+        "brier": 0.22776682577565635,
+        "n": 2095
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.20954642181398922,
-        "n": 1301
+        "brier": 0.2095628810599078,
+        "n": 1302
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14500362070200573,
-        "n": 2094
+        "brier": 0.14493785525059666,
+        "n": 2095
       }
     ],
     "paired": {
-      "n": 948,
+      "n": 949,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16350379193037975
+          "brier": 0.16333911459430978
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21758565400843882
+          "brier": 0.21765237091675446
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19978565400843884
+          "brier": 0.19989388830347735
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24491761603375528
+          "brier": 0.24511854583772394
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-05T23:50:31Z",
+    "ts": "2026-11-06T00:05:36Z",
     "stages": [
       [
         "Fetched",
@@ -2258,7 +2258,7 @@
           99500.72
         ],
         [
-          "2026-11-05T23:53:17Z",
+          "2026-11-06T00:08:52Z",
           99500.72
         ]
       ]
@@ -3363,7 +3363,7 @@
           99724.07
         ],
         [
-          "2026-11-05T23:53:17Z",
+          "2026-11-06T00:08:52Z",
           99724.07
         ]
       ]
@@ -4468,7 +4468,7 @@
           100149.06
         ],
         [
-          "2026-11-05T23:53:17Z",
+          "2026-11-06T00:08:52Z",
           100149.06
         ]
       ]
@@ -5573,7 +5573,7 @@
           93945.41
         ],
         [
-          "2026-11-05T23:53:17Z",
+          "2026-11-06T00:08:52Z",
           93945.41
         ]
       ]
@@ -7982,6 +7982,27 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-06T00:08:14Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "missing_info",
+      "q": "Bank of England increases interest rates by 25 bps after November 2026 meeting?",
+      "url": "https://polymarket.com/market/bank-of-england-increases-interest-rates-by-25-bps-after-november-2026-meeting-20260730150602310"
+    },
+    {
+      "ts": "2026-11-06T00:05:36Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-06T00:05:36Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-05T23:50:31Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8496,24 +8517,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-05T14:50:41Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-05T14:50:41Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-05T14:35:30Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8526,8 +8529,8 @@
   "research_per_day": 150,
   "cycles_24h": 95,
   "learning": {
-    "reviewed": 2094,
-    "post_mortems": 103,
+    "reviewed": 2095,
+    "post_mortems": 104,
     "win_reviews": 59,
     "calibration": [
       {
@@ -8544,9 +8547,9 @@
       },
       {
         "range": "40\u201360%",
-        "n": 460,
+        "n": 461,
         "predicted": 0.489,
-        "actual": 0.528
+        "actual": 0.529
       },
       {
         "range": "60\u201380%",
@@ -8564,7 +8567,7 @@
     "root_causes": {
       "overconfident": 34,
       "unlucky": 35,
-      "missing_info": 15,
+      "missing_info": 16,
       "stale_info": 8,
       "research_error": 8,
       "misread_rules": 3
@@ -8575,6 +8578,26 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Bank of England increases interest rates by 25 bps after November 2026 meeting?",
+        "url": "https://polymarket.com/market/bank-of-england-increases-interest-rates-by-25-bps-after-november-2026-meeting-20260730150602310",
+        "outcome": "yes",
+        "category": "economy",
+        "p": 0.46,
+        "market": 0.915,
+        "ts": "2026-11-06T00:08:14Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "missing_info",
+        "what_happened": "On 5 November 2026 the BoE raised Bank Rate 25bp to 4.00% by an 8\u20131 vote; Mann wanted 50bp. Bailey said energy-driven inflation pressure in the pipeline now justified a hike. September CPI had risen to 3.5%, and analysts widely expected the move.",
+        "what_we_missed": "By 7 October the market was pricing a hike at about 91.5%, so information beyond the 17 September minutes had probably moved expectations, such as later MPC speeches or OIS pricing. The research stopped at the September meeting, read the 6\u20133 hold majority as dovish, and missed that Bailey's 'insurance hike' framing plus Brent holding above $100 made a hike close to the default.",
+        "what_worked": "",
+        "lesson": "When a central-bank market sits at an extreme like 90% or more and the forecast is near 50%, look up current OIS or futures pricing and policymaker speeches since the last meeting before departing sharply from the market.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For central-bank rate questions, always fetch current market-implied probabilities (OIS or SONIA futures) and any MPC member speeches since the last meeting, and record them as facts."
+        }
+      },
       {
         "question": "Will the Democrats win the Ohio governor race in 2026?",
         "url": "https://polymarket.com/market/will-the-democrats-win-the-ohio-governor-race-in-2026",
@@ -8675,26 +8698,6 @@
         "suggested_change": {
           "area": "gates",
           "change": "Don't bet on fast-moving conflict markets unless the research step returned current facts; jev_alone with an empty fact list should mean no bet."
-        }
-      },
-      {
-        "question": "Will the total domestic gross for Resident Evil be between 150m and 160m by October 31?",
-        "url": "https://polymarket.com/market/will-the-total-domestic-gross-for-resident-evil-be-between-150m-and-160m-by-october-31",
-        "outcome": "yes",
-        "category": "other",
-        "p": 0.44,
-        "market": 0.78,
-        "ts": "2026-11-02T23:54:11Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "unlucky",
-        "what_happened": "Resident Evil finished between $150M and $160M domestic on The Numbers by October 31, so the market resolved YES. It had $130.2M through October 8 and needed about $20M to $30M more over the next 23 days. My search found only opening-weekend coverage, so I could not get the final total or how it got there.",
-        "what_we_missed": "If each week keeps falling about 45%, the film lands at roughly $148M to $150M. That is right at the lower edge of the bracket, so small changes in the assumed decay decided the outcome. October horror films usually hold better late in their run, and a horror movie playing through Friday, October 30 and Saturday, October 31 (Halloween) gets a boost. Leaning toward those better holds pushes the estimate comfortably above $150M, and the $160M ceiling was far out of reach. The market's 78% priced that in, and our 44% gave it too little weight.",
-        "what_worked": "",
-        "lesson": "When a bracket edge sits right on a straight-line decay projection, change the weekly decay rate to fit the film's genre and season, such as a horror film running into Halloween, before betting against a market that is clearly more confident.",
-        "suggested_change": {
-          "area": "research",
-          "change": "For box-office bracket questions, compare the projected run against similar films' holds in their 4th to 7th weeks and against calendar boosts like holidays, instead of carrying the latest week-over-week drop forward unchanged."
         }
       }
     ],
@@ -9060,9 +9063,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0511,
-      "b": 0.1212,
-      "n": 1375,
+      "a": 1.0517,
+      "b": 0.1232,
+      "n": 1376,
       "active": true,
       "need": 300
     },
@@ -9141,13 +9144,13 @@
       },
       {
         "category": "economy",
-        "n": 87,
-        "jev_plain": 0.2653,
-        "market": 0.1225,
-        "jev_research": 0.232,
-        "n_jev_plain": 87,
-        "n_market": 87,
-        "n_jev_research": 57
+        "n": 88,
+        "jev_plain": 0.2671,
+        "market": 0.1212,
+        "jev_research": 0.2331,
+        "n_jev_plain": 88,
+        "n_market": 88,
+        "n_jev_research": 58
       },
       {
         "category": "world",
@@ -9870,7 +9873,7 @@
     ],
     "suggested_areas": {
       "gates": 64,
-      "research": 79,
+      "research": 80,
       "questions": 3
     },
     "retro": {
