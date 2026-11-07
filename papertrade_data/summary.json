@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-07T02:53:02Z",
+  "generated": "2026-11-07T03:09:52Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-07T02:53:02Z",
+      "t": "2026-11-07T03:09:52Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2098,
+    "resolved": 2100,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.2074527959331881,
-        "n": 1377
+        "brier": 0.20807469180565627,
+        "n": 1379
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277486653956149,
-        "n": 2098
+        "brier": 0.22786795238095237,
+        "n": 2100
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.2094513686799693,
-        "n": 1303
+        "brier": 0.21017678065900383,
+        "n": 1305
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1450148030266921,
-        "n": 2098
+        "brier": 0.1453367175,
+        "n": 2100
       }
     ],
     "paired": {
-      "n": 950,
+      "n": 951,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16322781026315789
+          "brier": 0.16356408491062038
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21751178947368421
+          "brier": 0.21785888538380652
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.1998198947368421
+          "brier": 0.20015488958990535
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24520252631578945
+          "brier": 0.24522902208201894
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-07T02:50:32Z",
+    "ts": "2026-11-07T03:05:34Z",
     "stages": [
       [
         "Fetched",
@@ -2270,7 +2270,7 @@
           99500.72
         ],
         [
-          "2026-11-07T02:53:02Z",
+          "2026-11-07T03:09:52Z",
           99500.72
         ]
       ]
@@ -3387,7 +3387,7 @@
           99724.07
         ],
         [
-          "2026-11-07T02:53:02Z",
+          "2026-11-07T03:09:52Z",
           99724.07
         ]
       ]
@@ -4504,7 +4504,7 @@
           100149.06
         ],
         [
-          "2026-11-07T02:53:02Z",
+          "2026-11-07T03:09:52Z",
           100149.06
         ]
       ]
@@ -5621,7 +5621,7 @@
           92798.34
         ],
         [
-          "2026-11-07T02:53:02Z",
+          "2026-11-07T03:09:52Z",
           92798.34
         ]
       ]
@@ -8099,6 +8099,40 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-07T03:09:47Z",
+      "type": "learn",
+      "text": "Research playbook updated to v28"
+    },
+    {
+      "ts": "2026-11-07T03:08:32Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the Democratic Party win the SC-01 House seat?",
+      "url": "https://polymarket.com/market/will-the-democratic-party-win-the-sc-01-house-seat"
+    },
+    {
+      "ts": "2026-11-07T03:08:01Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will the Republican Party win the SC-01 House seat?",
+      "url": "https://polymarket.com/market/will-the-republican-party-win-the-sc-01-house-seat"
+    },
+    {
+      "ts": "2026-11-07T03:05:34Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-07T03:05:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-07T02:50:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8626,37 +8660,6 @@
       "q": "Tampa Bay wins by over 10.5 points?",
       "url": "https://kalshi.com/markets/kxnflspread/tampa-bay-wins-by-over-10-5-points/kxnflspread-26nov08tbchi",
       "probe": false
-    },
-    {
-      "ts": "2026-11-06T19:05:29Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-06T19:05:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-06T18:50:31Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-06T18:50:31Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-06T18:35:41Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8669,15 +8672,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2098,
-    "post_mortems": 104,
+    "reviewed": 2100,
+    "post_mortems": 106,
     "win_reviews": 60,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 192,
+        "n": 193,
         "predicted": 0.137,
-        "actual": 0.167
+        "actual": 0.171
       },
       {
         "range": "20\u201340%",
@@ -8693,9 +8696,9 @@
       },
       {
         "range": "60\u201380%",
-        "n": 218,
+        "n": 219,
         "predicted": 0.662,
-        "actual": 0.743
+        "actual": 0.74
       },
       {
         "range": "80\u2013100%",
@@ -8705,7 +8708,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 34,
+      "overconfident": 36,
       "unlucky": 35,
       "missing_info": 16,
       "stale_info": 8,
@@ -8718,6 +8721,46 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Will the Democratic Party win the SC-01 House seat?",
+        "url": "https://polymarket.com/market/will-the-democratic-party-win-the-sc-01-house-seat",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.14,
+        "market": 0.305,
+        "ts": "2026-11-07T03:08:32Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "Democrat Nancy Lacore won the open SC-01 seat on Nov 3, 2026. Unofficial returns had her at 49.65% to Republican Jenny Costa Honeycutt's 48.64%, a margin of about 3,300 votes. Honeycutt conceded, which flipped the seat to the Democrats.",
+        "what_we_missed": "The polls we had showed a close race: Honeycutt led by only 1 to 6 points, and her biggest lead (+6) came from a Republican-aligned pollster. The national mood also favored Democrats, with a midterm under a Republican president, an unpopular Iran war and tariffs, and Lacore was a strong, well-funded candidate. Still, the research-based forecast leaned on the R+6 partisan lean and the 'solid R' label and went down to 14%. That was well below the market's 30.5% and below our own no-research forecast of 34%.",
+        "what_worked": "",
+        "lesson": "When polls of an open seat show a single-digit race and the national environment favors the challenger's party, don't let the district's partisan lean pull the probability far below the market. In an open-seat midterm, an R+6 seat can easily swing that much.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Flag forecasts that sit more than about 15 points below the market when the latest polls are within the margin of error, and require stated reasons before the forecast can go out."
+        }
+      },
+      {
+        "question": "Will the Republican Party win the SC-01 House seat?",
+        "url": "https://polymarket.com/market/will-the-republican-party-win-the-sc-01-house-seat",
+        "outcome": "no",
+        "category": "other",
+        "p": 0.73,
+        "market": 0.695,
+        "ts": "2026-11-07T03:08:01Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "Democrat Nancy Lacore flipped SC-01, beating Republican Jenny Costa Honeycutt about 49.65% to 48.64% in unofficial results, just over South Carolina's recount threshold. Honeycutt conceded on Nov 4. Coverage credits Lacore's gains in Berkeley and Dorchester counties, her fundraising edge and a midterm climate that favored Democrats.",
+        "what_we_missed": "The evidence pointed to a toss-up. Both Democratic-aligned polls had Honeycutt up only 1\u20132 points, the one Republican pollster had her up 6, and Lacore outraised her by a wide margin. On top of that, the open seat in a midterm under a Republican president with tariffs and the Iran war as issues looked like 2018, when Cunningham flipped this seat. Research moved the forecast up from 0.52 to 0.73 by leaning on the Republican-aligned co/efficient poll and on a 'solidly Republican' label. Cook actually rated the race 'Likely R', and its R+6 lean is a historical figure, not a reading of this race.",
+        "what_worked": "",
+        "lesson": "In an open-seat race during a midterm, when nonpartisan or opposite-party polling shows a lead of 3 points or less, keep the probability near 50\u201365%. Partisan lean indexes and polls from the favored party's own pollsters shouldn't push it higher.",
+        "suggested_change": {
+          "area": "research",
+          "change": "Weight polls by sponsor, average them so the effect of partisan pollsters cancels out, and check race ratings against the primary source (Cook, Sabato, Inside Elections). Don't rely on secondhand labels like 'solidly Republican'."
+        }
+      },
       {
         "question": "Bank of England increases interest rates by 25 bps after November 2026 meeting?",
         "url": "https://polymarket.com/market/bank-of-england-increases-interest-rates-by-25-bps-after-november-2026-meeting-20260730150602310",
@@ -8796,48 +8839,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Before adjusting for past polling bias, check whether the earlier error came from a different, stronger candidate. Then reduce the adjustment when the current nominee has no electoral track record or the circumstances are unusual."
-        }
-      },
-      {
-        "question": "Will the Democrats win the Georgia governor race in 2026?",
-        "url": "https://polymarket.com/market/will-the-democrats-win-the-georgia-governor-race-in-2026",
-        "outcome": "yes",
-        "category": "politics",
-        "p": 0.3,
-        "market": 0.475,
-        "ts": "2026-11-04T05:38:24Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "AP, NBC and Fox 5 called the race for Democrat Keisha Lance Bottoms on Nov 3, 2026, and Republican Rick Jackson conceded. Early official returns had Bottoms at about 56% to Jackson's 44%, a much wider margin than the tied October polls suggested, even though Jackson had spent more than $200M of his own money.",
-        "what_we_missed": "The forecaster's own facts pointed toward a Democratic win or at least a coin flip. The governor polls were tied, Ossoff led the Senate race by about 10 points, Democratic primary turnout was higher than Republican for the first time since 2006, and the market was at 47.5%. The forecaster still dropped to 30%, mostly because Republicans had won every governor race since 2002 and Jackson had far more money. Neither reason justified going that far against the polls and the political climate.",
-        "what_worked": "",
-        "lesson": "If the polls in a race are tied and a same-ballot race shows a strong lean toward one party, don't push below the market because of past results or a spending gap. Big self-funded spending and long party winning streaks often add little in a strong wave year.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "When a forecast is more than 15 points from the market and the head-to-head polls are within 2 points, require a specific argument for the gap, or move the forecast toward the market, and require a check of the same-ballot Senate polls."
-        }
-      },
-      {
-        "question": "US-Iran ceasefire continues through the midterms?",
-        "url": "https://polymarket.com/market/us-iran-ceasefire-continues-through-the-midterms",
-        "outcome": "no",
-        "category": "world",
-        "p": null,
-        "market": 0.75,
-        "ts": "2026-11-04T05:08:56Z",
-        "bets": {
-          "favorites": -1503.32
-        },
-        "kind": "miss",
-        "root_cause": "missing_info",
-        "what_happened": "On November 3, 2026, the eve of the midterms, US forces struck Iran's Qeshm Island near the Strait of Hormuz. A US official described it as a 'defensive measure' after Iran fired surface-to-air missiles at US assets. A strike that hits Iranian land counts, so the market resolved NO.",
-        "what_we_missed": "The forecaster had no facts and did no research. A search would have shown several warning signs: the US had already struck Iran during the 'ceasefire', including on May 7; the interim deal reportedly broke down in July over attacks in the Strait of Hormuz; Iran was firing at US aircraft; and in late October a third carrier group was on its way and US forces were reported ready to strike within 96 hours of an order. Small, unannounced 'defensive' strikes on Iranian islands were a likely way for this to resolve NO, separate from any large post-election campaign.",
-        "what_worked": "",
-        "lesson": "For 'no US strike on Iran' markets, count how often limited retaliatory strikes have already happened during the ceasefire, and how hostile things are right now, rather than going by the ceasefire's name or Trump's comments about timing.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "Don't bet on fast-moving conflict markets unless the research step returned current facts; jev_alone with an empty fact list should mean no bet."
         }
       }
     ],
@@ -8976,8 +8977,8 @@
       }
     ],
     "playbook": {
-      "version": 27,
-      "updated": "2026-11-05T00:08:30Z",
+      "version": 28,
+      "updated": "2026-11-07T03:09:02Z",
       "rules": [
         {
           "id": "R1",
@@ -8994,19 +8995,19 @@
         {
           "id": "R40",
           "category": "world",
-          "rule": "For ceasefire or 'no strike' questions, read what counts as a breach in the rules, then search recent weeks for dated strikes or fire exchanged during the ceasefire, deal breakdowns and force deployments; don't rely on the ceasefire's name or leaders' remarks.",
+          "rule": "For ceasefire or 'no strike' questions, read what counts as a breach (e.g. strikes on territory only, not ships or threats), check the latest dated conflict tracker (e.g. Critical Threats) for the last qualifying strike, and report the lull's length, days left and deployments.",
           "added": "2026-11-04T05:09:56Z"
         },
         {
           "id": "R41",
           "category": "politics",
-          "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated recent poll with its pollster, raters' ratings and recent shifts, polls for other races on the same ballot, primary turnout by party, and the national environment.",
+          "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated poll with pollster and sponsor, a nonpartisan-poll average, first-hand Cook/Sabato/Inside Elections ratings, other races' polls, primary turnout, national mood.",
           "added": "2026-11-04T05:09:56Z"
         },
         {
           "id": "R42",
           "category": "politics",
-          "rule": "Before citing a state's past polling miss, check whether it came from a different candidate or a presidential year, and report the nominee's own record (appointed, first-time, primary upset, runoff margin); label party win streaks and spending gaps as weak evidence.",
+          "rule": "Before citing a past polling miss, check it was the same candidate and cycle type; report the nominee's own record and whether the seat is open; label partisan lean indexes, secondhand 'safe' labels, party-sponsored polls, win streaks and spending gaps as weak.",
           "added": "2026-11-05T00:08:30Z"
         },
         {
@@ -9096,11 +9097,31 @@
         {
           "id": "R35",
           "category": "economy",
-          "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
+          "rule": "For central-bank rate questions (Fed, BoE, ECB), take the current rate and last move from the latest statement and minutes, check the strike under the rules' exact wording, and report dated policymaker speeches since then, latest CPI, energy prices, dissents, economist polls.",
           "added": "2026-10-29T04:08:51Z"
         }
       ],
       "history": [
+        {
+          "ts": "2026-11-07T03:09:02Z",
+          "version": 28,
+          "added": [],
+          "revised": [
+            "R40",
+            "R41",
+            "R42",
+            "R35"
+          ],
+          "retired": [],
+          "changes": [
+            "Sharpened R35: widened it from the Fed to all central banks and required policymaker speeches since the last meeting plus the latest CPI and energy prices, because the BoE research stopped at the September minutes and missed the later shift toward a hike (polymarket:3247826).",
+            "Sharpened R40: the rule now reads the breach definition (territory strikes only, not ships or threats), checks a dated conflict tracker such as Critical Threats for the last qualifying strike, and reports the lull's length and days left (polymarket:4641065).",
+            "Sharpened R41: polls must be listed with their sponsor and averaged across nonpartisan pollsters, and ratings must come first-hand from Cook, Sabato and Inside Elections, because research leaned on a party-aligned poll and a secondhand 'solid R' label (polymarket:1284671, polymarket:1284672).",
+            "Sharpened R42: added open-seat status and labelled partisan lean indexes, secondhand safe-seat labels and party-sponsored polls as weak evidence, per the SC-01 reviews.",
+            "Did not add the SC-01 'gates' suggestion: it is about forecast review, not research method, and references comparison to the market."
+          ],
+          "refused": 0
+        },
         {
           "ts": "2026-11-05T00:08:30Z",
           "version": 27,
@@ -9190,24 +9211,13 @@
             "no rule from 5170739: marked unlucky"
           ],
           "refused": 1
-        },
-        {
-          "ts": "2026-11-01T00:08:16Z",
-          "version": 23,
-          "added": [],
-          "revised": [],
-          "retired": [],
-          "changes": [
-            "No changes: all four new reviews (polymarket:2100981, polymarket:3554657, polymarket:2110579, polymarket:1235568) are marked lucky or unlucky, so none of them can support adding, sharpening or dropping a rule; all 19 existing rules are kept as written."
-          ],
-          "refused": 0
         }
       ]
     },
     "calibration_map": {
-      "a": 1.0537,
-      "b": 0.1249,
-      "n": 1377,
+      "a": 1.0396,
+      "b": 0.1202,
+      "n": 1379,
       "active": true,
       "need": 300
     },
@@ -9238,14 +9248,14 @@
       },
       {
         "category": "other",
-        "n": 343,
-        "jev_plain": 0.2111,
-        "market": 0.1349,
-        "jev_research": 0.2403,
+        "n": 345,
+        "jev_plain": 0.212,
+        "market": 0.1369,
+        "jev_research": 0.2456,
         "claude_direct": 0.1793,
-        "n_jev_plain": 343,
-        "n_market": 343,
-        "n_jev_research": 148,
+        "n_jev_plain": 345,
+        "n_market": 345,
+        "n_jev_research": 150,
         "n_claude_direct": 39
       },
       {
@@ -10025,8 +10035,8 @@
       }
     ],
     "suggested_areas": {
-      "gates": 64,
-      "research": 81,
+      "gates": 65,
+      "research": 82,
       "questions": 3
     },
     "retro": {

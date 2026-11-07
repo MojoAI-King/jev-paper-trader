@@ -1,6 +1,6 @@
 {
-  "version": 27,
-  "updated": "2026-11-05T00:08:30Z",
+  "version": 28,
+  "updated": "2026-11-07T03:09:02Z",
   "rules": [
     {
       "id": "R1",
@@ -33,32 +33,37 @@
     {
       "id": "R40",
       "category": "world",
-      "rule": "For ceasefire or 'no strike' questions, read what counts as a breach in the rules, then search recent weeks for dated strikes or fire exchanged during the ceasefire, deal breakdowns and force deployments; don't rely on the ceasefire's name or leaders' remarks.",
+      "rule": "For ceasefire or 'no strike' questions, read what counts as a breach (e.g. strikes on territory only, not ships or threats), check the latest dated conflict tracker (e.g. Critical Threats) for the last qualifying strike, and report the lull's length, days left and deployments.",
       "evidence": [
-        "polymarket:5447182"
+        "polymarket:5447182",
+        "polymarket:4641065"
       ],
       "added": "2026-11-04T05:09:56Z"
     },
     {
       "id": "R41",
       "category": "politics",
-      "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated recent poll with its pollster, raters' ratings and recent shifts, polls for other races on the same ballot, primary turnout by party, and the national environment.",
+      "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated poll with pollster and sponsor, a nonpartisan-poll average, first-hand Cook/Sabato/Inside Elections ratings, other races' polls, primary turnout, national mood.",
       "evidence": [
         "polymarket:631045",
         "polymarket:629337",
         "polymarket:629557",
-        "polymarket:630925"
+        "polymarket:630925",
+        "polymarket:1284671",
+        "polymarket:1284672"
       ],
       "added": "2026-11-04T05:09:56Z"
     },
     {
       "id": "R42",
       "category": "politics",
-      "rule": "Before citing a state's past polling miss, check whether it came from a different candidate or a presidential year, and report the nominee's own record (appointed, first-time, primary upset, runoff margin); label party win streaks and spending gaps as weak evidence.",
+      "rule": "Before citing a past polling miss, check it was the same candidate and cycle type; report the nominee's own record and whether the seat is open; label partisan lean indexes, secondhand 'safe' labels, party-sponsored polls, win streaks and spending gaps as weak.",
       "evidence": [
         "polymarket:630925",
         "polymarket:629557",
-        "polymarket:629337"
+        "polymarket:629337",
+        "polymarket:1284671",
+        "polymarket:1284672"
       ],
       "added": "2026-11-05T00:08:30Z"
     },
@@ -234,9 +239,10 @@
     {
       "id": "R35",
       "category": "economy",
-      "rule": "For Fed rate questions, take the current target range and date of the last move from the latest FOMC statement, check the strike against the upper bound under the rules' exact wording (above vs at), and report dated Fed speakers' guidance, dissents and Reuters economist polls.",
+      "rule": "For central-bank rate questions (Fed, BoE, ECB), take the current rate and last move from the latest statement and minutes, check the strike under the rules' exact wording, and report dated policymaker speeches since then, latest CPI, energy prices, dissents, economist polls.",
       "evidence": [
-        "kalshi:KXFED-26OCT-T4.00"
+        "kalshi:KXFED-26OCT-T4.00",
+        "polymarket:3247826"
       ],
       "added": "2026-10-29T04:08:51Z"
     }
@@ -329,11 +335,14 @@
     "kalshi:KXWNBASERIES-26NYMINR1-MIN",
     "polymarket:1194657",
     "polymarket:1235568",
+    "polymarket:1284671",
+    "polymarket:1284672",
     "polymarket:2100981",
     "polymarket:2110579",
     "polymarket:2487543",
     "polymarket:2487544",
     "polymarket:2589812",
+    "polymarket:3247826",
     "polymarket:3554657",
     "polymarket:3662130",
     "polymarket:3662876",
@@ -345,6 +354,7 @@
     "polymarket:4581752",
     "polymarket:4581768",
     "polymarket:4619164",
+    "polymarket:4641065",
     "polymarket:4678632",
     "polymarket:4689727",
     "polymarket:4689888",
