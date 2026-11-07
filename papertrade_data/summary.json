@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-07T23:23:23Z",
+  "generated": "2026-11-07T23:38:29Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-07T23:23:23Z",
+      "t": "2026-11-07T23:38:29Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-07T23:20:36Z",
+    "ts": "2026-11-07T23:35:33Z",
     "stages": [
       [
         "Fetched",
@@ -2278,7 +2278,7 @@
           99500.72
         ],
         [
-          "2026-11-07T23:23:23Z",
+          "2026-11-07T23:38:29Z",
           99500.72
         ]
       ]
@@ -3403,7 +3403,7 @@
           99724.07
         ],
         [
-          "2026-11-07T23:23:23Z",
+          "2026-11-07T23:38:29Z",
           99724.07
         ]
       ]
@@ -4528,7 +4528,7 @@
           100149.06
         ],
         [
-          "2026-11-07T23:23:23Z",
+          "2026-11-07T23:38:29Z",
           100149.06
         ]
       ]
@@ -5653,7 +5653,7 @@
           93110.09
         ],
         [
-          "2026-11-07T23:23:23Z",
+          "2026-11-07T23:38:29Z",
           93110.09
         ]
       ]
@@ -8177,6 +8177,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-07T23:38:23Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-07T23:35:33Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-07T23:35:33Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-07T23:20:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8709,27 +8727,6 @@
       "ts": "2026-11-07T15:05:33Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-07T15:05:33Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-07T14:50:52Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-07T14:50:52Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -10110,17 +10107,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-07T11:23:21Z",
-      "headline": "Another quiet half day with 5 small bets and 3 resolutions; no forecaster has been run in any of the last 48 cycles, the main Jev strategies are still missing from this review, and all four strategies shown are locked, so there is nothing sensible to tune and no new proposals today.",
+      "ts": "2026-11-07T23:37:57Z",
+      "headline": "Another quiet half day with no rule changes: nothing was judged in 48 cycles, only the favorites strategy bet (5 bets), every visible strategy is locked, and the market's price is still the best forecaster we have.",
       "went_well": [
-        "Mention follow is up $149 on 17 settled bets (11 wins, 6 losses), about +$30 per $100 staked. Its 30-60c bets made +$137 on 10. That is too few to call a finding; it could easily be luck.",
-        "Mention NO is close to flat after 68 settled bets: -$276 on about $2.2k of settled stake, about -$13 per $100. Because the stakes are tiny, the real cost is small even though it isn't beating the market yet.",
-        "No strategy has placed a long-shot bet (under 30c) since the floor went in, so the change that stopped the October bleeding is still being followed."
+        "Mention follow is up $149 on 17 settled bets (11 wins, 6 losses), about +$30 per $100 settled. That is under 30 results, so it is noise for now, not a finding.",
+        "Since Joey's 30c floor, mention NO and mention follow have placed no long-shot bets, and the long-shot bleed that cost 32.6k by 2026-10-01 has not come back.",
+        "Claude direct is the closest of our forecasters to the market in sports: Brier 0.176 against the market's 0.180 on 204 markets. That is a hint of an edge, not proof."
       ],
       "went_badly": [
-        "Favorites has won 109 of its 121 settled bets and is still down $7.2k on $135k staked (-$5.3 per $100). The 12 losses at heavy-favorite prices more than cancel the many small wins. That pattern has held over 121 bets, so it looks real: these prices are not cheap enough to pay.",
-        "The market price is still the best forecaster. Its Brier score is 0.145 on 2,100 markets, against 0.174 for Claude direct (358) and 0.208 for Jev + research (1,379). On the 951 markets every source forecast, it is 0.164 for the market against 0.200 for Claude. No forecaster beats it.",
-        "The data still doesn't add up. In 48 cycles the forecasters made 0 forecasts. Sharp's live min_edge is 0.03 at rules version 1, even though the 2c change (p33) is logged as applied. Sharp's record shows 2 settled losses (-$499) while its gate ledger shows 1. Main, original and the other Jev strategi"
+        "Favorites wins 90% of its bets (114 of 126) yet is down $6.9k, about -$4.90 per $100 settled. Winning 90% of the time only pays if you pay less than about 95c, and on average it pays more.",
+        "Mention NO is 25-43 on 68 settled bets, down $276 (about -$12.60 per $100), but its source now has a positive skill estimate (lambda 0.056 on 1,115 markets). Sizing could grow beyond probe bets while it loses. p49 and p51 already flag this.",
+        "No forecaster beats the market. On 951 paired markets the market scores a Brier of 0.164, against 0.200 for Claude direct, 0.218 for Jev + research and 0.245 for Jev alone. Judging has stopped (0 judged in 48 cycles), main, original and the challengers are still missing from the review, and sharp st"
       ]
     },
     "auto_start": true,
