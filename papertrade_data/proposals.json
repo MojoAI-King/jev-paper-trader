@@ -907,6 +907,17 @@
       "min_resolved": 200,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p64",
+      "created": "2026-11-08T23:38:15Z",
+      "kind": "code",
+      "title": "Check whether Sharp line bets the side the line actually favors",
+      "why": "Sharp is 0-6 on coin-flip prices with a skill reading of -2.23. A YES/NO inversion or a wrong team match would produce exactly that pattern, and it is a concrete check on 7 bets. It is narrower than p30, p39 and p45, and could be done as the first step of p45. Until the check passes, Sharp's probe bets should pause so they stop adding noise to its forward test.",
+      "judge_by": "The check reports, for each of Sharp's 7 bets, the de-vigged Pinnacle probability for the side bought and whether it was above the price paid. If it finds an inversion or a mismatch, fix it, and after the fix Sharp's settled P&L per $100 staked is zero or better. If no bug is found, Sharp's forward test continues as is and is judged on its own pass mark.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

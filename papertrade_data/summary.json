@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T23:22:55Z",
+  "generated": "2026-11-08T23:38:51Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-08T23:22:55Z",
+      "t": "2026-11-08T23:38:51Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-08T23:20:30Z",
+    "ts": "2026-11-08T23:35:37Z",
     "stages": [
       [
         "Fetched",
@@ -2312,7 +2312,7 @@
           98505.92
         ],
         [
-          "2026-11-08T23:22:55Z",
+          "2026-11-08T23:38:51Z",
           98505.92
         ]
       ]
@@ -3473,7 +3473,7 @@
           99742.06
         ],
         [
-          "2026-11-08T23:22:55Z",
+          "2026-11-08T23:38:51Z",
           99742.06
         ]
       ]
@@ -4634,7 +4634,7 @@
           100156.09
         ],
         [
-          "2026-11-08T23:22:55Z",
+          "2026-11-08T23:38:51Z",
           100156.09
         ]
       ]
@@ -5795,7 +5795,7 @@
           91152.29
         ],
         [
-          "2026-11-08T23:22:55Z",
+          "2026-11-08T23:38:51Z",
           91152.29
         ]
       ]
@@ -8135,6 +8135,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-08T23:38:46Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-08T23:38:15Z",
+      "type": "idea",
+      "text": "Check whether Sharp line bets the side the line actually favors",
+      "status": "proposed",
+      "why": "Sharp is 0-6 on coin-flip prices with a skill reading of -2.23. A YES/NO inversion or a wrong team match would produce exactly that pattern, and it is a concrete check on 7 bets. It is narrower than p30, p39 and p45, and could be done as the first step of p45. Until the check passes, Sharp's probe b"
+    },
+    {
+      "ts": "2026-11-08T23:35:37Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-08T23:20:30Z",
       "type": "scan",
       "fetched": 200,
@@ -8717,27 +8737,6 @@
       "amount": 0.28,
       "q": "What will Zohran Mamdani say during Fox News Sunday originally scheduled for November 8, 2026? (El-Sayed)",
       "url": "https://kalshi.com/markets/kxmamdanimention/what-will-zohran-mamdani-say-during-fox-news-sunday-original/kxmamdanimention-26nov08"
-    },
-    {
-      "ts": "2026-11-08T16:35:40Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-08T16:35:40Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-08T16:20:37Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 17.23,
-      "q": "Full Game: over 31.5 points scored? (Over 31.5 points)",
-      "url": "https://kalshi.com/markets/kxnfltotal/full-game-over-31-5-points-scored/kxnfltotal-26nov08cinatl"
     }
   ],
   "plan_usage": {
@@ -9418,6 +9417,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p64",
+        "kind": "code",
+        "title": "Check whether Sharp line bets the side the line actually favors",
+        "why": "Sharp is 0-6 on coin-flip prices with a skill reading of -2.23. A YES/NO inversion or a wrong team match would produce exactly that pattern, and it is a concrete check on 7 bets. It is narrower than p30, p39 and p45, and could be done as the first step of p45. Until the check passes, Sharp's probe bets should pause so they stop adding noise to its forward test.",
+        "judge_by": "The check reports, for each of Sharp's 7 bets, the de-vigged Pinnacle probability for the side bought and whether it was above the price paid. If it finds an inversion or a mismatch, fix it, and after the fix Sharp's settled P&L per $100 staked is zero or better. If no bug is found, Sharp's forward test continues as is and is judged on its own pass mark.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-08T23:38:15Z"
+      },
       {
         "id": "p63",
         "kind": "code",
@@ -10118,17 +10128,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-08T11:38:10Z",
-      "headline": "A quiet half-day: all four strategies on show are locked forward tests, nothing new was judged in 48 cycles, and the only bets placed were 5 by favorites, so there is nothing safe to tune and no new proposals this time.",
+      "ts": "2026-11-08T23:38:15Z",
+      "headline": "A quiet half-day with no new judgments for the 48th cycle running. Only the four locked strategies are visible. Favorites keeps winning 9 bets in 10 while losing money, and Sharp line is 0 for 6, which looks more like a bug than bad luck.",
       "went_well": [
-        "Mention follow is up $149 on 17 settled bets (11 wins, 6 losses), about +$30 per $100 of settled stake. That rests on 17 markets, so it is noise until it nears 30.",
-        "Mention NO is losing only slowly: -$276 on 68 settled bets (25-43), about -$12.6 per $100 settled. Its forecast source (mention_prior) is the only one with a clearly positive measured skill (lambda 0.056 on 1,115 markets). The open questions about that estimate (p48, p49, p51) still need answering b",
-        "No strategy bet under 30c, so the long-shot floor is holding everywhere it applies."
+        "Mention follow is up $156 on 18 settled bets (12 wins, 6 losses), about +$29 per $100 of settled stake. Its 30-60c bets made $137 of that on 10. Under 30 results, this is noise, not a finding.",
+        "Mention NO is nearly flat: -$258 on 71 settled (27-44), about -$12 per $100 settled. It is the only strategy here with more than 30 results that isn't losing heavily. Its source (mention_prior) is also the only one with a clearly positive measured skill (lambda 0.10 on 1,151 markets).",
+        "No new long-shot damage: none of the four strategies has a single bet under 30c."
       ],
       "went_badly": [
-        "Favorites has won 119 of 131 (91%) yet is down $6,526, about -$4.5 per $100 on $145k settled. It seems to pay around 95c on average, so it needs about 95% wins to break even. Another 42 bets (about $46k) are still open.",
-        "The forecasters still don't beat the market. On 952 paired markets the market scores 0.163 against Claude direct's 0.200, Jev + research's 0.218 and Jev alone's 0.245 (lower is better). The judging pipeline scored 0 new markets in 48 cycles, so these numbers are stale.",
-        "Sharp line is 0 for 4 settled (-$997). Its live rules still show a 3c edge and rules_version 1, though the 2c change (p33) was logged as applied on 10-11. The gate ledger shows 1 bet against 7 in its record, and its skill reads -2.24 with a standard error of 0. Main, original and the challengers are"
+        "Favorites won 129 of 143 settled bets (90%) and still lost $8.8k, about -$5.50 per $100 on $160k settled. That is what you'd expect from paying favorite prices that already price in that win rate, plus fees. It has another $45k open, close to its 50% exposure cap, and placed all 12 of today's bets.",
+        "Sharp line is 0 for 6 on 30-60c bets (-$1.5k). If those were true coin flips, losing all six would happen about 1.6% of the time. Its skill reading of -2.23 with a standard error of 0 and its rules still showing a 3c edge and version 1, despite the logged 2c change, suggest a data or side-mapping pr",
+        "The pipeline is still broken: 48 cycles judged 0 markets, main, original and every Jev or Claude strategy are missing from this review, and nothing here can be tuned. Overall the market price still beats every forecaster on the 952 paired markets (Brier 0.163 vs Claude 0.200, Jev + research 0.218, J"
       ]
     },
     "auto_start": true,
@@ -10726,6 +10736,13 @@
         "title": "A pass/stop mark for the favorites forward test",
         "why": "Favorites has lost $4.60 per $100 on 116 settled bets, all priced 60c and up, and it has the largest open exposure of any strategy (about $46k). It has no rule saying when the test ends. p54 does this for Mention NO only.",
         "created": "2026-11-06T10:53:04Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p64",
+        "title": "Check whether Sharp line bets the side the line actually favors",
+        "why": "Sharp is 0-6 on coin-flip prices with a skill reading of -2.23. A YES/NO inversion or a wrong team match would produce exactly that pattern, and it is a concrete check on 7 bets. It is narrower than p30, p39 and p45, and could be done as the first step of p45. Until the check passes, Sharp's probe bets should pause so they stop adding noise to its forward test.",
+        "created": "2026-11-08T23:38:15Z",
         "status": "proposed"
       }
     ]
