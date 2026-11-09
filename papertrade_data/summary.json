@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-09T11:37:58Z",
+  "generated": "2026-11-09T11:53:17Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-09T11:37:58Z",
+      "t": "2026-11-09T11:53:17Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-09T11:35:34Z",
+    "ts": "2026-11-09T11:50:31Z",
     "stages": [
       [
         "Fetched",
@@ -2336,7 +2336,7 @@
           98567.3
         ],
         [
-          "2026-11-09T11:37:58Z",
+          "2026-11-09T11:53:17Z",
           98567.3
         ]
       ]
@@ -3521,7 +3521,7 @@
           99742.06
         ],
         [
-          "2026-11-09T11:37:58Z",
+          "2026-11-09T11:53:17Z",
           99742.06
         ]
       ]
@@ -4706,7 +4706,7 @@
           100156.09
         ],
         [
-          "2026-11-09T11:37:58Z",
+          "2026-11-09T11:53:17Z",
           100156.09
         ]
       ]
@@ -5891,7 +5891,7 @@
           91435.53
         ],
         [
-          "2026-11-09T11:37:58Z",
+          "2026-11-09T11:53:17Z",
           91435.53
         ]
       ]
@@ -8070,6 +8070,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-09T11:53:11Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-09T11:50:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-09T11:35:34Z",
       "type": "scan",
       "fetched": 200,
@@ -8719,26 +8732,6 @@
     },
     {
       "ts": "2026-11-08T23:05:33Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-08T22:50:30Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9136,
-      "amount": 680.63,
-      "p": 0.885,
-      "q": "Next Fable Model (5.2+) released by November 9, 2026?",
-      "url": "https://polymarket.com/market/next-fable-model-5pt2-released-by-november-9-2026",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-08T22:50:30Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -10135,17 +10128,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-08T23:38:15Z",
-      "headline": "A quiet half-day with no new judgments for the 48th cycle running. Only the four locked strategies are visible. Favorites keeps winning 9 bets in 10 while losing money, and Sharp line is 0 for 6, which looks more like a bug than bad luck.",
+      "ts": "2026-11-09T11:52:40Z",
+      "headline": "In a quiet half day only favorites placed bets (8), forecasters judged nothing for the 48th cycle running, and every strategy in this review is a locked forward test, so I'm proposing no changes; the fixes Joey needs are already in the code backlog.",
       "went_well": [
-        "Mention follow is up $156 on 18 settled bets (12 wins, 6 losses), about +$29 per $100 of settled stake. Its 30-60c bets made $137 of that on 10. Under 30 results, this is noise, not a finding.",
-        "Mention NO is nearly flat: -$258 on 71 settled (27-44), about -$12 per $100 settled. It is the only strategy here with more than 30 results that isn't losing heavily. Its source (mention_prior) is also the only one with a clearly positive measured skill (lambda 0.10 on 1,151 markets).",
-        "No new long-shot damage: none of the four strategies has a single bet under 30c."
+        "Mention markets, follow the first NO is up $156 on $536 of settled stake (about +$29 per $100) from 18 settled markets, winning 12. That is under 30, so it is noise, not a finding.",
+        "Mention NO is nearly flat: -$258 on $2,227 settled (about -$12 per $100) over 71 settled markets. The stakes are tiny (about $30 a bet), so little money is at risk either way.",
+        "Favorites wins often: 142 of 157 settled (90%)."
       ],
       "went_badly": [
-        "Favorites won 129 of 143 settled bets (90%) and still lost $8.8k, about -$5.50 per $100 on $160k settled. That is what you'd expect from paying favorite prices that already price in that win rate, plus fees. It has another $45k open, close to its 50% exposure cap, and placed all 12 of today's bets.",
-        "Sharp line is 0 for 6 on 30-60c bets (-$1.5k). If those were true coin flips, losing all six would happen about 1.6% of the time. Its skill reading of -2.23 with a standard error of 0 and its rules still showing a 3c edge and version 1, despite the logged 2c change, suggest a data or side-mapping pr",
-        "The pipeline is still broken: 48 cycles judged 0 markets, main, original and every Jev or Claude strategy are missing from this review, and nothing here can be tuned. Overall the market price still beats every forecaster on the 952 paired markets (Brier 0.163 vs Claude 0.200, Jev + research 0.218, J"
+        "Winning often isn't the same as making money. Favorites is down $8,564 on $176,809 settled (-$4.84 per $100) over 157 markets, enough to call it a finding. Its 90% win rate doesn't cover the prices it pays, and it has the biggest bets in the experiment. It is a locked forward test with no stop mark ",
+        "Sharp line is down $1,433 on $1,743 (-$82 per $100), with 1 win in 7, all 6 losses at coin-flip prices. Its skill estimate is -2.19 on 241 markets. Seven bets is noise, but together these suggest it may be betting the wrong side (p64, filed yesterday). Its live min_edge still reads 0.03, not the 0.0",
+        "The plumbing is still broken. 48 cycles judged 0 markets, so no Jev or Claude strategy can bet, and main, original and every tunable strategy are missing from the review (p46). The market price still beats every forecaster on 952 paired markets: market 0.163, Claude 0.200, Jev + research 0.218. So t"
       ]
     },
     "auto_start": true,
