@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T11:53:26Z",
+  "generated": "2026-11-11T12:08:25Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-11T11:53:26Z",
+      "t": "2026-11-11T12:08:25Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-11T11:50:30Z",
+    "ts": "2026-11-11T12:05:28Z",
     "stages": [
       [
         "Fetched",
@@ -2408,7 +2408,7 @@
           98567.3
         ],
         [
-          "2026-11-11T11:53:26Z",
+          "2026-11-11T12:08:25Z",
           98567.3
         ]
       ]
@@ -3665,7 +3665,7 @@
           99756.38
         ],
         [
-          "2026-11-11T11:53:26Z",
+          "2026-11-11T12:08:25Z",
           99756.38
         ]
       ]
@@ -4922,7 +4922,7 @@
           100154.88
         ],
         [
-          "2026-11-11T11:53:26Z",
+          "2026-11-11T12:08:25Z",
           100154.88
         ]
       ]
@@ -6179,7 +6179,7 @@
           92104.44
         ],
         [
-          "2026-11-11T11:53:26Z",
+          "2026-11-11T12:08:25Z",
           92104.44
         ]
       ]
@@ -8197,6 +8197,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-11T12:08:20Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-11T12:07:53Z",
+      "type": "idea",
+      "text": "Close the favorites forward test as failed",
+      "status": "proposed",
+      "why": "After 190 settled markets, favorites is -$3.8 per $100 on $209k staked. Its 91% win rate sits below the roughly 95% needed at the prices it pays, so more data is unlikely to change the verdict. Because it is locked, nobody can tune or stop it while it keeps staking about 2% of its bankroll a bet."
+    },
+    {
+      "ts": "2026-11-11T12:05:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-11T11:50:30Z",
       "type": "scan",
       "fetched": 200,
@@ -8812,30 +8832,6 @@
     },
     {
       "ts": "2026-11-10T23:35:36Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T23:20:22Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T23:05:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T22:50:37Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -9521,6 +9517,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p66",
+        "kind": "code",
+        "title": "Close the favorites forward test as failed",
+        "why": "After 190 settled markets, favorites is -$3.8 per $100 on $209k staked. Its 91% win rate sits below the roughly 95% needed at the prices it pays, so more data is unlikely to change the verdict. Because it is locked, nobody can tune or stop it while it keeps staking about 2% of its bankroll a bet.",
+        "judge_by": "Joey records a verdict: either the test ends and the strategy is frozen, or a written pass mark is set with an end date (see p63). After that, favorites places no new bets unless it gets new rules.",
+        "min_resolved": 190,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-11T12:07:53Z"
+      },
       {
         "id": "p65",
         "kind": "code",
@@ -10243,17 +10250,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-11T00:07:52Z",
-      "headline": "A quiet half day: no forecasts were judged in any of the 48 cycles, only 5 bets were placed, all four strategies shown are locked forward tests, and no forecaster beats the market price.",
+      "ts": "2026-11-11T12:07:53Z",
+      "headline": "Half a day with no judging again: only the locked favorites strategy bet (10 bets), and it is now down $7.9k on 190 settled bets even though it wins 91% of them.",
       "went_well": [
-        "Mention follow is up $155 on 19 settled bets (12 wins), about +$29 per $100 settled. Under 30 results, this is noise, not a finding.",
-        "Mention NO is nearly flat: -$244 on 73 settled bets, about -$10.5 per $100 settled. The 30c floor keeps it out of long shots entirely, and it has 0 bets under 30c.",
-        "Claude direct is the strongest forecaster on the data, but it still trails the market: paired Brier 0.200 vs the market's 0.163 on 952 markets. In sports it scores 0.176 against the market's 0.180, though those rest on different market sets (204 vs 924), so this is not a clean comparison."
+        "Mention follow is up $155 on $750 staked, about +$21 per $100, with 12 wins and 7 losses. That is only 19 settled markets, so it is noise and not a finding.",
+        "Mention NO's loss is small: -$244 on $2.9k staked (about -$8 per $100) across 73 settled markets.",
+        "On the 14 culture markets it has scored, Claude direct beats the market price (Brier 0.032 vs 0.074). In sports it edges the market, 0.176 vs 0.180 on 204 markets. These are the only places any forecaster beats the price."
       ],
       "went_badly": [
-        "Judging is still down. 48 cycles judged 0 markets, so the Jev and Claude strategies can't bet. Main, original and the other forecaster strategies are missing from this review entirely, and the yardstick is empty.",
-        "Favorites wins 91% of the time (169 of 186) but has lost $8.1k, about -$4 per $100 on $205k settled stake. It appears to pay roughly 95c on average, so it needs about a 95% win rate just to break even.",
-        "Sharp line has lost $1.4k on 7 settled bets (1 win), about -$82 per $100, and lost all 6 of its 30-60c bets. Its live rules still show a 3c edge at version 1, even though p33's 2c change is logged as applied. Its skill estimate (-2.24 with a standard error of 0 on 243 markets) also looks broken. The"
+        "Favorites is -$7,896 on $209k of settled stake (-$3.8 per $100) over 190 markets. Here is a rough estimate: its wins return only about 5.7%, which implies an average price near 95c. At that price it needs to win about 95% of its bets to break even, and it won 91% (173 of 190).",
+        "None of the 48 cycles this half-day judged a single market. Main, original and every Jev or Claude strategy are still missing from the review. No forecaster beats the market overall: on 952 paired markets the market scores 0.163, Claude 0.200 and Jev + research 0.218.",
+        "Sharp is 1 win and 6 losses, -$1,433 on 7 settled, all six losses at 30-60c. Its data still doesn't add up. Its live min_edge is 0.03, though the applied change set 0.02. Its skill estimate is -2.31 on 246 markets, yet its gate ledger shows only 1 bet. Mention NO's record also clashes with its P&L: "
       ]
     },
     "auto_start": true,
@@ -10865,6 +10872,13 @@
         "title": "Show average price paid and break-even win rate per price bucket",
         "why": "Favorites wins 91% of 186 bets and still loses $4 per $100, because it seems to pay about 95c. Today that has to be inferred by back-of-envelope math. Showing the stake-weighted average price and break-even win rate next to the actual win rate in by_price_paid would make the problem visible for every strategy at a glance. This is a reporting aid only; p46 (restore judging and the missing strategies) should still come first.",
         "created": "2026-11-11T00:07:52Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p66",
+        "title": "Close the favorites forward test as failed",
+        "why": "After 190 settled markets, favorites is -$3.8 per $100 on $209k staked. Its 91% win rate sits below the roughly 95% needed at the prices it pays, so more data is unlikely to change the verdict. Because it is locked, nobody can tune or stop it while it keeps staking about 2% of its bankroll a bet.",
+        "created": "2026-11-11T12:07:53Z",
         "status": "proposed"
       }
     ]
