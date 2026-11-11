@@ -918,6 +918,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p65",
+      "created": "2026-11-11T00:07:52Z",
+      "kind": "code",
+      "title": "Show average price paid and break-even win rate per price bucket",
+      "why": "Favorites wins 91% of 186 bets and still loses $4 per $100, because it seems to pay about 95c. Today that has to be inferred by back-of-envelope math. Showing the stake-weighted average price and break-even win rate next to the actual win rate in by_price_paid would make the problem visible for every strategy at a glance. This is a reporting aid only; p46 (restore judging and the missing strategies) should still come first.",
+      "judge_by": "The next review shows, for each strategy and each price bucket, the stake-weighted average price paid, the break-even win rate and the actual win rate. For favorites, the implied average price comes out near 95c, consistent with its -$4 per $100.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

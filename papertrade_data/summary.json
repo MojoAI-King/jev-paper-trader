@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10T23:53:16Z",
+  "generated": "2026-11-11T00:08:34Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-10T23:53:16Z",
+      "t": "2026-11-11T00:08:34Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-10T23:50:38Z",
+    "ts": "2026-11-11T00:05:29Z",
     "stages": [
       [
         "Fetched",
@@ -2400,7 +2400,7 @@
           98567.3
         ],
         [
-          "2026-11-10T23:53:16Z",
+          "2026-11-11T00:08:34Z",
           98567.3
         ]
       ]
@@ -3649,7 +3649,7 @@
           99756.38
         ],
         [
-          "2026-11-10T23:53:16Z",
+          "2026-11-11T00:08:34Z",
           99756.38
         ]
       ]
@@ -4898,7 +4898,7 @@
           100154.88
         ],
         [
-          "2026-11-10T23:53:16Z",
+          "2026-11-11T00:08:34Z",
           100154.88
         ]
       ]
@@ -6147,7 +6147,7 @@
           91867.17
         ],
         [
-          "2026-11-10T23:53:16Z",
+          "2026-11-11T00:08:34Z",
           91867.17
         ]
       ]
@@ -8027,6 +8027,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-11T00:08:29Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-11T00:07:52Z",
+      "type": "idea",
+      "text": "Show average price paid and break-even win rate per price bucket",
+      "status": "proposed",
+      "why": "Favorites wins 91% of 186 bets and still loses $4 per $100, because it seems to pay about 95c. Today that has to be inferred by back-of-envelope math. Showing the stake-weighted average price and break-even win rate next to the actual win rate in by_price_paid would make the problem visible for ever"
+    },
+    {
+      "ts": "2026-11-11T00:05:29Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-10T23:50:38Z",
       "type": "scan",
       "fetched": 200,
@@ -8661,30 +8681,6 @@
     },
     {
       "ts": "2026-11-10T09:05:36Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T08:50:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T08:35:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-10T08:20:29Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
@@ -9370,6 +9366,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p65",
+        "kind": "code",
+        "title": "Show average price paid and break-even win rate per price bucket",
+        "why": "Favorites wins 91% of 186 bets and still loses $4 per $100, because it seems to pay about 95c. Today that has to be inferred by back-of-envelope math. Showing the stake-weighted average price and break-even win rate next to the actual win rate in by_price_paid would make the problem visible for every strategy at a glance. This is a reporting aid only; p46 (restore judging and the missing strategies) should still come first.",
+        "judge_by": "The next review shows, for each strategy and each price bucket, the stake-weighted average price paid, the break-even win rate and the actual win rate. For favorites, the implied average price comes out near 95c, consistent with its -$4 per $100.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-11T00:07:52Z"
+      },
       {
         "id": "p64",
         "kind": "code",
@@ -10081,17 +10088,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-10T12:07:38Z",
-      "headline": "Nothing in the review could be tuned and nothing new was forecast: all four strategies shown are locked forward tests, the Jev and Claude strategies are still missing, and favorites keeps losing slowly by paying about 95c for bets that win about 90% of the time.",
+      "ts": "2026-11-11T00:07:52Z",
+      "headline": "A quiet half day: no forecasts were judged in any of the 48 cycles, only 5 bets were placed, all four strategies shown are locked forward tests, and no forecaster beats the market price.",
       "went_well": [
-        "Mention markets, follow the first NO, is up $156 on 18 settled bets, about +$29 per $100 staked (12 wins, 6 losses). Under 30 resolved markets, this is noise, not a finding.",
-        "Every strategy shown respected the 30c price floor or had no bets below it: no long-shot losses this period.",
-        "Claude direct still edges the market in sports, 0.176 vs 0.180 Brier on 204 markets. It is the only category with a meaningful count where any forecaster does better than the price."
+        "Mention follow is up $155 on 19 settled bets (12 wins), about +$29 per $100 settled. Under 30 results, this is noise, not a finding.",
+        "Mention NO is nearly flat: -$244 on 73 settled bets, about -$10.5 per $100 settled. The 30c floor keeps it out of long shots entirely, and it has 0 bets under 30c.",
+        "Claude direct is the strongest forecaster on the data, but it still trails the market: paired Brier 0.200 vs the market's 0.163 on 952 markets. In sports it scores 0.176 against the market's 0.180, though those rest on different market sets (204 vs 924), so this is not a clean comparison."
       ],
       "went_badly": [
-        "Favorites is down $8.6k on 179 settled bets, about -$4.3 per $100 on $198k settled stake. It wins 90.5% of its bets, but its losses imply it pays around 95c on average, which needs roughly a 94.6% win rate just to break even. It placed 7 more bets this half-day.",
-        "Mention NO is down $201 on 72 settled bets, about -$8.8 per $100 (28 wins, 44 losses). Its source, mention_prior, now shows a positive skill estimate (lambda 0.116 on 1,153 markets), so Kelly sizing may be live on a strategy that is losing. Sharp line is down $1.4k on 7 settled bets (1 win), lost al",
-        "The market still beats every forecaster: 0.146 Brier against Claude's 0.174 and Jev + research's 0.208 overall, and 0.163 vs 0.200 on 952 paired markets. The last 48 cycles judged nothing, so no new forecasts are being tested, and main, original, bold, calibrated and claude_direct are still absent f"
+        "Judging is still down. 48 cycles judged 0 markets, so the Jev and Claude strategies can't bet. Main, original and the other forecaster strategies are missing from this review entirely, and the yardstick is empty.",
+        "Favorites wins 91% of the time (169 of 186) but has lost $8.1k, about -$4 per $100 on $205k settled stake. It appears to pay roughly 95c on average, so it needs about a 95% win rate just to break even.",
+        "Sharp line has lost $1.4k on 7 settled bets (1 win), about -$82 per $100, and lost all 6 of its 30-60c bets. Its live rules still show a 3c edge at version 1, even though p33's 2c change is logged as applied. Its skill estimate (-2.24 with a standard error of 0 on 243 markets) also looks broken. The"
       ]
     },
     "auto_start": true,
@@ -10696,6 +10703,13 @@
         "title": "Check whether Sharp line bets the side the line actually favors",
         "why": "Sharp is 0-6 on coin-flip prices with a skill reading of -2.23. A YES/NO inversion or a wrong team match would produce exactly that pattern, and it is a concrete check on 7 bets. It is narrower than p30, p39 and p45, and could be done as the first step of p45. Until the check passes, Sharp's probe bets should pause so they stop adding noise to its forward test.",
         "created": "2026-11-08T23:38:15Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p65",
+        "title": "Show average price paid and break-even win rate per price bucket",
+        "why": "Favorites wins 91% of 186 bets and still loses $4 per $100, because it seems to pay about 95c. Today that has to be inferred by back-of-envelope math. Showing the stake-weighted average price and break-even win rate next to the actual win rate in by_price_paid would make the problem visible for every strategy at a glance. This is a reporting aid only; p46 (restore judging and the missing strategies) should still come first.",
+        "created": "2026-11-11T00:07:52Z",
         "status": "proposed"
       }
     ]
