@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T14:53:08Z",
+  "generated": "2026-11-11T15:08:00Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-11T14:53:08Z",
+      "t": "2026-11-11T15:08:00Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-11T14:50:33Z",
+    "ts": "2026-11-11T15:05:30Z",
     "stages": [
       [
         "Fetched",
@@ -1010,7 +1010,7 @@
       "sharp": 0,
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1021,7 +1021,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "sharp": 0,
       "mention_no": 0,
@@ -1146,8 +1148,8 @@
       "unrealized": 0.0,
       "change": -7895.56,
       "realized": -7895.56,
-      "open": 26,
-      "open_cost": 30727.4,
+      "open": 27,
+      "open_cost": 32108.77,
       "settled": 190,
       "wins": 173,
       "losses": 17,
@@ -2412,7 +2414,7 @@
           98567.3
         ],
         [
-          "2026-11-11T14:53:08Z",
+          "2026-11-11T15:08:00Z",
           98567.3
         ]
       ]
@@ -3673,7 +3675,7 @@
           99687.81
         ],
         [
-          "2026-11-11T14:53:08Z",
+          "2026-11-11T15:08:00Z",
           99687.81
         ]
       ]
@@ -4934,7 +4936,7 @@
           100198.14
         ],
         [
-          "2026-11-11T14:53:08Z",
+          "2026-11-11T15:08:00Z",
           100198.14
         ]
       ]
@@ -6195,7 +6197,7 @@
           92104.44
         ],
         [
-          "2026-11-11T14:53:08Z",
+          "2026-11-11T15:08:00Z",
           92104.44
         ]
       ]
@@ -6773,6 +6775,29 @@
           "p_side": 0.936,
           "edge": -0.0179,
           "opened": "2026-11-11T08:18:40Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXRT-EBE-65",
+      "question": "Ebenezer Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/kxrt/ebenezer-rotten-tomatoes-score/kxrt-ebe",
+      "source": "kalshi",
+      "close_time": "2026-11-16T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1434,
+          "cost_per": 0.9633,
+          "total_cost": 1381.37,
+          "p_side": 0.945,
+          "edge": -0.0183,
+          "opened": "2026-11-11T15:05:30Z",
           "value": null
         }
       ]
@@ -8167,6 +8192,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-11T15:05:30Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9633,
+      "amount": 1381.37,
+      "p": 0.945,
+      "q": "Ebenezer Rotten Tomatoes score? (Above 65)",
+      "url": "https://kalshi.com/markets/kxrt/ebenezer-rotten-tomatoes-score/kxrt-ebe",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-11T15:05:30Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-11T15:05:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-11T14:50:33Z",
       "type": "loss",
       "strategy": "mention_no",
@@ -8794,31 +8844,6 @@
       "p": 0.945,
       "q": "Juventus wins",
       "url": "https://kalshi.com/markets/kxuclwgame/juventus-wins/kxuclwgame-26nov11juvol",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-11T01:20:32Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-11T01:20:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-11T01:05:31Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9145,
-      "amount": 1377.24,
-      "p": 0.895,
-      "q": "Will Elon Musk post 65-89 tweets from November 9 to November 11, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-november-9-november-11-2026-65-89",
       "probe": false
     }
   ],
