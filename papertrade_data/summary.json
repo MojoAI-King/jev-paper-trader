@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T23:53:06Z",
+  "generated": "2026-11-12T00:08:38Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-11T23:53:06Z",
+      "t": "2026-11-12T00:08:38Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-11T23:50:31Z",
+    "ts": "2026-11-12T00:05:31Z",
     "stages": [
       [
         "Fetched",
@@ -2426,7 +2426,7 @@
           98567.3
         ],
         [
-          "2026-11-11T23:53:06Z",
+          "2026-11-12T00:08:38Z",
           98567.3
         ]
       ]
@@ -3699,7 +3699,7 @@
           99613.52
         ],
         [
-          "2026-11-11T23:53:06Z",
+          "2026-11-12T00:08:38Z",
           99613.52
         ]
       ]
@@ -4972,7 +4972,7 @@
           100198.14
         ],
         [
-          "2026-11-11T23:53:06Z",
+          "2026-11-12T00:08:38Z",
           100198.14
         ]
       ]
@@ -6245,7 +6245,7 @@
           92450.1
         ],
         [
-          "2026-11-11T23:53:06Z",
+          "2026-11-12T00:08:38Z",
           92450.1
         ]
       ]
@@ -8171,6 +8171,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-12T00:08:33Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-12T00:08:01Z",
+      "type": "idea",
+      "text": "Mention prior's Kelly sizing has switched on: hold it now",
+      "status": "proposed",
+      "why": "Mention prior's skill (lambda) is now 0.036 on 1,204 markets, so by the rules Mention NO moves from probe bets to Kelly sizing. Yet Mention NO loses about $16 per $100 on 76 settled bets, its skill error bar (0.25) is seven times the estimate, and p48 and p59 show its stakes and record don't add up."
+    },
+    {
+      "ts": "2026-11-12T00:05:31Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-12T00:05:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-11T23:50:31Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8694,38 +8719,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 1
-    },
-    {
-      "ts": "2026-11-11T14:50:33Z",
-      "type": "loss",
-      "strategy": "mention_no",
-      "amount": -68.57,
-      "q": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Tax)",
-      "url": "https://kalshi.com/markets/kxburnhammention/what-will-andy-burnham-say-during-next-prime-minister-s-ques/kxburnhammention-26nov04"
-    },
-    {
-      "ts": "2026-11-11T14:50:33Z",
-      "type": "win",
-      "strategy": "mention_follow",
-      "amount": 43.26,
-      "q": "What will Andy Burnham say during next Prime Minister's Questions (UK House of Commons)? (Immigrant / Immigration)",
-      "url": "https://kalshi.com/markets/kxburnhammention/what-will-andy-burnham-say-during-next-prime-minister-s-ques/kxburnhammention-26nov04"
-    },
-    {
-      "ts": "2026-11-11T14:50:33Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-11T14:35:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -9406,6 +9399,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p67",
+        "kind": "code",
+        "title": "Mention prior's Kelly sizing has switched on: hold it now",
+        "why": "Mention prior's skill (lambda) is now 0.036 on 1,204 markets, so by the rules Mention NO moves from probe bets to Kelly sizing. Yet Mention NO loses about $16 per $100 on 76 settled bets, its skill error bar (0.25) is seven times the estimate, and p48 and p59 show its stakes and record don't add up. p51 asked for this hold before it happened; it is now live, so it should come first in the fix list.",
+        "judge_by": "Within one cycle, Mention NO's new stakes stay at probe size (0.25% of bankroll, at most 5 a day) until p48 and p59 are resolved. Its open stake per bet should not jump above its current average of about $30.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-12T00:08:01Z"
+      },
       {
         "id": "p66",
         "kind": "code",
@@ -10139,17 +10143,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-11T12:07:53Z",
-      "headline": "Half a day with no judging again: only the locked favorites strategy bet (10 bets), and it is now down $7.9k on 190 settled bets even though it wins 91% of them.",
+      "ts": "2026-11-12T00:08:01Z",
+      "headline": "A quiet half day: Jev and Claude judged nothing for a 45th straight cycle, only the locked strategies traded, and Mention NO's forecaster now qualifies for full-size bets even though the strategy keeps losing.",
       "went_well": [
-        "Mention follow is up $155 on $750 staked, about +$21 per $100, with 12 wins and 7 losses. That is only 19 settled markets, so it is noise and not a finding.",
-        "Mention NO's loss is small: -$244 on $2.9k staked (about -$8 per $100) across 73 settled markets.",
-        "On the 14 culture markets it has scored, Claude direct beats the market price (Brier 0.032 vs 0.074). In sports it edges the market, 0.176 vs 0.180 on 204 markets. These are the only places any forecaster beats the price."
+        "Mention follow is up $198 on 20 settled bets, 13 wins and 7 losses, about +$33 per $100 of settled stake. That is still under 30 results, so it is an experiment, not a finding.",
+        "Favorites kept its win rate high: 177 of 194 settled bets won (91%). Its loss this period was not from picking wrong more often.",
+        "Every bet in the book was placed at 20c or higher, so the long-shot losses that drove the 30c floor have not come back."
       ],
       "went_badly": [
-        "Favorites is -$7,896 on $209k of settled stake (-$3.8 per $100) over 190 markets. Here is a rough estimate: its wins return only about 5.7%, which implies an average price near 95c. At that price it needs to win about 95% of its bets to break even, and it won 91% (173 of 190).",
-        "None of the 48 cycles this half-day judged a single market. Main, original and every Jev or Claude strategy are still missing from the review. No forecaster beats the market overall: on 952 paired markets the market scores 0.163, Claude 0.200 and Jev + research 0.218.",
-        "Sharp is 1 win and 6 losses, -$1,433 on 7 settled, all six losses at 30-60c. Its data still doesn't add up. Its live min_edge is 0.03, though the applied change set 0.02. Its skill estimate is -2.31 on 246 markets, yet its gate ledger shows only 1 bet. Mention NO's record also clashes with its P&L: "
+        "No forecaster beats the market. On 952 paired markets the market scores 0.163 Brier, Claude direct 0.200, Jev + research 0.218 and Jev alone 0.245 (lower is better). Judging is still dead, with 0 judged in 45 cycles, so no Jev or Claude strategy can bet and a new challenger would sit idle.",
+        "Favorites is down $7.5k on $214k staked, about -$3.5 per $100. A 91% win rate is still too low for the prices it pays. Mention NO is down $386 on 76 settled, about -$16 per $100, and wins only 17 of 55 NO bets at 30-60c.",
+        "Sharp is 1 win and 6 losses for -$1.4k, about -$82 per $100. It lost all 6 of its 30-60c bets. Its skill reads -2.31 with a standard error of 0, and its rules still show the 3c edge that p33 was supposed to change to 2c. This looks like a bug, not a bad forecaster."
       ]
     },
     "auto_start": true,
@@ -10768,6 +10772,13 @@
         "title": "Close the favorites forward test as failed",
         "why": "After 190 settled markets, favorites is -$3.8 per $100 on $209k staked. Its 91% win rate sits below the roughly 95% needed at the prices it pays, so more data is unlikely to change the verdict. Because it is locked, nobody can tune or stop it while it keeps staking about 2% of its bankroll a bet.",
         "created": "2026-11-11T12:07:53Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p67",
+        "title": "Mention prior's Kelly sizing has switched on: hold it now",
+        "why": "Mention prior's skill (lambda) is now 0.036 on 1,204 markets, so by the rules Mention NO moves from probe bets to Kelly sizing. Yet Mention NO loses about $16 per $100 on 76 settled bets, its skill error bar (0.25) is seven times the estimate, and p48 and p59 show its stakes and record don't add up. p51 asked for this hold before it happened; it is now live, so it should come first in the fix list.",
+        "created": "2026-11-12T00:08:01Z",
         "status": "proposed"
       }
     ]
