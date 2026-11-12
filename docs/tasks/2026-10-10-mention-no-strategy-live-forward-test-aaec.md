@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-11-12T05:09:45.287Z
+- **Updated:** 2026-11-12T06:08:12.591Z
 
 ## Request
 
@@ -231,6 +231,13 @@ not yet written
 - **Evidence:** snapshot 2026-11-12T05-09-45-287Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
 - **Next:** Carry on from the last recorded next step: Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Git:** master @ 2355296b, 1 tracked uncommitted, 3 untracked
+
+### 2026-11-12T06:08:12.591Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 885db6236e48, 0 tracked uncommitted, 2 untracked. The newest checkpoint before this one is 2026-11-12T05:09:45.287Z: Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 2355296b1881, 1 tr...
+- **Evidence:** snapshot 2026-11-12T06-08-12-591Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** No next step was recorded before compaction; read git status and this record, then record a checkpoint.
+- **Git:** master @ 885db623, 0 tracked uncommitted, 2 untracked
 
 ## Handoff
 
