@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-11-12T06:12:11.436Z
+- **Updated:** 2026-11-12T06:31:27.211Z
 
 ## Request
 
@@ -46,9 +46,16 @@ not yet written
 - **Next:** Joey connects the Claude Chrome extension and says go (I cancel at the-odds-api.com; he signs in himself if asked), or cancels it himself; then the three bots' check-in
 - **Git:** master @ e6158150, 0 tracked uncommitted, 2 untracked
 
+### 2026-11-12T06:31:27.211Z
+
+- **State:** Project costs nothing: sharp retired, ODDS_API_KEY out of the workflow, and Joey reports he cancelled The Odds API plan (2026-11-12, user-reported in chat, not checked on the vendor's site). Live bots: mention_no, mention_follow, favorites on free Kalshi/Polymarket data
+- **Evidence:** Joey in chat 2026-11-12: I cancelled it; live cycle 43160661333 showed no sharp line and jev_used false
+- **Next:** Check-in on the three bots (trading-health, settled bets, page)
+- **Git:** master @ 151f981e, 0 tracked uncommitted, 2 untracked
+
 ## Handoff
 
-- **State:** Project costs nothing: sharp retired, ODDS_API_KEY out of the workflow; live bots mention_no, mention_follow, favorites on free data. Joey asked me to cancel The Odds API plan in his browser; the Chrome extension is not connected (no browsers listed), so it is not cancelled. Evidence: tabs_context_mcp: extension not connected (twice); list_connected_browsers: empty.
-- **Next:** Joey connects the Claude Chrome extension and says go (I cancel at the-odds-api.com; he signs in himself if asked), or cancels it himself; then the three bots' check-in
-- **Blocked:** Odds API cancel: Chrome extension not connected
+- **State:** Project costs nothing: sharp retired, ODDS_API_KEY out of the workflow, and Joey reports he cancelled The Odds API plan (2026-11-12, user-reported in chat, not checked on the vendor's site). Live bots: mention_no, mention_follow, favorites on free Kalshi/Polymarket data. Evidence: Joey in chat 2026-11-12: I cancelled it; live cycle 43160661333 showed no sharp line and jev_used false.
+- **Next:** Check-in on the three bots (trading-health, settled bets, page)
+- **Blocked:** nothing
 - **Watch out:** Keep the repo public (private repos pay for Actions minutes); never add a paid feed or ANTHROPIC_API_KEY; a stash holds a reformatted policy.json to discard
