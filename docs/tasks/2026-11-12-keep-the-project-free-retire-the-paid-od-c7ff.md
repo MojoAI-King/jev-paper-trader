@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** verified
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-11-12T05:24:35.867Z
+- **Updated:** 2026-11-12T06:12:11.436Z
 
 ## Request
 
@@ -39,9 +39,16 @@ not yet written
 - **Next:** Joey cancels The Odds API plan at the-odds-api.com; Oct/Nov check-in on the three bots
 - **Git:** master @ 8fa9e493, 6 tracked uncommitted, 5 untracked
 
+### 2026-11-12T06:12:11.436Z
+
+- **State:** Project costs nothing: sharp retired, ODDS_API_KEY out of the workflow; live bots mention_no, mention_follow, favorites on free data. Joey asked me to cancel The Odds API plan in his browser; the Chrome extension is not connected (no browsers listed), so it is not cancelled
+- **Evidence:** tabs_context_mcp: extension not connected (twice); list_connected_browsers: empty
+- **Next:** Joey connects the Claude Chrome extension and says go (I cancel at the-odds-api.com; he signs in himself if asked), or cancels it himself; then the three bots' check-in
+- **Git:** master @ e6158150, 0 tracked uncommitted, 2 untracked
+
 ## Handoff
 
-- **State:** Project costs nothing (Joey: keep it free): sharp retired, ODDS_API_KEY out of the workflow, B27 archived. Live: mention_no, mention_follow, favorites on free Kalshi/Polymarket data. Evidence: unittest 172 OK locally and on live cycle 43160661333 (head 5dcdaea3); that cycle's scan has no sharp line, jev_used false.
-- **Next:** Joey cancels The Odds API plan at the-odds-api.com; Oct/Nov check-in on the three bots
-- **Blocked:** nothing
+- **State:** Project costs nothing: sharp retired, ODDS_API_KEY out of the workflow; live bots mention_no, mention_follow, favorites on free data. Joey asked me to cancel The Odds API plan in his browser; the Chrome extension is not connected (no browsers listed), so it is not cancelled. Evidence: tabs_context_mcp: extension not connected (twice); list_connected_browsers: empty.
+- **Next:** Joey connects the Claude Chrome extension and says go (I cancel at the-odds-api.com; he signs in himself if asked), or cancels it himself; then the three bots' check-in
+- **Blocked:** Odds API cancel: Chrome extension not connected
 - **Watch out:** Keep the repo public (private repos pay for Actions minutes); never add a paid feed or ANTHROPIC_API_KEY; a stash holds a reformatted policy.json to discard

@@ -2,6 +2,14 @@
 
 Kind: Reference. The current handoff is `docs/HANDOFF.md`.
 
+### 2026-10-14 20:43 EDT
+- **State:** Read-only check 2026-10-15: all healthy. sharp placed no bets since the Oct 11 fix: 60 looks at 27 games, Kalshi mid within ~1c of Pinnacle (median), best edge after fees +0.5% vs the 3% gate. mention_no 36 open probes (12 settled, +168), mention_follow 7 open probes (1 settled, -20). Evidence: python3 -m papertrade health (cycle 00:35Z healthy); sharp.jsonl and portfolios/*.json read at 932c49a.
+- **Next:** Oct 19 check-in: trading-health, settled mention bets, mention_forward.py early read; test whether Kalshi game lines lag Pinnacle moves (Odds API historical snapshots vs Kalshi 1-min candles) before any faster sharp cadence; then follow-first-trade in gas ladders
+- **Blocked:** nothing
+- **Watch out:** Score backtests at quotes the strategy could take; a 15-min cadence cannot win a speed race against Kalshi market makers; post-mortems and the daily review still use Claude
+- **Git:** master @ 932c49a, 2 tracked uncommitted, 3 untracked
+- **CI:** master green on GitHub (read 2026-10-15 00:43 UTC)
+
 ### 2026-10-12 01:02 EDT
 - **State:** Session closed by Joey. Live: sharp (paid odds, own pass, Kalshi walk fixed), mention_no and mention_follow (both pre-registered and locked); all forecaster strategies and original retired; no Jev or research calls. Maintenance recorded. Evidence: 161 offline tests OK; run 38196326048 success; skilliton maintain --apply.
 - **Next:** Check-in in about a week (around Oct 19): trading-health, settled mention bets, mention_forward.py early read; next research: follow-first-trade in gas ladders at quoted prices
