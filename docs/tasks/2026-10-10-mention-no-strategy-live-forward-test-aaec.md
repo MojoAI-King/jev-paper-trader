@@ -6,7 +6,7 @@ Kind: Living. Task record.
 - **State:** in-progress
 - **Branch:** master
 - **Owner:** unassigned
-- **Updated:** 2026-10-27T01:27:36.369Z
+- **Updated:** 2026-11-12T05:09:45.287Z
 
 ## Request
 
@@ -224,6 +224,13 @@ not yet written
 - **Evidence:** python3 -m unittest discover -s tests -t .: 171 OK
 - **Next:** Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
 - **Git:** master @ 14b66421, 1 tracked uncommitted, 3 untracked
+
+### 2026-11-12T05:09:45.287Z
+
+- **State:** Automatic checkpoint before compaction (auto), written by the PreCompact hook from the snapshot and not by the assistant: branch master at 2355296b1881, 1 tracked uncommitted, 3 untracked. The newest checkpoint before this one is 2026-10-27T01:27:36.369Z: American English across the repo (Joey: no British English): page text, comments, tests, docs, review prompt; data keys cancelled_bets/cancelled and file nam...
+- **Evidence:** snapshot 2026-11-12T05-09-45-287Z-auto.json under <git dir>/skilliton/snapshots; no gate recorded for that tree (dirty)
+- **Next:** Carry on from the last recorded next step: Watch next cycle: page shows Favorites, no favorites bet under $500, page loss gone; Oct check-in; Kalshi-vs-Pinnacle lag test
+- **Git:** master @ 2355296b, 1 tracked uncommitted, 3 untracked
 
 ## Handoff
 

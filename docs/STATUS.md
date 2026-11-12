@@ -44,5 +44,4 @@ Open tasks in `docs/tasks/` (every state except done-local, merged, released, ve
 | ID | Title | State | Branch | Owner |
 |---|---|---|---|---|
 | [2026-10-10-mention-no-strategy-live-forward-test-aaec](tasks/2026-10-10-mention-no-strategy-live-forward-test-aaec.md) | Mention NO strategy: live forward test | in-progress | master | unassigned |
-| [2026-11-12-keep-the-project-free-retire-the-paid-od-c7ff](tasks/2026-11-12-keep-the-project-free-retire-the-paid-od-c7ff.md) | Keep the project free: retire the paid odds feed | in-progress | master | unassigned |
 <!-- skilliton:index:tasks:end -->
