@@ -21,9 +21,10 @@ REAL_POLICY = engine.load_policy()
 # The mechanics tests below use "main" and the other Jev strategies as their subject. Joey retired them on 2026-10-11
 # (Jev stops picking bets), but the machinery they exercise (research, gates, tuning, the page) still serves original,
 # claude_direct and the challengers, so these tests run on a copy with them switched back on. Tests of the live
-# configuration use REAL_POLICY (RetiredJevTests).
+# configuration use REAL_POLICY (RetiredJevTests). The sharp line is switched back on here too: Joey retired it on
+# 2026-11-12 (it needs The Odds API's paid plan), but its machinery stays tested so it can come back.
 POLICY = json.loads(json.dumps(REAL_POLICY))
-for _name in ("main", "bold", "calibrated", "claude_direct", "original"):
+for _name in ("main", "bold", "calibrated", "claude_direct", "original", "sharp"):
     POLICY["strategies"][_name]["retired"] = False
 POLICY["learning"]["retired_probabilities"] = []  # the challenger machinery is tested with Jev challengers too
 
@@ -2511,7 +2512,7 @@ class RetiredJevTests(DataDirTest):
     def test_jev_strategies_are_retired_and_the_rest_still_trade(self):
         live = {n for n in engine.strategies(REAL_POLICY)}
         self.assertFalse({"main", "bold", "calibrated", "jev_alone", "jev_alone_bold", "claude_direct", "original"} & live)
-        self.assertEqual(live, {"sharp", "mention_no", "mention_follow", "favorites"})
+        self.assertEqual(live, {"mention_no", "mention_follow", "favorites"})  # sharp retired 2026-11-12: paid data
         def no_jev(*a):
             raise AssertionError("no live strategy uses Jev, so no call")
         stats = engine.scan(dict(REAL_POLICY, sources=["polymarket"]), client=JevClient(transport=no_jev),
@@ -2523,9 +2524,9 @@ class RetiredJevTests(DataDirTest):
         self.assertFalse({"main", "bold", "calibrated", "claude_direct"} & {r["name"] for r in s["strategies"]})
 
     def test_strategies_in_a_forward_test_are_locked_against_the_review(self):
-        self.assertEqual(REAL_POLICY["learning"]["locked_strategies"], ["sharp", "mention_no", "mention_follow", "favorites"])
+        self.assertEqual(REAL_POLICY["learning"]["locked_strategies"], ["mention_no", "mention_follow", "favorites"])
         now = datetime(2026, 10, 11, tzinfo=timezone.utc)
-        for name in ("sharp", "mention_no", "mention_follow", "favorites"):
+        for name in ("mention_no", "mention_follow", "favorites"):
             status, reason = coach.tune(REAL_POLICY, name, {"min_edge": 0.06}, now)
             self.assertEqual(status, "invalid")
             self.assertIn("locked while its forward test runs", reason)
@@ -2533,6 +2534,25 @@ class RetiredJevTests(DataDirTest):
         engine.save_json(engine.TUNED, {"strategies": {"mention_no": {"rules": {"min_edge": 0.09}, "version": 2,
                                                                        "at": "2026-10-11T00:00:00Z"}}})
         self.assertEqual(engine.strategies(REAL_POLICY)["mention_no"]["rules_version"], 1)
+
+    def test_the_live_setup_never_calls_the_paid_odds_feed(self):
+        # Joey, 2026-11-12: the project costs nothing. The Odds API was its only paid data (the sharp line), so
+        # that strategy is retired and no cycle may call the feed, even with a key present
+        self.assertTrue(REAL_POLICY["strategies"]["sharp"].get("retired"))
+        self.assertNotIn("sharp", {s["probability"] for s in engine.strategies(REAL_POLICY).values()})
+        self.assertNotIn("sharp", learn.SIGNALS)  # and no challenger the loop starts can pick with it
+        def paid(*a, **k):
+            raise AssertionError("the paid odds feed was called")
+        with mock.patch.object(odds, "api_key", return_value="k"), mock.patch.object(odds, "load_events", paid), \
+                mock.patch.object(odds, "fetch_odds", paid), mock.patch.object(odds, "active_sports", paid):
+            stats = engine.scan(dict(REAL_POLICY, sources=["polymarket"]), client=JevClient(transport=paid),
+                                fetchers={"polymarket": lambda *a: [market()]}, log=lambda *_: None, now=SCAN_NOW,
+                                researcher=FakeResearcher([fact(CLEAN[0])]), forecaster=FakeForecaster({}))
+        self.assertNotIn("sharp", stats)
+        self.assertFalse(engine.ODDS.exists())
+        # nor can the cycle on GitHub: the workflow no longer hands it the key
+        workflow = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "trade.yml").read_text()
+        self.assertNotIn("secrets.ODDS_API_KEY", workflow)
 
     def test_the_loop_cannot_start_a_challenger_that_picks_with_jev_or_claude(self):
         for source in ("jev_research", "jev_plain", "jev_calibrated", "claude_direct"):
