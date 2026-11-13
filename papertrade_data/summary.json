@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T14:23:02Z",
+  "generated": "2026-11-13T14:38:01Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-13T14:23:02Z",
+      "t": "2026-11-13T14:38:01Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-13T14:20:30Z",
+    "ts": "2026-11-13T14:35:31Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1115,8 +1115,8 @@
       "unrealized": 0.0,
       "change": -8971.46,
       "realized": -8971.46,
-      "open": 39,
-      "open_cost": 44960.53,
+      "open": 40,
+      "open_cost": 45513.97,
       "settled": 210,
       "wins": 190,
       "losses": 20,
@@ -2417,7 +2417,7 @@
           99617.53
         ],
         [
-          "2026-11-13T14:23:02Z",
+          "2026-11-13T14:38:01Z",
           99617.53
         ]
       ]
@@ -3714,7 +3714,7 @@
           100188.21
         ],
         [
-          "2026-11-13T14:23:02Z",
+          "2026-11-13T14:38:01Z",
           100188.21
         ]
       ]
@@ -5011,7 +5011,7 @@
           91028.54
         ],
         [
-          "2026-11-13T14:23:02Z",
+          "2026-11-13T14:38:01Z",
           91028.54
         ]
       ]
@@ -5704,6 +5704,29 @@
           "p_side": 0.905,
           "edge": -0.0207,
           "opened": "2026-11-11T21:50:25Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:6909217",
+      "question": "Will the price of Bitcoin be above $66,000 on November 16?",
+      "url": "https://polymarket.com/market/bitcoin-above-66k-on-november-16-2026",
+      "source": "polymarket",
+      "close_time": "2026-11-16T17:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 583,
+          "cost_per": 0.9493,
+          "total_cost": 553.44,
+          "p_side": 0.9215,
+          "edge": -0.0278,
+          "opened": "2026-11-13T14:35:31Z",
           "value": null
         }
       ]
@@ -7167,6 +7190,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-13T14:35:31Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9493,
+      "amount": 553.44,
+      "p": 0.9215,
+      "q": "Will the price of Bitcoin be above $66,000 on November 16?",
+      "url": "https://polymarket.com/market/bitcoin-above-66k-on-november-16-2026",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-13T14:35:31Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-13T14:35:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-13T14:20:30Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -7710,31 +7758,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-13T06:05:32Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-13T06:05:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-13T05:50:34Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9257,
-      "amount": 955.32,
-      "p": 0.905,
-      "q": "When will Anthropic officially announce an IPO? (Before Nov 16, 2026)",
-      "url": "https://kalshi.com/markets/kxipoanthropic/when-will-anthropic-officially-announce-an-ipo/kxipoanthropic-date",
-      "probe": false
     }
   ],
   "plan_usage": {
