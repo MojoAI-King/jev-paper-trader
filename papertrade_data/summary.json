@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T17:23:02Z",
+  "generated": "2026-11-13T17:38:08Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-13T17:23:02Z",
+      "t": "2026-11-13T17:38:08Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-13T17:20:24Z",
+    "ts": "2026-11-13T17:35:30Z",
     "stages": [
       [
         "Fetched",
@@ -1007,9 +1007,9 @@
     "researched_new": 0,
     "research_reused": 0,
     "bets": {
-      "mention_no": 0,
-      "mention_follow": 1,
-      "favorites": 1
+      "mention_no": 2,
+      "mention_follow": 0,
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1024,8 +1024,8 @@
       "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     ],
     "cleared_gates": {
-      "mention_no": 0,
-      "mention_follow": 1,
+      "mention_no": 2,
+      "mention_follow": 0,
       "favorites": 0
     },
     "judged": 0,
@@ -1055,8 +1055,8 @@
       "unrealized": 0.0,
       "change": -382.47,
       "realized": -382.47,
-      "open": 19,
-      "open_cost": 470.04,
+      "open": 21,
+      "open_cost": 476.08,
       "settled": 77,
       "wins": 29,
       "losses": 48,
@@ -2421,7 +2421,7 @@
           99617.53
         ],
         [
-          "2026-11-13T17:23:02Z",
+          "2026-11-13T17:38:08Z",
           99617.53
         ]
       ]
@@ -3722,7 +3722,7 @@
           100188.21
         ],
         [
-          "2026-11-13T17:23:02Z",
+          "2026-11-13T17:38:08Z",
           100188.21
         ]
       ]
@@ -5023,7 +5023,7 @@
           89801.28
         ],
         [
-          "2026-11-13T17:23:02Z",
+          "2026-11-13T17:38:08Z",
           89801.28
         ]
       ]
@@ -5859,6 +5859,29 @@
       ]
     },
     {
+      "key": "kalshi:KXHILLARYMENTION-26NOV14-FBI",
+      "question": "What will Hillary Clinton say during MS NOW: Rachel in Conversation with Hillary Clinton originally scheduled for November 14, 2026? (FBI)",
+      "url": "https://kalshi.com/markets/kxhillarymention/what-will-hillary-clinton-say-during-ms-now-rachel-in-conver/kxhillarymention-26nov14",
+      "source": "kalshi",
+      "close_time": "2026-11-28T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 5,
+          "cost_per": 0.6759,
+          "total_cost": 3.38,
+          "p_side": 0.745,
+          "edge": 0.0691,
+          "opened": "2026-11-13T17:35:30Z",
+          "value": null
+        }
+      ]
+    },
+    {
       "key": "kalshi:KXPGATOUR-AUCPBCS26-DGHI",
       "question": "Austin Championship presented by Compliance Solutions: Doug Ghim wins",
       "url": "https://kalshi.com/markets/kxpgatour/austin-championship-presented-by-compliance-solutions-doug-g/kxpgatour-aucpbcs26",
@@ -5937,6 +5960,17 @@
       "price": null,
       "price_at": null,
       "positions": [
+        {
+          "strategy": "mention_no",
+          "side": "no",
+          "contracts": 4,
+          "cost_per": 0.6661,
+          "total_cost": 2.66,
+          "p_side": 0.72,
+          "edge": 0.0539,
+          "opened": "2026-11-13T17:35:30Z",
+          "value": null
+        },
         {
           "strategy": "mention_follow",
           "side": "no",
@@ -7179,6 +7213,43 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-13T17:35:30Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.6759,
+      "amount": 3.38,
+      "p": 0.745,
+      "q": "What will Hillary Clinton say during MS NOW: Rachel in Conversation with Hillary Clinton originally scheduled for November 14, 2026? (FBI)",
+      "url": "https://kalshi.com/markets/kxhillarymention/what-will-hillary-clinton-say-during-ms-now-rachel-in-conver/kxhillarymention-26nov14",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-13T17:35:30Z",
+      "type": "bet",
+      "strategy": "mention_no",
+      "side": "no",
+      "price": 0.6661,
+      "amount": 2.66,
+      "p": 0.72,
+      "q": "What will Hung Cao say during Senate Armed Services Committee confirmation hearing for Honorable Hung Cao to be Secretary of the Navy originally scheduled for November 17, 2026? (Iran / Iranian)",
+      "url": "https://kalshi.com/markets/kxhearingmention/what-will-hung-cao-say-during-senate-armed-services-committe/kxhearingmention-26nov17",
+      "probe": true
+    },
+    {
+      "ts": "2026-11-13T17:35:30Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-13T17:35:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-11-13T17:20:24Z",
       "type": "loss",
       "strategy": "favorites",
@@ -7717,39 +7788,6 @@
       "ts": "2026-11-13T09:35:29Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-13T09:35:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-13T09:20:45Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-13T09:20:45Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-13T09:05:36Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.948,
-      "amount": 578.28,
-      "p": 0.932,
-      "q": "Will Elon Musk post 260-279 tweets from November 10 to November 17, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-november-10-november-17-2026-260-279",
-      "probe": false
     }
   ],
   "plan_usage": {
