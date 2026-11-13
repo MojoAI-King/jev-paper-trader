@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-13T00:23:11Z",
+  "generated": "2026-11-13T00:36:25Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-13T00:23:11Z",
+      "t": "2026-11-13T00:36:25Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-13T00:20:35Z",
+    "ts": "2026-11-13T00:33:14Z",
     "stages": [
       [
         "Fetched",
@@ -2409,7 +2409,7 @@
           99617.53
         ],
         [
-          "2026-11-13T00:23:11Z",
+          "2026-11-13T00:36:25Z",
           99617.53
         ]
       ]
@@ -3698,7 +3698,7 @@
           100188.21
         ],
         [
-          "2026-11-13T00:23:11Z",
+          "2026-11-13T00:36:25Z",
           100188.21
         ]
       ]
@@ -4987,7 +4987,7 @@
           92080.29
         ],
         [
-          "2026-11-13T00:23:11Z",
+          "2026-11-13T00:36:25Z",
           92080.29
         ]
       ]
@@ -6913,6 +6913,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-13T00:36:20Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-13T00:35:45Z",
+      "type": "idea",
+      "text": "Measure skill only on markets the strategy would actually bet",
+      "status": "proposed",
+      "why": "mention_prior shows positive skill (lambda 0.0305) across 1,220 mention markets. But the 77 markets Mention NO actually bet, inside its 30-70c window and past its gates, lose $13 per $100. Skill measured on all markets can switch Kelly on for a strategy whose real bets lose. Computing lambda on the "
+    },
+    {
+      "ts": "2026-11-13T00:33:14Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-13T00:33:14Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-13T00:20:35Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -7442,39 +7467,6 @@
       "ts": "2026-11-12T16:50:27Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-12T16:50:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-12T16:35:28Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-12T16:35:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-12T16:20:27Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.9163,
-      "amount": 1369.87,
-      "p": 0.895,
-      "q": "Alabama wins",
-      "url": "https://kalshi.com/markets/kxncaafgame/alabama-wins/kxncaafgame-26nov14alavan",
-      "probe": false
     }
   ],
   "plan_usage": {
@@ -8144,6 +8136,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p68",
+        "kind": "code",
+        "title": "Measure skill only on markets the strategy would actually bet",
+        "why": "mention_prior shows positive skill (lambda 0.0305) across 1,220 mention markets. But the 77 markets Mention NO actually bet, inside its 30-70c window and past its gates, lose $13 per $100. Skill measured on all markets can switch Kelly on for a strategy whose real bets lose. Computing lambda on the gate-passing, in-price-window subset, and requiring it to be positive there too, would close that gap. This complements p67 (hold the sizing now) and p49, rather than duplicating them.",
+        "judge_by": "The review reports a second lambda for each source, restricted to markets that passed that strategy's gates and price window. Kelly sizing turns on only when both lambdas are positive. For mention_prior, I expect the restricted lambda to be 0 on the 77 settled bets, which would return Mention NO to probe bets.",
+        "min_resolved": 77,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-13T00:35:45Z"
+      },
       {
         "id": "p67",
         "kind": "code",
@@ -8888,17 +8891,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-12T12:23:12Z",
-      "headline": "A quiet half day: only the heavy-favorites strategy placed bets (9), no forecasts were judged in 47 cycles, and none of the three strategies under review beats the market. All three are locked forward tests, so there is nothing to tune today.",
+      "ts": "2026-11-13T00:35:45Z",
+      "headline": "A quiet, broken half day: no markets were judged or resolved in 48 cycles, the market price still beats every forecaster, and the only three strategies in this report are locked, so the useful move is to fix how Kelly sizing gets switched on, not to tune.",
       "went_well": [
-        "Mention markets, follow the first NO is up $198 on $594 settled stake (+$33 per $100), with 13 wins in 20. That is under 30 markets, so it is noise until more settle; its 30-60c bets are +$180 on 11.",
-        "No strategy bought a long shot: zero bets under 30c across all three, so the 30c floor is holding.",
-        "Mention NO's losses stay small in dollars (-$386 total), because its stakes have been tiny (about $32 per settled bet)."
+        "Mention, follow the first NO is up $188 on $750 staked (+$25 per $100) with 13 wins in 21 settled. Its 30-60c bets made +$180 on 11. That is under 30 markets, so it is noise, not a finding.",
+        "Claude direct is still the closest forecaster to the market, and the only one ahead of it anywhere with real numbers: in sports, Brier 0.176 vs the market's 0.180 on 204 markets. In culture it scores 0.032 vs 0.074, but on only 14 markets.",
+        "No new money was lost on bad judgment this period. Only favorites bet (6 bets), and nothing resolved."
       ],
       "went_badly": [
-        "Heavy favorites keeps losing despite winning 91% of its bets (179 of 197): -$8.6k on $217k settled, about -$4 per $100. Another $36.9k, roughly 40% of its equity, is still open on 32 bets.",
-        "Mention NO is -$16 per $100 on 76 settled bets (28 wins). That breaks down to -$12 per $100 on 55 coin-flip bets and -$22 per $100 on 21 favorites. Yet its source's skill estimate has turned positive (lambda 0.036 on 1,204 markets), so larger Kelly bets may now be switching on for a strategy that lo",
-        "The pipeline is still broken: 0 forecasts judged in 47 cycles, main and the challengers are missing from the review, and the yardstick and gate ledger are empty. On the 952 paired markets the market (Brier 0.163) still beats every forecaster: Claude direct 0.200, Jev + research 0.218, Jev alone 0.24"
+        "Favorites has lost $7.9k on 206 settled bets, about -$3.5 per $100, despite winning 188 (91%). That record implies it pays roughly 95c on average, so it needs about 95% wins to break even. The market prices these favorites correctly or slightly rich, and this strategy keeps betting.",
+        "Mention NO is down $382 on 77 settled, about -$13 per $100 (29 wins, 48 losses). Both price bands lose: -$198 on 55 bets at 30-60c and -$185 on 22 at 60c+. Yet mention_prior's skill lambda is now 0.0305 on 1,220 markets, which switches Kelly sizing on. Its raw skill of 0.138 has a standard error of ",
+        "The market still wins overall. On 952 paired markets it scores 0.163, against 0.200 for Claude direct, 0.218 for Jev + research and 0.245 for Jev alone. The pipeline judged 0 markets in 48 cycles, so no Jev or Claude strategy can bet at all, and the other strategies are still missing from this repor"
       ]
     },
     "auto_start": true,
@@ -9524,6 +9527,13 @@
         "title": "Mention prior's Kelly sizing has switched on: hold it now",
         "why": "Mention prior's skill (lambda) is now 0.036 on 1,204 markets, so by the rules Mention NO moves from probe bets to Kelly sizing. Yet Mention NO loses about $16 per $100 on 76 settled bets, its skill error bar (0.25) is seven times the estimate, and p48 and p59 show its stakes and record don't add up. p51 asked for this hold before it happened; it is now live, so it should come first in the fix list.",
         "created": "2026-11-12T00:08:01Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p68",
+        "title": "Measure skill only on markets the strategy would actually bet",
+        "why": "mention_prior shows positive skill (lambda 0.0305) across 1,220 mention markets. But the 77 markets Mention NO actually bet, inside its 30-70c window and past its gates, lose $13 per $100. Skill measured on all markets can switch Kelly on for a strategy whose real bets lose. Computing lambda on the gate-passing, in-price-window subset, and requiring it to be positive there too, would close that gap. This complements p67 (hold the sizing now) and p49, rather than duplicating them.",
+        "created": "2026-11-13T00:35:45Z",
         "status": "proposed"
       }
     ]

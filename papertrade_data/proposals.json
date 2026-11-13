@@ -951,6 +951,17 @@
       "min_resolved": 0,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p68",
+      "created": "2026-11-13T00:35:45Z",
+      "kind": "code",
+      "title": "Measure skill only on markets the strategy would actually bet",
+      "why": "mention_prior shows positive skill (lambda 0.0305) across 1,220 mention markets. But the 77 markets Mention NO actually bet, inside its 30-70c window and past its gates, lose $13 per $100. Skill measured on all markets can switch Kelly on for a strategy whose real bets lose. Computing lambda on the gate-passing, in-price-window subset, and requiring it to be positive there too, would close that gap. This complements p67 (hold the sizing now) and p49, rather than duplicating them.",
+      "judge_by": "The review reports a second lambda for each source, restricted to markets that passed that strategy's gates and price window. Kelly sizing turns on only when both lambdas are positive. For mention_prior, I expect the restricted lambda to be 0 on the 77 settled bets, which would return Mention NO to probe bets.",
+      "min_resolved": 77,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
