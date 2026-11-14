@@ -1,6 +1,6 @@
 {
-  "version": 28,
-  "updated": "2026-11-07T03:09:02Z",
+  "version": 29,
+  "updated": "2026-11-14T08:53:39Z",
   "rules": [
     {
       "id": "R1",
@@ -23,10 +23,11 @@
     },
     {
       "id": "R38",
-      "category": "world",
-      "rule": "When a question resolves on an official statement, search for statements dated in the last 24 hours, and report independent dated reports that the event (e.g. pipeline flows) already happened plus the same body's past announcements of similar events and their lag.",
+      "category": "general",
+      "rule": "If a question asks whether a named product, version or official statement appears by a date, search the exact name with 'cancel', 'delay', 'scrapped', read the past 24 hours and recent event coverage, independent reports it already happened, and the issuer's past lag.",
       "evidence": [
-        "polymarket:4619164"
+        "polymarket:4619164",
+        "kalshi:KXGPT-ASTRA61-26NOV06"
       ],
       "added": "2026-11-02T00:08:14Z"
     },
@@ -35,8 +36,8 @@
       "category": "world",
       "rule": "For ceasefire or 'no strike' questions, read what counts as a breach (e.g. strikes on territory only, not ships or threats), check the latest dated conflict tracker (e.g. Critical Threats) for the last qualifying strike, and report the lull's length, days left and deployments.",
       "evidence": [
-        "polymarket:5447182",
-        "polymarket:4641065"
+        "polymarket:4641065",
+        "polymarket:5447182"
       ],
       "added": "2026-11-04T05:09:56Z"
     },
@@ -45,12 +46,12 @@
       "category": "politics",
       "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated poll with pollster and sponsor, a nonpartisan-poll average, first-hand Cook/Sabato/Inside Elections ratings, other races' polls, primary turnout, national mood.",
       "evidence": [
-        "polymarket:631045",
+        "polymarket:1284671",
+        "polymarket:1284672",
         "polymarket:629337",
         "polymarket:629557",
         "polymarket:630925",
-        "polymarket:1284671",
-        "polymarket:1284672"
+        "polymarket:631045"
       ],
       "added": "2026-11-04T05:09:56Z"
     },
@@ -59,11 +60,11 @@
       "category": "politics",
       "rule": "Before citing a past polling miss, check it was the same candidate and cycle type; report the nominee's own record and whether the seat is open; label partisan lean indexes, secondhand 'safe' labels, party-sponsored polls, win streaks and spending gaps as weak.",
       "evidence": [
-        "polymarket:630925",
-        "polymarket:629557",
-        "polymarket:629337",
         "polymarket:1284671",
-        "polymarket:1284672"
+        "polymarket:1284672",
+        "polymarket:629337",
+        "polymarket:629557",
+        "polymarket:630925"
       ],
       "added": "2026-11-05T00:08:30Z"
     },
@@ -182,9 +183,10 @@
     {
       "id": "R23",
       "category": "culture",
-      "rule": "For Rotten Tomatoes score questions, read the year-specific film page named in the rules, record the score, review count and dated earlier readings showing drift, and count how many negative reviews would move it past the strike before the check time.",
+      "rule": "For Rotten Tomatoes score questions, read the year-specific film page named in the rules first, record the current score, review count, Certified Fresh status and dated earlier readings (festival to wide release) showing drift, and count reviews needed to cross the strike.",
       "evidence": [
-        "kalshi:KXRT-DIG-50"
+        "kalshi:KXRT-DIG-50",
+        "kalshi:KXRT-WILD-90"
       ],
       "added": "2026-10-06T00:09:05Z"
     },
@@ -268,6 +270,7 @@
     "kalshi:KXFED-26OCT-T4.00",
     "kalshi:KXFEDDECISION-26OCT-H0",
     "kalshi:KXGDP-26OCT30-T2.0",
+    "kalshi:KXGPT-ASTRA61-26NOV06",
     "kalshi:KXGPT-ASTRA61-26OCT30",
     "kalshi:KXHORMUZWEEKLY-26SEP27-T30",
     "kalshi:KXINTLFRIENDLYTOTAL-26OCT06ARGBEN-6",
@@ -327,6 +330,7 @@
     "kalshi:KXPGATOUR-BAOUC26-ASMO",
     "kalshi:KXPGATOUR-BAOUC26-JKOI",
     "kalshi:KXRT-DIG-50",
+    "kalshi:KXRT-WILD-90",
     "kalshi:KXTESTMATCH-26SEP290000AUS-AINA-TIE",
     "kalshi:KXTRUMPSAYNICKNAME-26OCT01-PIGG",
     "kalshi:KXUFCFIGHT-26OCT03GRERIB-GRE",
@@ -413,7 +417,8 @@
     "polymarket:629557",
     "polymarket:630924",
     "polymarket:630925",
-    "polymarket:631045"
+    "polymarket:631045",
+    "polymarket:635016"
   ],
   "retired_ids": [
     "R10",
