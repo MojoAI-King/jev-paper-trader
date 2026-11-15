@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T17:23:07Z",
+  "generated": "2026-11-15T17:37:55Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-15T17:23:07Z",
+      "t": "2026-11-15T17:37:55Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,15 +976,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-15T17:20:32Z",
+    "ts": "2026-11-15T17:35:32Z",
     "stages": [
       [
         "Fetched",
-        180
+        184
       ],
       [
         "Passed free filters",
-        180
+        184
       ],
       [
         "Judged by Jev",
@@ -1018,7 +1018,7 @@
     "facts_dropped": 0,
     "by_source": {
       "polymarket": 100,
-      "kalshi": 80
+      "kalshi": 84
     },
     "problems": [
       "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -1115,8 +1115,8 @@
       "unrealized": 0.0,
       "change": -16865.56,
       "realized": -16865.56,
-      "open": 35,
-      "open_cost": 40104.19,
+      "open": 36,
+      "open_cost": 41351.08,
       "settled": 238,
       "wins": 210,
       "losses": 28,
@@ -2477,7 +2477,7 @@
           99617.53
         ],
         [
-          "2026-11-15T17:23:07Z",
+          "2026-11-15T17:37:55Z",
           99617.53
         ]
       ]
@@ -3834,7 +3834,7 @@
           100188.21
         ],
         [
-          "2026-11-15T17:23:07Z",
+          "2026-11-15T17:37:55Z",
           100188.21
         ]
       ]
@@ -5191,7 +5191,7 @@
           83134.44
         ],
         [
-          "2026-11-15T17:23:07Z",
+          "2026-11-15T17:37:55Z",
           83134.44
         ]
       ]
@@ -5608,6 +5608,29 @@
           "p_side": 0.9215,
           "edge": -0.0278,
           "opened": "2026-11-13T14:35:31Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:6909146",
+      "question": "Will the price of Ethereum be above $1,700 on November 16?",
+      "url": "https://polymarket.com/market/ethereum-above-1700-on-november-16-2026",
+      "source": "polymarket",
+      "close_time": "2026-11-16T17:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 1311,
+          "cost_per": 0.9511,
+          "total_cost": 1246.89,
+          "p_side": 0.932,
+          "edge": -0.0191,
+          "opened": "2026-11-15T17:35:32Z",
           "value": null
         }
       ]
@@ -7358,6 +7381,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-15T17:35:32Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9511,
+      "amount": 1246.89,
+      "p": 0.932,
+      "q": "Will the price of Ethereum be above $1,700 on November 16?",
+      "url": "https://polymarket.com/market/ethereum-above-1700-on-november-16-2026",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-15T17:35:32Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-15T17:35:32Z",
+      "type": "scan",
+      "fetched": 184,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-15T17:20:32Z",
       "type": "win",
       "strategy": "favorites",
@@ -7879,24 +7927,6 @@
       "q": "Turkiye wins",
       "url": "https://kalshi.com/markets/kxuefanlgame/turkiye-wins/kxuefanlgame-26nov15fratur",
       "probe": false
-    },
-    {
-      "ts": "2026-11-15T08:50:30Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-15T08:50:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-15T08:35:29Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
