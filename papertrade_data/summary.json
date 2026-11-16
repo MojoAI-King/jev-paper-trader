@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T07:23:16Z",
+  "generated": "2026-11-16T07:37:51Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-16T07:23:16Z",
+      "t": "2026-11-16T07:37:51Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2114,
+    "resolved": 2115,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277970198675497,
-        "n": 2114
+        "brier": 0.2277063829787234,
+        "n": 2115
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14559741579943236,
-        "n": 2114
+        "brier": 0.1455306978723404,
+        "n": 2115
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-16T07:20:41Z",
+    "ts": "2026-11-16T07:35:31Z",
     "stages": [
       [
         "Fetched",
@@ -2499,7 +2499,7 @@
           99637.67
         ],
         [
-          "2026-11-16T07:23:16Z",
+          "2026-11-16T07:37:51Z",
           99637.67
         ]
       ]
@@ -3880,7 +3880,7 @@
           100188.59
         ],
         [
-          "2026-11-16T07:23:16Z",
+          "2026-11-16T07:37:51Z",
           100188.59
         ]
       ]
@@ -5261,7 +5261,7 @@
           79799.68
         ],
         [
-          "2026-11-16T07:23:16Z",
+          "2026-11-16T07:37:51Z",
           79799.68
         ]
       ]
@@ -7359,6 +7359,14 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-16T07:35:31Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-16T07:20:41Z",
       "type": "scan",
       "fetched": 200,
@@ -7980,14 +7988,6 @@
       "ts": "2026-11-15T20:50:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-15T20:50:36Z",
-      "type": "scan",
-      "fetched": 193,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -8000,7 +8000,7 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2114,
+    "reviewed": 2115,
     "post_mortems": 106,
     "win_reviews": 63,
     "calibration": [
@@ -8600,12 +8600,12 @@
       },
       {
         "category": "economy",
-        "n": 90,
-        "jev_plain": 0.2675,
-        "market": 0.127,
+        "n": 91,
+        "jev_plain": 0.265,
+        "market": 0.1256,
         "jev_research": 0.2331,
-        "n_jev_plain": 90,
-        "n_market": 90,
+        "n_jev_plain": 91,
+        "n_market": 91,
         "n_jev_research": 58
       },
       {
