@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T13:22:55Z",
+  "generated": "2026-11-16T13:38:19Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-16T13:22:55Z",
+      "t": "2026-11-16T13:38:19Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-16T13:20:42Z",
+    "ts": "2026-11-16T13:35:30Z",
     "stages": [
       [
         "Fetched",
@@ -2503,7 +2503,7 @@
           99637.67
         ],
         [
-          "2026-11-16T13:22:55Z",
+          "2026-11-16T13:38:19Z",
           99637.67
         ]
       ]
@@ -3888,7 +3888,7 @@
           100188.59
         ],
         [
-          "2026-11-16T13:22:55Z",
+          "2026-11-16T13:38:19Z",
           100188.59
         ]
       ]
@@ -5273,7 +5273,7 @@
           79849.33
         ],
         [
-          "2026-11-16T13:22:55Z",
+          "2026-11-16T13:38:19Z",
           79849.33
         ]
       ]
@@ -7394,6 +7394,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-16T13:38:13Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-16T13:35:30Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-16T13:20:42Z",
       "type": "scan",
       "fetched": 200,
@@ -8014,19 +8027,6 @@
     },
     {
       "ts": "2026-11-15T22:35:32Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-15T22:35:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-15T22:20:27Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
@@ -9451,17 +9451,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-16T01:22:58Z",
-      "headline": "A quiet half-day: judging is still stalled (48 cycles, 0 markets judged), only favorites placed bets (9), and every strategy in this review is locked, so I am proposing no changes this round.",
+      "ts": "2026-11-16T13:37:46Z",
+      "headline": "The market is still the best forecaster, nothing tunable is running, and judging has been stalled for 46 cycles, so today is a report with no changes. Favorites keeps losing slowly while Mention follow's small profit is still noise.",
       "went_well": [
-        "Mention follow is the only strategy in the black: +$189 on 22 settled bets (14 wins, 8 losses), about +$31 per $100 settled. That rests on under 30 results, so it is an experiment, not a finding.",
-        "Mention follow's 30-60c bets made +$180 on $262 staked (7 wins of 11). Its 60c-and-up bets roughly broke even (+$8 on $344).",
-        "The 30c price floor is holding. No strategy has a bet under 30c, so the long-shot losses that cost 32.6k before October 1 have not come back."
+        "Mention follow is up $189 on 22 settled bets (14 wins, 8 losses), about +$31 per $100 of settled stake. Most of that is +$180 on 11 bets at 30-60c. With fewer than 30 results, this is an experiment, not a finding.",
+        "Mention NO has stayed small: it is down only $362 on 78 settled bets (about -$15 per $100 settled), so its forward test is cheap to keep running.",
+        "Claude direct is still the only forecaster that edges out the market anywhere: sports Brier 0.176 vs the market's 0.180 on 204 markets. Lower Brier is better."
       ],
       "went_badly": [
-        "Favorites keeps losing despite winning 88% of the time. It won 218 of 247 settled bets and is still down $17.4k, about -$6.40 per $100 on $270.9k settled. It has 33 bets open (about $38k), and it placed all 9 of this period's bets.",
-        "Mention NO is down $362 on 78 settled bets (30 wins, 48 losses), about -$14.50 per $100 settled. Both price buckets lose: 30-60c is -$177 on $1,636 and 60c-and-up is -$185 on $857. Its skill estimate (lambda 0.038 on 1,233 markets) says it should beat the price, and its bets so far do not.",
-        "The pipeline is still broken. Nothing was judged, researched or resolved-and-reviewed in 48 cycles, and main, original and the other Jev and Claude strategies are still missing from the review (yardstick and gate ledger are empty). The market price still beats every forecaster: paired Brier 0.163 ag"
+        "The market price beats every forecaster. On the same 952 markets it scores 0.163, against Claude direct 0.200, Jev + research 0.218 and Jev alone 0.245. The 46 cycles in this period judged 0 markets. Main, original and the challengers are still missing from the review, and the yardstick and gate led",
+        "Favorites is down $20.2k (equity $79.8k) on 250 settled bets. It wins 87.6% (219 of 250) but loses about $7.30 per $100 staked, which implies it pays roughly 94c and needs about 94-95% wins to break even. It still has 35 bets open and placed 5 more today.",
+        "Mention NO is losing in both price buckets: -$11 per $100 at 30-60c (18 wins in 56) and -$22 per $100 at 60c and up (12 of 22). Even so, mention_prior's measured skill is positive (lambda 0.038 on 1,233 markets), so Kelly sizing may now be live for a strategy that is losing money (see p67)."
       ]
     },
     "auto_start": true,
