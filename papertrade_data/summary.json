@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T21:08:01Z",
+  "generated": "2026-11-16T21:22:56Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-16T21:08:01Z",
+      "t": "2026-11-16T21:22:56Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-16T21:05:29Z",
+    "ts": "2026-11-16T21:20:27Z",
     "stages": [
       [
         "Fetched",
@@ -1020,7 +1020,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "mention_no": 0,
       "mention_follow": 0,
@@ -2523,7 +2525,7 @@
           99634.29
         ],
         [
-          "2026-11-16T21:08:01Z",
+          "2026-11-16T21:22:56Z",
           99634.29
         ]
       ]
@@ -3928,7 +3930,7 @@
           100188.59
         ],
         [
-          "2026-11-16T21:08:01Z",
+          "2026-11-16T21:22:56Z",
           100188.59
         ]
       ]
@@ -5333,7 +5335,7 @@
           79919.33
         ],
         [
-          "2026-11-16T21:08:01Z",
+          "2026-11-16T21:22:56Z",
           79919.33
         ]
       ]
@@ -7247,6 +7249,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-16T21:20:27Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-16T21:20:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-16T21:05:29Z",
       "type": "win",
       "strategy": "favorites",
@@ -7890,22 +7905,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-16T05:05:44Z",
-      "type": "loss",
-      "strategy": "favorites",
-      "amount": -1381.01,
-      "q": "Will Bitcoin dip to $68,000 November 9-15?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-68k-november-9-15-2026"
-    },
-    {
-      "ts": "2026-11-16T05:05:44Z",
-      "type": "loss",
-      "strategy": "favorites",
-      "amount": -1381.25,
-      "q": "Will Ethereum dip to $1,800 November 9-15?",
-      "url": "https://polymarket.com/market/will-ethereum-dip-to-1800-november-9-15-2026"
     }
   ],
   "plan_usage": {
