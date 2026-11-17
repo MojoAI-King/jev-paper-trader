@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T04:37:55Z",
+  "generated": "2026-11-17T04:53:06Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-17T04:37:55Z",
+      "t": "2026-11-17T04:53:06Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,7 +904,7 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2115,
+    "resolved": 2116,
     "sources": [
       {
         "name": "jev_research",
@@ -915,8 +915,8 @@
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.2277063829787234,
-        "n": 2115
+        "brier": 0.22771691871455577,
+        "n": 2116
       },
       {
         "name": "claude_direct",
@@ -933,8 +933,8 @@
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.1455306978723404,
-        "n": 2115
+        "brier": 0.14546343017485822,
+        "n": 2116
       }
     ],
     "paired": {
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-17T04:35:31Z",
+    "ts": "2026-11-17T04:50:38Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1113,8 +1113,8 @@
       "unrealized": 0.0,
       "change": -20035.02,
       "realized": -20035.02,
-      "open": 27,
-      "open_cost": 28674.71,
+      "open": 28,
+      "open_cost": 29741.08,
       "settled": 261,
       "wins": 229,
       "losses": 32,
@@ -2527,7 +2527,7 @@
           99634.29
         ],
         [
-          "2026-11-17T04:37:55Z",
+          "2026-11-17T04:53:06Z",
           99634.29
         ]
       ]
@@ -3936,7 +3936,7 @@
           100188.59
         ],
         [
-          "2026-11-17T04:37:55Z",
+          "2026-11-17T04:53:06Z",
           100188.59
         ]
       ]
@@ -5345,7 +5345,7 @@
           79964.98
         ],
         [
-          "2026-11-17T04:37:55Z",
+          "2026-11-17T04:53:06Z",
           79964.98
         ]
       ]
@@ -5808,6 +5808,29 @@
           "p_side": 0.914,
           "edge": -0.0353,
           "opened": "2026-11-15T05:05:37Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXCONCACAFNLGAME-26NOV17MEXJAM-JAM",
+      "question": "Reg Time: Jamaica wins",
+      "url": "https://kalshi.com/markets/kxconcacafnlgame/reg-time-jamaica-wins/kxconcacafnlgame-26nov17mexjam",
+      "source": "kalshi",
+      "close_time": "2026-11-20T02:30:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1107,
+          "cost_per": 0.9633,
+          "total_cost": 1066.37,
+          "p_side": 0.945,
+          "edge": -0.0183,
+          "opened": "2026-11-17T04:50:38Z",
           "value": null
         }
       ]
@@ -7259,6 +7282,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-17T04:50:38Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9633,
+      "amount": 1066.37,
+      "p": 0.945,
+      "q": "Reg Time: Jamaica wins",
+      "url": "https://kalshi.com/markets/kxconcacafnlgame/reg-time-jamaica-wins/kxconcacafnlgame-26nov17mexjam",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-17T04:50:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-17T04:35:31Z",
       "type": "scan",
       "fetched": 200,
@@ -7825,26 +7868,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-16T16:35:37Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.9257,
-      "amount": 1198.78,
-      "p": 0.905,
-      "q": "Will average **gas prices** be above $3.7800? (Above 3.7800)",
-      "url": "https://kalshi.com/markets/kxaaagasd/will-average-gas-prices-be-above-3-7800/kxaaagasd-26nov17",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-16T16:35:37Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -7857,7 +7880,7 @@
   "research_per_day": 150,
   "cycles_24h": 91,
   "learning": {
-    "reviewed": 2115,
+    "reviewed": 2116,
     "post_mortems": 106,
     "win_reviews": 63,
     "calibration": [
@@ -8409,13 +8432,13 @@
       },
       {
         "category": "other",
-        "n": 352,
-        "jev_plain": 0.212,
-        "market": 0.1379,
+        "n": 353,
+        "jev_plain": 0.2121,
+        "market": 0.1376,
         "jev_research": 0.2456,
         "claude_direct": 0.1793,
-        "n_jev_plain": 352,
-        "n_market": 352,
+        "n_jev_plain": 353,
+        "n_market": 353,
         "n_jev_research": 150,
         "n_claude_direct": 39
       },
