@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T20:53:21Z",
+  "generated": "2026-11-17T21:08:05Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-17T20:53:21Z",
+      "t": "2026-11-17T21:08:05Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-17T20:50:33Z",
+    "ts": "2026-11-17T21:05:27Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 2
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1020,7 +1020,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "mention_no": 0,
       "mention_follow": 0,
@@ -1113,8 +1115,8 @@
       "unrealized": -0.0,
       "change": -19284.29,
       "realized": -19284.29,
-      "open": 25,
-      "open_cost": 24729.14,
+      "open": 27,
+      "open_cost": 27149.44,
       "settled": 273,
       "wins": 241,
       "losses": 32,
@@ -2551,7 +2553,7 @@
           99631.63
         ],
         [
-          "2026-11-17T20:53:21Z",
+          "2026-11-17T21:08:05Z",
           99631.63
         ]
       ]
@@ -3984,7 +3986,7 @@
           100147.1
         ],
         [
-          "2026-11-17T20:53:21Z",
+          "2026-11-17T21:08:05Z",
           100147.1
         ]
       ]
@@ -5417,7 +5419,7 @@
           80715.71
         ],
         [
-          "2026-11-17T20:53:21Z",
+          "2026-11-17T21:08:05Z",
           80715.71
         ]
       ]
@@ -5995,6 +5997,52 @@
           "p_side": 0.895,
           "edge": -0.0213,
           "opened": "2026-11-17T09:05:32Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26NOV22MIABUF-MIA",
+      "question": "Miami wins",
+      "url": "https://kalshi.com/markets/kxnflgame/miami-wins/kxnflgame-26nov22miabuf",
+      "source": "kalshi",
+      "close_time": "2026-11-24T18:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1294,
+          "cost_per": 0.9352,
+          "total_cost": 1210.15,
+          "p_side": 0.915,
+          "edge": -0.0202,
+          "opened": "2026-11-17T21:05:27Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXNFLGAME-26NOV22ARIKC-ARI",
+      "question": "Arizona wins",
+      "url": "https://kalshi.com/markets/kxnflgame/arizona-wins/kxnflgame-26nov22arikc",
+      "source": "kalshi",
+      "close_time": "2026-11-24T18:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1294,
+          "cost_per": 0.9352,
+          "total_cost": 1210.15,
+          "p_side": 0.915,
+          "edge": -0.0202,
+          "opened": "2026-11-17T21:05:27Z",
           "value": null
         }
       ]
@@ -7251,6 +7299,43 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-17T21:05:27Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9352,
+      "amount": 1210.15,
+      "p": 0.915,
+      "q": "Miami wins",
+      "url": "https://kalshi.com/markets/kxnflgame/miami-wins/kxnflgame-26nov22miabuf",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-17T21:05:27Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9352,
+      "amount": 1210.15,
+      "p": 0.915,
+      "q": "Arizona wins",
+      "url": "https://kalshi.com/markets/kxnflgame/arizona-wins/kxnflgame-26nov22arikc",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-17T21:05:27Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-17T21:05:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 2
+    },
+    {
       "ts": "2026-11-17T20:50:33Z",
       "type": "scan",
       "fetched": 200,
@@ -7880,38 +7965,6 @@
     },
     {
       "ts": "2026-11-17T07:05:33Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-17T06:50:42Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-17T06:35:40Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-17T06:20:48Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-17T06:05:26Z",
       "type": "scan",
       "fetched": 200,
       "judged": 0,
