@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T13:22:57Z",
+  "generated": "2026-11-17T13:38:43Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-17T13:22:57Z",
+      "t": "2026-11-17T13:38:43Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-17T13:20:28Z",
+    "ts": "2026-11-17T13:35:39Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 1
+      "favorites": 0
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -2539,7 +2539,7 @@
           99634.29
         ],
         [
-          "2026-11-17T13:22:57Z",
+          "2026-11-17T13:38:43Z",
           99634.29
         ]
       ]
@@ -3960,7 +3960,7 @@
           100188.59
         ],
         [
-          "2026-11-17T13:22:57Z",
+          "2026-11-17T13:38:43Z",
           100188.59
         ]
       ]
@@ -5381,7 +5381,7 @@
           80251.24
         ],
         [
-          "2026-11-17T13:22:57Z",
+          "2026-11-17T13:38:43Z",
           80251.24
         ]
       ]
@@ -7341,6 +7341,26 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-17T13:38:38Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-17T13:38:09Z",
+      "type": "idea",
+      "text": "Decide the favorites forward test now (p66)",
+      "status": "proposed",
+      "why": "Favorites has 265 settled bets, well past noise, and is -$19.7k (-$6.8 per $100) at an 88% win rate. It is the only strategy still betting while judging is down, so it keeps adding losses that teach us nothing new. It is locked, so only a code or config decision can end it."
+    },
+    {
+      "ts": "2026-11-17T13:35:39Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-17T13:20:28Z",
       "type": "bet",
       "strategy": "favorites",
@@ -7940,31 +7960,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-17T00:05:28Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9539,
-      "amount": 540.86,
-      "p": 0.935,
-      "q": "Celta Vigo wins",
-      "url": "https://kalshi.com/markets/kxlaligagame/celta-vigo-wins/kxlaligagame-26nov21rmarcc",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-17T00:05:28Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-17T00:05:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
@@ -8621,6 +8616,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p70",
+        "kind": "code",
+        "title": "Decide the favorites forward test now (p66)",
+        "why": "Favorites has 265 settled bets, well past noise, and is -$19.7k (-$6.8 per $100) at an 88% win rate. It is the only strategy still betting while judging is down, so it keeps adding losses that teach us nothing new. It is locked, so only a code or config decision can end it.",
+        "judge_by": "Favorites opens no new bets after the decision, and its 29 open bets settle without the loss growing past -$22k. If Joey keeps it running instead, the test needs a written pass mark: per p63, P&L per $100 staked at or above -$2 on the next 100 settled bets, or it closes.",
+        "min_resolved": 29,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-17T13:38:09Z"
+      },
       {
         "id": "p69",
         "kind": "code",
@@ -9387,17 +9393,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-17T01:38:08Z",
-      "headline": "Another quiet half-day with nothing we can tune: the 45 cycles judged zero markets, and the only strategies shown are three locked forward tests, where Mention follow is up a little, Mention NO is down a little and Favorites is still down about $20k.",
+      "ts": "2026-11-17T13:38:09Z",
+      "headline": "In this half-day, only the for-fun favorites strategy placed any bets (6), no market was judged in any of 48 cycles, and the review still cannot see main or the other Jev and Claude strategies, so there is nothing new to tune and the backlog of fixes is the real bottleneck.",
       "went_well": [
-        "Mention follow is +$189 on 22 settled bets (14 wins, 8 losses), about +$31 per $100 of settled stake. Its 30-60c bets made +$180 on 11. With under 30 settled, this is noise and not a finding.",
-        "Mention NO lost only $366 on 79 settled bets despite winning just 30 of them, about -$15 per $100 settled. That is a small loss, but it is still a loss, and it rests on the one source (mention_prior, lambda 0.016 on 1,243 markets) whose Kelly sizing has switched on.",
-        "No strategy has bet a long shot: all three have zero bets under 30c, so the 30c floor is holding."
+        "Mention follow is up $189 on 22 settled bets (14 wins, 8 losses), about +$31 per $100 settled. That is under 30 results, so it is noise for now, not a finding.",
+        "Mention follow's 30-60c bets made +$180 on 11 settled (7 wins). Its 60c-and-up bets were about break-even (+$8 on 11).",
+        "No strategy has bought a long shot since the 30c floor went in. All three show 0 bets under 30c."
       ],
       "went_badly": [
-        "Judging is still down. This period ran 45 cycles with 0 markets judged and 0 researched, and that has been flagged since mid-October (p41, p46, p50, p53). Main, original, calibrated, Claude direct and the other Jev strategies are still missing from the review.",
-        "Favorites has lost $20,081 on 260 settled bets even though it won 228 of them (88%). That is about -$7 per $100 on $287k staked, so it is winning often but not often enough for the prices it pays. It placed the only 3 bets this period and has 28 still open.",
-        "No forecaster beats the market. On 952 paired markets the market scores 0.163 Brier, Claude direct 0.200, Jev + research 0.218 and Jev alone 0.245 (lower is better). The one near-exception is sports, where Claude scores 0.176 vs the market's 0.180 on 204 markets, a gap too thin to bet on."
+        "Favorites is down $19.7k on 265 settled bets, about -$6.8 per $100. It wins 88% of the time (233 of 265), but at the prices it pays that is not enough. It is now the only strategy still placing bets: 6 of the 6 bets this half-day.",
+        "Mention NO is down $366 on 79 settled, about -$15 per $100 of settled stake. It loses in both price bands: 30-60c went 18 of 56 (-$177), and 60c-and-up went 12 of 23 (-$188).",
+        "Judging is still dead: 48 cycles judged 0 markets. The market price remains the best forecaster on the paired set (Brier 0.163, against 0.200 for Claude and 0.218 for Jev + research on 952 markets). Main, the yardstick, the gate ledger and the challengers are still missing from this review."
       ]
     },
     "auto_start": true,
@@ -10037,6 +10043,13 @@
         "title": "Compare Mention NO and Mention follow on the events both bet",
         "why": "On the same kind of market, Mention follow is +$31 per $100 (21 settled) and Mention NO is -$15.5 per $100 (77 settled). Pairing their bets on shared events would show whether 'follow the first NO' is the better rule, or whether follow has simply picked easier events. Both are locked, so this is a report only.",
         "created": "2026-11-13T12:37:48Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p70",
+        "title": "Decide the favorites forward test now (p66)",
+        "why": "Favorites has 265 settled bets, well past noise, and is -$19.7k (-$6.8 per $100) at an 88% win rate. It is the only strategy still betting while judging is down, so it keeps adding losses that teach us nothing new. It is locked, so only a code or config decision can end it.",
+        "created": "2026-11-17T13:38:09Z",
         "status": "proposed"
       }
     ]

@@ -973,6 +973,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p70",
+      "created": "2026-11-17T13:38:09Z",
+      "kind": "code",
+      "title": "Decide the favorites forward test now (p66)",
+      "why": "Favorites has 265 settled bets, well past noise, and is -$19.7k (-$6.8 per $100) at an 88% win rate. It is the only strategy still betting while judging is down, so it keeps adding losses that teach us nothing new. It is locked, so only a code or config decision can end it.",
+      "judge_by": "Favorites opens no new bets after the decision, and its 29 open bets settle without the loss growing past -$22k. If Joey keeps it running instead, the test needs a written pass mark: per p63, P&L per $100 staked at or above -$2 on the next 100 settled bets, or it closes.",
+      "min_resolved": 29,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
