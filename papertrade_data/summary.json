@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T13:38:00Z",
+  "generated": "2026-11-18T13:53:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-18T13:38:00Z",
+      "t": "2026-11-18T13:53:20Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-18T13:35:29Z",
+    "ts": "2026-11-18T13:50:26Z",
     "stages": [
       [
         "Fetched",
@@ -2569,7 +2569,7 @@
           99613.55
         ],
         [
-          "2026-11-18T13:38:00Z",
+          "2026-11-18T13:53:20Z",
           99613.55
         ]
       ]
@@ -4018,7 +4018,7 @@
           100147.1
         ],
         [
-          "2026-11-18T13:38:00Z",
+          "2026-11-18T13:53:20Z",
           100147.1
         ]
       ]
@@ -5467,7 +5467,7 @@
           80041.58
         ],
         [
-          "2026-11-18T13:38:00Z",
+          "2026-11-18T13:53:20Z",
           80041.58
         ]
       ]
@@ -7531,6 +7531,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-18T13:53:16Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-18T13:50:26Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-18T13:50:26Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-18T13:35:29Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8073,31 +8091,6 @@
       "p": 0.89,
       "q": "Will Ethereum dip to $1,600 November 16-22?",
       "url": "https://polymarket.com/market/will-ethereum-dip-to-1600-november-16-22-2026",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-18T05:20:35Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-18T05:20:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 2
-    },
-    {
-      "ts": "2026-11-18T05:05:33Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9446,
-      "amount": 1210.98,
-      "p": 0.925,
-      "q": "Will Bitcoin dip to $58,000 November 16-22?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-58k-november-16-22-2026",
       "probe": false
     }
   ],
@@ -9532,17 +9525,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-18T01:38:19Z",
-      "headline": "In half a day nothing new was judged and only the locked favorites test bet (11 bets). All three strategies in this review are locked, so there is nothing to tune, and the open code backlog matters more than new ideas.",
+      "ts": "2026-11-18T13:52:58Z",
+      "headline": "A quiet half-day that changed nothing we can act on: Jev judged no new markets in 48 cycles, only the three locked strategies appear in the data, and Favorites keeps losing money despite winning 88% of its bets.",
       "went_well": [
-        "Mention follow is +$147 on $793 staked (+$18.5 per $100) with 14 wins in 23 settled. That is under 30 markets, so it is mostly noise, and its measured skill is still zero (raw -0.03 on 69 markets).",
-        "Mention NO's loss is small for its size: -$386 on $2,969 staked (-$13 per $100) over 81 settled. Its 30-60c bets lost $177 on $1,636 (-$11 per $100).",
-        "No strategy in this review has bought a long shot. All three have 0 bets under 30c, so the 30c floor is holding."
+        "Mention follow is up $147 on 23 settled bets (14 wins, 9 losses). That is about +$23 per $100 of settled stake. It is under 30 bets, so this is noise, not a finding.",
+        "Mention follow's coin-flip bets (30-60c) won 7 of 11, for +$180. That is a small sample.",
+        "No strategy has placed a long-shot bet under 30c. The 30c floor is holding everywhere it applies."
       ],
       "went_badly": [
-        "Favorites, the for-fun test, has lost $19,284. It won 241 of 273 settled (88%) but is down $6.40 per $100 on $301k settled stake. Winning often at favorite prices still loses money.",
-        "No forecaster beats the market price. On 952 paired markets the market scores 0.163 Brier, Claude direct 0.200 and Jev + research 0.218. Even in sports, Claude's 0.176 against the market's 0.180 (204 markets) is roughly a tie.",
-        "The pipeline still looks broken. This window judged 0 markets across 47 cycles; main, original and the other Jev strategies are missing from the review; the last three challenger proposals were marked invalid with no reason given. Mention prior's Kelly sizing is on, yet its skill estimate (0.08, sta"
+        "Favorites is down $19,958 on 278 settled bets, about -$6.50 per $100 staked. It won 245 of 278 (88%), but at its prices that is below break-even. This is a real finding on a solid count, and it placed 9 more bets in the last 12 hours.",
+        "Mention NO is down $386 on 81 settled bets, about -$15 per $100 settled. It won only 18 of 56 coin-flip bets (32%), and break-even at 30-60c is roughly 45%. It still has positive measured skill (lambda 0.0093), so its Kelly sizing is live while it loses.",
+        "The pipeline still looks broken. All 48 cycles judged nothing and researched nothing, and main, original and every Jev or Claude strategy are missing from the review, so the yardstick is empty. The market price (Brier 0.145, or 0.163 on 953 paired markets) still beats every forecaster: Claude 0.200 "
       ]
     },
     "auto_start": true,
