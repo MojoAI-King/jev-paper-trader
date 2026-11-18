@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T00:23:13Z",
+  "generated": "2026-11-18T00:38:10Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-18T00:23:13Z",
+      "t": "2026-11-18T00:38:10Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-18T00:20:36Z",
+    "ts": "2026-11-18T00:35:38Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1112,11 +1112,11 @@
       "frozen": false,
       "gate_overrides": {},
       "marked": 80715.71,
-      "unrealized": -0.0,
+      "unrealized": 0.0,
       "change": -19284.29,
       "realized": -19284.29,
-      "open": 29,
-      "open_cost": 29111.6,
+      "open": 30,
+      "open_cost": 29788.24,
       "settled": 273,
       "wins": 241,
       "losses": 32,
@@ -2557,7 +2557,7 @@
           99613.55
         ],
         [
-          "2026-11-18T00:23:13Z",
+          "2026-11-18T00:38:10Z",
           99613.55
         ]
       ]
@@ -3994,7 +3994,7 @@
           100147.1
         ],
         [
-          "2026-11-18T00:23:13Z",
+          "2026-11-18T00:38:10Z",
           100147.1
         ]
       ]
@@ -5431,7 +5431,7 @@
           80715.71
         ],
         [
-          "2026-11-18T00:23:13Z",
+          "2026-11-18T00:38:10Z",
           80715.71
         ]
       ]
@@ -5986,6 +5986,29 @@
           "p_side": 0.885,
           "edge": -0.0313,
           "opened": "2026-11-15T22:35:32Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:5713557",
+      "question": "Will \"The Hunger Games: Sunrise on the Reaping\" Opening Weekend Box Office be at least 105m?",
+      "url": "https://polymarket.com/market/will-the-hunger-games-sunrise-on-the-reaping-opening-weekend-box-office-be-at-least-105m",
+      "source": "polymarket",
+      "close_time": "2026-11-22T12:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 708,
+          "cost_per": 0.9557,
+          "total_cost": 676.64,
+          "p_side": 0.928,
+          "edge": -0.0277,
+          "opened": "2026-11-18T00:35:38Z",
           "value": null
         }
       ]
@@ -7334,6 +7357,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-18T00:35:38Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9557,
+      "amount": 676.64,
+      "p": 0.928,
+      "q": "Will \"The Hunger Games: Sunrise on the Reaping\" Opening Weekend Box Office be at least 105m?",
+      "url": "https://polymarket.com/market/will-the-hunger-games-sunrise-on-the-reaping-opening-weekend-box-office-be-at-least-105m",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-18T00:35:38Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-18T00:35:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-18T00:20:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -7934,34 +7982,6 @@
       "text": "Decide the favorites forward test now (p66)",
       "status": "proposed",
       "why": "Favorites has 265 settled bets, well past noise, and is -$19.7k (-$6.8 per $100) at an 88% win rate. It is the only strategy still betting while judging is down, so it keeps adding losses that teach us nothing new. It is locked, so only a code or config decision can end it."
-    },
-    {
-      "ts": "2026-11-17T13:35:39Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-17T13:20:28Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9145,
-      "amount": 665.76,
-      "p": 0.885,
-      "q": "Will Elon Musk post 65-89 tweets from November 16 to November 18, 2026?",
-      "url": "https://polymarket.com/market/elon-musk-of-tweets-november-16-november-18-2026-65-89",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-17T13:20:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
     }
   ],
   "plan_usage": {
