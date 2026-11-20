@@ -995,6 +995,17 @@
       "min_resolved": 40,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p72",
+      "created": "2026-11-20T14:08:15Z",
+      "kind": "code",
+      "title": "Decide Mention NO's forward test now: stop it as failed",
+      "why": "After 93 settled bets Mention NO is at -$12 per $100, and it loses in both price buckets (30-60c: 20 wins in 63, -$223; 60c+: 15-15, -$143). Its Kelly sizing has now switched on (lambda 0.0011), so leaving it running risks larger losses on a strategy that has already failed. This gives p54 (a stop rule) a concrete answer instead of adding another diagnostic.",
+      "judge_by": "Joey either closes the test, or keeps it with a written stop rule. If it is kept: once 30 more bets settle, stop it if its P&L per $100 on those bets is below zero, or if its 30-60c win rate stays under 40%.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

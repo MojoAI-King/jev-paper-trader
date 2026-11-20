@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T13:53:15Z",
+  "generated": "2026-11-20T14:08:49Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-20T13:53:15Z",
+      "t": "2026-11-20T14:08:49Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-20T13:50:28Z",
+    "ts": "2026-11-20T14:05:35Z",
     "stages": [
       [
         "Fetched",
@@ -2645,7 +2645,7 @@
           99634.08
         ],
         [
-          "2026-11-20T13:53:15Z",
+          "2026-11-20T14:08:49Z",
           99634.08
         ]
       ]
@@ -4170,7 +4170,7 @@
           100126.35
         ],
         [
-          "2026-11-20T13:53:15Z",
+          "2026-11-20T14:08:49Z",
           100126.35
         ]
       ]
@@ -5695,7 +5695,7 @@
           78479.29
         ],
         [
-          "2026-11-20T13:53:15Z",
+          "2026-11-20T14:08:49Z",
           78479.29
         ]
       ]
@@ -7541,6 +7541,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-20T14:08:44Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-20T14:08:15Z",
+      "type": "idea",
+      "text": "Decide Mention NO's forward test now: stop it as failed",
+      "status": "proposed",
+      "why": "After 93 settled bets Mention NO is at -$12 per $100, and it loses in both price buckets (30-60c: 20 wins in 63, -$223; 60c+: 15-15, -$143). Its Kelly sizing has now switched on (lambda 0.0011), so leaving it running risks larger losses on a strategy that has already failed. This gives p54 (a stop r"
+    },
+    {
+      "ts": "2026-11-20T14:05:35Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-20T14:05:35Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-20T13:50:28Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8058,32 +8083,6 @@
       "q": "Will the price of Bitcoin be above $58,000 on November 21?",
       "url": "https://polymarket.com/market/bitcoin-above-58k-on-november-21-2026",
       "probe": false
-    },
-    {
-      "ts": "2026-11-20T05:05:28Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-20T05:05:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-20T05:05:27Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 21.29,
-      "q": "Will Trump leave China on November 19?",
-      "url": "https://polymarket.com/market/will-trump-leave-china-on-november-19"
-    },
-    {
-      "ts": "2026-11-20T04:50:35Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8740,6 +8739,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p72",
+        "kind": "code",
+        "title": "Decide Mention NO's forward test now: stop it as failed",
+        "why": "After 93 settled bets Mention NO is at -$12 per $100, and it loses in both price buckets (30-60c: 20 wins in 63, -$223; 60c+: 15-15, -$143). Its Kelly sizing has now switched on (lambda 0.0011), so leaving it running risks larger losses on a strategy that has already failed. This gives p54 (a stop rule) a concrete answer instead of adding another diagnostic.",
+        "judge_by": "Joey either closes the test, or keeps it with a written stop rule. If it is kept: once 30 more bets settle, stop it if its P&L per $100 on those bets is below zero, or if its 30-60c win rate stays under 40%.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-20T14:08:15Z"
+      },
       {
         "id": "p71",
         "kind": "code",
@@ -9528,17 +9538,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-20T02:08:15Z",
-      "headline": "Half a day with almost no new action. Only the three locked strategies are reporting. Favorites placed 4 bets, the Jev and Claude forecasters judged nothing in 48 cycles, and the market price is still the best forecaster in the data.",
+      "ts": "2026-11-20T14:08:15Z",
+      "headline": "A quiet half day with nothing tunable: all three visible strategies are locked forward tests, no forecasts were judged in 48 cycles, and the only clear finding is that Mention NO is losing over 93 settled bets.",
       "went_well": [
-        "Mention follow is up $126 on $793 staked, about +$16 per $100, with 15 wins in 25 settled bets. Its 30-60c bets are +$220 on 12 (8 wins). That rests on 25 markets, so it is noise, not a finding.",
-        "Mention NO's losses are small in dollars: -$366 on $3,032 staked over 93 settled bets. That is about -$12 per $100, but only 0.4% of its bankroll.",
-        "No strategy has bought a long shot. Every bucket under 30c is empty, so the 30c floor is holding."
+        "Mention follow is up $126 on $793 staked (+$16 per $100) over 25 settled bets (15 wins). Its 30-60c bets made +$220 on 12 (8 wins). That is under 30 results, so it is still noise.",
+        "Claude direct roughly matches the market in sports (Brier 0.176 vs 0.180 on 204 markets). That is the closest any forecaster comes to beating the price, though it is a tie, not a win.",
+        "No new long-shot losses: none of the three strategies placed a bet under 30c, so the 30c floor is holding."
       ],
       "went_badly": [
-        "Favorites wins 88% of the time (257 of 292 settled) and is still down $21.8k, about -$6.8 per $100 on $320k settled stake. Its equity is $78.2k with 38 bets still open. Winning often is not the same as being paid enough for it. Proposals p66 and p70 to close this test are still waiting on a decision",
-        "Both mention strategies lose when they pay 60c or more. Together that is 22 wins in 43 bets (51%), and -$237 on $1,473 staked, about -$16 per $100, when a 60c+ price needs roughly 60%+ wins to break even. Mention NO also wins only 20 of 63 (32%) at 30-60c.",
-        "The forecasting pipeline is still stalled: 48 cycles, 0 markets judged, and main, calibrated, claude_direct and the other strategies are missing from the review. The market's Brier score is 0.145 over 2,118 markets, better than Claude direct (0.174 on 358) and Jev + research (0.208 on 1,379). The on"
+        "Mention NO is down $366 on $3,032 staked (-$12 per $100) over 93 settled bets, enough to call it a finding. On 30-60c bets it wins 20 of 63 (32%), well below what those prices need to break even, and its 60c+ bets lose too (15-15, -$143). Its prior's skill estimate has turned positive (lambda 0.0011",
+        "Favorites is down $21.5k (-$6.6 per $100) despite winning 262 of 297 (88%). Winning often at high prices still loses money. It placed 6 more bets today and has about $39k open, roughly half its $78.5k equity.",
+        "The pipeline is still broken: 48 cycles judged 0 markets, the yardstick and gate ledger are empty, and main, original and the other Jev and Claude strategies are still missing from the review. Overall, no forecaster beats the market (paired Brier on 953 markets: market 0.163, Claude 0.200, Jev + res"
       ]
     },
     "auto_start": true,
@@ -10192,6 +10202,13 @@
         "title": "When the mention tests unlock, cap their price at 60c",
         "why": "Both mention strategies lose at 60c and up: 22 wins in 43 bets, -$237 on $1,473, about -$16 per $100. Mention follow's 30-60c bets are its only profitable group (+$220 on 12). Both strategies are locked, so this cannot be tuned now. Please queue max_ask 0.60 for mention_no and mention_follow to apply the moment each forward test ends, rather than leaving it to a later review.",
         "created": "2026-11-20T02:08:15Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p72",
+        "title": "Decide Mention NO's forward test now: stop it as failed",
+        "why": "After 93 settled bets Mention NO is at -$12 per $100, and it loses in both price buckets (30-60c: 20 wins in 63, -$223; 60c+: 15-15, -$143). Its Kelly sizing has now switched on (lambda 0.0011), so leaving it running risks larger losses on a strategy that has already failed. This gives p54 (a stop rule) a concrete answer instead of adding another diagnostic.",
+        "created": "2026-11-20T14:08:15Z",
         "status": "proposed"
       }
     ]
