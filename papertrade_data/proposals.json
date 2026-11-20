@@ -984,6 +984,17 @@
       "min_resolved": 29,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p71",
+      "created": "2026-11-20T02:08:15Z",
+      "kind": "code",
+      "title": "When the mention tests unlock, cap their price at 60c",
+      "why": "Both mention strategies lose at 60c and up: 22 wins in 43 bets, -$237 on $1,473, about -$16 per $100. Mention follow's 30-60c bets are its only profitable group (+$220 on 12). Both strategies are locked, so this cannot be tuned now. Please queue max_ask 0.60 for mention_no and mention_follow to apply the moment each forward test ends, rather than leaving it to a later review.",
+      "judge_by": "On bets opened after the cap applies, each mention strategy's settled P&L per $100 staked beats its pre-cap all-time figure: -$12 per $100 for mention_no and +$16 per $100 for mention_follow. If mention_follow falls below that by more than $10 per $100, remove its cap.",
+      "min_resolved": 40,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
