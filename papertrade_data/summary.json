@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T20:22:59Z",
+  "generated": "2026-11-20T20:38:34Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-20T20:22:59Z",
+      "t": "2026-11-20T20:38:34Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2118,
+    "resolved": 2120,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20807469180565627,
-        "n": 1379
+        "brier": 0.20852398550724638,
+        "n": 1380
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22781331444759206,
-        "n": 2118
+        "brier": 0.228016179245283,
+        "n": 2120
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21017678065900383,
-        "n": 1305
+        "brier": 0.21067029020673814,
+        "n": 1306
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14540012665250235,
-        "n": 2118
+        "brier": 0.14542617606132074,
+        "n": 2120
       }
     ],
     "paired": {
-      "n": 953,
+      "n": 954,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16330041421825814
+          "brier": 0.16339129428721175
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21744470094438614
+          "brier": 0.21725461215932912
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19993966421825812
+          "brier": 0.19994234800838576
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.24511269674711436
+          "brier": 0.2449212788259958
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-20T20:20:31Z",
+    "ts": "2026-11-20T20:35:34Z",
     "stages": [
       [
         "Fetched",
@@ -2653,7 +2653,7 @@
           99634.08
         ],
         [
-          "2026-11-20T20:22:59Z",
+          "2026-11-20T20:38:34Z",
           99634.08
         ]
       ]
@@ -4186,7 +4186,7 @@
           100126.35
         ],
         [
-          "2026-11-20T20:22:59Z",
+          "2026-11-20T20:38:34Z",
           100126.35
         ]
       ]
@@ -5719,7 +5719,7 @@
           77580.74
         ],
         [
-          "2026-11-20T20:22:59Z",
+          "2026-11-20T20:38:34Z",
           77580.74
         ]
       ]
@@ -7496,6 +7496,27 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-20T20:38:09Z",
+      "type": "review",
+      "kind": "miss",
+      "cause": "overconfident",
+      "q": "Will Lorne Doerkson be the next Premier of British Columbia?",
+      "url": "https://polymarket.com/market/will-lorne-doerkson-be-the-next-premier-of-british-columbia"
+    },
+    {
+      "ts": "2026-11-20T20:35:34Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-20T20:35:34Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-20T20:20:31Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8019,24 +8040,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-20T12:05:30Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-20T12:05:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-20T11:50:47Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
   ],
   "plan_usage": {
@@ -8049,15 +8052,15 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2118,
-    "post_mortems": 106,
+    "reviewed": 2120,
+    "post_mortems": 107,
     "win_reviews": 63,
     "calibration": [
       {
         "range": "0\u201320%",
-        "n": 193,
+        "n": 194,
         "predicted": 0.137,
-        "actual": 0.171
+        "actual": 0.175
       },
       {
         "range": "20\u201340%",
@@ -8085,7 +8088,7 @@
       }
     ],
     "root_causes": {
-      "overconfident": 36,
+      "overconfident": 37,
       "unlucky": 35,
       "missing_info": 16,
       "stale_info": 8,
@@ -8098,6 +8101,26 @@
       "research_found_it": 17
     },
     "recent": [
+      {
+        "question": "Will Lorne Doerkson be the next Premier of British Columbia?",
+        "url": "https://polymarket.com/market/will-lorne-doerkson-be-the-next-premier-of-british-columbia",
+        "outcome": "yes",
+        "category": "other",
+        "p": 0.09,
+        "market": 0.48,
+        "ts": "2026-11-20T20:38:09Z",
+        "bets": {},
+        "kind": "miss",
+        "root_cause": "overconfident",
+        "what_happened": "The BC Conservatives, led by interim leader Lorne Doerkson, won a majority in the October 24, 2026 snap election, with about 63 of 93 seats projected, and defeated Eby's NDP. Doerkson became premier-designate, and his swearing-in was scheduled for November 20, 2026 at Government House. The search results did not include a report confirming the ceremony had happened, but the question looks set to resolve YES.",
+        "what_we_missed": "Every recent poll the forecaster had showed the Conservatives ahead: Ipsos had them up 42\u201340 and Angus Reid up 43\u201335, with much stronger voter retention than the NDP. The market had Doerkson at 48%. The forecaster seems to have heavily discounted him for being only interim leader, but the leader who takes a party into an election normally becomes premier if the party wins, and there was no time to replace him before the vote.",
+        "what_worked": "",
+        "lesson": "If polls show a party leading during a short campaign, give its sitting leader, even an interim one, roughly the party's chance of winning, rather than a steep discount based on a guess about a leadership change.",
+        "suggested_change": {
+          "area": "gates",
+          "change": "Require a written justification and a check against the polls whenever a forecast is more than 25 points from the market price, especially when it goes against the poll leader."
+        }
+      },
       {
         "question": "Will the Democratic Party win the SC-01 House seat?",
         "url": "https://polymarket.com/market/will-the-democratic-party-win-the-sc-01-house-seat",
@@ -8196,26 +8219,6 @@
         "suggested_change": {
           "area": "research",
           "change": "Check how the nominee's situation (appointed, after a runoff, no electoral record of their own) and the national climate this cycle differ from the past polling-error case, instead of applying that case's polling error wholesale."
-        }
-      },
-      {
-        "question": "Will the Republicans win the South Carolina Senate race in 2026?",
-        "url": "https://polymarket.com/market/will-the-republicans-win-the-south-carolina-senate-race-in-2026",
-        "outcome": "no",
-        "category": "politics",
-        "p": 0.79,
-        "market": 0.845,
-        "ts": "2026-11-04T06:53:09Z",
-        "bets": {},
-        "kind": "miss",
-        "root_cause": "overconfident",
-        "what_happened": "Democrat Annie Andrews beat appointed Sen. Darline Graham on Nov 3, 2026. AP, NBC and Decision Desk HQ all called the race within about three hours of polls closing, and Graham got roughly 47.2%. In the final weeks the polls had tightened to a tie, with NYT/Siena at 48\u201348.",
-        "what_we_missed": "We treated the 2020 polling miss and South Carolina's deep-red history as if they would reliably push Graham to a win. But she was a first-time candidate, appointed after her brother died, who only narrowly won the special runoff (52.5%). She never led in any poll by more than 1\u20135 points, and raters were moving the race toward Democrats. All of that pointed to real risk of a Democratic win, not just polling noise in a safe seat.",
-        "what_worked": "",
-        "lesson": "If a weak or unusual candidate (appointed, first-time, or a surprise nominee) is tied in several independent polls, don't assume a past polling error will repeat. Keep the probability closer to 60\u201370%, even in a strongly partisan state.",
-        "suggested_change": {
-          "area": "research",
-          "change": "Before adjusting for past polling bias, check whether the earlier error came from a different, stronger candidate. Then reduce the adjustment when the current nominee has no electoral track record or the circumstances are unusual."
         }
       }
     ],
@@ -8579,9 +8582,9 @@
       ]
     },
     "calibration_map": {
-      "a": 1.0396,
-      "b": 0.1202,
-      "n": 1379,
+      "a": 1.0287,
+      "b": 0.1194,
+      "n": 1380,
       "active": true,
       "need": 300
     },
@@ -8601,14 +8604,14 @@
       },
       {
         "category": "other",
-        "n": 353,
-        "jev_plain": 0.2121,
-        "market": 0.1376,
-        "jev_research": 0.2456,
+        "n": 355,
+        "jev_plain": 0.2134,
+        "market": 0.1378,
+        "jev_research": 0.2495,
         "claude_direct": 0.1793,
-        "n_jev_plain": 353,
-        "n_market": 353,
-        "n_jev_research": 150,
+        "n_jev_plain": 355,
+        "n_market": 355,
+        "n_jev_research": 151,
         "n_claude_direct": 39
       },
       {
@@ -9487,7 +9490,7 @@
       }
     ],
     "suggested_areas": {
-      "gates": 65,
+      "gates": 66,
       "research": 85,
       "questions": 3
     },
