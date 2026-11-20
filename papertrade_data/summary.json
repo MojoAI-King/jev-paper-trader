@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T15:08:21Z",
+  "generated": "2026-11-20T15:23:24Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-20T15:08:21Z",
+      "t": "2026-11-20T15:23:24Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-20T15:05:35Z",
+    "ts": "2026-11-20T15:20:41Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1115,8 +1115,8 @@
       "unrealized": 0.0,
       "change": -21461.19,
       "realized": -21461.19,
-      "open": 38,
-      "open_cost": 38007.54,
+      "open": 39,
+      "open_cost": 39185.33,
       "settled": 298,
       "wins": 263,
       "losses": 35,
@@ -2645,7 +2645,7 @@
           99634.08
         ],
         [
-          "2026-11-20T15:08:21Z",
+          "2026-11-20T15:23:24Z",
           99634.08
         ]
       ]
@@ -4170,7 +4170,7 @@
           100126.35
         ],
         [
-          "2026-11-20T15:08:21Z",
+          "2026-11-20T15:23:24Z",
           100126.35
         ]
       ]
@@ -5695,7 +5695,7 @@
           78538.81
         ],
         [
-          "2026-11-20T15:08:21Z",
+          "2026-11-20T15:23:24Z",
           78538.81
         ]
       ]
@@ -6020,6 +6020,29 @@
           "p_side": 0.9385,
           "edge": -0.0164,
           "opened": "2026-11-20T05:05:28Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "polymarket:7042759",
+      "question": "Will the price of Ethereum be above $1,600 on November 21?",
+      "url": "https://polymarket.com/market/ethereum-above-1600-on-november-21-2026",
+      "source": "polymarket",
+      "close_time": "2026-11-21T17:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 1242,
+          "cost_per": 0.9483,
+          "total_cost": 1177.79,
+          "p_side": 0.909,
+          "edge": -0.0393,
+          "opened": "2026-11-20T15:20:41Z",
           "value": null
         }
       ]
@@ -7518,6 +7541,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-20T15:20:41Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9483,
+      "amount": 1177.79,
+      "p": 0.909,
+      "q": "Will the price of Ethereum be above $1,600 on November 21?",
+      "url": "https://polymarket.com/market/ethereum-above-1600-on-november-21-2026",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-20T15:20:41Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-20T15:20:41Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-20T15:05:35Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8026,31 +8074,6 @@
     },
     {
       "ts": "2026-11-20T06:20:29Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-20T06:20:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-20T06:05:29Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "no",
-      "price": 0.9446,
-      "amount": 832.19,
-      "p": 0.925,
-      "q": "Will Bitcoin dip to $58,000 on November 20?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-58k-on-november-20-2026",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-20T06:05:29Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
