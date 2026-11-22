@@ -1017,6 +1017,17 @@
       "min_resolved": 37,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p74",
+      "created": "2026-11-22T02:38:00Z",
+      "kind": "code",
+      "title": "Let challengers use the mention_follow source, so we can test it at 30-60c only",
+      "why": "The mention strategies are the only forecasters still betting without the broken judging step, but both are locked and challengers can't use their sources. Mention follow's 30-60c bets are +$220 on 12 (8 wins), while its 60c+ bets are -$94 on 13. A 30-60c-only copy, on its own bankroll, would test that split without touching the locked forward test. That rests on 25 bets, so this is an experiment.",
+      "judge_by": "Once the challenger exists with max_ask 0.6 and its other rules matching mention_follow's: its settled P&L per $100 staked is positive, and it beats both mention_follow's and Mention NO's over the same period. If it is negative after the minimum count, retire it.",
+      "min_resolved": 30,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }

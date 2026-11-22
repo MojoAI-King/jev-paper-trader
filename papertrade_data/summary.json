@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-22T02:22:56Z",
+  "generated": "2026-11-22T02:38:39Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-22T02:22:56Z",
+      "t": "2026-11-22T02:38:39Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-22T02:20:10Z",
+    "ts": "2026-11-22T02:35:38Z",
     "stages": [
       [
         "Fetched",
@@ -2697,7 +2697,7 @@
           99634.08
         ],
         [
-          "2026-11-22T02:22:56Z",
+          "2026-11-22T02:38:39Z",
           99634.08
         ]
       ]
@@ -4274,7 +4274,7 @@
           100126.35
         ],
         [
-          "2026-11-22T02:22:56Z",
+          "2026-11-22T02:38:39Z",
           100126.35
         ]
       ]
@@ -5851,7 +5851,7 @@
           73771.3
         ],
         [
-          "2026-11-22T02:22:56Z",
+          "2026-11-22T02:38:39Z",
           73771.3
         ]
       ]
@@ -7674,6 +7674,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-22T02:38:34Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-22T02:38:00Z",
+      "type": "idea",
+      "text": "Let challengers use the mention_follow source, so we can test it at 30-60c only",
+      "status": "proposed",
+      "why": "The mention strategies are the only forecasters still betting without the broken judging step, but both are locked and challengers can't use their sources. Mention follow's 30-60c bets are +$220 on 12 (8 wins), while its 60c+ bets are -$94 on 13. A 30-60c-only copy, on its own bankroll, would test t"
+    },
+    {
+      "ts": "2026-11-22T02:35:38Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-22T02:35:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-22T02:20:10Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8212,35 +8237,6 @@
       "ts": "2026-11-21T18:35:31Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-21T18:35:31Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-21T18:20:33Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-21T18:20:33Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-21T18:05:32Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 64.21,
-      "q": "Will the price of Ethereum be above $1,600 on November 21?",
-      "url": "https://polymarket.com/market/ethereum-above-1600-on-november-21-2026"
     }
   ],
   "plan_usage": {
@@ -8897,6 +8893,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p74",
+        "kind": "code",
+        "title": "Let challengers use the mention_follow source, so we can test it at 30-60c only",
+        "why": "The mention strategies are the only forecasters still betting without the broken judging step, but both are locked and challengers can't use their sources. Mention follow's 30-60c bets are +$220 on 12 (8 wins), while its 60c+ bets are -$94 on 13. A 30-60c-only copy, on its own bankroll, would test that split without touching the locked forward test. That rests on 25 bets, so this is an experiment.",
+        "judge_by": "Once the challenger exists with max_ask 0.6 and its other rules matching mention_follow's: its settled P&L per $100 staked is positive, and it beats both mention_follow's and Mention NO's over the same period. If it is negative after the minimum count, retire it.",
+        "min_resolved": 30,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-22T02:38:00Z"
+      },
       {
         "id": "p73",
         "kind": "code",
@@ -9707,17 +9714,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-21T14:23:01Z",
-      "headline": "Another quiet half-day: only the favorites test placed bets (5), nothing was judged in 48 cycles, and all three visible strategies are locked, so there is nothing to tune. The one firm finding is that favorites loses real money because it wins far less often than its prices require.",
+      "ts": "2026-11-22T02:38:00Z",
+      "headline": "A quiet, stuck half-day: nothing was judged in 48 cycles, all three visible strategies are locked so there is nothing to tune, and the only bets came from Heavy favorites, which is down $26.2k and still losing.",
       "went_well": [
-        "Mention follow is up $126 on 25 settled bets ($16 per $100 staked). Its 30-60c bets made +$220 on 12. That rests on fewer than 30 markets, so it is noise, not a finding.",
-        "The 30c price floor is holding. None of the three strategies has a single long-shot bet.",
-        "Mention NO's losses stay small in dollars: -$366 on $3.0k staked over 93 settled bets. That is -$12 per $100, about one standard error from break-even, so it is not clearly worse than a coin flip."
+        "Mention follow is up $126 on 25 settled bets (15 wins, 10 losses), about +$17 per $100 staked. Its 30-60c bets made +$220 on 12. Under 30 results, so this is noise, not a finding.",
+        "The 30c price floor is holding: no strategy has a single bet under 30c, the bucket that lost $32.6k of $35.7k before the floor.",
+        "Claude direct is still the closest forecaster to the market in sports (Brier 0.176 vs the market's 0.180 on 204 markets). That is the only category where any forecaster edges the price, and the gap is small."
       ],
       "went_badly": [
-        "Favorites is down $26.6k on 311 settled bets (-$7.9 per $100, equity $73.4k). It wins 86.8% of the time. Backing out the price it pays, roughly 94c including fees, it needs about 94% to break even. The shortfall is about 4 standard errors, so this is a finding, not bad luck. About $37k is still open",
-        "No forecaster beats the market. On 954 paired markets the market scores 0.163 against Claude's 0.200 and Jev + research's 0.217 (lower is better). Only in sports is Claude roughly level (0.176 vs 0.180 on 204), and that edge is too small to count.",
-        "The pipeline is still stalled. 0 markets were judged in 48 cycles, and the yardstick and gate ledger are empty. Main, original and the other strategies are still missing from the review, and Mention NO's bucket figures don't reconcile: 50% wins at 60c+ cannot lose only 14%. This is the same state fl"
+        "Heavy favorites placed 10 more bets this half-day. It is now at -$26.2k: it won 279 of 320 (87%) yet lost about $7.60 per $100 staked on $345k settled, because its prices need an even higher win rate. It has 38 bets still open. It is locked, so we can't stop it from here; p66, p70 and p73 already as",
+        "Mention NO is 35-58 on 93 settled, -$366 on about $2.8k staked (about -$13 per $100). It loses in both price buckets: 30-60c is -$223 on 63 bets and 60c+ is -$143 on 30. It is locked; p72 asks to stop it.",
+        "Judging is still down: 48 cycles judged 0 markets, so none of the Jev or Claude strategies can bet, and they are missing from this review. The market price still beats every forecaster overall (Brier 0.145 on 2,120 markets vs Claude's 0.174 on 358 and Jev + research's 0.209 on 1,380)."
       ]
     },
     "auto_start": true,
@@ -10385,6 +10392,13 @@
         "title": "Close favorites now: it wins about 7 points less often than its prices need",
         "why": "On 311 settled bets favorites wins 86.8% while paying about 94c on average, about 4 standard errors below break-even, for -$26.6k (-$7.9 per $100). It is locked with no end date and still adds about 5 bets a day with about $37k at risk. This adds the break-even arithmetic to p66/p70 rather than opening a new item.",
         "created": "2026-11-21T14:23:01Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p74",
+        "title": "Let challengers use the mention_follow source, so we can test it at 30-60c only",
+        "why": "The mention strategies are the only forecasters still betting without the broken judging step, but both are locked and challengers can't use their sources. Mention follow's 30-60c bets are +$220 on 12 (8 wins), while its 60c+ bets are -$94 on 13. A 30-60c-only copy, on its own bankroll, would test that split without touching the locked forward test. That rests on 25 bets, so this is an experiment.",
+        "created": "2026-11-22T02:38:00Z",
         "status": "proposed"
       }
     ]
