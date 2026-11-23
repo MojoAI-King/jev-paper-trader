@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T14:52:58Z",
+  "generated": "2026-11-23T15:08:37Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-23T14:52:58Z",
+      "t": "2026-11-23T15:08:37Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-23T14:50:30Z",
+    "ts": "2026-11-23T15:05:38Z",
     "stages": [
       [
         "Fetched",
@@ -1020,7 +1020,9 @@
       "polymarket": 100,
       "kalshi": 100
     },
-    "problems": [],
+    "problems": [
+      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    ],
     "cleared_gates": {
       "mention_no": 0,
       "mention_follow": 0,
@@ -2767,7 +2769,7 @@
           99634.08
         ],
         [
-          "2026-11-23T14:52:58Z",
+          "2026-11-23T15:08:37Z",
           99634.08
         ]
       ]
@@ -4416,7 +4418,7 @@
           100126.35
         ],
         [
-          "2026-11-23T14:52:58Z",
+          "2026-11-23T15:08:37Z",
           100126.35
         ]
       ]
@@ -6065,7 +6067,7 @@
           71866.16
         ],
         [
-          "2026-11-23T14:52:58Z",
+          "2026-11-23T15:08:37Z",
           71866.16
         ]
       ]
@@ -7842,6 +7844,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-23T15:08:33Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-23T15:05:38Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-23T15:05:38Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-23T14:50:30Z",
       "type": "scan",
       "fetched": 200,
@@ -8474,31 +8494,6 @@
     },
     {
       "ts": "2026-11-23T00:35:29Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-23T00:35:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-23T00:20:32Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.982,
-      "amount": 1124.39,
-      "p": 0.95,
-      "q": "Grand Theft Auto VI Metacritic score? (Above 98)",
-      "url": "https://kalshi.com/markets/kxmc/grand-theft-auto-vi-metacritic-score/kxmc-gta6",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-23T00:20:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
@@ -9978,17 +9973,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-23T02:53:07Z",
-      "headline": "Nothing could be tuned this half-day: all three visible strategies are locked forward tests, the forecasters judged no markets in 48 cycles, and only favorites bet, adding 14 more stakes to a strategy that has lost $24.9k.",
+      "ts": "2026-11-23T15:08:07Z",
+      "headline": "A quiet half day: no forecasts were judged in 47 cycles, only the favorites strategy bet (6 times), and all three strategies in this report are locked forward tests, so no tuning is possible and I am adding no new proposals to a backlog that already covers every issue.",
       "went_well": [
-        "Mention follow is up $126 on 25 settled bets (+$17 per $100 settled). Its 30-60c bets made +$220 on 12 (8 wins), about +$74 per $100. Under 30 results, so this is still noise, not a finding.",
-        "The 30c price floor is holding. None of the three strategies has placed a long-shot bet under 30c.",
-        "Nothing broke worse: equity moved only on favorites, and the mention strategies' records are unchanged since the last review."
+        "Mention follow is up $126 on 25 settled bets (15 wins, 10 losses), about +$17 per $100 staked. Under 30 bets this is still mostly noise.",
+        "Mention follow's 30-60c bets made +$220 on $297 staked (8 of 12 won). That is a hint, on 12 bets, that buying its cheaper NO contracts is where any edge lives.",
+        "Long shots stayed out: none of the three strategies has a bet under 30c, so the 30c floor is holding."
       ],
       "went_badly": [
-        "Favorites has lost $24.9k on 341 settled bets, about -$6.8 per $100 staked. It wins 88% of the time, but that is not enough at the prices it pays. It placed 14 more bets of about 2% of its bankroll each this period, and its test is locked, so we can't stop it. That decision is already with Joey (p66",
-        "Mention NO has lost $366 on 93 settled bets, about -$13 per $100. Both price groups lose: 30-60c won 20 of 63 (-$12.5 per $100) and 60c+ won 15 of 30 (-$14 per $100). A 50% win rate at prices of 60c and up loses money. This rests on enough bets to count as a real result, and stopping it is already p",
-        "No forecaster beats the market. On 954 paired markets the market scores 0.163 Brier, Claude direct 0.200 and Jev + research 0.217 (lower is better). The cycles also judged nothing for the 48th time in a row, and main, original and the challengers are still missing from this review (p46). Proposing a"
+        "Favorites has lost $28.1k on 348 settled bets, about -$7.5 per $100. It wins 87% of the time, and at the prices it pays that is still not enough. It placed 6 more bets today while its forward test stays locked with no end date (p66, p70 and p73 already ask to close it).",
+        "Mention NO is down $366 on 93 settled bets, about -$13 per $100. It loses in both price buckets: 20 of 63 won at 30-60c, and 15 of 30 at 60c and up. That is enough bets to call it a real loss (p72 asks to stop it).",
+        "The pipeline still looks broken. 0 forecasts were judged in 47 cycles, and main, bold, calibrated, claude_direct and sharp are missing from the review. Sharp's skill reads -2.52 with a standard error of 0. No forecaster beats the market: on 954 paired markets the market scores 0.163 Brier, Claude di"
       ]
     },
     "auto_start": true,
