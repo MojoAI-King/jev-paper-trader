@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T14:53:26Z",
+  "generated": "2026-11-24T15:08:48Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-24T14:53:26Z",
+      "t": "2026-11-24T15:08:48Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-24T14:50:46Z",
+    "ts": "2026-11-24T15:05:39Z",
     "stages": [
       [
         "Fetched",
@@ -2801,7 +2801,7 @@
           99634.08
         ],
         [
-          "2026-11-24T14:53:26Z",
+          "2026-11-24T15:08:48Z",
           99634.08
         ]
       ]
@@ -4482,7 +4482,7 @@
           100126.35
         ],
         [
-          "2026-11-24T14:53:26Z",
+          "2026-11-24T15:08:48Z",
           100126.35
         ]
       ]
@@ -6163,7 +6163,7 @@
           71904.68
         ],
         [
-          "2026-11-24T14:53:26Z",
+          "2026-11-24T15:08:48Z",
           71904.68
         ]
       ]
@@ -7940,6 +7940,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-24T15:08:44Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-24T15:08:16Z",
+      "type": "idea",
+      "text": "Claude direct's market counts disagree across the report",
+      "status": "proposed",
+      "why": "Claude direct is scored on 358 resolved markets in the all-time Brier table. Yet it appears in the 954-market paired comparison and its skill estimate uses n=954. A paired set can't be larger than the source's own resolved set, so either the paired table or the skill input is counting markets Claude"
+    },
+    {
+      "ts": "2026-11-24T15:05:39Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-24T15:05:39Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-24T14:50:46Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8447,35 +8472,6 @@
       "ts": "2026-11-24T05:50:29Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-24T05:50:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 1
-    },
-    {
-      "ts": "2026-11-24T05:35:32Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-24T05:35:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-24T05:20:41Z",
-      "type": "win",
-      "strategy": "favorites",
-      "amount": 67.9,
-      "q": "Will Bitcoin dip to $58,000 on November 23?",
-      "url": "https://polymarket.com/market/will-bitcoin-dip-to-58k-on-november-23-2026"
     }
   ],
   "plan_usage": {
@@ -9132,6 +9128,17 @@
       }
     ],
     "proposals": [
+      {
+        "id": "p75",
+        "kind": "code",
+        "title": "Claude direct's market counts disagree across the report",
+        "why": "Claude direct is scored on 358 resolved markets in the all-time Brier table. Yet it appears in the 954-market paired comparison and its skill estimate uses n=954. A paired set can't be larger than the source's own resolved set, so either the paired table or the skill input is counting markets Claude never forecast. That matters because skill (lambda 0.001, the highest of the Jev and Claude sources) is what will eventually switch on Kelly sizing.",
+        "judge_by": "After the fix, Claude direct's resolved count is the same in brier_all_time, paired and skill, or the report explains the difference. Its skill estimate is recomputed on the corrected set and reported next to the old 0.0182 raw / 0.001 lambda.",
+        "min_resolved": 0,
+        "status": "proposed",
+        "status_reason": "waiting for Joey",
+        "created": "2026-11-24T15:08:16Z"
+      },
       {
         "id": "p74",
         "kind": "code",
@@ -9953,17 +9960,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-24T03:08:08Z",
-      "headline": "A quiet half day with nothing new to learn: no forecasts were judged in 48 cycles, only the locked favorites strategy bet (11 bets), all three visible strategies are locked so none can be tuned, and the market price still out-forecasts every forecaster we have.",
+      "ts": "2026-11-24T15:08:16Z",
+      "headline": "Another quiet half-day with no new forecasts judged. All three strategies we can see are locked. The one thing worth knowing is that favorites keeps buying heavy favorites while down $28.1k, and the market price is still a better forecaster than anything we run.",
       "went_well": [
-        "Mention follow is up $126 on 25 settled bets (15 wins), about +$17 per $100 staked. Its 30-60c bets made +$220 on 12 (8 wins), but 25 results is noise, not a finding.",
-        "Mention NO is barely moving: down $366 on about $2.8k settled stake over 93 bets. Its small stakes keep losses tiny.",
-        "In sports, Claude direct (Brier 0.176 on 204 markets) still edges the market (0.180), the one category where any forecaster does. The margin is thin."
+        "Mention follow is up $126 on $793 staked (+$16 per $100) over 25 settled bets. Its 30-60c bets went 8-4 for +$220, but 12 bets is noise, not a finding.",
+        "Mention NO's losses stay small: -$366 on $3,032 staked over 93 settled (-$12 per $100), because its bets are probe-sized.",
+        "Nothing broke further. The skill estimates and Brier scores look the same as in recent reviews."
       ],
       "went_badly": [
-        "Favorites is down $27.6k (equity $72.4k) on 360 settled bets. It wins 88% of the time (316 of 360), but that is about 7 points below what its prices need, so it loses about $7 per $100 staked. It still has 35 bets open and keeps placing more: 11 this period.",
-        "Mention NO loses about $13 per $100 at both price levels. It wins 20 of 63 bets at 30-60c and 15 of 30 at 60c and up, below break-even both times. On 93 settled bets this is starting to look real, but it is locked and can't be changed.",
-        "The market price beats everyone: on 954 shared markets, market 0.163, Claude 0.200, Jev + research 0.217, Jev alone 0.245 (lower is better). Judging has also stalled again, with 0 markets judged in 48 cycles, so no Jev- or Claude-based strategy or challenger could place a bet right now."
+        "Favorites placed 4 more bets today. It wins 318 of 363 (88%), but it pays enough that it still loses $7.30 per $100 settled (-$28.1k, equity $71.9k). Its 36 open bets carry roughly $36k at risk. Closing the test is already proposed (p66, p70, p73) and awaits a decision.",
+        "Judging is still dead: 48 cycles judged 0 markets, as for weeks. There is no yardstick, no gate ledger, and main, original and the other Jev and Claude strategies are missing from this review. Nothing I'm allowed to tune is visible.",
+        "No forecaster beats the market. On 954 paired markets, the market scores 0.163 Brier, Claude direct 0.200, Jev + research 0.217 and Jev alone 0.245."
       ]
     },
     "auto_start": true,
@@ -10638,6 +10645,13 @@
         "title": "Let challengers use the mention_follow source, so we can test it at 30-60c only",
         "why": "The mention strategies are the only forecasters still betting without the broken judging step, but both are locked and challengers can't use their sources. Mention follow's 30-60c bets are +$220 on 12 (8 wins), while its 60c+ bets are -$94 on 13. A 30-60c-only copy, on its own bankroll, would test that split without touching the locked forward test. That rests on 25 bets, so this is an experiment.",
         "created": "2026-11-22T02:38:00Z",
+        "status": "proposed"
+      },
+      {
+        "id": "p75",
+        "title": "Claude direct's market counts disagree across the report",
+        "why": "Claude direct is scored on 358 resolved markets in the all-time Brier table. Yet it appears in the 954-market paired comparison and its skill estimate uses n=954. A paired set can't be larger than the source's own resolved set, so either the paired table or the skill input is counting markets Claude never forecast. That matters because skill (lambda 0.001, the highest of the Jev and Claude sources) is what will eventually switch on Kelly sizing.",
+        "created": "2026-11-24T15:08:16Z",
         "status": "proposed"
       }
     ]

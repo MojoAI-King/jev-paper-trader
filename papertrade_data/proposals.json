@@ -1028,6 +1028,17 @@
       "min_resolved": 30,
       "status": "proposed",
       "status_reason": "waiting for Joey"
+    },
+    {
+      "id": "p75",
+      "created": "2026-11-24T15:08:16Z",
+      "kind": "code",
+      "title": "Claude direct's market counts disagree across the report",
+      "why": "Claude direct is scored on 358 resolved markets in the all-time Brier table. Yet it appears in the 954-market paired comparison and its skill estimate uses n=954. A paired set can't be larger than the source's own resolved set, so either the paired table or the skill input is counting markets Claude never forecast. That matters because skill (lambda 0.001, the highest of the Jev and Claude sources) is what will eventually switch on Kelly sizing.",
+      "judge_by": "After the fix, Claude direct's resolved count is the same in brier_all_time, paired and skill, or the report explains the difference. Its skill estimate is recomputed on the corrected set and reported next to the old 0.0182 raw / 0.001 lambda.",
+      "min_resolved": 0,
+      "status": "proposed",
+      "status_reason": "waiting for Joey"
     }
   ]
 }
