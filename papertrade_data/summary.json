@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T00:38:00Z",
+  "generated": "2026-11-24T00:52:59Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-24T00:38:00Z",
+      "t": "2026-11-24T00:52:59Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-24T00:35:26Z",
+    "ts": "2026-11-24T00:50:36Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1115,8 +1115,8 @@
       "unrealized": 0.0,
       "change": -27607.72,
       "realized": -27607.72,
-      "open": 32,
-      "open_cost": 31181.51,
+      "open": 33,
+      "open_cost": 32267.05,
       "settled": 359,
       "wins": 315,
       "losses": 44,
@@ -2789,7 +2789,7 @@
           99634.08
         ],
         [
-          "2026-11-24T00:38:00Z",
+          "2026-11-24T00:52:59Z",
           99634.08
         ]
       ]
@@ -4458,7 +4458,7 @@
           100126.35
         ],
         [
-          "2026-11-24T00:38:00Z",
+          "2026-11-24T00:52:59Z",
           100126.35
         ]
       ]
@@ -6127,7 +6127,7 @@
           72392.28
         ],
         [
-          "2026-11-24T00:38:00Z",
+          "2026-11-24T00:52:59Z",
           72392.28
         ]
       ]
@@ -6659,6 +6659,29 @@
           "p_side": 0.915,
           "edge": -0.0202,
           "opened": "2026-11-22T18:35:31Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXUCLGAME-26NOV24RMAPSV-PSV",
+      "question": "Eindhoven wins",
+      "url": "https://kalshi.com/markets/kxuclgame/eindhoven-wins/kxuclgame-26nov24rmapsv",
+      "source": "kalshi",
+      "close_time": "2026-11-26T20:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "no",
+          "contracts": 1138,
+          "cost_per": 0.9539,
+          "total_cost": 1085.54,
+          "p_side": 0.935,
+          "edge": -0.0189,
+          "opened": "2026-11-24T00:50:36Z",
           "value": null
         }
       ]
@@ -7812,6 +7835,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-24T00:50:36Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "no",
+      "price": 0.9539,
+      "amount": 1085.54,
+      "p": 0.935,
+      "q": "Eindhoven wins",
+      "url": "https://kalshi.com/markets/kxuclgame/eindhoven-wins/kxuclgame-26nov24rmapsv",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-24T00:50:36Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-24T00:50:36Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-24T00:35:26Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8355,31 +8403,6 @@
     },
     {
       "ts": "2026-11-23T16:50:38Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-23T16:50:38Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-23T16:35:35Z",
-      "type": "bet",
-      "strategy": "favorites",
-      "side": "yes",
-      "price": 0.9119,
-      "amount": 1078.78,
-      "p": 0.8975,
-      "q": "Will the price of Ethereum be above $1,700 on November 24?",
-      "url": "https://polymarket.com/market/ethereum-above-1700-on-november-24-2026",
-      "probe": false
-    },
-    {
-      "ts": "2026-11-23T16:35:35Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
