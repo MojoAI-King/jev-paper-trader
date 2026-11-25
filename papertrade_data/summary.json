@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25T16:08:03Z",
+  "generated": "2026-11-25T16:38:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-25T16:08:03Z",
+      "t": "2026-11-25T16:38:20Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-25T16:05:28Z",
+    "ts": "2026-11-25T16:35:37Z",
     "stages": [
       [
         "Fetched",
@@ -1009,7 +1009,7 @@
     "bets": {
       "mention_no": 0,
       "mention_follow": 0,
-      "favorites": 0
+      "favorites": 1
     },
     "claude_calls": 0,
     "claude_limited": false,
@@ -1115,8 +1115,8 @@
       "unrealized": 0.0,
       "change": -28081.25,
       "realized": -28081.25,
-      "open": 30,
-      "open_cost": 30889.1,
+      "open": 31,
+      "open_cost": 31967.03,
       "settled": 383,
       "wins": 337,
       "losses": 46,
@@ -2837,7 +2837,7 @@
           99634.08
         ],
         [
-          "2026-11-25T16:08:03Z",
+          "2026-11-25T16:38:20Z",
           99634.08
         ]
       ]
@@ -4554,7 +4554,7 @@
           100126.35
         ],
         [
-          "2026-11-25T16:08:03Z",
+          "2026-11-25T16:38:20Z",
           100126.35
         ]
       ]
@@ -6271,7 +6271,7 @@
           71918.75
         ],
         [
-          "2026-11-25T16:08:03Z",
+          "2026-11-25T16:38:20Z",
           71918.75
         ]
       ]
@@ -6803,6 +6803,29 @@
           "p_side": 0.895,
           "edge": -0.0195,
           "opened": "2026-11-25T12:05:26Z",
+          "value": null
+        }
+      ]
+    },
+    {
+      "key": "kalshi:KXALBUMSTREAMS-GTA626NOV26-80.0M",
+      "question": "Will Grand Theft Auto VI: The Album by Grand Theft Auto VI have above 80000000 streams during the November 20, 2026 -November 26, 2026 tracking week? (Above 80M)",
+      "url": "https://kalshi.com/markets/kxalbumstreams/will-grand-theft-auto-vi-the-album-by-grand-theft-auto-vi-ha/kxalbumstreams-gta626nov26",
+      "source": "kalshi",
+      "close_time": "2026-11-29T15:00:00Z",
+      "category": null,
+      "price": null,
+      "price_at": null,
+      "positions": [
+        {
+          "strategy": "favorites",
+          "side": "yes",
+          "contracts": 1119,
+          "cost_per": 0.9633,
+          "total_cost": 1077.93,
+          "p_side": 0.92,
+          "edge": -0.0433,
+          "opened": "2026-11-25T16:35:37Z",
           "value": null
         }
       ]
@@ -7956,6 +7979,31 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-25T16:35:37Z",
+      "type": "bet",
+      "strategy": "favorites",
+      "side": "yes",
+      "price": 0.9633,
+      "amount": 1077.93,
+      "p": 0.92,
+      "q": "Will Grand Theft Auto VI: The Album by Grand Theft Auto VI have above 80000000 streams during the November 20, 2026 -November 26, 2026 tracking week? (Above 80M)",
+      "url": "https://kalshi.com/markets/kxalbumstreams/will-grand-theft-auto-vi-the-album-by-grand-theft-auto-vi-ha/kxalbumstreams-gta626nov26",
+      "probe": false
+    },
+    {
+      "ts": "2026-11-25T16:35:37Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-25T16:35:37Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 1
+    },
+    {
       "ts": "2026-11-25T16:05:28Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8483,27 +8531,6 @@
       "ts": "2026-11-25T07:35:27Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-25T07:35:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-25T07:20:35Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-25T07:20:35Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8514,7 +8541,7 @@
   },
   "research_runs_today": 0,
   "research_per_day": 150,
-  "cycles_24h": 95,
+  "cycles_24h": 94,
   "learning": {
     "reviewed": 2120,
     "post_mortems": 107,
