@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T08:07:55Z",
+  "generated": "2026-11-26T08:24:20Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-26T08:07:55Z",
+      "t": "2026-11-26T08:24:20Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,15 +976,15 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-26T08:05:25Z",
+    "ts": "2026-11-26T08:22:02Z",
     "stages": [
       [
         "Fetched",
-        200
+        100
       ],
       [
         "Passed free filters",
-        200
+        100
       ],
       [
         "Judged by Jev",
@@ -1017,11 +1017,10 @@
     "facts_kept": 0,
     "facts_dropped": 0,
     "by_source": {
-      "polymarket": 100,
-      "kalshi": 100
+      "polymarket": 100
     },
     "problems": [
-      "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+      "kalshi: could not fetch markets (HTTP 500 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"internal_server_error\",\"message\":\"internal_server_error\"}})"
     ],
     "cleared_gates": {
       "mention_no": 0,
@@ -2861,7 +2860,7 @@
           99634.08
         ],
         [
-          "2026-11-26T08:07:55Z",
+          "2026-11-26T08:24:20Z",
           99634.08
         ]
       ]
@@ -4602,7 +4601,7 @@
           100126.35
         ],
         [
-          "2026-11-26T08:07:55Z",
+          "2026-11-26T08:24:20Z",
           100126.35
         ]
       ]
@@ -6343,7 +6342,7 @@
           72557.6
         ],
         [
-          "2026-11-26T08:07:55Z",
+          "2026-11-26T08:24:20Z",
           72557.6
         ]
       ]
@@ -8189,6 +8188,19 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-26T08:22:02Z",
+      "type": "problem",
+      "text": "kalshi: could not fetch markets (HTTP 500 from https://api.elections.kalshi.com/trade-api/v2/markets: {\"error\":{\"code\":\"internal_server_erro"
+    },
+    {
+      "ts": "2026-11-26T08:22:02Z",
+      "type": "scan",
+      "fetched": 100,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-26T08:05:25Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8717,19 +8729,6 @@
     },
     {
       "ts": "2026-11-25T23:35:27Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-25T23:35:27Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-25T23:20:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
     }
