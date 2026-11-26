@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T15:23:26Z",
+  "generated": "2026-11-26T15:38:31Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-26T15:23:26Z",
+      "t": "2026-11-26T15:38:31Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-26T15:20:36Z",
+    "ts": "2026-11-26T15:35:28Z",
     "stages": [
       [
         "Fetched",
@@ -2861,7 +2861,7 @@
           99634.08
         ],
         [
-          "2026-11-26T15:23:26Z",
+          "2026-11-26T15:38:31Z",
           99634.08
         ]
       ]
@@ -4602,7 +4602,7 @@
           100126.35
         ],
         [
-          "2026-11-26T15:23:26Z",
+          "2026-11-26T15:38:31Z",
           100126.35
         ]
       ]
@@ -6343,7 +6343,7 @@
           72557.6
         ],
         [
-          "2026-11-26T15:23:26Z",
+          "2026-11-26T15:38:31Z",
           72557.6
         ]
       ]
@@ -8189,6 +8189,24 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-26T15:38:26Z",
+      "type": "learn",
+      "text": "Daily review written"
+    },
+    {
+      "ts": "2026-11-26T15:35:28Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-26T15:35:28Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-26T15:20:36Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8686,27 +8704,6 @@
       "ts": "2026-11-26T05:50:32Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-26T05:50:32Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-26T05:35:29Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-26T05:35:29Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -10217,17 +10214,17 @@
       "questions": 3
     },
     "retro": {
-      "ts": "2026-11-26T03:37:56Z",
-      "headline": "Nothing was judged or researched in the last 12 hours (0 of 46 cycles), so the only three strategies we can still see are locked forward tests; favorites keeps losing, and I'm proposing nothing new until the existing fix list (p46/p58/p77) is acted on.",
+      "ts": "2026-11-26T15:38:06Z",
+      "headline": "This half-day held no experiment we can steer: judging has now produced nothing for about six weeks, only the three locked forward tests appear in the report, and the only activity was 3 new bets by the favorites strategy, which is down $27.4k overall. So this review proposes no changes, and the ope",
       "went_well": [
-        "Mention follow is up $126 on 25 settled bets, about +$17 per $100 of settled stake. Its 30-60c bets made +$220 on 12 (8 wins). That is too few to call a finding.",
-        "On 2,120 resolved markets the scoring still works. Claude direct is the closest forecaster to the market (paired Brier 0.200 against the market's 0.163 on 954 markets). In sports it edges the market, 0.176 vs 0.180 on 204, but the gap is too small and noisy to rely on.",
-        "No strategy has bought a long shot under 30c since the floor went in, so the 30c floor is holding."
+        "Mention follow is up $126 on $852 staked (+$15 per $100) over 25 settled bets (15 wins, 10 losses). Its 30-60c bets made +$220 on 12 (8 wins). With fewer than 30 settled bets this is an encouraging experiment, not a finding.",
+        "Of the forecasters, Claude direct comes closest to the market: a Brier score of 0.200 against the market's 0.163, scored on the same 954 markets (lower is better). Jev + research scores 0.217 and Jev alone 0.245. Claude also edges the market in sports (0.176 vs 0.180 on 204 markets) and culture (0.0",
+        "The 30c price floor is holding. None of the three strategies has placed a long-shot bet."
       ],
       "went_badly": [
-        "Favorites is down $27.6k on 390 settled bets, about -$6.70 per $100 at 60c and up. It wins 88% of the time, which is less than its prices need. It placed 14 more bets this half-day, and about $36k of its stake is still open. It is locked, so I can't stop it; p76 already asks Joey to close it.",
-        "Mention NO is down $366 on 93 settled bets, about -$12 per $100. It loses at coin-flip prices (-$223 on 63, 20 wins) and on favorites (-$143 on 30). On this count, that is real underperformance.",
-        "Judging has been dead: 0 markets judged in 46 cycles. Main, original and the challengers are missing from the report, and the yardstick and gate ledger are empty. No forecaster beats the market overall (market 0.145 vs Jev + research 0.209 vs Claude 0.174), and we can't tune anything that isn't lock"
+        "The pipeline is still broken. The last 48 cycles judged 0 markets, the yardstick and gate ledger are empty, and main, original, calibrated, bold, claude_direct and sharp have been missing from the report since mid-October. No forecaster beats the market overall, and every skill estimate (lambda) is ",
+        "Favorites is down $27.4k on 393 settled bets, about -$6.6 per $100 staked, and its equity is $72.6k. It wins 88% of the time (347 of 393), but that is not enough at the prices it pays. It placed 3 more bets this half-day while closing it waits on Joey (p66, p70, p73, p76).",
+        "Mention NO is down $366 on 93 settled bets (35 wins, 58 losses, -$12 per $100). It loses at both price levels: 20 wins in 63 bets at 30-60c (-$223), and 15 wins in 30 bets at 60c and up (-$143). Winning half the time at 60c or more loses money."
       ]
     },
     "auto_start": true,
