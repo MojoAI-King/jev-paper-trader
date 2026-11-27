@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-27T12:08:21Z",
+  "generated": "2026-11-27T12:24:12Z",
   "example": false,
   "question_set": "papertrade-v2",
   "start": 100000.0,
@@ -210,7 +210,7 @@
       "label": "Next Astra Model (6.1+) released by October 31, 2026?"
     },
     {
-      "t": "2026-11-27T12:08:21Z",
+      "t": "2026-11-27T12:24:12Z",
       "equity": 77929.24,
       "label": "Now (open bets valued at cost)"
     }
@@ -904,19 +904,19 @@
   ],
   "calibration": {
     "judged": 2159,
-    "resolved": 2121,
+    "resolved": 2122,
     "sources": [
       {
         "name": "jev_research",
         "label": "Jev + research",
-        "brier": 0.20852398550724638,
-        "n": 1380
+        "brier": 0.2084338884866039,
+        "n": 1381
       },
       {
         "name": "jev_plain",
         "label": "Jev alone",
-        "brier": 0.22791928335690714,
-        "n": 2121
+        "brier": 0.22782549481621112,
+        "n": 2122
       },
       {
         "name": "claude_direct",
@@ -927,39 +927,39 @@
       {
         "name": "jev_calibrated",
         "label": "Jev + research, calibrated",
-        "brier": 0.21067029020673814,
-        "n": 1306
+        "brier": 0.21059568781178273,
+        "n": 1307
       },
       {
         "name": "market",
         "label": "Market price",
-        "brier": 0.14546176013672796,
-        "n": 2121
+        "brier": 0.1458034317860509,
+        "n": 2122
       }
     ],
     "paired": {
-      "n": 954,
+      "n": 955,
       "left_out": 109,
       "sources": [
         {
           "name": "market",
           "label": "Market price",
-          "brier": 0.16339129428721175
+          "brier": 0.16412878219895288
         },
         {
           "name": "jev_research",
           "label": "Jev + research",
-          "brier": 0.21725461215932912
+          "brier": 0.21712774869109946
         },
         {
           "name": "claude_direct",
           "label": "Claude direct",
-          "brier": 0.19994234800838576
+          "brier": 0.19999476439790576
         },
         {
           "name": "jev_plain",
           "label": "Jev alone",
-          "brier": 0.2449212788259958
+          "brier": 0.24470261780104713
         }
       ]
     }
@@ -976,7 +976,7 @@
     }
   },
   "funnel": {
-    "ts": "2026-11-27T12:05:30Z",
+    "ts": "2026-11-27T12:20:27Z",
     "stages": [
       [
         "Fetched",
@@ -2889,7 +2889,7 @@
           99634.08
         ],
         [
-          "2026-11-27T12:08:21Z",
+          "2026-11-27T12:24:12Z",
           99634.08
         ]
       ]
@@ -4658,7 +4658,7 @@
           100126.35
         ],
         [
-          "2026-11-27T12:08:21Z",
+          "2026-11-27T12:24:12Z",
           100126.35
         ]
       ]
@@ -6427,7 +6427,7 @@
           73038.01
         ],
         [
-          "2026-11-27T12:08:21Z",
+          "2026-11-27T12:24:12Z",
           73038.01
         ]
       ]
@@ -8319,6 +8319,32 @@
   ],
   "feed": [
     {
+      "ts": "2026-11-27T12:24:08Z",
+      "type": "learn",
+      "text": "Research playbook updated to v30"
+    },
+    {
+      "ts": "2026-11-27T12:22:57Z",
+      "type": "review",
+      "kind": "win",
+      "cause": "read_the_rules",
+      "q": "Will Rafael L\u00f3pez Aliaga win the next Lima mayoral elections?",
+      "url": "https://polymarket.com/market/will-rafael-lopez-aliaga-win-the-next-lima-mayoral-elections"
+    },
+    {
+      "ts": "2026-11-27T12:20:27Z",
+      "type": "problem",
+      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
+    },
+    {
+      "ts": "2026-11-27T12:20:27Z",
+      "type": "scan",
+      "fetched": 200,
+      "judged": 0,
+      "researched": 0,
+      "bets": 0
+    },
+    {
       "ts": "2026-11-27T12:05:30Z",
       "type": "problem",
       "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
@@ -8836,32 +8862,6 @@
       "judged": 0,
       "researched": 0,
       "bets": 0
-    },
-    {
-      "ts": "2026-11-27T03:35:28Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-27T03:35:28Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
-    },
-    {
-      "ts": "2026-11-27T03:20:30Z",
-      "type": "problem",
-      "text": "kalshi: fetch hit its page limit after 60 pages; far-dated markets left out"
-    },
-    {
-      "ts": "2026-11-27T03:20:30Z",
-      "type": "scan",
-      "fetched": 200,
-      "judged": 0,
-      "researched": 0,
-      "bets": 0
     }
   ],
   "plan_usage": {
@@ -8874,9 +8874,9 @@
   "research_per_day": 150,
   "cycles_24h": 96,
   "learning": {
-    "reviewed": 2121,
+    "reviewed": 2122,
     "post_mortems": 107,
-    "win_reviews": 64,
+    "win_reviews": 65,
     "calibration": [
       {
         "range": "0\u201320%",
@@ -8886,7 +8886,7 @@
       },
       {
         "range": "20\u201340%",
-        "n": 494,
+        "n": 495,
         "predicted": 0.295,
         "actual": 0.275
       },
@@ -8920,7 +8920,8 @@
     "credits": {
       "lucky": 32,
       "base_rate": 15,
-      "research_found_it": 17
+      "research_found_it": 17,
+      "read_the_rules": 1
     },
     "recent": [
       {
@@ -9046,6 +9047,26 @@
     ],
     "recent_wins": [
       {
+        "question": "Will Rafael L\u00f3pez Aliaga win the next Lima mayoral elections?",
+        "url": "https://polymarket.com/market/will-rafael-lopez-aliaga-win-the-next-lima-mayoral-elections",
+        "outcome": "no",
+        "category": "politics",
+        "p": 0.29,
+        "market": 0.933,
+        "ts": "2026-11-27T12:22:57Z",
+        "bets": {},
+        "kind": "win",
+        "root_cause": "read_the_rules",
+        "what_happened": "On October 4 Renovaci\u00f3n Popular's list won the Lima vote with about 31.8%, ahead of Avanza Pa\u00eds. On November 6, though, JNE Resolution 4557-2026-JNE ruled that L\u00f3pez Aliaga cannot receive the mayor's credential: he was mayor from 2023 to 2025 and is barred from immediate re-election, and his first-councillor slot doesn't get around that. The second councillor, Jeanette Alonzo, is expected to take office instead. As of mid-November she had not yet been proclaimed.",
+        "what_we_missed": "",
+        "what_worked": "The market sat at 0.933 because it treated 'his list leads the polls by 12 points' as 'he becomes mayor.' The forecaster's research (0.29, against 0.17 without research) separated winning the vote from getting the credential, which the rules make decisive. It also weighed the ban on immediate re-election, the 'hidden re-election' complaints, the JNE's refusal to commit, and the fact that he was only on the ballot as first councillor with no registered mayoral candidate above him. Arguably the forecast was still too high.",
+        "lesson": "If a market resolves on who actually takes office, check every legal step between winning the vote and being sworn in, especially eligibility bans and credential decisions. A clear polling lead says nothing about those steps.",
+        "suggested_change": {
+          "area": "research",
+          "change": "For any 'will X become/win office' question, have research explicitly ask whether the candidate is legally barred from holding the office (re-election limits, proxy or placeholder candidacies, credential rulings) and estimate that probability separately from the vote result."
+        }
+      },
+      {
         "question": "Military action against Saudi Oil Pipeline (East-West) by October 31?",
         "url": "https://polymarket.com/market/military-action-against-saudi-oil-pipeline-east-west-by-october-31",
         "outcome": "no",
@@ -9154,33 +9175,11 @@
           "area": "research",
           "change": "Before forecasting, pull the latest conflict tracker (for example the Critical Threats Iran Update) to confirm when the last qualifying strike on Iranian land happened, so the forecast rests on evidence rather than a no-information prior."
         }
-      },
-      {
-        "question": "Will the Democrats win the Iowa governor race in 2026?",
-        "url": "https://polymarket.com/market/will-the-democrats-win-the-iowa-governor-race-in-2026",
-        "outcome": "yes",
-        "category": "politics",
-        "p": null,
-        "market": 0.885,
-        "ts": "2026-11-04T07:38:15Z",
-        "bets": {
-          "favorites": 95.04
-        },
-        "kind": "win",
-        "root_cause": "lucky",
-        "what_happened": "Democrat Rob Sand ran for Iowa's open governor seat against Republican Zach Lahn, who had upset the Trump-endorsed Randy Feenstra in the GOP primary. Before the election Sand led in polls, Kalshi priced him around 86% and some raters had the race leaning Democratic. The question resolved YES with Sand winning, though my searches didn't find the actual vote count.",
-        "what_we_missed": "",
-        "what_worked": "The money was made by the 'favorites' strategy, which bet $95 on YES because the market priced Democrats at 88.5%. Our own forecast had no research facts behind it and gave only 36%, which ignored Sand's polling lead and Lahn's weakness after the primary upset. The model's probability was wrong, and the profit came from following the market.",
-        "lesson": "When the forecaster has no research facts and lands more than 40 points from a liquid market, assume the market knows something specific, such as a nominee change or polling, and find out what before trusting the model's prior that Iowa leans Republican.",
-        "suggested_change": {
-          "area": "gates",
-          "change": "When jev_with_research is missing and jev_alone is more than 30 points away from the market price, block contrarian bets and either run research or defer to the market."
-        }
       }
     ],
     "playbook": {
-      "version": 29,
-      "updated": "2026-11-14T08:53:39Z",
+      "version": 30,
+      "updated": "2026-11-27T12:23:30Z",
       "rules": [
         {
           "id": "R1",
@@ -9201,16 +9200,10 @@
           "added": "2026-11-04T05:09:56Z"
         },
         {
-          "id": "R41",
+          "id": "R43",
           "category": "politics",
-          "rule": "For election questions, report the state's lean, recent results for the same office, cash on hand, every dated poll with pollster and sponsor, a nonpartisan-poll average, first-hand Cook/Sabato/Inside Elections ratings, other races' polls, primary turnout, national mood.",
-          "added": "2026-11-04T05:09:56Z"
-        },
-        {
-          "id": "R42",
-          "category": "politics",
-          "rule": "Before citing a past polling miss, check it was the same candidate and cycle type; report the nominee's own record and whether the seat is open; label partisan lean indexes, secondhand 'safe' labels, party-sponsored polls, win streaks and spending gaps as weak.",
-          "added": "2026-11-05T00:08:30Z"
+          "rule": "For who-becomes-or-wins-office questions, read whether the rules resolve on the vote or on taking office, check term limits, re-election bans, placeholder candidacies and credential rulings, and confirm who leads each party into the vote, even an interim leader.",
+          "added": "2026-11-27T12:23:30Z"
         },
         {
           "id": "R7",
@@ -9305,6 +9298,24 @@
       ],
       "history": [
         {
+          "ts": "2026-11-27T12:23:30Z",
+          "version": 30,
+          "added": [
+            "R43"
+          ],
+          "revised": [],
+          "retired": [
+            "R41",
+            "R42"
+          ],
+          "changes": [
+            "merged R42 into R41: both cover election polling evidence; combined to free a slot, keeping the weak-evidence labels and the check that past polling misses involved the same candidate.",
+            "added new politics rule on who-takes-office questions: polymarket:3081922 showed the credential and re-election-ban step decided the outcome despite the vote win; polymarket:4881660 showed an interim leader still takes office when the party wins.",
+            "no rule from polymarket:5401795: marked lucky, so it teaches nothing about research."
+          ],
+          "refused": 1
+        },
+        {
           "ts": "2026-11-14T08:53:39Z",
           "version": 29,
           "added": [],
@@ -9380,33 +9391,13 @@
             "no rule from polymarket:5572739: the review is marked lucky"
           ],
           "refused": 0
-        },
-        {
-          "ts": "2026-11-03T00:08:16Z",
-          "version": 25,
-          "added": [
-            "R39"
-          ],
-          "revised": [
-            "R30"
-          ],
-          "retired": [
-            "R34"
-          ],
-          "changes": [
-            "added: other rule for cumulative box-office questions (latest weekend/daily totals from The Numbers or Box Office Mojo dated within 7 days, drop rates, projection to deadline), because polymarket:4893275 relied on a total that was four weeks old.",
-            "added: politics rule for elections (dated first-round and runoff polls, incumbency, where eliminated candidates' voters go, official commission count), because polymarket:1194657 had no researched facts at all.",
-            "merged: R34 (tournament/award winners) into R30, since both check first whether the deciding event already happened, which keeps the playbook at 20 rules.",
-            "skipped: kalshi:KXBTCMAXMON-BTC-26OCT31-8750000 (lucky) and polymarket:4893303 (unlucky), so no rules come from them, including the genre and holiday hold idea."
-          ],
-          "refused": 1
         }
       ]
     },
     "calibration_map": {
-      "a": 1.0287,
-      "b": 0.1194,
-      "n": 1380,
+      "a": 1.0297,
+      "b": 0.1187,
+      "n": 1381,
       "active": true,
       "need": 300
     },
@@ -9450,14 +9441,14 @@
       },
       {
         "category": "politics",
-        "n": 149,
-        "jev_research": 0.2802,
-        "jev_plain": 0.29,
-        "market": 0.1511,
+        "n": 150,
+        "jev_research": 0.2778,
+        "jev_plain": 0.2883,
+        "market": 0.1559,
         "claude_direct": 0.2751,
-        "n_jev_research": 83,
-        "n_jev_plain": 149,
-        "n_market": 149,
+        "n_jev_research": 84,
+        "n_jev_plain": 150,
+        "n_market": 150,
         "n_claude_direct": 16
       },
       {
@@ -10368,7 +10359,7 @@
     ],
     "suggested_areas": {
       "gates": 66,
-      "research": 86,
+      "research": 87,
       "questions": 3
     },
     "retro": {
